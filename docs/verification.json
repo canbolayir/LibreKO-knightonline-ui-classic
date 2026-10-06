@@ -1,0 +1,42 @@
+{
+  "upstream": "9cc436e977347b7aa4067ff7c52c5b9da9b500e5",
+  "pluginHash": "A5DA11A6F07DFBD3BCAFB9367D5B33B93E49C346FAA3B043478918E030F2B88C",
+  "clientHash": "6E5B2800B1F1A713F8FD0E32334C408422C7499BEB68F7BFE0B76CC895A7D3E2",
+  "integrationScreens": 20,
+  "inventoryScreens": 40,
+  "parentScreens": 8,
+  "parentPixelDelta": false,
+  "merchantScreens": 82,
+  "trade": {
+    "human": {
+      "screens": 14,
+      "checks": 1919
+    },
+    "karus": {
+      "screens": 14,
+      "checks": 1919
+    }
+  },
+  "nativeChatDockAndMailWirePassed": true,
+  "npcIntegrationPassed": true,
+  "missingElementTrailTextures": true,
+  "tests": {
+    "client": {
+      "total": 869,
+      "passed": 869,
+      "failed": 0
+    },
+    "server": {
+      "total": 2018,
+      "passed": 2018,
+      "failed": 0
+    },
+    "login": {
+      "total": 16,
+      "passed": 16,
+      "failed": 0
+    }
+  },
+  "reviewDate": "2026-10-06",
+  "scope": "Source-driven final implementation review before topic-organized Git publication; no live player transactions."
+}

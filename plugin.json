@@ -1,0 +1,13 @@
+{
+  "id": "knightonline-ui-classic",
+  "name": "1298 Classic UI",
+  "version": "0.1.0",
+  "type": "ui-theme",
+  "era": "Knight Online 1.298 Classic",
+  "description": "Original 1.298 UI with editable layouts, Cospre bags and Genie access",
+  "author": "Can Bolay\u0131r; based on ZeusAFK Chaos UI",
+  "homepage": "https://github.com/canbolayir/LibreKO-knightonline-ui-classic",
+  "assembly": "bin/KnightOnlineUiClassic.dll",
+  "entry": "KnightOnlineUiClassic.Plugin",
+  "minClientVersion": "0.1.0"
+}
