@@ -1,0 +1,2013 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    338,
+    65
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "Img_StateBar",
+      "rect": [
+        0,
+        0,
+        278,
+        89
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        0.54296875,
+        0.173828125
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        0,
+        0,
+        278,
+        89
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "Progress_ExpC",
+      "rect": [
+        4,
+        24,
+        116,
+        8
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            24,
+            116,
+            8
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.0078125,
+            0.046875,
+            0.234375,
+            0.0625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            4,
+            24,
+            116,
+            8
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            24,
+            116,
+            8
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.029296875,
+            0.740234375,
+            0.255859375,
+            0.755859375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            15,
+            379,
+            116,
+            8
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "Progress_HP",
+      "rect": [
+        153,
+        4,
+        117,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            153,
+            4,
+            117,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.298828125,
+            0.0078125,
+            0.52734375,
+            0.03515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            153,
+            4,
+            117,
+            14
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            153,
+            4,
+            117,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.029296875,
+            0.7890625,
+            0.2578125,
+            0.81640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            15,
+            404,
+            117,
+            14
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "Progress_ExpP",
+      "rect": [
+        4,
+        4,
+        116,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            4,
+            116,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.0078125,
+            0.0078125,
+            0.234375,
+            0.03515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            4,
+            4,
+            116,
+            14
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            4,
+            116,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.029296875,
+            0.759765625,
+            0.255859375,
+            0.787109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            15,
+            389,
+            116,
+            14
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "Progress_MSP",
+      "rect": [
+        155,
+        22,
+        116,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            155,
+            22,
+            116,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.302734375,
+            0.04296875,
+            0.529296875,
+            0.06640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            155,
+            22,
+            116,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            155,
+            22,
+            116,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.029296875,
+            0.822265625,
+            0.255859375,
+            0.845703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            15,
+            421,
+            116,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "Progress_HP_slow",
+      "rect": [
+        153,
+        4,
+        117,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            153,
+            4,
+            117,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.3046875,
+            0.009765625,
+            0.53125,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            156,
+            5,
+            116,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            5,
+            116,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.263671875,
+            0.689453125,
+            0.490234375,
+            0.712890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            135,
+            353,
+            116,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "base",
+      "id": "Group_MiniMap",
+      "rect": [
+        0,
+        42,
+        270,
+        251
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "Img_MiniMap",
+          "rect": [
+            38,
+            79,
+            188,
+            182
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "Img_MiniMapBackground",
+          "rect": [
+            0,
+            44,
+            270,
+            249
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.0,
+            0.181640625,
+            0.52734375,
+            0.66796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            0,
+            93,
+            270,
+            249
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "button",
+          "id": "Btn_ZoomOut",
+          "rect": [
+            144,
+            45,
+            18,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                144,
+                45,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.0625,
+                0.6953125,
+                0.09765625,
+                0.73046875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                32,
+                356,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                144,
+                45,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.220703125,
+                0.6953125,
+                0.255859375,
+                0.73046875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                113,
+                356,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                144,
+                45,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.140625,
+                0.6953125,
+                0.17578125,
+                0.73046875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                72,
+                356,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                144,
+                45,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.0625,
+                0.6953125,
+                0.09765625,
+                0.73046875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                32,
+                356,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            144,
+            45,
+            18,
+            18
+          ]
+        },
+        {
+          "type": "button",
+          "id": "Btn_ZoomIn",
+          "rect": [
+            114,
+            45,
+            19,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                114,
+                45,
+                19,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.0234375,
+                0.6953125,
+                0.060546875,
+                0.73046875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                12,
+                356,
+                19,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                114,
+                45,
+                19,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.1796875,
+                0.6953125,
+                0.216796875,
+                0.73046875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                92,
+                356,
+                19,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                114,
+                45,
+                19,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.1015625,
+                0.6953125,
+                0.138671875,
+                0.73046875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                52,
+                356,
+                19,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                114,
+                45,
+                19,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.0234375,
+                0.6953125,
+                0.060546875,
+                0.73046875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                12,
+                356,
+                19,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            114,
+            45,
+            19,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "Progress_HP_drop",
+      "rect": [
+        153,
+        4,
+        117,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            153,
+            4,
+            117,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.3046875,
+            0.01171875,
+            0.53125,
+            0.03515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            156,
+            6,
+            116,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            5,
+            117,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.49609375,
+            0.69140625,
+            0.72265625,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            254,
+            354,
+            116,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "Progress_HP_lasting",
+      "rect": [
+        153,
+        4,
+        117,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            153,
+            4,
+            117,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.916015625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            351,
+            447,
+            118,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            153,
+            4,
+            117,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.02734375,
+            0.970703125,
+            0.2578125,
+            0.994140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            14,
+            497,
+            118,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Position",
+      "rect": [
+        11,
+        45,
+        101,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 2097152,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Position",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Version",
+      "rect": [
+        168,
+        45,
+        90,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Version",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_HP",
+      "rect": [
+        161,
+        13,
+        101,
+        11
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 8,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "1234/1234",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_ExpP",
+      "rect": [
+        11,
+        15,
+        101,
+        11
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 8,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "1234/1234",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_MSP",
+      "rect": [
+        161,
+        33,
+        101,
+        11
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 8,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "1234/1234",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_fps",
+      "rect": [
+        10,
+        65,
+        101,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 2097152,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Frame per Sec",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "SystemTime",
+      "rect": [
+        138,
+        65,
+        157,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "SystemTime",
+      "rect": [
+        9,
+        86,
+        93,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "System Time",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_quest",
+      "rect": [
+        279,
+        3,
+        28,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            279,
+            3,
+            28,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.396484375,
+            0.375,
+            0.451171875,
+            0.4296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            203,
+            192,
+            28,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            279,
+            3,
+            28,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.451171875,
+            0.375,
+            0.505859375,
+            0.4296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            231,
+            192,
+            28,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            279,
+            3,
+            28,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.505859375,
+            0.375,
+            0.560546875,
+            0.4296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            259,
+            192,
+            28,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            279,
+            3,
+            28,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.396484375,
+            0.375,
+            0.451171875,
+            0.4296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            203,
+            192,
+            28,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        279,
+        3,
+        28,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_power",
+      "rect": [
+        310,
+        3,
+        28,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            310,
+            3,
+            28,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.396484375,
+            0.48828125,
+            0.451171875,
+            0.54296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            203,
+            250,
+            28,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            310,
+            3,
+            28,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.451171875,
+            0.48828125,
+            0.505859375,
+            0.54296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            231,
+            250,
+            28,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            310,
+            3,
+            28,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.505859375,
+            0.48828125,
+            0.560546875,
+            0.54296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            259,
+            250,
+            28,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            310,
+            3,
+            28,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.396484375,
+            0.48828125,
+            0.451171875,
+            0.54296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            203,
+            250,
+            28,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        310,
+        3,
+        28,
+        28
+      ]
+    }
+  ]
+}

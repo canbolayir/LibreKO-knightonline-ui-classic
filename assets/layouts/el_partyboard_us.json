@@ -1,0 +1,4157 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    320,
+    481
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        320,
+        481
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        0.625,
+        0.939453125
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_partyboard_us.png",
+      "src": [
+        0,
+        0,
+        320,
+        481
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "string_page",
+      "rect": [
+        142,
+        383,
+        39,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff80ff",
+      "text": "1",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_add",
+      "rect": [
+        73,
+        424,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            73,
+            424,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.00390625,
+            0.765625,
+            0.0390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            2,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            73,
+            424,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.0390625,
+            0.765625,
+            0.07421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            20,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            73,
+            424,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.07421875,
+            0.765625,
+            0.109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            38,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            73,
+            424,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.00390625,
+            0.765625,
+            0.0390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            2,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        73,
+        424,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_delete",
+      "rect": [
+        179,
+        424,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            179,
+            424,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.00390625,
+            0.904296875,
+            0.0390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            393,
+            2,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            179,
+            424,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.0390625,
+            0.904296875,
+            0.07421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            393,
+            20,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            179,
+            424,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.07421875,
+            0.904296875,
+            0.109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            393,
+            38,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            179,
+            424,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.00390625,
+            0.904296875,
+            0.0390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            393,
+            2,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        179,
+        424,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_whisper",
+      "rect": [
+        24,
+        450,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.111328125,
+            0.765625,
+            0.146484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            57,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.146484375,
+            0.765625,
+            0.181640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            75,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.181640625,
+            0.765625,
+            0.216796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            93,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.111328125,
+            0.765625,
+            0.146484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            57,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        24,
+        450,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_party",
+      "rect": [
+        126,
+        450,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            126,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.111328125,
+            0.904296875,
+            0.146484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            393,
+            57,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            126,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.146484375,
+            0.904296875,
+            0.181640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            393,
+            75,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            126,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.181640625,
+            0.904296875,
+            0.216796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            393,
+            93,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            126,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.111328125,
+            0.904296875,
+            0.146484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            393,
+            57,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        126,
+        450,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_refresh",
+      "rect": [
+        225,
+        450,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            225,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.21875,
+            0.765625,
+            0.25390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            112,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            225,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.25390625,
+            0.765625,
+            0.2890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            130,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            225,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.2890625,
+            0.765625,
+            0.32421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            148,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            225,
+            450,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_partyboard_us.dxt",
+          "uv": [
+            0.62890625,
+            0.21875,
+            0.765625,
+            0.25390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_partyboard_us.png",
+          "src": [
+            322,
+            112,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        225,
+        450,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_exit",
+      "rect": [
+        296,
+        5,
+        20,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            296,
+            5,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_transaction_person trade_us.dxt",
+          "uv": [
+            0.07421875,
+            0.109375,
+            0.11328125,
+            0.1484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_transaction_person trade_us.png",
+          "src": [
+            38,
+            56,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            296,
+            5,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_transaction_person trade_us.dxt",
+          "uv": [
+            0.115234375,
+            0.10546875,
+            0.154296875,
+            0.14453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_transaction_person trade_us.png",
+          "src": [
+            59,
+            54,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            296,
+            5,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_transaction_person trade_us.dxt",
+          "uv": [
+            0.16015625,
+            0.109375,
+            0.19921875,
+            0.1484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_transaction_person trade_us.png",
+          "src": [
+            82,
+            56,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            296,
+            5,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_transaction_person trade_us.dxt",
+          "uv": [
+            0.07421875,
+            0.109375,
+            0.11328125,
+            0.1484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_transaction_person trade_us.png",
+          "src": [
+            38,
+            56,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        296,
+        5,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_page_up",
+      "rect": [
+        90,
+        387,
+        40,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            90,
+            387,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.576171875,
+            0.306640625,
+            0.654296875,
+            0.341796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            295,
+            157,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            90,
+            387,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.654296875,
+            0.306640625,
+            0.732421875,
+            0.341796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            335,
+            157,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            90,
+            387,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.732421875,
+            0.306640625,
+            0.810546875,
+            0.341796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            375,
+            157,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            90,
+            387,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.576171875,
+            0.306640625,
+            0.654296875,
+            0.341796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            295,
+            157,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        90,
+        387,
+        40,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_page_down",
+      "rect": [
+        192,
+        386,
+        40,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            192,
+            386,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.576171875,
+            0.34375,
+            0.654296875,
+            0.37890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            295,
+            176,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            192,
+            386,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.654296875,
+            0.34375,
+            0.732421875,
+            0.37890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            335,
+            176,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            192,
+            386,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.732421875,
+            0.34375,
+            0.810546875,
+            0.37890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            375,
+            176,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            192,
+            386,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.576171875,
+            0.34375,
+            0.654296875,
+            0.37890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            295,
+            176,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        192,
+        386,
+        40,
+        18
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_btn_00",
+      "rect": [
+        73,
+        424,
+        70,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "Register",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_btn_01",
+      "rect": [
+        180,
+        425,
+        70,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "Delete",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_btn_02",
+      "rect": [
+        24,
+        450,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "Private",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_btn_03",
+      "rect": [
+        127,
+        451,
+        70,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "Invite",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_btn_04",
+      "rect": [
+        226,
+        451,
+        70,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "Refresh",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_00",
+      "rect": [
+        14,
+        79,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_01",
+      "rect": [
+        14,
+        91,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_02",
+      "rect": [
+        14,
+        103,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_03",
+      "rect": [
+        14,
+        115,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_04",
+      "rect": [
+        14,
+        127,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_05",
+      "rect": [
+        14,
+        139,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_06",
+      "rect": [
+        14,
+        151,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_07",
+      "rect": [
+        14,
+        163,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_08",
+      "rect": [
+        14,
+        175,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_09",
+      "rect": [
+        14,
+        187,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_10",
+      "rect": [
+        14,
+        199,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_11",
+      "rect": [
+        14,
+        211,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_12",
+      "rect": [
+        14,
+        223,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_13",
+      "rect": [
+        14,
+        235,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_14",
+      "rect": [
+        14,
+        247,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_15",
+      "rect": [
+        14,
+        259,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_16",
+      "rect": [
+        14,
+        271,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_17",
+      "rect": [
+        14,
+        283,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_18",
+      "rect": [
+        14,
+        295,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_19",
+      "rect": [
+        14,
+        307,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_20",
+      "rect": [
+        14,
+        319,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_21",
+      "rect": [
+        14,
+        331,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_22",
+      "rect": [
+        14,
+        343,
+        115,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_23",
+      "rect": [
+        132,
+        79,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_24",
+      "rect": [
+        132,
+        91,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_25",
+      "rect": [
+        132,
+        103,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_26",
+      "rect": [
+        132,
+        115,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_27",
+      "rect": [
+        132,
+        127,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_28",
+      "rect": [
+        132,
+        139,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_29",
+      "rect": [
+        132,
+        151,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_30",
+      "rect": [
+        132,
+        163,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_31",
+      "rect": [
+        132,
+        175,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_32",
+      "rect": [
+        132,
+        187,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_33",
+      "rect": [
+        132,
+        199,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_34",
+      "rect": [
+        132,
+        211,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_35",
+      "rect": [
+        132,
+        223,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_36",
+      "rect": [
+        132,
+        235,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_37",
+      "rect": [
+        132,
+        247,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_38",
+      "rect": [
+        132,
+        259,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_39",
+      "rect": [
+        132,
+        272,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_40",
+      "rect": [
+        132,
+        284,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_41",
+      "rect": [
+        132,
+        296,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_42",
+      "rect": [
+        132,
+        308,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_43",
+      "rect": [
+        132,
+        320,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_44",
+      "rect": [
+        132,
+        332,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_45",
+      "rect": [
+        132,
+        344,
+        60,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_46",
+      "rect": [
+        196,
+        80,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_47",
+      "rect": [
+        196,
+        92,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_48",
+      "rect": [
+        196,
+        104,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_49",
+      "rect": [
+        196,
+        116,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_50",
+      "rect": [
+        196,
+        128,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_51",
+      "rect": [
+        196,
+        140,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_52",
+      "rect": [
+        196,
+        152,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_53",
+      "rect": [
+        196,
+        164,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_54",
+      "rect": [
+        196,
+        176,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_55",
+      "rect": [
+        196,
+        188,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_56",
+      "rect": [
+        196,
+        200,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_57",
+      "rect": [
+        196,
+        212,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_58",
+      "rect": [
+        196,
+        224,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_59",
+      "rect": [
+        196,
+        236,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_60",
+      "rect": [
+        196,
+        248,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_61",
+      "rect": [
+        196,
+        260,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_62",
+      "rect": [
+        196,
+        272,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_63",
+      "rect": [
+        196,
+        284,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_64",
+      "rect": [
+        196,
+        296,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_65",
+      "rect": [
+        196,
+        308,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_66",
+      "rect": [
+        196,
+        320,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_67",
+      "rect": [
+        196,
+        332,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_68",
+      "rect": [
+        196,
+        344,
+        111,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        75,
+        12,
+        176,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 13,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "Party Window",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        14,
+        52,
+        112,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "ID",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        131,
+        52,
+        61,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "Level",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        196,
+        52,
+        110,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#f8d987ff",
+      "text": "Job",
+      "lineSpacing": 0
+    }
+  ]
+}

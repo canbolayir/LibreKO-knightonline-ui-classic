@@ -1,0 +1,4227 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    541,
+    146
+  ],
+  "drag": [
+    0,
+    123,
+    83,
+    21
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        102,
+        144
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.2578125,
+        0.71875,
+        0.45703125,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        132,
+        368,
+        102,
+        144
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        523,
+        0,
+        18,
+        144
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.45703125,
+        0.71875,
+        0.4921875,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        234,
+        368,
+        18,
+        144
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        101,
+        0,
+        422,
+        123
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.28515625,
+        0.71875,
+        0.35546875,
+        0.958984375
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        146,
+        368,
+        36,
+        123
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        101,
+        123,
+        74,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.5234375,
+        0.806640625,
+        0.66796875,
+        0.849609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        268,
+        413,
+        74,
+        22
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        174,
+        123,
+        74,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.5234375,
+        0.806640625,
+        0.66796875,
+        0.849609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        268,
+        413,
+        74,
+        22
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        247,
+        123,
+        74,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.5234375,
+        0.806640625,
+        0.66796875,
+        0.849609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        268,
+        413,
+        74,
+        22
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        320,
+        123,
+        74,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.5234375,
+        0.806640625,
+        0.66796875,
+        0.849609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        268,
+        413,
+        74,
+        22
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        393,
+        123,
+        74,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.5234375,
+        0.806640625,
+        0.66796875,
+        0.849609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        268,
+        413,
+        74,
+        22
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        466,
+        123,
+        57,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+      "uv": [
+        0.5234375,
+        0.806640625,
+        0.634765625,
+        0.849609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_statebar_us.png",
+      "src": [
+        268,
+        413,
+        57,
+        22
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "edit",
+      "id": "edit0",
+      "rect": [
+        7,
+        105,
+        506,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            7,
+            105,
+            506,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 70254592,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text0",
+      "rect": [
+        23,
+        21,
+        514,
+        83
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "scrollbar",
+      "id": "scroll",
+      "rect": [
+        3,
+        2,
+        18,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "button",
+          "id": "",
+          "rect": [
+            3,
+            3,
+            18,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                3,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.029296875,
+                0.859375,
+                0.064453125,
+                0.89453125
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                15,
+                440,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                3,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.064453125,
+                0.859375,
+                0.099609375,
+                0.89453125
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                33,
+                440,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                3,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.099609375,
+                0.859375,
+                0.134765625,
+                0.89453125
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                51,
+                440,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                3,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.029296875,
+                0.859375,
+                0.064453125,
+                0.89453125
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                15,
+                440,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            3,
+            3,
+            18,
+            18
+          ]
+        },
+        {
+          "type": "button",
+          "id": "",
+          "rect": [
+            3,
+            89,
+            18,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                89,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.029296875,
+                0.89453125,
+                0.064453125,
+                0.9296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                15,
+                458,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                89,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.064453125,
+                0.89453125,
+                0.099609375,
+                0.9296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                33,
+                458,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                89,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.099609375,
+                0.89453125,
+                0.134765625,
+                0.9296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                51,
+                458,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                89,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.029296875,
+                0.89453125,
+                0.064453125,
+                0.9296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                15,
+                458,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            3,
+            89,
+            18,
+            18
+          ]
+        },
+        {
+          "type": "trackbar",
+          "id": "",
+          "rect": [
+            3,
+            21,
+            18,
+            68
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                21,
+                18,
+                68
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.029296875,
+                0.96484375,
+                0.064453125,
+                1.0
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                15,
+                494,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                3,
+                21,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+              "uv": [
+                0.029296875,
+                0.9296875,
+                0.064453125,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_el_statebar_us.png",
+              "src": [
+                15,
+                476,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_notice_title",
+      "rect": [
+        23,
+        1,
+        514,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 9437184,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 12,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff80ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_normal",
+      "rect": [
+        101,
+        126,
+        55,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            101,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            101,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.775390625,
+            0.630859375,
+            0.8046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            397,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            101,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.74609375,
+            0.630859375,
+            0.775390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            382,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            101,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            101,
+            128,
+            55,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 9,
+          "bold": false,
+          "italic": false,
+          "color": "#f8ead1ff",
+          "text": "Normal",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        101,
+        126,
+        55,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_private",
+      "rect": [
+        174,
+        126,
+        55,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            174,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            174,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.74609375,
+            0.630859375,
+            0.775390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            382,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            174,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.775390625,
+            0.630859375,
+            0.8046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            397,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            174,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            176,
+            128,
+            52,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 9,
+          "bold": false,
+          "italic": false,
+          "color": "#f8ead1ff",
+          "text": "Private",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        174,
+        126,
+        55,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_shout",
+      "rect": [
+        246,
+        126,
+        55,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            246,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            246,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.775390625,
+            0.630859375,
+            0.8046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            397,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            246,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.74609375,
+            0.630859375,
+            0.775390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            382,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            246,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            247,
+            128,
+            54,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 9437184,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 9,
+          "bold": false,
+          "italic": false,
+          "color": "#f8ead1ff",
+          "text": "Shout",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        246,
+        126,
+        55,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_party_force",
+      "rect": [
+        320,
+        126,
+        55,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            320,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            320,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.74609375,
+            0.630859375,
+            0.775390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            382,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            320,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.775390625,
+            0.630859375,
+            0.8046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            397,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            320,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            322,
+            128,
+            52,
+            13
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 9,
+          "bold": false,
+          "italic": false,
+          "color": "#f8ead1ff",
+          "text": "Party",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        320,
+        126,
+        55,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_clan",
+      "rect": [
+        393,
+        126,
+        55,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            393,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            393,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.775390625,
+            0.630859375,
+            0.8046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            397,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            393,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.74609375,
+            0.630859375,
+            0.775390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            382,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            393,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            395,
+            128,
+            52,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 9,
+          "bold": false,
+          "italic": false,
+          "color": "#f8ead1ff",
+          "text": "Clan",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        393,
+        126,
+        55,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_off",
+      "rect": [
+        84,
+        126,
+        14,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            84,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5703125,
+            0.908203125,
+            0.59765625,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            292,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            84,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5703125,
+            0.9375,
+            0.59765625,
+            0.966796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            292,
+            480,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            84,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5703125,
+            0.966796875,
+            0.59765625,
+            0.99609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            292,
+            495,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            84,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5703125,
+            0.908203125,
+            0.59765625,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            292,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        84,
+        126,
+        14,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_check_normal",
+      "rect": [
+        157,
+        126,
+        14,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            157,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            157,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.9375,
+            0.626953125,
+            0.966796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            480,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            157,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.966796875,
+            0.626953125,
+            0.99609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            495,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            157,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        157,
+        126,
+        14,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_check_private",
+      "rect": [
+        230,
+        126,
+        14,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            230,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            230,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.966796875,
+            0.626953125,
+            0.99609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            495,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            230,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.9375,
+            0.626953125,
+            0.966796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            480,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            230,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        230,
+        126,
+        14,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_check_shout",
+      "rect": [
+        303,
+        126,
+        14,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            303,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            303,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.9375,
+            0.626953125,
+            0.966796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            480,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            303,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.966796875,
+            0.626953125,
+            0.99609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            495,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            303,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        303,
+        126,
+        14,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_check_party_force",
+      "rect": [
+        376,
+        126,
+        14,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            376,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            376,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.966796875,
+            0.626953125,
+            0.99609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            495,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            376,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.9375,
+            0.626953125,
+            0.966796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            480,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            376,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        376,
+        126,
+        14,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_check_clan",
+      "rect": [
+        449,
+        126,
+        14,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            449,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            449,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.9375,
+            0.626953125,
+            0.966796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            480,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            449,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.966796875,
+            0.626953125,
+            0.99609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            495,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            449,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        449,
+        126,
+        14,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_union",
+      "rect": [
+        466,
+        126,
+        55,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            466,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            466,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.74609375,
+            0.630859375,
+            0.775390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            382,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            466,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.775390625,
+            0.630859375,
+            0.8046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            397,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            466,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            468,
+            128,
+            53,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 9,
+          "bold": false,
+          "italic": false,
+          "color": "#f8ead1ff",
+          "text": "Ally",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        466,
+        126,
+        55,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_knights",
+      "rect": [
+        393,
+        126,
+        55,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            393,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            393,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.775390625,
+            0.630859375,
+            0.8046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            397,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            393,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.74609375,
+            0.630859375,
+            0.775390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            382,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            393,
+            126,
+            55,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.5234375,
+            0.716796875,
+            0.630859375,
+            0.74609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            268,
+            367,
+            55,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            395,
+            128,
+            51,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 9,
+          "bold": false,
+          "italic": false,
+          "color": "#f8ead1ff",
+          "text": "Knights",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        393,
+        126,
+        55,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_check_union",
+      "rect": [
+        522,
+        126,
+        14,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            522,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            522,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.966796875,
+            0.626953125,
+            0.99609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            495,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            522,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.9375,
+            0.626953125,
+            0.966796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            480,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            522,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_statebar_us.dxt",
+          "uv": [
+            0.599609375,
+            0.908203125,
+            0.626953125,
+            0.9375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_statebar_us.png",
+          "src": [
+            307,
+            465,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        522,
+        126,
+        14,
+        15
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        17,
+        128,
+        56,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Chat",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        16,
+        127,
+        56,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff80ff",
+      "text": "Chat",
+      "lineSpacing": 0
+    }
+  ]
+}

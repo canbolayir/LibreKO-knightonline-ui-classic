@@ -1,0 +1,99 @@
+{
+  "type": "base",
+  "id": "tooltip",
+  "rect": [
+    0,
+    0,
+    115,
+    25
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        115,
+        25
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.798828125,
+        0.146484375,
+        0.880859375,
+        0.173828125
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        409,
+        75,
+        42,
+        14
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        115,
+        25
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    }
+  ]
+}

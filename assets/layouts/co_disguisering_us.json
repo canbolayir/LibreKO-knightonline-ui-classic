@@ -1,0 +1,1929 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    176,
+    562
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        176,
+        511
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+      "uv": [
+        0.00390625,
+        0.001953125,
+        0.34765625,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "disguise_ring_us.png",
+      "src": [
+        2,
+        1,
+        176,
+        511
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        511,
+        176,
+        51
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+      "uv": [
+        0.349609375,
+        0.00390625,
+        0.693359375,
+        0.103515625
+      ],
+      "fps": 30.0,
+      "texture": "disguise_ring_us.png",
+      "src": [
+        179,
+        2,
+        176,
+        51
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_ok",
+      "rect": [
+        8,
+        526,
+        73,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            526,
+            73,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                16,
+                531,
+                59,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "O K",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+          "uv": [
+            0.3515625,
+            0.146484375,
+            0.494140625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "disguise_ring_us.png",
+          "src": [
+            180,
+            75,
+            73,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            526,
+            73,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                14,
+                531,
+                63,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffddfeff",
+              "text": "O K",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+          "uv": [
+            0.494140625,
+            0.146484375,
+            0.63671875,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "disguise_ring_us.png",
+          "src": [
+            253,
+            75,
+            73,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            526,
+            73,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                15,
+                531,
+                60,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffddfeff",
+              "text": "O K",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+          "uv": [
+            0.63671875,
+            0.146484375,
+            0.779296875,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "disguise_ring_us.png",
+          "src": [
+            326,
+            75,
+            73,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            526,
+            73,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                16,
+                531,
+                56,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "O K",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+          "uv": [
+            0.3515625,
+            0.146484375,
+            0.494140625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "disguise_ring_us.png",
+          "src": [
+            180,
+            75,
+            73,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        8,
+        526,
+        73,
+        22
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        94,
+        526,
+        73,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            94,
+            526,
+            73,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                103,
+                531,
+                56,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Close",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+          "uv": [
+            0.3515625,
+            0.146484375,
+            0.494140625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "disguise_ring_us.png",
+          "src": [
+            180,
+            75,
+            73,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            94,
+            526,
+            73,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                102,
+                531,
+                59,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffddfeff",
+              "text": "Close",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+          "uv": [
+            0.63671875,
+            0.146484375,
+            0.779296875,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "disguise_ring_us.png",
+          "src": [
+            326,
+            75,
+            73,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            94,
+            526,
+            73,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                102,
+                531,
+                59,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffddfeff",
+              "text": "Close",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+          "uv": [
+            0.494140625,
+            0.146484375,
+            0.63671875,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "disguise_ring_us.png",
+          "src": [
+            253,
+            75,
+            73,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            94,
+            526,
+            73,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                103,
+                531,
+                56,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Close",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+          "uv": [
+            0.3515625,
+            0.146484375,
+            0.494140625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "disguise_ring_us.png",
+          "src": [
+            180,
+            75,
+            73,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        94,
+        526,
+        73,
+        22
+      ]
+    },
+    {
+      "type": "list",
+      "id": "list_group",
+      "rect": [
+        17,
+        61,
+        141,
+        198
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "scrollbar",
+          "id": "",
+          "rect": [
+            143,
+            61,
+            15,
+            198
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                144,
+                61,
+                14,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    61,
+                    14,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.451171875,
+                    0.10546875,
+                    0.478515625,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    231,
+                    54,
+                    14,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    61,
+                    14,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.478515625,
+                    0.10546875,
+                    0.505859375,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    245,
+                    54,
+                    14,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    61,
+                    14,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.505859375,
+                    0.10546875,
+                    0.533203125,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    259,
+                    54,
+                    14,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    61,
+                    14,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.451171875,
+                    0.10546875,
+                    0.478515625,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    231,
+                    54,
+                    14,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                144,
+                61,
+                14,
+                17
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                144,
+                243,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    243,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.349609375,
+                    0.10546875,
+                    0.376953125,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    179,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    243,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.376953125,
+                    0.10546875,
+                    0.404296875,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    193,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    243,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.404296875,
+                    0.10546875,
+                    0.431640625,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    207,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    243,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.349609375,
+                    0.10546875,
+                    0.376953125,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    179,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                144,
+                243,
+                14,
+                16
+              ]
+            },
+            {
+              "type": "trackbar",
+              "id": "",
+              "rect": [
+                144,
+                78,
+                14,
+                164
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 131072,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    78,
+                    14,
+                    164
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.5625,
+                    0.10546875,
+                    0.58984375,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    288,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    78,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.53515625,
+                    0.10546875,
+                    0.5625,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    274,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffef",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "list",
+      "id": "list_monster",
+      "rect": [
+        17,
+        271,
+        141,
+        237
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "scrollbar",
+          "id": "",
+          "rect": [
+            144,
+            271,
+            14,
+            237
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "trackbar",
+              "id": "",
+              "rect": [
+                144,
+                288,
+                14,
+                203
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 131072,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    288,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.53515625,
+                    0.10546875,
+                    0.5625,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    274,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    288,
+                    14,
+                    203
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.5625,
+                    0.10546875,
+                    0.58984375,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    288,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                144,
+                492,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    492,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.349609375,
+                    0.10546875,
+                    0.376953125,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    179,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    492,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.404296875,
+                    0.10546875,
+                    0.431640625,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    207,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    492,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.376953125,
+                    0.10546875,
+                    0.404296875,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    193,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    492,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.349609375,
+                    0.10546875,
+                    0.376953125,
+                    0.13671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    179,
+                    54,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                144,
+                492,
+                14,
+                16
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                144,
+                271,
+                14,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    271,
+                    14,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.451171875,
+                    0.10546875,
+                    0.478515625,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    231,
+                    54,
+                    14,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    271,
+                    14,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.505859375,
+                    0.10546875,
+                    0.533203125,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    259,
+                    54,
+                    14,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    271,
+                    14,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.478515625,
+                    0.10546875,
+                    0.505859375,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    245,
+                    54,
+                    14,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    144,
+                    271,
+                    14,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\disguise_ring_us.dxt",
+                  "uv": [
+                    0.451171875,
+                    0.10546875,
+                    0.478515625,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "disguise_ring_us.png",
+                  "src": [
+                    231,
+                    54,
+                    14,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                144,
+                271,
+                14,
+                17
+              ]
+            }
+          ]
+        }
+      ],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffef",
+      "bold": false,
+      "italic": false
+    }
+  ]
+}

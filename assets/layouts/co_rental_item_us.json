@@ -1,0 +1,1308 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    383,
+    220
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        381,
+        220
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\rental system_03_us.dxt",
+      "uv": [
+        0.00390625,
+        0.00390625,
+        0.748046875,
+        0.43359375
+      ],
+      "fps": 30.0,
+      "texture": "rental system_03_us.png",
+      "src": [
+        2,
+        2,
+        381,
+        220
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_regist_cancel",
+      "rect": [
+        94,
+        192,
+        73,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            94,
+            192,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                94,
+                200,
+                72,
+                11
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Registration",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                96,
+                193,
+                65,
+                9
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\rental system_01_us.dxt",
+          "uv": [
+            0.0,
+            0.91796875,
+            0.142578125,
+            0.95703125
+          ],
+          "fps": 30.0,
+          "texture": "rental system_01_us.png",
+          "src": [
+            0,
+            470,
+            73,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            94,
+            192,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                94,
+                200,
+                72,
+                11
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Registration",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                96,
+                193,
+                65,
+                9
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\rental system_01_us.dxt",
+          "uv": [
+            0.142578125,
+            0.91796875,
+            0.28515625,
+            0.95703125
+          ],
+          "fps": 30.0,
+          "texture": "rental system_01_us.png",
+          "src": [
+            73,
+            470,
+            73,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            94,
+            192,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                94,
+                200,
+                72,
+                11
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Registration",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                96,
+                193,
+                65,
+                9
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\rental system_01_us.dxt",
+          "uv": [
+            0.28515625,
+            0.91796875,
+            0.427734375,
+            0.95703125
+          ],
+          "fps": 30.0,
+          "texture": "rental system_01_us.png",
+          "src": [
+            146,
+            470,
+            73,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            94,
+            192,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                96,
+                193,
+                65,
+                9
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                94,
+                200,
+                72,
+                11
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Registration",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\rental system_01_us.dxt",
+          "uv": [
+            0.0,
+            0.91796875,
+            0.142578125,
+            0.95703125
+          ],
+          "fps": 30.0,
+          "texture": "rental system_01_us.png",
+          "src": [
+            0,
+            470,
+            73,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        94,
+        192,
+        73,
+        20
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_cancel",
+      "rect": [
+        214,
+        192,
+        73,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            214,
+            192,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                216,
+                196,
+                69,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Close",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\rental system_01_us.dxt",
+          "uv": [
+            0.0,
+            0.91796875,
+            0.142578125,
+            0.95703125
+          ],
+          "fps": 30.0,
+          "texture": "rental system_01_us.png",
+          "src": [
+            0,
+            470,
+            73,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            214,
+            192,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                217,
+                196,
+                68,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Close",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\rental system_01_us.dxt",
+          "uv": [
+            0.28515625,
+            0.91796875,
+            0.427734375,
+            0.95703125
+          ],
+          "fps": 30.0,
+          "texture": "rental system_01_us.png",
+          "src": [
+            146,
+            470,
+            73,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            214,
+            192,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                216,
+                196,
+                70,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Close",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\rental system_01_us.dxt",
+          "uv": [
+            0.142578125,
+            0.91796875,
+            0.28515625,
+            0.95703125
+          ],
+          "fps": 30.0,
+          "texture": "rental system_01_us.png",
+          "src": [
+            73,
+            470,
+            73,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            214,
+            192,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                219,
+                196,
+                64,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Close",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\rental system_01_us.dxt",
+          "uv": [
+            0.0,
+            0.91796875,
+            0.142578125,
+            0.95703125
+          ],
+          "fps": 30.0,
+          "texture": "rental system_01_us.png",
+          "src": [
+            0,
+            470,
+            73,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        214,
+        192,
+        73,
+        20
+      ]
+    },
+    {
+      "type": "area",
+      "id": "area00",
+      "rect": [
+        28,
+        16,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area01",
+      "rect": [
+        84,
+        16,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area02",
+      "rect": [
+        140,
+        16,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area03",
+      "rect": [
+        195,
+        16,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area04",
+      "rect": [
+        251,
+        16,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area05",
+      "rect": [
+        307,
+        16,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area06",
+      "rect": [
+        28,
+        74,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area07",
+      "rect": [
+        84,
+        74,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area08",
+      "rect": [
+        140,
+        74,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area09",
+      "rect": [
+        195,
+        74,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area10",
+      "rect": [
+        251,
+        74,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area11",
+      "rect": [
+        307,
+        74,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area12",
+      "rect": [
+        28,
+        132,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area13",
+      "rect": [
+        84,
+        132,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area14",
+      "rect": [
+        140,
+        132,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area15",
+      "rect": [
+        195,
+        132,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area16",
+      "rect": [
+        251,
+        132,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area17",
+      "rect": [
+        307,
+        132,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    }
+  ]
+}

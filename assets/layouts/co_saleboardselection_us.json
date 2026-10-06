@@ -1,0 +1,988 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    327,
+    240
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.00390625,
+        0.76953125,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        2,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        0,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.00390625,
+        0.896484375,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        2,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        176,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.130859375,
+        0.76953125,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        67,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        176,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.896484375,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        0,
+        199,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.00390625,
+        0.884765625,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        2,
+        58,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        176,
+        199,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.884765625,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        58,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        64,
+        64,
+        112
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.130859375,
+        0.76953125,
+        0.2421875
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        67,
+        64,
+        57
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        64,
+        64,
+        112
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.896484375,
+        0.240234375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        64,
+        56
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        64,
+        199,
+        112
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.87109375,
+        0.224609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        51,
+        48
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_buy",
+      "rect": [
+        111,
+        93,
+        95,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Buying item",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_cencel",
+      "rect": [
+        122,
+        127,
+        72,
+        27
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Cancel",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_sell",
+      "rect": [
+        102,
+        56,
+        113,
+        27
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Selling item",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_sell",
+      "rect": [
+        91,
+        57,
+        144,
+        27
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            91,
+            57,
+            144,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.279296875,
+            0.1171875,
+            0.318359375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            91,
+            57,
+            144,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.318359375,
+            0.1171875,
+            0.357421875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            91,
+            57,
+            144,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.396484375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            91,
+            57,
+            144,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.396484375,
+            0.1171875,
+            0.435546875,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        91,
+        57,
+        144,
+        27
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_buy",
+      "rect": [
+        93,
+        93,
+        136,
+        24
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            93,
+            93,
+            136,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.287109375,
+            0.1171875,
+            0.322265625,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            93,
+            93,
+            136,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.322265625,
+            0.1171875,
+            0.357421875,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            93,
+            93,
+            136,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.392578125,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            93,
+            93,
+            136,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.392578125,
+            0.1171875,
+            0.427734375,
+            0.13671875
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        93,
+        93,
+        136,
+        24
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_cancel",
+      "rect": [
+        92,
+        128,
+        136,
+        24
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            92,
+            128,
+            136,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.392578125,
+            0.1171875,
+            0.427734375,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            92,
+            128,
+            136,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.392578125,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            92,
+            128,
+            136,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.322265625,
+            0.1171875,
+            0.357421875,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            92,
+            128,
+            136,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.287109375,
+            0.1171875,
+            0.322265625,
+            0.13671875
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        92,
+        128,
+        136,
+        24
+      ]
+    }
+  ]
+}

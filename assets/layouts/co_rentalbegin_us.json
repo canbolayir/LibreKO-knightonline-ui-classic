@@ -1,0 +1,2171 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    327,
+    240
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.00390625,
+        0.76953125,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        2,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        0,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.00390625,
+        0.896484375,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        2,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        176,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.130859375,
+        0.76953125,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        67,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        176,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.896484375,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        0,
+        199,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.654296875,
+        0.00390625,
+        0.76953125,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        335,
+        2,
+        59,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        176,
+        199,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.88671875,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        59,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        64,
+        64,
+        112
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.130859375,
+        0.76953125,
+        0.24609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        67,
+        64,
+        59
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        64,
+        64,
+        112
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.017578125,
+        0.896484375,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        9,
+        64,
+        57
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        64,
+        199,
+        112
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.685546875,
+        0.130859375,
+        0.76953125,
+        0.21875
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        351,
+        67,
+        43,
+        45
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Title",
+      "rect": [
+        20,
+        26,
+        286,
+        61
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "음하하하!!! 아이템을 빌리겠다구!!!     소개팅을 시켜준다면 생각해 보겠어!!! 음훼훼훼훼헤!!!!",
+      "lineSpacing": 4
+    },
+    {
+      "type": "string",
+      "id": "Text_Premium",
+      "rect": [
+        20,
+        105,
+        146,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "시로욧!!!(PC방)",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_PVP",
+      "rect": [
+        20,
+        139,
+        289,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "할수없군요..그..그럼 손예진양을..(PVP)",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "Btn_Premium",
+      "rect": [
+        16,
+        108,
+        144,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            16,
+            108,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.279296875,
+            0.1171875,
+            0.318359375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            16,
+            108,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.318359375,
+            0.1171875,
+            0.357421875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            16,
+            108,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.396484375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            16,
+            108,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.396484375,
+            0.1171875,
+            0.435546875,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        16,
+        108,
+        144,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_PVP",
+      "rect": [
+        20,
+        136,
+        261,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            20,
+            136,
+            261,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.287109375,
+            0.1171875,
+            0.322265625,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            20,
+            136,
+            261,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.322265625,
+            0.1171875,
+            0.357421875,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            20,
+            136,
+            261,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.392578125,
+            0.13671875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            20,
+            136,
+            261,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.392578125,
+            0.1171875,
+            0.427734375,
+            0.13671875
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        20,
+        136,
+        261,
+        20
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Close",
+      "rect": [
+        24,
+        200,
+        70,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Walk away",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        22,
+        198,
+        78,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            198,
+            78,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.291015625,
+            0.12109375,
+            0.330078125,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            198,
+            78,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.330078125,
+            0.12109375,
+            0.369140625,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            198,
+            78,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.369140625,
+            0.12109375,
+            0.408203125,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            198,
+            78,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.408203125,
+            0.12109375,
+            0.447265625,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        22,
+        198,
+        78,
+        20
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_Defense",
+      "rect": [
+        173,
+        160,
+        144,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            173,
+            160,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.396484375,
+            0.1171875,
+            0.435546875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            173,
+            160,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.396484375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            173,
+            160,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.318359375,
+            0.1171875,
+            0.357421875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            173,
+            160,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.279296875,
+            0.1171875,
+            0.318359375,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        173,
+        160,
+        144,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_Attack",
+      "rect": [
+        170,
+        106,
+        144,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            170,
+            106,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.396484375,
+            0.1171875,
+            0.435546875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            170,
+            106,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.396484375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            170,
+            106,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.318359375,
+            0.1171875,
+            0.357421875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            170,
+            106,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.279296875,
+            0.1171875,
+            0.318359375,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        170,
+        106,
+        144,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_Priest",
+      "rect": [
+        24,
+        184,
+        144,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            184,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.396484375,
+            0.1171875,
+            0.435546875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            184,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.396484375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            184,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.318359375,
+            0.1171875,
+            0.357421875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            184,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.279296875,
+            0.1171875,
+            0.318359375,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        24,
+        184,
+        144,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_Mage",
+      "rect": [
+        20,
+        152,
+        144,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            20,
+            152,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.396484375,
+            0.1171875,
+            0.435546875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            20,
+            152,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.396484375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            20,
+            152,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.318359375,
+            0.1171875,
+            0.357421875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            20,
+            152,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.279296875,
+            0.1171875,
+            0.318359375,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        20,
+        152,
+        144,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_Rogue",
+      "rect": [
+        18,
+        120,
+        144,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            120,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.279296875,
+            0.1171875,
+            0.318359375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            120,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.318359375,
+            0.1171875,
+            0.357421875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            120,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.396484375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            120,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.396484375,
+            0.1171875,
+            0.435546875,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        18,
+        120,
+        144,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_War",
+      "rect": [
+        21,
+        84,
+        144,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            84,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.279296875,
+            0.1171875,
+            0.318359375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            84,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.318359375,
+            0.1171875,
+            0.357421875,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            84,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.357421875,
+            0.1171875,
+            0.396484375,
+            0.140625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            84,
+            144,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.396484375,
+            0.1171875,
+            0.435546875,
+            0.140625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        21,
+        84,
+        144,
+        18
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Defense",
+      "rect": [
+        208,
+        161,
+        70,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Armor",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Attack",
+      "rect": [
+        207,
+        108,
+        70,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Weapon",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Priest",
+      "rect": [
+        25,
+        185,
+        70,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Priest",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Mage",
+      "rect": [
+        25,
+        154,
+        70,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Magician",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Rogue",
+      "rect": [
+        25,
+        123,
+        70,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Rogue",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_War",
+      "rect": [
+        25,
+        91,
+        70,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Warrior",
+      "lineSpacing": 0
+    }
+  ]
+}

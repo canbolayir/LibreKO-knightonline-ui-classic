@@ -1,0 +1,982 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    -1,
+    0,
+    325,
+    481
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        320,
+        54
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_warehouse_us.dxt",
+      "uv": [
+        0.296875,
+        0.62109375,
+        0.921875,
+        0.7265625
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_warehouse_us.png",
+      "src": [
+        152,
+        318,
+        320,
+        54
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        208,
+        320,
+        50
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_warehouse_us.dxt",
+      "uv": [
+        0.296875,
+        0.73046875,
+        0.921875,
+        0.828125
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_warehouse_us.png",
+      "src": [
+        152,
+        374,
+        320,
+        50
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        358,
+        320,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_warehouse_us.dxt",
+      "uv": [
+        0.298828125,
+        0.83203125,
+        0.923828125,
+        0.91796875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_warehouse_us.png",
+      "src": [
+        153,
+        426,
+        320,
+        44
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        459,
+        320,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_warehouse_us.dxt",
+      "uv": [
+        0.298828125,
+        0.921875,
+        0.923828125,
+        0.96484375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_warehouse_us.png",
+      "src": [
+        153,
+        472,
+        320,
+        22
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        54,
+        320,
+        154
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_warehouse_us.dxt",
+      "uv": [
+        0.296875,
+        0.73046875,
+        0.921875,
+        0.76171875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_warehouse_us.png",
+      "src": [
+        152,
+        374,
+        320,
+        16
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        258,
+        320,
+        100
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_warehouse_us.dxt",
+      "uv": [
+        0.296875,
+        0.73046875,
+        0.921875,
+        0.76171875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_warehouse_us.png",
+      "src": [
+        152,
+        374,
+        320,
+        16
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        402,
+        320,
+        57
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_warehouse_us.dxt",
+      "uv": [
+        0.298828125,
+        0.921875,
+        0.923828125,
+        0.953125
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_warehouse_us.png",
+      "src": [
+        153,
+        472,
+        320,
+        16
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "list",
+      "id": "List_Infos",
+      "rect": [
+        17,
+        39,
+        286,
+        185
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 10,
+      "color": "#ffffffff",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "string",
+      "id": "Text_Zone",
+      "rect": [
+        11,
+        11,
+        75,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Zone List",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Agreement",
+      "rect": [
+        15,
+        241,
+        290,
+        138
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ff7979ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        4,
+        409,
+        309,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "Would you like to teleport to the selected zone?",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "Btn_Ok",
+      "rect": [
+        38,
+        433,
+        97,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            38,
+            433,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.646484375,
+            0.26171875,
+            0.8359375,
+            0.318359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            331,
+            134,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            38,
+            433,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.646484375,
+            0.318359375,
+            0.8359375,
+            0.375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            331,
+            163,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            38,
+            433,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.646484375,
+            0.375,
+            0.8359375,
+            0.431640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            331,
+            192,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            38,
+            433,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.646484375,
+            0.26171875,
+            0.8359375,
+            0.318359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            331,
+            134,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        38,
+        433,
+        97,
+        29
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_Cancel",
+      "rect": [
+        187,
+        433,
+        97,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            187,
+            433,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.646484375,
+            0.43359375,
+            0.8359375,
+            0.490234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            331,
+            222,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            187,
+            433,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.646484375,
+            0.490234375,
+            0.8359375,
+            0.546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            331,
+            251,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            187,
+            433,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.646484375,
+            0.546875,
+            0.8359375,
+            0.603515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            331,
+            280,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            187,
+            433,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.646484375,
+            0.43359375,
+            0.8359375,
+            0.490234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            331,
+            222,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        187,
+        433,
+        97,
+        29
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        58,
+        440,
+        62,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "O K",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        57,
+        439,
+        62,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#fce7b4ff",
+      "text": "O K",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        206,
+        439,
+        62,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Cancel",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        205,
+        438,
+        62,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#fce7b4ff",
+      "text": "Cancel",
+      "lineSpacing": 0
+    }
+  ]
+}

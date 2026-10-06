@@ -1,0 +1,977 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    328,
+    189
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.00390625,
+        0.76953125,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        2,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        260,
+        0,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.00390625,
+        0.896484375,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        2,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        125,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.130859375,
+        0.76953125,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        67,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        260,
+        125,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.896484375,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        0,
+        196,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.677734375,
+        0.00390625,
+        0.76953125,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        347,
+        2,
+        47,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        64,
+        64,
+        61
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.015625,
+        0.76953125,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        8,
+        64,
+        58
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        260,
+        64,
+        64,
+        61
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.896484375,
+        0.244140625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        64,
+        58
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        125,
+        196,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.658203125,
+        0.130859375,
+        0.76953125,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        337,
+        67,
+        57,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        64,
+        196,
+        61
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.84375,
+        0.201171875
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        37,
+        36
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Title",
+      "rect": [
+        20,
+        28,
+        286,
+        73
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 75497472,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff80ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_ok",
+      "rect": [
+        25,
+        134,
+        97,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            25,
+            134,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.26171875,
+            0.837890625,
+            0.318359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            134,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            25,
+            134,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.318359375,
+            0.837890625,
+            0.375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            163,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            25,
+            134,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.375,
+            0.837890625,
+            0.431640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            192,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            25,
+            134,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.26171875,
+            0.837890625,
+            0.318359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            134,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        25,
+        134,
+        97,
+        29
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_cencel",
+      "rect": [
+        198,
+        134,
+        97,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            198,
+            134,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.43359375,
+            0.837890625,
+            0.490234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            222,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            198,
+            134,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.490234375,
+            0.837890625,
+            0.546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            251,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            198,
+            134,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.546875,
+            0.837890625,
+            0.603515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            280,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            198,
+            134,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.43359375,
+            0.837890625,
+            0.490234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            222,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        198,
+        134,
+        97,
+        29
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        41,
+        141,
+        64,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "O K",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        40,
+        140,
+        64,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#fbeec6ff",
+      "text": "O K",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        216,
+        141,
+        64,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Cancel",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        215,
+        140,
+        64,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#fbeec6ff",
+      "text": "Cancel",
+      "lineSpacing": 0
+    }
+  ]
+}

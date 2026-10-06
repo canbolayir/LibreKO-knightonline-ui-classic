@@ -1,0 +1,358 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    1024,
+    768
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "base",
+      "id": "group_k2",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            0,
+            1024,
+            768
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_usa_logo_us.dxt",
+          "uv": [
+            0.498046875,
+            0.00390625,
+            0.544921875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_usa_logo_us.png",
+          "src": [
+            255,
+            2,
+            24,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            371,
+            290,
+            277,
+            153
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_usa_logo_us.dxt",
+          "uv": [
+            0.001953125,
+            0.00390625,
+            0.54296875,
+            0.302734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_usa_logo_us.png",
+          "src": [
+            1,
+            2,
+            277,
+            153
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "base",
+      "id": "group_presents",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            0,
+            1024,
+            768
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_usa_logo_us.dxt",
+          "uv": [
+            0.60546875,
+            0.46484375,
+            0.646484375,
+            0.5078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_usa_logo_us.png",
+          "src": [
+            310,
+            238,
+            21,
+            22
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            350,
+            341,
+            326,
+            64
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_usa_logo_us.dxt",
+          "uv": [
+            0.00390625,
+            0.376953125,
+            0.640625,
+            0.501953125
+          ],
+          "fps": 30.0,
+          "texture": "ui_usa_logo_us.png",
+          "src": [
+            2,
+            193,
+            326,
+            64
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "base",
+      "id": "group_knight",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            0,
+            1024,
+            768
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_usa_logo_us.dxt",
+          "uv": [
+            0.6015625,
+            0.470703125,
+            0.646484375,
+            0.5078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_usa_logo_us.png",
+          "src": [
+            308,
+            241,
+            23,
+            19
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            258,
+            291,
+            495,
+            167
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_usa_logo_us.dxt",
+          "uv": [
+            0.0078125,
+            0.517578125,
+            0.974609375,
+            0.84375
+          ],
+          "fps": 30.0,
+          "texture": "ui_usa_logo_us.png",
+          "src": [
+            4,
+            265,
+            495,
+            167
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    }
+  ]
+}

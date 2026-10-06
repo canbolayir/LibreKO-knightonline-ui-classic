@@ -1,0 +1,1272 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    327,
+    156
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.00390625,
+        0.76953125,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        2,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        0,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.00390625,
+        0.896484375,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        2,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        92,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.130859375,
+        0.76953125,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        67,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        92,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.896484375,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        64,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        0,
+        199,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.00390625,
+        0.8828125,
+        0.12890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        2,
+        57,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        92,
+        199,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.658203125,
+        0.130859375,
+        0.76953125,
+        0.255859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        337,
+        67,
+        57,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        64,
+        64,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.64453125,
+        0.130859375,
+        0.76953125,
+        0.171875
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        330,
+        67,
+        64,
+        21
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        263,
+        64,
+        64,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.130859375,
+        0.896484375,
+        0.166015625
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        67,
+        64,
+        18
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        64,
+        199,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.771484375,
+        0.134765625,
+        0.80859375,
+        0.16796875
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        395,
+        69,
+        19,
+        17
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_title",
+      "rect": [
+        12,
+        10,
+        297,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Message",
+      "rect": [
+        22,
+        30,
+        283,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 75497472,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "edit",
+      "id": "Edit_Common2",
+      "rect": [
+        90,
+        88,
+        173,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            90,
+            88,
+            173,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.65625,
+            0.08203125,
+            0.7109375,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            336,
+            42,
+            28,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            90,
+            88,
+            173,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "edit",
+      "id": "Edit_Common1",
+      "rect": [
+        90,
+        64,
+        173,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            90,
+            64,
+            173,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.654296875,
+            0.017578125,
+            0.697265625,
+            0.05859375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            335,
+            9,
+            22,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            90,
+            64,
+            173,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_cancel",
+      "rect": [
+        116,
+        116,
+        97,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            116,
+            116,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.43359375,
+            0.837890625,
+            0.490234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            222,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            116,
+            116,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.546875,
+            0.837890625,
+            0.603515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            280,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            116,
+            116,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.490234375,
+            0.837890625,
+            0.546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            251,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            116,
+            116,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.43359375,
+            0.837890625,
+            0.490234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            222,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            121,
+            122,
+            89,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 12,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Cancel",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            119,
+            120,
+            91,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 12,
+          "bold": true,
+          "italic": false,
+          "color": "#fcefc2ff",
+          "text": "Cancel",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        116,
+        116,
+        97,
+        29
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_ok",
+      "rect": [
+        116,
+        115,
+        97,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            116,
+            115,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.26171875,
+            0.837890625,
+            0.318359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            134,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            116,
+            115,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.375,
+            0.837890625,
+            0.431640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            192,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            116,
+            115,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.318359375,
+            0.837890625,
+            0.375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            163,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            116,
+            115,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.6484375,
+            0.26171875,
+            0.837890625,
+            0.318359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            332,
+            134,
+            97,
+            29
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            121,
+            121,
+            89,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 12,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "O  K",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            119,
+            119,
+            91,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 12,
+          "bold": true,
+          "italic": false,
+          "color": "#fcefc2ff",
+          "text": "O  K",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        116,
+        115,
+        97,
+        29
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Left",
+      "rect": [
+        28,
+        64,
+        58,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "SERIAL",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Bottom",
+      "rect": [
+        29,
+        87,
+        57,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "PW",
+      "lineSpacing": 0
+    }
+  ]
+}

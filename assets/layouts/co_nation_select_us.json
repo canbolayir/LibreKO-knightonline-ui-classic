@@ -1,0 +1,1630 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    1024,
+    768
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ei_ka_national_01_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ei_ka_national_01_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ei_ka_national_02_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ei_ka_national_02_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        512,
+        512,
+        256
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ei_ka_national_03_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        0.5
+      ],
+      "fps": 30.0,
+      "texture": "ei_ka_national_03_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        256
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        512,
+        512,
+        512,
+        256
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ei_ka_national_03_us.dxt",
+      "uv": [
+        0.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ei_ka_national_03_us.png",
+      "src": [
+        0,
+        256,
+        512,
+        256
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_karus_selection",
+      "rect": [
+        697,
+        479,
+        149,
+        34
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            697,
+            479,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                712,
+                490,
+                122,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Select Karus",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                711,
+                489,
+                122,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Select Karus",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.0078125,
+            0.298828125,
+            0.07421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            4,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            697,
+            479,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                713,
+                491,
+                122,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Select Karus",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                712,
+                490,
+                122,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Select Karus",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.07421875,
+            0.298828125,
+            0.140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            38,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            697,
+            479,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                712,
+                490,
+                122,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Select Karus",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                711,
+                489,
+                122,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Select Karus",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.140625,
+            0.298828125,
+            0.20703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            72,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            697,
+            479,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                712,
+                490,
+                122,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Select Karus",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                711,
+                489,
+                122,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Select Karus",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.0078125,
+            0.298828125,
+            0.07421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            4,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        697,
+        479,
+        149,
+        34
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_elmo_notice",
+      "rect": [
+        157,
+        524,
+        203,
+        201
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "바탕",
+      "size": 11,
+      "bold": false,
+      "italic": false,
+      "color": "#ffb9b9ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_karus_notice",
+      "rect": [
+        670,
+        524,
+        203,
+        201
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "바탕",
+      "size": 11,
+      "bold": false,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_back",
+      "rect": [
+        442,
+        693,
+        149,
+        34
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            442,
+            693,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                451,
+                701,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Previous Page",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                450,
+                700,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#400000ff",
+              "text": "Previous Page",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.0078125,
+            0.298828125,
+            0.07421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            4,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            442,
+            693,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                452,
+                702,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Previous Page",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                451,
+                701,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Previous Page",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.07421875,
+            0.298828125,
+            0.140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            38,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            442,
+            693,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                451,
+                701,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Previous Page",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                450,
+                700,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Previous Page",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.140625,
+            0.298828125,
+            0.20703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            72,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            442,
+            693,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                451,
+                701,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Previous Page",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                450,
+                700,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Previous Page",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.0078125,
+            0.298828125,
+            0.07421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            4,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        442,
+        693,
+        149,
+        34
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_elmo_selection",
+      "rect": [
+        184,
+        479,
+        149,
+        34
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            184,
+            479,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                193,
+                487,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Select El Morad",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                192,
+                486,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Select El Morad",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.0078125,
+            0.298828125,
+            0.07421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            4,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            184,
+            479,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                193,
+                487,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Select El Morad",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                192,
+                486,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Select El Morad",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.140625,
+            0.298828125,
+            0.20703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            72,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            184,
+            479,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                194,
+                488,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Select El Morad",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                193,
+                487,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Select El Morad",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.07421875,
+            0.298828125,
+            0.140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            38,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            184,
+            479,
+            149,
+            34
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                193,
+                487,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Select El Morad",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                192,
+                486,
+                135,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#17120bff",
+              "text": "Select El Morad",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_login_02_us.dxt",
+          "uv": [
+            0.0078125,
+            0.0078125,
+            0.298828125,
+            0.07421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_02_us.png",
+          "src": [
+            4,
+            4,
+            149,
+            34
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        184,
+        479,
+        149,
+        34
+      ]
+    }
+  ]
+}

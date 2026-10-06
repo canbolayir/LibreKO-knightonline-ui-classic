@@ -1,0 +1,499 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    556,
+    768
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        1,
+        0,
+        512,
+        512
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_loding_01_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_loding_01_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        513,
+        0,
+        42,
+        255
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_loding_02_us.dxt",
+      "uv": [
+        0.0,
+        0.501953125,
+        0.08203125,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_loding_02_us.png",
+      "src": [
+        0,
+        257,
+        42,
+        255
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        1,
+        512,
+        512,
+        256
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_loding_02_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        0.5
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_loding_02_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        256
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        513,
+        255,
+        42,
+        255
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_loding_02_us.dxt",
+      "uv": [
+        0.083984375,
+        0.501953125,
+        0.166015625,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_loding_02_us.png",
+      "src": [
+        43,
+        257,
+        42,
+        255
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        513,
+        510,
+        42,
+        255
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_loding_02_us.dxt",
+      "uv": [
+        0.16796875,
+        0.501953125,
+        0.25,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_loding_02_us.png",
+      "src": [
+        86,
+        257,
+        42,
+        255
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        513,
+        765,
+        43,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_loding_02_us.dxt",
+      "uv": [
+        0.251953125,
+        0.501953125,
+        0.3359375,
+        0.546875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_loding_02_us.png",
+      "src": [
+        129,
+        257,
+        43,
+        23
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        167,
+        98,
+        232,
+        69
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_loding_02_us.dxt",
+      "uv": [
+        0.3984375,
+        0.50390625,
+        0.99609375,
+        0.689453125
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_loding_02_us.png",
+      "src": [
+        204,
+        258,
+        306,
+        95
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Version",
+      "rect": [
+        5,
+        5,
+        111,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 68157440,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ff0000ff",
+      "text": "Ver",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Info",
+      "rect": [
+        95,
+        691,
+        366,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Loading...",
+      "lineSpacing": 0
+    },
+    {
+      "type": "progress",
+      "id": "Progress_Loading",
+      "rect": [
+        143,
+        720,
+        264,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            143,
+            720,
+            264,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_loding_02_us.dxt",
+          "uv": [
+            0.478515625,
+            0.91796875,
+            0.994140625,
+            0.953125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_loding_02_us.png",
+          "src": [
+            245,
+            470,
+            264,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            143,
+            720,
+            264,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_loding_02_us.dxt",
+          "uv": [
+            0.478515625,
+            0.958984375,
+            0.994140625,
+            0.994140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_loding_02_us.png",
+          "src": [
+            245,
+            491,
+            264,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    }
+  ]
+}

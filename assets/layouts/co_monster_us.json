@@ -1,0 +1,760 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    286,
+    457
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        286,
+        457
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_monster_us.dxt",
+      "uv": [
+        0.001953125,
+        0.001953125,
+        0.560546875,
+        0.89453125
+      ],
+      "fps": 30.0,
+      "texture": "ui_monster_us.png",
+      "src": [
+        1,
+        1,
+        286,
+        457
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_karu",
+      "rect": [
+        9,
+        47,
+        97,
+        97
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_monster_us.dxt",
+      "uv": [
+        0.58203125,
+        0.064453125,
+        0.771484375,
+        0.25390625
+      ],
+      "fps": 30.0,
+      "texture": "ui_monster_us.png",
+      "src": [
+        298,
+        33,
+        97,
+        97
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_elmo",
+      "rect": [
+        9,
+        47,
+        97,
+        97
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_monster_us.dxt",
+      "uv": [
+        0.587890625,
+        0.267578125,
+        0.77734375,
+        0.45703125
+      ],
+      "fps": 30.0,
+      "texture": "ui_monster_us.png",
+      "src": [
+        301,
+        137,
+        97,
+        97
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_cancel",
+      "rect": [
+        9,
+        16,
+        20,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            16,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_monster_us.dxt",
+          "uv": [
+            0.6015625,
+            0.017578125,
+            0.640625,
+            0.056640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_monster_us.png",
+          "src": [
+            308,
+            9,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            16,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_monster_us.dxt",
+          "uv": [
+            0.64453125,
+            0.017578125,
+            0.68359375,
+            0.056640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_monster_us.png",
+          "src": [
+            330,
+            9,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            16,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_monster_us.dxt",
+          "uv": [
+            0.685546875,
+            0.017578125,
+            0.724609375,
+            0.056640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_monster_us.png",
+          "src": [
+            351,
+            9,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            16,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_monster_us.dxt",
+          "uv": [
+            0.6015625,
+            0.017578125,
+            0.640625,
+            0.056640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_monster_us.png",
+          "src": [
+            308,
+            9,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        9,
+        16,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_name",
+      "rect": [
+        132,
+        94,
+        137,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Guard Monster",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        134,
+        132,
+        42,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#00ffffff",
+      "text": "Lv.",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_lv",
+      "rect": [
+        179,
+        130,
+        70,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "바탕",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        129,
+        56,
+        151,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Pet / Guard Monster",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        128,
+        57,
+        149,
+        25
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "Pet / Guard Monster",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        17,
+        167,
+        100,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#ff8080ff",
+      "text": "Hit Point     :",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        17,
+        185,
+        99,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "Mana Point  :",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        15,
+        205,
+        132,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#fdf2a8ff",
+      "text": "Experience Point :",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_hp",
+      "rect": [
+        117,
+        166,
+        152,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "바탕",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ff8080ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_mp",
+      "rect": [
+        117,
+        186,
+        152,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "바탕",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_exp",
+      "rect": [
+        151,
+        205,
+        118,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "바탕",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#fdf2a8ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_message",
+      "rect": [
+        17,
+        234,
+        252,
+        56
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 18874368,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Mode - Guard, Defend, Rest, and etc. ",
+      "lineSpacing": 0
+    },
+    {
+      "type": "list",
+      "id": "list_command",
+      "rect": [
+        20,
+        308,
+        246,
+        115
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "바탕",
+      "size": 10,
+      "color": "#ffffffef",
+      "bold": true,
+      "italic": false
+    }
+  ]
+}

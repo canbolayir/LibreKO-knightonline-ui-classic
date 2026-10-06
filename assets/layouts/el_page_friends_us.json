@@ -1,0 +1,1873 @@
+{
+  "type": "base",
+  "id": "page_friend",
+  "rect": [
+    0,
+    0,
+    287,
+    462
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        1,
+        83,
+        285,
+        379
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+      "uv": [
+        0.005859375,
+        0.01171875,
+        0.5625,
+        0.751953125
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_friend_us.png",
+      "src": [
+        3,
+        6,
+        285,
+        379
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "string_page",
+      "rect": [
+        239,
+        163,
+        39,
+        63
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff80ff",
+      "text": "1",
+      "lineSpacing": 0
+    },
+    {
+      "type": "list",
+      "id": "List_Friends",
+      "rect": [
+        23,
+        129,
+        208,
+        132
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffff",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        22,
+        280,
+        210,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#00ff00ff",
+      "text": "Green : Online",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        22,
+        300,
+        210,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ff0000ff",
+      "text": "Red : In a Party",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        23,
+        320,
+        208,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Grey : Not connected",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        6,
+        422,
+        278,
+        24
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 75497472,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 8,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff80ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_delete",
+      "rect": [
+        109,
+        364,
+        69,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            109,
+            364,
+            69,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.708984375,
+            0.005859375,
+            0.845703125,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            363,
+            3,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            109,
+            364,
+            69,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.708984375,
+            0.041015625,
+            0.845703125,
+            0.076171875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            363,
+            21,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            109,
+            364,
+            69,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.708984375,
+            0.076171875,
+            0.845703125,
+            0.111328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            363,
+            39,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            109,
+            364,
+            69,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.708984375,
+            0.005859375,
+            0.845703125,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            363,
+            3,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        109,
+        364,
+        69,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_whisper",
+      "rect": [
+        195,
+        365,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            195,
+            365,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.84765625,
+            0.005859375,
+            0.984375,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            434,
+            3,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            195,
+            365,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.84765625,
+            0.041015625,
+            0.984375,
+            0.076171875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            434,
+            21,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            195,
+            365,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.84765625,
+            0.076171875,
+            0.984375,
+            0.111328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            434,
+            39,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            195,
+            365,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.84765625,
+            0.005859375,
+            0.984375,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            434,
+            3,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        195,
+        365,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_add",
+      "rect": [
+        21,
+        364,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            364,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.5703125,
+            0.005859375,
+            0.70703125,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            292,
+            3,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            364,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.5703125,
+            0.041015625,
+            0.70703125,
+            0.076171875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            292,
+            21,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            364,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.5703125,
+            0.076171875,
+            0.70703125,
+            0.111328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            292,
+            39,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            364,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.5703125,
+            0.005859375,
+            0.70703125,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            292,
+            3,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        364,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_party",
+      "rect": [
+        64,
+        392,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            64,
+            392,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.5703125,
+            0.11328125,
+            0.70703125,
+            0.1484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            292,
+            58,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            64,
+            392,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.5703125,
+            0.1484375,
+            0.70703125,
+            0.18359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            292,
+            76,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            64,
+            392,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.5703125,
+            0.18359375,
+            0.70703125,
+            0.21875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            292,
+            94,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            64,
+            392,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.5703125,
+            0.11328125,
+            0.70703125,
+            0.1484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            292,
+            58,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        64,
+        392,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_refresh",
+      "rect": [
+        154,
+        392,
+        70,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            392,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.708984375,
+            0.11328125,
+            0.845703125,
+            0.1484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            363,
+            58,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            392,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.708984375,
+            0.1484375,
+            0.845703125,
+            0.18359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            363,
+            76,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            392,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.708984375,
+            0.18359375,
+            0.845703125,
+            0.21875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            363,
+            94,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            392,
+            70,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.708984375,
+            0.11328125,
+            0.845703125,
+            0.1484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            363,
+            58,
+            70,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        154,
+        392,
+        70,
+        18
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_friend",
+      "rect": [
+        6,
+        91,
+        89,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 16,
+      "bold": true,
+      "italic": false,
+      "color": "#d7be84ff",
+      "text": "Friend",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_page_up",
+      "rect": [
+        239,
+        147,
+        40,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            147,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.576171875,
+            0.306640625,
+            0.654296875,
+            0.341796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            295,
+            157,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            147,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.654296875,
+            0.306640625,
+            0.732421875,
+            0.341796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            335,
+            157,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            147,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.732421875,
+            0.306640625,
+            0.810546875,
+            0.341796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            375,
+            157,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            147,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.576171875,
+            0.306640625,
+            0.654296875,
+            0.341796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            295,
+            157,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        239,
+        147,
+        40,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_page_down",
+      "rect": [
+        239,
+        224,
+        40,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            224,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.576171875,
+            0.34375,
+            0.654296875,
+            0.37890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            295,
+            176,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            224,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.654296875,
+            0.34375,
+            0.732421875,
+            0.37890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            335,
+            176,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            224,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.732421875,
+            0.34375,
+            0.810546875,
+            0.37890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            375,
+            176,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            224,
+            40,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_friend_us.dxt",
+          "uv": [
+            0.576171875,
+            0.34375,
+            0.654296875,
+            0.37890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_friend_us.png",
+          "src": [
+            295,
+            176,
+            40,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        239,
+        224,
+        40,
+        18
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_btn_00",
+      "rect": [
+        22,
+        365,
+        69,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#dec27aff",
+      "text": "Register",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_btn_01",
+      "rect": [
+        110,
+        365,
+        67,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#dec27aff",
+      "text": "Delete",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_btn_02",
+      "rect": [
+        196,
+        365,
+        68,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#dec27aff",
+      "text": "Private",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_btn_03",
+      "rect": [
+        65,
+        392,
+        72,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#dec27aff",
+      "text": "Party",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_btn_04",
+      "rect": [
+        155,
+        393,
+        68,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#dec27aff",
+      "text": "Refresh",
+      "lineSpacing": 0
+    }
+  ]
+}

@@ -1,0 +1,3071 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    -2,
+    -1,
+    366,
+    576
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "img_inven00",
+      "rect": [
+        1,
+        39,
+        362,
+        275
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_inven_us.dxt",
+      "uv": [
+        0.291015625,
+        0.0078125,
+        0.998046875,
+        0.544921875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_inven_us.png",
+      "src": [
+        149,
+        4,
+        362,
+        275
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_inven01",
+      "rect": [
+        306,
+        -1,
+        57,
+        41
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_inven_us.dxt",
+      "uv": [
+        0.005859375,
+        0.01171875,
+        0.1171875,
+        0.091796875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_inven_us.png",
+      "src": [
+        3,
+        6,
+        57,
+        41
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        1,
+        314,
+        362,
+        134
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_inven_us.dxt",
+      "uv": [
+        0.291015625,
+        0.57421875,
+        0.998046875,
+        0.8359375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_inven_us.png",
+      "src": [
+        149,
+        294,
+        362,
+        134
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        1,
+        497,
+        362,
+        77
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_inven_us.dxt",
+      "uv": [
+        0.291015625,
+        0.845703125,
+        0.998046875,
+        0.99609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_inven_us.png",
+      "src": [
+        149,
+        433,
+        362,
+        77
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        1,
+        447,
+        362,
+        50
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_inven_us.dxt",
+      "uv": [
+        0.291015625,
+        0.73828125,
+        0.998046875,
+        0.8359375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_inven_us.png",
+      "src": [
+        149,
+        378,
+        362,
+        50
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "elmo_ecli666",
+      "rect": [
+        90,
+        165,
+        12,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_message_us.dxt",
+      "uv": [
+        0.849609375,
+        0.271484375,
+        0.873046875,
+        0.30078125
+      ],
+      "fps": 30.0,
+      "texture": "ui_message_us.png",
+      "src": [
+        435,
+        139,
+        12,
+        15
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        191,
+        312,
+        32,
+        31
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_transaction_person trade_us.dxt",
+      "uv": [
+        0.03125,
+        0.27734375,
+        0.09375,
+        0.337890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_transaction_person trade_us.png",
+      "src": [
+        16,
+        142,
+        32,
+        31
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "area",
+      "id": "0",
+      "rect": [
+        15,
+        349,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "string",
+      "id": "0",
+      "rect": [
+        18,
+        376,
+        44,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "area",
+      "id": "1",
+      "rect": [
+        63,
+        350,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "2",
+      "rect": [
+        112,
+        349,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "3",
+      "rect": [
+        161,
+        349,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "4",
+      "rect": [
+        209,
+        349,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "5",
+      "rect": [
+        258,
+        350,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "6",
+      "rect": [
+        306,
+        349,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "7",
+      "rect": [
+        15,
+        399,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "8",
+      "rect": [
+        63,
+        399,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "9",
+      "rect": [
+        112,
+        399,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "10",
+      "rect": [
+        160,
+        399,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "11",
+      "rect": [
+        209,
+        399,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "12",
+      "rect": [
+        258,
+        399,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "13",
+      "rect": [
+        306,
+        399,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "14",
+      "rect": [
+        15,
+        448,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "15",
+      "rect": [
+        63,
+        448,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "16",
+      "rect": [
+        112,
+        448,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "17",
+      "rect": [
+        161,
+        448,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "18",
+      "rect": [
+        209,
+        448,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "19",
+      "rect": [
+        258,
+        448,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "20",
+      "rect": [
+        306,
+        448,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "21",
+      "rect": [
+        15,
+        498,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "22",
+      "rect": [
+        63,
+        498,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "23",
+      "rect": [
+        112,
+        498,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "24",
+      "rect": [
+        160,
+        497,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "25",
+      "rect": [
+        209,
+        498,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "26",
+      "rect": [
+        258,
+        497,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "area",
+      "id": "27",
+      "rect": [
+        306,
+        497,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 2
+    },
+    {
+      "type": "string",
+      "id": "1",
+      "rect": [
+        66,
+        376,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "2",
+      "rect": [
+        115,
+        376,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "3",
+      "rect": [
+        163,
+        376,
+        45,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "4",
+      "rect": [
+        212,
+        376,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "5",
+      "rect": [
+        261,
+        376,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "6",
+      "rect": [
+        309,
+        375,
+        45,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "7",
+      "rect": [
+        18,
+        425,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "8",
+      "rect": [
+        66,
+        425,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "9",
+      "rect": [
+        115,
+        426,
+        45,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "10",
+      "rect": [
+        164,
+        425,
+        44,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "11",
+      "rect": [
+        212,
+        425,
+        44,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "12",
+      "rect": [
+        261,
+        425,
+        44,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "13",
+      "rect": [
+        309,
+        425,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "14",
+      "rect": [
+        18,
+        474,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "15",
+      "rect": [
+        66,
+        473,
+        45,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "16",
+      "rect": [
+        115,
+        472,
+        45,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "17",
+      "rect": [
+        164,
+        473,
+        44,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "18",
+      "rect": [
+        212,
+        474,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "19",
+      "rect": [
+        260,
+        473,
+        46,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "20",
+      "rect": [
+        309,
+        474,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "21",
+      "rect": [
+        18,
+        523,
+        44,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "22",
+      "rect": [
+        67,
+        522,
+        45,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "23",
+      "rect": [
+        115,
+        523,
+        45,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "24",
+      "rect": [
+        163,
+        523,
+        45,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "25",
+      "rect": [
+        212,
+        523,
+        45,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "26",
+      "rect": [
+        261,
+        522,
+        45,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "27",
+      "rect": [
+        309,
+        523,
+        45,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_gold",
+      "rect": [
+        236,
+        321,
+        110,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 72351744,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "area",
+      "id": "0",
+      "rect": [
+        196,
+        50,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "1",
+      "rect": [
+        251,
+        50,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "2",
+      "rect": [
+        306,
+        50,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "3",
+      "rect": [
+        196,
+        103,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "4",
+      "rect": [
+        251,
+        103,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "5",
+      "rect": [
+        306,
+        103,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "6",
+      "rect": [
+        196,
+        156,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "7",
+      "rect": [
+        251,
+        156,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "8",
+      "rect": [
+        306,
+        156,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "9",
+      "rect": [
+        196,
+        209,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "10",
+      "rect": [
+        251,
+        209,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "11",
+      "rect": [
+        306,
+        209,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "12",
+      "rect": [
+        196,
+        263,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "13",
+      "rect": [
+        251,
+        264,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "14",
+      "rect": [
+        306,
+        263,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "아이템을 파괴하는 장소",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 1
+    },
+    {
+      "type": "area",
+      "id": "area_char",
+      "rect": [
+        10,
+        50,
+        174,
+        258
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        336,
+        18,
+        20,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            336,
+            18,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_transaction_person trade_us.dxt",
+          "uv": [
+            0.080078125,
+            0.083984375,
+            0.119140625,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_transaction_person trade_us.png",
+          "src": [
+            41,
+            43,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            336,
+            18,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_transaction_person trade_us.dxt",
+          "uv": [
+            0.171875,
+            0.083984375,
+            0.2109375,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_transaction_person trade_us.png",
+          "src": [
+            88,
+            43,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            336,
+            18,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_transaction_person trade_us.dxt",
+          "uv": [
+            0.125,
+            0.083984375,
+            0.1640625,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_transaction_person trade_us.png",
+          "src": [
+            64,
+            43,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            336,
+            18,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_transaction_person trade_us.dxt",
+          "uv": [
+            0.080078125,
+            0.083984375,
+            0.119140625,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_transaction_person trade_us.png",
+          "src": [
+            41,
+            43,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        336,
+        18,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "area",
+      "id": "area_samma",
+      "rect": [
+        311,
+        269,
+        35,
+        35
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "img_Destroy",
+          "rect": [
+            94,
+            196,
+            234,
+            96
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.662109375,
+            0.048828125,
+            0.76171875,
+            0.119140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            339,
+            25,
+            51,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            109,
+            215,
+            208,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 9,
+          "bold": true,
+          "italic": false,
+          "color": "#c0c0c0ff",
+          "text": "Would you like to destroy this item? ",
+          "lineSpacing": 0
+        },
+        {
+          "type": "button",
+          "id": "btn_Destroy_ok",
+          "rect": [
+            123,
+            257,
+            57,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                123,
+                257,
+                57,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_message_us.dxt",
+              "uv": [
+                0.318359375,
+                0.931640625,
+                0.4296875,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_message_us.png",
+              "src": [
+                163,
+                477,
+                57,
+                17
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                123,
+                257,
+                57,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_message_us.dxt",
+              "uv": [
+                0.4296875,
+                0.931640625,
+                0.541015625,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_message_us.png",
+              "src": [
+                220,
+                477,
+                57,
+                17
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                123,
+                257,
+                57,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_message_us.dxt",
+              "uv": [
+                0.541015625,
+                0.931640625,
+                0.65234375,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_message_us.png",
+              "src": [
+                277,
+                477,
+                57,
+                17
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                123,
+                257,
+                57,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_message_us.dxt",
+              "uv": [
+                0.318359375,
+                0.931640625,
+                0.4296875,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_message_us.png",
+              "src": [
+                163,
+                477,
+                57,
+                17
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            123,
+            257,
+            57,
+            17
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_Destroy_cancel",
+          "rect": [
+            244,
+            255,
+            57,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                244,
+                255,
+                57,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_message_us.dxt",
+              "uv": [
+                0.65234375,
+                0.931640625,
+                0.763671875,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_message_us.png",
+              "src": [
+                334,
+                477,
+                57,
+                17
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                244,
+                255,
+                57,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_message_us.dxt",
+              "uv": [
+                0.763671875,
+                0.931640625,
+                0.875,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_message_us.png",
+              "src": [
+                391,
+                477,
+                57,
+                17
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                244,
+                255,
+                57,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_message_us.dxt",
+              "uv": [
+                0.875,
+                0.931640625,
+                0.986328125,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_message_us.png",
+              "src": [
+                448,
+                477,
+                57,
+                17
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                244,
+                255,
+                57,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_message_us.dxt",
+              "uv": [
+                0.65234375,
+                0.931640625,
+                0.763671875,
+                0.96484375
+              ],
+              "fps": 30.0,
+              "texture": "ui_message_us.png",
+              "src": [
+                334,
+                477,
+                57,
+                17
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            244,
+            255,
+            57,
+            17
+          ]
+        }
+      ],
+      "areaType": 0
+    },
+    {
+      "type": "string",
+      "id": "text_weight",
+      "rect": [
+        12,
+        320,
+        170,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "",
+      "lineSpacing": 0
+    }
+  ]
+}

@@ -1,0 +1,2377 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    322,
+    246
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        134,
+        67
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+      "uv": [
+        0.6328125,
+        0.484375,
+        0.89453125,
+        0.615234375
+      ],
+      "fps": 30.0,
+      "texture": "ui_partyboard_us.png",
+      "src": [
+        324,
+        248,
+        134,
+        67
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        133,
+        0,
+        187,
+        67
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+      "uv": [
+        0.6328125,
+        0.353515625,
+        0.998046875,
+        0.484375
+      ],
+      "fps": 30.0,
+      "texture": "ui_partyboard_us.png",
+      "src": [
+        324,
+        181,
+        187,
+        67
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        65,
+        321,
+        179
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+      "uv": [
+        0.001953125,
+        0.6484375,
+        0.62890625,
+        0.998046875
+      ],
+      "fps": 30.0,
+      "texture": "ui_partyboard_us.png",
+      "src": [
+        1,
+        332,
+        321,
+        179
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        80,
+        16,
+        159,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#00ffffff",
+      "text": "Seeking Party",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        11,
+        49,
+        159,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#a3fcfeff",
+      "text": "■Needed Party Member",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        12,
+        97,
+        159,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#a3fcfeff",
+      "text": "■Message",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_warrior",
+      "rect": [
+        12,
+        67,
+        74,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            12,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                13,
+                72,
+                72,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Warrior",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.208984375,
+            0.9140625,
+            0.25
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            107,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            11,
+            67,
+            75,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                12,
+                72,
+                73,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Warrior",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.25,
+            0.9140625,
+            0.291015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            128,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            12,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                12,
+                72,
+                73,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Warrior",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.291015625,
+            0.9140625,
+            0.33203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            149,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            12,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                14,
+                72,
+                70,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Warrior",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.208984375,
+            0.9140625,
+            0.25
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            107,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        12,
+        67,
+        74,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_rogue",
+      "rect": [
+        86,
+        67,
+        74,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            86,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                88,
+                72,
+                70,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Rogue",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.208984375,
+            0.9140625,
+            0.25
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            107,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            86,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                86,
+                72,
+                73,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Rogue",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.291015625,
+            0.9140625,
+            0.33203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            149,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            85,
+            67,
+            75,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                86,
+                72,
+                73,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Rogue",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.25,
+            0.9140625,
+            0.291015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            128,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            86,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                87,
+                72,
+                72,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Rogue",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.208984375,
+            0.9140625,
+            0.25
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            107,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        86,
+        67,
+        74,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_mage",
+      "rect": [
+        160,
+        67,
+        74,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            160,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                161,
+                72,
+                72,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Magician",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.208984375,
+            0.9140625,
+            0.25
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            107,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            159,
+            67,
+            75,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                160,
+                72,
+                73,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Magician",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.25,
+            0.9140625,
+            0.291015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            128,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            160,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                160,
+                72,
+                73,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Magician",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.291015625,
+            0.9140625,
+            0.33203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            149,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            160,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                162,
+                72,
+                70,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Magician",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.208984375,
+            0.9140625,
+            0.25
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            107,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        160,
+        67,
+        74,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_priest",
+      "rect": [
+        234,
+        67,
+        74,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            234,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                236,
+                72,
+                70,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Priest",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.208984375,
+            0.9140625,
+            0.25
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            107,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            234,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                234,
+                72,
+                73,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Priest",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.291015625,
+            0.9140625,
+            0.33203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            149,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            233,
+            67,
+            75,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                234,
+                72,
+                73,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Priest",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.25,
+            0.9140625,
+            0.291015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            128,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            234,
+            67,
+            74,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                235,
+                72,
+                72,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Priest",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.76953125,
+            0.208984375,
+            0.9140625,
+            0.25
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            394,
+            107,
+            74,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        234,
+        67,
+        74,
+        21
+      ]
+    },
+    {
+      "type": "edit",
+      "id": "edit_message",
+      "rect": [
+        18,
+        123,
+        285,
+        51
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            123,
+            285,
+            51
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.771484375,
+            0.333984375,
+            0.798828125,
+            0.3515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            395,
+            171,
+            14,
+            9
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            18,
+            123,
+            285,
+            51
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 1048576,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_ok",
+      "rect": [
+        55,
+        210,
+        93,
+        27
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            55,
+            210,
+            93,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                57,
+                217,
+                91,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "O   K",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.001953125,
+            0.94921875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            393,
+            1,
+            93,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            55,
+            210,
+            93,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                57,
+                217,
+                90,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "O   K",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.0546875,
+            0.94921875,
+            0.107421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            393,
+            28,
+            93,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            55,
+            210,
+            93,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                57,
+                217,
+                91,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "O   K",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.107421875,
+            0.94921875,
+            0.16015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            393,
+            55,
+            93,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            55,
+            210,
+            93,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                58,
+                217,
+                89,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "O    K",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.001953125,
+            0.94921875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            393,
+            1,
+            93,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        55,
+        210,
+        93,
+        27
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_cencel",
+      "rect": [
+        173,
+        210,
+        93,
+        27
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            173,
+            210,
+            93,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                176,
+                217,
+                89,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.001953125,
+            0.94921875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            393,
+            1,
+            93,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            173,
+            210,
+            93,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                175,
+                217,
+                91,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.107421875,
+            0.94921875,
+            0.16015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            393,
+            55,
+            93,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            173,
+            210,
+            93,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                175,
+                217,
+                90,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.0546875,
+            0.94921875,
+            0.107421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            393,
+            28,
+            93,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            173,
+            210,
+            93,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                175,
+                217,
+                91,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_partyboard_us.dxt",
+          "uv": [
+            0.767578125,
+            0.001953125,
+            0.94921875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_partyboard_us.png",
+          "src": [
+            393,
+            1,
+            93,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        173,
+        210,
+        93,
+        27
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        19,
+        176,
+        282,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "* Must be within 15 characters ",
+      "lineSpacing": 0
+    }
+  ]
+}

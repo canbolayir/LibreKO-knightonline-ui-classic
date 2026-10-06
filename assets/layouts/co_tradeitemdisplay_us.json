@@ -1,0 +1,168 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    180,
+    49
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        220,
+        48
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.505859375,
+        0.763671875,
+        0.935546875,
+        0.857421875
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        259,
+        391,
+        220,
+        48
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "area",
+      "id": "0",
+      "rect": [
+        14,
+        8,
+        32,
+        32
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "1",
+      "rect": [
+        54,
+        8,
+        32,
+        32
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "2",
+      "rect": [
+        94,
+        8,
+        32,
+        32
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "3",
+      "rect": [
+        134,
+        8,
+        32,
+        32
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    }
+  ]
+}

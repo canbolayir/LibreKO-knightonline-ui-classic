@@ -1,0 +1,1108 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    279,
+    236
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        64,
+        55
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+      "uv": [
+        0.00390625,
+        0.001953125,
+        0.12890625,
+        0.111328125
+      ],
+      "fps": 30.0,
+      "texture": "ui_knights_crest_us.png",
+      "src": [
+        2,
+        1,
+        64,
+        56
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        206,
+        279,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+      "uv": [
+        0.00390625,
+        0.541015625,
+        0.548828125,
+        0.599609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_knights_crest_us.png",
+      "src": [
+        2,
+        277,
+        279,
+        30
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        63,
+        0,
+        152,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+      "uv": [
+        0.130859375,
+        0.001953125,
+        0.419921875,
+        0.0390625
+      ],
+      "fps": 30.0,
+      "texture": "ui_knights_crest_us.png",
+      "src": [
+        67,
+        1,
+        148,
+        19
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        55,
+        13,
+        151
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+      "uv": [
+        0.00390625,
+        0.27734375,
+        0.029296875,
+        0.34765625
+      ],
+      "fps": 30.0,
+      "texture": "ui_knights_crest_us.png",
+      "src": [
+        2,
+        142,
+        13,
+        36
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        267,
+        55,
+        11,
+        151
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+      "uv": [
+        0.525390625,
+        0.20703125,
+        0.546875,
+        0.2890625
+      ],
+      "fps": 30.0,
+      "texture": "ui_knights_crest_us.png",
+      "src": [
+        269,
+        106,
+        11,
+        42
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        64,
+        19,
+        151,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+      "uv": [
+        0.478515625,
+        0.16015625,
+        0.5078125,
+        0.181640625
+      ],
+      "fps": 30.0,
+      "texture": "ui_knights_crest_us.png",
+      "src": [
+        245,
+        82,
+        15,
+        11
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        215,
+        0,
+        63,
+        55
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+      "uv": [
+        0.423828125,
+        0.001953125,
+        0.546875,
+        0.109375
+      ],
+      "fps": 30.0,
+      "texture": "ui_knights_crest_us.png",
+      "src": [
+        217,
+        1,
+        63,
+        55
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        13,
+        55,
+        254,
+        151
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+      "uv": [
+        0.076171875,
+        0.236328125,
+        0.3828125,
+        0.38671875
+      ],
+      "fps": 30.0,
+      "texture": "ui_knights_crest_us.png",
+      "src": [
+        39,
+        121,
+        157,
+        77
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        26,
+        43,
+        231,
+        49
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 67108864,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "You can upgrade your item at the  magic anvil. Please select what you want to upgrade. ",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        7,
+        115,
+        265,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#fef7d3ff",
+      "text": "Upgrade Item",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        7,
+        152,
+        265,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#fef7d3ff",
+      "text": "Compound Accessory",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        7,
+        185,
+        265,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#fef7d3ff",
+      "text": "Walk away",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "upgrade_1",
+      "rect": [
+        37,
+        110,
+        207,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            110,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.693359375,
+            0.001953125,
+            0.916015625,
+            0.046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            355,
+            1,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            110,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.693359375,
+            0.001953125,
+            0.916015625,
+            0.046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            355,
+            1,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            110,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.6953125,
+            0.00390625,
+            0.91796875,
+            0.048828125
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            356,
+            2,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            110,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.6953125,
+            0.00390625,
+            0.91796875,
+            0.048828125
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            356,
+            2,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        37,
+        110,
+        207,
+        23
+      ]
+    },
+    {
+      "type": "button",
+      "id": "upgrade_2",
+      "rect": [
+        37,
+        147,
+        207,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            147,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.6953125,
+            0.00390625,
+            0.91796875,
+            0.048828125
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            356,
+            2,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            147,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.6953125,
+            0.00390625,
+            0.91796875,
+            0.048828125
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            356,
+            2,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            147,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.693359375,
+            0.001953125,
+            0.916015625,
+            0.046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            355,
+            1,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            147,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.693359375,
+            0.001953125,
+            0.916015625,
+            0.046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            355,
+            1,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        37,
+        147,
+        207,
+        23
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        37,
+        180,
+        207,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            180,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.693359375,
+            0.001953125,
+            0.916015625,
+            0.046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            355,
+            1,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            180,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.693359375,
+            0.001953125,
+            0.916015625,
+            0.046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            355,
+            1,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            180,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.6953125,
+            0.00390625,
+            0.91796875,
+            0.048828125
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            356,
+            2,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            37,
+            180,
+            207,
+            23
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_knights_crest_us.dxt",
+          "uv": [
+            0.6953125,
+            0.00390625,
+            0.91796875,
+            0.048828125
+          ],
+          "fps": 30.0,
+          "texture": "ui_knights_crest_us.png",
+          "src": [
+            356,
+            2,
+            114,
+            23
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        37,
+        180,
+        207,
+        23
+      ]
+    }
+  ]
+}

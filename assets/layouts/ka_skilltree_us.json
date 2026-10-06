@@ -1,0 +1,9656 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    -9,
+    0,
+    373,
+    575
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "img_public",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.001953125,
+        0.376953125,
+        0.052734375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        1,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_shaman",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.0546875,
+        0.376953125,
+        0.10546875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        28,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_berserker",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.16015625,
+        0.376953125,
+        0.2109375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        82,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_hunter",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.37109375,
+        0.376953125,
+        0.421875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        190,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_sorcerer",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.265625,
+        0.376953125,
+        0.31640625
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        136,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_skill_up",
+      "rect": [
+        0,
+        0,
+        362,
+        510
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill01_us.dxt",
+      "uv": [
+        0.28515625,
+        0.001953125,
+        0.9921875,
+        0.998046875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill01_us.png",
+      "src": [
+        146,
+        1,
+        362,
+        510
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_skill_down",
+      "rect": [
+        0,
+        510,
+        364,
+        62
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.287109375,
+        0.876953125,
+        0.998046875,
+        0.998046875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        147,
+        449,
+        364,
+        62
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_Berserker Hero",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.4765625,
+        0.376953125,
+        0.52734375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        244,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_Shadow Bane",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.529296875,
+        0.376953125,
+        0.580078125
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        271,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_Elemental Lord",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.58203125,
+        0.376953125,
+        0.6328125
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        298,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_Shadow Knight",
+      "rect": [
+        87,
+        45,
+        192,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+      "uv": [
+        0.001953125,
+        0.634765625,
+        0.376953125,
+        0.685546875
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_skill02_us.png",
+      "src": [
+        1,
+        325,
+        192,
+        26
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "string_skillpoint",
+      "rect": [
+        105,
+        80,
+        93,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#ff8080ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_0",
+      "rect": [
+        91,
+        106,
+        60,
+        21
+      ],
+      "drag": [
+        10,
+        10,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_1",
+      "rect": [
+        270,
+        106,
+        60,
+        21
+      ],
+      "drag": [
+        20,
+        20,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_2",
+      "rect": [
+        92,
+        126,
+        59,
+        21
+      ],
+      "drag": [
+        30,
+        30,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_3",
+      "rect": [
+        271,
+        126,
+        59,
+        21
+      ],
+      "drag": [
+        40,
+        40,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_public",
+      "rect": [
+        3,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                7,
+                212,
+                62,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Basic Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.00390625,
+            0.65625,
+            0.0625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            2,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                7,
+                212,
+                63,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Basic Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.00390625,
+            0.794921875,
+            0.0625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            2,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                7,
+                212,
+                60,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Basic Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.00390625,
+            0.515625,
+            0.0625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            2,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                7,
+                212,
+                61,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Basic Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.00390625,
+            0.794921875,
+            0.0625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            2,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        3,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_shaman0",
+      "rect": [
+        75,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            75,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                96,
+                213,
+                29,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Heal",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.24609375,
+            0.515625,
+            0.3046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            126,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            75,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                96,
+                213,
+                29,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Heal",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.3671875,
+            0.515625,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            188,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            75,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                96,
+                213,
+                34,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Heal",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.306640625,
+            0.515625,
+            0.365234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            157,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            75,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                96,
+                213,
+                41,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Heal",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.3671875,
+            0.515625,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            188,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        75,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_shaman1",
+      "rect": [
+        146,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                159,
+                212,
+                50,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Ecstasy",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.24609375,
+            0.65625,
+            0.3046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            126,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                159,
+                212,
+                51,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Ecstasy",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.3671875,
+            0.65625,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            188,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                159,
+                212,
+                48,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Ecstasy",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.306640625,
+            0.65625,
+            0.365234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            157,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                159,
+                212,
+                49,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Ecstasy",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.3671875,
+            0.65625,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            188,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        146,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_shaman2",
+      "rect": [
+        217,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                226,
+                212,
+                54,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Talisman",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.24609375,
+            0.794921875,
+            0.3046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            126,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                226,
+                212,
+                58,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Talisman",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.3671875,
+            0.794921875,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            188,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                226,
+                212,
+                54,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Talisman",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.306640625,
+            0.794921875,
+            0.365234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            157,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                226,
+                212,
+                56,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Talisman",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.3671875,
+            0.794921875,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            188,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        217,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_shaman3",
+      "rect": [
+        289,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.24609375,
+            0.935546875,
+            0.3046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            126,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.3671875,
+            0.935546875,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            188,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.306640625,
+            0.935546875,
+            0.365234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            157,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.3671875,
+            0.935546875,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            188,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        289,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_berserker0",
+      "rect": [
+        74,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                90,
+                212,
+                42,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Attack",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.064453125,
+            0.515625,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            33,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                90,
+                212,
+                40,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Attack",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.185546875,
+            0.515625,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                90,
+                212,
+                40,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Attack",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.125,
+            0.515625,
+            0.18359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            64,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                90,
+                212,
+                40,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Attack",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.185546875,
+            0.515625,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        74,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_berserker1",
+      "rect": [
+        146,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                158,
+                212,
+                51,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Defense",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.064453125,
+            0.65625,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            33,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                158,
+                212,
+                53,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Defense",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.185546875,
+            0.65625,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                158,
+                212,
+                49,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Defense",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.125,
+            0.65625,
+            0.18359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            64,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                158,
+                212,
+                49,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Defense",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.185546875,
+            0.65625,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        146,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_berserker2",
+      "rect": [
+        217,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                220,
+                212,
+                63,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Berserking",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.064453125,
+            0.794921875,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            33,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                220,
+                212,
+                64,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Berserking",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.185546875,
+            0.794921875,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                220,
+                212,
+                65,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Berserking",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.125,
+            0.794921875,
+            0.18359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            64,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                220,
+                212,
+                66,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Berserking",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.185546875,
+            0.794921875,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        217,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_berserker3",
+      "rect": [
+        289,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.064453125,
+            0.935546875,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            33,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.185546875,
+            0.935546875,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.125,
+            0.935546875,
+            0.18359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            64,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.185546875,
+            0.935546875,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        289,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_hunter0",
+      "rect": [
+        74,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                86,
+                212,
+                48,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Archery",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.609375,
+            0.515625,
+            0.66796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            312,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                86,
+                212,
+                50,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Archery",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.73046875,
+            0.515625,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            374,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                86,
+                212,
+                51,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Archery",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.669921875,
+            0.515625,
+            0.728515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            343,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                86,
+                212,
+                48,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Archery",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.73046875,
+            0.515625,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            374,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        74,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_hunter2",
+      "rect": [
+        218,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            218,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                231,
+                212,
+                46,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Explore",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.609375,
+            0.65625,
+            0.66796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            312,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            218,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                231,
+                212,
+                43,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Explore",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.73046875,
+            0.65625,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            374,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            218,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                231,
+                212,
+                46,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Explore",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.669921875,
+            0.65625,
+            0.728515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            343,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            218,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                231,
+                212,
+                45,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Explore",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.73046875,
+            0.65625,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            374,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        218,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_hunter1",
+      "rect": [
+        146,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                154,
+                212,
+                54,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Assassin",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.609375,
+            0.794921875,
+            0.66796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            312,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                154,
+                212,
+                56,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Assassin",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.73046875,
+            0.794921875,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            374,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                154,
+                212,
+                58,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Assassin",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.669921875,
+            0.794921875,
+            0.728515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            343,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                154,
+                212,
+                56,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Assassin",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.73046875,
+            0.794921875,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            374,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        146,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_hunter3",
+      "rect": [
+        289,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.609375,
+            0.935546875,
+            0.66796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            312,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.73046875,
+            0.935546875,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            374,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.669921875,
+            0.935546875,
+            0.728515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            343,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.73046875,
+            0.935546875,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            374,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        289,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_sorcerer0",
+      "rect": [
+        74,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                92,
+                212,
+                39,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Flame",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.427734375,
+            0.515625,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            219,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                92,
+                212,
+                40,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Flame",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.548828125,
+            0.515625,
+            0.607421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            281,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                92,
+                212,
+                45,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Flame",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.48828125,
+            0.515625,
+            0.546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            250,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            74,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                92,
+                212,
+                46,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Flame",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.37890625,
+            0.548828125,
+            0.515625,
+            0.607421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            194,
+            281,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        74,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_sorcerer1",
+      "rect": [
+        146,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                161,
+                212,
+                41,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Glacier",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.427734375,
+            0.65625,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            219,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                161,
+                212,
+                42,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Glacier",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.548828125,
+            0.65625,
+            0.607421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            281,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                161,
+                212,
+                42,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Glacier",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.48828125,
+            0.65625,
+            0.546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            250,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            146,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                161,
+                212,
+                41,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Glacier",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.51953125,
+            0.548828125,
+            0.65625,
+            0.607421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            266,
+            281,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        146,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_sorcerer2",
+      "rect": [
+        217,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                226,
+                212,
+                53,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Lightning",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.427734375,
+            0.794921875,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            219,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                226,
+                212,
+                52,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Lightning",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.548828125,
+            0.794921875,
+            0.607421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            281,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                226,
+                212,
+                54,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Lightning",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.48828125,
+            0.794921875,
+            0.546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            250,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                226,
+                212,
+                56,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Lightning",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.658203125,
+            0.548828125,
+            0.794921875,
+            0.607421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            337,
+            281,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        217,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_sorcerer3",
+      "rect": [
+        289,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.427734375,
+            0.935546875,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            219,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.548828125,
+            0.935546875,
+            0.607421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            281,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.48828125,
+            0.935546875,
+            0.546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            250,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.548828125,
+            0.935546875,
+            0.607421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            281,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        289,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "string",
+      "id": "string_4",
+      "rect": [
+        92,
+        155,
+        59,
+        21
+      ],
+      "drag": [
+        50,
+        50,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_5",
+      "rect": [
+        271,
+        155,
+        59,
+        21
+      ],
+      "drag": [
+        60,
+        60,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_6",
+      "rect": [
+        92,
+        175,
+        59,
+        21
+      ],
+      "drag": [
+        60,
+        60,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_page",
+      "rect": [
+        153,
+        527,
+        21,
+        21
+      ],
+      "drag": [
+        70,
+        70,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "1",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_info",
+      "rect": [
+        25,
+        395,
+        314,
+        46
+      ],
+      "drag": [
+        70,
+        70,
+        0,
+        0
+      ],
+      "style": 69206016,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_list_0",
+      "rect": [
+        66,
+        250,
+        110,
+        34
+      ],
+      "drag": [
+        80,
+        80,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 8,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_list_1",
+      "rect": [
+        231,
+        250,
+        110,
+        34
+      ],
+      "drag": [
+        90,
+        90,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 8,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_list_2",
+      "rect": [
+        66,
+        299,
+        110,
+        34
+      ],
+      "drag": [
+        100,
+        100,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 8,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_list_3",
+      "rect": [
+        231,
+        299,
+        110,
+        34
+      ],
+      "drag": [
+        110,
+        110,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 8,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_list_4",
+      "rect": [
+        66,
+        348,
+        110,
+        34
+      ],
+      "drag": [
+        120,
+        120,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 8,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_list_5",
+      "rect": [
+        231,
+        348,
+        110,
+        34
+      ],
+      "drag": [
+        130,
+        130,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 8,
+      "bold": true,
+      "italic": false,
+      "color": "#d4d4d4ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_skill_mp",
+      "rect": [
+        25,
+        439,
+        313,
+        14
+      ],
+      "drag": [
+        80,
+        80,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_skill_item1",
+      "rect": [
+        25,
+        483,
+        313,
+        16
+      ],
+      "drag": [
+        90,
+        90,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_skill_item2",
+      "rect": [
+        25,
+        498,
+        310,
+        16
+      ],
+      "drag": [
+        100,
+        100,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "area",
+      "id": "1",
+      "rect": [
+        185,
+        250,
+        35,
+        35
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 7
+    },
+    {
+      "type": "area",
+      "id": "0",
+      "rect": [
+        21,
+        250,
+        35,
+        35
+      ],
+      "drag": [
+        10,
+        10,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 7
+    },
+    {
+      "type": "area",
+      "id": "2",
+      "rect": [
+        21,
+        298,
+        35,
+        35
+      ],
+      "drag": [
+        20,
+        20,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 7
+    },
+    {
+      "type": "area",
+      "id": "3",
+      "rect": [
+        185,
+        298,
+        35,
+        35
+      ],
+      "drag": [
+        30,
+        30,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 7
+    },
+    {
+      "type": "area",
+      "id": "4",
+      "rect": [
+        21,
+        347,
+        35,
+        35
+      ],
+      "drag": [
+        40,
+        40,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 7
+    },
+    {
+      "type": "area",
+      "id": "5",
+      "rect": [
+        185,
+        347,
+        35,
+        35
+      ],
+      "drag": [
+        50,
+        50,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 7
+    },
+    {
+      "type": "button",
+      "id": "btn_left",
+      "rect": [
+        108,
+        529,
+        32,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            108,
+            529,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.01953125,
+            0.873046875,
+            0.08203125,
+            0.90625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            10,
+            447,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            108,
+            529,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.01953125,
+            0.90625,
+            0.08203125,
+            0.939453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            10,
+            464,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            108,
+            529,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.01953125,
+            0.939453125,
+            0.08203125,
+            0.97265625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            10,
+            481,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            108,
+            529,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.01953125,
+            0.873046875,
+            0.08203125,
+            0.90625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            10,
+            447,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        108,
+        529,
+        32,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_right",
+      "rect": [
+        220,
+        529,
+        32,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            220,
+            529,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.083984375,
+            0.873046875,
+            0.146484375,
+            0.90625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            43,
+            447,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            220,
+            529,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.083984375,
+            0.90625,
+            0.146484375,
+            0.939453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            43,
+            464,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            220,
+            529,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.083984375,
+            0.939453125,
+            0.146484375,
+            0.97265625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            43,
+            481,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            220,
+            529,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.083984375,
+            0.873046875,
+            0.146484375,
+            0.90625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            43,
+            447,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        220,
+        529,
+        32,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_0",
+      "rect": [
+        154,
+        106,
+        26,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            106,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            106,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.759765625,
+            0.0546875,
+            0.810546875,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            389,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            106,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.8203125,
+            0.0546875,
+            0.87109375,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            420,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            106,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        154,
+        106,
+        26,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_1",
+      "rect": [
+        332,
+        106,
+        26,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            106,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            106,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.8203125,
+            0.0546875,
+            0.87109375,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            420,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            106,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.759765625,
+            0.0546875,
+            0.810546875,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            389,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            106,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        332,
+        106,
+        26,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_2",
+      "rect": [
+        154,
+        126,
+        26,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            126,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            126,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.759765625,
+            0.0546875,
+            0.810546875,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            389,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            126,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.8203125,
+            0.0546875,
+            0.87109375,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            420,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            126,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        154,
+        126,
+        26,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_3",
+      "rect": [
+        332,
+        126,
+        26,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            126,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            126,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.8203125,
+            0.0546875,
+            0.87109375,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            420,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            126,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.759765625,
+            0.0546875,
+            0.810546875,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            389,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            126,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        332,
+        126,
+        26,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_4",
+      "rect": [
+        154,
+        156,
+        26,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            156,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            156,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.759765625,
+            0.0546875,
+            0.810546875,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            389,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            156,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.8203125,
+            0.0546875,
+            0.87109375,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            420,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            156,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        154,
+        156,
+        26,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_5",
+      "rect": [
+        332,
+        156,
+        26,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            156,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            156,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.8203125,
+            0.0546875,
+            0.87109375,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            420,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            156,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.759765625,
+            0.0546875,
+            0.810546875,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            389,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            156,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        332,
+        156,
+        26,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_6",
+      "rect": [
+        154,
+        175,
+        26,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            175,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            175,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.759765625,
+            0.0546875,
+            0.810546875,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            389,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            175,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.8203125,
+            0.0546875,
+            0.87109375,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            420,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            154,
+            175,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        154,
+        175,
+        26,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        335,
+        17,
+        20,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            335,
+            17,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.58203125,
+            0.611328125,
+            0.62109375,
+            0.650390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            298,
+            313,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            335,
+            17,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.673828125,
+            0.611328125,
+            0.712890625,
+            0.650390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            345,
+            313,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            335,
+            17,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.626953125,
+            0.611328125,
+            0.666015625,
+            0.650390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            321,
+            313,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            335,
+            17,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.58203125,
+            0.611328125,
+            0.62109375,
+            0.650390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            298,
+            313,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        335,
+        17,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "string",
+      "id": "img_shaman_0",
+      "rect": [
+        3,
+        156,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Heal",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_shaman_1",
+      "rect": [
+        183,
+        156,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Ecstasy",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_shaman_2",
+      "rect": [
+        4,
+        175,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Talisman",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_berserker_0",
+      "rect": [
+        3,
+        156,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Attack",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_berserker_1",
+      "rect": [
+        183,
+        156,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Defense",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_berserker_2",
+      "rect": [
+        3,
+        175,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Berserking",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_hunter_0",
+      "rect": [
+        3,
+        156,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Archery",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_hunter_2",
+      "rect": [
+        4,
+        176,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Explore",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_hunter_1",
+      "rect": [
+        183,
+        156,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Assassin",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_sorcerer_0",
+      "rect": [
+        4,
+        156,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Flame",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_sorcerer_1",
+      "rect": [
+        183,
+        156,
+        86,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Glacier",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "img_sorcerer_2",
+      "rect": [
+        3,
+        176,
+        86,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Lightning",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_Skill Point",
+      "rect": [
+        14,
+        81,
+        87,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#ff8080ff",
+      "text": "Skill Point",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        3,
+        106,
+        87,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Leadership",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        182,
+        106,
+        87,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Politics",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        3,
+        127,
+        87,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Linguistic",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        179,
+        126,
+        95,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Siege Weapon",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_skill_item0",
+      "rect": [
+        25,
+        468,
+        312,
+        16
+      ],
+      "drag": [
+        80,
+        80,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_7",
+      "rect": [
+        271,
+        175,
+        59,
+        21
+      ],
+      "drag": [
+        60,
+        60,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "꾄ⁿ톱",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_7",
+      "rect": [
+        332,
+        175,
+        26,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            175,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            175,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.759765625,
+            0.0546875,
+            0.810546875,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            389,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            175,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.8203125,
+            0.0546875,
+            0.87109375,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            420,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            332,
+            175,
+            26,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.701171875,
+            0.0546875,
+            0.751953125,
+            0.087890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            359,
+            28,
+            26,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        332,
+        175,
+        26,
+        17
+      ]
+    },
+    {
+      "type": "string",
+      "id": "img_master",
+      "rect": [
+        184,
+        176,
+        85,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Master",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_master",
+      "rect": [
+        289,
+        206,
+        70,
+        30
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                304,
+                212,
+                41,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Master",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.064453125,
+            0.935546875,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            33,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                304,
+                212,
+                43,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Master",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.185546875,
+            0.935546875,
+            0.244140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            95,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                304,
+                212,
+                43,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#910000ff",
+              "text": "Master",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.125,
+            0.935546875,
+            0.18359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            64,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            289,
+            206,
+            70,
+            30
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                304,
+                212,
+                44,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Master",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_ka_skill02_us.dxt",
+          "uv": [
+            0.798828125,
+            0.064453125,
+            0.935546875,
+            0.123046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_skill02_us.png",
+          "src": [
+            409,
+            33,
+            70,
+            30
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        289,
+        206,
+        70,
+        30
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        174,
+        528,
+        44,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Page",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "string_skill_point",
+      "rect": [
+        25,
+        454,
+        313,
+        14
+      ],
+      "drag": [
+        80,
+        80,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "",
+      "lineSpacing": 0
+    }
+  ]
+}

@@ -1,0 +1,4338 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    1026,
+    57
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        512,
+        58
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        0.11328125
+      ],
+      "fps": 30.0,
+      "texture": "ui_karus_main_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        58
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        512,
+        1,
+        512,
+        57
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+      "uv": [
+        0.0,
+        0.11328125,
+        1.0,
+        0.224609375
+      ],
+      "fps": 30.0,
+      "texture": "ui_karus_main_us.png",
+      "src": [
+        0,
+        58,
+        512,
+        57
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_inventory",
+      "rect": [
+        101,
+        19,
+        88,
+        37
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            101,
+            19,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                107,
+                30,
+                75,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Inventory",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.09765625,
+            0.23828125,
+            0.26953125,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            50,
+            122,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            101,
+            19,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                107,
+                30,
+                75,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Inventory",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.6171875,
+            0.40625,
+            0.7890625,
+            0.478515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            316,
+            208,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            101,
+            19,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                106,
+                30,
+                77,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Inventory",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.373046875,
+            0.322265625,
+            0.544921875,
+            0.39453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            191,
+            165,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            101,
+            19,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                108,
+                30,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Inventory",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.09765625,
+            0.23828125,
+            0.26953125,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            50,
+            122,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        101,
+        19,
+        88,
+        37
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_character",
+      "rect": [
+        201,
+        20,
+        88,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            201,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                208,
+                30,
+                73,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Character",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.271484375,
+            0.240234375,
+            0.443359375,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            139,
+            123,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            201,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                208,
+                30,
+                72,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Character",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.791015625,
+            0.408203125,
+            0.962890625,
+            0.478515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            405,
+            209,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            201,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                207,
+                30,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Character",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.546875,
+            0.32421875,
+            0.71875,
+            0.39453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            280,
+            166,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            201,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                207,
+                30,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Character",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.271484375,
+            0.240234375,
+            0.443359375,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            139,
+            123,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        201,
+        20,
+        88,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_skill",
+      "rect": [
+        300,
+        20,
+        85,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            300,
+            20,
+            85,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                306,
+                31,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.4453125,
+            0.240234375,
+            0.611328125,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            228,
+            123,
+            85,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            300,
+            20,
+            85,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                307,
+                31,
+                72,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.4921875,
+            0.166015625,
+            0.5625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            252,
+            85,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            300,
+            20,
+            85,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                308,
+                31,
+                70,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.720703125,
+            0.32421875,
+            0.88671875,
+            0.39453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            369,
+            166,
+            85,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            300,
+            20,
+            85,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                306,
+                31,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.4453125,
+            0.240234375,
+            0.611328125,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            228,
+            123,
+            85,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        300,
+        20,
+        85,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_control",
+      "rect": [
+        634,
+        20,
+        86,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            634,
+            20,
+            86,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                639,
+                31,
+                75,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Trade",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.61328125,
+            0.240234375,
+            0.78125,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            314,
+            123,
+            86,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            634,
+            20,
+            86,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                640,
+                31,
+                73,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Trade",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.169921875,
+            0.4921875,
+            0.337890625,
+            0.5625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            87,
+            252,
+            86,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            634,
+            20,
+            86,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                641,
+                32,
+                72,
+                14
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Trade",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.408203125,
+            0.16796875,
+            0.478515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            209,
+            86,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            634,
+            20,
+            86,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                640,
+                31,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Trade",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.61328125,
+            0.240234375,
+            0.78125,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            314,
+            123,
+            86,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        634,
+        20,
+        86,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_invite",
+      "rect": [
+        735,
+        20,
+        88,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            735,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                741,
+                30,
+                75,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Invite",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.783203125,
+            0.240234375,
+            0.955078125,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            401,
+            123,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            735,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                742,
+                30,
+                73,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Invite",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.33984375,
+            0.4921875,
+            0.51171875,
+            0.5625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            174,
+            252,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            735,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                742,
+                30,
+                73,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Invite",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.169921875,
+            0.408203125,
+            0.341796875,
+            0.478515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            87,
+            209,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            735,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                743,
+                30,
+                72,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Invite",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.783203125,
+            0.240234375,
+            0.955078125,
+            0.310546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            401,
+            123,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        735,
+        20,
+        88,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_option",
+      "rect": [
+        834,
+        20,
+        89,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            834,
+            20,
+            89,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                842,
+                31,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Command",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.32421875,
+            0.173828125,
+            0.39453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            166,
+            89,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            834,
+            20,
+            89,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                842,
+                31,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Command",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.513671875,
+            0.4921875,
+            0.6875,
+            0.5625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            263,
+            252,
+            89,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            834,
+            20,
+            89,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                843,
+                31,
+                72,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Command",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.34375,
+            0.408203125,
+            0.517578125,
+            0.478515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            176,
+            209,
+            89,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            834,
+            20,
+            89,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                842,
+                31,
+                74,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Command",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.32421875,
+            0.173828125,
+            0.39453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            166,
+            89,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        834,
+        20,
+        89,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_attack",
+      "rect": [
+        434,
+        24,
+        41,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            434,
+            24,
+            41,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.623046875,
+            0.080078125,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            319,
+            41,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            434,
+            24,
+            41,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.56640625,
+            0.080078125,
+            0.62109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            290,
+            41,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            434,
+            24,
+            41,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.623046875,
+            0.080078125,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            319,
+            41,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            434,
+            24,
+            41,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.56640625,
+            0.080078125,
+            0.62109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            290,
+            41,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        434,
+        24,
+        41,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_walk",
+      "rect": [
+        477,
+        24,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            477,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.083984375,
+            0.623046875,
+            0.166015625,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            43,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            477,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.083984375,
+            0.56640625,
+            0.166015625,
+            0.62109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            43,
+            290,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            477,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.083984375,
+            0.623046875,
+            0.166015625,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            43,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            477,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.083984375,
+            0.623046875,
+            0.166015625,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            43,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        477,
+        24,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_run",
+      "rect": [
+        476,
+        24,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            476,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.16796875,
+            0.623046875,
+            0.25,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            86,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            476,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.16796875,
+            0.56640625,
+            0.25,
+            0.62109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            86,
+            290,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            476,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.16796875,
+            0.623046875,
+            0.25,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            86,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            476,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.16796875,
+            0.623046875,
+            0.25,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            86,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        476,
+        24,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_sit",
+      "rect": [
+        517,
+        24,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            517,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.251953125,
+            0.623046875,
+            0.333984375,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            129,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            517,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.251953125,
+            0.56640625,
+            0.333984375,
+            0.62109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            129,
+            290,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            517,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.251953125,
+            0.623046875,
+            0.333984375,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            129,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            517,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.251953125,
+            0.623046875,
+            0.333984375,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            129,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        517,
+        24,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_stand",
+      "rect": [
+        517,
+        24,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            517,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.3359375,
+            0.623046875,
+            0.41796875,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            172,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            517,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.3359375,
+            0.56640625,
+            0.41796875,
+            0.62109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            172,
+            290,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            517,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.3359375,
+            0.623046875,
+            0.41796875,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            172,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            517,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.3359375,
+            0.623046875,
+            0.41796875,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            172,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        517,
+        24,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_camera",
+      "rect": [
+        558,
+        24,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            558,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.419921875,
+            0.623046875,
+            0.501953125,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            215,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            558,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.419921875,
+            0.56640625,
+            0.501953125,
+            0.62109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            215,
+            290,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            558,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.419921875,
+            0.623046875,
+            0.501953125,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            215,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            558,
+            24,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.419921875,
+            0.623046875,
+            0.501953125,
+            0.677734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            215,
+            319,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        558,
+        24,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_disband",
+      "rect": [
+        735,
+        20,
+        88,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            735,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                744,
+                31,
+                72,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Disband",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.68359375,
+            0.171875,
+            0.75390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            350,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            735,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                743,
+                31,
+                73,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Disband",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.173828125,
+            0.68359375,
+            0.345703125,
+            0.75390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            89,
+            350,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            735,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                744,
+                31,
+                72,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Disband",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.34765625,
+            0.68359375,
+            0.51953125,
+            0.75390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            178,
+            350,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            735,
+            20,
+            88,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                743,
+                31,
+                73,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Disband",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.0,
+            0.68359375,
+            0.171875,
+            0.75390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            0,
+            350,
+            88,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        735,
+        20,
+        88,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_map",
+      "rect": [
+        24,
+        14,
+        63,
+        42
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            14,
+            63,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                32,
+                30,
+                50,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Map",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.537109375,
+            0.5703125,
+            0.66015625,
+            0.65234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            275,
+            292,
+            63,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            14,
+            63,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                31,
+                30,
+                52,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Map",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.662109375,
+            0.5703125,
+            0.78515625,
+            0.65234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            339,
+            292,
+            63,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            14,
+            63,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                33,
+                30,
+                48,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Map",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.787109375,
+            0.5703125,
+            0.91015625,
+            0.65234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            403,
+            292,
+            63,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            24,
+            14,
+            63,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                32,
+                30,
+                49,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Map",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.537109375,
+            0.5703125,
+            0.66015625,
+            0.65234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            275,
+            292,
+            63,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        24,
+        14,
+        63,
+        42
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_exit",
+      "rect": [
+        936,
+        14,
+        63,
+        42
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            936,
+            14,
+            63,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                941,
+                30,
+                50,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Exit",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.537109375,
+            0.666015625,
+            0.66015625,
+            0.748046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            275,
+            341,
+            63,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            936,
+            14,
+            63,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                942,
+                30,
+                48,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Exit",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.662109375,
+            0.666015625,
+            0.78515625,
+            0.748046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            339,
+            341,
+            63,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            936,
+            14,
+            63,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                941,
+                30,
+                50,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Exit",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.787109375,
+            0.666015625,
+            0.91015625,
+            0.748046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            403,
+            341,
+            63,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            936,
+            14,
+            63,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                944,
+                30,
+                45,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#cdcdcdff",
+              "text": "Exit",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_karus_main_us.dxt",
+          "uv": [
+            0.537109375,
+            0.666015625,
+            0.66015625,
+            0.748046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_karus_main_us.png",
+          "src": [
+            275,
+            341,
+            63,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        936,
+        14,
+        63,
+        42
+      ]
+    }
+  ]
+}

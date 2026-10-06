@@ -1,0 +1,2648 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    373,
+    468
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        373,
+        468
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+      "uv": [
+        0.001953125,
+        0.001953125,
+        0.73046875,
+        0.916015625
+      ],
+      "fps": 30.0,
+      "texture": "ui_mantle_us.png",
+      "src": [
+        1,
+        1,
+        373,
+        468
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_color0",
+      "rect": [
+        20,
+        294,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_color1",
+      "rect": [
+        73,
+        295,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_color2",
+      "rect": [
+        126,
+        294,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_color3",
+      "rect": [
+        20,
+        348,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_color4",
+      "rect": [
+        73,
+        348,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_color5",
+      "rect": [
+        126,
+        348,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_backcolor0",
+      "rect": [
+        204,
+        21,
+        69,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_backcolor1",
+      "rect": [
+        284,
+        21,
+        69,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_backcolor2",
+      "rect": [
+        204,
+        137,
+        69,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_backcolor3",
+      "rect": [
+        284,
+        137,
+        69,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_c_00.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_pattern0",
+      "rect": [
+        204,
+        21,
+        69,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_m_01.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_pattern1",
+      "rect": [
+        284,
+        21,
+        69,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_m_01.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_pattern2",
+      "rect": [
+        204,
+        137,
+        69,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_m_01.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "img_pattern3",
+      "rect": [
+        283,
+        137,
+        69,
+        105
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "item\\cloak_m_01.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "button",
+      "id": "btn_purchase",
+      "rect": [
+        88,
+        438,
+        73,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            438,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.00390625,
+            0.91796875,
+            0.146484375,
+            0.958984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            2,
+            470,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            438,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.146484375,
+            0.91796875,
+            0.2890625,
+            0.958984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            75,
+            470,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            438,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.2890625,
+            0.91796875,
+            0.431640625,
+            0.958984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            148,
+            470,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            438,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.00390625,
+            0.91796875,
+            0.146484375,
+            0.958984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            2,
+            470,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        88,
+        438,
+        73,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_cancel",
+      "rect": [
+        212,
+        438,
+        73,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            438,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.00390625,
+            0.91796875,
+            0.146484375,
+            0.958984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            2,
+            470,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            438,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.2890625,
+            0.91796875,
+            0.431640625,
+            0.958984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            148,
+            470,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            438,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.146484375,
+            0.91796875,
+            0.2890625,
+            0.958984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            75,
+            470,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            438,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.00390625,
+            0.91796875,
+            0.146484375,
+            0.958984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            2,
+            470,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        212,
+        438,
+        73,
+        21
+      ]
+    },
+    {
+      "type": "area",
+      "id": "area_char",
+      "rect": [
+        22,
+        22,
+        165,
+        217
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_pattern_0",
+      "rect": [
+        205,
+        22,
+        67,
+        103
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_pattern_1",
+      "rect": [
+        285,
+        22,
+        67,
+        103
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_pattern_2",
+      "rect": [
+        205,
+        138,
+        67,
+        103
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_pattern_3",
+      "rect": [
+        285,
+        138,
+        67,
+        103
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_color_0",
+      "rect": [
+        20,
+        295,
+        45,
+        46
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_color_1",
+      "rect": [
+        73,
+        294,
+        45,
+        46
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_color_2",
+      "rect": [
+        126,
+        294,
+        45,
+        46
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_color_3",
+      "rect": [
+        20,
+        348,
+        45,
+        46
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_color_4",
+      "rect": [
+        73,
+        348,
+        45,
+        46
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "area_color_5",
+      "rect": [
+        126,
+        348,
+        45,
+        46
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "string",
+      "id": "text_grade",
+      "rect": [
+        183,
+        361,
+        169,
+        32
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_item",
+      "rect": [
+        184,
+        329,
+        169,
+        32
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_money",
+      "rect": [
+        185,
+        295,
+        169,
+        33
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        89,
+        442,
+        70,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Buy",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        214,
+        442,
+        70,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Cancel",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_patterndown",
+      "rect": [
+        208,
+        253,
+        38,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            208,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.431640625,
+            0.9140625,
+            0.505859375,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            221,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            208,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.505859375,
+            0.9140625,
+            0.580078125,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            259,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            208,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.580078125,
+            0.9140625,
+            0.654296875,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            297,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            208,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.431640625,
+            0.9140625,
+            0.505859375,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            221,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        208,
+        253,
+        38,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_colordown",
+      "rect": [
+        18,
+        400,
+        38,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            400,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.431640625,
+            0.9140625,
+            0.505859375,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            221,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            400,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.580078125,
+            0.9140625,
+            0.654296875,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            297,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            400,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.505859375,
+            0.9140625,
+            0.580078125,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            259,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            18,
+            400,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.431640625,
+            0.9140625,
+            0.505859375,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            221,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        18,
+        400,
+        38,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_patternup",
+      "rect": [
+        309,
+        252,
+        38,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            309,
+            252,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.439453125,
+            0.958984375,
+            0.513671875,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            225,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            309,
+            252,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.513671875,
+            0.958984375,
+            0.587890625,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            263,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            309,
+            252,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.587890625,
+            0.958984375,
+            0.662109375,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            301,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            309,
+            252,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.439453125,
+            0.958984375,
+            0.513671875,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            225,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        309,
+        252,
+        38,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_colorup",
+      "rect": [
+        134,
+        400,
+        38,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            134,
+            400,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.439453125,
+            0.958984375,
+            0.513671875,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            225,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            134,
+            400,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.587890625,
+            0.958984375,
+            0.662109375,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            301,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            134,
+            400,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.513671875,
+            0.958984375,
+            0.587890625,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            263,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            134,
+            400,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.439453125,
+            0.958984375,
+            0.513671875,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            225,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        134,
+        400,
+        38,
+        21
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_patternpage",
+      "rect": [
+        265,
+        253,
+        27,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "1",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_colorpage",
+      "rect": [
+        83,
+        402,
+        27,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "1",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_left",
+      "rect": [
+        47,
+        253,
+        38,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            47,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.431640625,
+            0.9140625,
+            0.505859375,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            221,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            47,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.580078125,
+            0.9140625,
+            0.654296875,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            297,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            47,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.505859375,
+            0.9140625,
+            0.580078125,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            259,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            47,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.431640625,
+            0.9140625,
+            0.505859375,
+            0.955078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            221,
+            468,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        47,
+        253,
+        38,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_right",
+      "rect": [
+        122,
+        253,
+        38,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            122,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.439453125,
+            0.958984375,
+            0.513671875,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            225,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            122,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.587890625,
+            0.958984375,
+            0.662109375,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            301,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            122,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.513671875,
+            0.958984375,
+            0.587890625,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            263,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            122,
+            253,
+            38,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_mantle_us.dxt",
+          "uv": [
+            0.439453125,
+            0.958984375,
+            0.513671875,
+            1.0
+          ],
+          "fps": 30.0,
+          "texture": "ui_mantle_us.png",
+          "src": [
+            225,
+            491,
+            38,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        122,
+        253,
+        38,
+        21
+      ]
+    }
+  ]
+}

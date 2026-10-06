@@ -1,0 +1,370 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    -12,
+    -20,
+    678,
+    433
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        -12,
+        -20,
+        134,
+        231
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_loding_us.dxt",
+      "uv": [
+        0.73828125,
+        0.0,
+        1.0,
+        0.451171875
+      ],
+      "fps": 30.0,
+      "texture": "ui_loding_us.png",
+      "src": [
+        378,
+        0,
+        134,
+        231
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        2,
+        211,
+        120,
+        200
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_loding_us.dxt",
+      "uv": [
+        0.49609375,
+        0.0,
+        0.73046875,
+        0.390625
+      ],
+      "fps": 30.0,
+      "texture": "ui_loding_us.png",
+      "src": [
+        254,
+        0,
+        120,
+        200
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        122,
+        1,
+        250,
+        410
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_loding_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        0.48828125,
+        0.80078125
+      ],
+      "fps": 30.0,
+      "texture": "ui_loding_us.png",
+      "src": [
+        0,
+        0,
+        250,
+        410
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        371,
+        232,
+        263,
+        179
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_loding_us.dxt",
+      "uv": [
+        0.486328125,
+        0.451171875,
+        1.0,
+        0.80078125
+      ],
+      "fps": 30.0,
+      "texture": "ui_loding_us.png",
+      "src": [
+        249,
+        231,
+        263,
+        179
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Version",
+      "rect": [
+        4,
+        5,
+        161,
+        48
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 68157440,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ff0000ff",
+      "text": "Ver",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_Info",
+      "rect": [
+        298,
+        356,
+        366,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Loading...",
+      "lineSpacing": 0
+    },
+    {
+      "type": "progress",
+      "id": "Progress_Loading",
+      "rect": [
+        354,
+        378,
+        265,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            354,
+            378,
+            265,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_loding_us.dxt",
+          "uv": [
+            0.083984375,
+            0.8359375,
+            0.59765625,
+            0.87109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_loding_us.png",
+          "src": [
+            43,
+            428,
+            263,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            354,
+            378,
+            265,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_loding_us.dxt",
+          "uv": [
+            0.0859375,
+            0.876953125,
+            0.603515625,
+            0.912109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_loding_us.png",
+          "src": [
+            44,
+            449,
+            265,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    }
+  ]
+}

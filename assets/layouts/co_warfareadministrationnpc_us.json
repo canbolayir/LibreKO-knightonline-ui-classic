@@ -1,0 +1,1332 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    280,
+    306
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        237,
+        279,
+        69
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+      "uv": [
+        0.001953125,
+        0.296875,
+        0.546875,
+        0.431640625
+      ],
+      "fps": 30.0,
+      "texture": "ui_warfare_us.png",
+      "src": [
+        1,
+        152,
+        279,
+        69
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        150,
+        279,
+        87
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+      "uv": [
+        0.001953125,
+        0.271484375,
+        0.546875,
+        0.294921875
+      ],
+      "fps": 30.0,
+      "texture": "ui_warfare_us.png",
+      "src": [
+        1,
+        139,
+        279,
+        12
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        225,
+        151
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+      "uv": [
+        0.560546875,
+        0.296875,
+        1.0,
+        0.591796875
+      ],
+      "fps": 30.0,
+      "texture": "ui_warfare_us.png",
+      "src": [
+        287,
+        152,
+        225,
+        151
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        225,
+        0,
+        54,
+        41
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+      "uv": [
+        0.560546875,
+        0.591796875,
+        0.666015625,
+        0.671875
+      ],
+      "fps": 30.0,
+      "texture": "ui_warfare_us.png",
+      "src": [
+        287,
+        303,
+        54,
+        41
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        225,
+        40,
+        54,
+        41
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+      "uv": [
+        0.666015625,
+        0.591796875,
+        0.771484375,
+        0.671875
+      ],
+      "fps": 30.0,
+      "texture": "ui_warfare_us.png",
+      "src": [
+        341,
+        303,
+        54,
+        41
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        225,
+        80,
+        54,
+        41
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+      "uv": [
+        0.771484375,
+        0.591796875,
+        0.876953125,
+        0.671875
+      ],
+      "fps": 30.0,
+      "texture": "ui_warfare_us.png",
+      "src": [
+        395,
+        303,
+        54,
+        41
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        225,
+        120,
+        54,
+        31
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+      "uv": [
+        0.876953125,
+        0.591796875,
+        0.982421875,
+        0.65234375
+      ],
+      "fps": 30.0,
+      "texture": "ui_warfare_us.png",
+      "src": [
+        449,
+        303,
+        54,
+        31
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        83,
+        94,
+        193,
+        37
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#e2d9c9ff",
+      "text": "What is it that you want?     I shall do as you command.",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        65,
+        162,
+        152,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "Collect tax",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        65,
+        185,
+        155,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "Castle maintenance ",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        64,
+        139,
+        155,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "Change tax rate",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        64,
+        209,
+        153,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#80ffffff",
+      "text": "Exit",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        91,
+        66,
+        155,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#e2d9c9ff",
+      "text": "Lord of Delos!!!",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        88,
+        209,
+        106,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            209,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            209,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            209,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            209,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        88,
+        209,
+        106,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_administration",
+      "rect": [
+        80,
+        183,
+        122,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            80,
+            183,
+            122,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            80,
+            183,
+            122,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            80,
+            183,
+            122,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            80,
+            183,
+            122,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        80,
+        183,
+        122,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_taxcollection",
+      "rect": [
+        88,
+        160,
+        106,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            160,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            160,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            160,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            88,
+            160,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        88,
+        160,
+        106,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_taxchange",
+      "rect": [
+        91,
+        139,
+        106,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            91,
+            139,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            91,
+            139,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            91,
+            139,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            91,
+            139,
+            106,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_warfare_us.dxt",
+          "uv": [
+            0.546875,
+            0.00390625,
+            0.576171875,
+            0.033203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_warfare_us.png",
+          "src": [
+            280,
+            2,
+            15,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        91,
+        139,
+        106,
+        18
+      ]
+    }
+  ]
+}

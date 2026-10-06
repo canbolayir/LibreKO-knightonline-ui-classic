@@ -1,0 +1,1195 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    -1,
+    0,
+    364,
+    148
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        -1,
+        0,
+        363,
+        4
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.001953125,
+        0.001953125,
+        0.7109375,
+        0.009765625
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        1,
+        1,
+        363,
+        4
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        -1,
+        4,
+        364,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.001953125,
+        0.662109375,
+        0.712890625,
+        0.67578125
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        1,
+        339,
+        364,
+        7
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        18,
+        362,
+        87
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.00390625,
+        0.666015625,
+        0.7109375,
+        0.67578125
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        2,
+        341,
+        362,
+        5
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        105,
+        362,
+        43
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.00390625,
+        0.67578125,
+        0.7109375,
+        0.759765625
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        2,
+        346,
+        362,
+        43
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        12,
+        23,
+        75,
+        37
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.509765625,
+        0.9140625,
+        0.65625,
+        0.986328125
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        261,
+        468,
+        75,
+        37
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        12,
+        58,
+        78,
+        33
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.6640625,
+        0.91796875,
+        0.81640625,
+        0.982421875
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        340,
+        470,
+        78,
+        33
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        86,
+        23,
+        204,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.525390625,
+        0.9140625,
+        0.654296875,
+        0.951171875
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        269,
+        468,
+        66,
+        19
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        90,
+        87,
+        199,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.525390625,
+        0.9140625,
+        0.654296875,
+        0.951171875
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        269,
+        468,
+        66,
+        19
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        289,
+        23,
+        61,
+        31
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.869140625,
+        0.08203125,
+        0.98828125,
+        0.142578125
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        445,
+        42,
+        61,
+        31
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        287,
+        57,
+        63,
+        34
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.869140625,
+        0.005859375,
+        0.9921875,
+        0.072265625
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        445,
+        3,
+        63,
+        34
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        314,
+        43,
+        36,
+        29
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+      "uv": [
+        0.921875,
+        0.0078125,
+        0.9921875,
+        0.064453125
+      ],
+      "fps": 30.0,
+      "texture": "ui_marketing_us.png",
+      "src": [
+        472,
+        4,
+        36,
+        29
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_ok",
+      "rect": [
+        102,
+        110,
+        71,
+        25
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            102,
+            110,
+            71,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.71484375,
+            0.005859375,
+            0.85546875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            366,
+            3,
+            72,
+            25
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            102,
+            110,
+            71,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.71484375,
+            0.0546875,
+            0.85546875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            366,
+            28,
+            72,
+            25
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            102,
+            110,
+            71,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.71484375,
+            0.103515625,
+            0.85546875,
+            0.15234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            366,
+            53,
+            72,
+            25
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            102,
+            110,
+            71,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.71484375,
+            0.005859375,
+            0.85546875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            366,
+            3,
+            72,
+            25
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        102,
+        110,
+        71,
+        25
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_cancel",
+      "rect": [
+        190,
+        110,
+        71,
+        25
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            190,
+            110,
+            71,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.71484375,
+            0.005859375,
+            0.85546875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            366,
+            3,
+            72,
+            25
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            190,
+            110,
+            71,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.71484375,
+            0.103515625,
+            0.85546875,
+            0.15234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            366,
+            53,
+            72,
+            25
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            190,
+            110,
+            71,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.71484375,
+            0.0546875,
+            0.85546875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            366,
+            28,
+            72,
+            25
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            190,
+            110,
+            71,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.71484375,
+            0.005859375,
+            0.85546875,
+            0.0546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            366,
+            3,
+            72,
+            25
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        190,
+        110,
+        71,
+        25
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        107,
+        114,
+        65,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "O   K",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        106,
+        113,
+        65,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#eddec5ff",
+      "text": "O   K",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        195,
+        114,
+        65,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Cancel",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        194,
+        113,
+        65,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#eddec5ff",
+      "text": "Cancel",
+      "lineSpacing": 0
+    },
+    {
+      "type": "edit",
+      "id": "edit_message",
+      "rect": [
+        22,
+        31,
+        320,
+        51
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            31,
+            320,
+            51
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_marketing_us.dxt",
+          "uv": [
+            0.015625,
+            0.97265625,
+            0.07421875,
+            0.994140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_marketing_us.png",
+          "src": [
+            8,
+            498,
+            30,
+            11
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            22,
+            31,
+            320,
+            51
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#c0c1fbff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        103,
+        5,
+        162,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Merchant mode",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        102,
+        4,
+        162,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#eddec5ff",
+      "text": "Merchant mode message",
+      "lineSpacing": 0
+    }
+  ]
+}

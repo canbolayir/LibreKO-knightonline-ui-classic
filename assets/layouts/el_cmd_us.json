@@ -1,0 +1,4338 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    1026,
+    51
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        512,
+        62
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        0.12109375
+      ],
+      "fps": 30.0,
+      "texture": "ui_elmo_main_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        62
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        512,
+        0,
+        512,
+        60
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+      "uv": [
+        0.0,
+        0.1171875,
+        1.0,
+        0.234375
+      ],
+      "fps": 30.0,
+      "texture": "ui_elmo_main_us.png",
+      "src": [
+        0,
+        60,
+        512,
+        60
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_inventory",
+      "rect": [
+        102,
+        13,
+        88,
+        37
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            102,
+            13,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                108,
+                20,
+                77,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Inventory",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.09375,
+            0.244140625,
+            0.265625,
+            0.31640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            48,
+            125,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            102,
+            13,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                108,
+                20,
+                77,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Inventory",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.71484375,
+            0.435546875,
+            0.88671875,
+            0.5078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            366,
+            223,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            102,
+            13,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                108,
+                20,
+                77,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Inventory",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.36328125,
+            0.33984375,
+            0.53515625,
+            0.412109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            186,
+            174,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            102,
+            13,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                108,
+                20,
+                77,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Inventory",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.09375,
+            0.244140625,
+            0.265625,
+            0.31640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            48,
+            125,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        102,
+        13,
+        88,
+        37
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_character",
+      "rect": [
+        201,
+        13,
+        88,
+        37
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            201,
+            13,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                207,
+                20,
+                76,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Character",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.267578125,
+            0.244140625,
+            0.439453125,
+            0.31640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            137,
+            125,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            201,
+            13,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                207,
+                20,
+                76,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Character",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.0,
+            0.51953125,
+            0.171875,
+            0.591796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            0,
+            266,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            201,
+            13,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                207,
+                20,
+                76,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Character",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.537109375,
+            0.33984375,
+            0.708984375,
+            0.412109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            275,
+            174,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            201,
+            13,
+            88,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                207,
+                20,
+                76,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Character",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.267578125,
+            0.244140625,
+            0.439453125,
+            0.31640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            137,
+            125,
+            88,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        201,
+        13,
+        88,
+        37
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_skill",
+      "rect": [
+        301,
+        12,
+        88,
+        43
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            301,
+            12,
+            88,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                307,
+                21,
+                74,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.44140625,
+            0.2421875,
+            0.61328125,
+            0.326171875
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            226,
+            124,
+            88,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            301,
+            12,
+            88,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                308,
+                21,
+                73,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.173828125,
+            0.517578125,
+            0.345703125,
+            0.6015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            89,
+            265,
+            88,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            301,
+            12,
+            88,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                308,
+                21,
+                73,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.7109375,
+            0.337890625,
+            0.8828125,
+            0.421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            364,
+            173,
+            88,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            301,
+            12,
+            88,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                308,
+                21,
+                73,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Skill",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.44140625,
+            0.2421875,
+            0.61328125,
+            0.326171875
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            226,
+            124,
+            88,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        301,
+        12,
+        88,
+        43
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_control",
+      "rect": [
+        634,
+        12,
+        89,
+        43
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            634,
+            12,
+            89,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                641,
+                20,
+                76,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Trade",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.615234375,
+            0.2421875,
+            0.7890625,
+            0.326171875
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            315,
+            124,
+            89,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            634,
+            12,
+            89,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                640,
+                20,
+                77,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Trade",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.34765625,
+            0.517578125,
+            0.521484375,
+            0.6015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            178,
+            265,
+            89,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            634,
+            12,
+            89,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                640,
+                20,
+                77,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Trade",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.0,
+            0.43359375,
+            0.173828125,
+            0.517578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            0,
+            222,
+            89,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            634,
+            12,
+            89,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                640,
+                20,
+                77,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Trade",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.615234375,
+            0.2421875,
+            0.7890625,
+            0.326171875
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            315,
+            124,
+            89,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        634,
+        12,
+        89,
+        43
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_option",
+      "rect": [
+        834,
+        13,
+        87,
+        37
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            834,
+            13,
+            87,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                840,
+                20,
+                75,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Command",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.0,
+            0.33984375,
+            0.169921875,
+            0.412109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            0,
+            174,
+            87,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            834,
+            13,
+            87,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                840,
+                20,
+                75,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Command",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.69921875,
+            0.51953125,
+            0.869140625,
+            0.591796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            358,
+            266,
+            87,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            834,
+            13,
+            87,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                840,
+                20,
+                75,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Command",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.3515625,
+            0.435546875,
+            0.521484375,
+            0.5078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            180,
+            223,
+            87,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            834,
+            13,
+            87,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                840,
+                20,
+                75,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Command",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.0,
+            0.33984375,
+            0.169921875,
+            0.412109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            0,
+            174,
+            87,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        834,
+        13,
+        87,
+        37
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_invite",
+      "rect": [
+        734,
+        13,
+        89,
+        37
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            734,
+            13,
+            89,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                740,
+                20,
+                79,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Invite",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.791015625,
+            0.244140625,
+            0.96484375,
+            0.31640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            405,
+            125,
+            89,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            734,
+            13,
+            89,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                740,
+                20,
+                79,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Invite",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.5234375,
+            0.51953125,
+            0.697265625,
+            0.591796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            268,
+            266,
+            89,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            734,
+            13,
+            89,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                740,
+                20,
+                79,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Invite",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.17578125,
+            0.435546875,
+            0.349609375,
+            0.5078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            90,
+            223,
+            89,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            734,
+            13,
+            89,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                740,
+                20,
+                79,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Invite",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.791015625,
+            0.244140625,
+            0.96484375,
+            0.31640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            405,
+            125,
+            89,
+            37
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        734,
+        13,
+        89,
+        37
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_attack",
+      "rect": [
+        427,
+        17,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            427,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.0,
+            0.66015625,
+            0.08203125,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            0,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            427,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.0,
+            0.6015625,
+            0.08203125,
+            0.65625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            0,
+            308,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            427,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.0,
+            0.66015625,
+            0.08203125,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            0,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            427,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.0,
+            0.66015625,
+            0.08203125,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            0,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        427,
+        17,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_walk",
+      "rect": [
+        470,
+        17,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            470,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.083984375,
+            0.66015625,
+            0.166015625,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            43,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            470,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.083984375,
+            0.603515625,
+            0.166015625,
+            0.658203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            43,
+            309,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            470,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.083984375,
+            0.66015625,
+            0.166015625,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            43,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            470,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.083984375,
+            0.66015625,
+            0.166015625,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            43,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        470,
+        17,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_run",
+      "rect": [
+        470,
+        17,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            470,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.16796875,
+            0.66015625,
+            0.25,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            86,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            470,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.16796875,
+            0.603515625,
+            0.25,
+            0.658203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            86,
+            309,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            470,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.16796875,
+            0.66015625,
+            0.25,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            86,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            470,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.16796875,
+            0.66015625,
+            0.25,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            86,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        470,
+        17,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_sit",
+      "rect": [
+        513,
+        17,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            513,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.251953125,
+            0.66015625,
+            0.333984375,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            129,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            513,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.251953125,
+            0.603515625,
+            0.333984375,
+            0.658203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            129,
+            309,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            513,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.251953125,
+            0.66015625,
+            0.333984375,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            129,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            513,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.251953125,
+            0.66015625,
+            0.333984375,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            129,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        513,
+        17,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_stand",
+      "rect": [
+        513,
+        17,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            513,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.3359375,
+            0.66015625,
+            0.41796875,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            172,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            513,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.3359375,
+            0.603515625,
+            0.41796875,
+            0.658203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            172,
+            309,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            513,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.3359375,
+            0.66015625,
+            0.41796875,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            172,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            513,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.3359375,
+            0.603515625,
+            0.41796875,
+            0.658203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            172,
+            309,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        513,
+        17,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_camera",
+      "rect": [
+        557,
+        17,
+        42,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            557,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.419921875,
+            0.66015625,
+            0.501953125,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            215,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            557,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.419921875,
+            0.603515625,
+            0.501953125,
+            0.658203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            215,
+            309,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            557,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.419921875,
+            0.66015625,
+            0.501953125,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            215,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            557,
+            17,
+            42,
+            28
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.419921875,
+            0.66015625,
+            0.501953125,
+            0.71484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            215,
+            338,
+            42,
+            28
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        557,
+        17,
+        42,
+        28
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_disband",
+      "rect": [
+        734,
+        13,
+        89,
+        38
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            734,
+            13,
+            89,
+            38
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                740,
+                20,
+                79,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Disband ",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.00390625,
+            0.716796875,
+            0.177734375,
+            0.791015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            2,
+            367,
+            89,
+            38
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            734,
+            13,
+            89,
+            38
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                740,
+                20,
+                79,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Disband ",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.1796875,
+            0.716796875,
+            0.353515625,
+            0.791015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            92,
+            367,
+            89,
+            38
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            734,
+            13,
+            89,
+            38
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                740,
+                20,
+                79,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Disband ",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.35546875,
+            0.716796875,
+            0.529296875,
+            0.791015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            182,
+            367,
+            89,
+            38
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            734,
+            13,
+            89,
+            38
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                740,
+                20,
+                79,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f9cb7dff",
+              "text": "Disband ",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.00390625,
+            0.716796875,
+            0.177734375,
+            0.791015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            2,
+            367,
+            89,
+            38
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        734,
+        13,
+        89,
+        38
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_exit",
+      "rect": [
+        929,
+        7,
+        68,
+        43
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            929,
+            7,
+            68,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                937,
+                20,
+                55,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8db76ff",
+              "text": "Exit",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.53515625,
+            0.609375,
+            0.66796875,
+            0.693359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            274,
+            312,
+            68,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            929,
+            7,
+            68,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                936,
+                20,
+                56,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Exit",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.806640625,
+            0.60546875,
+            0.939453125,
+            0.689453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            413,
+            310,
+            68,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            929,
+            7,
+            68,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                936,
+                20,
+                56,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8db76ff",
+              "text": "Exit",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.671875,
+            0.607421875,
+            0.8046875,
+            0.69140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            344,
+            311,
+            68,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            929,
+            7,
+            68,
+            43
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                936,
+                20,
+                56,
+                22
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d687ff",
+              "text": "Exit",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.53515625,
+            0.609375,
+            0.66796875,
+            0.693359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            274,
+            312,
+            68,
+            43
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        929,
+        7,
+        68,
+        43
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_map",
+      "rect": [
+        29,
+        8,
+        65,
+        42
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            29,
+            8,
+            65,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                34,
+                21,
+                54,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Map",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.5390625,
+            0.70703125,
+            0.666015625,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            276,
+            362,
+            65,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            29,
+            8,
+            65,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                35,
+                23,
+                52,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 9437184,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Map",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.796875,
+            0.70703125,
+            0.923828125,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            408,
+            362,
+            65,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            29,
+            8,
+            65,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                34,
+                22,
+                54,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Map",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.66796875,
+            0.70703125,
+            0.794921875,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            342,
+            362,
+            65,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            29,
+            8,
+            65,
+            42
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                33,
+                23,
+                55,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#f8d067ff",
+              "text": "Map",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\ui_elmo_main_us.dxt",
+          "uv": [
+            0.5390625,
+            0.70703125,
+            0.666015625,
+            0.7890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_elmo_main_us.png",
+          "src": [
+            276,
+            362,
+            65,
+            42
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        29,
+        8,
+        65,
+        42
+      ]
+    }
+  ]
+}

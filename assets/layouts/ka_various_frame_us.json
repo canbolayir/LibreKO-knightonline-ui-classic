@@ -1,0 +1,1527 @@
+{
+  "type": "base",
+  "id": "frame",
+  "rect": [
+    0,
+    0,
+    289,
+    459
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        1,
+        40,
+        286,
+        41
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+      "uv": [
+        0.00390625,
+        0.00390625,
+        0.5625,
+        0.083984375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_myinfo_us.png",
+      "src": [
+        2,
+        2,
+        286,
+        41
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_hand",
+      "rect": [
+        2,
+        2,
+        53,
+        39
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+      "uv": [
+        0.572265625,
+        0.009765625,
+        0.67578125,
+        0.0859375
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_myinfo_us.png",
+      "src": [
+        293,
+        5,
+        53,
+        39
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_state",
+      "rect": [
+        6,
+        44,
+        67,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            6,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.576171875,
+            0.51953125,
+            0.70703125,
+            0.58984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            295,
+            266,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            6,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.576171875,
+            0.361328125,
+            0.70703125,
+            0.431640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            295,
+            185,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            6,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.576171875,
+            0.44140625,
+            0.70703125,
+            0.51171875
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            295,
+            226,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            6,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.576171875,
+            0.361328125,
+            0.70703125,
+            0.431640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            295,
+            185,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        6,
+        44,
+        67,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_quest",
+      "rect": [
+        77,
+        44,
+        67,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            77,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.572265625,
+            0.27734375,
+            0.703125,
+            0.34765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            293,
+            142,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            77,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.572265625,
+            0.119140625,
+            0.703125,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            293,
+            61,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            77,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.572265625,
+            0.19921875,
+            0.703125,
+            0.26953125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            293,
+            102,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            77,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.572265625,
+            0.119140625,
+            0.703125,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            293,
+            61,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        77,
+        44,
+        67,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_knights",
+      "rect": [
+        147,
+        44,
+        67,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            147,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.708984375,
+            0.27734375,
+            0.83984375,
+            0.34765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            363,
+            142,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            147,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.708984375,
+            0.12109375,
+            0.83984375,
+            0.19140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            363,
+            62,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            147,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.708984375,
+            0.19921875,
+            0.83984375,
+            0.26953125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            363,
+            102,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            147,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.708984375,
+            0.12109375,
+            0.83984375,
+            0.19140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            363,
+            62,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            151,
+            52,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Knights",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        147,
+        44,
+        67,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_friends",
+      "rect": [
+        217,
+        44,
+        67,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.845703125,
+            0.27734375,
+            0.9765625,
+            0.34765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            433,
+            142,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.845703125,
+            0.12109375,
+            0.9765625,
+            0.19140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            433,
+            62,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.845703125,
+            0.19921875,
+            0.9765625,
+            0.26953125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            433,
+            102,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            217,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.845703125,
+            0.12109375,
+            0.9765625,
+            0.19140625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            433,
+            62,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        217,
+        44,
+        67,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_clan",
+      "rect": [
+        147,
+        44,
+        67,
+        36
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            147,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.845703125,
+            0.51171875,
+            0.9765625,
+            0.58203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            433,
+            262,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            147,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.845703125,
+            0.35546875,
+            0.9765625,
+            0.42578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            433,
+            182,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            147,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.845703125,
+            0.43359375,
+            0.9765625,
+            0.50390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            433,
+            222,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            147,
+            44,
+            67,
+            36
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.845703125,
+            0.51171875,
+            0.9765625,
+            0.58203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            433,
+            262,
+            67,
+            36
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            151,
+            53,
+            59,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Clan",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        147,
+        44,
+        67,
+        36
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        9,
+        19,
+        20,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            19,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.58203125,
+            0.611328125,
+            0.62109375,
+            0.650390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            298,
+            313,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            19,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.673828125,
+            0.611328125,
+            0.712890625,
+            0.650390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            345,
+            313,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            19,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.626953125,
+            0.611328125,
+            0.666015625,
+            0.650390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            321,
+            313,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            19,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_myinfo_us.dxt",
+          "uv": [
+            0.58203125,
+            0.611328125,
+            0.62109375,
+            0.650390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_myinfo_us.png",
+          "src": [
+            298,
+            313,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        9,
+        19,
+        20,
+        20
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        8,
+        46,
+        63,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Character",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        6,
+        58,
+        63,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "   Report",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        79,
+        52,
+        63,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Quest",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        219,
+        52,
+        63,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Friend",
+      "lineSpacing": 0
+    }
+  ]
+}

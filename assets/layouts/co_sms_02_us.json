@@ -1,0 +1,1854 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    282,
+    450
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        243,
+        113,
+        206
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.33203125,
+        0.419921875,
+        0.552734375,
+        0.822265625
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        166,
+        244,
+        116,
+        206
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.56640625,
+        0.421875,
+        0.79296875,
+        0.82421875
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        113,
+        244,
+        53,
+        205
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.55078125,
+        0.421875,
+        0.5703125,
+        0.822265625
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        75,
+        70
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.65625,
+        0.005859375,
+        0.802734375,
+        0.142578125
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        70,
+        75,
+        174
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.65625,
+        0.14453125,
+        0.802734375,
+        0.193359375
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        212,
+        0,
+        69,
+        70
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.859375,
+        0.005859375,
+        0.994140625,
+        0.142578125
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        212,
+        70,
+        69,
+        174
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.859375,
+        0.14453125,
+        0.994140625,
+        0.19140625
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        75,
+        0,
+        137,
+        97
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.806640625,
+        0.005859375,
+        0.85546875,
+        0.1953125
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        75,
+        97,
+        137,
+        147
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\ui_handphone.dxt",
+      "uv": [
+        0.724609375,
+        0.216796875,
+        0.79296875,
+        0.28125
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        17,
+        366,
+        245,
+        11
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 8,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "캐릭터명만 있는 경우 등록된 번호로 메세지를",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        16,
+        378,
+        245,
+        11
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 8,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "  전송합니다",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        57,
+        12,
+        168,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "주소록 관리",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        28,
+        310,
+        66,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#d7d7d7ff",
+      "text": "캐릭터명 :",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        28,
+        345,
+        66,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#d7d7d7ff",
+      "text": "번     호 :",
+      "lineSpacing": 0
+    },
+    {
+      "type": "edit",
+      "id": "",
+      "rect": [
+        98,
+        309,
+        154,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            98,
+            309,
+            154,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.400390625,
+            0.548828125,
+            0.66796875,
+            0.580078125
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            98,
+            309,
+            154,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff00ff",
+          "text": "넘어져쿵해쪄잇힝잇힝",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "edit",
+      "id": "",
+      "rect": [
+        97,
+        345,
+        154,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            97,
+            345,
+            154,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.400390625,
+            0.548828125,
+            0.66796875,
+            0.580078125
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            97,
+            345,
+            154,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff00ff",
+          "text": "011-9999-9999",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "id": "",
+      "rect": [
+        31,
+        395,
+        74,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            32,
+            395,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                34,
+                397,
+                71,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#c0c0c0ff",
+              "text": "등   록",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                32,
+                395,
+                73,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "등   록",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.599609375,
+            0.826171875,
+            0.7421875,
+            0.865234375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            32,
+            395,
+            72,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                34,
+                397,
+                70,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "등   록",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                33,
+                396,
+                71,
+                19
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "등   록",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.599609375,
+            0.865234375,
+            0.7421875,
+            0.904296875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            32,
+            395,
+            72,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                33,
+                396,
+                71,
+                19
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "등   록",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                32,
+                395,
+                72,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "등   록",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.599609375,
+            0.904296875,
+            0.7421875,
+            0.943359375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            32,
+            395,
+            72,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                33,
+                397,
+                71,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#c0c0c0ff",
+              "text": "등   록",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                32,
+                395,
+                72,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "등   록",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.599609375,
+            0.826171875,
+            0.7421875,
+            0.865234375
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        31,
+        395,
+        73,
+        20
+      ]
+    },
+    {
+      "type": "button",
+      "id": "",
+      "rect": [
+        174,
+        395,
+        74,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            175,
+            395,
+            73,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                177,
+                397,
+                70,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#c0c0c0ff",
+              "text": "삭   제",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                175,
+                395,
+                72,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "삭   제",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.599609375,
+            0.826171875,
+            0.7421875,
+            0.865234375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            175,
+            395,
+            72,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                178,
+                397,
+                69,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "삭   제",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                176,
+                396,
+                71,
+                19
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "삭   제",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.599609375,
+            0.865234375,
+            0.7421875,
+            0.904296875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            175,
+            395,
+            72,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                176,
+                397,
+                71,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "삭   제",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                175,
+                395,
+                72,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "삭   제",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.599609375,
+            0.904296875,
+            0.7421875,
+            0.943359375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            175,
+            395,
+            72,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                177,
+                397,
+                70,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#c0c0c0ff",
+              "text": "삭   제",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                175,
+                395,
+                72,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "굴림",
+              "size": 9,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "삭   제",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.599609375,
+            0.826171875,
+            0.7421875,
+            0.865234375
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        174,
+        395,
+        73,
+        20
+      ]
+    },
+    {
+      "type": "list",
+      "id": "",
+      "rect": [
+        12,
+        55,
+        142,
+        217
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffef",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "list",
+      "id": "",
+      "rect": [
+        156,
+        57,
+        111,
+        215
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffef",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "button",
+      "id": "",
+      "rect": [
+        69,
+        280,
+        16,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            69,
+            280,
+            16,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.3671875,
+            0.888671875,
+            0.3984375,
+            0.916015625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            69,
+            280,
+            16,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.3671875,
+            0.916015625,
+            0.3984375,
+            0.943359375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            69,
+            280,
+            16,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.3671875,
+            0.943359375,
+            0.3984375,
+            0.970703125
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            69,
+            280,
+            16,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.3671875,
+            0.888671875,
+            0.3984375,
+            0.916015625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        69,
+        280,
+        16,
+        14
+      ]
+    },
+    {
+      "type": "button",
+      "id": "",
+      "rect": [
+        200,
+        280,
+        16,
+        14
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            200,
+            280,
+            16,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.40234375,
+            0.888671875,
+            0.43359375,
+            0.916015625
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            200,
+            280,
+            16,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.40234375,
+            0.916015625,
+            0.43359375,
+            0.943359375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            200,
+            280,
+            16,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.40234375,
+            0.943359375,
+            0.43359375,
+            0.970703125
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            200,
+            280,
+            16,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui\\ui_handphone.dxt",
+          "uv": [
+            0.40234375,
+            0.888671875,
+            0.43359375,
+            0.916015625
+          ],
+          "fps": 30.0
+        }
+      ],
+      "click": [
+        200,
+        280,
+        16,
+        14
+      ]
+    }
+  ]
+}

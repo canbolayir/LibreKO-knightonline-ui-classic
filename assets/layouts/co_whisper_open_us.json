@@ -1,0 +1,1597 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    304,
+    152
+  ],
+  "drag": [
+    0,
+    0,
+    237,
+    22
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        304,
+        152
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+      "uv": [
+        0.001953125,
+        0.001953125,
+        0.595703125,
+        0.298828125
+      ],
+      "fps": 30.0,
+      "texture": "ui_whisper_us.png",
+      "src": [
+        1,
+        1,
+        304,
+        152
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_bar",
+      "rect": [
+        3,
+        3,
+        298,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            3,
+            298,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.0,
+            0.46484375,
+            0.58203125,
+            0.50390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            0,
+            238,
+            298,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            3,
+            298,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.0,
+            0.50390625,
+            0.58203125,
+            0.54296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            0,
+            258,
+            298,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            3,
+            298,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.0,
+            0.50390625,
+            0.58203125,
+            0.54296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            0,
+            258,
+            298,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            3,
+            298,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.0,
+            0.46484375,
+            0.58203125,
+            0.50390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            0,
+            238,
+            298,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        3,
+        3,
+        298,
+        20
+      ]
+    },
+    {
+      "type": "string",
+      "id": "exit_chat",
+      "rect": [
+        4,
+        25,
+        280,
+        109
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "exit_id",
+      "rect": [
+        8,
+        5,
+        216,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#00ffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_hide",
+      "rect": [
+        239,
+        5,
+        19,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            5,
+            19,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.505859375,
+            0.298828125,
+            0.54296875,
+            0.328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            259,
+            153,
+            19,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            5,
+            19,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.505859375,
+            0.328125,
+            0.54296875,
+            0.357421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            259,
+            168,
+            19,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            5,
+            19,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.505859375,
+            0.357421875,
+            0.54296875,
+            0.38671875
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            259,
+            183,
+            19,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            239,
+            5,
+            19,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.505859375,
+            0.298828125,
+            0.54296875,
+            0.328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            259,
+            153,
+            19,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        239,
+        5,
+        19,
+        15
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        263,
+        5,
+        19,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            263,
+            5,
+            19,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.5546875,
+            0.298828125,
+            0.591796875,
+            0.328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            284,
+            153,
+            19,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            263,
+            5,
+            19,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.5546875,
+            0.328125,
+            0.591796875,
+            0.357421875
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            284,
+            168,
+            19,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            263,
+            5,
+            19,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.5546875,
+            0.357421875,
+            0.591796875,
+            0.38671875
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            284,
+            183,
+            19,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            263,
+            5,
+            19,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.5546875,
+            0.298828125,
+            0.591796875,
+            0.328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            284,
+            153,
+            19,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        263,
+        5,
+        19,
+        15
+      ]
+    },
+    {
+      "type": "edit",
+      "id": "edit_chat",
+      "rect": [
+        16,
+        129,
+        269,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            16,
+            136,
+            269,
+            13
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.474609375,
+            0.30078125,
+            0.501953125,
+            0.333984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            243,
+            154,
+            14,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            16,
+            132,
+            269,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "scrollbar",
+      "id": "scroll",
+      "rect": [
+        286,
+        25,
+        14,
+        109
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "button",
+          "id": "",
+          "rect": [
+            286,
+            25,
+            14,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                25,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.1015625,
+                0.427734375,
+                0.12890625,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                52,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                25,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.12890625,
+                0.427734375,
+                0.15625,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                66,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                25,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.15625,
+                0.427734375,
+                0.18359375,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                80,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                25,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.1015625,
+                0.427734375,
+                0.12890625,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                52,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            286,
+            25,
+            14,
+            16
+          ]
+        },
+        {
+          "type": "button",
+          "id": "",
+          "rect": [
+            286,
+            118,
+            14,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                118,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.0,
+                0.427734375,
+                0.02734375,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                0,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                118,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.02734375,
+                0.427734375,
+                0.0546875,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                14,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                118,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.0546875,
+                0.427734375,
+                0.08203125,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                28,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                118,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.0,
+                0.427734375,
+                0.02734375,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                0,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            286,
+            118,
+            14,
+            16
+          ]
+        },
+        {
+          "type": "trackbar",
+          "id": "",
+          "rect": [
+            286,
+            42,
+            14,
+            76
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                42,
+                14,
+                76
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.212890625,
+                0.427734375,
+                0.240234375,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                109,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                286,
+                42,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+              "uv": [
+                0.185546875,
+                0.427734375,
+                0.212890625,
+                0.458984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_whisper_us.png",
+              "src": [
+                95,
+                219,
+                14,
+                16
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_chat",
+      "rect": [
+        3,
+        136,
+        12,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            136,
+            12,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.474609375,
+            0.431640625,
+            0.498046875,
+            0.455078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            243,
+            221,
+            12,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            136,
+            12,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.498046875,
+            0.431640625,
+            0.521484375,
+            0.455078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            255,
+            221,
+            12,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            136,
+            12,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.521484375,
+            0.431640625,
+            0.544921875,
+            0.455078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            267,
+            221,
+            12,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            136,
+            12,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_whisper_us.dxt",
+          "uv": [
+            0.474609375,
+            0.431640625,
+            0.498046875,
+            0.455078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_whisper_us.png",
+          "src": [
+            243,
+            221,
+            12,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        3,
+        136,
+        12,
+        12
+      ]
+    }
+  ]
+}

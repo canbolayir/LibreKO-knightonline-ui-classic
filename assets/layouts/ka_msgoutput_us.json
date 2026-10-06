@@ -1,0 +1,1041 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    323,
+    145
+  ],
+  "drag": [
+    0,
+    123,
+    85,
+    21
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        25,
+        124
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+      "uv": [
+        0.4921875,
+        0.73046875,
+        0.53515625,
+        0.97265625
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_statebar_us.png",
+      "src": [
+        252,
+        374,
+        22,
+        124
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        306,
+        0,
+        15,
+        123
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+      "uv": [
+        0.53515625,
+        0.73046875,
+        0.560546875,
+        0.970703125
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_statebar_us.png",
+      "src": [
+        274,
+        374,
+        13,
+        123
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        24,
+        0,
+        282,
+        123
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+      "uv": [
+        0.537109375,
+        0.73046875,
+        0.55859375,
+        0.970703125
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_statebar_us.png",
+      "src": [
+        275,
+        374,
+        11,
+        123
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        123,
+        102,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+      "uv": [
+        0.625,
+        0.68359375,
+        0.82421875,
+        0.7265625
+      ],
+      "fps": 30.0,
+      "texture": "ui_ka_statebar_us.png",
+      "src": [
+        320,
+        350,
+        102,
+        22
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_message",
+      "rect": [
+        4,
+        1,
+        294,
+        121
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "scrollbar",
+      "id": "scroll",
+      "rect": [
+        300,
+        2,
+        19,
+        119
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "button",
+          "id": "",
+          "rect": [
+            300,
+            2,
+            18,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                2,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.017578125,
+                0.87109375,
+                0.052734375,
+                0.90625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                9,
+                446,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                2,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.052734375,
+                0.87109375,
+                0.087890625,
+                0.90625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                27,
+                446,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                2,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.087890625,
+                0.87109375,
+                0.123046875,
+                0.90625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                45,
+                446,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                2,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.017578125,
+                0.87109375,
+                0.052734375,
+                0.90625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                9,
+                446,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            300,
+            2,
+            18,
+            18
+          ]
+        },
+        {
+          "type": "button",
+          "id": "",
+          "rect": [
+            300,
+            104,
+            18,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                104,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.017578125,
+                0.90625,
+                0.052734375,
+                0.94140625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                9,
+                464,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                104,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.052734375,
+                0.90625,
+                0.087890625,
+                0.94140625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                27,
+                464,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                104,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.087890625,
+                0.90625,
+                0.123046875,
+                0.94140625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                45,
+                464,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                104,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.017578125,
+                0.90625,
+                0.052734375,
+                0.94140625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                9,
+                464,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            300,
+            104,
+            18,
+            18
+          ]
+        },
+        {
+          "type": "trackbar",
+          "id": "",
+          "rect": [
+            300,
+            19,
+            18,
+            84
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                19,
+                18,
+                84
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.125,
+                0.94921875,
+                0.16015625,
+                0.984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                64,
+                486,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                300,
+                19,
+                18,
+                18
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+              "uv": [
+                0.017578125,
+                0.94140625,
+                0.052734375,
+                0.9765625
+              ],
+              "fps": 30.0,
+              "texture": "ui_ka_statebar_us.png",
+              "src": [
+                9,
+                482,
+                18,
+                18
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        6,
+        128,
+        75,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#c5bdb8ff",
+      "text": "Information",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        5,
+        127,
+        75,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Information",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_off",
+      "rect": [
+        84,
+        126,
+        14,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            84,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+          "uv": [
+            0.888671875,
+            0.68359375,
+            0.916015625,
+            0.712890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_statebar_us.png",
+          "src": [
+            455,
+            350,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            84,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+          "uv": [
+            0.888671875,
+            0.7109375,
+            0.916015625,
+            0.740234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_statebar_us.png",
+          "src": [
+            455,
+            364,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            84,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+          "uv": [
+            0.888671875,
+            0.740234375,
+            0.916015625,
+            0.76953125
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_statebar_us.png",
+          "src": [
+            455,
+            379,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            84,
+            126,
+            14,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_ka_statebar_us.dxt",
+          "uv": [
+            0.888671875,
+            0.68359375,
+            0.916015625,
+            0.712890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_ka_statebar_us.png",
+          "src": [
+            455,
+            350,
+            14,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        84,
+        126,
+        14,
+        15
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3948 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    -1,
+    0,
+    365,
+    412
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "base",
+      "id": "help",
+      "rect": [
+        0,
+        0,
+        362,
+        412
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            215,
+            362,
+            140
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.212890625,
+            0.70703125,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            109,
+            362,
+            140
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            0,
+            362,
+            215
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.0,
+            0.70703125,
+            0.419921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            0,
+            362,
+            215
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            355,
+            362,
+            56
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.49609375,
+            0.70703125,
+            0.60546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            254,
+            362,
+            56
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            353,
+            355,
+            33
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.619140625,
+            0.69140625,
+            0.68359375
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            317,
+            354,
+            33
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_Menu",
+          "rect": [
+            17,
+            356,
+            326,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                17,
+                356,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                17,
+                356,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.73828125,
+                0.63671875,
+                0.787109375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                378,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                17,
+                356,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.787109375,
+                0.63671875,
+                0.8359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                403,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                17,
+                356,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                68,
+                362,
+                227,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "View other conversations",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                67,
+                361,
+                227,
+                15
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 11,
+              "bold": true,
+              "italic": false,
+              "color": "#ffff80ff",
+              "text": "View other conversations",
+              "lineSpacing": 0
+            }
+          ],
+          "click": [
+            17,
+            356,
+            326,
+            25
+          ]
+        },
+        {
+          "type": "string",
+          "id": "Text_Title",
+          "rect": [
+            22,
+            51,
+            299,
+            283
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 9,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "scrollbar",
+          "id": "scroll",
+          "rect": [
+            326,
+            50,
+            18,
+            287
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                327,
+                50,
+                17,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    327,
+                    50,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.646484375,
+                    0.689453125,
+                    0.6796875,
+                    0.72265625
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    331,
+                    353,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    327,
+                    50,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.6796875,
+                    0.689453125,
+                    0.712890625,
+                    0.72265625
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    348,
+                    353,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    327,
+                    50,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.712890625,
+                    0.689453125,
+                    0.74609375,
+                    0.72265625
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    365,
+                    353,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    327,
+                    50,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.646484375,
+                    0.689453125,
+                    0.6796875,
+                    0.72265625
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    331,
+                    353,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                327,
+                50,
+                17,
+                17
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                326,
+                320,
+                17,
+                17
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    326,
+                    320,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.646484375,
+                    0.724609375,
+                    0.6796875,
+                    0.7578125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    331,
+                    371,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    326,
+                    320,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.6796875,
+                    0.724609375,
+                    0.712890625,
+                    0.7578125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    348,
+                    371,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    326,
+                    320,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.712890625,
+                    0.724609375,
+                    0.74609375,
+                    0.7578125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    365,
+                    371,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    326,
+                    320,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.646484375,
+                    0.724609375,
+                    0.6796875,
+                    0.7578125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    331,
+                    371,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                326,
+                320,
+                17,
+                17
+              ]
+            },
+            {
+              "type": "trackbar",
+              "id": "",
+              "rect": [
+                327,
+                65,
+                17,
+                255
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 131072,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    327,
+                    65,
+                    17,
+                    255
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.6796875,
+                    0.759765625,
+                    0.712890625,
+                    0.79296875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    348,
+                    389,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    327,
+                    65,
+                    17,
+                    17
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_quest_us.dxt",
+                  "uv": [
+                    0.646484375,
+                    0.759765625,
+                    0.6796875,
+                    0.79296875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_quest_us.png",
+                  "src": [
+                    331,
+                    389,
+                    17,
+                    17
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "string",
+          "id": "text_Npcname",
+          "rect": [
+            79,
+            16,
+            212,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff80ff",
+          "text": " ",
+          "lineSpacing": 0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            319,
+            12,
+            27,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.69921875,
+            0.625,
+            0.751953125,
+            0.67578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            358,
+            320,
+            27,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_close",
+          "rect": [
+            323,
+            15,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                323,
+                15,
+                20,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7578125,
+                0.6328125,
+                0.796875,
+                0.671875
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                388,
+                324,
+                20,
+                20
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                323,
+                15,
+                20,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.798828125,
+                0.6328125,
+                0.837890625,
+                0.671875
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                409,
+                324,
+                20,
+                20
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                323,
+                15,
+                20,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.83984375,
+                0.6328125,
+                0.87890625,
+                0.671875
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                430,
+                324,
+                20,
+                20
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                323,
+                15,
+                20,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7578125,
+                0.6328125,
+                0.796875,
+                0.671875
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                388,
+                324,
+                20,
+                20
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            323,
+            15,
+            20,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "type": "base",
+      "id": "help_list",
+      "rect": [
+        0,
+        0,
+        362,
+        412
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            0,
+            362,
+            46
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.0,
+            0.70703125,
+            0.08984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            0,
+            362,
+            46
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            46,
+            362,
+            14
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.458984375,
+            0.70703125,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            235,
+            362,
+            14
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            60,
+            362,
+            296
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.458984375,
+            0.70703125,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            235,
+            362,
+            14
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            0,
+            356,
+            362,
+            56
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.49609375,
+            0.70703125,
+            0.60546875
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            254,
+            362,
+            56
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            61,
+            354,
+            32
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.619140625,
+            0.69140625,
+            0.681640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            317,
+            354,
+            32
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            105,
+            354,
+            32
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.619140625,
+            0.69140625,
+            0.681640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            317,
+            354,
+            32
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            150,
+            354,
+            32
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.619140625,
+            0.69140625,
+            0.681640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            317,
+            354,
+            32
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            195,
+            354,
+            32
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.619140625,
+            0.69140625,
+            0.681640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            317,
+            354,
+            32
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            3,
+            240,
+            354,
+            32
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.619140625,
+            0.69140625,
+            0.681640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            317,
+            354,
+            32
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            285,
+            354,
+            32
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.619140625,
+            0.69140625,
+            0.681640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            317,
+            354,
+            32
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            4,
+            344,
+            354,
+            32
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.0,
+            0.83984375,
+            0.69140625,
+            0.90234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            0,
+            430,
+            354,
+            32
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_Pre",
+          "rect": [
+            18,
+            348,
+            99,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                348,
+                99,
+                24
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7109375,
+                0.25390625,
+                0.904296875,
+                0.30078125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                364,
+                130,
+                99,
+                24
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                348,
+                99,
+                24
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7109375,
+                0.30078125,
+                0.904296875,
+                0.34765625
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                364,
+                154,
+                99,
+                24
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                348,
+                99,
+                24
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7109375,
+                0.34765625,
+                0.904296875,
+                0.39453125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                364,
+                178,
+                99,
+                24
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                348,
+                99,
+                24
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7109375,
+                0.25390625,
+                0.904296875,
+                0.30078125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                364,
+                130,
+                99,
+                24
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            18,
+            348,
+            99,
+            24
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_Next",
+          "rect": [
+            245,
+            348,
+            98,
+            24
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                245,
+                348,
+                98,
+                24
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7109375,
+                0.396484375,
+                0.90234375,
+                0.443359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                364,
+                203,
+                98,
+                24
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                245,
+                348,
+                98,
+                24
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7109375,
+                0.443359375,
+                0.90234375,
+                0.490234375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                364,
+                227,
+                98,
+                24
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                245,
+                348,
+                98,
+                24
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7109375,
+                0.490234375,
+                0.90234375,
+                0.537109375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                364,
+                251,
+                98,
+                24
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                245,
+                348,
+                98,
+                24
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7109375,
+                0.396484375,
+                0.90234375,
+                0.443359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                364,
+                203,
+                98,
+                24
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            245,
+            348,
+            98,
+            24
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_menu00",
+          "rect": [
+            18,
+            64,
+            326,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                64,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                64,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.73828125,
+                0.63671875,
+                0.787109375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                378,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                64,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.787109375,
+                0.63671875,
+                0.8359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                403,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                64,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            18,
+            64,
+            326,
+            25
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_menu01",
+          "rect": [
+            18,
+            108,
+            326,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                108,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                108,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.787109375,
+                0.63671875,
+                0.8359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                403,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                108,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.73828125,
+                0.63671875,
+                0.787109375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                378,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                108,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            18,
+            108,
+            326,
+            25
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_menu02",
+          "rect": [
+            18,
+            153,
+            326,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                153,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                153,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.73828125,
+                0.63671875,
+                0.787109375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                378,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                153,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.787109375,
+                0.63671875,
+                0.8359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                403,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                153,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            18,
+            153,
+            326,
+            25
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_menu03",
+          "rect": [
+            18,
+            199,
+            326,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                199,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                199,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.787109375,
+                0.63671875,
+                0.8359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                403,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                199,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.73828125,
+                0.63671875,
+                0.787109375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                378,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                199,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            18,
+            199,
+            326,
+            25
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_menu04",
+          "rect": [
+            17,
+            243,
+            326,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                17,
+                243,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                17,
+                243,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.73828125,
+                0.63671875,
+                0.787109375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                378,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                17,
+                243,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.787109375,
+                0.63671875,
+                0.8359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                403,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                17,
+                243,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            17,
+            243,
+            326,
+            25
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_menu05",
+          "rect": [
+            18,
+            288,
+            326,
+            25
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                288,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                288,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.787109375,
+                0.63671875,
+                0.8359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                403,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                288,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.73828125,
+                0.63671875,
+                0.787109375
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                378,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                18,
+                288,
+                326,
+                25
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.0,
+                0.689453125,
+                0.63671875,
+                0.73828125
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                0,
+                353,
+                326,
+                25
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            18,
+            288,
+            326,
+            25
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            318,
+            13,
+            27,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_quest_us.dxt",
+          "uv": [
+            0.69921875,
+            0.625,
+            0.751953125,
+            0.67578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_quest_us.png",
+          "src": [
+            358,
+            320,
+            27,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_close",
+          "rect": [
+            322,
+            16,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                322,
+                16,
+                20,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7578125,
+                0.6328125,
+                0.796875,
+                0.671875
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                388,
+                324,
+                20,
+                20
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                322,
+                16,
+                20,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.798828125,
+                0.6328125,
+                0.837890625,
+                0.671875
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                409,
+                324,
+                20,
+                20
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                322,
+                16,
+                20,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.83984375,
+                0.6328125,
+                0.87890625,
+                0.671875
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                430,
+                324,
+                20,
+                20
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                322,
+                16,
+                20,
+                20
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_quest_us.dxt",
+              "uv": [
+                0.7578125,
+                0.6328125,
+                0.796875,
+                0.671875
+              ],
+              "fps": 30.0,
+              "texture": "ui_quest_us.png",
+              "src": [
+                388,
+                324,
+                20,
+                20
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            322,
+            16,
+            20,
+            20
+          ]
+        },
+        {
+          "type": "string",
+          "id": "text_npcname",
+          "rect": [
+            58,
+            16,
+            247,
+            37
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#80ffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_menu00",
+          "rect": [
+            22,
+            67,
+            319,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#f7f5dfff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_menu01",
+          "rect": [
+            22,
+            111,
+            319,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#f7f5dfff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_menu02",
+          "rect": [
+            22,
+            156,
+            319,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#f7f5dfff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_menu03",
+          "rect": [
+            22,
+            202,
+            319,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#f7f5dfff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_menu04",
+          "rect": [
+            21,
+            247,
+            319,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#f7f5dfff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_menu05",
+          "rect": [
+            22,
+            292,
+            319,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#f7f5dfff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    }
+  ]
+}

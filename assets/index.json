@@ -1,0 +1,3193 @@
+{
+  "source": "D:\\Program Files (x86)\\KnightOnline\\UI_US",
+  "layouts": {
+    "co_blog_us": {
+      "file": "layouts/co_blog_us.json",
+      "rect": [
+        0,
+        0,
+        900,
+        725
+      ],
+      "sha256": "50d6e8d80a8a37b4d85e03d5fd082850f497dbb9ec3be85345729abc99377335"
+    },
+    "co_castleunion_us": {
+      "file": "layouts/co_castleunion_us.json",
+      "rect": [
+        0,
+        0,
+        286,
+        367
+      ],
+      "sha256": "ad878747751570455e058be2dafbd51e6da95bc1bb43bf0412b751c0c2ba8f64"
+    },
+    "co_change_bill_us": {
+      "file": "layouts/co_change_bill_us.json",
+      "rect": [
+        -2,
+        -1,
+        313,
+        130
+      ],
+      "sha256": "576d9c85b1059e86489a63fd8c14e75d534f4ac07eb1ace3a496726e5faab627"
+    },
+    "co_change_us": {
+      "file": "layouts/co_change_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        240
+      ],
+      "sha256": "b565f3744a85d6c408532a34134049f555da2110a83a66e2a9eb6d273a8f14e7"
+    },
+    "co_changeclass_us": {
+      "file": "layouts/co_changeclass_us.json",
+      "rect": [
+        0,
+        0,
+        326,
+        188
+      ],
+      "sha256": "ff7c142ce218a53ad9b459b780d4fd7e171d68b5c81e0fd2947d245ac43938bf"
+    },
+    "co_charactercreate_us": {
+      "file": "layouts/co_charactercreate_us.json",
+      "rect": [
+        0,
+        0,
+        291,
+        705
+      ],
+      "sha256": "f918867a26568416915c4246f5fe27421af31754a36a45edca18c3f23868d2e4"
+    },
+    "co_characterselect_us": {
+      "file": "layouts/co_characterselect_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        113
+      ],
+      "sha256": "b5800e2ca8567da4521978f1de36fad1438c11f044643202f07a2bb19d70a7a2"
+    },
+    "co_cmdedit_us": {
+      "file": "layouts/co_cmdedit_us.json",
+      "rect": [
+        0,
+        0,
+        379,
+        75
+      ],
+      "sha256": "194a96fa5722e30068619f6a757d553c80ad7aadeca1cf72a0b580a61d9bd72a"
+    },
+    "co_confirmation_us": {
+      "file": "layouts/co_confirmation_us.json",
+      "rect": [
+        0,
+        0,
+        212,
+        111
+      ],
+      "sha256": "3ccc6583e26edea7708d9470b81bdb326635578d877f3a094a70412c845fd44d"
+    },
+    "co_conversation_us": {
+      "file": "layouts/co_conversation_us.json",
+      "rect": [
+        -1,
+        0,
+        365,
+        412
+      ],
+      "sha256": "8c885e767473f1c57066f651fa54787ad48f9a6f3821c2eecfd99ad32a77dec5"
+    },
+    "co_creat_clan_us": {
+      "file": "layouts/co_creat_clan_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        156
+      ],
+      "sha256": "dcd791aa805480812b33b7c4da6d69f2d8cd2078b84beaff9c096f535a0a887c"
+    },
+    "co_dead_us": {
+      "file": "layouts/co_dead_us.json",
+      "rect": [
+        0,
+        0,
+        211,
+        112
+      ],
+      "sha256": "fc64e6712a67c6064bcd6f4b046f330a2aa147ce7aafb2eacde5c016dde696eb"
+    },
+    "co_disguisering_us": {
+      "file": "layouts/co_disguisering_us.json",
+      "rect": [
+        0,
+        0,
+        176,
+        562
+      ],
+      "sha256": "c3e7417c6d674f9cd3de55110c2406dedafd1c666bbac7c9808d46ade2a26b24"
+    },
+    "co_droppeditem_us": {
+      "file": "layouts/co_droppeditem_us.json",
+      "rect": [
+        0,
+        0,
+        104,
+        152
+      ],
+      "sha256": "2f26b2c70cb6011bb00bdc7ffda415303ca7450922b92ec8be72298d8f632c5b"
+    },
+    "co_duelcreate_us": {
+      "file": "layouts/co_duelcreate_us.json",
+      "rect": [
+        0,
+        0,
+        321,
+        257
+      ],
+      "sha256": "7dd59df61ef2af81c6e7f155c16f0ee2a1d1b06e92e9fffe8acbb25ec7056259"
+    },
+    "co_dueleditmsg_us": {
+      "file": "layouts/co_dueleditmsg_us.json",
+      "rect": [
+        0,
+        0,
+        321,
+        193
+      ],
+      "sha256": "619e1452263e351e0c7c06018ec2926a716dece42b79b26dedde9ac625682298"
+    },
+    "co_duellist_us": {
+      "file": "layouts/co_duellist_us.json",
+      "rect": [
+        0,
+        0,
+        364,
+        572
+      ],
+      "sha256": "281bd6c598a6d8dcc8480b939ea33f5fa2ea82280a1d6080dea240f229d61c93"
+    },
+    "co_duellobby_us": {
+      "file": "layouts/co_duellobby_us.json",
+      "rect": [
+        -1,
+        0,
+        1025,
+        768
+      ],
+      "sha256": "af885acb5037d13b6bb9ac166e1083937dc01a3bd76d3101fd8ca333666ed89e"
+    },
+    "co_duelmessagebox_us": {
+      "file": "layouts/co_duelmessagebox_us.json",
+      "rect": [
+        0,
+        0,
+        321,
+        193
+      ],
+      "sha256": "ab244e7115a3902b6caf78896f4b77b1282b510a437bd3b5b4a8922994525043"
+    },
+    "co_endmessage_us": {
+      "file": "layouts/co_endmessage_us.json",
+      "rect": [
+        0,
+        0,
+        623,
+        399
+      ],
+      "sha256": "dd784959b5aff2c1df421e1e262a746ff413ded07f51c93c280b39f08c0db404"
+    },
+    "co_exitmenu_us": {
+      "file": "layouts/co_exitmenu_us.json",
+      "rect": [
+        -5,
+        0,
+        209,
+        227
+      ],
+      "sha256": "5bac094e560c861a1cd6157051df2b2199ecf13d1914d71668cb5c8ad01e4a56"
+    },
+    "co_help_us": {
+      "file": "layouts/co_help_us.json",
+      "rect": [
+        -13,
+        0,
+        490,
+        424
+      ],
+      "sha256": "a8fe68c09eec51dff163f239e7eeafeb3f7fd0619c4c7eb909c60fb686e070fe"
+    },
+    "co_id_check_us": {
+      "file": "layouts/co_id_check_us.json",
+      "rect": [
+        -6,
+        0,
+        370,
+        175
+      ],
+      "sha256": "17417c58c61d8445017e26156a0e7954fabb2dfc72817f573d574751abbb3414"
+    },
+    "co_id_us": {
+      "file": "layouts/co_id_us.json",
+      "rect": [
+        -6,
+        0,
+        370,
+        175
+      ],
+      "sha256": "5da49c4d833aae99b4845cefe7ecd248799a1c2f904d31e239916df2954ce182"
+    },
+    "co_idchange_us": {
+      "file": "layouts/co_idchange_us.json",
+      "rect": [
+        -6,
+        0,
+        370,
+        175
+      ],
+      "sha256": "101d6ec8b46f9ad4e2e37324ae918a8b239ea4fe12a2d7b80cf71a61dea597b9"
+    },
+    "co_inn_us": {
+      "file": "layouts/co_inn_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        240
+      ],
+      "sha256": "fae66aa604ce9d451b1a9b302b34a972b16e076bb2d5be4ff16fff4adef03415"
+    },
+    "co_itemdestroy_us": {
+      "file": "layouts/co_itemdestroy_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        156
+      ],
+      "sha256": "8ec28c8c60f5569c149a82ad0b200a88ec3cff3c37d666862f95700e6db77d63"
+    },
+    "co_iteminfo_us": {
+      "file": "layouts/co_iteminfo_us.json",
+      "rect": [
+        0,
+        0,
+        256,
+        609
+      ],
+      "sha256": "be49cfecbf8d77698b5085e2d6bf0038714ba4cafb1d966e052998f85b1821eb"
+    },
+    "co_itemupgrade_us": {
+      "file": "layouts/co_itemupgrade_us.json",
+      "rect": [
+        -2,
+        -1,
+        368,
+        576
+      ],
+      "sha256": "a0de7ecb66d4f35a65c93cdbcc2b627d5ff7293ef0846b573b626544a6f73468"
+    },
+    "co_king_electionboard_us": {
+      "file": "layouts/co_king_electionboard_us.json",
+      "rect": [
+        -8,
+        0,
+        417,
+        296
+      ],
+      "sha256": "1a831f3677228e7c8ee338424d49003dafd608490a532844f0af8ea64c624675"
+    },
+    "co_king_electionlist_us": {
+      "file": "layouts/co_king_electionlist_us.json",
+      "rect": [
+        0,
+        0,
+        324,
+        332
+      ],
+      "sha256": "d822fe8531265f50f1fc9ba1014dcc1bc576e6932bae7f31b96e5cd5f49430a8"
+    },
+    "co_king_electionmain_us": {
+      "file": "layouts/co_king_electionmain_us.json",
+      "rect": [
+        0,
+        0,
+        440,
+        312
+      ],
+      "sha256": "8d09552e068190b00063ba6d17c7c4be39b03e4f40964ab09f0d96d4dbe3a1ee"
+    },
+    "co_king_electionregist_us": {
+      "file": "layouts/co_king_electionregist_us.json",
+      "rect": [
+        0,
+        0,
+        409,
+        359
+      ],
+      "sha256": "9df4b7e556d5383a39737a275f8e42f6316438b136f52ceaf44933058d8f9e92"
+    },
+    "co_king_memberrecommend_us": {
+      "file": "layouts/co_king_memberrecommend_us.json",
+      "rect": [
+        0,
+        0,
+        440,
+        312
+      ],
+      "sha256": "5f8c25164184afcccfb9a1b32c4a29f84de87b47d8fcf27e68c3ab230ad2f4b8"
+    },
+    "co_knights_crest_chr_us": {
+      "file": "layouts/co_knights_crest_chr_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        307
+      ],
+      "sha256": "197c5203cb98d974297fca6340f6ad23e5e83600ff77862cb01d0b9b15edd261"
+    },
+    "co_knights_crest_us": {
+      "file": "layouts/co_knights_crest_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        306
+      ],
+      "sha256": "052361d12785930a6454afd19df9d1fbe7f0d513629da9bd50cd8a491724c6ea"
+    },
+    "co_knightsmantleshop_us": {
+      "file": "layouts/co_knightsmantleshop_us.json",
+      "rect": [
+        0,
+        0,
+        373,
+        468
+      ],
+      "sha256": "60d2e97ac9415b1841fb6ebb00be18b3b2440794b36313e7b05885fb3de8cd9c"
+    },
+    "co_loading_us": {
+      "file": "layouts/co_loading_us.json",
+      "rect": [
+        -12,
+        -20,
+        678,
+        433
+      ],
+      "sha256": "19c594d16a99b6f371c59c39bef44b5916e8b3abe45fde16f109653b1810cb39"
+    },
+    "co_login_intro_sub_us": {
+      "file": "layouts/co_login_intro_sub_us.json",
+      "rect": [
+        0,
+        0,
+        171,
+        24
+      ],
+      "sha256": "faca5c6266bbde0b3bee1dceb607b8fe91c5bfa86a0f1c98f2469647b61402b3"
+    },
+    "co_login_us": {
+      "file": "layouts/co_login_us.json",
+      "rect": [
+        -1,
+        0,
+        984,
+        506
+      ],
+      "sha256": "e4b10e5871df00bebb2305e82b7b429cee291537644de54d02228994f8ee50d2"
+    },
+    "co_monster_us": {
+      "file": "layouts/co_monster_us.json",
+      "rect": [
+        0,
+        0,
+        286,
+        457
+      ],
+      "sha256": "86392e31d80642ee7073d276ebe347ec3845de834404ac4ecf3f87bd8369e864"
+    },
+    "co_msgboxok_king_us": {
+      "file": "layouts/co_msgboxok_king_us.json",
+      "rect": [
+        0,
+        0,
+        212,
+        111
+      ],
+      "sha256": "232219817e3fbda62ea5d83ab4f1e0b6b7f275958db264613b330ef6107acbb5"
+    },
+    "co_msgboxok_us": {
+      "file": "layouts/co_msgboxok_us.json",
+      "rect": [
+        0,
+        0,
+        212,
+        111
+      ],
+      "sha256": "afc88d54fd172525c6cc6830b734ea2b80b740c054176ce1421ebf4ed5f3ed79"
+    },
+    "co_msgboxokcancel_king_us": {
+      "file": "layouts/co_msgboxokcancel_king_us.json",
+      "rect": [
+        0,
+        0,
+        293,
+        104
+      ],
+      "sha256": "7f4efec612dd2c43b8c60dce5bf63ded1ca1c477f1cdef36573e600caffc379c"
+    },
+    "co_msgboxokcancel_us": {
+      "file": "layouts/co_msgboxokcancel_us.json",
+      "rect": [
+        0,
+        0,
+        271,
+        105
+      ],
+      "sha256": "d2a26f734d07114025b926cde32aedaedd89494b5e2a2805705885925603e70b"
+    },
+    "co_nation_select_us": {
+      "file": "layouts/co_nation_select_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "sha256": "351b94edcaf3dbcec1dc07480fb6ae621c5ea9748e20b7ce58017910ecd3c178"
+    },
+    "co_nationselect_us": {
+      "file": "layouts/co_nationselect_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "sha256": "66368b6d5fb3f2a74fd34b2d3989fc402a9e5951b5e2e1e0d6e33a34d8496173"
+    },
+    "co_nationtaxnpc_us": {
+      "file": "layouts/co_nationtaxnpc_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        306
+      ],
+      "sha256": "6c0963c9d11d6f8fab736f971ed104acc835a5a75c01a397bf0d4ef47cda8cd9"
+    },
+    "co_nationtaxrate_us": {
+      "file": "layouts/co_nationtaxrate_us.json",
+      "rect": [
+        0,
+        0,
+        271,
+        105
+      ],
+      "sha256": "829360a2c9eec067234987c2a4827946c9288fdc1ac5080fab808d239e17605b"
+    },
+    "co_notice_us": {
+      "file": "layouts/co_notice_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        354
+      ],
+      "sha256": "f2873864e9ede2351be1bedf83e72771a6f0b53e39cceecbeb2de28a3b70a737"
+    },
+    "co_party_us": {
+      "file": "layouts/co_party_us.json",
+      "rect": [
+        0,
+        0,
+        131,
+        385
+      ],
+      "sha256": "835ed730c98cfaa48b462052a2708f13572dc4a58d3e1720cc620b416f7a202d"
+    },
+    "co_partyboard_message_us": {
+      "file": "layouts/co_partyboard_message_us.json",
+      "rect": [
+        0,
+        0,
+        322,
+        246
+      ],
+      "sha256": "f3112955f45ad9df1256811e78d00dc65b9a0a06bc336233bf17746f02618409"
+    },
+    "co_partyboard_us": {
+      "file": "layouts/co_partyboard_us.json",
+      "rect": [
+        0,
+        0,
+        346,
+        494
+      ],
+      "sha256": "2e3d709ac875c0b1a934ac54ccbde9542a514f48b20775ef7de38a65a9dc2d3b"
+    },
+    "co_questcontent_us": {
+      "file": "layouts/co_questcontent_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        398
+      ],
+      "sha256": "289875f6c564d89a771a0082f0b22a233480a4cabf7715983230ad98a87999cb"
+    },
+    "co_questmenu_us": {
+      "file": "layouts/co_questmenu_us.json",
+      "rect": [
+        0,
+        0,
+        363,
+        355
+      ],
+      "sha256": "35260fb46fb1919e11a46ac2b0491cf58324b84a68c35eb23d28d888956d344a"
+    },
+    "co_questtalk_us": {
+      "file": "layouts/co_questtalk_us.json",
+      "rect": [
+        0,
+        0,
+        363,
+        305
+      ],
+      "sha256": "38c14b124aaa86c6ebd5183d815a1a344bfd85123b3f54f354e1764fe28b240e"
+    },
+    "co_rental_count_us": {
+      "file": "layouts/co_rental_count_us.json",
+      "rect": [
+        0,
+        0,
+        272,
+        137
+      ],
+      "sha256": "cbbd637e91f2ce4d0532ec9fb03ca64079a0d10ceaf2533becda3bc838ab2728"
+    },
+    "co_rental_entry_us": {
+      "file": "layouts/co_rental_entry_us.json",
+      "rect": [
+        0,
+        0,
+        382,
+        430
+      ],
+      "sha256": "7caa4661e85cf351e5c9dc86d42db1ec9a82c695b528dcf292a36af404d75644"
+    },
+    "co_rental_item_us": {
+      "file": "layouts/co_rental_item_us.json",
+      "rect": [
+        0,
+        0,
+        383,
+        220
+      ],
+      "sha256": "7757df278b74649dc694f9644a24e4137053a4fdef0eb44e31490ed3fad2789e"
+    },
+    "co_rental_message_us": {
+      "file": "layouts/co_rental_message_us.json",
+      "rect": [
+        0,
+        0,
+        358,
+        127
+      ],
+      "sha256": "e9d80b2931aa43582a9efbfe9486e218e32919410285fb9f2a43ee597d2e7d11"
+    },
+    "co_rental_npc_us": {
+      "file": "layouts/co_rental_npc_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        306
+      ],
+      "sha256": "922e40a6ecc921465d48990db42b4d6a74e4940824f60eeace2b38e808214716"
+    },
+    "co_rental_transaction_us": {
+      "file": "layouts/co_rental_transaction_us.json",
+      "rect": [
+        0,
+        0,
+        364,
+        575
+      ],
+      "sha256": "de7536c6b3d35f15d6887d9a5924c26a75795f008129791fa5cf4d121aa4a9e6"
+    },
+    "co_rentalbegin_us": {
+      "file": "layouts/co_rentalbegin_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        240
+      ],
+      "sha256": "86683519fa5966a76de7ae56068b559594c2e52603b178674a0f6ba8d4378453"
+    },
+    "co_resurrection_us": {
+      "file": "layouts/co_resurrection_us.json",
+      "rect": [
+        -6,
+        0,
+        370,
+        330
+      ],
+      "sha256": "49713b96c1c6ffeebb399cfc6247c7277530b88cbe0d83cafcef7196612800c0"
+    },
+    "co_ringupgrade_us": {
+      "file": "layouts/co_ringupgrade_us.json",
+      "rect": [
+        0,
+        -1,
+        366,
+        576
+      ],
+      "sha256": "b8ae116ff9ace57f3821ac49de3f64f326e1f0a3e56456ef6d71c33edf4a5929"
+    },
+    "co_rookietip_us": {
+      "file": "layouts/co_rookietip_us.json",
+      "rect": [
+        -13,
+        0,
+        357,
+        243
+      ],
+      "sha256": "ca4b4bf80a3184faa488d1534c9af52b0aafd8b20c1c75932da3f005ea2a5cfc"
+    },
+    "co_saleboardbuy_us": {
+      "file": "layouts/co_saleboardbuy_us.json",
+      "rect": [
+        0,
+        0,
+        328,
+        189
+      ],
+      "sha256": "da6f332d4f34a992ce91c3d0c9a21cfc8b470230194b9baf0d8ad3e88bedaa64"
+    },
+    "co_saleboardmemo_us": {
+      "file": "layouts/co_saleboardmemo_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        261
+      ],
+      "sha256": "22d8db046d61fbebe16f492ea9b1f655718f0f3636f1fd98a9a90596170d633c"
+    },
+    "co_saleboardmemolist_us": {
+      "file": "layouts/co_saleboardmemolist_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        240
+      ],
+      "sha256": "7e8cd9a4dd4900e535005ebf4d78344959150219dbe584e725698abfcc426929"
+    },
+    "co_saleboardselection_us": {
+      "file": "layouts/co_saleboardselection_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        240
+      ],
+      "sha256": "b8724f3d992b9aa96b44aadc4a73912815eb848267f1d7ac0039bebc3bda8c49"
+    },
+    "co_saleboardsell_us": {
+      "file": "layouts/co_saleboardsell_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        189
+      ],
+      "sha256": "5a04b9464fa8328ce1b5238441f2594a7048c7bcfa7814e2fd4b8d57033f13f0"
+    },
+    "co_select_info_us": {
+      "file": "layouts/co_select_info_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        150
+      ],
+      "sha256": "f0fa3312f9b791dffcf8c10cf257ca66c6c0897fcfb7d8d343c2436962bd26f9"
+    },
+    "co_shoppingmall_us": {
+      "file": "layouts/co_shoppingmall_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        769
+      ],
+      "sha256": "9f2e0e6c6c6c647aaa917fd59992529c34a9f2270914bb3574bdd6403e08185c"
+    },
+    "co_show_icon_us": {
+      "file": "layouts/co_show_icon_us.json",
+      "rect": [
+        0,
+        0,
+        251,
+        193
+      ],
+      "sha256": "98344365577224b7b55ebc7514179ecdae31137bb24abfe7f318bced802d62d0"
+    },
+    "co_smith_us": {
+      "file": "layouts/co_smith_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        240
+      ],
+      "sha256": "4f367be941bcce41f2e029257c3f9e8f133162c0059798ecf2484b0b564bd201"
+    },
+    "co_sms_02_us": {
+      "file": "layouts/co_sms_02_us.json",
+      "rect": [
+        0,
+        0,
+        282,
+        450
+      ],
+      "sha256": "1850c99cc108590e33ae97c9bcfe28a535df530c87c189087a5a291af80d9e51"
+    },
+    "co_sms_us": {
+      "file": "layouts/co_sms_us.json",
+      "rect": [
+        0,
+        0,
+        729,
+        449
+      ],
+      "sha256": "2de78ab2cfb4c7a2f091f756352a3b4cc78c5a152b8a417c1b0f997e804ba10b"
+    },
+    "co_symbol_us": {
+      "file": "layouts/co_symbol_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "sha256": "2f9c2abcb61e8f7b35df93effc9b589ce1f0459eda34c6d4ed0dcd0d995f8662"
+    },
+    "co_targetbar_us": {
+      "file": "layouts/co_targetbar_us.json",
+      "rect": [
+        0,
+        0,
+        324,
+        64
+      ],
+      "sha256": "16e8172d358df31d6aa270ae12b482a2d7c661ad2440af20ff3a40b042c136cb"
+    },
+    "co_tooltip_us": {
+      "file": "layouts/co_tooltip_us.json",
+      "rect": [
+        0,
+        0,
+        115,
+        25
+      ],
+      "sha256": "632ffd9b1180cfc0d92aa692eb25504f23158d0cf7f4c5b4db17aee79a6c0ffe"
+    },
+    "co_tooltop_repair_us": {
+      "file": "layouts/co_tooltop_repair_us.json",
+      "rect": [
+        0,
+        0,
+        223,
+        98
+      ],
+      "sha256": "cc40c65eba3dcb37e315b9669e088d24843e5e1b7aa8fc17aa4161a8d338ab94"
+    },
+    "co_tradebuyinventory_us": {
+      "file": "layouts/co_tradebuyinventory_us.json",
+      "rect": [
+        0,
+        0,
+        365,
+        436
+      ],
+      "sha256": "48c5bfedb3ae73a8dabe70d8e0be9ab7fa2fb08ffb4b042032f32112ac4a2db2"
+    },
+    "co_tradecount_us": {
+      "file": "layouts/co_tradecount_us.json",
+      "rect": [
+        0,
+        0,
+        255,
+        106
+      ],
+      "sha256": "fa19ffe735074407ad09d43349594eb735747408a33fe66aa044249cef6cb7c7"
+    },
+    "co_tradeinventory_us": {
+      "file": "layouts/co_tradeinventory_us.json",
+      "rect": [
+        -8,
+        0,
+        372,
+        472
+      ],
+      "sha256": "f1286417a722eb11bad250dfb72845d48423257aa5071712cd67059da4596447"
+    },
+    "co_tradeitemdisplay_us": {
+      "file": "layouts/co_tradeitemdisplay_us.json",
+      "rect": [
+        0,
+        0,
+        180,
+        49
+      ],
+      "sha256": "3c1a582b9339f113c267eb6e72a3d81a9709af418c29e192ec494deda9b24dd6"
+    },
+    "co_trademessage_us": {
+      "file": "layouts/co_trademessage_us.json",
+      "rect": [
+        -1,
+        0,
+        364,
+        148
+      ],
+      "sha256": "272a37bd1b78fe7e8e4e99ead559a9d2e36de0daf871210793417774f302b197"
+    },
+    "co_trademessagebox_us": {
+      "file": "layouts/co_trademessagebox_us.json",
+      "rect": [
+        0,
+        0,
+        255,
+        106
+      ],
+      "sha256": "04280b63b36c0cc2917d12033da7380b1f5adc3026f41dfea35f86b9061a0159"
+    },
+    "co_tradeprice_us": {
+      "file": "layouts/co_tradeprice_us.json",
+      "rect": [
+        0,
+        0,
+        257,
+        106
+      ],
+      "sha256": "5455b2fef1c0b731fe3b3fa69097b92d54d8ee7fdc5c58ce8df8abd4f9853c5c"
+    },
+    "co_upgradeselect_us": {
+      "file": "layouts/co_upgradeselect_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        236
+      ],
+      "sha256": "26c9ea5e66027b0d0d34c6c4825b271de32327ac0315ddef0fea8f33f23f444e"
+    },
+    "co_usa_logo_us": {
+      "file": "layouts/co_usa_logo_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "sha256": "6786b7f1a55ff4d2e535f165ab3c079ae52c7544a5a94b3b3d85700da7196e20"
+    },
+    "co_warfareadministrationnpc_us": {
+      "file": "layouts/co_warfareadministrationnpc_us.json",
+      "rect": [
+        0,
+        0,
+        280,
+        306
+      ],
+      "sha256": "08b807bc382e4a5826e6ba14b1c7baf0a379a1fb1aee9f01a6ef7833a4b05adf"
+    },
+    "co_warfarenpc_us": {
+      "file": "layouts/co_warfarenpc_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        306
+      ],
+      "sha256": "0db1fa675f552053971ede3cb2e67d504cd3b79ef449d40c3d5284088f15f09a"
+    },
+    "co_warfarepetition_us": {
+      "file": "layouts/co_warfarepetition_us.json",
+      "rect": [
+        0,
+        0,
+        286,
+        367
+      ],
+      "sha256": "5f1415c1e671f0ebe767801dd9790c7b5827b83fd6b54ed2e1afe97759ca2d14"
+    },
+    "co_warfareschedule_us": {
+      "file": "layouts/co_warfareschedule_us.json",
+      "rect": [
+        0,
+        0,
+        288,
+        367
+      ],
+      "sha256": "37e409eb4e20d70c80e2d7711b8bb131020f6a621359677553079aa61c84dd89"
+    },
+    "co_warfaretaxcollection_us": {
+      "file": "layouts/co_warfaretaxcollection_us.json",
+      "rect": [
+        0,
+        0,
+        271,
+        105
+      ],
+      "sha256": "7f5d8809a7677ef6bc731b162ad708d9b18fb593d9a300ebcd3d000a680eeb74"
+    },
+    "co_warfaretaxmsg_us": {
+      "file": "layouts/co_warfaretaxmsg_us.json",
+      "rect": [
+        0,
+        0,
+        271,
+        106
+      ],
+      "sha256": "b7f821589febbd7a0d1669d461c94a9777b4d01e09a0e6322e523d29f3509fb1"
+    },
+    "co_warfaretaxrate_us": {
+      "file": "layouts/co_warfaretaxrate_us.json",
+      "rect": [
+        0,
+        0,
+        271,
+        105
+      ],
+      "sha256": "ea2ab00d8ebe767909613c557254700d2be8475f878b2835b7995cd5e9a13abf"
+    },
+    "co_warfaretaxtariff_us": {
+      "file": "layouts/co_warfaretaxtariff_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        306
+      ],
+      "sha256": "d7ecc081db899db31d1b655f51de583cff1e1cec9c0e2292648924918b1fcf61"
+    },
+    "co_warning_us": {
+      "file": "layouts/co_warning_us.json",
+      "rect": [
+        0,
+        -1,
+        640,
+        481
+      ],
+      "sha256": "fc84b4c46a6e001ae97605a534bc4121207da3164cb4a70abfd5e2c86cad10ad"
+    },
+    "co_webpage_us": {
+      "file": "layouts/co_webpage_us.json",
+      "rect": [
+        0,
+        0,
+        662,
+        679
+      ],
+      "sha256": "05d6a452297e347c56b02d2a208d93b0a409de9c1408fa44c9f04dd0689ebe17"
+    },
+    "co_whisper_close_us": {
+      "file": "layouts/co_whisper_close_us.json",
+      "rect": [
+        0,
+        0,
+        147,
+        23
+      ],
+      "sha256": "a0256b5832250ce9a772febdec4419cb1558e70e6840f8667f8cc39d5ed931e2"
+    },
+    "co_whisper_open_us": {
+      "file": "layouts/co_whisper_open_us.json",
+      "rect": [
+        0,
+        0,
+        304,
+        152
+      ],
+      "sha256": "310338e1e3e3c79baa165ba0c252c2eb01e127bc19cc94e64b0603524595f1fb"
+    },
+    "el_catapult_us": {
+      "file": "layouts/el_catapult_us.json",
+      "rect": [
+        0,
+        0,
+        490,
+        38
+      ],
+      "sha256": "29253e355b0153726fd65e485d01e0b502067c43bfdc9e72a66a010c7fe5c7ff"
+    },
+    "el_charactercreate_us": {
+      "file": "layouts/el_charactercreate_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        780
+      ],
+      "sha256": "d99738e8eefc3fb464cef83320e50f42269c4497cfe40152da44b68beaab032a"
+    },
+    "el_characterselect_us": {
+      "file": "layouts/el_characterselect_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "sha256": "2925fc33089a2d279c219c1a6a859ff4806d3778686f78f245b7bdb47fe1c93b"
+    },
+    "el_chat_small_us": {
+      "file": "layouts/el_chat_small_us.json",
+      "rect": [
+        0,
+        0,
+        102,
+        23
+      ],
+      "sha256": "1e741862b0a594c7ad874ff7f89ec4e3ba397971f4f3fbe5fc9006433944c1cd"
+    },
+    "el_chat_us": {
+      "file": "layouts/el_chat_us.json",
+      "rect": [
+        0,
+        0,
+        541,
+        146
+      ],
+      "sha256": "be53a8a98055f82d6b0b2cbf934d0a730a96535d1f006ab4345e9753e7aaa961"
+    },
+    "el_cmd_us": {
+      "file": "layouts/el_cmd_us.json",
+      "rect": [
+        0,
+        0,
+        1026,
+        51
+      ],
+      "sha256": "857d0a313090d5b3c19a9e348c35dfe02ff5041c69ce7911e0147bd150cd0b9e"
+    },
+    "el_cmdlist_us": {
+      "file": "layouts/el_cmdlist_us.json",
+      "rect": [
+        0,
+        0,
+        165,
+        573
+      ],
+      "sha256": "7a5920b096fe8774b0ff97cac56b99f5c439100350c10d97cd6baf63662e7b9b"
+    },
+    "el_hotkey_us": {
+      "file": "layouts/el_hotkey_us.json",
+      "rect": [
+        0,
+        0,
+        69,
+        355
+      ],
+      "sha256": "39b2f2b20ba9dac77cbc9c677bd1768e13ddb7025b6103149e533f46490e32c4"
+    },
+    "el_inventory_us": {
+      "file": "layouts/el_inventory_us.json",
+      "rect": [
+        -2,
+        0,
+        366,
+        578
+      ],
+      "sha256": "8fbeda77d92f481a7872c5e5a9b32b3005360b79d2e3b9ee0c7e2b2be9d71592"
+    },
+    "el_levelguide_us": {
+      "file": "layouts/el_levelguide_us.json",
+      "rect": [
+        0,
+        0,
+        364,
+        573
+      ],
+      "sha256": "c67d37efbb05f51e9ac3e46c34e40785e301a216cee62b47dc6e4390c38168b9"
+    },
+    "el_loading_us": {
+      "file": "layouts/el_loading_us.json",
+      "rect": [
+        0,
+        0,
+        556,
+        768
+      ],
+      "sha256": "284d998aea02eaf33c184c24fd0281978265a8bb8d4f8922bedd5c9cd87a0a38"
+    },
+    "el_login_intro_us": {
+      "file": "layouts/el_login_intro_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "sha256": "5bafda6d5c1001f855d2089cb02f1c29a3763139757f5cfbe58f75fab86d07ac"
+    },
+    "el_messagebox_us": {
+      "file": "layouts/el_messagebox_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        156
+      ],
+      "sha256": "8f7773d5cdd5c869f128a87d64a0bd5e92dbd181ae7c03997ab2406ab4b50c50"
+    },
+    "el_msgoutput_small_us": {
+      "file": "layouts/el_msgoutput_small_us.json",
+      "rect": [
+        0,
+        0,
+        102,
+        23
+      ],
+      "sha256": "08f4f9d76a72961c00fc4f66aad0cd6fb7752d79bbb7790b637f078285c5f34c"
+    },
+    "el_msgoutput_us": {
+      "file": "layouts/el_msgoutput_us.json",
+      "rect": [
+        0,
+        0,
+        321,
+        145
+      ],
+      "sha256": "ee0909e7b54cf2972aa771aaa8b25b9e0ee1bbdc615d8fe93eae166cf269acab"
+    },
+    "el_notice_us": {
+      "file": "layouts/el_notice_us.json",
+      "rect": [
+        0,
+        0,
+        364,
+        572
+      ],
+      "sha256": "7ef45212c4303505ff70d6e5f12815617cc7db31308e7bd99a92eb72e73efda7"
+    },
+    "el_page_clan_us": {
+      "file": "layouts/el_page_clan_us.json",
+      "rect": [
+        0,
+        0,
+        286,
+        462
+      ],
+      "sha256": "af14e45e83a608621e7c72b4d6934c740943fc121ede1abc6dce147d1236a6a3"
+    },
+    "el_page_friends_us": {
+      "file": "layouts/el_page_friends_us.json",
+      "rect": [
+        0,
+        0,
+        287,
+        462
+      ],
+      "sha256": "9c988ae29b7614f17f781a34512acec5f5c4f41baf95caf82d0139acd908e03c"
+    },
+    "el_page_knights_union_main_us": {
+      "file": "layouts/el_page_knights_union_main_us.json",
+      "rect": [
+        0,
+        0,
+        288,
+        464
+      ],
+      "sha256": "2fb97961761ebb868bf4bf6e849764c1d3d82a5379a5adaf5b8c6260bea93cf9"
+    },
+    "el_page_knights_union_sub_us": {
+      "file": "layouts/el_page_knights_union_sub_us.json",
+      "rect": [
+        0,
+        0,
+        288,
+        468
+      ],
+      "sha256": "c5c94e5f2faeb5e05111cf34e81402446916cc243aa42edeaf54ad681f50f6db"
+    },
+    "el_page_knights_us": {
+      "file": "layouts/el_page_knights_us.json",
+      "rect": [
+        0,
+        0,
+        287,
+        468
+      ],
+      "sha256": "5fdf1d019e35fe46252682ae62fce7484b673ee536421500abb972d61c571d51"
+    },
+    "el_page_quest_us": {
+      "file": "layouts/el_page_quest_us.json",
+      "rect": [
+        0,
+        0,
+        287,
+        465
+      ],
+      "sha256": "aa47d14faec5ad3c63326915dddcc3914359d8c5191a43f1b58609641a12be44"
+    },
+    "el_page_state_us": {
+      "file": "layouts/el_page_state_us.json",
+      "rect": [
+        -3,
+        0,
+        297,
+        468
+      ],
+      "sha256": "d013cea289474bd09b4c8bf47c1796d18c7ed15fd3a56acde177c3bff269ecbb"
+    },
+    "el_partyboard_us": {
+      "file": "layouts/el_partyboard_us.json",
+      "rect": [
+        0,
+        0,
+        320,
+        481
+      ],
+      "sha256": "a0255c09c985cf88362d0fbef8e405c9852c3b458c7cb040c2d8d82fbb2dc677"
+    },
+    "el_personaltrade_us": {
+      "file": "layouts/el_personaltrade_us.json",
+      "rect": [
+        -9,
+        -2,
+        410,
+        580
+      ],
+      "sha256": "b1778e4e83c5f96c3f9512d9af1741973142d4bda8ff75d7c67b3478d065d429"
+    },
+    "el_personaltradeedit_us": {
+      "file": "layouts/el_personaltradeedit_us.json",
+      "rect": [
+        -2,
+        -1,
+        313,
+        130
+      ],
+      "sha256": "17dcae352c86a6171fbf052d21d25071835544995b53a2692535352c0aa65963"
+    },
+    "el_questedit_us": {
+      "file": "layouts/el_questedit_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        156
+      ],
+      "sha256": "96598cb1ea0c3c0d713cda9127d97d08d8809d97e2592222f514bb607d656375"
+    },
+    "el_saleboard_us": {
+      "file": "layouts/el_saleboard_us.json",
+      "rect": [
+        0,
+        0,
+        390,
+        484
+      ],
+      "sha256": "ac8bd58adceaaefabbdbe08a50eec12c92750743887d7283a630c4d5df5eb55f"
+    },
+    "el_skilltree_us": {
+      "file": "layouts/el_skilltree_us.json",
+      "rect": [
+        0,
+        0,
+        365,
+        574
+      ],
+      "sha256": "2333be3ee2974e9dcac5a585b897c3a881148443ede72971754403c00b80566c"
+    },
+    "el_statebar_us": {
+      "file": "layouts/el_statebar_us.json",
+      "rect": [
+        0,
+        0,
+        338,
+        65
+      ],
+      "sha256": "7fbaf41fea1eb14610ee9d2e71cae3ab9e2de4da79b24581edd93f523e8549c2"
+    },
+    "el_transaction_us": {
+      "file": "layouts/el_transaction_us.json",
+      "rect": [
+        -4,
+        0,
+        368,
+        578
+      ],
+      "sha256": "46bc7d838deac644866dfb32ce3c4b6b30b5900bb051a415241b3cd99df71845"
+    },
+    "el_various_all_us": {
+      "file": "layouts/el_various_all_us.json",
+      "rect": [
+        0,
+        0,
+        289,
+        468
+      ],
+      "sha256": "0ab9456b1e29a1b0b95a0a8a79422c0a5c1cf1c3d3a2297f1cb79c21cb75bce9"
+    },
+    "el_various_frame_us": {
+      "file": "layouts/el_various_frame_us.json",
+      "rect": [
+        0,
+        0,
+        294,
+        468
+      ],
+      "sha256": "ecf3e1061c4be3f064b9c522b0ad6ad2d42fd2cbf6c949d8af1d18d3de5ee4a3"
+    },
+    "el_warehouse_us": {
+      "file": "layouts/el_warehouse_us.json",
+      "rect": [
+        0,
+        -1,
+        364,
+        579
+      ],
+      "sha256": "83b89e1c4fb38a6e77736a3e5a1b1ac3e0639fb0c7520d56292772e64b75f046"
+    },
+    "el_warfaremantlelist_us": {
+      "file": "layouts/el_warfaremantlelist_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        306
+      ],
+      "sha256": "7e9a0ebb91b16318ed5472df1924dd87367488eb894d047777b13a4f7d2495f1"
+    },
+    "el_warp_us": {
+      "file": "layouts/el_warp_us.json",
+      "rect": [
+        -6,
+        0,
+        328,
+        482
+      ],
+      "sha256": "04e9a6fe76e1f30b1433a28ba18af266d55ca688b3573b2ed3c5352ef704595e"
+    },
+    "ka_catapult_us": {
+      "file": "layouts/ka_catapult_us.json",
+      "rect": [
+        0,
+        0,
+        496,
+        37
+      ],
+      "sha256": "c1ce5f6ee61ac544e1fb87f4436f78fd96d1434d50fadf5f38afc9356b362cd1"
+    },
+    "ka_charactercreate_us": {
+      "file": "layouts/ka_charactercreate_us.json",
+      "rect": [
+        -1,
+        0,
+        1025,
+        788
+      ],
+      "sha256": "4a1b072a3ac137b0192d539f2b7f714b0a2c8d337efe8c2aa7319a6eb1454fe5"
+    },
+    "ka_characterselect_us": {
+      "file": "layouts/ka_characterselect_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "sha256": "29e3d930079bdf54b3c78621e520da18f9914b30755805c21574f7ac67b11d9e"
+    },
+    "ka_chat_small_us": {
+      "file": "layouts/ka_chat_small_us.json",
+      "rect": [
+        0,
+        0,
+        102,
+        23
+      ],
+      "sha256": "72177fcd616a9efd2b4caf610376bff54d2f47f2f67e9f3e887089278e14d8b8"
+    },
+    "ka_chat_us": {
+      "file": "layouts/ka_chat_us.json",
+      "rect": [
+        0,
+        0,
+        541,
+        145
+      ],
+      "sha256": "b5e3fa62b15008e741c29ce5ac3ad182405b2962f78502e7a2d87a6fdd5c6238"
+    },
+    "ka_cmd_us": {
+      "file": "layouts/ka_cmd_us.json",
+      "rect": [
+        0,
+        0,
+        1026,
+        57
+      ],
+      "sha256": "e3126030c2db69251ae3e2e92bba8b43a70b358e5df3bc07218def4630d7e135"
+    },
+    "ka_cmdlist_us": {
+      "file": "layouts/ka_cmdlist_us.json",
+      "rect": [
+        0,
+        0,
+        165,
+        576
+      ],
+      "sha256": "870afc93b9e8afe4c8ea1ffa914cc57c9b5552c17ca9dd1b7e361fbdcdd35cae"
+    },
+    "ka_hotkey_us": {
+      "file": "layouts/ka_hotkey_us.json",
+      "rect": [
+        0,
+        0,
+        80,
+        350
+      ],
+      "sha256": "2ce4ffcd08eb7dfe07f72c3c45b3a5b7f9654109cd1848158947cf5e5e3aefef"
+    },
+    "ka_inventory_us": {
+      "file": "layouts/ka_inventory_us.json",
+      "rect": [
+        -2,
+        -1,
+        366,
+        576
+      ],
+      "sha256": "d663ecc5c287c3275bd9d359829a7101b74447334af306cac3faf33d08139640"
+    },
+    "ka_levelguide_us": {
+      "file": "layouts/ka_levelguide_us.json",
+      "rect": [
+        0,
+        0,
+        364,
+        573
+      ],
+      "sha256": "293cdd849b73b3f5f8ebff62d67ec567e0ac5e2add97c67b793e2929c0b0c930"
+    },
+    "ka_loading_us": {
+      "file": "layouts/ka_loading_us.json",
+      "rect": [
+        0,
+        0,
+        556,
+        768
+      ],
+      "sha256": "32fa674950884ba9f7508737383e30edc77444d22287d769795d25a96e2f9ffe"
+    },
+    "ka_login_intro_us": {
+      "file": "layouts/ka_login_intro_us.json",
+      "rect": [
+        0,
+        0,
+        1024,
+        768
+      ],
+      "sha256": "b6dd86b5cb308a3fa8dfd368ad38d60c8727b37e45c2568fe71ae8d046489a9d"
+    },
+    "ka_messagebox_us": {
+      "file": "layouts/ka_messagebox_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        156
+      ],
+      "sha256": "db400aaeb3646bdb7d59d5c9387826d41a0d450e790a24ca2224af87c4a37105"
+    },
+    "ka_msgoutput_small_us": {
+      "file": "layouts/ka_msgoutput_small_us.json",
+      "rect": [
+        0,
+        0,
+        103,
+        23
+      ],
+      "sha256": "144786e601558d7302bcbb820143fc6d11e86f119a4c501866aee424f2f26bf4"
+    },
+    "ka_msgoutput_us": {
+      "file": "layouts/ka_msgoutput_us.json",
+      "rect": [
+        0,
+        0,
+        323,
+        145
+      ],
+      "sha256": "35a58393f4f319b8978a15f8a90ae64559c61f01f9cea36b2ca43dc633282604"
+    },
+    "ka_notice_us": {
+      "file": "layouts/ka_notice_us.json",
+      "rect": [
+        0,
+        0,
+        364,
+        572
+      ],
+      "sha256": "93ba986a7a0ffe7a14d56213b6fe4c2c250882189566165dbd22e7acc8f5a547"
+    },
+    "ka_page_clan_us": {
+      "file": "layouts/ka_page_clan_us.json",
+      "rect": [
+        0,
+        0,
+        293,
+        460
+      ],
+      "sha256": "ecb32b365da8ac01c9ec8a20992ccbadceae13e54d379b30ec0b3704bb0db915"
+    },
+    "ka_page_friends_us": {
+      "file": "layouts/ka_page_friends_us.json",
+      "rect": [
+        0,
+        0,
+        291,
+        460
+      ],
+      "sha256": "2771a4047298dde59c11ab509a01194bfbc1c1498ec2bcc03973238096eaca78"
+    },
+    "ka_page_knights_union_main_us": {
+      "file": "layouts/ka_page_knights_union_main_us.json",
+      "rect": [
+        0,
+        0,
+        290,
+        462
+      ],
+      "sha256": "f893944813b70a0e38c7a37eefe0144df0528d448372f61a2c331a93f856314c"
+    },
+    "ka_page_knights_union_sub_us": {
+      "file": "layouts/ka_page_knights_union_sub_us.json",
+      "rect": [
+        0,
+        0,
+        295,
+        468
+      ],
+      "sha256": "40ed3d6834ce3c3bebb4efd7435e4d19fbffc2958aee8efb6cce57973274925c"
+    },
+    "ka_page_knights_us": {
+      "file": "layouts/ka_page_knights_us.json",
+      "rect": [
+        0,
+        0,
+        295,
+        468
+      ],
+      "sha256": "94551940931ae9a023b6282eb6bc07575732716deb30cd412670a092225c8783"
+    },
+    "ka_page_quest_us": {
+      "file": "layouts/ka_page_quest_us.json",
+      "rect": [
+        0,
+        0,
+        292,
+        461
+      ],
+      "sha256": "2d37e11a64c063bf849e2dc7b8671202fb537ec0474b9a6e73e52c694a98a9e0"
+    },
+    "ka_page_state_us": {
+      "file": "layouts/ka_page_state_us.json",
+      "rect": [
+        0,
+        0,
+        294,
+        463
+      ],
+      "sha256": "2b77ec62538016f9407876f86b5dcb93446002aacc5635a9b934fbbbef4e08f8"
+    },
+    "ka_partyboard_us": {
+      "file": "layouts/ka_partyboard_us.json",
+      "rect": [
+        0,
+        0,
+        322,
+        483
+      ],
+      "sha256": "d00117d328a64b335a2836a21a8dd9ed56d8ebe5970074e0cf02f7efcce976a7"
+    },
+    "ka_personaltrade_us": {
+      "file": "layouts/ka_personaltrade_us.json",
+      "rect": [
+        -4,
+        0,
+        369,
+        578
+      ],
+      "sha256": "cc81e524125fd6a7cd632e3529707a2647ae2d3a10e87aedccb429bfea561688"
+    },
+    "ka_personaltradeedit_us": {
+      "file": "layouts/ka_personaltradeedit_us.json",
+      "rect": [
+        -2,
+        0,
+        310,
+        129
+      ],
+      "sha256": "67461ac72ccab93b593751c46cddafe0c7c5ce19a05dc85b443d345231b123ff"
+    },
+    "ka_questedit_us": {
+      "file": "layouts/ka_questedit_us.json",
+      "rect": [
+        0,
+        0,
+        327,
+        156
+      ],
+      "sha256": "94bd7422e254f13bb340620823cd33d496507076be52bb2ab6035157e96e59e7"
+    },
+    "ka_saleboard_us": {
+      "file": "layouts/ka_saleboard_us.json",
+      "rect": [
+        0,
+        0,
+        390,
+        483
+      ],
+      "sha256": "90a534afcef5a68348172444c8d265f4606ba80b36a42a34f66c6fb2aea557c0"
+    },
+    "ka_skilltree_us": {
+      "file": "layouts/ka_skilltree_us.json",
+      "rect": [
+        -9,
+        0,
+        373,
+        575
+      ],
+      "sha256": "a81b5c17e440fd541cc02a31235193718b95b40cf5a2510f30f242fa6684fcda"
+    },
+    "ka_statebar_us": {
+      "file": "layouts/ka_statebar_us.json",
+      "rect": [
+        0,
+        0,
+        340,
+        65
+      ],
+      "sha256": "ba3a8c898708a601c52bd1d0a06cecfc2379726d34bd3b114cff9a3130134b31"
+    },
+    "ka_transaction_us": {
+      "file": "layouts/ka_transaction_us.json",
+      "rect": [
+        -5,
+        0,
+        370,
+        578
+      ],
+      "sha256": "e20bb9e7d724f372519bdfed6b36742a003d06fc0a7a5ba5c9a6175dde35d3a1"
+    },
+    "ka_various_all_us": {
+      "file": "layouts/ka_various_all_us.json",
+      "rect": [
+        -2,
+        0,
+        297,
+        468
+      ],
+      "sha256": "6f7438f5492989281b997e3795670e013b2006435afab06c74deb7eff4224c5f"
+    },
+    "ka_various_frame_us": {
+      "file": "layouts/ka_various_frame_us.json",
+      "rect": [
+        0,
+        0,
+        289,
+        459
+      ],
+      "sha256": "a65f075a1c051e79b8f10eb6593e563026251bb98c87bd45210bc5925d35b055"
+    },
+    "ka_warehouse_us": {
+      "file": "layouts/ka_warehouse_us.json",
+      "rect": [
+        -2,
+        -4,
+        365,
+        582
+      ],
+      "sha256": "9803edd2291979afa08b53dceba73ae74c207ee86c13d90e4bd44e37736d1ffa"
+    },
+    "ka_warfaremantlelist_us": {
+      "file": "layouts/ka_warfaremantlelist_us.json",
+      "rect": [
+        0,
+        0,
+        279,
+        306
+      ],
+      "sha256": "68141560830aa2c5be046a46b349ae7ed84d716a99db1efbb90637b96052d80f"
+    },
+    "ka_warp_us": {
+      "file": "layouts/ka_warp_us.json",
+      "rect": [
+        -1,
+        0,
+        325,
+        481
+      ],
+      "sha256": "3d850f55be9bdba6873a0e9364cfbc6ca5a5135ad977af199618cf8f886a0671"
+    }
+  },
+  "textures": {
+    "classic_mail_chaos.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "3159732fe78ba1f493a8f53136541022c53bf95502331d6e124520366898c6ab"
+    },
+    "ui_whisper_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "2881fdc26684af1736d6853fca2af115d170522630c57f41e66d0b1d01ed4564"
+    },
+    "ui_warfare_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "0f19d63cfb813103fbc7cf0e33b590045af7b3a5eb8143a526391f9b01631393"
+    },
+    "ui_message_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "10f01a3e117cc828902cb39a2b8cbbc90243bfd3b35c79f31a9faeefe81c3cf5"
+    },
+    "ui_charactercreate_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "772723fac84d4ac50119fb8c7b5e0aa4338037176ae977981677996cd01eb824"
+    },
+    "ui_login_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "8a9ff6852ef7d41fe22ce6eb50ec5e41d520b4a490f1dcb27b53605529b1c677"
+    },
+    "ui_charactercreate_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "24dae734ecaeff3178a37868e2b2010ca9d233bee1a50b770008c29530587186"
+    },
+    "ui_charactercreate_03_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "c38b3712b22f155a75c55d69d21c93a54b6fa7d2e5a1085d9eee667d5d9b4e57"
+    },
+    "ui_curtail_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "9135c55382cacb81f3ba2cb85b6c6863c267958aa8b6ff5c9eb8e8e9435bea8c"
+    },
+    "ui_quest_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "c59df1d4e2f9e84b9a565cb4985604651f14360561537e1f44adbb3f81a49515"
+    },
+    "disguise_ring_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "d8bc5bd0ae843272df0b233b0ad975492d1a3af181517ffe1d629c6302d65d9c"
+    },
+    "ui_challenge_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "8f0653703d4c07ce2d30b0020d3a6d0fbc83b93b98b4097dcd1c59dde762fa1e"
+    },
+    "ui_challenge list_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "26b9fb8adf08e321ad6f8b9c6f70f73b18427c40adac31b0cbf961a8b77b28cd"
+    },
+    "ui_challenge_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "8a292e72949c2dbf53be79cc75bc06b933c9b58a836baf1ba27171ff6208aa82"
+    },
+    "ui_challenge_03_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "6178f87edb98208bb5c2f342a4be20b59a831495b3f364521dbbd9812eada382"
+    },
+    "ui_challenge_04_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "ffb9d258d31a7f6d1bcb7cba6a54c08cca16a18ac1e1bca28f63ca864fbf5722"
+    },
+    "ui_challenge_05_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "3830502cf7dac307365ff3faf5b9a693ec57e419ae213356cd7d8b002dd4a0fe"
+    },
+    "ui_endmessage_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "8acc93d189149d37eda87bcf46eb6d715616c4015cf3f86446224c826c011cbc"
+    },
+    "ui_knights_crest_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "9651437f98c1032eda1f58ea98d9220f5e2177fb2ee4acc80f33c4ae32136c6a"
+    },
+    "ui_ka_inven_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "69eb12122ba5667a1b2efc130b2fc4d86033055c30313b545d67720c54d59a1e"
+    },
+    "ui_el_transaction_person trade_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "ebe5dd5ba58f94d6e90a5c2a59843aee746ae70578857eec5f67e714c3f694d7"
+    },
+    "ui_upgrade_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "92138a4fb3b46c3b87ae906200ffd4e7e8d8516d91a67146204caa832451c470"
+    },
+    "item_loadbar0000.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "2094e009dc36100776320ffc4569bb2495cc2d8bb7bba19612aca02c9e8b9d68"
+    },
+    "item_loadbar0001.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "ebc86aa480d8ff5fba23faf327d2abd630945045e08e264804d14b61c3245563"
+    },
+    "item_loadbar0002.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "2db89adbbc0b87346047e4b909d604e1d833c3a97984a9f991872976f360725a"
+    },
+    "item_loadbar0003.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "826c589b0a0872ab7b449d7ed754d85a03a27b14cecc7be2bfa2f862811282b4"
+    },
+    "item_loadbar0004.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "45c5c682bb90a30a8ec224ddd663cd88b8f50c6cec12171cd121365ac8fbef37"
+    },
+    "item_loadbar0005.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "39ac1ee91c828039867625c11aba09a2ee596ef695af767f0ffc4e9e42e687ab"
+    },
+    "item_loadbar0006.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "f7ec3105244cfca07eb9d3d6e40081c2b6c9285e4213d72a312077a585b9e2c4"
+    },
+    "item_loadbar0007.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "9dcb610e41fa4bc5e96000964f9a1a9ce5c3832762a504aa0ec5005f937fb289"
+    },
+    "item_loadbar0008.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "8f0a46927e7eedb989c63992fa34f071cd0dde393b47c9b0db9d93ffa90a4291"
+    },
+    "item_loadbar0009.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "a56eb7d9bbb3ec7b90aa5cf434c71e3c61b8e94574c162d04118a5cfa1866f2e"
+    },
+    "item_failbar0000.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "1cbbcd63db7c31e3f1f71fb4fb5672050edf7d5ed9fb442505f3cde08c05145b"
+    },
+    "item_failbar0002.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "168d6fb5e8ff12706334b82d38dad9b8194494a7188d5e0d61c30d5cd6d67e12"
+    },
+    "item_failbar0003.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "e2776c5fa39b6eb32e1c88e6502071771479ff4b9a14877d76cdc79fcb744240"
+    },
+    "item_failbar0004.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "937be48044cfd6a6a539e47ab9636d68da5e5cbc1daf7de9a126eb8e043384f4"
+    },
+    "item_failbar0005.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "a549ee3a5c7751aa7e443f00baa2b33a5b1b54757a64921ca30a4905caa42570"
+    },
+    "item_failbar0006.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "6ac6a64b4103b27f5394cd325b8909c445299bbe1dad4c6f09d5dbb2b27cacc4"
+    },
+    "item_failbar0007.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "5b57e62f4b280c0c25c03f766503861997fb36e33c70c2c31bca48c5b31384d0"
+    },
+    "item_failbar0008.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "72bd1abe30034bb8b9025115dad1e5910b277d3f136178b55ce2040a4f7fde44"
+    },
+    "item_failbar0009.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "4bd71013e9200c14a67a42ff81288e0b62e200357af5b6b32599521b5f962741"
+    },
+    "item_failbar0001.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "a6d6b12f198950e8178c03292fb5bc49111da912990cdf5b777c3d128d63096d"
+    },
+    "ui_ka_transaction_person trade_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "8529070b32f5c476b145beb7eae7dc6d63997029bb49ee599a5db76054c3df32"
+    },
+    "king_explain_03_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "317e5a2337352ab609e8f94969ac1206e6b76502e6256930a0fd4d4043e2c9ba"
+    },
+    "king_explain_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "9d64010b96a66dbe0b69c5832fe6f19b2e86f8c3e49fca37dd937fab08263947"
+    },
+    "ui_mantle_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "0a43add170c80eb0dfe45812649743be8670eafcc9cf5ba2d349454ba3d68e0c"
+    },
+    "ui_loding_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "c1145223d2a8a29b9b6c9481ae97de834f6bcfc1176f45613f4226a5a91c6d25"
+    },
+    "ui_login_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "215b65f77a40a36004da7f3bf10b654d19e8627792153d9825dfd929668b3ec2"
+    },
+    "ui_login_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "59c972b91dc2f8f311b4e22572e7b3ee0d68b819f4ea64ddc920711ffb40aa5e"
+    },
+    "ui_monster_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "0811612dc61eaae9a81ca81345e544228e634b23cee218565f90e92a71b0ab77"
+    },
+    "ui_warfare_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "4a11917b8ae3fe22d26754ef0e4f93e177788e90f129621d8bca450138f3105f"
+    },
+    "ei_ka_national_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "dc08a4e86da946d097f79756a0e65dfd750a42d01188a901f6eaa7333d08dad0"
+    },
+    "ei_ka_national_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "e0a1f514dce9e58578b5c72a9a0e7214f0e548c78a1722d20da353e0e3f30a8f"
+    },
+    "ei_ka_national_03_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "7ed757de7ee3e5ef0920f830bd69dd2deeec13b9ca4bf1a998de3830362b1bec"
+    },
+    "el_nationselect_03_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "6312bc7113a5e1448ff6d9394901e32cbacc4562b64b5a3f73783b583f9e85df"
+    },
+    "ka_nationselect_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "e62a2759b7153f90b16ba05c1359eea6d47f11cc7f5837e9ef8b391870d0b443"
+    },
+    "ka_nationselect_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "5f890d7c662e6bc71c165f667a8783b9110f4f2829e207f73e9223a94a37d0e8"
+    },
+    "el_nationselect_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "07962e62836f31a7f120777bbd8dbdc107bf833c77d41b2b9f1af4e42152e6d0"
+    },
+    "el_ka_symbol_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "3694cf29232aba83d4bbb8874ed32afbeceee18f4d22b441a290d915d3c85906"
+    },
+    "el_nationselect_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "b3ce45dfc23afad62ca7e70280d2cb1279c5795029be517f181a86850445f8ff"
+    },
+    "ui_partyboard_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "4c8d6e86bf26c22c9ca4667448c0defbef1794b3a5a112e04a2ce7c37acf3f8f"
+    },
+    "rental system_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "9160241d3ec34a2f09ea8845da7b4e0e7ad0efa9f815dc11aafef51131500a59"
+    },
+    "rental system_03_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "8f79b1a440084d15cba2262f16d95ca57363f3a14655278a2e0982e8a04dbfb4"
+    },
+    "rental system_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "35215b742275cb839ad3c66717265afc0f106ece02059ee5895cde868d48e891"
+    },
+    "ui_el_knights_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "2bebdd206778f99d95e1bc94bda13ada4b66964426d6f9f53ae2bff608bab427"
+    },
+    "ui_upgrade_ring_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "3c0c5f15e7654732d24951288bd100f261c7a0bc225180211cfa33dd8ef78a33"
+    },
+    "item_loadbar0000_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "2094e009dc36100776320ffc4569bb2495cc2d8bb7bba19612aca02c9e8b9d68"
+    },
+    "item_loadbar0001_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "ebc86aa480d8ff5fba23faf327d2abd630945045e08e264804d14b61c3245563"
+    },
+    "item_loadbar0002_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "2db89adbbc0b87346047e4b909d604e1d833c3a97984a9f991872976f360725a"
+    },
+    "item_loadbar0003_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "826c589b0a0872ab7b449d7ed754d85a03a27b14cecc7be2bfa2f862811282b4"
+    },
+    "item_loadbar0004_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "45c5c682bb90a30a8ec224ddd663cd88b8f50c6cec12171cd121365ac8fbef37"
+    },
+    "item_loadbar0005_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "39ac1ee91c828039867625c11aba09a2ee596ef695af767f0ffc4e9e42e687ab"
+    },
+    "item_loadbar0006_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "f7ec3105244cfca07eb9d3d6e40081c2b6c9285e4213d72a312077a585b9e2c4"
+    },
+    "item_loadbar0007_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "9dcb610e41fa4bc5e96000964f9a1a9ce5c3832762a504aa0ec5005f937fb289"
+    },
+    "item_loadbar0008_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "8f0a46927e7eedb989c63992fa34f071cd0dde393b47c9b0db9d93ffa90a4291"
+    },
+    "item_loadbar0009_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "a56eb7d9bbb3ec7b90aa5cf434c71e3c61b8e94574c162d04118a5cfa1866f2e"
+    },
+    "item_failbar0000_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "1cbbcd63db7c31e3f1f71fb4fb5672050edf7d5ed9fb442505f3cde08c05145b"
+    },
+    "item_failbar0001_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "a6d6b12f198950e8178c03292fb5bc49111da912990cdf5b777c3d128d63096d"
+    },
+    "item_failbar0002_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "168d6fb5e8ff12706334b82d38dad9b8194494a7188d5e0d61c30d5cd6d67e12"
+    },
+    "item_failbar0003_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "e2776c5fa39b6eb32e1c88e6502071771479ff4b9a14877d76cdc79fcb744240"
+    },
+    "item_failbar0004_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "937be48044cfd6a6a539e47ab9636d68da5e5cbc1daf7de9a126eb8e043384f4"
+    },
+    "item_failbar0005_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "a549ee3a5c7751aa7e443f00baa2b33a5b1b54757a64921ca30a4905caa42570"
+    },
+    "item_failbar0006_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "6ac6a64b4103b27f5394cd325b8909c445299bbe1dad4c6f09d5dbb2b27cacc4"
+    },
+    "item_failbar0007_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "5b57e62f4b280c0c25c03f766503861997fb36e33c70c2c31bca48c5b31384d0"
+    },
+    "item_failbar0008_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "72bd1abe30034bb8b9025115dad1e5910b277d3f136178b55ce2040a4f7fde44"
+    },
+    "item_failbar0009_us.png": {
+      "width": 128,
+      "height": 64,
+      "sha256": "4bd71013e9200c14a67a42ff81288e0b62e200357af5b6b32599521b5f962741"
+    },
+    "ui_symbol_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "64291d20082c00f3ac95f72b0979b6977921bbaace05450f1e9a7c1207ed641b"
+    },
+    "ui_marketing_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "52a15dbbcae8f77f3404152be1fff816cb5cdd052c0bbefb58a0f310c45ba4fb"
+    },
+    "ui_usa_logo_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "8f975546bb167098046ae61e982f71afdbc4a41bbdb4f18053b6134583b9a260"
+    },
+    "ui_elmo_main_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "cd5be933c0d5424954555566c0dfa99816d391d235de63c41c243cd4938d16b8"
+    },
+    "ui_el_charcreate01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "e5a83809a7551bee0133de5d9aef7686b12c0a410b71c4877cf9649f3835cb21"
+    },
+    "ui_el_charcreate02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "387903601f7c433c0f0b754fe6a36266333730613055987b44e8c610fa495cf5"
+    },
+    "ui_el_statebar_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "bcb8bcf759e19e4303aca1a52b0db7ed2f43b9897e6529e7d08855bf4ea14056"
+    },
+    "ui_el_inven_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "8ea2ba4f7c1d9b1c1b614e6bd7c6503860cc7e53e6dc74ecf297fda6f5d02816"
+    },
+    "ui_el_levelquest_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "324c09f87c019e81bd20c08162a360b43614a04127129bab9050c6a71b51edec"
+    },
+    "ui_ka_levelquest_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "05d89cb0d01189e51c8885259b03ebdcbb4b0afcd06a39b1f5d0ea64c9b04c2a"
+    },
+    "ui_el_loding_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "6d162284e3786b3f4c0bc7eeff5d2f1d92cf3c4617251e0a617e0fb421701886"
+    },
+    "ui_el_loding_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "9a3ee07b179b8fddd6f545389ce7e8e866199eba33395fe1172c8ff508311b4e"
+    },
+    "ui_ka_loding_02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "ffe0b784714d5a830076bd739e3338c1439b8664227ea5bf96389e3bf9b73eba"
+    },
+    "el_login01_img_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "5ff9b6713d9ed4d89d84bbe042904a9f47ccb5bab44b23eecde19f16f305f8ab"
+    },
+    "el_login02_img_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "bb474f5cf9b8d7c378d6e311b0c48b4b1eca22eba20785f8f35f84b201e9e413"
+    },
+    "el_login03_img_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "06504e351154407a8434341e8dc3bc7cf47254fbce7579a65e2be3bfa6c63375"
+    },
+    "service_logos_us.png": {
+      "width": 256,
+      "height": 256,
+      "sha256": "e7daf23652ceb952e03de2e4f1f0820889009fc600cf24af7cd4f316b4da3a70"
+    },
+    "ui_el_warehouse_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "2b36d7b86ad4f8f23b8045809ab6e615594910c69c25dcc6a4fe29a0192e38c5"
+    },
+    "ui_el_clan_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "76b93a3f4f640dbe87ec905bcc43c6879642f9f12f9efa8d189a06c91336745c"
+    },
+    "ui_el_skill02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "2bd7851929cf981ec9ab7c1ee5e9605abde4f290ca2781c79d4d9ff02e30bf88"
+    },
+    "ui_el_friend_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "0e0bbebe89ca2746993c5f80d299db57d8dcc5dad809dd928e88d88b03c95343"
+    },
+    "el_knights_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "d94106694d5fd8c7c28b95d1475cc58afada751db80c2ab9ee9fae2ccd2812c5"
+    },
+    "el_page_quest_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "6d9cd2dcc0a5ec12a1a1a3b1447644040bd38bda23afe41ee1524a0acacfed0a"
+    },
+    "ui_el_myinfo_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "f43f2c991d6ed2812b9047baa6b3d745c00e98c06b16df9a49f460886689622b"
+    },
+    "ui_el_partyboard_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "d2c21a6703828ba599c4061e0293cbc105f82675341568a7b275c0ef985d3da0"
+    },
+    "ui_el_saleboard_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "a4674a3c0139df6b6e10304b82a6129bbc171bf0068bce83e4ed3d7eae21c73a"
+    },
+    "ui_el_skill01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "7cab34c9515fe75346e39ed22d6cb858b932ce1fc3822661f1a1a3f54d7f25a8"
+    },
+    "ui_karus_main_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "055e18f2333c73b91359c3b6a69ab09062f2f0520a1a764a483b3b9e45de52ae"
+    },
+    "ui_ka_charcreate02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "6f0ef999b5f99c9b4f0def2cbc3191b6a9ba8f963e4283f50eb265cf13597aeb"
+    },
+    "ui_ka_statebar_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "32b23cb37b5a7736a3a302a35a679730a37eeafe5464bed23cdea5a3b36f442f"
+    },
+    "ui_ka_loding_01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "11bc3f05703d63f5b0e6cff0fccd4d408d60dc500be1fe5895e2223872c584e4"
+    },
+    "ka_login01_img_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "28b99c0693be20bcb2bd7f9f8e83c13ee398c41dfa0f212172e8ab574c55d0cd"
+    },
+    "ka_login02_img_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "6aa837a869f2471f98ee5860ddc1d870651697a8fd439e0c88af59203fc1d0a4"
+    },
+    "ka_login03_img_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "35e5a331dce58183c721ad4551b864b99deb2e20821655f2c361f65e9251da51"
+    },
+    "ui_ka_warehouse_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "1ad1380e1a60f31c52697a6d9345c481b3ec86d133cb2fe28ddb72b13739d239"
+    },
+    "ui_ka_clan_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "b8a2c6d61cea8378cdd1a86e8ab191e4fb1c6b572f480c6cc368af1869ed8daf"
+    },
+    "ui_ka_skill02_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "b8bdb826e9c0a1cfc0cadda1e48906e84ca1ab72b46d0e948cec301a0c7b13ec"
+    },
+    "ui_ka_friend_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "1e6b5331e15405b64c05a9a38eb41178eca636c01d1679efe29715ac78b8a3cb"
+    },
+    "ka_knights_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "fd612f1dedb7683fecaf6539b3ce4284da8954859fdeddbce6d56eefe64a0f4d"
+    },
+    "ka_page_quest_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "fb2f4f48ad763f40da9969a6fdd83bd93a24ffc9fcb2adcee515dd0fc8f2ec8e"
+    },
+    "ui_ka_myinfo_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "f5cf7fa5cfb6c5797c467ca374c06098d2e5edd6493918ab6ad58ada4caebc23"
+    },
+    "ui_ka_partyboard_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "f3f5735d3896f8c500d91a78016226b6f0a3da6a6382a3cf65e299080ce4c0a0"
+    },
+    "ui_ka_saleboard_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "75a1dfa89a94ee5ece49be3cd10387ddc77c4343942585f3797b7a42fe395b0f"
+    },
+    "ui_ka_skill01_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "24997cac8128768837c18845fc95cd08f7ed12bbc6a66a5787f6ecbebb12bbb4"
+    },
+    "ui_ka_knights_us.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "a6dc4374f717ae8883723341750a7013cc900e86d272ed2fa52cc7614042fd2a"
+    }
+  },
+  "errors": {},
+  "missingTextures": [
+    {
+      "layout": "co_DuelLobby_us.uif",
+      "texture": "stadium_01.dxt"
+    },
+    {
+      "layout": "co_ItemUpgrade_us.uif",
+      "texture": "item_failbar00001.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_c_00.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_m_01.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_m_01.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_m_01.dxt"
+    },
+    {
+      "layout": "co_KnightsMantleShop_us.uif",
+      "texture": "cloak_m_01.dxt"
+    },
+    {
+      "layout": "co_login_us.uif",
+      "texture": "service_logos.dxt"
+    },
+    {
+      "layout": "co_login_us.uif",
+      "texture": "service_logos.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_show_icon_us.uif",
+      "texture": "co_show_icon.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_02_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "co_sms_us.uif",
+      "texture": "ui_handphone.dxt"
+    },
+    {
+      "layout": "el_login_intro_us.uif",
+      "texture": "charactercreate_02_us.dxt"
+    },
+    {
+      "layout": "el_page_clan_us.uif",
+      "texture": "el_grade_1.dxt"
+    },
+    {
+      "layout": "el_page_clan_us.uif",
+      "texture": "el_grade_2.dxt"
+    },
+    {
+      "layout": "el_page_clan_us.uif",
+      "texture": "el_grade_3.dxt"
+    },
+    {
+      "layout": "el_page_clan_us.uif",
+      "texture": "el_grade_4.dxt"
+    },
+    {
+      "layout": "el_page_clan_us.uif",
+      "texture": "el_grade_5.dxt"
+    },
+    {
+      "layout": "el_page_knights_Union_Main_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "el_page_knights_Union_Sub_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "el_page_knights_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "el_various_all_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "el_various_all_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "el_various_all_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "el_various_all_us.uif",
+      "texture": "el_grade_1.dxt"
+    },
+    {
+      "layout": "el_various_all_us.uif",
+      "texture": "el_grade_2.dxt"
+    },
+    {
+      "layout": "el_various_all_us.uif",
+      "texture": "el_grade_3.dxt"
+    },
+    {
+      "layout": "el_various_all_us.uif",
+      "texture": "el_grade_4.dxt"
+    },
+    {
+      "layout": "el_various_all_us.uif",
+      "texture": "el_grade_5.dxt"
+    },
+    {
+      "layout": "ka_page_clan_us.uif",
+      "texture": "ka_grade_1.dxt"
+    },
+    {
+      "layout": "ka_page_clan_us.uif",
+      "texture": "ka_grade_2.dxt"
+    },
+    {
+      "layout": "ka_page_clan_us.uif",
+      "texture": "ka_grade_3.dxt"
+    },
+    {
+      "layout": "ka_page_clan_us.uif",
+      "texture": "ka_grade_4.dxt"
+    },
+    {
+      "layout": "ka_page_clan_us.uif",
+      "texture": "ka_grade_5.dxt"
+    },
+    {
+      "layout": "ka_page_knights_Union_Main_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "ka_page_knights_Union_Sub_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "ka_page_knights_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "ka_various_all_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "ka_various_all_us.uif",
+      "texture": "ka_grade_1.dxt"
+    },
+    {
+      "layout": "ka_various_all_us.uif",
+      "texture": "ka_grade_2.dxt"
+    },
+    {
+      "layout": "ka_various_all_us.uif",
+      "texture": "ka_grade_3.dxt"
+    },
+    {
+      "layout": "ka_various_all_us.uif",
+      "texture": "ka_grade_4.dxt"
+    },
+    {
+      "layout": "ka_various_all_us.uif",
+      "texture": "ka_grade_5.dxt"
+    },
+    {
+      "layout": "ka_various_all_us.uif",
+      "texture": "symbolmark.dxt"
+    },
+    {
+      "layout": "ka_various_all_us.uif",
+      "texture": "symbolmark.dxt"
+    }
+  ]
+}

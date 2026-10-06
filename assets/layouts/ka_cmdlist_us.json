@@ -1,0 +1,1499 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    165,
+    576
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        163,
+        512
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+      "uv": [
+        0.341796875,
+        0.0,
+        0.66015625,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_curtail_us.png",
+      "src": [
+        175,
+        0,
+        163,
+        512
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        512,
+        163,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+      "uv": [
+        0.67578125,
+        0.154296875,
+        0.994140625,
+        0.279296875
+      ],
+      "fps": 30.0,
+      "texture": "ui_curtail_us.png",
+      "src": [
+        346,
+        79,
+        163,
+        64
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        12,
+        56,
+        142,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "Command ",
+      "lineSpacing": 0
+    },
+    {
+      "type": "list",
+      "id": "list_curtailment",
+      "rect": [
+        11,
+        85,
+        141,
+        209
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "scrollbar",
+          "id": "",
+          "rect": [
+            135,
+            84,
+            17,
+            210
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                137,
+                84,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    84,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.7578125,
+                    0.283203125,
+                    0.78515625,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    388,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    84,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.78515625,
+                    0.283203125,
+                    0.8125,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    402,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    84,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.8125,
+                    0.283203125,
+                    0.83984375,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    416,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    84,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.7578125,
+                    0.283203125,
+                    0.78515625,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    388,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                137,
+                84,
+                14,
+                16
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                137,
+                278,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    278,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.673828125,
+                    0.283203125,
+                    0.701171875,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    345,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    278,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.701171875,
+                    0.283203125,
+                    0.728515625,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    359,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    278,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.728515625,
+                    0.283203125,
+                    0.755859375,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    373,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    278,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.673828125,
+                    0.283203125,
+                    0.701171875,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    345,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                137,
+                278,
+                14,
+                16
+              ]
+            },
+            {
+              "type": "trackbar",
+              "id": "",
+              "rect": [
+                137,
+                102,
+                14,
+                176
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 131072,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    102,
+                    14,
+                    176
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.869140625,
+                    0.283203125,
+                    0.896484375,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    445,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    102,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.841796875,
+                    0.283203125,
+                    0.869140625,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    431,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffef",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "list",
+      "id": "list_content",
+      "rect": [
+        12,
+        305,
+        139,
+        245
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "scrollbar",
+          "id": "",
+          "rect": [
+            135,
+            305,
+            16,
+            243
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                137,
+                305,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    305,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.7578125,
+                    0.283203125,
+                    0.78515625,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    388,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    305,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.78515625,
+                    0.283203125,
+                    0.8125,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    402,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    305,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.8125,
+                    0.283203125,
+                    0.83984375,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    416,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    305,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.7578125,
+                    0.283203125,
+                    0.78515625,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    388,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                137,
+                305,
+                14,
+                16
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                137,
+                532,
+                14,
+                16
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    532,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.673828125,
+                    0.283203125,
+                    0.701171875,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    345,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    532,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.701171875,
+                    0.283203125,
+                    0.728515625,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    359,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    532,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.728515625,
+                    0.283203125,
+                    0.755859375,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    373,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    532,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.673828125,
+                    0.283203125,
+                    0.701171875,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    345,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                137,
+                532,
+                14,
+                16
+              ]
+            },
+            {
+              "type": "trackbar",
+              "id": "",
+              "rect": [
+                137,
+                321,
+                14,
+                211
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 131072,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    321,
+                    14,
+                    211
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.869140625,
+                    0.283203125,
+                    0.896484375,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    445,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    137,
+                    321,
+                    14,
+                    16
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+                  "uv": [
+                    0.841796875,
+                    0.283203125,
+                    0.869140625,
+                    0.314453125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_curtail_us.png",
+                  "src": [
+                    431,
+                    145,
+                    14,
+                    16
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffef",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "button",
+      "id": "btn_cancel",
+      "rect": [
+        134,
+        18,
+        20,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            134,
+            18,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+          "uv": [
+            0.66796875,
+            0.32421875,
+            0.70703125,
+            0.36328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_curtail_us.png",
+          "src": [
+            342,
+            166,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            134,
+            18,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+          "uv": [
+            0.75390625,
+            0.32421875,
+            0.79296875,
+            0.36328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_curtail_us.png",
+          "src": [
+            386,
+            166,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            134,
+            18,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+          "uv": [
+            0.7109375,
+            0.32421875,
+            0.75,
+            0.36328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_curtail_us.png",
+          "src": [
+            364,
+            166,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            134,
+            18,
+            20,
+            20
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_curtail_us.dxt",
+          "uv": [
+            0.66796875,
+            0.32421875,
+            0.70703125,
+            0.36328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_curtail_us.png",
+          "src": [
+            342,
+            166,
+            20,
+            20
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        134,
+        18,
+        20,
+        20
+      ]
+    }
+  ]
+}

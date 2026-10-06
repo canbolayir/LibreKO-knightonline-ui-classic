@@ -1,0 +1,2480 @@
+{
+  "type": "base",
+  "id": "page_clan",
+  "rect": [
+    0,
+    0,
+    286,
+    462
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "Clan",
+      "rect": [
+        1,
+        83,
+        285,
+        379
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+      "uv": [
+        0.005859375,
+        0.01171875,
+        0.5625,
+        0.751953125
+      ],
+      "fps": 30.0,
+      "texture": "ui_el_clan_us.png",
+      "src": [
+        3,
+        6,
+        285,
+        379
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "image_grade00",
+      "rect": [
+        19,
+        99,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\el_grade_1.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "image_grade01",
+      "rect": [
+        19,
+        99,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\el_grade_2.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "image_grade02",
+      "rect": [
+        19,
+        99,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\el_grade_3.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "image_grade03",
+      "rect": [
+        19,
+        99,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\el_grade_4.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "image_grade04",
+      "rect": [
+        19,
+        99,
+        64,
+        64
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\el_grade_5.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "button",
+      "id": "btn_Clan_party",
+      "rect": [
+        212,
+        378,
+        59,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            378,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.154296875,
+            0.69140625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            79,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            378,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.806640625,
+            0.154296875,
+            0.921875,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            413,
+            79,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            378,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.69140625,
+            0.154296875,
+            0.806640625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            354,
+            79,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            378,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.154296875,
+            0.69140625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            79,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        212,
+        378,
+        59,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_clan_Appoint",
+      "rect": [
+        80,
+        415,
+        59,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            80,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.04296875,
+            0.69140625,
+            0.078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            22,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            80,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.69140625,
+            0.04296875,
+            0.806640625,
+            0.078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            354,
+            22,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            80,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.806640625,
+            0.04296875,
+            0.921875,
+            0.078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            413,
+            22,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            80,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.04296875,
+            0.69140625,
+            0.078125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            22,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        80,
+        415,
+        59,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "Btn_clan_Remove",
+      "rect": [
+        148,
+        415,
+        59,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            148,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.080078125,
+            0.69140625,
+            0.115234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            41,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            148,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.69140625,
+            0.080078125,
+            0.806640625,
+            0.115234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            354,
+            41,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            148,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.806640625,
+            0.080078125,
+            0.921875,
+            0.115234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            413,
+            41,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            148,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.080078125,
+            0.69140625,
+            0.115234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            41,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        148,
+        415,
+        59,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_clan_whisper",
+      "rect": [
+        216,
+        415,
+        59,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            216,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.1171875,
+            0.69140625,
+            0.15234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            60,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            216,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.69140625,
+            0.1171875,
+            0.806640625,
+            0.15234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            354,
+            60,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            216,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.806640625,
+            0.1171875,
+            0.921875,
+            0.15234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            413,
+            60,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            216,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.1171875,
+            0.69140625,
+            0.15234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            60,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        216,
+        415,
+        59,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_clan_refresh",
+      "rect": [
+        212,
+        353,
+        59,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            353,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.154296875,
+            0.69140625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            79,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            353,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.69140625,
+            0.154296875,
+            0.806640625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            354,
+            79,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            353,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.806640625,
+            0.154296875,
+            0.921875,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            413,
+            79,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            212,
+            353,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.154296875,
+            0.69140625,
+            0.189453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            79,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        212,
+        353,
+        59,
+        18
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_clan_Page",
+      "rect": [
+        91,
+        351,
+        44,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#e4c88bff",
+      "text": "1",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_clan_MemberCount",
+      "rect": [
+        138,
+        388,
+        72,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_clan_Duty",
+      "rect": [
+        170,
+        146,
+        105,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "Text_ClansName",
+      "rect": [
+        95,
+        99,
+        180,
+        28
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_clan_admit",
+      "rect": [
+        12,
+        415,
+        59,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            12,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.005859375,
+            0.69140625,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            3,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            12,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.69140625,
+            0.005859375,
+            0.806640625,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            354,
+            3,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            12,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.806640625,
+            0.005859375,
+            0.921875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            413,
+            3,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            12,
+            415,
+            59,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_clan_us.dxt",
+          "uv": [
+            0.576171875,
+            0.005859375,
+            0.69140625,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_clan_us.png",
+          "src": [
+            295,
+            3,
+            59,
+            18
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        12,
+        415,
+        59,
+        18
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_clan_up",
+      "rect": [
+        49,
+        351,
+        32,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            49,
+            351,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_skill02_us.dxt",
+          "uv": [
+            0.201171875,
+            0.419921875,
+            0.263671875,
+            0.453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_skill02_us.png",
+          "src": [
+            103,
+            215,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            49,
+            351,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_skill02_us.dxt",
+          "uv": [
+            0.201171875,
+            0.453125,
+            0.263671875,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_skill02_us.png",
+          "src": [
+            103,
+            232,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            49,
+            351,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_skill02_us.dxt",
+          "uv": [
+            0.201171875,
+            0.486328125,
+            0.263671875,
+            0.51953125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_skill02_us.png",
+          "src": [
+            103,
+            249,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            49,
+            351,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_skill02_us.dxt",
+          "uv": [
+            0.201171875,
+            0.419921875,
+            0.263671875,
+            0.453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_skill02_us.png",
+          "src": [
+            103,
+            215,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        49,
+        351,
+        32,
+        17
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_clan_down",
+      "rect": [
+        143,
+        353,
+        32,
+        17
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            143,
+            353,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_skill02_us.dxt",
+          "uv": [
+            0.265625,
+            0.419921875,
+            0.328125,
+            0.453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_skill02_us.png",
+          "src": [
+            136,
+            215,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            143,
+            353,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_skill02_us.dxt",
+          "uv": [
+            0.265625,
+            0.453125,
+            0.328125,
+            0.486328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_skill02_us.png",
+          "src": [
+            136,
+            232,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            143,
+            353,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_skill02_us.dxt",
+          "uv": [
+            0.265625,
+            0.486328125,
+            0.328125,
+            0.51953125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_skill02_us.png",
+          "src": [
+            136,
+            249,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            143,
+            353,
+            32,
+            17
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_skill02_us.dxt",
+          "uv": [
+            0.265625,
+            0.419921875,
+            0.328125,
+            0.453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_skill02_us.png",
+          "src": [
+            136,
+            215,
+            32,
+            17
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        143,
+        353,
+        32,
+        17
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_00",
+      "rect": [
+        93,
+        147,
+        76,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 70254592,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "My Rank",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_01",
+      "rect": [
+        13,
+        182,
+        43,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "Rank",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_02",
+      "rect": [
+        82,
+        182,
+        96,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "Character ID",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_03",
+      "rect": [
+        201,
+        182,
+        36,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "Level",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_04",
+      "rect": [
+        240,
+        182,
+        32,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "Job",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_05",
+      "rect": [
+        213,
+        354,
+        57,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "Refresh",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_06",
+      "rect": [
+        13,
+        416,
+        57,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Join",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_07",
+      "rect": [
+        82,
+        416,
+        59,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Appoint",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_08",
+      "rect": [
+        149,
+        416,
+        56,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Ban",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_09",
+      "rect": [
+        217,
+        416,
+        57,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Private",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_10",
+      "rect": [
+        213,
+        379,
+        57,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "Invite",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        9,
+        387,
+        127,
+        19
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 9,
+      "bold": true,
+      "italic": false,
+      "color": "#f9e8c1ff",
+      "text": "Number of Members :",
+      "lineSpacing": 0
+    },
+    {
+      "type": "list",
+      "id": "List_clan_Job",
+      "rect": [
+        238,
+        201,
+        34,
+        140
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffff",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "list",
+      "id": "List_clan_Level",
+      "rect": [
+        203,
+        201,
+        32,
+        140
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffff",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "list",
+      "id": "List_clan_ChrID",
+      "rect": [
+        58,
+        200,
+        142,
+        140
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffff",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "list",
+      "id": "List_clan_Grade",
+      "rect": [
+        15,
+        200,
+        40,
+        140
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffff",
+      "bold": false,
+      "italic": false
+    }
+  ]
+}

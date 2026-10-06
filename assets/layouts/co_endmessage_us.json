@@ -1,0 +1,345 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    623,
+    399
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "spacelo",
+      "rect": [
+        372,
+        402,
+        51,
+        39
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_endmessage_us.dxt",
+      "uv": [
+        0.83984375,
+        0.783203125,
+        0.85546875,
+        0.802734375
+      ],
+      "fps": 30.0,
+      "texture": "ui_endmessage_us.png",
+      "src": [
+        430,
+        401,
+        8,
+        10
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "spacero_00",
+      "rect": [
+        0,
+        0,
+        512,
+        397
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_endmessage_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        0.775390625
+      ],
+      "fps": 30.0,
+      "texture": "ui_endmessage_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        397
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "spacero_01",
+      "rect": [
+        512,
+        284,
+        108,
+        113
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_endmessage_us.dxt",
+      "uv": [
+        0.0,
+        0.779296875,
+        0.2109375,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_endmessage_us.png",
+      "src": [
+        0,
+        399,
+        108,
+        113
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "spacero_02",
+      "rect": [
+        512,
+        171,
+        108,
+        113
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_endmessage_us.dxt",
+      "uv": [
+        0.216796875,
+        0.779296875,
+        0.427734375,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_endmessage_us.png",
+      "src": [
+        111,
+        399,
+        108,
+        113
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "spacero_03",
+      "rect": [
+        512,
+        58,
+        108,
+        113
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_endmessage_us.dxt",
+      "uv": [
+        0.431640625,
+        0.779296875,
+        0.642578125,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_endmessage_us.png",
+      "src": [
+        221,
+        399,
+        108,
+        113
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "spacero_04",
+      "rect": [
+        512,
+        0,
+        108,
+        58
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_endmessage_us.dxt",
+      "uv": [
+        0.646484375,
+        0.779296875,
+        0.857421875,
+        0.892578125
+      ],
+      "fps": 30.0,
+      "texture": "ui_endmessage_us.png",
+      "src": [
+        331,
+        399,
+        108,
+        58
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        84,
+        245,
+        175,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Please wait....",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        83,
+        267,
+        175,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Logging off",
+      "lineSpacing": 0
+    }
+  ]
+}

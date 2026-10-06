@@ -1,0 +1,3714 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    324,
+    332
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        324,
+        332
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+      "uv": [
+        0.005859375,
+        0.005859375,
+        0.638671875,
+        0.654296875
+      ],
+      "fps": 30.0,
+      "texture": "king_explain_02_us.png",
+      "src": [
+        3,
+        3,
+        324,
+        332
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        43,
+        57,
+        117,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#d2d2d2ff",
+      "text": "Nominee List",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        168,
+        57,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#d2d2d2ff",
+      "text": "Organization",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid00",
+      "rect": [
+        43,
+        78,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan00",
+      "rect": [
+        167,
+        77,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid01",
+      "rect": [
+        44,
+        98,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid02",
+      "rect": [
+        44,
+        117,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid03",
+      "rect": [
+        44,
+        136,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid04",
+      "rect": [
+        44,
+        155,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid05",
+      "rect": [
+        44,
+        173,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid06",
+      "rect": [
+        44,
+        194,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid07",
+      "rect": [
+        44,
+        212,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid08",
+      "rect": [
+        44,
+        231,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strid09",
+      "rect": [
+        44,
+        251,
+        119,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan01",
+      "rect": [
+        167,
+        98,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan02",
+      "rect": [
+        167,
+        118,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan03",
+      "rect": [
+        167,
+        136,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan04",
+      "rect": [
+        167,
+        156,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan05",
+      "rect": [
+        167,
+        175,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan06",
+      "rect": [
+        167,
+        194,
+        136,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan07",
+      "rect": [
+        167,
+        213,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan08",
+      "rect": [
+        167,
+        232,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "strclan09",
+      "rect": [
+        167,
+        252,
+        135,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn00",
+      "rect": [
+        21,
+        79,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            79,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            79,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            79,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            79,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        79,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn01",
+      "rect": [
+        21,
+        98,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            98,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            98,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            98,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            98,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        98,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn02",
+      "rect": [
+        21,
+        117,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            117,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            117,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            117,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            117,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        117,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn03",
+      "rect": [
+        21,
+        136,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            136,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            136,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            136,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            136,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        136,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn04",
+      "rect": [
+        21,
+        155,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            155,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            155,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            155,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            155,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        155,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn05",
+      "rect": [
+        21,
+        174,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            174,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            174,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            174,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            174,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        174,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn06",
+      "rect": [
+        21,
+        193,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            193,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            193,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            193,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            193,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        193,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn07",
+      "rect": [
+        21,
+        212,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            212,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            212,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            212,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            212,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        212,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn08",
+      "rect": [
+        21,
+        231,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            231,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            231,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            231,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            231,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        231,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn09",
+      "rect": [
+        21,
+        250,
+        17,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            250,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            250,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.041015625,
+            0.82421875,
+            0.072265625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            21,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            250,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.072265625,
+            0.82421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            37,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            21,
+            250,
+            17,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.791015625,
+            0.009765625,
+            0.82421875,
+            0.041015625
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            405,
+            5,
+            17,
+            16
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        21,
+        250,
+        17,
+        16
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_agree",
+      "rect": [
+        63,
+        302,
+        73,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            63,
+            302,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                67,
+                307,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#e1e1e1ff",
+              "text": "Vote",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                66,
+                306,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Vote",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.642578125,
+            0.009765625,
+            0.78515625,
+            0.05078125
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            329,
+            5,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            63,
+            302,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                68,
+                308,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Vote",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                67,
+                307,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Vote",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.642578125,
+            0.05078125,
+            0.78515625,
+            0.091796875
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            329,
+            26,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            63,
+            302,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                67,
+                307,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Vote",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                66,
+                306,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Vote",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.642578125,
+            0.091796875,
+            0.78515625,
+            0.1328125
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            329,
+            47,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            63,
+            302,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                67,
+                307,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#e1e1e1ff",
+              "text": "Vote",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                66,
+                306,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Vote",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.642578125,
+            0.009765625,
+            0.78515625,
+            0.05078125
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            329,
+            5,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        63,
+        302,
+        73,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_close",
+      "rect": [
+        186,
+        302,
+        73,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            186,
+            302,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                190,
+                307,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#e1e1e1ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                189,
+                306,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.642578125,
+            0.009765625,
+            0.78515625,
+            0.05078125
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            329,
+            5,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            186,
+            302,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                191,
+                308,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                190,
+                307,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.642578125,
+            0.05078125,
+            0.78515625,
+            0.091796875
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            329,
+            26,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            186,
+            302,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                190,
+                307,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                189,
+                306,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.642578125,
+            0.091796875,
+            0.78515625,
+            0.1328125
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            329,
+            47,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            186,
+            302,
+            73,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                190,
+                307,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#e1e1e1ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                189,
+                306,
+                66,
+                13
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#000000ff",
+              "text": "Cancel",
+              "lineSpacing": 0
+            }
+          ],
+          "sourceTexture": "ui_us\\king_explain_02_us.dxt",
+          "uv": [
+            0.642578125,
+            0.009765625,
+            0.78515625,
+            0.05078125
+          ],
+          "fps": 30.0,
+          "texture": "king_explain_02_us.png",
+          "src": [
+            329,
+            5,
+            73,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        186,
+        302,
+        73,
+        21
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1267 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    1024,
+    768
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "string",
+      "id": "text00",
+      "rect": [
+        716,
+        253,
+        194,
+        224
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 75497472,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 10,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "bt_delete",
+      "rect": [
+        419,
+        26,
+        200,
+        35
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            419,
+            26,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.001953125,
+            0.78515625,
+            0.0703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            1,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            419,
+            26,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.0703125,
+            0.78515625,
+            0.138671875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            36,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            419,
+            26,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.138671875,
+            0.78515625,
+            0.20703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            71,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            419,
+            26,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.001953125,
+            0.78515625,
+            0.0703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            1,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            436,
+            34,
+            169,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Delete",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            434,
+            32,
+            169,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff80ff",
+          "text": "Delete",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        419,
+        26,
+        200,
+        35
+      ]
+    },
+    {
+      "type": "button",
+      "id": "bt_left",
+      "rect": [
+        313,
+        686,
+        73,
+        35
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            313,
+            686,
+            73,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.392578125,
+            0.923828125,
+            0.53515625,
+            0.9921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            201,
+            473,
+            73,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            313,
+            686,
+            73,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.53515625,
+            0.923828125,
+            0.677734375,
+            0.9921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            274,
+            473,
+            73,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            313,
+            686,
+            73,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.677734375,
+            0.923828125,
+            0.8203125,
+            0.9921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            347,
+            473,
+            73,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            313,
+            686,
+            73,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.392578125,
+            0.923828125,
+            0.53515625,
+            0.9921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            201,
+            473,
+            73,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        313,
+        686,
+        73,
+        35
+      ]
+    },
+    {
+      "type": "button",
+      "id": "bt_right",
+      "rect": [
+        644,
+        684,
+        73,
+        35
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            644,
+            684,
+            73,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.8515625,
+            0.7734375,
+            0.994140625,
+            0.841796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            436,
+            396,
+            73,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            644,
+            684,
+            73,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.8515625,
+            0.841796875,
+            0.994140625,
+            0.91015625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            436,
+            431,
+            73,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            644,
+            684,
+            73,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.8515625,
+            0.91015625,
+            0.994140625,
+            0.978515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            436,
+            466,
+            73,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            644,
+            684,
+            73,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.8515625,
+            0.7734375,
+            0.994140625,
+            0.841796875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            436,
+            396,
+            73,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        644,
+        684,
+        73,
+        35
+      ]
+    },
+    {
+      "type": "button",
+      "id": "bt_exit",
+      "rect": [
+        418,
+        685,
+        200,
+        35
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            418,
+            685,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.20703125,
+            0.78515625,
+            0.275390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            106,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            418,
+            685,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.275390625,
+            0.78515625,
+            0.34375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            141,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            418,
+            685,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.34375,
+            0.78515625,
+            0.412109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            176,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            418,
+            685,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.20703125,
+            0.78515625,
+            0.275390625
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            106,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            436,
+            693,
+            169,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Exit",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            434,
+            691,
+            169,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff80ff",
+          "text": "Exit",
+          "lineSpacing": 0
+        }
+      ],
+      "click": [
+        418,
+        685,
+        200,
+        35
+      ]
+    },
+    {
+      "type": "button",
+      "id": "bt_back",
+      "rect": [
+        419,
+        635,
+        200,
+        35
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            436,
+            643,
+            169,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Back",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            434,
+            641,
+            169,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff80ff",
+          "text": "Back",
+          "lineSpacing": 0
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            419,
+            635,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.001953125,
+            0.78515625,
+            0.0703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            1,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            419,
+            635,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.138671875,
+            0.78515625,
+            0.20703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            71,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            419,
+            635,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.0703125,
+            0.78515625,
+            0.138671875
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            36,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            419,
+            635,
+            200,
+            35
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_el_charcreate01_us.dxt",
+          "uv": [
+            0.39453125,
+            0.001953125,
+            0.78515625,
+            0.0703125
+          ],
+          "fps": 30.0,
+          "texture": "ui_el_charcreate01_us.png",
+          "src": [
+            202,
+            1,
+            200,
+            35
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        419,
+        635,
+        200,
+        35
+      ]
+    }
+  ]
+}

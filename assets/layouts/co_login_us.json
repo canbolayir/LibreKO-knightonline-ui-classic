@@ -1,0 +1,2923 @@
+{
+  "type": "base",
+  "id": "login",
+  "rect": [
+    -1,
+    0,
+    984,
+    506
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "Img_Daum",
+      "rect": [
+        690,
+        295,
+        108,
+        33
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\service_logos.dxt",
+      "uv": [
+        0.0,
+        0.28125,
+        0.57421875,
+        0.51953125
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "Img_MGame",
+      "rect": [
+        689,
+        297,
+        134,
+        35
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\service_logos.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        0.99609375,
+        0.26171875
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "base",
+      "id": "Group_ServerList",
+      "rect": [
+        0,
+        0,
+        206,
+        452
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "img_server_00",
+          "rect": [
+            0,
+            0,
+            205,
+            396
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_us.dxt",
+          "uv": [
+            0.005859375,
+            0.22265625,
+            0.40625,
+            0.99609375
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_us.png",
+          "src": [
+            3,
+            114,
+            205,
+            396
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "img_server_01",
+          "rect": [
+            0,
+            396,
+            205,
+            56
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_us.dxt",
+          "uv": [
+            0.408203125,
+            0.22265625,
+            0.80859375,
+            0.33203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_us.png",
+          "src": [
+            209,
+            114,
+            205,
+            56
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "img_server_02",
+          "rect": [
+            36,
+            242,
+            130,
+            143
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_us.dxt",
+          "uv": [
+            0.08984375,
+            0.361328125,
+            0.34375,
+            0.640625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_us.png",
+          "src": [
+            46,
+            185,
+            130,
+            143
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "button",
+          "id": "Btn_Connect",
+          "rect": [
+            55,
+            409,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                55,
+                409,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.41015625,
+                0.822265625,
+                0.599609375,
+                0.87890625
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                210,
+                421,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                55,
+                409,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.7890625,
+                0.822265625,
+                0.978515625,
+                0.87890625
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                404,
+                421,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                55,
+                409,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.599609375,
+                0.822265625,
+                0.7890625,
+                0.87890625
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                307,
+                421,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                55,
+                409,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.41015625,
+                0.822265625,
+                0.599609375,
+                0.87890625
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                210,
+                421,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            55,
+            409,
+            97,
+            29
+          ]
+        },
+        {
+          "type": "list",
+          "id": "List_Server",
+          "rect": [
+            31,
+            53,
+            145,
+            344
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림체",
+          "size": 10,
+          "color": "#ffffffff",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            55,
+            17,
+            98,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Server",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            53,
+            15,
+            98,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#d5d5d5ff",
+          "text": "Server",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            62,
+            417,
+            84,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#c0c0c0ff",
+          "text": "Connect",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            61,
+            416,
+            84,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Connect",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "base",
+      "id": "Group_LogIn",
+      "rect": [
+        0,
+        0,
+        983,
+        505
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "login00",
+          "rect": [
+            1,
+            451,
+            509,
+            53
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_us.dxt",
+          "uv": [
+            0.005859375,
+            0.005859375,
+            1.0,
+            0.109375
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_us.png",
+          "src": [
+            3,
+            3,
+            509,
+            53
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "login01",
+          "rect": [
+            510,
+            451,
+            469,
+            53
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_us.dxt",
+          "uv": [
+            0.005859375,
+            0.115234375,
+            0.921875,
+            0.21875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_us.png",
+          "src": [
+            3,
+            59,
+            469,
+            53
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "edit",
+          "id": "Edit_ID",
+          "rect": [
+            78,
+            468,
+            146,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                78,
+                468,
+                146,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "",
+              "uv": [
+                0.73046875,
+                0.125,
+                0.76953125,
+                0.150390625
+              ],
+              "fps": 30.0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                78,
+                468,
+                146,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "",
+              "lineSpacing": 0
+            }
+          ]
+        },
+        {
+          "type": "edit",
+          "id": "Edit_PW",
+          "rect": [
+            378,
+            467,
+            145,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 268435456,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                378,
+                467,
+                145,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "",
+              "uv": [
+                0.728515625,
+                0.125,
+                0.7734375,
+                0.15234375
+              ],
+              "fps": 30.0
+            },
+            {
+              "type": "string",
+              "id": "",
+              "rect": [
+                378,
+                467,
+                145,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 76546048,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "font": "Arial",
+              "size": 10,
+              "bold": true,
+              "italic": false,
+              "color": "#ffffffff",
+              "text": "",
+              "lineSpacing": 0
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "id": "Btn_Login",
+          "rect": [
+            563,
+            465,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                563,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.8046875,
+                0.6484375,
+                0.994140625,
+                0.705078125
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                412,
+                332,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                563,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.8046875,
+                0.76171875,
+                0.994140625,
+                0.818359375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                412,
+                390,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                563,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.8046875,
+                0.705078125,
+                0.994140625,
+                0.76171875
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                412,
+                361,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                563,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.8046875,
+                0.6484375,
+                0.994140625,
+                0.705078125
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                412,
+                332,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            563,
+            465,
+            97,
+            29
+          ]
+        },
+        {
+          "type": "button",
+          "id": "Btn_Cancel",
+          "rect": [
+            664,
+            465,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                664,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.41015625,
+                0.880859375,
+                0.599609375,
+                0.9375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                210,
+                451,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                664,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.7890625,
+                0.880859375,
+                0.978515625,
+                0.9375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                404,
+                451,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                664,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.599609375,
+                0.880859375,
+                0.7890625,
+                0.9375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                307,
+                451,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                664,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.41015625,
+                0.880859375,
+                0.599609375,
+                0.9375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                210,
+                451,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            664,
+            465,
+            97,
+            29
+          ]
+        },
+        {
+          "type": "button",
+          "id": "Btn_Option",
+          "rect": [
+            765,
+            465,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                765,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.41015625,
+                0.939453125,
+                0.599609375,
+                0.99609375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                210,
+                481,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                765,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.7890625,
+                0.939453125,
+                0.978515625,
+                0.99609375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                404,
+                481,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                765,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.599609375,
+                0.939453125,
+                0.7890625,
+                0.99609375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                307,
+                481,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                765,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.41015625,
+                0.939453125,
+                0.599609375,
+                0.99609375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                210,
+                481,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            765,
+            465,
+            97,
+            29
+          ]
+        },
+        {
+          "type": "button",
+          "id": "Btn_Join",
+          "rect": [
+            866,
+            465,
+            97,
+            29
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                866,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.107421875,
+                0.787109375,
+                0.296875,
+                0.84375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                55,
+                403,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                866,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.107421875,
+                0.84375,
+                0.296875,
+                0.900390625
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                55,
+                432,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                866,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.107421875,
+                0.900390625,
+                0.296875,
+                0.95703125
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                55,
+                461,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                866,
+                465,
+                97,
+                29
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_login_us.dxt",
+              "uv": [
+                0.107421875,
+                0.787109375,
+                0.296875,
+                0.84375
+              ],
+              "fps": 30.0,
+              "texture": "ui_login_us.png",
+              "src": [
+                55,
+                403,
+                97,
+                29
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            866,
+            465,
+            97,
+            29
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            264,
+            469,
+            108,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Password",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            32,
+            470,
+            44,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "ID",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            30,
+            468,
+            44,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#d5d5d5ff",
+          "text": "ID",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            571,
+            473,
+            84,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#c0c0c0ff",
+          "text": "Login",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            570,
+            472,
+            84,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Login",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            671,
+            473,
+            84,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#c0c0c0ff",
+          "text": "Cancel",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            670,
+            472,
+            84,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Cancel",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            773,
+            473,
+            84,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#c0c0c0ff",
+          "text": "Option",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            772,
+            472,
+            84,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Option",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            872,
+            473,
+            87,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#c0c0c0ff",
+          "text": "Registration",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            871,
+            472,
+            87,
+            16
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Registration",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            262,
+            467,
+            108,
+            22
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 14,
+          "bold": true,
+          "italic": false,
+          "color": "#d5d5d5ff",
+          "text": "Password",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "id": "Text_Rights",
+      "rect": [
+        213,
+        307,
+        601,
+        25
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 67108864,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "Copyright MGAME & Noahsystem all right reserved.",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "premium",
+      "rect": [
+        535,
+        6,
+        400,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 14,
+      "bold": false,
+      "italic": false,
+      "color": "#ffff00ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "base",
+      "id": "Group_Notice_1",
+      "rect": [
+        0,
+        0,
+        522,
+        176
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "Img_Notice_01",
+          "rect": [
+            212,
+            8,
+            310,
+            52
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.001953125,
+            0.607421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            1,
+            310,
+            52
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_02",
+          "rect": [
+            212,
+            60,
+            304,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.25390625,
+            0.595703125,
+            0.283203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            130,
+            304,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_03",
+          "rect": [
+            212,
+            121,
+            309,
+            54
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.4921875,
+            0.60546875,
+            0.59765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            252,
+            309,
+            54
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_04",
+          "rect": [
+            213,
+            75,
+            303,
+            46
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.00390625,
+            0.283203125,
+            0.595703125,
+            0.373046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            2,
+            145,
+            303,
+            46
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "text_notice",
+          "rect": [
+            228,
+            78,
+            271,
+            79
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "바탕체",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#ebebebff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_notice_name",
+          "rect": [
+            228,
+            26,
+            272,
+            31
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "바탕체",
+          "size": 12,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff00ff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "base",
+      "id": "Group_Notice_2",
+      "rect": [
+        0,
+        0,
+        522,
+        176
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "Img_Notice_04",
+          "rect": [
+            213,
+            75,
+            303,
+            46
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.00390625,
+            0.283203125,
+            0.595703125,
+            0.373046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            2,
+            145,
+            303,
+            46
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_03",
+          "rect": [
+            212,
+            121,
+            309,
+            54
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.4921875,
+            0.60546875,
+            0.59765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            252,
+            309,
+            54
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_02",
+          "rect": [
+            212,
+            60,
+            304,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.25390625,
+            0.595703125,
+            0.283203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            130,
+            304,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_01",
+          "rect": [
+            212,
+            8,
+            310,
+            52
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.001953125,
+            0.607421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            1,
+            310,
+            52
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "text_notice",
+          "rect": [
+            228,
+            78,
+            271,
+            79
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "바탕체",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#ebebebff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_notice_name",
+          "rect": [
+            228,
+            26,
+            272,
+            31
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "바탕체",
+          "size": 12,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff00ff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "base",
+      "id": "Group_Notice_3",
+      "rect": [
+        0,
+        0,
+        522,
+        176
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "Img_Notice_01",
+          "rect": [
+            212,
+            8,
+            310,
+            52
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.001953125,
+            0.607421875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            1,
+            310,
+            52
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_02",
+          "rect": [
+            212,
+            60,
+            304,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.25390625,
+            0.595703125,
+            0.283203125
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            130,
+            304,
+            15
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_03",
+          "rect": [
+            212,
+            121,
+            309,
+            54
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.001953125,
+            0.4921875,
+            0.60546875,
+            0.59765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            1,
+            252,
+            309,
+            54
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "Img_Notice_04",
+          "rect": [
+            213,
+            75,
+            303,
+            46
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_login_01_us.dxt",
+          "uv": [
+            0.00390625,
+            0.283203125,
+            0.595703125,
+            0.373046875
+          ],
+          "fps": 30.0,
+          "texture": "ui_login_01_us.png",
+          "src": [
+            2,
+            145,
+            303,
+            46
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "text_notice",
+          "rect": [
+            228,
+            78,
+            271,
+            79
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "바탕체",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#ebebebff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "text_notice_name",
+          "rect": [
+            228,
+            26,
+            272,
+            31
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "바탕체",
+          "size": 12,
+          "bold": true,
+          "italic": false,
+          "color": "#ffff00ff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    }
+  ]
+}

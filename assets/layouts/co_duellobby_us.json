@@ -1,0 +1,8185 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    -1,
+    0,
+    1025,
+    768
+  ],
+  "drag": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_challenge_02_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_challenge_02_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_challenge_03_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_challenge_03_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        0,
+        512,
+        512,
+        256
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_challenge_04_us.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        0.5
+      ],
+      "fps": 30.0,
+      "texture": "ui_challenge_04_us.png",
+      "src": [
+        0,
+        0,
+        512,
+        256
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "",
+      "rect": [
+        512,
+        512,
+        512,
+        256
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui_us\\ui_challenge_04_us.dxt",
+      "uv": [
+        0.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0,
+      "texture": "ui_challenge_04_us.png",
+      "src": [
+        0,
+        256,
+        512,
+        256
+      ],
+      "flip": [
+        false,
+        false
+      ]
+    },
+    {
+      "type": "image",
+      "id": "img_stadium",
+      "rect": [
+        698,
+        165,
+        256,
+        256
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "ui\\stadium_01.dxt",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "button",
+      "id": "btn_team_00",
+      "rect": [
+        376,
+        705,
+        62,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            376,
+            705,
+            62,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.27734375,
+            0.001953125,
+            0.3984375,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            142,
+            1,
+            62,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            376,
+            705,
+            62,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.27734375,
+            0.052734375,
+            0.3984375,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            142,
+            27,
+            62,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            376,
+            705,
+            62,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.27734375,
+            0.103515625,
+            0.3984375,
+            0.154296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            142,
+            53,
+            62,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            376,
+            705,
+            62,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.27734375,
+            0.001953125,
+            0.3984375,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            142,
+            1,
+            62,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        376,
+        705,
+        62,
+        26
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_team_01",
+      "rect": [
+        455,
+        705,
+        62,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            455,
+            705,
+            62,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.27734375,
+            0.001953125,
+            0.3984375,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            142,
+            1,
+            62,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            455,
+            705,
+            62,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.27734375,
+            0.103515625,
+            0.3984375,
+            0.154296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            142,
+            53,
+            62,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            455,
+            705,
+            62,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.27734375,
+            0.052734375,
+            0.3984375,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            142,
+            27,
+            62,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            455,
+            705,
+            62,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.27734375,
+            0.001953125,
+            0.3984375,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            142,
+            1,
+            62,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        455,
+        705,
+        62,
+        26
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_stadium_down",
+      "rect": [
+        667,
+        452,
+        37,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            667,
+            452,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.001953125,
+            0.47265625,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            667,
+            452,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.04296875,
+            0.47265625,
+            0.083984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            22,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            667,
+            452,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.083984375,
+            0.47265625,
+            0.125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            43,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            667,
+            452,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.001953125,
+            0.47265625,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        667,
+        452,
+        37,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_game_down",
+      "rect": [
+        666,
+        540,
+        37,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            666,
+            540,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.001953125,
+            0.47265625,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            666,
+            540,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.083984375,
+            0.47265625,
+            0.125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            43,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            666,
+            540,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.04296875,
+            0.47265625,
+            0.083984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            22,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            666,
+            540,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.001953125,
+            0.47265625,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        666,
+        540,
+        37,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_money_down",
+      "rect": [
+        668,
+        624,
+        37,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            668,
+            624,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.001953125,
+            0.47265625,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            668,
+            624,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.04296875,
+            0.47265625,
+            0.083984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            22,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            668,
+            624,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.083984375,
+            0.47265625,
+            0.125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            43,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            668,
+            624,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.400390625,
+            0.001953125,
+            0.47265625,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            205,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        668,
+        624,
+        37,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_stadium_up",
+      "rect": [
+        948,
+        452,
+        37,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            948,
+            452,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.001953125,
+            0.5546875,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            948,
+            452,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.04296875,
+            0.5546875,
+            0.083984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            22,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            948,
+            452,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.083984375,
+            0.5546875,
+            0.125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            43,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            948,
+            452,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.001953125,
+            0.5546875,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        948,
+        452,
+        37,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_game_up",
+      "rect": [
+        946,
+        540,
+        37,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            946,
+            540,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.001953125,
+            0.5546875,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            946,
+            540,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.083984375,
+            0.5546875,
+            0.125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            43,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            946,
+            540,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.04296875,
+            0.5546875,
+            0.083984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            22,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            946,
+            540,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.001953125,
+            0.5546875,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        946,
+        540,
+        37,
+        21
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_money_up",
+      "rect": [
+        946,
+        624,
+        37,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            946,
+            624,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.001953125,
+            0.5546875,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            946,
+            624,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.04296875,
+            0.5546875,
+            0.083984375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            22,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            946,
+            624,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.083984375,
+            0.5546875,
+            0.125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            43,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            946,
+            624,
+            37,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.482421875,
+            0.001953125,
+            0.5546875,
+            0.04296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            247,
+            1,
+            37,
+            21
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        946,
+        624,
+        37,
+        21
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text00",
+      "rect": [
+        27,
+        520,
+        578,
+        130
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#c0c0c0ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "edit",
+      "id": "edit_chat",
+      "rect": [
+        26,
+        667,
+        603,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            26,
+            667,
+            603,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_01_us.dxt",
+          "uv": [
+            0.421875,
+            0.158203125,
+            0.498046875,
+            0.21875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_01_us.png",
+          "src": [
+            216,
+            81,
+            39,
+            31
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            26,
+            667,
+            603,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#c0c0c0ff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "area",
+      "id": "area_stadium",
+      "rect": [
+        660,
+        165,
+        332,
+        254
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "string",
+      "id": "text_gamename",
+      "rect": [
+        671,
+        60,
+        310,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ead6a8ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_managername",
+      "rect": [
+        672,
+        86,
+        310,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 11,
+      "bold": false,
+      "italic": false,
+      "color": "#ead6a8ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_stadium",
+      "rect": [
+        708,
+        451,
+        239,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 11,
+      "bold": false,
+      "italic": false,
+      "color": "#faf1a0ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_gamerule",
+      "rect": [
+        707,
+        538,
+        239,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 11,
+      "bold": false,
+      "italic": false,
+      "color": "#faf1a0ff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "button",
+      "id": "btn_groupready_0",
+      "rect": [
+        23,
+        132,
+        193,
+        27
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            23,
+            132,
+            193,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.001953125,
+            0.20703125,
+            0.37890625,
+            0.259765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            1,
+            106,
+            193,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            23,
+            132,
+            193,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.001953125,
+            0.26171875,
+            0.37890625,
+            0.314453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            1,
+            134,
+            193,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            23,
+            132,
+            193,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.001953125,
+            0.26171875,
+            0.37890625,
+            0.314453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            1,
+            134,
+            193,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            23,
+            132,
+            193,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.001953125,
+            0.20703125,
+            0.37890625,
+            0.259765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            1,
+            106,
+            193,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        23,
+        132,
+        193,
+        27
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_groupready_1",
+      "rect": [
+        439,
+        132,
+        193,
+        27
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            439,
+            132,
+            193,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.001953125,
+            0.20703125,
+            0.37890625,
+            0.259765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            1,
+            106,
+            193,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            439,
+            132,
+            193,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.001953125,
+            0.26171875,
+            0.37890625,
+            0.314453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            1,
+            134,
+            193,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            439,
+            132,
+            193,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.001953125,
+            0.26171875,
+            0.37890625,
+            0.314453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            1,
+            134,
+            193,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            439,
+            132,
+            193,
+            27
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.001953125,
+            0.20703125,
+            0.37890625,
+            0.259765625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            1,
+            106,
+            193,
+            27
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        439,
+        132,
+        193,
+        27
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_ready",
+      "rect": [
+        22,
+        705,
+        96,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.001953125,
+            0.88671875,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            1,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.052734375,
+            0.88671875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            27,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.103515625,
+            0.88671875,
+            0.154296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            53,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            22,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.001953125,
+            0.88671875,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            1,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        22,
+        705,
+        96,
+        26
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_exit",
+      "rect": [
+        534,
+        705,
+        96,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            534,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.001953125,
+            0.88671875,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            1,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            534,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.052734375,
+            0.88671875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            27,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            534,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.103515625,
+            0.88671875,
+            0.154296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            53,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            534,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.001953125,
+            0.88671875,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            1,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        534,
+        705,
+        96,
+        26
+      ]
+    },
+    {
+      "type": "button",
+      "id": "btn_start",
+      "rect": [
+        136,
+        705,
+        96,
+        26
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            136,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.001953125,
+            0.88671875,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            1,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            136,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.103515625,
+            0.88671875,
+            0.154296875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            53,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            136,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.052734375,
+            0.88671875,
+            0.103515625
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            27,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            136,
+            705,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.69921875,
+            0.001953125,
+            0.88671875,
+            0.052734375
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            358,
+            1,
+            96,
+            26
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        136,
+        705,
+        96,
+        26
+      ]
+    },
+    {
+      "type": "string",
+      "id": "text_money",
+      "rect": [
+        706,
+        623,
+        239,
+        23
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 11,
+      "bold": false,
+      "italic": false,
+      "color": "#faf1a0ff",
+      "text": "0",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_groupname_0",
+      "rect": [
+        28,
+        136,
+        185,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#faf89aff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_groupname_1",
+      "rect": [
+        442,
+        136,
+        187,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#b4d5efff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        673,
+        135,
+        310,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Arena",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        672,
+        134,
+        310,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ead6a8ff",
+      "text": "Arena",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        671,
+        504,
+        310,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Rule",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        670,
+        503,
+        310,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ead6a8ff",
+      "text": "Rule",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        691,
+        591,
+        273,
+        21
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Bet (Minimum 100,000 Coins) ",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        693,
+        590,
+        267,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ead6a8ff",
+      "text": "Bet (Minimum 100,000 Coins) ",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        142,
+        708,
+        87,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Start",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        139,
+        707,
+        91,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#fea5a7ff",
+      "text": "Start",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        29,
+        707,
+        86,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Ready",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        26,
+        706,
+        90,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#c7f7bbff",
+      "text": "Ready",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        252,
+        708,
+        107,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Select Team",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        250,
+        707,
+        108,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#ead6a8ff",
+      "text": "Select Team",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        378,
+        709,
+        58,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 14,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "A",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        458,
+        709,
+        58,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 14,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "B",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_team_0",
+      "rect": [
+        377,
+        708,
+        58,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 14,
+      "bold": true,
+      "italic": false,
+      "color": "#f2b993ff",
+      "text": "A",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "text_team_1",
+      "rect": [
+        457,
+        708,
+        58,
+        20
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 14,
+      "bold": true,
+      "italic": false,
+      "color": "#faf1a0ff",
+      "text": "B",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        537,
+        709,
+        97,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#000000ff",
+      "text": "Exit",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        540,
+        708,
+        89,
+        22
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 12,
+      "bold": true,
+      "italic": false,
+      "color": "#ead6a8ff",
+      "text": "Exit",
+      "lineSpacing": 0
+    },
+    {
+      "type": "scrollbar",
+      "id": "scroll_chat",
+      "rect": [
+        610,
+        515,
+        22,
+        140
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 131072,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "button",
+          "id": "",
+          "rect": [
+            611,
+            516,
+            21,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                516,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.568359375,
+                0.001953125,
+                0.609375,
+                0.04296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                291,
+                1,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                516,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.609375,
+                0.001953125,
+                0.650390625,
+                0.04296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                312,
+                1,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                516,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.650390625,
+                0.001953125,
+                0.69140625,
+                0.04296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                333,
+                1,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                516,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.568359375,
+                0.001953125,
+                0.609375,
+                0.04296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                291,
+                1,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            611,
+            516,
+            21,
+            21
+          ]
+        },
+        {
+          "type": "button",
+          "id": "",
+          "rect": [
+            611,
+            634,
+            21,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                634,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.568359375,
+                0.04296875,
+                0.609375,
+                0.083984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                291,
+                22,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                634,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.609375,
+                0.04296875,
+                0.650390625,
+                0.083984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                312,
+                22,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                634,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.650390625,
+                0.04296875,
+                0.69140625,
+                0.083984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                333,
+                22,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                634,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.568359375,
+                0.04296875,
+                0.609375,
+                0.083984375
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                291,
+                22,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            611,
+            634,
+            21,
+            21
+          ]
+        },
+        {
+          "type": "trackbar",
+          "id": "",
+          "rect": [
+            611,
+            537,
+            21,
+            97
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                537,
+                21,
+                97
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.609375,
+                0.083984375,
+                0.650390625,
+                0.125
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                312,
+                43,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                611,
+                537,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.568359375,
+                0.083984375,
+                0.609375,
+                0.125
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                291,
+                43,
+                21,
+                21
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "id": "list_duelusers_1",
+      "rect": [
+        440,
+        160,
+        167,
+        338
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "scrollbar",
+          "id": "",
+          "rect": [
+            607,
+            161,
+            24,
+            337
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "trackbar",
+              "id": "",
+              "rect": [
+                609,
+                182,
+                21,
+                292
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 131072,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    182,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.083984375,
+                    0.609375,
+                    0.125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    43,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    182,
+                    21,
+                    292
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.640625,
+                    0.111328125,
+                    0.66796875,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    328,
+                    57,
+                    14,
+                    14
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                609,
+                475,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    475,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.04296875,
+                    0.609375,
+                    0.083984375
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    22,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    475,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.650390625,
+                    0.04296875,
+                    0.69140625,
+                    0.083984375
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    333,
+                    22,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    475,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.609375,
+                    0.04296875,
+                    0.650390625,
+                    0.083984375
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    312,
+                    22,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    475,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.04296875,
+                    0.609375,
+                    0.083984375
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    22,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                609,
+                475,
+                21,
+                21
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                609,
+                161,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    161,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.0,
+                    0.609375,
+                    0.041015625
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    0,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    161,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.650390625,
+                    0.001953125,
+                    0.69140625,
+                    0.04296875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    333,
+                    1,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    161,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.609375,
+                    0.001953125,
+                    0.650390625,
+                    0.04296875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    312,
+                    1,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    609,
+                    161,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.001953125,
+                    0.609375,
+                    0.04296875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    1,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                609,
+                161,
+                21,
+                21
+              ]
+            }
+          ]
+        }
+      ],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffff",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "list",
+      "id": "list_duelusers_0",
+      "rect": [
+        23,
+        161,
+        167,
+        338
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "scrollbar",
+          "id": "",
+          "rect": [
+            191,
+            162,
+            22,
+            337
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 131072,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                192,
+                162,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    162,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.001953125,
+                    0.609375,
+                    0.04296875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    1,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    162,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.609375,
+                    0.001953125,
+                    0.650390625,
+                    0.04296875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    312,
+                    1,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    162,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.650390625,
+                    0.001953125,
+                    0.69140625,
+                    0.04296875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    333,
+                    1,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    162,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.0,
+                    0.609375,
+                    0.041015625
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    0,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                192,
+                162,
+                21,
+                21
+              ]
+            },
+            {
+              "type": "button",
+              "id": "",
+              "rect": [
+                192,
+                476,
+                21,
+                21
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 65536,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                "",
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    476,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.04296875,
+                    0.609375,
+                    0.083984375
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    22,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    476,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.609375,
+                    0.04296875,
+                    0.650390625,
+                    0.083984375
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    312,
+                    22,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    476,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 2,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.650390625,
+                    0.04296875,
+                    0.69140625,
+                    0.083984375
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    333,
+                    22,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    476,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 3,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.04296875,
+                    0.609375,
+                    0.083984375
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    22,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ],
+              "click": [
+                192,
+                476,
+                21,
+                21
+              ]
+            },
+            {
+              "type": "trackbar",
+              "id": "",
+              "rect": [
+                192,
+                183,
+                21,
+                292
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 131072,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    183,
+                    21,
+                    292
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 0,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.640625,
+                    0.111328125,
+                    0.66796875,
+                    0.138671875
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    328,
+                    57,
+                    14,
+                    14
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                },
+                {
+                  "type": "image",
+                  "id": "",
+                  "rect": [
+                    192,
+                    183,
+                    21,
+                    21
+                  ],
+                  "drag": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "style": 0,
+                  "tag": 1,
+                  "tooltip": "",
+                  "sounds": [
+                    "",
+                    ""
+                  ],
+                  "children": [],
+                  "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+                  "uv": [
+                    0.568359375,
+                    0.083984375,
+                    0.609375,
+                    0.125
+                  ],
+                  "fps": 30.0,
+                  "texture": "ui_challenge_05_us.png",
+                  "src": [
+                    291,
+                    43,
+                    21,
+                    21
+                  ],
+                  "flip": [
+                    false,
+                    false
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "font": "굴림체",
+      "size": 10,
+      "color": "#ffffffff",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "type": "button",
+      "id": "btn_Inventory",
+      "rect": [
+        936,
+        669,
+        46,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 65536,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            936,
+            669,
+            46,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.380859375,
+            0.20703125,
+            0.470703125,
+            0.294921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            195,
+            106,
+            46,
+            45
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            936,
+            669,
+            46,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.470703125,
+            0.20703125,
+            0.560546875,
+            0.294921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            241,
+            106,
+            46,
+            45
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            936,
+            669,
+            46,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 2,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.560546875,
+            0.20703125,
+            0.650390625,
+            0.294921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            287,
+            106,
+            46,
+            45
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            936,
+            669,
+            46,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 3,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.380859375,
+            0.20703125,
+            0.470703125,
+            0.294921875
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            195,
+            106,
+            46,
+            45
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ],
+      "click": [
+        936,
+        669,
+        46,
+        45
+      ]
+    },
+    {
+      "type": "area",
+      "id": "ba0",
+      "rect": [
+        672,
+        669,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "ba2",
+      "rect": [
+        812,
+        669,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "ba1",
+      "rect": [
+        729,
+        669,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "ba3",
+      "rect": [
+        869,
+        669,
+        45,
+        45
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "base",
+      "id": "Inventory",
+      "rect": [
+        611,
+        272,
+        413,
+        304
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            612,
+            273,
+            412,
+            303
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+          "uv": [
+            0.0,
+            0.333984375,
+            0.8046875,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_challenge_05_us.png",
+          "src": [
+            0,
+            171,
+            412,
+            303
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_ok",
+          "rect": [
+            632,
+            538,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                632,
+                538,
+                96,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.69921875,
+                0.001953125,
+                0.88671875,
+                0.052734375
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                358,
+                1,
+                96,
+                26
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                632,
+                538,
+                96,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.69921875,
+                0.052734375,
+                0.88671875,
+                0.103515625
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                358,
+                27,
+                96,
+                26
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                632,
+                538,
+                96,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.69921875,
+                0.103515625,
+                0.88671875,
+                0.154296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                358,
+                53,
+                96,
+                26
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                632,
+                538,
+                96,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.69921875,
+                0.001953125,
+                0.88671875,
+                0.052734375
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                358,
+                1,
+                96,
+                26
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            632,
+            538,
+            96,
+            26
+          ]
+        },
+        {
+          "type": "button",
+          "id": "btn_cancel",
+          "rect": [
+            909,
+            538,
+            96,
+            26
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 65536,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "children": [
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                909,
+                538,
+                96,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 3,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.69921875,
+                0.001953125,
+                0.88671875,
+                0.052734375
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                358,
+                1,
+                96,
+                26
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                909,
+                538,
+                96,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 2,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.69921875,
+                0.103515625,
+                0.88671875,
+                0.154296875
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                358,
+                53,
+                96,
+                26
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                909,
+                538,
+                96,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 1,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.69921875,
+                0.052734375,
+                0.88671875,
+                0.103515625
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                358,
+                27,
+                96,
+                26
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            },
+            {
+              "type": "image",
+              "id": "",
+              "rect": [
+                909,
+                538,
+                96,
+                26
+              ],
+              "drag": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "style": 0,
+              "tag": 0,
+              "tooltip": "",
+              "sounds": [
+                "",
+                ""
+              ],
+              "children": [],
+              "sourceTexture": "ui_us\\ui_challenge_05_us.dxt",
+              "uv": [
+                0.69921875,
+                0.001953125,
+                0.88671875,
+                0.052734375
+              ],
+              "fps": 30.0,
+              "texture": "ui_challenge_05_us.png",
+              "src": [
+                358,
+                1,
+                96,
+                26
+              ],
+              "flip": [
+                false,
+                false
+              ]
+            }
+          ],
+          "click": [
+            909,
+            538,
+            96,
+            26
+          ]
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            640,
+            542,
+            86,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "O K",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            639,
+            541,
+            86,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#ede4c5ff",
+          "text": "O K",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            916,
+            541,
+            86,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Cancel",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            915,
+            540,
+            86,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#ede4c5ff",
+          "text": "Cancel",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            698,
+            279,
+            244,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#000000ff",
+          "text": "Inventory",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            697,
+            278,
+            244,
+            21
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 76546048,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 11,
+          "bold": true,
+          "italic": false,
+          "color": "#ede4c5ff",
+          "text": "Inventory",
+          "lineSpacing": 0
+        },
+        {
+          "type": "area",
+          "id": "a0",
+          "rect": [
+            630,
+            316,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a1",
+          "rect": [
+            685,
+            316,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a2",
+          "rect": [
+            740,
+            315,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a3",
+          "rect": [
+            795,
+            316,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a4",
+          "rect": [
+            850,
+            316,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a5",
+          "rect": [
+            905,
+            316,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a6",
+          "rect": [
+            960,
+            316,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a7",
+          "rect": [
+            630,
+            371,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a8",
+          "rect": [
+            685,
+            371,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a9",
+          "rect": [
+            740,
+            370,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a10",
+          "rect": [
+            795,
+            371,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a11",
+          "rect": [
+            850,
+            371,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a12",
+          "rect": [
+            905,
+            371,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a13",
+          "rect": [
+            960,
+            371,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a14",
+          "rect": [
+            630,
+            426,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a15",
+          "rect": [
+            685,
+            426,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a16",
+          "rect": [
+            740,
+            426,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a17",
+          "rect": [
+            795,
+            426,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a18",
+          "rect": [
+            850,
+            426,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a19",
+          "rect": [
+            905,
+            426,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a20",
+          "rect": [
+            960,
+            425,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a21",
+          "rect": [
+            630,
+            481,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a22",
+          "rect": [
+            685,
+            481,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a23",
+          "rect": [
+            740,
+            481,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "string",
+          "id": "s0",
+          "rect": [
+            630,
+            344,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s1",
+          "rect": [
+            685,
+            342,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s2",
+          "rect": [
+            740,
+            342,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s3",
+          "rect": [
+            795,
+            343,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s4",
+          "rect": [
+            850,
+            343,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s5",
+          "rect": [
+            905,
+            343,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s6",
+          "rect": [
+            960,
+            342,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s7",
+          "rect": [
+            630,
+            398,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s8",
+          "rect": [
+            685,
+            398,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s9",
+          "rect": [
+            740,
+            398,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s10",
+          "rect": [
+            795,
+            398,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s11",
+          "rect": [
+            850,
+            399,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s12",
+          "rect": [
+            905,
+            399,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s13",
+          "rect": [
+            960,
+            398,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s14",
+          "rect": [
+            630,
+            453,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s15",
+          "rect": [
+            685,
+            452,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s16",
+          "rect": [
+            740,
+            452,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s17",
+          "rect": [
+            795,
+            454,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s19",
+          "rect": [
+            905,
+            452,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s18",
+          "rect": [
+            850,
+            453,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s20",
+          "rect": [
+            960,
+            453,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s21",
+          "rect": [
+            630,
+            508,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s22",
+          "rect": [
+            685,
+            509,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "area",
+          "id": "a24",
+          "rect": [
+            794,
+            481,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a25",
+          "rect": [
+            850,
+            481,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a26",
+          "rect": [
+            905,
+            481,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "area",
+          "id": "a27",
+          "rect": [
+            960,
+            482,
+            45,
+            45
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "areaType": 0
+        },
+        {
+          "type": "string",
+          "id": "s23",
+          "rect": [
+            741,
+            507,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s24",
+          "rect": [
+            795,
+            508,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s25",
+          "rect": [
+            850,
+            508,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s26",
+          "rect": [
+            905,
+            507,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        },
+        {
+          "type": "string",
+          "id": "s27",
+          "rect": [
+            960,
+            508,
+            45,
+            18
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "굴림",
+          "size": 10,
+          "bold": false,
+          "italic": false,
+          "color": "#ffffffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "string",
+      "id": "bs0",
+      "rect": [
+        671,
+        696,
+        45,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "bs1",
+      "rect": [
+        728,
+        696,
+        45,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "bs2",
+      "rect": [
+        812,
+        695,
+        45,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    },
+    {
+      "type": "string",
+      "id": "bs3",
+      "rect": [
+        868,
+        696,
+        45,
+        18
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "굴림",
+      "size": 10,
+      "bold": false,
+      "italic": false,
+      "color": "#ffffffff",
+      "text": "",
+      "lineSpacing": 0
+    }
+  ]
+}

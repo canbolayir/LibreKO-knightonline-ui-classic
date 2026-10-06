@@ -1,0 +1,5504 @@
+{
+  "type": "base",
+  "id": "",
+  "rect": [
+    0,
+    0,
+    131,
+    385
+  ],
+  "drag": [
+    1,
+    2,
+    123,
+    25
+  ],
+  "style": 0,
+  "tag": 0,
+  "tooltip": "",
+  "sounds": [
+    "",
+    ""
+  ],
+  "children": [
+    {
+      "type": "image",
+      "id": "Image_DownStatPt",
+      "rect": [
+        46,
+        56,
+        16,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "Image_DownSpeed",
+      "rect": [
+        28,
+        56,
+        16,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "image",
+      "id": "Image_DownHP",
+      "rect": [
+        10,
+        56,
+        16,
+        16
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "sourceTexture": "",
+      "uv": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "fps": 30.0
+    },
+    {
+      "type": "string",
+      "id": "",
+      "rect": [
+        9,
+        7,
+        104,
+        13
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 76546048,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "font": "Arial",
+      "size": 11,
+      "bold": true,
+      "italic": false,
+      "color": "#80ff00ff",
+      "text": "Party",
+      "lineSpacing": 0
+    },
+    {
+      "type": "static",
+      "id": "static_name_0",
+      "rect": [
+        9,
+        47,
+        100,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            47,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.189453125,
+            0.177734375,
+            0.232421875,
+            0.21875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            9,
+            47,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 70254592,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#8080ffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "static",
+      "id": "static_name_1",
+      "rect": [
+        9,
+        92,
+        100,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            92,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.197265625,
+            0.16015625,
+            0.25390625,
+            0.208984375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            9,
+            92,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#8080ffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "static",
+      "id": "static_name_2",
+      "rect": [
+        9,
+        138,
+        100,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            138,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.208984375,
+            0.154296875,
+            0.244140625,
+            0.20703125
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            9,
+            138,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#8080ffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "static",
+      "id": "static_name_3",
+      "rect": [
+        9,
+        183,
+        100,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            183,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.185546875,
+            0.171875,
+            0.236328125,
+            0.208984375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            9,
+            183,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#8080ffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "static",
+      "id": "static_name_4",
+      "rect": [
+        9,
+        230,
+        100,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            9,
+            230,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.193359375,
+            0.17578125,
+            0.271484375,
+            0.203125
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            9,
+            230,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#8080ffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "static",
+      "id": "static_name_5",
+      "rect": [
+        8,
+        274,
+        100,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            274,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.181640625,
+            0.17578125,
+            0.267578125,
+            0.208984375
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            8,
+            274,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#8080ffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "static",
+      "id": "static_name_6",
+      "rect": [
+        8,
+        319,
+        100,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            319,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.18359375,
+            0.185546875,
+            0.2890625,
+            0.216796875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            8,
+            319,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#8080ffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "static",
+      "id": "static_name_7",
+      "rect": [
+        7,
+        364,
+        100,
+        15
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            364,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "",
+          "uv": [
+            0.169921875,
+            0.18359375,
+            0.27734375,
+            0.21875
+          ],
+          "fps": 30.0
+        },
+        {
+          "type": "string",
+          "id": "",
+          "rect": [
+            7,
+            364,
+            100,
+            15
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 68157440,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "font": "Arial",
+          "size": 10,
+          "bold": true,
+          "italic": false,
+          "color": "#8080ffff",
+          "text": "",
+          "lineSpacing": 0
+        }
+      ]
+    },
+    {
+      "type": "area",
+      "id": "Area_7",
+      "rect": [
+        7,
+        341,
+        112,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "Area_6",
+      "rect": [
+        6,
+        295,
+        112,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "Area_5",
+      "rect": [
+        7,
+        250,
+        112,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "Area_4",
+      "rect": [
+        7,
+        207,
+        112,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "Area_3",
+      "rect": [
+        6,
+        161,
+        112,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "Area_2",
+      "rect": [
+        6,
+        117,
+        112,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "Area_1",
+      "rect": [
+        6,
+        72,
+        112,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "area",
+      "id": "Area_0",
+      "rect": [
+        6,
+        27,
+        112,
+        44
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [],
+      "areaType": 0
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_0",
+      "rect": [
+        8,
+        28,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            28,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.873046875,
+            0.9140625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            447,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            28,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.90234375,
+            0.9140625,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            462,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_1",
+      "rect": [
+        8,
+        73,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            73,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.873046875,
+            0.9140625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            447,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            73,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.90234375,
+            0.8537868857383728,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            462,
+            70,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_2",
+      "rect": [
+        8,
+        117,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            117,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.873046875,
+            0.9140625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            447,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            117,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.90234375,
+            0.8119288086891174,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            462,
+            49,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_3",
+      "rect": [
+        8,
+        162,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            162,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.873046875,
+            0.9140625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            447,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            162,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.90234375,
+            0.7828606963157654,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            462,
+            34,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_4",
+      "rect": [
+        8,
+        209,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            209,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.873046875,
+            0.9140625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            447,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            209,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.90234375,
+            0.7626745104789734,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            462,
+            23,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_5",
+      "rect": [
+        7,
+        253,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            253,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.873046875,
+            0.9140625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            447,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            253,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.90234375,
+            0.7486563324928284,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            462,
+            16,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_6",
+      "rect": [
+        8,
+        298,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            298,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.873046875,
+            0.9140625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            447,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            298,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.90234375,
+            0.7389215230941772,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            462,
+            11,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_7",
+      "rect": [
+        7,
+        343,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            343,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.873046875,
+            0.9140625,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            447,
+            101,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            343,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.716796875,
+            0.90234375,
+            0.7321612238883972,
+            0.92578125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            367,
+            462,
+            8,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_0_slow",
+      "rect": [
+        8,
+        28,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            28,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.923828125,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            447,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            28,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.841796875,
+            0.923828125,
+            0.865234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            431,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_1_slow",
+      "rect": [
+        8,
+        73,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            73,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.923828125,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            447,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            73,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.841796875,
+            0.8510199785232544,
+            0.865234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            431,
+            85,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_2_slow",
+      "rect": [
+        8,
+        117,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            117,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.923828125,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            447,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            117,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.841796875,
+            0.8004587292671204,
+            0.865234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            431,
+            59,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_3_slow",
+      "rect": [
+        8,
+        162,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            162,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.923828125,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            447,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            162,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.841796875,
+            0.7653467655181885,
+            0.865234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            431,
+            41,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_4_slow",
+      "rect": [
+        8,
+        209,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            209,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.923828125,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            447,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            209,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.841796875,
+            0.7409634590148926,
+            0.865234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            431,
+            28,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_5_slow",
+      "rect": [
+        7,
+        253,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            253,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.923828125,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            447,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            253,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.841796875,
+            0.724030613899231,
+            0.865234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            431,
+            20,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_6_slow",
+      "rect": [
+        8,
+        298,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            298,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.923828125,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            447,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            298,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.841796875,
+            0.7122716903686523,
+            0.865234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            431,
+            14,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_7_slow",
+      "rect": [
+        7,
+        343,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            343,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.873046875,
+            0.923828125,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            447,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            343,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.685546875,
+            0.841796875,
+            0.704105794429779,
+            0.865234375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            351,
+            431,
+            10,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_0_drop",
+      "rect": [
+        8,
+        28,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            28,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.873046875,
+            0.927734375,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            447,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            28,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.814453125,
+            0.927734375,
+            0.837890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            417,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_1_drop",
+      "rect": [
+        8,
+        72,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            72,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.873046875,
+            0.927734375,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            447,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            72,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.814453125,
+            0.8597005009651184,
+            0.837890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            417,
+            79,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_2_drop",
+      "rect": [
+        8,
+        117,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            117,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.873046875,
+            0.927734375,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            447,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            117,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.814453125,
+            0.8124547600746155,
+            0.837890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            417,
+            55,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_3_drop",
+      "rect": [
+        8,
+        162,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            162,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.873046875,
+            0.927734375,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            447,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            162,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.814453125,
+            0.7796452045440674,
+            0.837890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            417,
+            38,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_4_drop",
+      "rect": [
+        8,
+        209,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            209,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.873046875,
+            0.927734375,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            447,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            209,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.814453125,
+            0.7568607926368713,
+            0.837890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            417,
+            27,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_5_drop",
+      "rect": [
+        7,
+        253,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            253,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.873046875,
+            0.927734375,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            447,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            253,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.814453125,
+            0.7410383224487305,
+            0.837890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            417,
+            18,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_6_drop",
+      "rect": [
+        8,
+        298,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            298,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.873046875,
+            0.927734375,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            447,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            298,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.814453125,
+            0.7300505042076111,
+            0.837890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            417,
+            13,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_7_drop",
+      "rect": [
+        7,
+        343,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            343,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.873046875,
+            0.927734375,
+            0.896484375
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            447,
+            114,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            343,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.705078125,
+            0.814453125,
+            0.7224200367927551,
+            0.837890625
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            361,
+            417,
+            9,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_mp_0_curse",
+      "rect": [
+        8,
+        38,
+        108,
+        7
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            38,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.87109375,
+            0.97265625,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            446,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            38,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.7890625,
+            0.97265625,
+            0.8125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            404,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_mp_1_curse",
+      "rect": [
+        8,
+        83,
+        108,
+        7
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            83,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.87109375,
+            0.97265625,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            446,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            83,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.7890625,
+            0.8682183027267456,
+            0.8125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            404,
+            122,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_mp_2_curse",
+      "rect": [
+        8,
+        129,
+        108,
+        6
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            129,
+            108,
+            6
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.87109375,
+            0.97265625,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            446,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            129,
+            108,
+            6
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.7890625,
+            0.795691967010498,
+            0.8125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            404,
+            84,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_mp_3_curse",
+      "rect": [
+        8,
+        174,
+        108,
+        7
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            174,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.87109375,
+            0.97265625,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            446,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            174,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.7890625,
+            0.7453264594078064,
+            0.8125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            404,
+            59,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_mp_4_curse",
+      "rect": [
+        8,
+        221,
+        108,
+        7
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            221,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.87109375,
+            0.97265625,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            446,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            221,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.7890625,
+            0.7103503942489624,
+            0.8125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            404,
+            41,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_mp_5_curse",
+      "rect": [
+        7,
+        265,
+        108,
+        7
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            265,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.87109375,
+            0.97265625,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            446,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            265,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.7890625,
+            0.686061441898346,
+            0.8125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            404,
+            28,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_mp_6_curse",
+      "rect": [
+        8,
+        310,
+        108,
+        7
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            310,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.87109375,
+            0.97265625,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            446,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            310,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.7890625,
+            0.6691941618919373,
+            0.8125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            404,
+            20,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_mp_7_curse",
+      "rect": [
+        7,
+        355,
+        108,
+        7
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            355,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.87109375,
+            0.97265625,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            446,
+            175,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            7,
+            355,
+            108,
+            7
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.630859375,
+            0.7890625,
+            0.657480776309967,
+            0.8125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            323,
+            404,
+            14,
+            12
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_0_lasting",
+      "rect": [
+        8,
+        28,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            28,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.640625,
+            0.875,
+            0.9609375,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            328,
+            448,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            28,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.638671875,
+            0.716796875,
+            0.958984375,
+            0.736328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            327,
+            367,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_1_lasting",
+      "rect": [
+        8,
+        72,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            72,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.640625,
+            0.875,
+            0.9609375,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            328,
+            448,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            72,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.638671875,
+            0.716796875,
+            0.958984375,
+            0.736328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            327,
+            367,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_2_lasting",
+      "rect": [
+        8,
+        117,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            117,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.640625,
+            0.875,
+            0.9609375,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            328,
+            448,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            117,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.638671875,
+            0.716796875,
+            0.958984375,
+            0.736328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            327,
+            367,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_3_lasting",
+      "rect": [
+        8,
+        162,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            162,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.640625,
+            0.875,
+            0.9609375,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            328,
+            448,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            162,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.638671875,
+            0.716796875,
+            0.958984375,
+            0.736328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            327,
+            367,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_4_lasting",
+      "rect": [
+        8,
+        209,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            209,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.640625,
+            0.875,
+            0.9609375,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            328,
+            448,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            209,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.638671875,
+            0.716796875,
+            0.958984375,
+            0.736328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            327,
+            367,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_5_lasting",
+      "rect": [
+        8,
+        253,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            253,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.640625,
+            0.875,
+            0.9609375,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            328,
+            448,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            253,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.638671875,
+            0.716796875,
+            0.958984375,
+            0.736328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            327,
+            367,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_6_lasting",
+      "rect": [
+        8,
+        298,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            298,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.640625,
+            0.875,
+            0.9609375,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            328,
+            448,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            298,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.638671875,
+            0.716796875,
+            0.958984375,
+            0.736328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            327,
+            367,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    },
+    {
+      "type": "progress",
+      "id": "progress_hp_7_lasting",
+      "rect": [
+        8,
+        343,
+        108,
+        12
+      ],
+      "drag": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "style": 0,
+      "tag": 0,
+      "tooltip": "",
+      "sounds": [
+        "",
+        ""
+      ],
+      "children": [
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            343,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 0,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.640625,
+            0.875,
+            0.9609375,
+            0.89453125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            328,
+            448,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        },
+        {
+          "type": "image",
+          "id": "",
+          "rect": [
+            8,
+            343,
+            108,
+            12
+          ],
+          "drag": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "style": 0,
+          "tag": 1,
+          "tooltip": "",
+          "sounds": [
+            "",
+            ""
+          ],
+          "children": [],
+          "sourceTexture": "ui_us\\ui_message_us.dxt",
+          "uv": [
+            0.638671875,
+            0.716796875,
+            0.958984375,
+            0.736328125
+          ],
+          "fps": 30.0,
+          "texture": "ui_message_us.png",
+          "src": [
+            327,
+            367,
+            164,
+            10
+          ],
+          "flip": [
+            false,
+            false
+          ]
+        }
+      ]
+    }
+  ]
+}
