@@ -233,4 +233,3 @@ Register themed native windows/HUD replacements, retain declarative composition 
 Visual and interaction verification must be reproducible without logging in or restarting an active game.
 
 Add demo native bridges and audits for character/details, NPC/portraits, presets, skills, inventory, vendor, party, trade, merchant, chat docking, mail wire and upstream store states, including control-bound assertions.
-

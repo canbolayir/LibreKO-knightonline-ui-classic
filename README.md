@@ -39,7 +39,7 @@ Build the independent Godot harness with:
 ```powershell
 dotnet build preview/Preview.csproj -p:LibreKOClientDir="<folder containing LibreKO.dll>"
 $env:LIBREKO_AUDIT_CLIENT_PACK = "<client>/LibreKO.pck"
-godot --path preview -- -- <audit arguments>
+godot --path preview -- <audit arguments>
 ```
 
 Use the available argument routes in `preview/Preview.cs`; the original workspace routes expect sibling `build` and `research` directories and installed content packs. These are not shipped as binaries. Transactions are checked by native domain/protocol tests and fixture interactions; the harness does not perform live player-to-player transactions.

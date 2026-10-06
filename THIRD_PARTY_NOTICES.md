@@ -14,3 +14,7 @@
   https://github.com/ZeusAFK/LibreKO-knightonline-ui-chaos
 
 See LICENSE for the adapter code's AGPL-3.0 terms.
+
+- Hunt icon: user-supplied visual, reduced to transparent 32/64-pixel PNGs.
+  The two preview fixtures are visual inputs, not captured account/game state.
+  The code license does not relicense third-party artwork.
