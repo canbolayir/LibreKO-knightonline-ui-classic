@@ -233,3 +233,6 @@ Register themed native windows/HUD replacements, retain declarative composition 
 Visual and interaction verification must be reproducible without logging in or restarting an active game.
 
 Add demo native bridges and audits for character/details, NPC/portraits, presets, skills, inventory, vendor, party, trade, merchant, chat docking, mail wire and upstream store states, including control-bound assertions.
+## Upstream NPC service fixtures
+
+The `npc-services-audit` preview route renders the upstream Kelly, nation transfer and merchant search panels without adding Classic framing or replacing their layout. It loads the existing character content packs, checks viewport bounds and exercises their registered Escape callbacks. The upstream gender fixture uses an El Morad Rogue and nation transfer targets Karus; running under both nation contexts intentionally retains the shared native service style. Existing Classic artwork and runtime layouts are unchanged by this fixture addition. Final integration captures and regression records are retained under the workspace's `research/upstream-4772e7a-audit` directory.
