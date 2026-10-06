@@ -1,0 +1,43 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>KnightOnlineUiClassic</RootNamespace>
+    <AssemblyName>KnightOnlineUiClassic</AssemblyName>
+    <OutDir>bin/</OutDir>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <GodotDisabledSourceGenerators>ScriptPathAttribute</GodotDisabledSourceGenerators>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <!--
+    LibreKOClientDir points at the folder holding a built LibreKO.dll (the client). Pass it with
+    -p:LibreKOClientDir=... or drop a Directory.Build.props next to this file; the defaults below cover
+    a LibreKO checkout or a private GKO checkout sitting beside this repo's parent folder.
+  -->
+  <PropertyGroup>
+    <LibreKOClientDir Condition="'$(LibreKOClientDir)' == '' And Exists('$(MSBuildProjectDirectory)/../../LibreKO/Client/.godot/mono/temp/bin/Debug/LibreKO.dll')">$(MSBuildProjectDirectory)/../../LibreKO/Client/.godot/mono/temp/bin/Debug</LibreKOClientDir>
+    <LibreKOClientDir Condition="'$(LibreKOClientDir)' == '' And Exists('$(MSBuildProjectDirectory)/../../../GKO/client/.godot/mono/temp/bin/Debug/LibreKO.dll')">$(MSBuildProjectDirectory)/../../../GKO/client/.godot/mono/temp/bin/Debug</LibreKOClientDir>
+  </PropertyGroup>
+
+  <Target Name="RequireClient" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(LibreKOClientDir)/LibreKO.dll')" Text="LibreKO.dll not found. Build the LibreKO client first, then pass -p:LibreKOClientDir=&lt;folder containing LibreKO.dll&gt;." />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="LibreKO">
+      <HintPath>$(LibreKOClientDir)/LibreKO.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="assets/**;bin/**;obj/**;preview/**" />
+  </ItemGroup>
+</Project>

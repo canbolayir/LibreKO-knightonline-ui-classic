@@ -1,0 +1,6 @@
+.godot/
+bin/
+obj/
+__pycache__/
+preview/.godot/
+preview/*.png
