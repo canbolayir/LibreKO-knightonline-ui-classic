@@ -1,10 +1,21 @@
 # LibreKO Classic UI
 
+## Requires the canbolayir/LibreKO fork
+
+> [!IMPORTANT]
+> **This plugin does not work with the unmodified [ZeusAFK/LibreKO](https://github.com/ZeusAFK/LibreKO) client.**
+> Use the **[canbolayir/LibreKO fork](https://github.com/canbolayir/LibreKO)**, which includes the required Classic UI APIs and interaction fixes.
+> Deploy its matching client and server together, and build the plugin against that fork's `LibreKO.dll`. Copying the plugin into an upstream client does not provide those changes.
+
 An editable Knight Online 1.298 Classic theme for LibreKO, with distinct Human and Karus artwork and modern native game features. Source adapters and declarative geometry remain editable; imported UIF layouts serve as artwork and visual references.
 
 ## Compatible client
 
-Use [canbolayir/LibreKO](https://github.com/canbolayir/LibreKO), including the Classic bridge changes documented in `docs/classic-integration.md`. The baseline is upstream `9cc436e`; the original upstream client alone does not expose all required APIs. Enable one UI theme at a time.
+The required fork provides native bridges for character pages, NPC portraits, bag quantities, chat/Info, trade approvals and merchant interactions. Some changes also affect client/server packets and inventory synchronization, so an upstream server is not a supported substitute for the matching fork server.
+
+Latest verified pair: fork client/server [5a52bbc](https://github.com/canbolayir/LibreKO/commit/5a52bbc82c0909cda927fb581b4bdb47a1ba01bc) and plugin implementation [2e4f047](https://github.com/canbolayir/LibreKO-knightonline-ui-classic/commit/2e4f047c15691371fcf0039131b2c4f2e7aae27d), with upstream `4772e7a` integrated. These are verified revisions, not a promise that every future combination will work. The manifest's `minClientVersion` alone cannot identify the required fork or API set. Enable one UI theme at a time.
+
+See [NPC service changes and compatibility](docs/npc-services-integration.md) and the fork's [integration guide](https://github.com/canbolayir/LibreKO/blob/main/docs/classic-integration.md).
 
 ## Build and install
 
@@ -32,7 +43,7 @@ The build script's defaults describe the original Windows workspace; pass both p
 
 ## Verification
 
-See [the visual review](docs/visual-review.html), [verification record](docs/verification.json), and [feature/commit guide](docs/implementation.md). The existing final implementation passed 2,903 tests and source-driven Human/Karus render audits. This repository imports that implementation in topic-based commits; it does not reconstruct its original chronological edit history.
+See [the visual review](docs/visual-review.html), [verification record](docs/verification.json), and [feature/commit guide](docs/implementation.md). The original publication passed 2,903 tests; the subsequent `4772e7a` integration passed 3,044 tests plus source-driven Human/Karus render audits. See its [verification summary](docs/upstream-4772e7a-verification.json). This repository imports that implementation in topic-based commits; it does not reconstruct its original chronological edit history.
 
 Build the independent Godot harness with:
 

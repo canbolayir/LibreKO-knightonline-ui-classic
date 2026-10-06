@@ -1,0 +1,91 @@
+{
+  "upstream": "4772e7abf4ee98630b4a8765e048ffb7f32408b1",
+  "clientHash": "2A22FF803D2D2333B0FDEF796DA1B3B4456388C5C42702ED98C915D06AC33127",
+  "pluginHash": "7907F0484D683F01A1A8CAE24A0B612E41519AEF734E052C6BA9111828808B48",
+  "tests": {
+    "client": {
+      "total": 915,
+      "executed": 915,
+      "passed": 915,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "game": {
+      "total": 2113,
+      "executed": 2113,
+      "passed": 2113,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    },
+    "login": {
+      "total": 16,
+      "executed": 16,
+      "passed": 16,
+      "failed": 0,
+      "error": 0,
+      "timeout": 0,
+      "aborted": 0,
+      "inconclusive": 0,
+      "passedButRunAborted": 0,
+      "notRunnable": 0,
+      "notExecuted": 0,
+      "disconnected": 0,
+      "warning": 0,
+      "completed": 0,
+      "inProgress": 0,
+      "pending": 0
+    }
+  },
+  "nativeServiceScreens": 6,
+  "nativeServiceChecksPerNation": 6,
+  "inventoryScreens": 40,
+  "parentScreens": 8,
+  "parentPixelDelta": false,
+  "merchantScreens": 82,
+  "tradeScreens": 28,
+  "inventoryChecksPerNation": {
+    "human": 12977,
+    "karus": 12977
+  },
+  "merchantChecksPerNation": {
+    "human": 7235,
+    "karus": 7235
+  },
+  "tradeChecksPerNation": {
+    "human": 1919,
+    "karus": 1919
+  },
+  "pusMailScreens": 20,
+  "chatDockPassed": true,
+  "mailBadgePassed": true,
+  "npcIntegrationPassed": true,
+  "newServiceStyling": "Upstream native; Classic redesign deferred by user request",
+  "customMoradonPublished": false,
+  "databaseMigrationChanges": false,
+  "approved": true,
+  "forkRevision": "5a52bbc82c0909cda927fb581b4bdb47a1ba01bc",
+  "pluginImplementationRevision": "2e4f047c15691371fcf0039131b2c4f2e7aae27d",
+  "liveTwoPlayerTransactionTest": false
+}
