@@ -13,7 +13,7 @@ An editable Knight Online 1.298 Classic theme for LibreKO, with distinct Human a
 
 The required fork provides native bridges for character pages, NPC portraits, bag quantities, chat/Info, trade approvals and merchant interactions. Some changes also affect client/server packets and inventory synchronization, so an upstream server is not a supported substitute for the matching fork server.
 
-Latest verified pair: fork [89a595b](https://github.com/canbolayir/LibreKO/commit/89a595b960543f8d2b0efac783f41b86c2d79bd8) and the complete market-history/plugin integration on this branch, with upstream `28112ee` integrated. Deploy its matching client/server and generated content together. These are verified revisions, not a promise that every future combination will work. The manifest's `minClientVersion` alone cannot identify the required fork or API set. Enable one UI theme at a time.
+Latest verified pair: fork [b8b1df1](https://github.com/canbolayir/LibreKO/commit/b8b1df13aa45743a27ecef2f2d6a37ba607bd2d2) and the Classic plugin on this branch, with upstream `20dcd08` integrated. Deploy its matching client/server and generated content together. These are verified revisions, not a promise that every future combination will work. The manifest's `minClientVersion` alone cannot identify the required fork or API set. Enable one UI theme at a time.
 
 See [NPC service changes and compatibility](docs/npc-services-integration.md) and the fork's [integration guide](https://github.com/canbolayir/LibreKO/blob/main/docs/classic-integration.md).
 
@@ -44,7 +44,7 @@ The build script's defaults describe the original Windows workspace; pass both p
 
 ## Verification
 
-The latest complete NPC/event integration passed 3,407 tests and retained existing Classic page pixels. See [new services, market history and content](docs/upstream-npc-events.md) and [its verification summary](docs/upstream-npc-events-verification.json). The native fixture retains a small shutdown allocation warning in its review record; it reports no failed assertions or crashes.
+The latest Forgotten Temple integration passed 3,421 tests and retained existing Classic page pixels and rendered bounds. See [Forgotten Temple compatibility and review](docs/forgotten-temple.md). The preceding NPC/event integration passed 3,407 tests; see [new services, market history and content](docs/upstream-npc-events.md) and [its verification summary](docs/upstream-npc-events-verification.json). The native fixtures retain shutdown allocation warnings in their review records; functional assertions pass.
 
 See [the visual review](docs/visual-review.html), [verification record](docs/verification.json), and [feature/commit guide](docs/implementation.md). The original publication passed 2,903 tests; the subsequent `4772e7a` integration passed 3,044 tests plus source-driven Human/Karus render audits. See its [verification summary](docs/upstream-4772e7a-verification.json). This repository imports that implementation in topic-based commits; it does not reconstruct its original chronological edit history.
 

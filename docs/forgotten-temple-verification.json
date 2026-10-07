@@ -1,0 +1,114 @@
+{
+  "fork": "b8b1df13aa45743a27ecef2f2d6a37ba607bd2d2",
+  "upstream": "20dcd08efb2039759b634173c303cb6a83fd9a96",
+  "tests": {
+    "client": 1071,
+    "common": 57,
+    "game": 2277,
+    "login": 16
+  },
+  "totalTests": 3421,
+  "parentScreens": 8,
+  "parentStates": [
+    {
+      "file": "human-character.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-clan-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-clan-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-clan.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-friends-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-friends-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-friends.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-quest-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-quest-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-quest.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-character.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-clan-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-clan-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-clan.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-friends-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-friends-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-friends.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-quest-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-quest-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-quest.png",
+      "pixelIdentical": true
+    }
+  ],
+  "renderedBoundsIdentical": true,
+  "events": {
+    "human": {
+      "checks": 26,
+      "screens": 5
+    },
+    "karus": {
+      "checks": 26,
+      "screens": 5
+    }
+  },
+  "content": {
+    "waveRows": 36,
+    "missingNpcIds": [],
+    "mapPresent": true,
+    "bakedNewContent": false
+  },
+  "knownWarnings": "Classic dialog fixture shutdown reports six orphan Control objects across six exercised dialogs (12 ObjectDB instances including wrappers) per nation; same warning category as the previous native fixture. Functional checks pass. Not resolved by this integration.",
+  "liveEventCombat": false,
+  "approved": true
+}
