@@ -9,6 +9,8 @@ public partial class Preview
     private async Task CaptureNpcServices(int nation)
     {
         string output=ProjectSettings.GlobalizePath("res://../../research/upstream-4772e7a-audit");
+        if(OS.GetEnvironment("LIBREKO_AUDIT_OUTPUT_DIR") is {Length:>0} directory)output=directory;
+        System.IO.Directory.CreateDirectory(output);
         foreach(string pack in new[]{"build/client/LibreKO.pck","build/client/source-content/knightonline.pck","build/client/source-content/content/characters.pck","build/client/source-content/content/armor.pck"})
             if(!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../"+pack),false))throw new Exception("Missing pack "+pack);
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;
@@ -19,7 +21,7 @@ public partial class Preview
         const BindingFlags flags=BindingFlags.Instance|BindingFlags.NonPublic;
         var screens=new List<object>();var checks=new List<string>();
         async Task Frames(){for(int i=0;i<12;i++)await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);}
-        foreach(var spec in new[]{("gender","BuildGenderChangeUiPreview","_genderShown",11),("nation","BuildNationTransferUiPreview","_transferShown",12),("search","BuildMerchantSearchUiPreview","_merchantSearchShown",13)})
+        foreach(var spec in new[]{("gender","BuildGenderChangeUiPreview","_genderShown",12),("nation","BuildNationTransferUiPreview","_transferShown",13),("search","BuildMerchantSearchUiPreview","_merchantSearchShown",14)})
         {
             var world=new World();
             var panel=(Control)typeof(World).GetMethod(spec.Item2,flags)!.Invoke(world,null)!;

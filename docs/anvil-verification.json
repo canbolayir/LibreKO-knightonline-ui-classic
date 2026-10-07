@@ -1,0 +1,92 @@
+{
+  "clientHash": "081FDADCFCE140B0DD5D89CB1693FB4EB845234C3F3A27E7C28D4FF022B4F0C1",
+  "pluginHash": "ACA83B2BAD999D04B8EFD92F9F646A93961FCACE60520981783A13C4260200B0",
+  "packHash": "4C2DF0C7D42A82FABD4EFD3EAF01EA5A433A54733447C40760CB60DCFA2A047F",
+  "anvilScreens": 102,
+  "checksPerNation": [
+    2290,
+    2290
+  ],
+  "parentScreens": 8,
+  "parents": [
+    {
+      "nation": "human",
+      "page": "character",
+      "pixelIdentical": true,
+      "controls": 88
+    },
+    {
+      "nation": "human",
+      "page": "quest",
+      "pixelIdentical": true,
+      "controls": 46
+    },
+    {
+      "nation": "human",
+      "page": "clan",
+      "pixelIdentical": true,
+      "controls": 60
+    },
+    {
+      "nation": "human",
+      "page": "friends",
+      "pixelIdentical": true,
+      "controls": 37
+    },
+    {
+      "nation": "karus",
+      "page": "character",
+      "pixelIdentical": true,
+      "controls": 88
+    },
+    {
+      "nation": "karus",
+      "page": "quest",
+      "pixelIdentical": true,
+      "controls": 46
+    },
+    {
+      "nation": "karus",
+      "page": "clan",
+      "pixelIdentical": true,
+      "controls": 60
+    },
+    {
+      "nation": "karus",
+      "page": "friends",
+      "pixelIdentical": true,
+      "controls": 37
+    }
+  ],
+  "sharedPalettePixelIdentical": [
+    "ready",
+    "empty",
+    "compound-ready",
+    "confirmation"
+  ],
+  "paintedRimInsets": [
+    {
+      "nation": "human",
+      "left": 8,
+      "right": 8,
+      "topBelowWallet": 8,
+      "bottom": 8,
+      "clearBelowFooter": true
+    },
+    {
+      "nation": "karus",
+      "left": 8,
+      "right": 8,
+      "topBelowWallet": 8,
+      "bottom": 8,
+      "clearBelowFooter": true
+    }
+  ],
+  "tests": {
+    "client": 934
+  },
+  "serverChanged": false,
+  "approved": true,
+  "visualReview": "Reviewed recipe-backed placement rules, supported BUS/Trina and accessory recipe, invalid scroll/protection combinations, normal inventory colors, eight-pixel rims and all eight parent pages",
+  "settingsSnapshotHash": "1E7BAF50385A3762F3A88EBD9FB649575A80D30D30685B68B7790F50CB85E3B1"
+}

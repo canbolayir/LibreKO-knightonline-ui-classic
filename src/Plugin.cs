@@ -29,16 +29,18 @@ public sealed class Plugin : IPlugin
         ui.ReplaceWindow("skills", host => new SkillWindow(host));
         // Keep native modern windows functional and apply the classic frame theme.
         foreach(var id in ui.WindowIds)
-            if(id is not ("inventory" or "character_info" or "skills" or "vendor" or "party" or "seek_party" or "exchange") && !ClassicMerchantSkin.WindowIds.Contains(id) && !CharacterDetailsSkin.WindowIds.Contains(id))
+            if(id is not ("inventory" or "character_info" or "skills" or "vendor" or "party" or "seek_party" or "exchange" or "anvil") && !ClassicMerchantSkin.WindowIds.Contains(id) && !CharacterDetailsSkin.WindowIds.Contains(id))
                 ui.ExtendWindow(id, ClassicSkin.ExtendWindow);
         foreach(var id in ClassicMerchantSkin.WindowIds)ui.ExtendWindow(id,ClassicMerchantSkin.Extend);
         ui.ExtendWindow("vendor", ClassicVendorSkin.Extend);
         ui.ExtendWindow("exchange", ClassicExchangeSkin.Extend);
+        ui.ExtendWindow("anvil", ClassicAnvilSkin.Extend);
+        ui.ExtendWindow("anvil_choice", ClassicAnvilChoice.Extend);
         ui.ExtendWindow("party", ClassicPartySkin.Extend);
         ui.ExtendWindow("seek_party", ClassicPartySkin.Extend);
         foreach (var id in CharacterDetailsSkin.WindowIds)
             ui.ExtendWindow(id, CharacterDetailsSkin.Extend);
-        ui.ReplaceDialogs(request=>request.Title=="Merchant"?new ClassicMerchantNotice(request):new MessageBox(request));
+        ui.ReplaceDialogs(request=>request.Title=="Magic Anvil"?new ClassicAnvilNotice(request):request.Title=="Merchant"?new ClassicMerchantNotice(request):new MessageBox(request));
         ui.AddHud(() => new NationHud(() => new Taskbar()));
         ui.AddHud(() => new NationHud(() => new ClassicMerchantSigns()));
         context.Log.Info($"{Kit.LayoutCount} layouts, {Kit.TextureCount} textures");
