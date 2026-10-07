@@ -33,6 +33,7 @@ public partial class Preview
         if (OS.GetCmdlineUserArgs().Contains("vendor-parent-audit")) output=System.IO.Path.GetFullPath(ProjectSettings.GlobalizePath("res://../../research/npc-vendor-audit/parent"));
         if (OS.GetCmdlineUserArgs().Contains("skill-parent-audit")) output=System.IO.Path.GetFullPath(ProjectSettings.GlobalizePath("res://../../research/skill-window-audit/parent"));
         if (OS.GetCmdlineUserArgs().Contains("inventory-parent-audit")) output=System.IO.Path.GetFullPath(ProjectSettings.GlobalizePath("res://../../research/inventory-window-audit/parent"));
+        if (OS.GetEnvironment("LIBREKO_AUDIT_OUTPUT_DIR") is { Length: > 0 } auditDirectory) output=auditDirectory;
         bool geometryProbe = OS.GetCmdlineUserArgs().Contains("geometry-probe");
         if (geometryProbe) output = System.IO.Path.Combine(output, "geometry-probe");
         System.IO.Directory.CreateDirectory(output);

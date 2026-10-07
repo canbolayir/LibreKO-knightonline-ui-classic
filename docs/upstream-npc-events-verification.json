@@ -1,0 +1,82 @@
+{
+  "upstream": "28112eea232f7160fe4f017165b9fc79a3e76687",
+  "assets": "e6553f57f67c1d7d99334610c6861f2ef76ba251",
+  "clientHash": "936435AE203EA649AADB10CD5E381B57517800A1C33C618A0D5E14E304FD917F",
+  "pluginHash": "50DDB19B00FB40FFDC11B1B0E77F0CDA760913E1E54D13C7770AD17FDCFE6D38",
+  "packHash": "0641A0490FDFFEC73B51865BA859771F22DC0AAE5BB0CF4A7C96E1C36E9FAA98",
+  "tests": {
+    "client": 1071,
+    "game": 2263,
+    "common": 57,
+    "login": 16
+  },
+  "parentScreens": 8,
+  "parents": [
+    {
+      "file": "human-character.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-quest.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-clan.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-friends.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-character.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-quest.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-clan.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-friends.png",
+      "pixelIdentical": true
+    }
+  ],
+  "merchant": {
+    "human": {
+      "checks": 8459,
+      "screens": 46
+    },
+    "karus": {
+      "checks": 8459,
+      "screens": 46
+    }
+  },
+  "anvil": {
+    "human": {
+      "checks": 2290,
+      "screens": 51
+    },
+    "karus": {
+      "checks": 2290,
+      "screens": 51
+    }
+  },
+  "native": {
+    "human": {
+      "checks": 39,
+      "screens": 28
+    },
+    "karus": {
+      "checks": 39,
+      "screens": 28
+    }
+  },
+  "nativeShutdownWarnings": "The native fixture reports two orphan Control instances at shutdown (four ObjectDB instances including wrappers). Functional assertions pass; no errors or crashes occur. The warning is retained in the logs, not suppressed.",
+  "approved": true,
+  "liveTransactions": false,
+  "customMoradonIncluded": false
+}

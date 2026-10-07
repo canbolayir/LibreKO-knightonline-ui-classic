@@ -13,7 +13,7 @@ An editable Knight Online 1.298 Classic theme for LibreKO, with distinct Human a
 
 The required fork provides native bridges for character pages, NPC portraits, bag quantities, chat/Info, trade approvals and merchant interactions. Some changes also affect client/server packets and inventory synchronization, so an upstream server is not a supported substitute for the matching fork server.
 
-Latest verified pair: fork [643e874](https://github.com/canbolayir/LibreKO/commit/643e874429fc19559a777f074ef8c367b6d1068a) and the complete Anvil plugin implementation and documentation on this branch, with upstream `4772e7a` integrated. The Anvil update changes the client and plugin; server code remains at the previous matching fork revision. These are verified revisions, not a promise that every future combination will work. The manifest's `minClientVersion` alone cannot identify the required fork or API set. Enable one UI theme at a time.
+Latest verified pair: fork [89a595b](https://github.com/canbolayir/LibreKO/commit/89a595b960543f8d2b0efac783f41b86c2d79bd8) and the complete market-history/plugin integration on this branch, with upstream `28112ee` integrated. Deploy its matching client/server and generated content together. These are verified revisions, not a promise that every future combination will work. The manifest's `minClientVersion` alone cannot identify the required fork or API set. Enable one UI theme at a time.
 
 See [NPC service changes and compatibility](docs/npc-services-integration.md) and the fork's [integration guide](https://github.com/canbolayir/LibreKO/blob/main/docs/classic-integration.md).
 
@@ -44,6 +44,8 @@ The build script's defaults describe the original Windows workspace; pass both p
 
 ## Verification
 
+The latest complete NPC/event integration passed 3,407 tests and retained existing Classic page pixels. See [new services, market history and content](docs/upstream-npc-events.md) and [its verification summary](docs/upstream-npc-events-verification.json). The native fixture retains a small shutdown allocation warning in its review record; it reports no failed assertions or crashes.
+
 See [the visual review](docs/visual-review.html), [verification record](docs/verification.json), and [feature/commit guide](docs/implementation.md). The original publication passed 2,903 tests; the subsequent `4772e7a` integration passed 3,044 tests plus source-driven Human/Karus render audits. See its [verification summary](docs/upstream-4772e7a-verification.json). This repository imports that implementation in topic-based commits; it does not reconstruct its original chronological edit history.
 
 The reviewed Anvil replacement passed 934 client tests and 2,290 source-driven checks per nation, with 102 captures and eight unchanged parent pages. See [Anvil behavior and rendered examples](docs/anvil.md) and [its verification record](docs/anvil-verification.json). The rejected earlier Anvil commits were removed from `main` before publishing this replacement.
@@ -62,4 +64,4 @@ Use the available argument routes in `preview/Preview.cs`; the original workspac
 
 Adapter code is AGPL-3.0; see LICENSE and THIRD_PARTY_NOTICES.md. Original game artwork retains its original ownership and is not relicensed by the code license. Import tooling reads existing loose UIF/DXT files; it does not unpack official-client packages. No official packages, account settings, database dumps, build outputs or custom Moradon maps are included.
 
-Optional elemental trail textures are absent in the reviewed client; its existing colored fallback remains active. This does not change the Classic UI artwork.
+The latest local content build includes original elemental trail textures and the updated alias-aware weapon glow map. These are generated game content, not a change to the Classic UI artwork.

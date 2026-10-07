@@ -13,7 +13,7 @@ public partial class Preview
 {
     private async Task CaptureAnvilAudit(PluginGame game,int nation)
     {
-        string output=ProjectSettings.GlobalizePath("res://../../research/anvil-window-audit");System.IO.Directory.CreateDirectory(output);
+        string output=ProjectSettings.GlobalizePath("res://../../research/anvil-window-audit");if(OS.GetEnvironment("LIBREKO_AUDIT_OUTPUT_DIR") is {Length:>0} directory)output=directory;System.IO.Directory.CreateDirectory(output);
         foreach(string pack in new[]{"build/client/source-content/knightonline.pck"})
             if(!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../"+pack),false))throw new Exception("Missing "+pack);
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(800,650);

@@ -12,7 +12,7 @@ public partial class Preview
 {
     private async Task CaptureMerchantAudit(PluginGame game,int nation)
     {
-        string output=ProjectSettings.GlobalizePath("res://../../research/merchant-window-audit");System.IO.Directory.CreateDirectory(output);
+        string output=ProjectSettings.GlobalizePath("res://../../research/merchant-window-audit");if(OS.GetEnvironment("LIBREKO_AUDIT_OUTPUT_DIR") is {Length:>0} directory)output=directory;System.IO.Directory.CreateDirectory(output);
         foreach(string pack in new[]{"build/client/LibreKO.pck","build/client/source-content/knightonline.pck"})
 
             if(!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../"+pack),false))throw new Exception("Missing pack "+pack);
@@ -124,6 +124,28 @@ public partial class Preview
             {var caption=Descendants(sign).OfType<Label>().Single(l=>l.Text==(buying?"BUYING":"SELLING"));Require(Mathf.Abs(caption.GetGlobalRect().GetCenter().X-sign.GetGlobalRect().GetCenter().X)<0.1f,"Merchant caption centered in sign");Require(caption.GetGlobalRect().End.Y+4==grid.GetGlobalRect().Position.Y,"Merchant header separated from item rows");Require(sign.GetGlobalRect().Encloses(caption.GetGlobalRect()),"Merchant header contained in frame");}await Capture((buying?"buying-":"")+(count==4?"normal-sign":"premium-sign"));sign.QueueFree();await Frames();
         }
         signLayer.QueueFree();await Frames();
+        GetWindow().Size=new Vector2I(1280,800);await Frames();
+        DetailCall(world,"MarketPriceInit");
+        var historyLayer=(CanvasLayer)DetailField(world,"_marketPriceLayer")!;historyLayer.Reparent(this);
+        typeof(Net).GetMethod("SeedPreviewPremium",BindingFlags.Instance|BindingFlags.NonPublic)!.Invoke(net,new object[]{1,1,72});
+        var marketCache=(Dictionary<int,MarketPriceReply>)DetailField(world,"_marketPriceCache")!;
+        var marketReply=new MarketPriceReply(MarketPrice.History,stack,Enumerable.Range(0,5).Select(i=>new MarketPriceDay(12000+i*1000,16000+i*1000,8000+i*1000)).ToArray(),123,DateTime.UtcNow);
+        marketCache[stack]=marketReply;
+        DetailCall(world,"OnMerchantOpenResult",Net.MerchantOpenAccepted);DetailCall(world,"StageStallItem",0);await Frames();price.Value=9000;await Frames();await Capture("market-price-low");
+        Require(panel.Size==new Vector2(255,158),"Market hint extends only the original price frame rails");
+        var history=panel.GetChildren().OfType<Button>().Single(b=>b.Name=="merchant_market_history");
+        Require(history.IsVisibleInTree() && panel.GetGlobalRect().Encloses(history.GetGlobalRect()),"Market history action is visible and contained in the Classic prompt");
+        var marketHint=panel.GetChildren().OfType<Label>().Single(l=>l.Name=="merchant_market_hint");
+        Require(marketHint.IsVisibleInTree() && panel.GetGlobalRect().Encloses(marketHint.GetGlobalRect()),"Native market comparison label is visible in the Classic price stage");
+        price.Value=50000;await Frames();await Capture("market-price-high");
+        Click(history);await Frames();DetailCall(world,"OnMarketPrice",marketReply);await Capture("market-price-history");Require(amount.Visible && price.Value==50000,"Opening price history preserves the pricing operation");
+        Require(GetViewportRect().Encloses(((HudWindow)DetailField(world,"_marketPricePanel")!).GetGlobalRect()),"New history window fits the reviewed viewport");
+        await KeyPress(Key.Escape);Require(amount.Visible && price.Value==50000,"Classic prompt leaves Escape available while history is open");
+        DetailCall(world,"CloseMarketPrice");Require(amount.Visible && price.Value==50000 && !(bool)DetailField(world,"_marketPriceShown")!,"History close preserves the underlying price prompt");
+        await KeyPress(Key.Enter);await Frames();Require(panel.Size==new Vector2(255,106) && !history.IsVisibleInTree(),"Quantity retains the original size and hides pricing-only market controls: size="+panel.Size+", visible="+amount.Visible+", quantity="+amount.GetMeta("merchant_quantity")+", history="+history.IsVisibleInTree()+", open="+amount.GetMeta("merchant_market_open"));await Capture("market-price-quantity");
+        await KeyPress(Key.Escape);DetailCall(world,"CloseSellStall");
+        typeof(Net).GetMethod("SeedPreviewPremium",BindingFlags.Instance|BindingFlags.NonPublic)!.Invoke(net,new object[]{0,0,0});
+        DetailCall(world,"OnMerchantOpenResult",Net.MerchantOpenAccepted);DetailCall(world,"StageStallItem",0);await Frames();Require(panel.Size==new Vector2(255,106) && !history.IsVisibleInTree(),"Non-premium pricing retains the original composition");await Capture("market-price-non-premium");await KeyPress(Key.Escape);DetailCall(world,"CloseSellStall");
         System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+"-verification.json",JsonSerializer.Serialize(new{nation,checks,screens,pluginHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(ProjectSettings.GlobalizePath("res://.godot/mono/temp/bin/Debug/KnightOnlineUiClassic.dll")))),clientHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(ProjectSettings.GlobalizePath("res://.godot/mono/temp/bin/Debug/LibreKO.dll"))))},new JsonSerializerOptions{WriteIndented=true}));
         GD.Print("MERCHANT_AUDIT_OK "+checks.Count);world.Free();net.Free();foreach(var layer in layers)layer.QueueFree();await Frames(3);
     }
