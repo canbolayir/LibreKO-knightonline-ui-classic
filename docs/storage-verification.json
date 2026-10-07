@@ -1,0 +1,106 @@
+{
+  "tests": {
+    "client-full": 1074,
+    "warehouse-server": 14
+  },
+  "totalTests": 1088,
+  "storage": {
+    "human": {
+      "checks": 5326,
+      "screens": 20
+    },
+    "karus": {
+      "checks": 5326,
+      "screens": 20
+    }
+  },
+  "parentPages": 8,
+  "parentStates": [
+    {
+      "file": "human-character.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-clan-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-clan-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-clan.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-friends-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-friends-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-friends.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-quest-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-quest-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "human-quest.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-character.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-clan-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-clan-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-clan.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-friends-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-friends-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-friends.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-quest-selected-hover.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-quest-selected.png",
+      "pixelIdentical": true
+    },
+    {
+      "file": "karus-quest.png",
+      "pixelIdentical": true
+    }
+  ],
+  "renderedParentBoundsIdentical": true,
+  "clientHash": "85C83B6F34854DA6AFABD87025768A59B036D1816811071C84E0D322B10D5EA7",
+  "pluginHash": "09EDA5E69E1353084687C9E744AD0845529F809481E7236FC9792721BBB65867",
+  "liveTransactionsPerformed": false,
+  "serverCodeChanged": false,
+  "officialPackagesExtracted": false
+}

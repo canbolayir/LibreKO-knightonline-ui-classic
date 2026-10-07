@@ -37,6 +37,7 @@ public partial class Preview : Control
             if (characterAudit || OS.GetCmdlineUserArgs().Contains("details-audit") || OS.GetCmdlineUserArgs().Contains("hud-audit"))
                 foreach (var proxy in proxies) ((PreviewData)proxy).CharacterAudit = new CharacterAuditData(nation) { ClanFlag=OS.GetCmdlineUserArgs().Contains("details-audit")?LibreKO.Network.ClanTypes.Accredited5:LibreKO.Network.ClanTypes.Training };
             attach.Invoke(game,proxies);
+            if(OS.GetCmdlineUserArgs().Contains("storage-audit")){await CaptureStorageAudit(game,nation);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("anvil-audit")){await CaptureAnvilAudit(game,nation);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("npc-services-audit")){await CaptureNpcServices(nation);GetTree().Quit();return;}
             if(OS.GetCmdlineUserArgs().Contains("upstream-integration-audit")){await CaptureUpstreamIntegration(game,nation);GetTree().Quit();return;}

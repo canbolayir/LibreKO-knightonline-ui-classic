@@ -147,6 +147,14 @@ public static class ClassicTradeQuantity
         prompt.VisibilityChanged += () =>
         {
             if (!prompt.Visible) return;
+            bool gold = labels[0].Text is "Deposit gold" or "Withdraw gold";
+            message.Text = gold ? "Please enter the amount of coins." : "Please enter the quantity of the item.";
+            if (gold)
+            {
+                var coin = Plugin.Kit.Layout("el_inventory_us").Find("btn_gold")!.Images.First();
+                icon.Texture = new AtlasTexture { Atlas = Plugin.Kit.Texture(coin.Texture!), Region = new Rect2(coin.SrcX, coin.SrcY, coin.SrcW, coin.SrcH) };
+                icon.Visible = true;
+            }
             string action = ok.Text;
             prompt.SetMeta("trade_action", action); ok.Text = ClassicDesign.Karus ? "O K" : "O  K";
             if (action == "Buy") amount.Text = "";
