@@ -37,6 +37,27 @@ public partial class Preview : Control
             if (characterAudit || OS.GetCmdlineUserArgs().Contains("details-audit") || OS.GetCmdlineUserArgs().Contains("hud-audit"))
                 foreach (var proxy in proxies) ((PreviewData)proxy).CharacterAudit = new CharacterAuditData(nation) { ClanFlag=OS.GetCmdlineUserArgs().Contains("details-audit")?LibreKO.Network.ClanTypes.Accredited5:LibreKO.Network.ClanTypes.Training };
             attach.Invoke(game,proxies);
+            if(OS.GetCmdlineUserArgs().Contains("pet-world-reconnect-audit")){await CapturePetWorldReconnectAudit(nation, info);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("pet-keyboard-audit")){await CapturePetKeyboardAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("pet-connection-audit")){await CapturePetConnectionAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("pet-portrait-audit")){await CapturePetPortraitAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("pet-audit")){await CapturePetAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("cape-audit")){await CaptureCapeAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("rebirth-audit")){await CaptureRebirthAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("gender-audit")){await CaptureGenderAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("beauty-audit")){await CaptureBeautyAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("nationtransfer-audit")){await CaptureNationTransferAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("equipview-audit")){await CaptureEquipViewAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("auction-audit")){await CaptureAuctionAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("store-audit")){await CaptureStoreAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("market-price-audit")){await CaptureMarketPriceAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("merchant-search-audit")){await CaptureMerchantSearchAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("chat-colours-audit")){await CaptureChatColoursAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("communication-audit")){await CaptureCommunicationAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("mail-classic-audit")){await CaptureMailClassicAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("council-rate-audit")){await CaptureCouncilRateAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("identity-audit")){await CaptureIdentityAudit(nation);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("classic-services-audit")){await CaptureClassicServices(game,nation);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("storage-audit")){await CaptureStorageAudit(game,nation);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("anvil-audit")){await CaptureAnvilAudit(game,nation);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("npc-services-audit")){await CaptureNpcServices(nation);GetTree().Quit();return;}
@@ -50,7 +71,7 @@ public partial class Preview : Control
             if(OS.GetCmdlineUserArgs().Contains("inventory-audit")) { await CaptureInventoryAudit(game,nation);GetTree().Quit();return; }
             if(OS.GetCmdlineUserArgs().Contains("skill-audit")) { await CaptureSkillAudit(game,nation);GetTree().Quit();return; }
             if(OS.GetCmdlineUserArgs().Contains("vendor-audit")) { await CaptureVendorAudit(game,nation);GetTree().Quit();return; }
-            if(OS.GetCmdlineUserArgs().Contains("npc-integration-audit")) { await CaptureNpcIntegration(nation);GetTree().Quit();return; }
+            if(OS.GetCmdlineUserArgs().Contains("npc-integration-audit")) { await CaptureNpcIntegration(nation);await FinishManagedAudit();return; }
             if(OS.GetCmdlineUserArgs().Contains("hunt-icon-options")) { await CaptureHuntIconOptions(nation);GetTree().Quit();return; }
             if(OS.GetCmdlineUserArgs().Contains("npc-design-audit")) { await CaptureNpcDesigns(nation);GetTree().Quit();return; }
             if(OS.GetCmdlineUserArgs().Contains("npc-portrait-audit")) { await CaptureNpcPortraitAudit(nation);GetTree().Quit();return; }

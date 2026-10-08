@@ -4,3 +4,5 @@ obj/
 __pycache__/
 preview/.godot/
 preview/*.png
+preview/settings.cfg
+preview/windows.cfg

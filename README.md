@@ -13,7 +13,9 @@ An editable Knight Online 1.298 Classic theme for LibreKO, with distinct Human a
 
 The required fork provides native bridges for character pages, NPC portraits, bag quantities, chat/Info, trade approvals, merchant interactions and live storage/secret VIP PIN controls. Some changes also affect client/server packets and inventory synchronization, so an upstream server is not a supported substitute for the matching fork server.
 
-Latest verified pair: fork [99d6e99](https://github.com/canbolayir/LibreKO/commit/99d6e99ac29954503d730d5c69c07123b17137d6) and the Classic plugin on this branch, with upstream `20dcd08` integrated. This client revision adds the required storage and VIP PIN controls; rebuild and install both client and plugin for these screens. The storage update changes no server source or protocol. Deploy the fork's matching client/server and generated content together. These are verified revisions, not a promise that every future combination will work. The manifest's `minClientVersion` alone cannot identify the required fork or API set. Enable one UI theme at a time.
+Latest locally verified pair: fork [c6d4031](https://github.com/canbolayir/LibreKO/commit/c6d4031813bbb29374a4968faa1da5cce63013e4) and the completed Classic source on this branch, with upstream `20dcd08` integrated. This series adds native service, appearance, auction and Familiar APIs, plus beauty, nation-transfer and rebirth server fixes. Rebuild and deploy the matching fork client/server and plugin together. The new commits were created locally on 2026-10-08; their GitHub links become available after publication. These are verified revisions, not a promise that every future combination will work. The manifest's `minClientVersion` alone cannot identify the required fork or API set. Enable one UI theme at a time.
+
+See [the completed UI handoff](docs/completed-ui-handoff.md) for the new screens, behavior fixes, validation limits and remaining scope.
 
 See [NPC service changes and compatibility](docs/npc-services-integration.md) and the fork's [integration guide](https://github.com/canbolayir/LibreKO/blob/main/docs/classic-integration.md).
 
