@@ -29,6 +29,8 @@ public partial class InventoryWindow : Control
     private int _bag;
     private int _carried = -1;
     private readonly LibreKO.QuantityPrompt _movePrompt=new(220);
+    private readonly ClassicInventoryRepair _repair;
+    private bool RepairMode => _host.Window.GetMeta("classic_repair_mode", false).AsBool();
 
     public InventoryWindow(WindowHost host)
     {
@@ -83,6 +85,8 @@ public partial class InventoryWindow : Control
             ZIndex = 10,
         };
         AddChild(_carry);
+        _repair = new ClassicInventoryRepair(host, _game, _view, CancelCarry);
+        AddChild(_repair);
         SetProcess(false);
         SetCospreOpen(false);
         Refresh();
@@ -101,13 +105,14 @@ public partial class InventoryWindow : Control
             Position = area.Position,
             Size = area.Size,
             Source = s => _game.Inventory.At(s),
+            CanDrag = () => !RepairMode,
             OnDrop = (from, to) => { CancelCarry(); RequestMove(from, to); },
             CanCompanionDrop = data => CompanionCell(slot)?._CanDropData(Vector2.Zero, data) == true,
             OnCompanionDrop = data => { CancelCarry(); CompanionCell(slot)?._DropData(Vector2.Zero, data); },
             OnClick = SlotClicked,
             OnActivate = SlotActivated,
-            OnDoubleClick = s => { CancelCarry(); _game.Inventory.Use(s); },
-            OnHover = (s, over) => { if (over) _game.Inventory.ShowTooltip(s); else _game.Inventory.HideTooltip(); },
+            OnDoubleClick = s => { CancelCarry(); if (!RepairMode) _game.Inventory.Use(s); },
+            OnHover = HoverSlot,
         };
         area.GetParent().AddChild(cell);
         _bySlot[slot] = cell;
@@ -126,6 +131,12 @@ public partial class InventoryWindow : Control
 
     private void SlotClicked(int slot)
     {
+        if (RepairMode)
+        {
+            CancelCarry();
+            if (slot < _game.Inventory.GridStart + _game.Inventory.GridCount) _game.Inventory.Use(slot);
+            return;
+        }
         if (_carried < 0)
         {
             if (_game.Inventory.At(slot).IsEmpty) return;
@@ -145,6 +156,7 @@ public partial class InventoryWindow : Control
 
     private void RequestMove(int from,int to)
     {
+        if (RepairMode) return;
         var item=_game.Inventory.At(from);
         if(item.IsEmpty || from==to) return;
         if((from>=InventoryConstants.MagicBagStart || to>=InventoryConstants.MagicBagStart)
@@ -161,6 +173,7 @@ public partial class InventoryWindow : Control
     }
     private void RequestDestroy(int slot)
     {
+        if (RepairMode) return;
         var item=_game.Inventory.At(slot);
         if(item.IsEmpty || slot>=InventoryConstants.CospreStart) { _game.Inventory.Drop(slot);return; }
         _game.Inventory.HideTooltip();
@@ -173,6 +186,7 @@ public partial class InventoryWindow : Control
 
     private void SlotActivated(int slot)
     {
+        if (RepairMode) { CancelCarry(); return; }
         if (_carried >= 0) { CancelCarry(); return; }
         if (_game.Chat.LinkInventoryItem(slot)) return;
         if (slot >= InventoryConstants.MagicBagStart)
@@ -296,7 +310,7 @@ public partial class InventoryWindow : Control
             cell.OnClick = _ => SlotClicked(slot);
             cell.OnActivate = _ => SlotActivated(slot);
             cell.OnDoubleClick = _ => { CancelCarry(); SlotActivated(slot); };
-            cell.OnHover = (_, over) => { if (over) _game.Inventory.ShowTooltip(slot); else _game.Inventory.HideTooltip(); };
+            cell.OnHover = (_, over) => HoverSlot(slot, over);
             cell.Refresh();
         }
     }
@@ -322,10 +336,20 @@ public partial class InventoryWindow : Control
 
     private void OnHidden()
     {
+        _repair.HideTip();
+        if (RepairMode && _host.Window.HasMeta("classic_repair_close")) _host.Window.GetMeta("classic_repair_close").AsCallable().Call();
         _movePrompt.Close();
         foreach(var popup in GetChildren().OfType<ClassicInventoryDestroy>()) popup.QueueFree();
         CancelCarry();
         _game.Inventory.HideTooltip();
+    }
+
+    private void HoverSlot(int slot, bool over)
+    {
+        _repair.HideTip();
+        if (!over) { _game.Inventory.HideTooltip(); return; }
+        if (RepairMode) { _game.Inventory.HideTooltip(); _repair.ShowTip(slot); }
+        else _game.Inventory.ShowTooltip(slot);
     }
 
     private void Refresh()

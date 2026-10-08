@@ -36,7 +36,7 @@ public partial class ClassicMerchantAmountPanel : Control
     private bool _marketVisible;
     public ClassicMerchantAmountPanel(CanvasLayer layer,SpinBox spin,MoneyEdit price,Button confirm,Button cancel,Label hint,Label? marketHint=null,Button? marketButton=null)
     {
-        _owners=CharacterDetailsSkin.Tree(layer.GetParent()).OfType<HudWindow>().Where(w=>w.Id is "wishfind" or "sellstall" or "shop" or "wishlist" or "wantedstall").ToArray();
+        _owners=CharacterDetailsSkin.Tree(layer.GetParent()).OfType<HudWindow>().Where(w=>w.Id is "wishfind" or "sellstall" or "shop" or "wishlist" or "wantedstall" or "itemcombine").ToArray();
         _layer=layer;_spin=spin;_count=spin.GetLineEdit();_price=price;_nativeConfirm=confirm;_nativeCancel=cancel;_nativeHint=hint;
         Name="classic_merchant_amount";Size=CustomMinimumSize=new Vector2(255,106);TextureFilter=TextureFilterEnum.Nearest;
         ClassicVendorSkin.Move(_price,this,new Rect2(69,43,151,17));ClassicVendorSkin.Move(_count,this,new Rect2(54,41,151,17));
@@ -78,7 +78,7 @@ public partial class ClassicMerchantAmountPanel : Control
         if(_stage==0 && _price.Value<1){Error("Enter a valid price.");return;}
         if(_stage==1 && (!int.TryParse(_count.Text,out int amount) || amount<1 || amount>_spin.MaxValue)){Error("Enter a valid quantity.");return;}
         if(_stage==0 && Quantity){_stage=1;Build();return;}
-        if(_stage==1 && !Editable){_stage=2;Build();return;}
+        if(_stage==1 && !Editable && !_layer.GetMeta("merchant_quantity_only",false).AsBool()){_stage=2;Build();return;}
         _nativeConfirm.EmitSignal(BaseButton.SignalName.Pressed);
     }
     public override void _Process(double delta)

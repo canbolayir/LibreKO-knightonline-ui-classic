@@ -26,6 +26,7 @@ public partial class ItemSlot : Control
     public Texture2D? EmptyIcon { get; set; }
     public string EmptyHint { get; set; } = "";
     public bool InputEnabled { get; set; } = true;
+    public Func<bool>? CanDrag { get; set; }
 
     private readonly TextureRect _icon;
     private readonly TextureRect _emptyIcon;
@@ -33,6 +34,7 @@ public partial class ItemSlot : Control
     private readonly ColorRect _hover;
     private readonly UpgradeBadge _badge;
     private bool _suppressClick;
+    private int _pressedSlot = -1;
     private Vector2 _grabPoint;
 
     public ItemSlot(int slot)
@@ -101,6 +103,7 @@ public partial class ItemSlot : Control
         if (mb.ButtonIndex != MouseButton.Left) return;
         if (mb.Pressed)
         {
+            _pressedSlot = Slot;
             _grabPoint=IconDragPreview.GrabPoint(this,_icon,mb.Position);
             if (mb.DoubleClick)
             {
@@ -110,14 +113,18 @@ public partial class ItemSlot : Control
             AcceptEvent();
             return;
         }
+        bool repairClick = CanDrag?.Invoke() == false;
+        bool clickedSameItem = _pressedSlot == Slot && new Rect2(Vector2.Zero, Size).HasPoint(mb.Position);
+        _pressedSlot = -1;
         if (_suppressClick) { _suppressClick = false; AcceptEvent(); return; }
+        if (repairClick && !clickedSameItem) { AcceptEvent(); return; }
         OnClick?.Invoke(Slot);
         AcceptEvent();
     }
 
     public override Variant _GetDragData(Vector2 atPosition)
     {
-        if (!InputEnabled || Current.IsEmpty) return default;
+        if (!InputEnabled || Current.IsEmpty || CanDrag?.Invoke() == false) return default;
         _suppressClick = false;
         OnHover?.Invoke(Slot, false);
         DragLayer.Show(this,IconDragPreview.Create(_icon,_grabPoint));
@@ -126,7 +133,7 @@ public partial class ItemSlot : Control
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
-        if (!InputEnabled || data.VariantType != Variant.Type.Dictionary) return false;
+        if (!InputEnabled || CanDrag?.Invoke() == false || data.VariantType != Variant.Type.Dictionary) return false;
         var d = data.AsGodotDictionary();
         if (d.ContainsKey("companionFrom")) return CanCompanionDrop?.Invoke(data) == true;
         return OnDrop != null && d.ContainsKey(DragKeyFrom) && d[DragKeyFrom].AsInt32() != Slot;
@@ -134,7 +141,7 @@ public partial class ItemSlot : Control
 
     public override void _DropData(Vector2 atPosition, Variant data)
     {
-        if(!InputEnabled) return;
+        if(!InputEnabled || CanDrag?.Invoke() == false) return;
         _hover.Visible = false;
         if (data.AsGodotDictionary().ContainsKey("companionFrom")) { OnCompanionDrop?.Invoke(data); return; }
         OnDrop?.Invoke(data.AsGodotDictionary()[DragKeyFrom].AsInt32(), Slot);
