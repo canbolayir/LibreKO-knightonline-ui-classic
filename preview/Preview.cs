@@ -37,6 +37,7 @@ public partial class Preview : Control
             if (characterAudit || OS.GetCmdlineUserArgs().Contains("details-audit") || OS.GetCmdlineUserArgs().Contains("hud-audit"))
                 foreach (var proxy in proxies) ((PreviewData)proxy).CharacterAudit = new CharacterAuditData(nation) { ClanFlag=OS.GetCmdlineUserArgs().Contains("details-audit")?LibreKO.Network.ClanTypes.Accredited5:LibreKO.Network.ClanTypes.Training };
             attach.Invoke(game,proxies);
+            NativeGame.Source=PreviewNative.Create(attach.GetParameters().Zip(proxies,(p,x)=>(p.ParameterType,(PreviewData)x)).ToDictionary(e=>e.Item1,e=>e.Item2));
             if(OS.GetCmdlineUserArgs().Contains("pet-world-reconnect-audit")){await CapturePetWorldReconnectAudit(nation, info);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("pet-keyboard-audit")){await CapturePetKeyboardAudit(nation);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("pet-connection-audit")){await CapturePetConnectionAudit(nation);await FinishManagedAudit();return;}
@@ -249,6 +250,7 @@ public class PreviewData : DispatchProxy
     public string LastSent="",LastMenu="";
     public int LastLinkTip;
     public (int,int,int) LastDrop;
+    public object? Answer(MethodInfo method, object?[]? args) => Invoke(method, args);
     protected override object? Invoke(MethodInfo? method, object?[]? args)
     {
         var type=method!.ReturnType;

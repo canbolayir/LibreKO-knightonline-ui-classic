@@ -12,6 +12,10 @@ public partial class Preview
     private static object? DetailField(World world,string name) => typeof(World).GetField(name,BindingFlags.NonPublic|BindingFlags.Instance)!.GetValue(world);
     private static object? DetailCall(World world,string name,params object?[] args)
     {
+        var fixtureArgs=args.Prepend(world).ToArray();
+        var fixture=typeof(PreviewFixtures).GetMethods(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Static)
+            .SingleOrDefault(m=>m.Name==name && m.GetParameters().Length==fixtureArgs.Length && m.GetParameters().Select((p,i)=>fixtureArgs[i]==null || p.ParameterType.IsInstanceOfType(fixtureArgs[i])).All(valid=>valid));
+        if(fixture!=null) return fixture.Invoke(null,fixtureArgs);
         var method=typeof(World).GetMethods(BindingFlags.NonPublic|BindingFlags.Instance|BindingFlags.Static)
             .Single(m=>m.Name==name && m.GetParameters().Length==args.Length && m.GetParameters().Select((p,i)=>args[i]==null || p.ParameterType.IsInstanceOfType(args[i])).All(valid=>valid));
         return method.Invoke(method.IsStatic?null:world,args);
@@ -216,7 +220,7 @@ public partial class Preview
             var composed=CharacterDetailsSkin.Apply(body)!;
             if(id=="quests")
             {
-                var nativePanel=(LibreKO.Plugins.IGameCharacterPanel)Activator.CreateInstance(typeof(World).GetNestedType("CharacterPanelBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{model},null)!;
+                var nativePanel=(IGameCharacterPanel)Activator.CreateInstance(typeof(World).GetNestedType("CharacterPanelBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{model},null)!;
                 _windowData!.LiveCharacterPanel=nativePanel;
                 var connField=typeof(Net).GetField("_conn",BindingFlags.Instance|BindingFlags.NonPublic)!;
                 var connection=connField.GetValue(offline);
@@ -276,7 +280,7 @@ public partial class Preview
             GD.Print("DETAIL_CAPTURE "+prefix+"-"+id);
             if(id=="quests")
             {
-                var nativePanel=(LibreKO.Plugins.IGameCharacterPanel)Activator.CreateInstance(typeof(World).GetNestedType("CharacterPanelBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{model},null)!;
+                var nativePanel=(IGameCharacterPanel)Activator.CreateInstance(typeof(World).GetNestedType("CharacterPanelBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{model},null)!;
                 foreach(int selectedQuest in new[]{502,503,500})
                 {
                     nativePanel.Act("quest_details",selectedQuest.ToString());
@@ -443,7 +447,7 @@ public partial class Preview
         GD.Print("DETAIL_AUDIT_OK");
         offline.Free();
     }
-    private async Task CaptureLongQuest(World model,CharacterEmbeddedPage page,LibreKO.Plugins.IGameCharacterPanel native,string prefix,string output)
+    private async Task CaptureLongQuest(World model,CharacterEmbeddedPage page,IGameCharacterPanel native,string prefix,string output)
     {
         var view=new QuestView(65,1,21,false,false,false,false,QuestViewState.InProgress,0,"Kecoon hunting",
             "[Sentinel] Patrick asked me to hunt five Kecoons for him.","",new QuestObjectives(65,false,[new QuestKillGroup(5,[1],"Kecoon")]),[0],

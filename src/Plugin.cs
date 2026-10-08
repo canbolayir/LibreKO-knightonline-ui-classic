@@ -10,6 +10,7 @@ public sealed class Plugin : IPlugin
     public void Initialize(PluginContext context)
     {
         Kit = new UiKit(context);
+        NativeSetup.Register(context);
         var ui = context.Ui;
         ui.ReplaceHud(HudPart.StatusBars, () => new NationHud(() => new StatusHud()));
         ui.ReplaceHud(HudPart.TargetFrame, () => new NationHud(() => new TargetFrame()));
