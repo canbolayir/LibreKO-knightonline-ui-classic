@@ -45,7 +45,7 @@ public partial class LogWindow : Control
         _game.Log.LineAdded += OnLine;
         _game.BecameAvailable += Reload;
         Config.EffectsChanged += ApplyVisibility;
-        _layout ??= HudLayout.Attach(this, "classic_log", _title, DefaultPosition,
+        _layout ??= NativeLayout.Attach(this, "classic_log", _title, DefaultPosition,
             resizable: true, defaultSize: DefaultSize, minimumSize: Minimum, resizeCorner: HudLayout.Corner.TopLeft,
             backgroundOpacityChanged: _ => _transparency.Cycle(),legacyResizeGrip:true, resizeSnapPeerId:"classic_chat");
         Reload();

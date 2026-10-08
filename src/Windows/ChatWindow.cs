@@ -101,11 +101,11 @@ public partial class ChatWindow : Control
     public override void _EnterTree()
     {
         _game.Chat.LineAdded += Append;
-        _game.Chat.ItemLinkRequested+=InsertItem;
+        NativeGame.Source.ItemLinkRequested+=InsertItem;
         _game.Chat.InputRequested += FocusInput;
-        _game.Chat.ChannelRequested += FocusChannel;
+        NativeGame.Source.ChannelRequested += FocusChannel;
         _game.BecameAvailable += Reload;
-        _layout ??= HudLayout.Attach(this, "classic_chat", _title, DefaultPosition,
+        _layout ??= NativeLayout.Attach(this, "classic_chat", _title, DefaultPosition,
             resizable: true, defaultSize: DefaultSize, minimumSize: Minimum, resizeCorner: HudLayout.Corner.TopRight,
             backgroundOpacityChanged: _ => _transparency.Cycle(),legacyResizeGrip:true, resizeSnapPeerId:"classic_log");
         _layout.Locked=Plugin.Kit.Context.Settings.GetBool("chat.locked",false);
@@ -115,11 +115,11 @@ public partial class ChatWindow : Control
     public override void _ExitTree()
     {
         _game.Chat.LineAdded -= Append;
-        _game.Chat.ItemLinkRequested-=InsertItem;
+        NativeGame.Source.ItemLinkRequested-=InsertItem;
         _game.Chat.HideLinkTooltip();
         _settingsPanel?.QueueFree();_nearbyPanel?.QueueFree();
         _game.Chat.InputRequested -= FocusInput;
-        _game.Chat.ChannelRequested -= FocusChannel;
+        NativeGame.Source.ChannelRequested -= FocusChannel;
         _game.BecameAvailable -= Reload;
     }
 

@@ -17,7 +17,7 @@ public partial class ClassicChatPanel : Control
         ClassicReportDesign.StyleButton(close,false,Plugin.Kit.Layout("co_questmenu_us").Find("btn_close")!);
         close.Position=new Vector2(330,34);close.Size=new Vector2(20,20);close.Pressed+=()=>Visible=false;AddChild(close);
         Body.Position=new Vector2(22,78);Body.Size=new Vector2(319,height-108);AddChild(Body);
-        HudLayout.Attach(this,"classic_"+title.Replace(' ','_').ToLowerInvariant(),caption,
+        NativeLayout.Attach(this,"classic_"+title.Replace(' ','_').ToLowerInvariant(),caption,
             ()=>new Vector2(Mathf.Round((GetViewportRect().Size.X-Size.X)/2),Mathf.Round((GetViewportRect().Size.Y-Size.Y)/2)),legacyResizeGrip:true);
     }
     public static Button Button(string text)

@@ -76,7 +76,7 @@ public partial class ItemSlot : Control
         _emptyIcon.Visible=Current.IsEmpty && EmptyIcon!=null;
         TooltipText=Current.IsEmpty?EmptyHint:"";
         SelfModulate=InputEnabled?Colors.White:new Color(0.45f,0.45f,0.45f);
-        _count.Text = Current.IsEmpty ? "" : LibreKO.Domain.ItemData.CountBadge(LibreKO.Domain.ItemData.Get(Current.ItemId), Current.Count);
+        _count.Text = Current.IsEmpty ? "" : NativeUi.CountBadge(LibreKO.Domain.ItemData.Get(Current.ItemId), Current.Count);
         if (Current.IsEmpty) _badge.Clear(); else _badge.Set(Current.ItemId);
     }
 

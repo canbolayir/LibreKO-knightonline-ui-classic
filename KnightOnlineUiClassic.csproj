@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>KnightOnlineUiClassic</RootNamespace>
+    <LangVersion>14</LangVersion>
     <AssemblyName>KnightOnlineUiClassic</AssemblyName>
     <OutDir>bin/</OutDir>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>

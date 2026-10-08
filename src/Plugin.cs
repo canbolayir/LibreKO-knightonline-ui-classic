@@ -16,14 +16,14 @@ public sealed class Plugin : IPlugin
         ui.ReplaceHud(HudPart.Hotbar, () => new NationHud(() => new HotkeyBar()));
         ui.ReplaceHud(HudPart.Chat, () => new NationHud(() => new ChatWindow()));
         ui.ReplaceHud(HudPart.CombatLog, () => new NationHud(() => new LogWindow()));
-        ui.StyleWhispers(ClassicWhisperSkin.Apply, ClassicWhisperSkin.Line);
+        NativeHud.StyleWhispers(ClassicWhisperSkin.Apply, ClassicWhisperSkin.Line);
         ui.HideHud(HudPart.MiniMap);
         ui.HideHud(HudPart.Launcher);
         ui.HideHud(HudPart.ExpBar);
-        ui.HideHud(HudPart.MailIcon);
-        ui.HideHud(HudPart.AchievementsIcon);
-        ui.HideHud(HudPart.AttendanceIcon);
-        ui.HideHud(HudPart.PowerUpStoreIcon);
+        NativeHud.Hide(NativeHudPart.MailIcon);
+        NativeHud.Hide(NativeHudPart.AchievementsIcon);
+        NativeHud.Hide(NativeHudPart.AttendanceIcon);
+        NativeHud.Hide(NativeHudPart.PowerUpStoreIcon);
         ui.ReplaceWindow("inventory", host => new InventoryWindow(host));
         ui.ReplaceWindow("character_info", host => new CharacterWindow(host));
         ui.ReplaceWindow("skills", host => new SkillWindow(host));
@@ -43,7 +43,7 @@ public sealed class Plugin : IPlugin
         ui.ExtendWindow("rebirth", ClassicRebirthSkin.Extend);
         ui.ExtendWindow("cape", ClassicCapeSkin.Extend);
         ui.ExtendWindow("pet", ClassicPetSkin.Extend);
-        ui.ExtendHud(HudPart.FamiliarBar, ClassicPetBarSkin.Apply);
+        NativeHud.Extend(NativeHudPart.FamiliarBar, ClassicPetBarSkin.Apply);
         ui.ExtendWindow("pethatch", ClassicPetHatchSkin.Extend);
         foreach(var id in ClassicCommunicationSkin.WindowIds)ui.ExtendWindow(id,ClassicCommunicationSkin.Extend);
         foreach(var id in ClassicMailSkin.WindowIds)ui.ExtendWindow(id,ClassicMailSkin.Extend);
