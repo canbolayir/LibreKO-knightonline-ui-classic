@@ -80,13 +80,15 @@ public static class NpcPortraitCache
             FreezePose(model);
             var meshes=Tree(model).OfType<MeshInstance3D>().Where(m=>m.Mesh!=null && !IsEquipment(m,model)).ToArray();
             if(meshes.Length==0) { viewport.QueueFree();return null; }
-            var bounds=meshes.Select(m=>m.GlobalTransform*m.GetAabb()).Aggregate((a,b)=>a.Merge(b));
+            var bounds=meshes.Select(PosedBounds).Aggregate((a,b)=>a.Merge(b));
             float height=bounds.Size.Y;
             if(height<=.001f) { viewport.QueueFree();return null; }
-            bool upright=height>Math.Max(bounds.Size.X,bounds.Size.Z)*.6f;
-            LastTarget=upright?new Vector3(bounds.GetCenter().X,bounds.Position.Y+height*.85f,bounds.GetCenter().Z):bounds.GetCenter();
-            camera.Size=upright?height*.36f:Math.Max(height,bounds.Size.X)*1.15f;
-            LastFraming=upright?"upper body bounds":"whole model bounds";
+            // Unnamed familiar rigs may put ears, wings or weapons above the face. Preserve the existing upright NPC bust fallback.
+            bool uprightNpc=!npc.AppearanceKey.StartsWith("familiar:",StringComparison.Ordinal)
+                && height>Math.Max(bounds.Size.X,bounds.Size.Z)*.6f;
+            LastTarget=uprightNpc?new Vector3(bounds.GetCenter().X,bounds.Position.Y+height*.85f,bounds.GetCenter().Z):bounds.GetCenter();
+            camera.Size=uprightNpc?height*.36f:Math.Max(height,bounds.Size.X)*1.15f;
+            LastFraming=uprightNpc?"upper posed body bounds":"whole posed model bounds";
             if(HeadBounds(model) is {} head && head.End.Y>bounds.Position.Y+height*.35f)
             {
                 float bodyHeight=head.End.Y-bounds.Position.Y;
@@ -123,6 +125,42 @@ public static class NpcPortraitCache
         for(Node? parent=node;parent!=null && parent!=root;parent=parent.GetParent())
             if(parent.Name.ToString().StartsWith("weapon_",StringComparison.Ordinal)) return true;
         return false;
+    }
+    private static Aabb PosedBounds(MeshInstance3D mesh)
+    {
+        if(mesh.Skin==null || mesh.GetNodeOrNull<Skeleton3D>(mesh.Skeleton) is not {} skeleton)
+            return mesh.GlobalTransform*mesh.GetAabb();
+        var skin=mesh.Skin;var transforms=new Transform3D[skin.GetBindCount()];var valid=new bool[skin.GetBindCount()];
+        for(int bind=0;bind<skin.GetBindCount();bind++)
+        {
+            int bone=skin.GetBindBone(bind);
+            if(bone<0) bone=skeleton.FindBone(skin.GetBindName(bind));
+            if(bone<0 || bone>=skeleton.GetBoneCount()) continue;
+            valid[bind]=true;transforms[bind]=skeleton.GlobalTransform*skeleton.GetBoneGlobalPose(bone)*skin.GetBindPose(bind);
+        }
+        Aabb? bounds=null;
+        for(int surface=0;surface<mesh.Mesh!.GetSurfaceCount();surface++)
+        {
+            var arrays=mesh.Mesh.SurfaceGetArrays(surface);
+            if(arrays[(int)Mesh.ArrayType.Bones].VariantType==Variant.Type.Nil || arrays[(int)Mesh.ArrayType.Weights].VariantType==Variant.Type.Nil) continue;
+            var vertices=arrays[(int)Mesh.ArrayType.Vertex].AsVector3Array();
+            var bones=arrays[(int)Mesh.ArrayType.Bones].AsInt32Array();var weights=arrays[(int)Mesh.ArrayType.Weights].AsFloat32Array();
+            if(vertices.Length==0 || bones.Length!=weights.Length || bones.Length%vertices.Length!=0) continue;
+            int stride=bones.Length/vertices.Length;
+            for(int vertex=0;vertex<vertices.Length;vertex++)
+            {
+                var point=Vector3.Zero;float total=0;
+                for(int weight=0;weight<stride;weight++)
+                {
+                    int index=vertex*stride+weight,bind=bones[index];
+                    if(bind<0 || bind>=transforms.Length || !valid[bind] || weights[index]<=0) continue;
+                    point+=(transforms[bind]*vertices[vertex])*weights[index];total+=weights[index];
+                }
+                if(total<=.001f) continue;
+                point/=total;bounds=bounds.HasValue?bounds.Value.Expand(point):new Aabb(point,Vector3.Zero);
+            }
+        }
+        return bounds??mesh.GlobalTransform*mesh.GetAabb();
     }
     private static Aabb? HeadBounds(Node model)
     {

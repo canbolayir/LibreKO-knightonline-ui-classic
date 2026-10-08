@@ -14,6 +14,8 @@ public partial class Preview
     private async Task CaptureNpcIntegration(int nation)
     {
         string output=ProjectSettings.GlobalizePath("res://../../research/npc-design-integration-audit");System.IO.Directory.CreateDirectory(output);
+        if(OS.GetEnvironment("LIBREKO_AUDIT_OUTPUT_DIR") is {Length:>0} configuredOutput) output=configuredOutput;
+        System.IO.Directory.CreateDirectory(output);
         foreach(string path in new[]{"build/client/LibreKO.pck","build/client/source-content/knightonline.pck","build/client/source-content/content/npcs.pck","build/client/source-content/content/weapons.pck"})
             if(!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../"+path),false)) throw new Exception("Missing live audit pack: "+path);
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(1000,700);
@@ -187,6 +189,20 @@ public partial class Preview
         Conversation(13013,"What mission are you going to undertake?",guardTopics,index=>menuChoice=index);await Ready();await Capture("guard-small-viewport");
         var close=Descendants(shell).OfType<Button>().Single(b=>b.Name=="npc_footer_close");close.EmitSignal(BaseButton.SignalName.Pressed);
         if(window.Visible || (bool)DetailField(world,"_npcDialogShown")!) throw new Exception("Native Close fallback failed");
+        if(OS.GetCmdlineUserArgs().Contains("npc-portrait-regression"))
+        {
+            GetWindow().Size=new Vector2I(1000,700);
+            foreach(int npc in new[]{31508,31507,9010,13013,12000,16096,12120,14301,31402,31005,21010,18031,16085,31506,18004})
+            {
+                Conversation(npc,"How can I help you? Select a service below.",["Tell me more...","Close"]);
+                await Ready();
+                if(!shell.Portrait.IsReady || shell.Portrait.PortraitTexture==null) throw new Exception("Missing native NPC portrait: "+npc);
+                using var portraitImage=shell.Portrait.PortraitTexture.GetImage();
+                if(portraitImage.GetUsedRect().Size.X<25 || portraitImage.GetUsedRect().Size.Y<25) throw new Exception("Blank native NPC portrait: "+npc);
+                await Capture("portrait-"+npc);
+            }
+            Close();
+        }
         if(NpcPortraitCache.ActiveRenderers!=0 || NpcPortraitCache.RetainedViewportCount!=0) throw new Exception("Portrait retains rendering resources");
         string binary=ProjectSettings.GlobalizePath("res://.godot/mono/temp/bin/Debug/KnightOnlineUiClassic.dll");
         System.IO.File.WriteAllText(System.IO.Path.Combine(output,prefix+"-verification.json"),JsonSerializer.Serialize(new { nation=prefix,productionComponents=true,
