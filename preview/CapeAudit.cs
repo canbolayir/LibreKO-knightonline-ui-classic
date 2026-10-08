@@ -34,7 +34,7 @@ public partial class Preview
         void Require(bool valid, string text) { if (!valid) throw new Exception("CAPE_AUDIT: " + text); checks.Add(text); }
         bool Busy() => (bool)DetailField(world, "_capeRequestInFlight")!;
         bool NetBusy() => (bool)typeof(Net).GetField("_capePending", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net)!;
-        Notice? Confirmation() => (Notice?)DetailField(world, "_capeNotice");
+        Notice? Confirmation() => NativeCape.Confirmation(world);
         async Task KeyInput(Key key)
         {
             GetViewport().PushInput(new InputEventKey { Keycode = key, PhysicalKeycode = key, Pressed = true }); await Frames(1);
@@ -97,9 +97,9 @@ public partial class Preview
             Reply(1); Reply(-7, trailing: true); Reply(1, success: true, clan: 99); Require(Busy() && NetBusy(), "Truncated, trailing and foreign-clan responses do not finish purchase");
             Reply(-7); await Capture("refused"); Require(!Busy() && !NetBusy() && !Find<Button>("cape_buy").Disabled, "Server refusal unlocks the same draft for retry");
             if (!Find<Button>("cape_colour_next").Disabled)
-            { await Click(Find<Button>("cape_colour_next")); await Capture("colour-page-two"); Require((int)DetailField(world, "_capeColourPage")! == 1, "Colour next arrow opens next six choices"); await Click(Find<Button>("cape_colour_previous")); }
+            { await Click(Find<Button>("cape_colour_next")); await Capture("colour-page-two"); Require(NativeCape.ColourPage(world) == 1, "Colour next arrow opens next six choices"); await Click(Find<Button>("cape_colour_previous")); }
             if (!Find<Button>("cape_pattern_next").Disabled)
-            { await Click(Find<Button>("cape_pattern_next")); await Capture("pattern-page-two"); Require((int)DetailField(world, "_capePatternPage")! == 1, "Pattern next arrow opens next four choices"); await Click(Find<Button>("cape_pattern_0")); await Capture("new-pattern"); Require((int)DetailField(world, "_capeChoice")! == -1, "Changing pattern clears stale purchase selection"); Require(worldBody.GetNodeOrNull<Cape>("Cape") == null, "Clearing selection restores no-cape world state immediately"); }
+            { await Click(Find<Button>("cape_pattern_next")); await Capture("pattern-page-two"); Require(NativeCape.PatternPage(world) == 1, "Pattern next arrow opens next four choices"); await Click(Find<Button>("cape_pattern_0")); await Capture("new-pattern"); Require((int)DetailField(world, "_capeChoice")! == -1, "Changing pattern clears stale purchase selection"); Require(worldBody.GetNodeOrNull<Cape>("Cape") == null, "Clearing selection restores no-cape world state immediately"); }
             DetailCall(world, "ShowCapePattern", 0); await Click(Find<Button>("cape_colour_0"));
             Find<HSlider>("cape_dye_R").Value = 144; Find<HSlider>("cape_dye_G").Value = 85; Find<HSlider>("cape_dye_B").Value = 42;
             await Capture("custom-dye"); Require(Find<Label>("cape_price").Text.Contains("36.000") || Find<Label>("cape_price").Text.Contains("36,000"), "Dye fee shown separately from cape price");

@@ -48,7 +48,7 @@ public partial class Preview
             DetailCall(world,"RefreshInventoryUI");
             typeof(PluginGame).GetMethod("RaiseInventory",BindingFlags.Instance|BindingFlags.NonPublic)!.Invoke(game,null);
         }
-        var vendor=(HudWindow)DetailField(world,"_vendorPanel")!;
+        var vendor=(HudWindow)DetailField(world,"_vendorPanel")!;NativeVendor.Prepare(vendor,world);
         var sourceActions=Descendants(vendor.Body).OfType<BaseButton>().Select(b=>b.GetInstanceId()).ToArray();
         bool nativeReference=OS.GetCmdlineUserArgs().Contains("vendor-native-reference");
         var shell=nativeReference?null:ClassicVendorSkin.Apply(vendor.Body)!;
@@ -102,7 +102,7 @@ public partial class Preview
         void ApplyGold(int total)
         {
             int before=game.Log.History.Count;
-            DetailCall(world,"OnGoldChange",total);
+            NativeGoldLog.Changed(world,total);DetailCall(world,"OnGoldChange",total);
             foreach(var line in game.Log.History.Skip(before))
                 typeof(PluginGame).GetMethod("RaiseLogLine",BindingFlags.Instance|BindingFlags.NonPublic)!.Invoke(game,new object[]{line});
             DetailCall(world,"OnVendorGold",total);
@@ -258,7 +258,7 @@ public partial class Preview
         Require(!quantity.Visible && shell.ModalOpen && !InFlight() && inventory[Inventory.GridStart].Count==63,"Quantity Enter opens a separate final buy approval without sending or consuming the same key press");
         Require(Approval().PanelBounds.GetCenter().DistanceTo(vendor.GetGlobalRect().GetCenter())<1,"Final approval is centered on the current shop position");
         VerifyApproval(true,entry.Id,10,(long)ItemData.BuyPrice(entry.Id)*10);
-        DetailCall(world,"MoveBetween",Inventory.GridStart,Inventory.GridStart+2);
+        shell.BagCells[0].OnDrop!(Inventory.GridStart,Inventory.GridStart+2);
         Require(!(bool)DetailField(world,"_moveInFlight")!,"Native inventory movement is locked while final approval is pending");
         Escape();await Frames();
         Require(!shell.ModalOpen && !InFlight() && inventory[Inventory.GridStart].Count==63,"Cancelling buy approval leaves the stack and wallet unchanged");
@@ -282,7 +282,7 @@ public partial class Preview
         Require(!target._CanDropData(Vector2.Zero,new Godot.Collections.Dictionary{{"invFrom",Inventory.GridStart},{"id",entry.Id}}),"Pending purchase rejects inventory movement");
         int pendingPage=pager.Page;shell.Page(1);Escape();await Frames();
         Require(pager.Page==pendingPage && vendor.Visible && InFlight(),"Pending trade rejects paging and Escape without losing its acknowledgement");
-        DetailCall(world,"MoveBetween",Inventory.GridStart,Inventory.GridStart+2);
+        shell.BagCells[0].OnDrop!(Inventory.GridStart,Inventory.GridStart+2);
         Require(!(bool)DetailField(world,"_moveInFlight")!,"Native inventory handler also refuses a move during purchase acknowledgement");
         int buyCost=ItemData.BuyPrice(entry.Id)*10;ApplyGold(net.Sheet.Gold-buyCost);
         DetailCall(world,"OnTradeResult",true,1,net.Sheet.Gold,buyCost);RefreshBag();
@@ -370,15 +370,15 @@ public partial class Preview
             && Descendants(classicInventory).OfType<ClassicSlot>().Any(c=>c.Current.ItemId==entry.Id && c.Current.Count==1),
             "The same one-unit stack displays 1 in the separate Classic inventory");
         var nativeInv=(System.Collections.IList)DetailField(world,"_invBagCells")!;
-        Require(CountBadge(nativeInv[1]!)=="1","The native inventory also displays a one-unit stack badge");
+        NativeCountBadge.Apply((Control)nativeInv[1]!);Require(CountBadge(nativeInv[1]!)=="1","The native inventory also displays a one-unit stack badge");
         foreach(string typeName in new[]{"WarehouseCell","MerchantCell"})
         {
             var type=typeof(World).GetNestedType(typeName,BindingFlags.NonPublic)!;
             var cell=(Control)Activator.CreateInstance(type,0,typeName=="WarehouseCell"?(object)false:45)!;
             var set=type.GetMethod("Set",typeName=="WarehouseCell"?new[]{typeof(NativeSlot)}:new[]{typeof(NativeSlot),typeof(string)})!;
-            set.Invoke(cell,typeName=="WarehouseCell"?new object[]{inventory[Inventory.GridStart+1]}:new object[]{inventory[Inventory.GridStart+1],""});
+            set.Invoke(cell,typeName=="WarehouseCell"?new object[]{inventory[Inventory.GridStart+1]}:new object[]{inventory[Inventory.GridStart+1],""});NativeCountBadge.Apply(cell);
             Require(CountBadge(cell)=="1",typeName+": one-unit stack badge remains visible");
-            set.Invoke(cell,typeName=="WarehouseCell"?new object[]{new NativeSlot{ItemId=gear,Count=1}}:new object[]{new NativeSlot{ItemId=gear,Count=1},""});
+            set.Invoke(cell,typeName=="WarehouseCell"?new object[]{new NativeSlot{ItemId=gear,Count=1}}:new object[]{new NativeSlot{ItemId=gear,Count=1},""});NativeCountBadge.Apply(cell);
             Require(CountBadge(cell)=="",typeName+": single non-stackable equipment has no quantity badge");cell.Free();
         }
         var badgeFixture=new ItemSlotView(45);badgeFixture.Set(new NativeSlot{ItemId=gear,Count=1});

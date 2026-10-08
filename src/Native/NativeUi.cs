@@ -36,10 +36,18 @@ public static class NativeUi
 
     extension(MoneyEdit edit)
     {
+        /// <summary>
+        /// Whether the edit shows thousands separators. The client always groups digits; when this is
+        /// false the plugin strips the separators again after every edit and value change.
+        /// </summary>
         public bool GroupDigits
         {
             get => _money.GetOrCreateValue(edit).GroupDigits;
-            set => _money.GetOrCreateValue(edit).GroupDigits = value;
+            set
+            {
+                _money.GetOrCreateValue(edit).GroupDigits = value;
+                if (!value) PlainDigits.Attach(edit);
+            }
         }
     }
 
@@ -48,3 +56,4 @@ public static class NativeUi
         public void Confirm() => Native.Call(prompt, "Confirm");
     }
 }
+

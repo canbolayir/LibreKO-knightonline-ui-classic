@@ -137,44 +137,45 @@ public partial class ClientGame : INativeGame
 {
     private static PluginGame Game => Plugin.Kit.Game;
 
-    public virtual IGameCharacterPanel? CharacterPanel => null;
-    public virtual GameNpcPortrait? NpcPortrait => null;
-    public virtual int NotificationCount(string id) => 0;
+    public virtual IGameCharacterPanel? CharacterPanel => CharacterPanelSource;
+    public virtual GameNpcPortrait? NpcPortrait => NpcPortraitSource;
+    public virtual int NotificationCount(string id) => NativeHudChat.NotificationCount(id);
 
     public event Action<int, string>? ItemLinkRequested;
     public event Action<string>? ChannelRequested;
     protected void RaiseItemLink(int id, string name) => ItemLinkRequested?.Invoke(id, name);
     protected void RaiseChannel(string prefix) => ChannelRequested?.Invoke(prefix);
 
-    public virtual IReadOnlyList<string> ReadHistory(int mask, bool timestamps, string colors) => Game.Chat.History;
-    public virtual bool LinkInventoryItem(int slot) => false;
-    public virtual void ShowLinkTooltip(int itemId) { }
-    public virtual void HideLinkTooltip() { }
-    public virtual void PlayerMenu(string name, Vector2 at) { }
-    public virtual IReadOnlyList<NearbyRow> NearbyPlayers() => Array.Empty<NearbyRow>();
+    public virtual IReadOnlyList<string> ReadHistory(int mask, bool timestamps, string colors) => NativeChat.ReadHistory(mask, timestamps, colors);
 
-    public virtual int SelectedAbs => -1;
-    public virtual void Select(int abs) { }
-
-    public virtual bool Running => true;
-    public virtual bool Sitting => false;
-    public virtual bool AutoAttacking => false;
-    public virtual void ToggleRun() { }
-    public virtual void ToggleAttack() { }
-    public virtual void TurnCamera() { }
-    public virtual void OpenGameMenu() { }
-
-    public virtual bool MiniMapVisible => true;
-
-    public virtual void MoveAmount(int from, int to, int count) => Game.Inventory.Move(from, to);
-
-    public virtual int TransferToInventorySlot(int from)
+    public virtual bool LinkInventoryItem(int slot)
     {
-        var inventory = Game.Inventory;
-        for (int slot = inventory.GridStart; slot < inventory.GridStart + inventory.GridCount; slot++)
-            if (inventory.At(slot).IsEmpty) return slot;
-        return -1;
+        if (NativeChat.LinkInventoryItem(slot) is not { } link) return false;
+        RaiseItemLink(link.Id, link.Name);
+        return true;
     }
 
-    public virtual void ConfirmDrop(int slot, int itemId) => Game.Inventory.Drop(slot);
+    public virtual void ShowLinkTooltip(int itemId) => NativeChat.ShowLinkTooltip(itemId);
+    public virtual void HideLinkTooltip() => NativeChat.HideLinkTooltip();
+    public virtual void PlayerMenu(string name, Vector2 at) => NativeChat.PlayerMenu(name, at);
+    public virtual IReadOnlyList<NearbyRow> NearbyPlayers() => NativeChat.NearbyPlayers();
+
+    public virtual int SelectedAbs => NativeHudChat.SelectedAbs;
+    public virtual void Select(int abs) => NativeHudChat.Select(abs);
+
+    public virtual bool Running => NativeHudChat.Running;
+    public virtual bool Sitting => NativeHudChat.Sitting;
+    public virtual bool AutoAttacking => NativeHudChat.AutoAttacking;
+    public virtual void ToggleRun() => NativeHudChat.ToggleRun();
+    public virtual void ToggleAttack() => NativeHudChat.ToggleAttack();
+    public virtual void TurnCamera() => NativeHudChat.TurnCamera();
+    public virtual void OpenGameMenu() => NativeHudChat.OpenGameMenu();
+
+    public virtual bool MiniMapVisible => NativeHudChat.MiniMapVisible;
+
+    public virtual void MoveAmount(int from, int to, int count) => NativeInventory.MoveAmount(from, to, count);
+
+    public virtual int TransferToInventorySlot(int from) => NativeInventory.TransferToInventorySlot(from);
+
+    public virtual void ConfirmDrop(int slot, int itemId) => NativeInventory.ConfirmDrop(slot, itemId);
 }

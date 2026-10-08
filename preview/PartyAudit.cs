@@ -17,7 +17,7 @@ public partial class Preview
         AddChild(new ColorRect {Color=new Color("35382f"),Size=new Vector2(620,600),MouseFilter=MouseFilterEnum.Ignore});
         var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
         var world=new World();
-        void Call(string method,params object[] args)=>typeof(World).GetMethod(method,BindingFlags.NonPublic|BindingFlags.Instance)!.Invoke(world,args);
+        void Call(string method,params object[] args)=>DetailCall(world,method,args);
         T Field<T>(string name)=>(T)typeof(World).GetField(name,BindingFlags.NonPublic|BindingFlags.Instance)!.GetValue(world)!;
         Call("BuildPartyPanel");
         Field<CanvasLayer>("_partyLayer").Reparent(this);
@@ -27,6 +27,7 @@ public partial class Preview
         Call("BuildSeekPartyPanel");Field<CanvasLayer>("_seekLayer").Reparent(this);
         var board=Field<Control>("_seekPanel");board.Position=new Vector2(222,30);board.Visible=true;
         typeof(World).GetField("_seekShown",BindingFlags.NonPublic|BindingFlags.Instance)!.SetValue(world,true);
+        NativeCharacterNpc.Prepare(roster,world); NativeCharacterNpc.Prepare((HudWindow)board,world);
         ClassicPartySkin.Apply(roster.Body); ClassicPartySkin.Apply(((HudWindow)board).Body);
         await Settled();
         var partyPanel=roster.GetNode<ClassicPartyRoster>("classic_party_roster");

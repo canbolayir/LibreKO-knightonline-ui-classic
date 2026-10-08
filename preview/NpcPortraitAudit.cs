@@ -31,7 +31,7 @@ public partial class Preview
         void Field(string name,object value) => actorType.GetField(name,BindingFlags.Instance|BindingFlags.Public)!.SetValue(actor,value);
         void Target(string name,int value) => typeof(World).GetField(name,BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(model,value);
         ((IDictionary)DetailField(model,"_ents")!).Add(701,actor);
-        var native=(IGameWindows)Activator.CreateInstance(typeof(World).GetNestedType("PluginGameBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{model},null)!;
+        var native=new NpcPortraitProbe(model);
         var seedPath=ProjectSettings.GlobalizePath("res://../../LibreKO/Server/LibreKO.Game/Seed/Data/Npcs.json");
         using var seed=JsonDocument.Parse(System.IO.File.ReadAllText(seedPath));
         var prototypes=seed.RootElement.EnumerateArray().GroupBy(p=>p.GetProperty("Id").GetInt32()).ToDictionary(g=>g.Key,g=>g.Last());

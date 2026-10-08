@@ -143,7 +143,7 @@ public partial class Preview
             "Retry completes once and the refused cast timer cannot complete or consume the newer cast");
         connection.Close(); cooldowns.Clear(); DetailCall(world, "RefreshPetUI");
         DetailCall(world, "UsePetSkill", instant.Id);
-        require(cooldowns.Count == 0 && !net.TrySendPetSkill(PetSkills.StageEffecting, instant.Id, 1, 2, 0, 0, 0), "Disconnected familiar requests cannot leave an artificial cooldown");
+        require(cooldowns.Count == 0 && !net.SendPetSkill(PetSkills.StageEffecting, instant.Id, 1, 2, 0, 0, 0), "Disconnected familiar requests cannot leave an artificial cooldown");
         sheet.Level = oldLevel; sheet.Mp = oldMp; sheet.MaxMp = oldMaxMp; SetField("_selfDead", false);
         if (Find<Label>("pet_skill_page").Text == "2/2") await Click(Find<Button>("pet_skill_previous"));
         DetailCall(world, "RefreshPetUI");

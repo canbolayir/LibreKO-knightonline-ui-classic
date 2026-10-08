@@ -37,13 +37,16 @@ public partial class Preview
         var bridge = Activator.CreateInstance(typeof(World).GetNestedType("PluginGameBridge", BindingFlags.NonPublic)!, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new object[] { world }, null)!;
         var attach = typeof(PluginGame).GetMethod("Attach", BindingFlags.Instance | BindingFlags.NonPublic)!;
         attach.Invoke(game, Enumerable.Repeat(bridge, attach.GetParameters().Length).ToArray());
-        foreach (string field in new[] { "_whLayer", "_vipWhLayer", "_clanWhLayer", "_itemTipLayer", "_whAmount", "_vipWhAmount", "_clanWhAmount", "_vipWhPinDlg" })
+        foreach (string field in new[] { "_whLayer", "_vipWhLayer", "_clanWhLayer", "_itemTipLayer", "_whAmount" })
             ((Node)DetailField(world, field)!).Reparent(this);
         var windows = new[] { "_whPanel", "_vipWhPanel", "_clanWhPanel" }.Select(f => (HudWindow)DetailField(world, f)!).ToArray();
+        var storages = windows.Select(w => NativeStorage.Prepare(w, world)!).ToArray();
+        foreach (Node node in new Node[] { storages[1].Amount!, storages[2].Amount!, storages[1].PinPrompt! }) node.Reparent(this);
         var panels = windows.Select(w => ClassicStorageSkin.Apply(w.Body)!).ToArray();
-        var pin = (VipVaultPinPrompt)DetailField(world, "_vipWhPinDlg")!; ClassicStoragePin.Apply(pin.Window.Body);
+        var pin = storages[1].PinPrompt!; ClassicStoragePin.Apply(pin.Window.Body);
         var checks = new List<string>(); var screens = new List<object>();
         void Require(bool valid, string message) { if (!valid) throw new Exception("STORAGE_AUDIT: " + message); checks.Add(message); }
+        void RaiseResult(string evt, byte op, bool ok) => ((Action<byte, bool>?)typeof(Net).GetField(evt, BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net))?.Invoke(op, ok);
         void Set(string field, object value) => typeof(World).GetField(field, BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, value);
         async Task Frames(int n = 8) { for (int i = 0; i < n; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         async Task Capture(int index, string name)
@@ -99,16 +102,16 @@ public partial class Preview
         Require(inventory[Inventory.GridStart + 2].Count == 1, "A refused single-unit transfer preserves the source");
         ((StatusLabel)DetailField(world, "_whStatus")!).ResetStatus();
         Require(Descendants(panels[0]).OfType<ItemSlotView>().Count(c => c.Name.ToString().StartsWith("storage_cell_") && c.IsVisibleInTree()) == 24, "Classic storage has 24 slots per page");
-        for (int i = 0; i < 9; i++) DetailCall(world, "TurnWhPage", 1);
-        Require((int)DetailField(world, "_whPage")! == 7, "Last of eight pages is reachable and clamps at the end");
+        for (int i = 0; i < 9; i++) storages[0].TurnPage(1);
+        Require(storages[0].Page == 7, "Last of eight pages is reachable and clamps at the end");
         await Capture(0, "warehouse-last-page");
-        DetailCall(world, "TurnWhPage", -7);
+        storages[0].TurnPage(-7);
         var normalNext = Descendants(panels[0]).OfType<Button>().Single(c => c.Name == "storage_next");
         var normalPrev = Descendants(panels[0]).OfType<Button>().Single(c => c.Name == "storage_prev");
         normalNext.EmitSignal(Button.SignalName.Pressed);
-        Require((int)DetailField(world, "_whPage")! == 1, "Next page button changes the visible storage page");
+        Require(storages[0].Page == 1, "Next page button changes the visible storage page");
         await Capture(0, "warehouse-pagination"); normalPrev.EmitSignal(Button.SignalName.Pressed);
-        Require((int)DetailField(world, "_whPage")! == 0, "Previous page button restores the first page");
+        Require(storages[0].Page == 0, "Previous page button restores the first page");
         var qty = (QuantityPrompt)DetailField(world, "_whAmount")!;
         RightClick(normalBag[Inventory.GridStart]);
         Require(qty.Visible && Descendants(qty).OfType<MoneyEdit>().Single().Value == 100, "Normal storage asks quantity with the full carried stack");
@@ -138,28 +141,28 @@ public partial class Preview
         var vipCells = Descendants(panels[1]).OfType<ItemSlotView>().Where(c => c.Name.ToString().StartsWith("storage_cell_")).ToDictionary(c => c.Index);
         Variant vipDrag = vipCells[0].DragOut!(vipCells[0]);
         Require(vipCells[5]._CanDropData(Vector2.Zero, vipDrag), "VIP accepts a same-page move into an empty slot");
-        vipCells[5]._DropData(Vector2.Zero, vipDrag); DetailCall(world, "OnVipWarehouseResult", (byte)4, true);
+        vipCells[5]._DropData(Vector2.Zero, vipDrag); RaiseResult("VipWarehouseResultEvent", 4, true);
         Require(vip[0].IsEmpty && vip[5].ItemId == weapon, "VIP rearrangement commits only after acknowledgement");
         await Capture(1, "vip-rearranged");
         RightClick(Descendants(panels[1]).OfType<ItemSlotView>().Single(c => c.Name == "storage_bag_0"));
-        var vipAmount = (QuantityPrompt)DetailField(world, "_vipWhAmount")!;
+        var vipAmount = storages[1].Amount!;
         Require(vipAmount.Visible && Descendants(vipAmount).OfType<MoneyEdit>().Single().Value == 74, "VIP storage asks quantity rather than moving the entire stack");
         await Capture(1, "vip-quantity"); Descendants(vipAmount).OfType<MoneyEdit>().Single().Value = 10; vipAmount.Confirm(); DetailCall(world, "OnVipWarehouseResult", (byte)2, true);
         Require(inventory[Inventory.GridStart].Count == 64 && vip[1].Count == 75, "VIP partial deposit preserves the remainder and merges");
-        DetailCall(world, "ChangeVipWhPage", 3); DetailCall(world, "ChangeVipWhPage", 1);
-        Require((int)DetailField(world, "_vipWhPage")! == 3, "Classic VIP wheel navigation clamps at the last page"); await Capture(1, "vip-last-page"); DetailCall(world, "ChangeVipWhPage", -3);
+        storages[1].TurnPage(3); storages[1].TurnPage(1);
+        Require((int)DetailField(world, "_vipWhPage")! == 3, "Classic VIP wheel navigation clamps at the last page"); await Capture(1, "vip-last-page"); storages[1].TurnPage(-3);
         DetailCall(world, "ShowVipPinDialog", Net.VipWhSetPinSub, "Choose a new 4-digit PIN:"); await Capture(1, "vip-pin");
-        pin.Input.Text = "12ab"; DetailCall(world, "SubmitVipPin");
+        pin.Input.Text = "12ab"; pin.ConfirmButton.EmitSignal(Button.SignalName.Pressed);
         Require(pin.Visible && pin.Message.Text.Contains("exactly 4 digits"), "PIN rejects non-digits without sending"); await Capture(1, "vip-invalid-pin"); pin.Hide();
         var clan = (NativeSlot[])DetailField(world, "_clanWh")!; clan[0] = warehouse[0]; clan[1] = warehouse[1]; clan[191] = warehouse[2];
         Set("_vipWhShown", false); Set("_clanWhShown", true); Set("_clanWhLoaded", true); Set("_clanWhMoney", 9_000_000);
         typeof(Net).GetProperty("MyClan")!.SetValue(net, new MyClanInfo { InClan = true, Fame = ClanRanks.Trainee });
         DetailCall(world, "RefreshClanWarehouse"); await Capture(2, "clan-member");
-        DetailCall(world, "ClanWhWithdrawSlot", 1); Require(!((QuantityPrompt)DetailField(world, "_clanWhAmount")!).Visible && !(bool)DetailField(world, "_clanWhInFlight")!, "Clan members cannot initiate withdrawal");
+        DetailCall(world, "ClanWhWithdrawSlot", 1); Require(!storages[2].Amount!.Visible && !(bool)DetailField(world, "_clanWhInFlight")!, "Clan members cannot initiate withdrawal");
         await Capture(2, "clan-member-refused");
         typeof(Net).GetProperty("MyClan")!.SetValue(net, new MyClanInfo { InClan = true, Fame = ClanRanks.Chief });
         RightClick(Descendants(panels[2]).OfType<ItemSlotView>().Single(c => c.Name == "storage_cell_1"));
-        var clanAmount = (QuantityPrompt)DetailField(world, "_clanWhAmount")!;
+        var clanAmount = storages[2].Amount!;
         Require(clanAmount.Visible, "Clan officers can select a withdrawal quantity"); await Capture(2, "clan-quantity");
         Descendants(clanAmount).OfType<MoneyEdit>().Single().Value = 5; clanAmount.Confirm(); DetailCall(world, "OnClanWhResult", (byte)3, true);
         Require(inventory[Inventory.GridStart].Count == 69 && clan[1].Count == 60, "Clan partial withdrawal merges into the carried stack");
@@ -167,10 +170,10 @@ public partial class Preview
         var clanCells = Descendants(panels[2]).OfType<ItemSlotView>().Where(c => c.Name.ToString().StartsWith("storage_cell_")).ToDictionary(c => c.Index);
         Variant clanDrag = clanCells[0].DragOut!(clanCells[0]);
         Require(clanCells[5]._CanDropData(Vector2.Zero, clanDrag), "Clan officers may rearrange the current page");
-        clanCells[5]._DropData(Vector2.Zero, clanDrag); DetailCall(world, "OnClanWhResult", (byte)4, true);
+        clanCells[5]._DropData(Vector2.Zero, clanDrag); RaiseResult("ClanWhResultEvent", 4, true);
         Require(clan[0].IsEmpty && clan[5].ItemId == weapon, "Clan rearrangement preserves the item");
         await Capture(2, "clan-rearranged");
-        DetailCall(world, "ChangeClanWhPage", 7); DetailCall(world, "ChangeClanWhPage", 1);
+        storages[2].TurnPage(7); storages[2].TurnPage(1);
         Require((int)DetailField(world, "_clanWhPage")! == 7, "Classic clan wheel navigation clamps at the last page"); await Capture(2, "clan-last-page");
         var carriedCells = Descendants(panels[2]).OfType<ItemSlotView>().Where(c => c.Name.ToString().StartsWith("storage_bag_")).ToDictionary(c => c.Index);
         Variant carriedDrag = new Godot.Collections.Dictionary { { "invFrom", Inventory.GridStart + 1 } };

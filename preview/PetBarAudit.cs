@@ -16,7 +16,6 @@ public partial class Preview
     private async Task AuditPetBar(World world, Net net, int nation, string output, Action<bool, string> require)
     {
         typeof(World).GetField("_selfDead", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, false);
-        PluginHost.Ui.ExtendHud(HudPart.FamiliarBar, ClassicPetBarSkin.Apply);
         var layer = (CanvasLayer)DetailCall(world, "BuildPetBarClassicUiPreview")!; AddChild(layer);
         var bar = layer.GetChildren().OfType<PanelContainer>().Single();
         var flags = BindingFlags.Instance | BindingFlags.NonPublic;

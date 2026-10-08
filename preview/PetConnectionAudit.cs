@@ -57,12 +57,12 @@ public partial class Preview
             Require(Field<bool>(world, "_moveInFlight") && Pending("_pendingItemMove") != null,
                 "Actual familiar drop creates matching World and Net pending operations");
             DetailCall(world, "Enqueue", ItemMove.InventoryToInventory, item, (byte)1, (byte)2,
-                Inventory.GridStart + 1, Inventory.GridStart + 2, 0);
+                Inventory.GridStart + 1, Inventory.GridStart + 2, (ushort)0);
             Require(Field<System.Collections.ICollection>(world, "_moveQueue").Count == 1, "A queued follow-up waits behind the familiar move");
             net.SendItemRemove(0, 0, item);
             Require(net.SendPetHatch(13016, 600001000, 4, "Kauly"), "Connected incubation can wait beside an inventory move");
         }
-        void CheckReset(string state)
+        void CheckReset(string state, bool acknowledged = false)
         {
             Require(net.Pet == null && net.PetItems.Count == 0 && Pending("_petIncubationRequest") == null,
                 "Session reset discards familiar and incubation state / " + state);
@@ -70,8 +70,12 @@ public partial class Preview
                 "Session reset discards pending move and destruction records / " + state);
             Require(!Field<bool>(world, "_moveInFlight") && Field<System.Collections.ICollection>(world, "_moveQueue").Count == 0,
                 "Session reset releases the actual World inventory queue / " + state);
-            Require(inventory[Inventory.GridStart].Equals(record) && net.LastEnter.Inventory[Inventory.GridStart].Equals(record),
-                "Session reset preserves exact unacknowledged item records / " + state);
+            if (acknowledged)
+                Require(inventory[Inventory.GridStart].IsEmpty && net.LastEnter.Inventory[Inventory.GridStart].IsEmpty,
+                    "Session reset keeps the familiar move acknowledged before the connection loss / " + state);
+            else
+                Require(inventory[Inventory.GridStart].Equals(record) && net.LastEnter.Inventory[Inventory.GridStart].Equals(record),
+                    "Session reset preserves exact unacknowledged item records / " + state);
         }
         async Task Capture(string state)
         {
@@ -138,8 +142,9 @@ public partial class Preview
                 net.AutoReconnect = false; replacement.Close();
                 for (int i = 0; i < 120 && net.Connected; i++) await Frames(1);
                 Require(!net.Connected, "Peer shutdown reaches the native connection-loss path");
-                net._Process(0); CheckReset("peer-shutdown");
-                Require(connection.Incoming.IsEmpty, "Peer shutdown discards replies decoded before the connection-loss tick");
+                // The client dispatches frames that arrived before the loss, then resets the session.
+                net._Process(0); CheckReset("peer-shutdown", acknowledged: true);
+                Require(connection.Incoming.IsEmpty, "Peer shutdown dispatches replies decoded before the connection-loss tick");
                 await Capture("peer-shutdown");
             }
             using (var peer = await Connect(true))

@@ -110,7 +110,6 @@ public partial class Preview
                 var goals=(VBoxContainer)DetailField(model,"_questObjectiveBox")!;
                 goals.AddChild((Control)DetailCall(model,"QuestValueRow","Worm","7 / 10",new Color("fff080"))!);
                 goals.AddChild((Control)DetailCall(model,"QuestValueRow","Bandicoot","5 / 5",new Color("8ff099"))!);
-                var rewards=(VBoxContainer)DetailField(model,"_questRewardBox")!;
                 var list=(VBoxContainer)DetailField(model,"_questListBox")!;
                 foreach(var child in list.GetChildren()) child.QueueFree();
                 int questId=500;
@@ -129,8 +128,7 @@ public partial class Preview
                 ((Control)DetailField(model,"_questDetailBody")!).Visible=false;
                 ((Control)DetailField(model,"_questDetailEmpty")!).Visible=true;
                 ((Dictionary<string,HudWindow>)DetailField(model,"_mainWindows")!)["Quests"]=panel;
-                var selectedPageField=typeof(World).GetField("_selectedCharacterPage",BindingFlags.Instance|BindingFlags.NonPublic)!;
-                selectedPageField.SetValue(model,Enum.Parse(selectedPageField.FieldType,"Quest"));
+                CharacterPanelBridge.For(model).SelectPage("quest");
                 panel.Visible=false;
             }
             else if(id=="character_clan_details")
@@ -217,10 +215,11 @@ public partial class Preview
             }
             int beforeButtons=originalActions.Count;
             AddChild(panel);await ToSignal(GetTree().CreateTimer(.1),SceneTreeTimer.SignalName.Timeout);
+            NativeCharacterNpc.Prepare(panel,model);
             var composed=CharacterDetailsSkin.Apply(body)!;
             if(id=="quests")
             {
-                var nativePanel=(IGameCharacterPanel)Activator.CreateInstance(typeof(World).GetNestedType("CharacterPanelBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{model},null)!;
+                var nativePanel=CharacterPanelBridge.For(model);
                 _windowData!.LiveCharacterPanel=nativePanel;
                 var connField=typeof(Net).GetField("_conn",BindingFlags.Instance|BindingFlags.NonPublic)!;
                 var connection=connField.GetValue(offline);
@@ -280,14 +279,14 @@ public partial class Preview
             GD.Print("DETAIL_CAPTURE "+prefix+"-"+id);
             if(id=="quests")
             {
-                var nativePanel=(IGameCharacterPanel)Activator.CreateInstance(typeof(World).GetNestedType("CharacterPanelBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{model},null)!;
+                var nativePanel=CharacterPanelBridge.For(model);
                 foreach(int selectedQuest in new[]{502,503,500})
                 {
                     nativePanel.Act("quest_details",selectedQuest.ToString());
                     await ToSignal(GetTree().CreateTimer(.3),SceneTreeTimer.SignalName.Timeout);
                     var expected=selectedQuest==502?new[]{(900001000,850)}:selectedQuest==503?new[]{(900001000,1000),(810418000,2),(900000000,3500)}:Array.Empty<(int,int)>();
                     CheckRewardRows(model,expected);
-                    if(selectedQuest==503 && !Descendants((Node)DetailField(model,"_questRewardBox")!).OfType<Label>().Any(l=>l.Text=="Reward options")) throw new Exception("Reward choices appear as guaranteed payouts");
+                    if(selectedQuest==503 && !Descendants(QuestRewardRows(model)).OfType<Label>().Any(l=>l.Text=="Reward options")) throw new Exception("Reward choices appear as guaranteed payouts");
                     foreach(var icon in Descendants(composed).OfType<TextureRect>())
                         if(icon.IsVisibleInTree() && (icon.Size.X<32 || icon.Size.Y<32)) throw new Exception("A rendered quest reward icon collapsed");
                     await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
@@ -305,10 +304,10 @@ public partial class Preview
                 choice.EmitSignal(Control.SignalName.GuiInput,new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=true });
                 await ToSignal(GetTree().CreateTimer(.2),SceneTreeTimer.SignalName.Timeout);
                 if(confirm.Disabled || (int)DetailField(model,"_questRewardChoice")! !=0) throw new Exception("Native reward selection callback was lost");
-                var picked=(Dictionary<int,QuestTransfer>)DetailField(model,"_pendingQuestRewards")!;
-                if(!picked.TryGetValue(62,out var reward) || reward != new QuestTransfer(false,1,0,10000,0)) throw new Exception("Reward choice was not retained for its quest");
+                var picked=QuestRewardChoices(model);
+                if(!picked.Chosen(62,out var reward) || reward != new QuestTransfer(false,1,0,10000,0)) throw new Exception("Reward choice was not retained for its quest");
                 DetailCall(model,"OnQuestView",new QuestView(99,1,21,false,false,false,false,QuestViewState.InProgress,0,"Unrelated quest","","",new QuestObjectives(99,false,[]),[],[],[]));
-                if((int)DetailField(model,"_questRewardChoice")! !=0 || picked[62]!=reward) throw new Exception("Unrelated quest refresh erased the reward choice");
+                if((int)DetailField(model,"_questRewardChoice")! !=0 || !picked.Chosen(62,out var kept) || kept!=reward) throw new Exception("Unrelated quest refresh erased the reward choice");
                 GD.Print("QUEST_PENDING_CHOICE_OK");
                 await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 GetViewport().GetTexture().GetImage().SavePng(System.IO.Path.Combine(output,prefix+"-npc-reward-selected.png"));
@@ -481,27 +480,29 @@ public partial class Preview
         if(rail.Bar.Value<=0) throw new Exception("Quest track paging failed");
         rail.Bar.Value=rail.Bar.MaxValue-rail.Bar.Page;
         await Capture("quests-kecoon-bottom");
-        var last=Descendants((Node)DetailField(model,"_questRewardBox")!).OfType<Control>().Last(c=>c.HasMeta("quest_reward_item_id"));
+        var last=Descendants(QuestRewardRows(model)).OfType<Control>().Last(c=>c.HasMeta("quest_reward_item_id"));
         if(!page.ContentScroll.GetGlobalRect().Encloses(last.GetGlobalRect())) throw new Exception("Last reward cannot be fully scrolled into view");
         GD.Print("QUEST_SCROLL_BOUNDS_OK: native range, arrows, wheel, track paging, last option, fixed actions");
-        var pending=(Dictionary<int,QuestTransfer>)DetailField(model,"_pendingQuestRewards")!;
-        pending[65]=view.Options[2];views[65]=view with { State=QuestViewState.Claimable,CanClaim=true,Counts=[5] };entries[entries.FindIndex(q=>q.QuestId==65)]=new QuestEntry(65,3);
+        var pending=QuestRewardChoices(model);
+        pending.Choose(65,view.Options[2]);views[65]=view with { State=QuestViewState.Claimable,CanClaim=true,Counts=[5] };entries[entries.FindIndex(q=>q.QuestId==65)]=new QuestEntry(65,3);
         ((Dictionary<int,ushort[]>)DetailField(model,"_questKills")!)[65]=[5];
         DetailCall(model,"RefreshQuestDetail");page.ContentScroll.ScrollVertical=0;
         CheckRewardRows(model,[(900001000,1875),(900000000,2000),(330150025,1)]);
-        if(!Descendants((Node)DetailField(model,"_questRewardBox")!).OfType<Label>().Any(l=>l.Text=="Selected reward")) throw new Exception("Pending choice is not identified");
+        if(!Descendants(QuestRewardRows(model)).OfType<Label>().Any(l=>l.Text=="Selected reward")) throw new Exception("Pending choice is not identified");
         await Capture("quests-selected-reward");
         entries[entries.FindIndex(q=>q.QuestId==65)]=new QuestEntry(65,2);views[65]=view with { State=QuestViewState.Completed };
         DetailCall(model,"OnQuestReceipt",new QuestReceipt(65,[new(900001000,1875),new(900000000,2000),new(330150025,1)]));
         CheckRewardRows(model,[(900001000,1875),(900000000,2000),(330150025,1)]);
-        if(pending.ContainsKey(65) || ((Label)DetailField(model,"_questRewardTitle")!).Text!="Received rewards") throw new Exception("Granted rewards were confused with pending options");
+        if(pending.Chosen(65,out _) || ((Label)DetailField(model,"_questRewardTitle")!).Text!="Received rewards") throw new Exception("Granted rewards were confused with pending options");
         await Capture("quests-received-rewards");
         GD.Print("QUEST_GRANTED_REWARDS_OK");
     }
+    private static Control QuestRewardRows(World model) => (Control)((Node)DetailField(model,"_questDetailBody")!).FindChild(NativeQuestLog.RewardBoxName,true,false)!;
+    private static QuestRewardSelection<QuestTransfer,QuestReceipt> QuestRewardChoices(World model) => (QuestRewardSelection<QuestTransfer,QuestReceipt>)DetailField(model,"_questRewardSelection")!;
     private static IEnumerable<Node> Descendants(Node node) { yield return node;foreach(var child in node.GetChildren()) foreach(var item in Descendants(child)) yield return item; }
     private static void CheckRewardRows(World model,(int Item,int Count)[] expected)
     {
-        var rewards=(Control)DetailField(model,"_questRewardBox")!;
+        var rewards=QuestRewardRows(model);
         var actual=Descendants(rewards).OfType<Control>().Where(c=>c.HasMeta("quest_reward_item_id"))
             .Select(c=>(c.GetMeta("quest_reward_item_id").AsInt32(),c.GetMeta("quest_reward_count").AsInt32())).ToArray();
         if(!actual.SequenceEqual(expected)) throw new Exception("Quest Details displayed rewards from the wrong quest");

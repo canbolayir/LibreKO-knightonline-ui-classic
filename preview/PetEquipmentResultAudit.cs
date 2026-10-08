@@ -135,7 +135,8 @@ public partial class Preview
                 require(Field<bool>("_moveInFlight"), "Actual familiar equipment input queues the native request");
                 var header = new byte[4]; await stream.ReadExactlyAsync(header, timeout.Token);
                 int length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); var body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
-                require(header[0] == 0xaa && header[1] == 0x55 && body[length] == 0x55 && body[length + 1] == 0xaa && length == 9
+                // Clients with partial magic bag moves always append the amount; zero is the whole-stack move.
+                require(header[0] == 0xaa && header[1] == 0x55 && body[length] == 0x55 && body[length + 1] == 0xaa && (length == 9 || length == 11 && body[9] == 0 && body[10] == 0)
                     && body[0] == (byte)GameOpcodes.GS_ITEM_MOVE && body[1] == 1 && body[2] == direction
                     && BinaryPrimitives.ReadInt32LittleEndian(body.AsSpan(3)) == id && body[7] == src && body[8] == dst,
                     "Actual familiar equipment retains exact native request framing and slot encoding / " + direction);

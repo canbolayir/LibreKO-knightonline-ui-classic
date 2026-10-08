@@ -37,7 +37,7 @@ public partial class Preview
         void Require(bool valid, string text) { if (!valid) throw new Exception("REBIRTH_AUDIT: " + text); checks.Add(text); }
         bool Busy() => (bool)DetailField(world, "_rebirthInFlight")!;
         bool NetBusy() => (bool)typeof(Net).GetField("_rebirthPending", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net)!;
-        Notice? Confirmation() => (Notice?)DetailField(world, "_rebirthNotice");
+        Notice? Confirmation() => NativeRebirth.Confirmation(world);
         async Task KeyInput(Key key)
         {
             var viewport = GetViewport();

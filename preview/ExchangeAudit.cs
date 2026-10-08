@@ -64,7 +64,11 @@ public partial class Preview
 
         var attach=typeof(PluginGame).GetMethod("Attach",BindingFlags.Instance|BindingFlags.NonPublic)!;attach.Invoke(game,Enumerable.Repeat(bridge,attach.GetParameters().Length).ToArray());
 
-        var auditLayers=new[]{"_exLayer","_exAmountLayer","_exWaitLayer","_exRequestLayer","_exFinalLayer","_itemTipLayer"}.Select(name=>(CanvasLayer)DetailField(world,name)!).ToArray();
+        NativeTrade.Prepare((HudWindow)DetailField(world,"_exPanel")!,world);
+
+        CanvasLayer TradeLayer(string name)=>name switch{"_exRequestLayer"=>NativeTrade.RequestLayer(world)!,"_exFinalLayer"=>NativeTrade.FinalLayer(world)!,_=>(CanvasLayer)DetailField(world,name)!};
+
+        var auditLayers=new[]{"_exLayer","_exAmountLayer","_exWaitLayer","_exRequestLayer","_exFinalLayer","_itemTipLayer"}.Select(TradeLayer).ToArray();
 
         foreach(var layer in auditLayers)layer.Reparent(this);
 
@@ -209,8 +213,8 @@ public partial class Preview
         Require((int)DetailCall(world,"ExchangeOfferCount")! ==12,"Capacity covers twelve offers");
 
         Click((Button)DetailField(world,"_exConfirmBtn")!);await Capture("final-approval-first");
-        Require((bool)DetailField(world,"_exFinalPending")! && !(bool)DetailField(world,"_exConfirmedByMe")!,"First participant also needs explicit approval");
-        var firstFinal=(CanvasLayer)DetailField(world,"_exFinalLayer")!;
+        Require(NativeTrade.FinalPending(world) && !(bool)DetailField(world,"_exConfirmedByMe")!,"First participant also needs explicit approval");
+        var firstFinal=TradeLayer("_exFinalLayer");
         Click(Descendants(firstFinal).OfType<Button>().Single(b=>b.Name=="exchange_final_decline"));await Frames();
         Require(!firstFinal.Visible && !shell.OfferBlocked,"No returns to editable offers before partner locks");
         bag._GuiInput(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=true});await Frames();
@@ -226,7 +230,7 @@ public partial class Preview
         Require(shell.OfferBlocked && !shell.Blocked,"Partner lock disables editing but allows own Trade decision");
         bag._GuiInput(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=true});DetailCall(world,"OfferSlotAmount",Inventory.GridStart,1);DetailCall(world,"OpenExchangeGold");
         Require(!(bool)DetailField(world,"_exAmountShown")! && !(bool)DetailField(world,"_exAddInFlight")!,"Partner lock prevents right click, item additions and coin edits");
-        var finalLayer=(CanvasLayer)DetailField(world,"_exFinalLayer")!;
+        var finalLayer=TradeLayer("_exFinalLayer");
         var finalAccept=Descendants(finalLayer).OfType<Button>().Single(b=>b.Name=="exchange_final_accept");
         var finalDecline=Descendants(finalLayer).OfType<Button>().Single(b=>b.Name=="exchange_final_decline");
         Click((Button)DetailField(world,"_exConfirmBtn")!);await Capture("final-approval");
@@ -263,7 +267,7 @@ public partial class Preview
 
         DetailCall(world,"AbortExchange",true);await Frames();
 
-        var requestLayer=(CanvasLayer)DetailField(world,"_exRequestLayer")!;
+        var requestLayer=TradeLayer("_exRequestLayer");
 
         var request=Descendants(requestLayer).OfType<ClassicExchangeNoticePanel>().Single();
 

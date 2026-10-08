@@ -51,8 +51,9 @@ public partial class Preview
         async Task<(World, HudWindow)> Build(string method, params object[] args)
         {
             var world = new World(); var window = (HudWindow)DetailCall(world, method, args)!;
-            AddChild(window); ClassicServiceSkin.Apply(window.Body); await Frames(); return (world, window);
+            AddChild(window); NativeServices.Prepare(window, world); ClassicServiceSkin.Apply(window.Body); await Frames(); return (world, window);
         }
+        Control PieceDropTarget(World world) => Descendants((Node)DetailField(world, "_pieceSocket")!).OfType<ServiceDropTarget>().Single();
         void Dispose(World world, HudWindow window)
         {
             if (DetailField(world, "_invContent") is Control orphan && GodotObject.IsInstanceValid(orphan) && orphan.GetParent() == null) orphan.Free();
@@ -116,17 +117,17 @@ public partial class Preview
         }
         var pieceWorld = new World(); InventoryOf(pieceWorld).EnsureLength(InventoryConstants.InventoryTotal);
         DetailCall(pieceWorld, "BuildInventoryPanel"); DetailCall(pieceWorld, "BuildPiecePanel");
-        var piece = (HudWindow)DetailField(pieceWorld, "_piecePanel")!; piece.Reparent(this); ClassicServiceSkin.Apply(piece.Body);
+        var piece = (HudWindow)DetailField(pieceWorld, "_piecePanel")!; piece.Reparent(this); NativeServices.Prepare(piece, pieceWorld); ClassicServiceSkin.Apply(piece.Body);
         Set(pieceWorld, "_pieceShown", true); Set(pieceWorld, "_pieceNpcId", 300); DetailCall(pieceWorld, "RefreshPieceBackpack"); await Capture(piece, "generator-empty");
         Require(Descendants(piece).Count(c => c.GetType().Name == "UpgradeBackpackCell") == 28, "Classic Generator shows all 28 carried slots with the inventory pitch");
         var rejectedDrop = new Godot.Collections.Dictionary { { "invFrom", Inventory.GridStart } };
-        Require(!((Control)DetailField(pieceWorld, "_pieceSocket")!)._CanDropData(Vector2.Zero, rejectedDrop), "Generator rejects an empty / invalid piece drop");
+        Require(!PieceDropTarget(pieceWorld)._CanDropData(Vector2.Zero, rejectedDrop), "Generator rejects an empty / invalid piece drop");
         var rewards = (Dictionary<int, int[]>)typeof(ItemData).GetField("_pieces", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
         int validPiece = rewards.Keys.First(id => ItemData.Get(id) != null);
         InventoryOf(pieceWorld)[Inventory.GridStart] = new ItemSlot { ItemId = validPiece, Count = 10, Durability = 1 };
         DetailCall(pieceWorld, "PlacePiece", Inventory.GridStart);
         Require((int)DetailField(pieceWorld, "_pieceItemId")! == validPiece, "Generator stages an actual exported exchange piece");
-        var socket = (Control)DetailField(pieceWorld, "_pieceSocket")!;
+        var socket = PieceDropTarget(pieceWorld);
         Require(socket._CanDropData(Vector2.Zero, rejectedDrop), "Generator accepts a valid native piece drag");
         await Frames();
         var sourcePiece = Descendants(piece).OfType<Control>().First(c => c.GetType().Name == "UpgradeBackpackCell" && c.GetChildren().OfType<Control>().Any(o => Descendants(o).OfType<TextureRect>().Any(t => t.Texture != null)));
@@ -150,7 +151,7 @@ public partial class Preview
         Require(materials.Length == 11 && materials.All(c => c.IsVisibleInTree()), "All ten combination materials and the separate Shadow Piece remain visible");
         materials[0]._GuiInput(new InputEventMouseButton { Pressed = true, ButtonIndex = MouseButton.Right });
         Require(materials[0].Item.IsEmpty, "Combination right-click returns a staged material");
-        DetailCall(combineWorld, "BuildAmountPrompt");
+        DetailCall(combineWorld, "BuildCombineAmountPrompt");
         var amount = (CanvasLayer)DetailField(combineWorld, "_amountLayer")!; amount.Reparent(this); ClassicMerchantAmount.Apply(amount);
         DetailCall(combineWorld, "AskCombineCount", 0, Inventory.GridStart); await Frames();
         var amountPanel = amount.GetChildren().OfType<ClassicMerchantAmountPanel>().Single();
@@ -185,17 +186,17 @@ public partial class Preview
             dialog._Input(new InputEventKey { Keycode = Key.Enter, Pressed = true }); Require(confirmed, "Redistribution Enter invokes its live confirmation callback"); dialog.Free();
         }
         var redistributionWorld = new World(); DetailCall(redistributionWorld, "BuildClassChangePanel");
-        var redistribution = (HudWindow)DetailField(redistributionWorld, "_classChangePanel")!; redistribution.Reparent(this); ClassicServiceSkin.Apply(redistribution.Body);
+        var redistribution = (HudWindow)DetailField(redistributionWorld, "_classChangePanel")!; redistribution.Reparent(this); NativeServices.Prepare(redistribution, redistributionWorld); ClassicServiceSkin.Apply(redistribution.Body);
         await Capture(redistribution, "redistribute-menu");
         Descendants(redistribution).OfType<Button>().Single(b => b.Text == "Redistribute stat points").EmitSignal(BaseButton.SignalName.Pressed);
-        Require((byte)DetailField(redistributionWorld, "_resetKind")! == Net.ResetKindStat, "Original redistribution menu queries the stat reset price before confirming");
+        Require(NativeServices.RedistributionKind(redistributionWorld) == Net.ResetKindStat, "Original redistribution menu queries the stat reset price before confirming");
         Descendants(redistribution).OfType<Button>().Single(b => b.Text == "Redistribute mastery points").EmitSignal(BaseButton.SignalName.Pressed);
-        Require((byte)DetailField(redistributionWorld, "_resetKind")! == Net.ResetKindStat, "A pending reset price cannot be reassigned by a second menu click");
+        Require(NativeServices.RedistributionKind(redistributionWorld) == Net.ResetKindStat, "A pending reset price cannot be reassigned by a second menu click");
         await Frames();
         Require(Descendants(redistribution).OfType<Button>().Where(b => b.Text.StartsWith("Redistribute ")).All(b => b.Disabled), "Redistribution choices are disabled while the server price or reset is pending");
         DetailCall(redistributionWorld, "CancelReset"); await Frames();
         Descendants(redistribution).OfType<Button>().Single(b => b.Text == "Redistribute mastery points").EmitSignal(BaseButton.SignalName.Pressed);
-        Require((byte)DetailField(redistributionWorld, "_resetKind")! == Net.ResetKindSkill, "Original redistribution menu queries the mastery reset price before confirming");
+        Require(NativeServices.RedistributionKind(redistributionWorld) == Net.ResetKindSkill, "Original redistribution menu queries the mastery reset price before confirming");
         Dispose(redistributionWorld, redistribution); await Frames();
         var (repairWorld, repair) = await Build("BuildRepairUiPreview");
         var audio = new LibreKO.Audio(); AddChild(audio);
@@ -262,7 +263,7 @@ public partial class Preview
         Require(inventoryShell.GetMeta("classic_repair_pending").AsBool(), "Repair serializes requests while waiting for the server");
         Require(CursorKind() == GameCursorKind.RepairAlt, "A submitted repair switches to the original working hammer cursor");
         await RepairCapture("repair-pending");
-        DetailCall(repairWorld, "OnRepairResult", true, 0);
+        DetailCall(repairWorld, "DeliverRepairResult", true, 0);
         Require(CursorKind() == GameCursorKind.Repair, "The server result restores the pre-repair cursor");
         Require(Descendants(audio).OfType<AudioStreamPlayer>().Any(p => p.Bus == LibreKO.Audio.BusUi && p.Stream != null && p.GetMeta("snd", 0).AsInt32() == Sfx.UiRepair), "Successful server repair plays the original UI repair sound");
         Require(inventory[InventoryConstants.RightHand].Durability == ItemData.MaxDurabilityOf(inventory[InventoryConstants.RightHand].ItemId), "Successful repair updates equipment durability");
@@ -274,15 +275,15 @@ public partial class Preview
         bagCell.OnClick!(bagCell.Slot);
         Require((bool)DetailField(repairWorld, "_repairInFlight")!, "Left-click repairs carried gear without picking it up");
         Require((int)typeof(InventoryWindow).GetField("_carried", flags)!.GetValue(actual)! == -1, "Repair never enters inventory carry mode");
-        DetailCall(repairWorld, "OnRepairResult", false, 0);
+        DetailCall(repairWorld, "DeliverRepairResult", false, 0);
         Descendants(actual).OfType<Button>().Single(b => b.Text == "Repair All").EmitSignal(BaseButton.SignalName.Pressed);
         Require((bool)DetailField(repairWorld, "_repairInFlight")! && ((Queue<int>)DetailField(repairWorld, "_repairQueue")!).Count > 0,
             "Repair All remains available through the inventory and serializes damaged gear");
-        while ((bool)DetailField(repairWorld, "_repairInFlight")!) DetailCall(repairWorld, "OnRepairResult", true, 0);
+        while ((bool)DetailField(repairWorld, "_repairInFlight")!) DetailCall(repairWorld, "DeliverRepairResult", true, 0);
         inventory.SetDurability(Inventory.GridStart, 1100); bagCell.OnClick!(bagCell.Slot);
         inventory[Inventory.GridStart] = inventory[Inventory.GridStart + 1];
         inventory.SetDurability(Inventory.GridStart, 500);
-        DetailCall(repairWorld, "OnRepairResult", true, 0);
+        DetailCall(repairWorld, "DeliverRepairResult", true, 0);
         Require(inventory[Inventory.GridStart].Durability == 500, "A delayed repair result cannot alter a different item placed in the original slot");
         tip.HideTip();
         for (int i = 0; i < inventory.Length; i++) inventory[i] = default;

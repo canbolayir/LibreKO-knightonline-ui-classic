@@ -136,7 +136,7 @@ public partial class Preview
             "Every supported familiar transform is captured exactly once");
         require(NpcPortraitCache.EntryCount <= NpcPortraitCache.Capacity && NpcPortraitCache.CachedTextureBytes <= (long)NpcPortraitCache.Capacity * 256 * 256 * 4,
             "All familiar transforms fit the bounded shared portrait cache");
-        foreach (var form in forms.Reverse())
+        foreach (var form in Enumerable.Reverse(forms))
         {
             Select(form.ModelId); await Ready(form.ModelId);
             require(portrait.Texture!.GetInstanceId() == textures[form.ModelId],

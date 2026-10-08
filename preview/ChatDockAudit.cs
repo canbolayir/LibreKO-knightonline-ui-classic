@@ -56,7 +56,7 @@ public partial class Preview
         chat.Size=joinedChat.Size;chat.Position=joinedChat.Position;info.Size=joinedInfo.Size;info.Position=joinedInfo.Position;
         var peerBefore=info.GetGlobalRect();
         Begin(chatLayout,"BeginDrag",chat.Position);Motion(chatLayout,chat.Position+new Vector2(-20,0));Release(chatLayout);
-        if(info.GetGlobalRect()!=peerBefore || typeof(HudLayout).GetField("_resizePartner",flags)!.GetValue(chatLayout)!=null)
+        if(info.GetGlobalRect()!=peerBefore || NativeLayout.ResizePartner(chatLayout)!=null)
             throw new Exception("Dragging Chat does not detach Info");
         AssertFixedTabs();
         await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);await shot("detached");
@@ -64,7 +64,7 @@ public partial class Preview
         Motion(chatLayout,chat.GlobalPosition+new Vector2(chat.Size.X+15,0));Release(chatLayout);AssertJoined();
         peerBefore=chat.GetGlobalRect();
         Begin(infoLayout,"BeginDrag",infoTitle.GlobalPosition);Motion(infoLayout,infoTitle.GlobalPosition+new Vector2(0,-30));Release(infoLayout);
-        if(chat.GetGlobalRect()!=peerBefore || typeof(HudLayout).GetField("_resizePartner",flags)!.GetValue(infoLayout)!=null)
+        if(chat.GetGlobalRect()!=peerBefore || NativeLayout.ResizePartner(infoLayout)!=null)
             throw new Exception("Dragging Info does not detach Chat");
         foreach(float offset in new[]{-90f,70f,-30f})
         {
@@ -72,7 +72,7 @@ public partial class Preview
             Motion(chatLayout,chat.GlobalPosition+new Vector2(chat.Size.X,0));Release(chatLayout);
             Begin(infoLayout,"BeginDrag",infoTitle.GlobalPosition);
             Motion(infoLayout,infoTitle.GlobalPosition+new Vector2(0,offset));Release(infoLayout);
-            if(typeof(HudLayout).GetField("_resizePartner",flags)!.GetValue(infoLayout)!=null)
+            if(NativeLayout.ResizePartner(infoLayout)!=null)
                 throw new Exception("Moving the misaligned Info leaves a stale link");
             await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);
             if(offset==-30) await shot("misaligned");
@@ -112,8 +112,8 @@ public partial class Preview
             chatType.GetField("Window")!.SetValue(conversation,fixture);
             chats.GetType().GetMethod("Add")!.Invoke(chats,new object[]{fixture.Id,conversation});
         }
-        worldType.GetMethod("FocusWhisperAt",flags)!.Invoke(world,new object[]{latest.Position+new Vector2(20,40)});
-        if((string?)worldType.GetField("_whisperComposeTarget",flags)!.GetValue(world)!=latest.Id)
+        NativeWhispers.FocusAt(world,latest.Position+new Vector2(20,40));
+        if(NativeWhispers.ComposeTarget(world)!=latest.Id)
             throw new Exception("Overlapping PM hit testing selects a hidden conversation");
         world.Free();pmLayer.QueueFree();
         GD.Print("CHAT_DOCK_OK: right Info plate/opacity/drag, 12px resize snap, bidirectional resize, both drag detach paths, fixed PM origin");

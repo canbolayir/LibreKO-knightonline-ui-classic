@@ -12,7 +12,7 @@ public static class ClassicStorageSkin
     {
         Node? owner = body;
         while (owner != null && owner is not HudWindow) owner = owner.GetParent();
-        if (owner is not HudWindow window || window.HasMeta("classic_storage")) return null;
+        if (owner is not HudWindow window || window.HasMeta("classic_storage") || NativeStorage.Of(window) == null) return null;
         window.SetMeta("classic_storage", true); window.SetMeta("embedded_inventory", true);
         if (window.Id == "warehouse") window.SetMeta("warehouse_page_size", 24);
         var panel = new ClassicStoragePanel(window, body); window.AddChild(panel); window.ResetSize();

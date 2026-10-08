@@ -34,7 +34,7 @@ public partial class Preview
                 : (Node)typeof(World).GetMethod(state=="mail-store"?"BuildMailStoreUiPreview":"BuildMailReadManyUiPreview",BindingFlags.Instance|BindingFlags.NonPublic)!.Invoke(world,null)!;
             var windows=Descendants(surface).OfType<HudWindow>().ToArray();
             if(surface is HudWindow own)windows=windows.Append(own).ToArray();
-            foreach(var window in windows)ClassicSkin.ExtendWindow(window.Body);
+            foreach(var window in windows){NativeMarket.Prepare(window,world);ClassicSkin.ExtendWindow(window.Body);}
             AddChild(surface);await Frames();
             foreach(var window in windows.Where(w=>w.Visible))window.Position=((GetViewportRect().Size-window.Size)/2).Round();
             await Frames();

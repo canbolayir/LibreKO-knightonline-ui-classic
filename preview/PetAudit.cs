@@ -198,10 +198,10 @@ public partial class Preview
             GetViewport().GuiGetFocusOwner()?.ReleaseFocus();
             await KeyPress(Key.Enter);
             await Capture("confirmation");
-            Require(Field<Notice?>("_petHatchNotice") != null && !name.Editable && Field<Button>("_petHatchBtn").Disabled,
+            Require(PreviewFixtures.PetHatchNotice(world) != null && !name.Editable && Field<Button>("_petHatchBtn").Disabled,
                 "Confirmation freezes " + (transform ? "transformation" : "hatching") + " draft");
             await KeyPress(Key.Escape);
-            Require(Field<Notice?>("_petHatchNotice") == null && name.Text == "Kauly" && Field<int>(transform ? "_petTransformSlot" : "_petHatchSlot") == pick,
+            Require(PreviewFixtures.PetHatchNotice(world) == null && name.Text == "Kauly" && Field<int>(transform ? "_petTransformSlot" : "_petHatchSlot") == pick,
                 "Escape preserves chosen items and name");
             await Click(Find<Button>("pet_hatch_accept"));
             await KeyPress(Key.Enter);
@@ -231,7 +231,7 @@ public partial class Preview
                 "Closing and reopening preserves pending operation and trainer identity");
             await Capture("pending-reopen");
             DetailCall(world, "ResetPetHatch");
-            Require(!Field<bool>("_petHatchInFlight") && !panel.Visible && Field<Notice?>("_petHatchNotice") == null,
+            Require(!Field<bool>("_petHatchInFlight") && !panel.Visible && PreviewFixtures.PetHatchNotice(world) == null,
                 "Connection reset clears pending draft and closes the trainer service");
             layer.Free(); world.Free();
         }

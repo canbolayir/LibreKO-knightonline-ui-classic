@@ -37,6 +37,7 @@ public partial class Preview
         var bridge=Activator.CreateInstance(typeof(World).GetNestedType("PluginGameBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{world},null)!;
         var attach=typeof(PluginGame).GetMethod("Attach",BindingFlags.Instance|BindingFlags.NonPublic)!;
         attach.Invoke(game,Enumerable.Repeat(bridge,attach.GetParameters().Length).ToArray());
+        NativeGame.Source=new ClientGame();
         ((CanvasLayer)DetailField(world,"_itemTipLayer")!).Reparent(this);
         var shell=new Control {Position=new Vector2(300,42)};AddChild(shell);
         bool closed=false;
@@ -52,15 +53,17 @@ public partial class Preview
         var moveType=typeof(Net).GetNestedType("PendingItemMove",BindingFlags.NonPublic)!;
         var pendingMove=typeof(Net).GetField("_pendingItemMove",BindingFlags.Instance|BindingFlags.NonPublic)!;
         var moveHandler=typeof(Net).GetMethod("HandleItemMove",BindingFlags.Instance|BindingFlags.NonPublic)!;
+        object PendingMove(byte direction,byte source,byte destination)=>Activator.CreateInstance(moveType,
+            new object[]{direction,source,destination,0}.Take(moveType.GetConstructors().Max(c=>c.GetParameters().Length)).ToArray())!;
         var snapshot=net.LastEnter;
         snapshot.Inventory[InventoryConstants.InventoryStart]=new NativeSlot {ItemId=700011001,Count=1};
-        pendingMove.SetValue(net,Activator.CreateInstance(moveType,new object[]{ItemMove.InventoryToBagSlot,(byte)0,(byte)2,0}));
+        pendingMove.SetValue(net,PendingMove(ItemMove.InventoryToBagSlot,0,2));
         var accepted=new Packet(GameOpcodes.GS_ITEM_MOVE);accepted.WriteByte(1);accepted.WriteByte(1);moveHandler.Invoke(net,new object[]{accepted});
         inv.Reset(net.LastEnter.Inventory);
         Require(inv[InventoryConstants.BagSlotFor(2)].ItemId==700011001 && inv[InventoryConstants.InventoryStart].IsEmpty,
             "Network acknowledgement preserves equipped bags when a new world reloads the cached inventory");
         bool refused=false;net.ItemMoveResultEvent+=ok=>refused=!ok;
-        pendingMove.SetValue(net,Activator.CreateInstance(moveType,new object[]{ItemMove.BagSlotToInventory,(byte)2,(byte)0,0}));
+        pendingMove.SetValue(net,PendingMove(ItemMove.BagSlotToInventory,2,0));
         var rejected=new Packet(GameOpcodes.GS_ITEM_MOVE);rejected.WriteByte(1);rejected.WriteByte(0);moveHandler.Invoke(net,new object[]{rejected});
         Require(refused && pendingMove.GetValue(net)==null && net.LastEnter.Inventory[InventoryConstants.BagSlotFor(2)].ItemId==700011001,
             "Refused moves release the pending acknowledgement and preserve the zone snapshot");

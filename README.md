@@ -1,27 +1,27 @@
 # LibreKO Classic UI
 
-## Requires the canbolayir/LibreKO fork
+## Works with upstream LibreKO
 
-> [!IMPORTANT]
-> **This plugin does not work with the unmodified [ZeusAFK/LibreKO](https://github.com/ZeusAFK/LibreKO) client.**
-> Use the **[canbolayir/LibreKO fork](https://github.com/canbolayir/LibreKO)**, which includes the required Classic UI APIs and interaction fixes.
-> Deploy its matching client and server together, and build the plugin against that fork's `LibreKO.dll`. Copying the plugin into an upstream client does not provide those changes.
+The plugin runs on the unmodified [ZeusAFK/LibreKO](https://github.com/ZeusAFK/LibreKO) client. No fork is required:
+everything the Classic skins need from the client — native control names, state, bridges for character pages, NPC and
+familiar portraits, chat/Info, storage, trade and merchant flows — is provided by the plugin's own compatibility layer
+under `src/Native`. It reaches non-public client members through one validated accessor; when an upstream change renames
+one, the plugin logs it once and leaves that window to the client instead of failing.
+
+A set of client and server correctness fixes found during this work is proposed upstream as separate pull requests
+(inventory snapshots, storage transfers, partial magic-bag moves, familiar replies, auction replies, anvil session,
+nation transfer, rebirth, beauty shop and others). The plugin does not require them; with them merged, the behaviour
+matches the former fork build exactly. [Native compatibility](docs/native-compatibility.md) lists what works on bare
+upstream, which fix enables what, every client member the plugin reflects, and the known differences.
 
 An editable Knight Online 1.298 Classic theme for LibreKO, with distinct Human and Karus artwork and modern native game features. Source adapters and declarative geometry remain editable; imported UIF layouts serve as artwork and visual references.
 
-## Compatible client
-
-The required fork provides native bridges for character pages, NPC portraits, bag quantities, chat/Info, trade approvals, merchant interactions and live storage/secret VIP PIN controls. Some changes also affect client/server packets and inventory synchronization, so an upstream server is not a supported substitute for the matching fork server.
-
-Latest locally verified pair: fork [c6d4031](https://github.com/canbolayir/LibreKO/commit/c6d4031813bbb29374a4968faa1da5cce63013e4) and the completed Classic source on this branch, with upstream `20dcd08` integrated. This series adds native service, appearance, auction and Familiar APIs, plus beauty, nation-transfer and rebirth server fixes. Rebuild and deploy the matching fork client/server and plugin together. The new commits were created locally on 2026-10-08; their GitHub links become available after publication. These are verified revisions, not a promise that every future combination will work. The manifest's `minClientVersion` alone cannot identify the required fork or API set. Enable one UI theme at a time.
-
-See [the completed UI handoff](docs/completed-ui-handoff.md) for the new screens, behavior fixes, validation limits and remaining scope.
-
-See [NPC service changes and compatibility](docs/npc-services-integration.md) and the fork's [integration guide](https://github.com/canbolayir/LibreKO/blob/main/docs/classic-integration.md).
+Enable one UI theme at a time. See [the completed UI handoff](docs/completed-ui-handoff.md) for the screens, behaviour,
+validation limits and remaining scope.
 
 ## Build and install
 
-Requires .NET SDK 9 and 10, Godot 4.7.2 Mono, and a built compatible `LibreKO.dll`.
+Requires .NET SDK 10 (the plugin targets .NET 9 with C# 14), Godot 4.7.2 Mono, and a built LibreKO client (`LibreKO.dll`).
 
 ```powershell
 dotnet build KnightOnlineUiClassic.csproj -c Release -p:LibreKOClientDir="<folder containing LibreKO.dll>"

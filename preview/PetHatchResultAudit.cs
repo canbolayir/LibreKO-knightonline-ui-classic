@@ -91,7 +91,7 @@ public partial class Preview
                     if (!transform) await Click(name);
                     else GetViewport().GuiGetFocusOwner()?.ReleaseFocus();
                     await KeyPress(Key.Enter);
-                    require(Field<Notice?>("_petHatchNotice") != null && !Field<bool>("_petHatchInFlight"), "Actual " + service + " Enter opens confirmation before a request");
+                    require(PreviewFixtures.PetHatchNotice(world) != null && !Field<bool>("_petHatchInFlight"), "Actual " + service + " Enter opens confirmation before a request");
                     await KeyPress(Key.Enter);
                     require(Field<bool>("_petHatchInFlight") && action.Disabled && (transform || !name.Editable), "Actual " + service + " confirmation locks the pending draft");
                     var header = new byte[4]; await stream.ReadExactlyAsync(header, timeout.Token);
@@ -146,7 +146,7 @@ public partial class Preview
                 await Capture("success");
                 if (!transform) { slot = Inventory.GridStart + 6; DetailCall(world, "SelectPetHatchItem", slot); name.Text = "Kauly"; }
                 await Submit(); typeof(Net).GetMethod("ResetPet", flags)!.Invoke(net, null); await Frames();
-                require(!panel.Visible && !Field<bool>("_petHatchInFlight") && Field<Notice?>("_petHatchNotice") == null, "Native connection reset closes and unlocks the actual " + service + " trainer");
+                require(!panel.Visible && !Field<bool>("_petHatchInFlight") && PreviewFixtures.PetHatchNotice(world) == null, "Native connection reset closes and unlocks the actual " + service + " trainer");
                 Receive(success); await Frames(); require(!panel.Visible && mutations == mutationCount && lines.Count == logCount, "Delayed " + service + " success after reset cannot reopen the trainer or mutate inventory");
             }
             finally

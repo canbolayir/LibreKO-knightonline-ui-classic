@@ -35,6 +35,7 @@ public partial class ChatWindow : Control
     private bool _timestamps;
     private string _colors="";
     private int _fontSize;
+    private bool _appendQueued;
 
 
     public ChatWindow()
@@ -149,7 +150,14 @@ public partial class ChatWindow : Control
 
     private Vector2 DefaultPosition() => new(4, GetViewport().GetVisibleRect().Size.Y - Taskbar.BarHeight - Size.Y - 4);
     private void Reload() => _log.Set(_game.Chat.ReadHistory(_filter,_timestamps,_colors));
-    private void Append(string bbcode) => _log.SetPreservingScroll(_game.Chat.ReadHistory(_filter,_timestamps,_colors));
+    // The client publishes a line before it stores it, so the structured history is read once the
+    // dispatch has finished; several lines in one frame refresh the log once.
+    private void Append(string bbcode)
+    {
+        if(_appendQueued) return;
+        _appendQueued=true;
+        Callable.From(()=> {_appendQueued=false;if(IsInstanceValid(this)) _log.SetPreservingScroll(_game.Chat.ReadHistory(_filter,_timestamps,_colors));}).CallDeferred();
+    }
     private void ApplyInputLimit()
     {
         int limit=128-_links.WireExtra;

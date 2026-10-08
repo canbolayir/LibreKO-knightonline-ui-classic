@@ -83,7 +83,8 @@ public partial class Preview
                 Require(Label("string_skill_mp").Text.Contains("MP") && !Label("string_skill_mp").Text.Contains("Level"),state+": MP has its own line");
                 Require(Label("string_skill_point").Text==(info.UsesPoints?$"Required Skill Point : {info.RequiredPoints}":$"Required Level : {info.RequiredLevel}"),state+": correct requirement kind");
                 var definition=SkillData.Get(Selected())!;
-                Require(info.BasicItem==SkillData.EquippedWeaponRequirementName(definition.ItemGroup),state+": weapon requirement follows the casting equipment group");
+                string weapon=NativeSkills.EquippedWeaponRequirementName(definition.ItemGroup);
+                Require(Label("string_skill_item0").Text==(weapon.Length>0?$"Required weapon : {weapon}":"No weapon required"),state+": weapon requirement follows the casting equipment group");
             }
             string name=prefix+"-"+state;
             using var image=GetViewport().GetTexture().GetImage();

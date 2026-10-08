@@ -92,13 +92,6 @@ public partial class ClassicPetHatchPanel : Control
         icon.OffsetLeft = icon.OffsetTop = 2; icon.OffsetRight = icon.OffsetBottom = -2; icon.StretchMode = TextureRect.StretchModeEnum.Scale;
         ItemCountStyle.Apply(cell.CountLabel, overlay, Plugin.Kit.Bold);
     }
-    public override void _UnhandledKeyInput(InputEvent ev)
-    {
-        if (!IsVisibleInTree() || ev is not InputEventKey { Pressed: true, Echo: false } key) return;
-        if (key.Keycode == Key.Escape) { GetViewport().SetInputAsHandled(); _close.EmitSignal(BaseButton.SignalName.Pressed); }
-        else if (key.Keycode is Key.Enter or Key.KpEnter)
-        { GetViewport().SetInputAsHandled(); if (!_accept.Disabled) _accept.EmitSignal(BaseButton.SignalName.Pressed); }
-    }
 }
 
 public partial class ClassicPetHatchCellSkin : Control

@@ -47,6 +47,12 @@ public partial class ClassicInventoryRepair : Control
         _title = Field("string_title"); _maximum = Field("string_dur_max");
         _current = Field("string_dur_current"); _cost = Field("string_repairgold");
     }
+    /// <summary>Repairs exactly the clicked item through the repair mode's own action when it has one.</summary>
+    public void Take(int slot)
+    {
+        if (_host.Window.HasMeta("classic_repair_take")) _host.Window.GetMeta("classic_repair_take").AsCallable().Call(slot);
+        else _game.Inventory.Use(slot);
+    }
     public void ShowTip(int slot) { _slot = slot; UpdateTip(); }
     public void HideTip() { _slot = -1; _tip.Visible = false; }
     public override void _Process(double delta)

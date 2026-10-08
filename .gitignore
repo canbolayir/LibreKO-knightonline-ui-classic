@@ -6,3 +6,5 @@ preview/.godot/
 preview/*.png
 preview/settings.cfg
 preview/windows.cfg
+*.cs.uid
+preview/assets/**/*.import

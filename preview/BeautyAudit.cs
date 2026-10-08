@@ -40,7 +40,7 @@ public partial class Preview
         var editor = Find<LookEditor>("look_editor"); var preview = Find<LookPreview>("look_preview");
         var colour = Find<ColorPickerButton>("look_colour"); var accept = Find<Button>("look_accept");
         bool Busy() => (bool)DetailField(world, "_changeHairInFlight")!;
-        bool NetBusy() => (bool)typeof(Net).GetField("_changeHairPending", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(net)!;
+        bool NetBusy() => PreviewFixtures.ChangeHairPending(net);
         Node3D Pivot() => (Node3D)typeof(LookPreview).GetField("_pivot", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(preview)!;
         void Open() => DetailCall(world, "OpenChangeHair");
         void Reply(byte result)

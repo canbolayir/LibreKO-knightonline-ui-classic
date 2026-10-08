@@ -69,29 +69,29 @@ public partial class Preview
             DetailCall(world, "RefreshInZoneLeaveUi");
             Require(banner.Visible, $"Zone {eventZone} retains an event leave banner");
             DetailCall(world, "OnInZoneLeavePressed");
-            var notice = (Notice)DetailField(world, "_inZoneLeaveAsk")!;
+            var notice = NativeEvents.LeavePrompt(world)!;
             notice.Reparent(this);
             var dialog = Descendants(notice).OfType<Control>().First(c => c.GetType().FullName == "KnightOnlineUiClassic.Windows.MessageBox");
             Require(dialog != null, $"Zone {eventZone} uses the Classic confirmation");
             DetailCall(world, "OnInZoneLeavePressed");
-            Require(ReferenceEquals(notice, DetailField(world, "_inZoneLeaveAsk")), $"Zone {eventZone} prevents duplicate confirmations");
+            Require(ReferenceEquals(notice, NativeEvents.LeavePrompt(world)), $"Zone {eventZone} prevents duplicate confirmations");
             if (eventZone == 55) await Capture("ft-leave-confirmation");
             dialog!._Input(new InputEventKey { Pressed = true, Keycode = Key.Escape });
             await Frames();
-            Require(DetailField(world, "_inZoneLeaveAsk") == null && banner.Visible, $"Zone {eventZone} Escape cancels without hiding the banner");
+            Require(NativeEvents.LeavePrompt(world) == null && banner.Visible, $"Zone {eventZone} Escape cancels without hiding the banner");
         }
         SetZone(55);
         DetailCall(world, "OnInZoneLeavePressed");
-        var stale = (Notice)DetailField(world, "_inZoneLeaveAsk")!;
+        var stale = NativeEvents.LeavePrompt(world)!;
         stale.Reparent(this);
         SetZone(86);
         DetailCall(world, "RefreshInZoneLeaveUi");
         await Frames();
-        Require(DetailField(world, "_inZoneLeaveAsk") == null && banner.Visible, "Moving between event zones cancels the old confirmation");
+        Require(NativeEvents.LeavePrompt(world) == null && banner.Visible, "Moving between event zones cancels the old confirmation");
         SetZone(21);
         DetailCall(world, "RefreshInZoneLeaveUi");
         DetailCall(world, "OnInZoneLeavePressed");
-        Require(DetailField(world, "_inZoneLeaveAsk") == null && !banner.Visible, "Moradon has no stale leave prompt or banner");
+        Require(NativeEvents.LeavePrompt(world) == null && !banner.Visible, "Moradon has no stale leave prompt or banner");
         await Capture("outside-event");
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-verification.json",
             JsonSerializer.Serialize(new { checks, screenshots, liveTransactions = false }, new JsonSerializerOptions { WriteIndented = true }));

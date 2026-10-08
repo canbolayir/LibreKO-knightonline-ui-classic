@@ -26,8 +26,12 @@ public static class Native
 
     public static bool Has(object owner, string member) => Find(TypeOf(owner), member) != null;
 
-    public static bool HasMethod(object owner, string method) =>
-        TypeOf(owner).GetMethods(Members).Any(m => m.Name == method);
+    public static bool HasMethod(object owner, string method)
+    {
+        for (var current = TypeOf(owner); current != null; current = current.BaseType)
+            if (current.GetMethods(Members | BindingFlags.DeclaredOnly).Any(m => m.Name == method)) return true;
+        return false;
+    }
 
     public static T? Get<T>(object owner, string member)
     {
@@ -105,6 +109,26 @@ public static class Native
             return true;
         }
         Report(owner, member);
+        return false;
+    }
+
+    /// <summary>Removes a handler added with <see cref="Subscribe"/>.</summary>
+    public static bool Unsubscribe(object owner, string member, Delegate handler)
+    {
+        var type = TypeOf(owner);
+        var target = owner is Type ? null : owner;
+        if (type.GetEvent(member, Members) is { } evt)
+        {
+            var remove = evt.GetRemoveMethod(true);
+            if (remove == null) return false;
+            remove.Invoke(target, new object[] { handler });
+            return true;
+        }
+        if (Find(type, member) is FieldInfo field && typeof(Delegate).IsAssignableFrom(field.FieldType))
+        {
+            field.SetValue(target, Delegate.Remove((Delegate?)field.GetValue(target), handler));
+            return true;
+        }
         return false;
     }
 

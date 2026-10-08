@@ -207,7 +207,7 @@ public partial class SkillWindow : Control
     private void RefreshTrees()
     {
         _view.SetText("string_skillpoint",_game.Skills.MasteryPool.ToString());
-        var trees=_game.Skills.Trees;
+        var trees=_game.Skills.ClassicTrees(_game.Character.Class);
         for(int row=0;row<4;row++)
         {
             var tree=row<trees.Count?trees[row]:default;
@@ -278,7 +278,7 @@ public partial class SkillWindow : Control
     private void RefreshInfo()
     {
         int shown = _hovered >= 0 ? _hovered : _selected;
-        var info = shown >= 0 ? _game.Skills.Info(shown) : default;
+        var info = shown >= 0 ? _game.Skills.ClassicInfo(shown) : default;
         bool has = shown >= 0 && info.Description != null;
         string description=has?info.Description??"":"";
         if(_view.Get<Label>("string_info")!.Text!=description) _descriptionScroll.ScrollVertical=0;

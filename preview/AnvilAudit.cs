@@ -31,7 +31,7 @@ public partial class Preview
         var attach=typeof(PluginGame).GetMethod("Attach",BindingFlags.Instance|BindingFlags.NonPublic)!;attach.Invoke(game,Enumerable.Repeat(bridge,attach.GetParameters().Length).ToArray());
         var shell=ClassicAnvilSkin.Apply(window.Body)!;
         PluginHost.Ui.ReplaceDialogs(request=>new ClassicAnvilNotice(request));
-        var choice=(HudWindow)DetailField(world,"_upgradeChoicePanel")!;choice.Reparent(this);ClassicAnvilChoice.Apply(choice.Body);
+        var choice=NativeAnvil.Of(world)!.Choice;choice.Reparent(this);ClassicAnvilChoice.Apply(choice.Body);
         var screens=new List<object>();var checks=new List<string>();
         void Require(bool valid,string message){if(!valid)throw new Exception("ANVIL_AUDIT: "+message);checks.Add(message);}
         async Task Frames(int count=8){for(int i=0;i<count;i++)await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);}
@@ -68,7 +68,7 @@ public partial class Preview
         var grab=dragIcon.GetGlobalTransform().AffineInverse()*press;
         dragCell._GuiInput(new InputEventMouseButton{Pressed=true,ButtonIndex=MouseButton.Left,Position=new Vector2(13,17)});
         var cursor=press+new Vector2(30,10);
-        var dragPreview=(Control)typeof(ItemSlotView).GetMethod("BuildDragPreview",BindingFlags.NonPublic|BindingFlags.Instance)!.Invoke(dragCell,null)!;AddChild(dragPreview);dragPreview.Position=cursor;
+        var dragPreview=NativeAnvil.DragPreview(dragCell,new Vector2(13,17));AddChild(dragPreview);dragPreview.Position=cursor;
         var carried=dragPreview.GetChildren().OfType<TextureRect>().Single();
         var classicPreview=IconDragPreview.Create(dragIcon,grab);AddChild(classicPreview);classicPreview.Position=cursor;
         var classicCarried=classicPreview.GetChildren().OfType<TextureRect>().Single();
@@ -84,7 +84,7 @@ public partial class Preview
         inventory[Inventory.GridStart+8]=inventory[Inventory.GridStart];
         Variant duplicateWeapon=new Godot.Collections.Dictionary{{"invFrom",Inventory.GridStart+8}};
         Require(!upper[1]._CanDropData(Vector2.Zero,duplicateWeapon),"A duplicate Raptor in inventory cannot enter a scroll socket");
-        DetailCall(world,"PlaceUpgradeItem",Inventory.GridStart+8);
+        DetailCall(world,"ClassicAnvilTake",Inventory.GridStart+8);
         Require(ids[1]==379021000&&ids.Count(id=>id==156210008)==1,"Right-clicking a duplicate Raptor cannot replace or add upgrade materials");
         inventory[Inventory.GridStart+8]=default;
         Variant Extra(int id)
@@ -122,9 +122,9 @@ public partial class Preview
         originCell.EmitSignal(Control.SignalName.MouseExited);Require(!tooltip.Visible,"Leaving the slot closes the native item tooltip");
         DetailCall(world,"ConfirmUpgrade");var notice=(Notice)DetailField(world,"_upgradeConfirm")!;notice.Reparent(this);await Capture("confirmation");
         Input.ParseInputEvent(new InputEventKey{Pressed=true,Keycode=Key.Escape});await Frames();Require(!Locked()&&ids[0]!=0,"Escape cancels confirmation and preserves staged items");
-        DetailCall(world,"ResetAnvilSelection");await Capture("empty");Require(ids.All(i=>i==0)&&window.Visible,"Cancel resets selection while keeping the bench open");
+        DetailCall(world,"ClassicAnvilCancel");await Capture("empty");Require(ids.All(i=>i==0)&&window.Visible,"Cancel resets selection while keeping the bench open");
         var cells=Descendants(shell).OfType<ItemSlotView>().ToArray();
-        DetailCall(world,"PlaceUpgradeItem",Inventory.GridStart+5);await Capture("invalid-material");Require(ids.All(i=>i==0),"Unrelated potion cannot be staged");
+        DetailCall(world,"ClassicAnvilTake",Inventory.GridStart+5);await Capture("invalid-material");Require(ids.All(i=>i==0),"Unrelated potion cannot be staged");
         world.StageAnvilUpgrade(156210008,379021000,700002000);
         var preview=new UpgradeResult(2,2,1,new[]{new UpgradeSlotResult(156210009,0)});
         DetailCall(world,"OnUpgradeResult",preview);DetailCall(world,"OnUpgradeResult",preview);await Capture("restaged");
@@ -137,7 +137,7 @@ public partial class Preview
         await ToSignal(GetTree().CreateTimer(3.1),SceneTreeTimer.SignalName.Timeout);Require(!Locked(),"Reveal completion releases the interaction lock");await Capture("success-result");
         void Restage()
         {
-            DetailCall(world,"ResetAnvilSelection");world.StageAnvilUpgrade(156210008,379021000,700002000);
+            DetailCall(world,"ClassicAnvilCancel");world.StageAnvilUpgrade(156210008,379021000,700002000);
             DetailCall(world,"OnUpgradeResult",preview);DetailCall(world,"OnUpgradeResult",preview);
             DetailCall(world,"SendUpgrade");
         }
@@ -150,7 +150,7 @@ public partial class Preview
         DetailCall(world,"SetAnvilBench",Enum.ToObject(typeof(World).GetNestedType("AnvilBench",BindingFlags.NonPublic)!,1));DetailCall(world,"RefreshUpgradeActions");await Capture("compound-empty");
         for(int i=0;i<3;i++)inventory[Inventory.GridStart+i]=new LibreKO.Domain.ItemSlot{ItemId=330620270,Count=1,Durability=1};
         inventory[Inventory.GridStart+3]=new LibreKO.Domain.ItemSlot{ItemId=379159000,Count=3,Durability=1};
-        for(int i=0;i<4;i++)DetailCall(world,"PlaceUpgradeItem",Inventory.GridStart+i);
+        for(int i=0;i<4;i++)DetailCall(world,"ClassicAnvilTake",Inventory.GridStart+i);
         Require(ids.Take(3).All(i=>i==330620270),"Compound stages three distinct copies of the same accessory");
         DetailCall(world,"OnUpgradeResult",new UpgradeResult(2,2,1,new[]{new UpgradeSlotResult(330620431,0)}));
         await Capture("compound-ready");
@@ -161,27 +161,27 @@ public partial class Preview
         inventory[Inventory.GridStart+2]=new LibreKO.Domain.ItemSlot{ItemId=700002000,Count=5,Durability=1};
         Restage();DetailCall(world,"CloseUpgrade");Require(Locked(),"Closing a pending request retains its inventory lock");
         DetailCall(world,"OpenAnvilBench",Enum.ToObject(typeof(World).GetNestedType("AnvilBench",BindingFlags.NonPublic)!,0));
-        DetailCall(world,"PlaceUpgradeItem",Inventory.GridStart);Require(ids.All(i=>i==0),"Reopening cannot stage items before the earlier acknowledgment");await Capture("reopened-pending");
+        DetailCall(world,"ClassicAnvilTake",Inventory.GridStart);Require(ids.All(i=>i==0),"Reopening cannot stage items before the earlier acknowledgment");await Capture("reopened-pending");
         DetailCall(world,"OnUpgradeResult",new UpgradeResult(2,1,0,new[]{new UpgradeSlotResult(0,0)}));Require(!Locked(),"Quiet acknowledgment releases the retained lock");await Capture("quiet-result");
         world.StageAnvilUpgrade(156210008,379021000,700002000);
-        var refusal=new UpgradeResult(2,1,2,Array.Empty<UpgradeSlotResult>());
+        var refusal=new UpgradeResult(2,2,2,Array.Empty<UpgradeSlotResult>());
         DetailCall(world,"OnUpgradeResult",refusal);DetailCall(world,"OnUpgradeResult",refusal);
         Require(!((UpgradePreviewGate)DetailField(world,"_upgradePreviewGate")!).Pending,"Legacy server preview refusal releases the outstanding preview");
         await Capture("preview-refused");
-        DetailCall(world,"ResetAnvilSelection");
+        DetailCall(world,"ClassicAnvilCancel");
         var moveSource=Descendants(shell).OfType<ItemSlotView>().Single(c=>c.Name=="anvil_bag_5");
         var moveTarget=Descendants(shell).OfType<ItemSlotView>().Single(c=>c.Name=="anvil_bag_6");
         int originalCount=inventory[Inventory.GridStart+5].Count;
         var moveData=moveSource.DragOut!(moveSource);
         Require(moveTarget._CanDropData(Vector2.Zero,moveData),"Ordinary items can be rearranged in the embedded inventory");
-        moveTarget._DropData(Vector2.Zero,moveData);DetailCall(world,"OnItemMoveResult",true);
+        moveTarget._DropData(Vector2.Zero,moveData);DetailCall(world,"DeliverItemMoveResult",true);
         Require(moveSource.Item.IsEmpty&&moveTarget.Item.Count==originalCount,"Server-confirmed inventory moves refresh both embedded cells without losing count");
         await Capture("inventory-reordered");
         int scrollCount=inventory[Inventory.GridStart+1].Count;
-        DetailCall(world,"PlaceUpgradeItem",Inventory.GridStart+1);
+        DetailCall(world,"ClassicAnvilTake",Inventory.GridStart+1);
         var returnTarget=Descendants(shell).OfType<ItemSlotView>().Single(c=>c.Name=="anvil_bag_7");
-        returnTarget._DropData(Vector2.Zero,FromSocket(1));DetailCall(world,"OnItemMoveResult",true);
-        Require(returnTarget.Item.ItemId==379021000&&returnTarget.Item.Count==1&&inventory[Inventory.GridStart+1].Count==scrollCount-1,"Returning a staged scroll to a chosen bag cell moves exactly one and preserves the remaining stack");
+        returnTarget._DropData(Vector2.Zero,FromSocket(1));DetailCall(world,"DeliverItemMoveResult",true);
+        Require(ids[1]==0&&returnTarget.Item.IsEmpty&&inventory[Inventory.GridStart+1].Count==scrollCount,"Returning a staged scroll stack to another bag cell releases its reservation and keeps the stack in place");
         await Capture("scroll-returned");
         window.Visible=false;choice.Visible=true;await Capture("choice");
         Require(Descendants(choice).OfType<Button>().Count(b=>b.IsVisibleInTree()&&b.Text is "Upgrade Item" or "Compound Accessory" or "Walk away")==3,"Original three-option selection menu uses live callbacks");

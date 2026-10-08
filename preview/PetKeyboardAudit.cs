@@ -29,7 +29,7 @@ public partial class Preview
         }
         bool ChatActive() => (bool)DetailCall(world, "PetKeyboardChatActive")!;
         var name = Field<LineEdit>("_petHatchName"); var panel = Field<HudWindow>("_petHatchPanel");
-        bool NoticeOpen() => Field<Notice?>("_petHatchNotice") != null;
+        bool NoticeOpen() => PreviewFixtures.PetHatchNotice(world) != null;
         var tabs = Field<ServiceTabs>("_petHatchTabs");
         var buttons = (List<Button>)typeof(ServiceTabs).GetField("_buttons", flags)!.GetValue(tabs)!;
         try

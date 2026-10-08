@@ -39,6 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="assets/**;bin/**;obj/**;preview/**" />
+    <Compile Remove="assets/**;bin/**;obj/**;preview/**;tests/**" />
+    <EmbeddedResource Include="assets/anvil/anvil_upgrade_settings.json" LogicalName="KnightOnlineUiClassic.AnvilUpgradeSettings" />
+    <EmbeddedResource Include="assets/anvil/anvil_origins.json.gz" LogicalName="KnightOnlineUiClassic.AnvilOrigins" />
   </ItemGroup>
 </Project>

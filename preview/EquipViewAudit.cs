@@ -36,10 +36,10 @@ public partial class Preview
         }
         T Find<T>(string name) where T : Control => Descendants(panel).OfType<T>().Single(c => c.Name == name);
         ItemSlotView[] Cells() => Descendants(panel).OfType<ItemSlotView>().OrderBy(c => c.Index).ToArray();
-        Net.EquipmentView Snapshot(string name, int targetNation, bool empty = false, bool maximum = false) => (Net.EquipmentView)typeof(World).GetMethod("EquipViewPreviewSnapshot", BindingFlags.NonPublic | BindingFlags.Static)!.Invoke(null, new object[] { name, targetNation, empty, maximum })!;
+        Net.EquipmentView Snapshot(string name, int targetNation, bool empty = false, bool maximum = false) => PreviewFixtures.EquipViewPreviewSnapshot(name, targetNation, empty, maximum);
         void Request(string name) => DetailCall(world, "RequestEquipmentView", name);
         void Reply(Net.EquipmentView view) => DetailCall(world, "OnEquipmentView", Net.EquipmentViewResult.Accepted, view);
-        bool Busy() => (bool)DetailField(world, "_equipViewInFlight")!;
+        bool Busy() => NativeEquipView.InFlight(world);
         var inv = (Inventory)typeof(World).GetProperty("Inv", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(world)!;
         var inventory = inv[InventoryConstants.InventoryStart];
         async Task Capture(string state, bool tooltip = false)

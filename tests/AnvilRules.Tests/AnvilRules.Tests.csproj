@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>KnightOnlineUiClassic.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <!-- The rules are plain .NET; compile them with the same embedded snapshot the plugin ships. -->
+  <ItemGroup>
+    <Compile Include="../../src/Native/AnvilPlacementRules.cs" Link="AnvilPlacementRules.cs" />
+    <EmbeddedResource Include="../../assets/anvil/anvil_upgrade_settings.json" LogicalName="KnightOnlineUiClassic.AnvilUpgradeSettings" />
+    <EmbeddedResource Include="../../assets/anvil/anvil_origins.json.gz" LogicalName="KnightOnlineUiClassic.AnvilOrigins" />
+  </ItemGroup>
+
+</Project>

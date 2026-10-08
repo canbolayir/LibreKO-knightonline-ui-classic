@@ -102,7 +102,7 @@ public partial class Preview
             Require(!scope.GetPopup().Visible && model.Type == MerchantSearch.BuyingType && model.Count == 1, "Native scope keyboard selects buying stalls"); await Capture("buying");
             await Click(Find<Button>("view_0")); Require((int)DetailField(world, "_marketPriceAsked")! == 120010000 && (bool)DetailField(world, "_marketPriceOpenOnReply")!, "Actual View click retains premium price-history request");
             await Click(Find<Button>("move_0")); Require((string)DetailField(world, "_merchantSearchMoveTo")! == "Buyer", "Actual Move click retains selected seller request");
-            await Click(Find<Button>("whisper_0")); Require((string)DetailField(world, "_whisperComposeTarget")! == "Buyer", "Actual Whisper click opens native private message for selected seller");
+            await Click(Find<Button>("whisper_0")); Require(WhisperTarget(world) == "Buyer", "Actual Whisper click opens native private message for selected seller");
             var whispers = (CanvasLayer)DetailField(world, "_whisperLayer")!; foreach (var child in whispers.GetChildren().OfType<Control>()) child.Visible = false;
             query.GrabFocus(); await KeyInput(Key.Escape); Require(!window.Visible && !(bool)DetailField(world, "_merchantSearchShown")!, "Focused query Escape follows native close callback");
             DetailCall(world, "OnMerchantSearchOpen"); DetailCall(world, "OnMerchantSearchLoaded"); await Frames(); Require(window.Visible && model.Count == 0 && !scope.GetPopup().Visible, "Native reopen clears stale rows and popup");
@@ -118,4 +118,10 @@ public partial class Preview
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-merchant-search.json", JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic merchant search audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }
+
+    /// <summary>The player addressed by the open private-message window whose input has focus.</summary>
+    private static string? WhisperTarget(World world) =>
+        (DetailField(world, "_whispers") as System.Collections.IDictionary)?.Values.Cast<object>()
+            .Where(chat => Native.Get<LineEdit>(chat, "Input") is { } input && input.HasFocus() && Native.Get<HudWindow>(chat, "Window")!.Visible)
+            .Select(chat => Native.Get<string>(chat, "Name")).FirstOrDefault();
 }

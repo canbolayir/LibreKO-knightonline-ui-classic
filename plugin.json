@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "ui-theme",
   "era": "Knight Online 1.298 Classic",
-  "description": "Requires canbolayir/LibreKO fork. Editable 1.298 Classic UI with Human/Karus styling, Cospre bags and native game features",
+  "description": "Editable 1.298 Classic UI with Human/Karus styling, Cospre bags and native game features. Works with upstream LibreKO.",
   "author": "Can Bolay\u0131r; based on ZeusAFK Chaos UI",
   "homepage": "https://github.com/canbolayir/LibreKO-knightonline-ui-classic",
   "assembly": "bin/KnightOnlineUiClassic.dll",

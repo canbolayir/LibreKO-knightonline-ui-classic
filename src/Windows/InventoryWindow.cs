@@ -134,7 +134,7 @@ public partial class InventoryWindow : Control
         if (RepairMode)
         {
             CancelCarry();
-            if (slot < _game.Inventory.GridStart + _game.Inventory.GridCount) _game.Inventory.Use(slot);
+            if (slot < _game.Inventory.GridStart + _game.Inventory.GridCount) _repair.Take(slot);
             return;
         }
         if (_carried < 0)
