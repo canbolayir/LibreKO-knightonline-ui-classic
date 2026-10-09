@@ -56,6 +56,10 @@ public partial class Preview
             var p = new Packet(GameOpcodes.GS_CLASS_CHANGE); p.WriteByte(7); p.WriteBytes(bytes);
             typeof(Net).GetMethod("HandleClassChange", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(net, new object[] { p });
         }
+        // The rebirth reply is [7][result i16]: 1 is success, -1 to -10 are refusals.
+        void Result(short code) => Reply((byte)(code & 0xff), (byte)((code >> 8) & 0xff));
+        const short noQualification = -2;
+        string RefusalText() => ItemData.Text(RebirthWire.ResultText(noQualification), "Mekin refused the rebirth.");
         async Task Capture(string state)
         {
             await Frames();
@@ -92,7 +96,7 @@ public partial class Preview
         {
             await Capture("initial"); Require(accept.Disabled && pick.Remaining == 2, "Rebirth starts with exactly two unassigned points");
             Require(!net.SendRebirthStatChange(new byte[] { 1, 0, 0, 0, 0 }) && !net.SendRebirthStatChange(new byte[] { 2 }), "Network rejects incomplete and short allocations");
-            Reply(1); Require(net.Sheet.RebirthLevel == 4, "Unsolicited success does not add a rebirth level");
+            Result(RebirthWire.Accepted); Require(net.Sheet.RebirthLevel == 4, "Unsolicited success does not add a rebirth level");
             await Click(Find<Button>("rebirth_add_0")); await Capture("one-point");
             await Click(Find<Button>("rebirth_add_2")); await Capture("split-points");
             Require(pick.PickedAt(0) == 1 && pick.PickedAt(2) == 1 && !accept.Disabled, "Native row clicks allocate independent bonus points");
@@ -119,9 +123,11 @@ public partial class Preview
             await KeyInput(Key.Enter); await Capture("pending");
             Require(Busy() && NetBusy(), "Confirmation Enter sends exactly one native request");
             Require(!net.SendRebirthStatChange(new byte[] { 0, 2, 0, 0, 0 }), "Network independently rejects a second outstanding request");
-            Reply(); Reply(2); Reply(1, 0); Require(Busy() && NetBusy(), "Malformed and unknown replies cannot finish a pending allocation");
-            Reply(0); await Capture("refused");
+            Reply(); Reply(1); Result(0); Result(2); Result(-11); Reply(1, 1, 0, 0, 0);
+            Require(Busy() && NetBusy(), "Malformed and unknown replies cannot finish a pending allocation");
+            Result(noQualification); await Capture("refused");
             Require(!Busy() && !NetBusy() && pick.PickedAt(0) == 2 && !accept.Disabled, "Refusal retains picks and allows editing and retry");
+            Require(Find<Label>("rebirth_status").Text == RefusalText(), "Refusal shows the server's rebirth refusal text");
             typeof(World).GetField("_selfDead", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, true);
             DetailCall(world, "RefreshRebirthUI"); await Capture("dead");
             DetailCall(world, "OnRebirthPressed"); Require(!Busy() && Confirmation() == null, "Dead character cannot spend the qualification");
@@ -142,16 +148,20 @@ public partial class Preview
             Require((window.Position - before - delta).Length() < 1, "Native header drag retains complete frame geometry"); await Capture("dragged");
             await Click(accept); await KeyInput(Key.Enter); await KeyInput(Key.Escape);
             Require(!window.Visible && Busy() && NetBusy(), "Closing pending service retains submitted allocation and identity");
-            DetailCall(world, "OpenRebirthPicker"); Require(!window.Visible && Busy(), "Reopening cannot replace a pending operation");
-            Reply(0); Require(!window.Visible && !Busy() && !NetBusy(), "Late refusal never reopens a closed service");
+            DetailCall(world, "OpenRebirthPicker"); await Frames();
+            Require(window.Visible && Busy() && accept.Disabled && pick.PickedAt(0) == 2 && Find<Label>("rebirth_status").Text == "Reincarnating…",
+                "Reopening a pending operation shows its locked allocation");
+            await Capture("pending-reopened");
+            await KeyInput(Key.Escape); Require(!window.Visible && Busy() && NetBusy(), "Closing the reopened service retains the pending operation");
+            Result(noQualification); Require(!window.Visible && !Busy() && !NetBusy(), "Late refusal never reopens a closed service");
             DetailCall(world, "OpenRebirthPicker"); await Click(Find<Button>("rebirth_add_1")); await Click(Find<Button>("rebirth_add_4"));
             GetWindow().Size = new Vector2I(1200, 850); await Capture("wide-viewport");
             await Click(accept); await KeyInput(Key.Enter); net.Disconnect(expected: true);
             Require(!Busy() && !NetBusy() && !window.Visible && pick.Placed == 0, "Disconnect closes service and clears stale operation");
             DetailCall(world, "OpenRebirthPicker"); await Click(Find<Button>("rebirth_add_1")); await Click(Find<Button>("rebirth_add_4"));
-            await Click(accept); await KeyInput(Key.Enter); Reply(1); await Frames();
+            await Click(accept); await KeyInput(Key.Enter); Result(RebirthWire.Accepted); await Frames();
             Require(net.Sheet.RebirthLevel == 5 && net.Sheet.RebirthBonusAtRow(1) == 2 && net.Sheet.RebirthBonusAtRow(4) == 2 && !window.Visible, "Success applies only the confirmed snapshot once and closes the service");
-            Reply(1); Require(net.Sheet.RebirthLevel == 5, "Duplicate idle success cannot add another stage");
+            Result(RebirthWire.Accepted); Require(net.Sheet.RebirthLevel == 5, "Duplicate idle success cannot add another stage");
         }
         finally { DetailCall(world, "RebirthDispose"); layer.Free(); world.Free(); net.Free(); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-rebirth.json", JsonSerializer.Serialize(new { nation, checks, screens, liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));

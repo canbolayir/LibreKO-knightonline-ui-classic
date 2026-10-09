@@ -123,7 +123,15 @@ public partial class Preview
             await KeyInput(Key.Escape, colour.GetPopup()); await Capture("custom-colour");
             var angle = Pivot().Rotation.Y; await Click(Find<Button>("look_turn_left")); Require(Math.Abs(Pivot().Rotation.Y - angle + Mathf.DegToRad(30)) < .01, "Native left turn rotates model");
             await Capture("turned"); await Click(Find<Button>("look_turn_right")); Require(Math.Abs(Pivot().Rotation.Y - angle) < .01, "Native right turn restores model");
-            await KeyInput(Key.Enter); Require(Busy() && NetBusy(), "Enter submits one free beauty request"); await Capture("pending");
+            var status = Find<Label>("look_status");
+            await KeyInput(Key.Enter);
+            Require(!Busy() && !NetBusy() && !colour.GetPopup().Visible && status.Text == ItemData.Text(BeautyShop.NoCouponText, "You need a Makeover Coupon."),
+                "Without a Makeover Coupon Enter sends nothing and shows text 18901");
+            await Capture("no-coupon");
+            var bag = (Inventory)typeof(World).GetProperty("Inv", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(world)!;
+            bag.EnsureLength(InventoryConstants.InventoryTotal);
+            bag[Inventory.GridStart] = new LibreKO.Domain.ItemSlot { ItemId = BeautyShop.Coupon, Count = 3, Durability = 1 };
+            await KeyInput(Key.Enter); Require(Busy() && NetBusy(), "Enter submits one beauty request with a Makeover Coupon in the bag"); await Capture("pending");
             int face = editor.Face, hair = editor.Hair;
             await Click(Find<Button>("look_face_next")); await Click(colour); await Click(accept); await KeyInput(Key.KpEnter);
             Require(Busy() && editor.Face == face && editor.Hair == hair && !colour.GetPopup().Visible, "Pending edit, repeated click and keypad Enter cannot replace the submitted look");

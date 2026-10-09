@@ -54,7 +54,7 @@ public partial class Preview
         var pendingMove=typeof(Net).GetField("_pendingItemMove",BindingFlags.Instance|BindingFlags.NonPublic)!;
         var moveHandler=typeof(Net).GetMethod("HandleItemMove",BindingFlags.Instance|BindingFlags.NonPublic)!;
         object PendingMove(byte direction,byte source,byte destination)=>Activator.CreateInstance(moveType,
-            new object[]{direction,source,destination,0}.Take(moveType.GetConstructors().Max(c=>c.GetParameters().Length)).ToArray())!;
+            new object[]{direction,source,destination,(ushort)0}.Take(moveType.GetConstructors().Max(c=>c.GetParameters().Length)).ToArray())!;
         var snapshot=net.LastEnter;
         snapshot.Inventory[InventoryConstants.InventoryStart]=new NativeSlot {ItemId=700011001,Count=1};
         pendingMove.SetValue(net,PendingMove(ItemMove.InventoryToBagSlot,0,2));

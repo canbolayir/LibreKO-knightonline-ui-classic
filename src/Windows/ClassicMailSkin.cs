@@ -194,7 +194,8 @@ public partial class ClassicMailPanel : Control
         input.GuiInput += ev =>
         {
             if (ev is not InputEventKey { Pressed: true, Echo: false, Keycode: Key.Escape }) return;
-            (_cancel ?? _close).EmitSignal(BaseButton.SignalName.Pressed); input.AcceptEvent();
+            // Escape does what the header X does: compose hides and keeps its draft; only Cancel clears it.
+            _close.EmitSignal(BaseButton.SignalName.Pressed); input.AcceptEvent();
         };
     }
     private static void StyleAttachment(Control control)
@@ -227,7 +228,7 @@ public partial class ClassicMailPanel : Control
     public override void _UnhandledKeyInput(InputEvent ev)
     {
         if (!Window.IsVisibleInTree() || ev is not InputEventKey { Pressed: true, Echo: false, Keycode: Key.Escape }) return;
-        (_cancel ?? _close).EmitSignal(BaseButton.SignalName.Pressed); GetViewport().SetInputAsHandled();
+        _close.EmitSignal(BaseButton.SignalName.Pressed); GetViewport().SetInputAsHandled();
     }
     public override void _Process(double delta)
     {

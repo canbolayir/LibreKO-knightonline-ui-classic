@@ -158,7 +158,12 @@ public partial class Preview
             Require(!net.SendNationTransfer(picks), "Network refuses a second outstanding account transfer");
             await Click(Find<Button>("transfer_character_0")); await Click(Find<Button>("look_face_next"));
             Require(Picks().Values.OrderBy(p => p.Slot).SequenceEqual(picks), "Pending character and appearance controls cannot replace captured picks");
-            Reply(3, 99); Require(Busy() && NetBusy(), "Unknown response cannot complete a pending transfer");
+            Reply(3, 99);
+            Require(!Busy() && !NetBusy() && window.Visible && !accept.Disabled && Find<Label>("look_status").Text == ItemData.Text(NationTransferWire.FailedText, "Transfer failed"),
+                "Unknown submit result is a refusal that clears the pending transfer with the failure text");
+            Require(Picks().Values.OrderBy(p => p.Slot).SequenceEqual(picks), "Unknown-result refusal keeps the submitted picks for another attempt");
+            await Capture("unknown-refused");
+            await Click(accept); await KeyInput(Key.Enter); Require(Busy() && NetBusy() && Confirmation() == null, "Certificate confirmation submits again after a refusal");
             Open(candidates.Take(1).ToArray()); Require(Picks().Count == 4 && Busy(), "Open response cannot replace a pending account");
             await KeyInput(Key.Escape); Require(!window.Visible && Busy() && Pivot().GetChildCount() == 0, "Pending Escape clears preview and retains request identity");
             Open(candidates); Require(!window.Visible && Busy(), "Reopen cannot replace a closed pending transfer");

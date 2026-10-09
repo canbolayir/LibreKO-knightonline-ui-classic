@@ -122,7 +122,12 @@ public partial class Preview
                 var before = inventory[slot]; var beforeMaterial = transform ? inventory[scrollSlot] : default;
                 await Submit(); await Capture("pending");
                 var truncated = new Packet(GameOpcodes.GS_ITEM_UPGRADE); truncated.WriteByte((byte)(transform ? 10 : 6)); truncated.WriteByte(1); Receive(truncated);
-                require(Field<bool>("_petHatchInFlight") && action.Disabled && mutations == 0, "Truncated " + service + " response leaves the actual UI locked without partial item mutation");
+                await Frames();
+                require(!Field<bool>("_petHatchInFlight") && !action.Disabled && inventory[slot].Equals(before) && mutations == 0
+                    && status.Text == (transform ? "The familiar could not be transformed." : "Familiar hatching failed.") && status.GetThemeColor("font_color") == UiTheme.Bad,
+                    "Truncated " + service + " response releases the actual UI with the failure text and no partial item mutation");
+                await Capture("malformed");
+                await Submit();
                 Receive(Refused()); await Frames();
                 require(!Field<bool>("_petHatchInFlight") && !action.Disabled && inventory[slot].Equals(before) && mutations == 0 && status.Text.Length > 0,
                     "Received " + service + " refusal restores the same editable draft without spending items");

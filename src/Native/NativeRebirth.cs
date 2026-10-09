@@ -177,8 +177,15 @@ public static class NativeRebirth
         Refresh(world);
         // The fix branch's sender reports a refused send; upstream's returns nothing and always sends.
         if (Net.I is { } net && Native.Call(net, "SendRebirthStatChange", sent) is false)
-            Native.Call(world, "OnRebirthStatResult", (int)Net.ClassChangeRebirthStat, 0);
+            Native.Call(world, "OnRebirthStatResult", (int)Net.ClassChangeRebirthStat, LocalRefusal);
     }
+
+    /// <summary>
+    /// The result a refused local send reports: the signed busy refusal where the reply carries an i16
+    /// result, and the legacy refusal byte otherwise.
+    /// </summary>
+    private static int LocalRefusal =>
+        Native.ClientType("LibreKO.Network.RebirthWire") is { } wire && Native.TryGet<short>(wire, "Busy", out short busy) ? busy : 0;
 
     private static void Cancel(World world, int revision)
     {

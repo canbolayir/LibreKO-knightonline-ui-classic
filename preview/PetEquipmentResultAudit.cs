@@ -183,8 +183,10 @@ public partial class Preview
             CheckSlot(Inventory.GridStart + 3, 1, oldItem, replacement, "same-kind-replacement-after-stat-sheet"); await Capture("replacement");
             await Click(Find<ItemSlotView>("pet_item_1"), MouseButton.Right); await Request(ItemMove.PetToInventory, attackId, 1, 0);
             SummonSheet(new NativeSlot[PetSheet.InventorySize], 99); Reply(true); await Frames();
-            CheckSlot(Inventory.GridStart, 1, replacement, default, "different-familiar-after-request");
+            // A move for a familiar that is no longer summoned is not half applied: the bag waits for the server's record.
+            CheckSlot(Inventory.GridStart, 1, default, default, "different-familiar-after-request");
             require(net.Pet!.Index == 99 && net.Pet.Items.All(i => i.IsEmpty), "An earlier familiar move cannot equip or remove items from a different summoned familiar");
+            SetBag(Inventory.GridStart, replacement); Refresh(); await Frames();
             await Capture("changed-familiar");
             await Drag(cells.Single(c => c.Slot == Inventory.GridStart), Find<ItemSlotView>("pet_item_1")); await Request(ItemMove.InventoryToPet, attackId, 0, 1);
             Reply(true); await Frames(); CheckSlot(Inventory.GridStart, 1, default, replacement, "new-familiar-equip");
@@ -192,9 +194,10 @@ public partial class Preview
             await Click(Find<ItemSlotView>("pet_item_1"), MouseButton.Right); await Request(ItemMove.PetToInventory, attackId, 1, 0);
             var gone = new Packet(GameOpcodes.GS_PET); gone.WriteByte(1); gone.WriteByte(5); gone.WriteByte((byte)PetSheet.ModeDied); gone.WriteShort(1); gone.WriteInt(99); gone.ResetOffset();
             typeof(Net).GetMethod("HandlePet", flags)!.Invoke(net, new object[] { gone }); Reply(true); await Frames();
-            require(inventory[Inventory.GridStart].Equals(replacement) && net.LastEnter.Inventory[Inventory.GridStart].Equals(replacement) && net.Pet == null,
-                "Accepted familiar removal after dismissal keeps the bag record without resurrecting the familiar");
+            require(inventory[Inventory.GridStart].IsEmpty && net.LastEnter.Inventory[Inventory.GridStart].IsEmpty && net.Pet == null,
+                "Accepted familiar removal after dismissal is not half applied and does not resurrect the familiar");
             require(!Field<bool>("_moveInFlight"), "Dismissed familiar equipment acknowledgement releases the native inventory lock");
+            SetBag(Inventory.GridStart, replacement); Refresh(); await Frames();
             await Capture("dismissed");
         }
         finally

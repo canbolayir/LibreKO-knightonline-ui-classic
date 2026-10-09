@@ -94,7 +94,13 @@ public partial class Preview
             await Click(Find<Button>("cape_buy")); oldRequest.Confirm(); Require(!Busy(), "Stale confirmation callback cannot submit replacement modal");
             await KeyInput(Key.Enter); await Capture("pending"); Require(Busy() && NetBusy() && !Find<HSlider>("cape_dye_R").Editable, "Modal Enter submits once and locks edits");
             Require(!net.SendCapeBuy(0, choice, 0, 0, 0), "Network prevents second simultaneous cape request");
-            Reply(1); Reply(-7, trailing: true); Reply(1, success: true, clan: 99); Require(Busy() && NetBusy(), "Truncated, trailing and foreign-clan responses do not finish purchase");
+            Reply(1); Reply(-7, trailing: true); Require(Busy() && NetBusy(), "Truncated and trailing responses do not finish purchase");
+            Reply(1, success: true, clan: 99); await Capture("foreign-clan");
+            Require(!Busy() && !NetBusy() && window.Visible && !Find<Button>("cape_buy").Disabled && Find<HSlider>("cape_dye_R").Editable
+                && (int)DetailField(world, "_capeChoice")! == chosen && net.LastEnter.CapeId == worn
+                && Find<Label>("cape_status").Text == LibreKO.Domain.ItemData.Text(16810, "Try again later"),
+                "A reply for another clan releases the purchase without applying it and unlocks the same draft");
+            await Click(Find<Button>("cape_buy")); await KeyInput(Key.Enter); Require(Busy() && NetBusy(), "The released draft can be submitted again");
             Reply(-7); await Capture("refused"); Require(!Busy() && !NetBusy() && !Find<Button>("cape_buy").Disabled, "Server refusal unlocks the same draft for retry");
             if (!Find<Button>("cape_colour_next").Disabled)
             { await Click(Find<Button>("cape_colour_next")); await Capture("colour-page-two"); Require(NativeCape.ColourPage(world) == 1, "Colour next arrow opens next six choices"); await Click(Find<Button>("cape_colour_previous")); }
@@ -124,7 +130,13 @@ public partial class Preview
             await Click(Find<Button>("cape_buy")); await KeyInput(Key.Enter); await KeyInput(Key.Escape); Require(!window.Visible && Busy(), "Closing pending purchase retains operation identity");
             DetailCall(world, "ToggleCape"); Require(!window.Visible && Busy(), "Reopen cannot replace outstanding operation"); Reply(-7); Require(!window.Visible && !Busy(), "Late refusal never reopens service");
             DetailCall(world, "ToggleCape"); await Click(Find<Button>("cape_colour_0")); await Click(Find<Button>("cape_buy")); await KeyInput(Key.Enter); Reply(1, success: true); await Capture("applied");
-            Require(net.LastEnter.CapeId == (int)DetailField(world, "_capeChoice")! && !Busy(), "Success updates authoritative worn state before preview restoration");
+            Require(net.LastEnter.CapeId == worn && (int)DetailField(world, "_capeCurrent")! == (int)DetailField(world, "_capeChoice")! && !Busy(),
+                "Success applies the chosen cape and leaves the worn record to the server's clan update");
+            var update = new Packet(GameOpcodes.GS_KNIGHTS_PROCESS); update.WriteByte(0x24); update.WriteShort((short)net.MyClan.ClanId);
+            update.WriteByte((byte)net.MyClan.Flag); update.WriteShort((short)(int)DetailField(world, "_capeChoice")!);
+            update.WriteByte(0); update.WriteByte(0); update.WriteByte(0); update.WriteByte(0);
+            typeof(Net).GetMethod("HandleKnights", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(net, new object[] { update });
+            Require(net.LastEnter.CapeId == (int)DetailField(world, "_capeChoice")!, "The server's clan update records the purchased cape as worn");
             Reply(-7); Require(!Busy() && !NetBusy(), "Duplicate idle response cannot alter completed operation");
             await Click(Find<Button>("cape_buy")); await KeyInput(Key.Enter); net.Disconnect(expected: true); Require(!window.Visible && !Busy() && !NetBusy(), "Disconnect closes service and clears pending request");
             DetailCall(world, "ToggleCape"); GetWindow().Size = new Vector2I(1200, 850); await Capture("wide-viewport");

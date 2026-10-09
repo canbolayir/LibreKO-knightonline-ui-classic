@@ -95,14 +95,28 @@ public partial class Preview
             await Capture("refused");
             await ClickFeed(); await Request(strongSlot, strong.Id);
             var success = Food(1, strongSlot - Inventory.GridStart, strong.Id, 1, 1000);
-            var bytes = success.GetData(); string warning = status.Text;
+            var bytes = success.GetData();
+            bool Feeding() => typeof(Net).GetField("_petFeedRequest", flags)!.GetValue(net) != null;
             for (int length = 0; length < bytes.Length; length++)
             {
-                var prefix = new Packet(GameOpcodes.GS_PET); prefix.WriteBytes(bytes[..length]); Receive(prefix);
-                require(refusals == 1 && results == 0 && mutations == 0 && status.Text == warning && inventory[strongSlot].Equals(strongItem), "Truncated familiar food response cannot mutate items or become a false refusal / " + length);
+                if (!Feeding()) { await ClickFeed(); await Request(strongSlot, strong.Id); }
+                int before = refusals; string warning = status.Text;
+                var prefix = new Packet(GameOpcodes.GS_PET); prefix.WriteBytes(bytes[..length]); Receive(prefix); await Frames();
+                // A reply too short to name its function is not a food reply; an unreadable food reply refuses the feed.
+                bool released = !Feeding();
+                require(results == 0 && mutations == 0 && inventory[strongSlot].Equals(strongItem)
+                    && (released ? refusals == before + 1 && feed.Disabled == false && status.Text.Contains(ItemData.DisplayName(strong.Id)) && status.GetThemeColor("font_color") == UiTheme.Bad
+                                 : length < 2 && refusals == before && status.Text == warning),
+                    "Truncated familiar food response releases the feed as a refusal without mutating items / " + length);
             }
-            Receive(Food(1, InventoryConstants.HaveMax, strong.Id, 1, 1000)); Receive(Food(1, strongSlot - Inventory.GridStart, weak.Id, 1, 1000));
-            require(results == 0 && mutations == 0 && inventory[strongSlot].Equals(strongItem), "Invalid or mismatched familiar food replies cannot overwrite another inventory record");
+            await ClickFeed(); await Request(strongSlot, strong.Id);
+            int refusedBefore = refusals;
+            Receive(Food(1, InventoryConstants.HaveMax, strong.Id, 1, 1000)); await Frames();
+            require(!Feeding() && refusals == refusedBefore + 1 && results == 0 && mutations == 0 && inventory[strongSlot].Equals(strongItem),
+                "An invalid familiar food reply releases the feed as a refusal without overwriting another inventory record");
+            await ClickFeed(); await Request(strongSlot, strong.Id);
+            Receive(Food(1, strongSlot - Inventory.GridStart, weak.Id, 1, 1000));
+            require(Feeding() && results == 0 && mutations == 0 && inventory[strongSlot].Equals(strongItem), "A mismatched familiar food reply leaves the feed pending and cannot overwrite another inventory record");
             Receive(success); Satisfaction(10000); await Frames();
             var left = strongItem; left.Count = 1;
             require(results == 1 && mutations == 1 && inventory[strongSlot].Equals(left) && net.LastEnter.Inventory[strongSlot].Equals(left),

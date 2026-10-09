@@ -185,8 +185,20 @@ public partial class Preview
         await Capture(2, "clan-inventory-rearranged");
         Set("_vipWhExpirySec", 0); DetailCall(world, "RefreshVipWarehouse");
         Require((int)DetailField(world, "_vipWhExpirySec")! == 0, "VIP expiry invalidates the displayed rental time");
-        Set("_vipWhShown", true); DetailCall(world, "VipDepositSlot", Inventory.GridStart);
-        Require(!vipAmount.Visible && !(bool)DetailField(world, "_vipWhInFlight")!, "An expired VIP vault cannot initiate another transfer");
+        Set("_vipWhShown", true);
+        var vipStatus = (Label)DetailField(world, "_vipWhStatus")!;
+        inventory[Inventory.GridStart + 5] = new NativeSlot { ItemId = WarehouseRules.NoTradeIdFirst, Count = 1, Durability = 1 };
+        RightClick(Descendants(panels[1]).OfType<ItemSlotView>().Single(c => c.Name == "storage_bag_5"));
+        Require(!vipAmount.Visible && !(bool)DetailField(world, "_vipWhInFlight")! && vipStatus.Text == ItemData.Text(WarehouseRules.NonStorableText, "This item is non-storable"),
+            "VIP storage refuses the server's no-trade range with the non-storable text");
+        inventory[Inventory.GridStart + 5] = default; DetailCall(world, "RefreshVipWarehouse");
+        RightClick(Descendants(panels[1]).OfType<ItemSlotView>().Single(c => c.Name == "storage_bag_0"));
+        Require(vipAmount.Visible, "An expired VIP vault leaves the transfer decision to the server");
+        Descendants(vipAmount).OfType<MoneyEdit>().Single().Value = 5; vipAmount.Confirm();
+        Require((bool)DetailField(world, "_vipWhInFlight")!, "An expired VIP vault sends the requested transfer to the server");
+        DetailCall(world, "OnVipWarehouseResult", (byte)2, false);
+        Require(!(bool)DetailField(world, "_vipWhInFlight")! && inventory[Inventory.GridStart].Count == 69 && vip[1].Count == 75 && vipStatus.Text == "Transfer failed.",
+            "The server's expired-vault refusal releases the transfer and keeps both stacks");
         await Capture(1, "vip-expired");
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-verification.json", JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print($"Storage audit passed: {checks.Count} checks, {screens.Count} screenshots, nation {nation}");

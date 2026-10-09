@@ -83,6 +83,8 @@ public partial class ClassicGenderPanel : Control
         }
         _colour = Find<ColorPickerButton>("look_colour");
         _colour.CustomMinimumSize = new Vector2(80, 26);
+        // Enter belongs to the service, as on the other look buttons: a focused colour button would also open its picker.
+        _colour.FocusMode = FocusModeEnum.None;
         foreach (var state in new[] { "normal", "hover", "pressed", "disabled" }) _colour.AddThemeStyleboxOverride(state, ClassicDesign.InputBox());
         var picker = _colour.GetPicker();
         picker.ColorModesVisible = false; picker.SlidersVisible = false; picker.SamplerVisible = false; picker.PresetsVisible = false;

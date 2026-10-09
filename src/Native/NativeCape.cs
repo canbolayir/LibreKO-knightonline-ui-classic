@@ -28,6 +28,7 @@ public static class NativeCape
     private const int PatternSampleColour = 1;
     private const int SwatchSize = 46;
     private const int CastellanGradeLimit = 3;
+    private const int TryAgainText = 16810;
     private static readonly int[] UnsoldCapes = { 97, 98, 99 };
 
     private sealed class State
@@ -42,6 +43,8 @@ public static class NativeCape
         public Notice? Notice;
         public int Revision;
         public bool Awaiting;
+        /// <summary>Set by a cape release for the rest of the frame, so a reset of every pending operation can follow it.</summary>
+        public bool Released;
         public readonly Dictionary<Button, string> ArtKeys = new();
     }
 
@@ -132,7 +135,16 @@ public static class NativeCape
         net.CapeResultEvent += result;
         Action reset = () => Reset(world, state);
         Native.Subscribe(net, "CapeResetEvent", reset);
-        world.TreeExiting += () => net.CapeResultEvent -= result;
+        // A lost connection resets every pending operation right after the cape; a cape reply for another
+        // clan releases only the cape request.
+        Action lost = () => ConnectionReset(world, state);
+        string[] connectionResets = { "PetResetEvent", "RebirthResetEvent" };
+        foreach (string member in connectionResets) Native.Subscribe(net, member, lost);
+        world.TreeExiting += () =>
+        {
+            net.CapeResultEvent -= result;
+            foreach (string member in connectionResets) Native.Unsubscribe(net, member, lost);
+        };
         window.SetMeta("classic_cape_controls", 1);
         NativeWindows.Sync(window, () => Gate(world));
         if (window.Visible) Opened(world, state);
@@ -470,12 +482,28 @@ public static class NativeCape
         Gate(world);
     }
 
-    /// <summary>A lost connection closes the service and forgets the draft.</summary>
+    /// <summary>
+    /// The client released the cape request without a result (a reply for another clan, or a reset). The
+    /// draft stays editable and the window says the request did not complete.
+    /// </summary>
     private static void Reset(World world, State state)
     {
+        bool awaiting = state.Awaiting;
         state.Awaiting = false;
         if (!GodotObject.IsInstanceValid(state.Window)) return;
         Native.Set(world, "_capeRequestInFlight", false);
+        if (awaiting && Native.Get<bool>(world, "_capeShown"))
+            Native.Call(world, "SetCapeStatus", LibreKO.Domain.ItemData.Text(TryAgainText, "Try again later"), true);
+        Gate(world);
+        state.Released = true;
+        Callable.From(() => state.Released = false).CallDeferred();
+    }
+
+    /// <summary>A lost connection closes the service and forgets the draft.</summary>
+    private static void ConnectionReset(World world, State state)
+    {
+        if (!state.Released || !GodotObject.IsInstanceValid(state.Window)) return;
+        state.Released = false;
         Native.Call(world, "CloseCape");
         Dismiss(state);
         Native.Set(world, "_capeChoice", NoCape);

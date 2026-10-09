@@ -157,12 +157,16 @@ public partial class Preview
                 await Capture(window, "send-refused");
                 to.GrabFocus(); GetViewport().PushInput(new InputEventKey { Keycode = Key.Escape, Pressed = true });
                 GetViewport().PushInput(new InputEventKey { Keycode = Key.Escape, Pressed = false }); await Frames();
-                Require(!window.Visible && picks.Count == 0 && body.Text == "" && to.Text == "", "Compose Escape discards draft through native cancellation");
+                Require(!window.Visible && picks.Count == 3 && body.Text == "A short letter." && to.Text == "Rikka", "Compose Escape hides the window and keeps the draft");
+                DetailCall(world, "OpenMailCompose"); await Frames();
+                Require(window.Visible && picks.Count == 3 && body.Text == "A short letter." && to.Text == "Rikka", "Reopened composer restores the kept draft");
+                Descendants(panel).OfType<Button>().Single(b => b.Name == "mail_cancel").EmitSignal(BaseButton.SignalName.Pressed); await Frames();
+                Require(!window.Visible && picks.Count == 0 && body.Text == "" && to.Text == "", "Compose Cancel discards draft through native cancellation");
                 DetailCall(world, "OpenMailCompose"); await Frames(); await Capture(window, "empty-compose");
                 Require(((Label)DetailField(world, "_mailBodyRemaining")!).Text == "512", "Reopened composer starts with an empty native draft");
-                to.Text = "Rikka"; subject.Text = "Discard through close";
+                to.Text = "Rikka"; subject.Text = "Kept through close";
                 Descendants(panel).OfType<Button>().Single(b => b.TooltipText == "Close").EmitSignal(BaseButton.SignalName.Pressed); await Frames();
-                Require(!window.Visible && to.Text == "" && subject.Text == "", "Header close matches native Cancel draft reset");
+                Require(!window.Visible && to.Text == "Rikka" && subject.Text == "Kept through close", "Header close hides compose and keeps the draft like Escape");
             }
             tooltipLayer.Free(); layer.Free(); world.Free();
         }

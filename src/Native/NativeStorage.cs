@@ -39,6 +39,8 @@ public sealed class NativeStorage
     private const int CoinMax = 2_100_000_000;
     private const int NonStorableFirst = 900_000_001;
     private const int NonStorableLast = 999_999_999;
+    private const int NonStorableText = 42050;
+    private const int PleaseWaitText = 16103;
     private const byte OpInput = 2;
     private const byte OpOutput = 3;
     private const byte OpMove = 4;
@@ -203,6 +205,11 @@ public sealed class NativeStorage
     }
 
     private string Field(string vip, string clan) => Vip ? vip : clan;
+
+    /// <summary>The clan warehouse refusal before its listing arrives: still loading, or no clan at all.</summary>
+    private string ClanNotLoaded => Native.TryGet<bool>(_world, "_clanWhLoading", out bool loading) && loading
+        ? ItemData.Text(PleaseWaitText, "Please wait")
+        : "You're not in a clan.";
 
     private bool Shown => Native.Get<bool>(_world, Kind switch
     {
@@ -397,13 +404,18 @@ public sealed class NativeStorage
     private void AskVaultTransfer(bool deposit, int source, int target)
     {
         if (Busy || !Shown) return;
-        if (Vip && Native.Get<int>(_world, "_vipWhExpirySec") <= 0) { SetStatus("Vault rental expired. Renew it with a vault key."); return; }
-        if (!Vip && !Native.Get<bool>(_world, "_clanWhLoaded")) { SetStatus("Waiting for clan storage."); return; }
+        // An expired VIP rental is refused by the server; the client leaves that decision to it.
+        if (!Vip && !Native.Get<bool>(_world, "_clanWhLoaded")) { SetStatus(ClanNotLoaded); return; }
         if (!Vip && !deposit && !Officer) { SetStatus(WithdrawRefusal); return; }
         if (deposit ? !InMainBag(source) : source < 0 || source >= Slots) return;
         var slot = deposit ? _inventory[source] : _slots[source];
-        if (slot.IsEmpty || slot.IsLinked) return;
-        if (deposit && slot.ItemId is >= NonStorableFirst and <= NonStorableLast) { SetStatus("This item is non-storable."); return; }
+        if (slot.IsEmpty) return;
+        if (deposit && (slot.IsLinked || slot.ItemId is >= NonStorableFirst and <= NonStorableLast))
+        {
+            SetStatus(ItemData.Text(NonStorableText, "This item is non-storable"));
+            return;
+        }
+        if (slot.IsLinked) return;
         if (!_partialTransfers)
         {
             WholeStackTransfer(deposit, source);
@@ -435,7 +447,6 @@ public sealed class NativeStorage
     {
         if (Busy || count <= 0) return;
         if (!Vip && (!deposit && !Officer || !Native.Get<bool>(_world, "_clanWhLoaded"))) return;
-        if (Vip && deposit && Native.Get<int>(_world, "_vipWhExpirySec") <= 0) { SetStatus("Vault rental expired. Renew it with a vault key."); return; }
         var slot = deposit ? _inventory[source] : _slots[source];
         if (slot.IsEmpty || count > slot.Count) return;
         bool stackable = IsStackable(slot.ItemId);
