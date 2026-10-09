@@ -327,20 +327,29 @@ public sealed partial class FamiliarTrainer : Node
         }
         Native.Set(_world, "_petHatchInFlight", true);
         bool sent = transform
-            ? Send("SendPetTransform", npc, item.ItemId, slot - Inventory.GridStart, material.ItemId, scroll - Inventory.GridStart)
-            : Send("SendPetHatch", npc, item.ItemId, slot - Inventory.GridStart, name);
+            ? SendTransform(npc, item, slot - Inventory.GridStart, material.ItemId, scroll - Inventory.GridStart)
+            : Send("SendPetHatch", npc, item.ItemId, slot - Inventory.GridStart, name) ?? false;
         if (!sent) { Native.Set(_world, "_petHatchInFlight", false); Native.Call(_world, "SetPetHatchStatus", NotSent, true); }
         else Native.Call(_world, "SetPetHatchStatus", transform ? "Transforming…" : "Hatching…", false);
         Refresh();
     }
 
-    /// <summary>Sends through the client; clients whose senders report nothing count a live connection as sent.</summary>
-    private static bool Send(string sender, params object[] args)
+    /// <summary>
+    /// Sends through the client. Returns null when the client has no sender with these arguments; clients whose
+    /// senders report nothing count a live connection as sent.
+    /// </summary>
+    private static bool? Send(string sender, params object[] args)
     {
         var net = Net.I;
         if (!net.Connected) return false;
-        return Native.Call(net, sender, args) is not false;
+        return Native.TryCall(net, sender, out var result, args) ? result is not false : null;
     }
+
+    /// <summary>Clients that verify the familiar's identity take its unique id from the live bag.</summary>
+    private static bool SendTransform(int npc, ItemSlot familiar, int petSlot, int materialItemId, int materialSlot) =>
+        Send("SendPetTransform", npc, familiar.ItemId, petSlot, (int)familiar.UniqueId, materialItemId, materialSlot)
+        ?? Send("SendPetTransform", npc, familiar.ItemId, petSlot, materialItemId, materialSlot)
+        ?? false;
 
     private void Cancel(int revision)
     {

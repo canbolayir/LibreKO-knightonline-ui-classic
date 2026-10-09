@@ -61,7 +61,7 @@ public partial class Preview
             Receive(Success(6, 610001000));
             require(hatched == 0 && mutations == 0 && Slot(4).ItemId == 600001000, "Unsolicited incubation success does not overwrite inventory");
             require(net.SendPetHatch(13016, 600001000, 4, "Kauly"), "Native hatch request starts one pending operation"); await ReadRequest(6);
-            require(!net.SendPetHatch(13016, 600001000, 4, "Kauly") && !net.SendPetTransform(13016, 610001000, 4, 700019001, 7),
+            require(!net.SendPetHatch(13016, 600001000, 4, "Kauly") && !net.SendPetTransform(13016, 610001000, 4, 0, 700019001, 7),
                 "Pending incubation cannot submit a duplicate or another operation");
             Receive(Refused(10, 1));
             require(Pending() && refused == 0, "Transformation reply cannot release a pending hatch");
@@ -80,7 +80,7 @@ public partial class Preview
             var hatch = Success(6, 610001000); Receive(hatch); Receive(hatch);
             require(!Pending() && hatched == 1 && mutations == 1 && Slot(4).ItemId == 610001000 && Slot(4).UniqueId == 9,
                 "Hatch success applies and notifies exactly once");
-            require(net.SendPetTransform(13016, 610001000, 4, 700019001, 7), "Native transform request starts one pending operation"); await ReadRequest(10);
+            require(net.SendPetTransform(13016, 610001000, 4, 0, 700019001, 7), "Native transform request starts one pending operation"); await ReadRequest(10);
             Receive(Refused(6, 1));
             require(Pending() && refused == 1, "Hatch reply cannot release a pending transformation");
             var transformData = Success(10, 610015000).GetData();
@@ -96,15 +96,15 @@ public partial class Preview
             var transformedReply = Success(10, 610015000); Receive(transformedReply); Receive(transformedReply);
             require(!Pending() && transformed == 1 && mutations == 3 && Slot(4).ItemId == 610015000 && Slot(7).Count == 2,
                 "Duplicate transformation reply cannot spend the scroll twice");
-            require(net.SendPetTransform(13016, 610015000, 4, 700019001, 7), "Completed transformation allows a new deliberate request"); await ReadRequest(10);
+            require(net.SendPetTransform(13016, 610015000, 4, 0, 700019001, 7), "Completed transformation allows a new deliberate request"); await ReadRequest(10);
             Receive(transformedReply);
             require(Pending() && transformed == 1 && Slot(7).Count == 2, "Old success cannot complete a new transformation from the current form");
             Receive(Refused(10, 1));
             require(!Pending() && refused == 2 && transformed == 1 && Slot(7).Count == 2, "Complete transformation refusal preserves the familiar and remaining scrolls");
-            require(net.SendPetTransform(13016, 610015000, 4, 700019001, 7), "Refused transformation can be retried"); await ReadRequest(10);
+            require(net.SendPetTransform(13016, 610015000, 4, 0, 700019001, 7), "Refused transformation can be retried"); await ReadRequest(10);
             Receive(Success(10, 610001000));
             require(transformed == 2 && Slot(4).ItemId == 610001000 && Slot(7).Count == 1, "A later valid transformation applies even when returning to an earlier form");
-            require(net.SendPetTransform(13016, 610001000, 4, 700019001, 7), "Transformation can begin before a connection reset"); await ReadRequest(10);
+            require(net.SendPetTransform(13016, 610001000, 4, 0, 700019001, 7), "Transformation can begin before a connection reset"); await ReadRequest(10);
             typeof(Net).GetMethod("ResetPet", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(net, null);
             Receive(Success(10, 610015000));
             require(!Pending() && transformed == 2 && Slot(7).Count == 1 && net.PetItems.Count == 0,

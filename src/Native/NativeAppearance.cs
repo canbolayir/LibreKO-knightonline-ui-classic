@@ -150,6 +150,7 @@ public static class NativeAppearance
     {
         if (!_beauty.TryGetValue(world, out var state) || !Native.Get<bool>(world, "_changeHairShown")
             || Native.Get<bool>(world, "_changeHairInFlight") || Native.Get<bool>(world, "_selfDead") || Net.I is not { } net) return;
+        if (!HasBeautyCoupon(world)) return;
         Native.Set(world, "_changeHairInFlight", true);
         state.Awaiting = true;
         NativeLookEditor.SetLocked(state.Editor, true);
@@ -157,6 +158,19 @@ public static class NativeAppearance
         Native.Call(world, "SetChangeHairStatus", "Applying…", false);
         if (Native.Call(net, "SendChangeHair", state.Editor.Hair, state.Editor.Face) is false)
             Native.Call(world, "OnChangeHairResult", false, 0, 0);
+    }
+
+    /// <summary>
+    /// Clients that charge a Makeover Coupon refuse before sending when the bag has none, with the client's
+    /// own text; older clients have no coupon rule.
+    /// </summary>
+    private static bool HasBeautyCoupon(World world)
+    {
+        if (Native.ClientType("LibreKO.Domain.BeautyShop") is not { } shop || !Native.TryGet<int>(shop, "Coupon", out int coupon)) return true;
+        if (Native.Call(world, "HasItemInBackpack", coupon) is not false) return true;
+        int text = Native.TryGet<int>(shop, "NoCouponText", out int id) ? id : 0;
+        Native.Call(world, "SetChangeHairStatus", LibreKO.Domain.ItemData.Text(text, "You need a Makeover Coupon."), true);
+        return false;
     }
 
     private static void BeautyResult(Beauty state)

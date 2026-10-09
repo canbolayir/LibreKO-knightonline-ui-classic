@@ -16,8 +16,43 @@ public static class NativeQuestLog
     private const int QuestStateCompleted = 2;
     private const int RewardSeparation = 5, CaptionSize = 13, HintSize = 12;
 
+    private static readonly Dictionary<int, QuestReceipt> _receipts = new();
+    private static Net? _listening;
+
+    /// <summary>
+    /// Remembers what each turn-in granted. The client keeps only the pending choice, so the Classic log
+    /// records receipts itself to show "Received rewards" while the quest stays completed.
+    /// </summary>
+    private static void ListenForReceipts(World world)
+    {
+        if (Net.I is not { } net || ReferenceEquals(net, _listening)) return;
+        _listening = net;
+        _receipts.Clear();
+        net.QuestReceiptEvent += receipt =>
+        {
+            Record(receipt);
+            if (GodotObject.IsInstanceValid(world)) Callable.From(() => Native.TryCall(world, "RefreshQuestDetail", out _)).CallDeferred();
+        };
+    }
+
+    /// <summary>Records what a turn-in granted; the preview calls this when it feeds receipts directly.</summary>
+    public static void Record(QuestReceipt receipt) => _receipts[receipt.QuestId] = receipt;
+
+    private static bool TryReceipt(object selection, int questId, out QuestReceipt? receipt)
+    {
+        if (Native.HasMethod(selection, "Received"))
+        {
+            var args = new object?[] { questId, null };
+            bool found = Native.Call(selection, "Received", args) is true;
+            receipt = args[1] as QuestReceipt;
+            return found;
+        }
+        return _receipts.TryGetValue(questId, out receipt);
+    }
+
     public static void Prepare(HudWindow window, World world)
     {
+        ListenForReceipts(world);
         if (Native.Get<HBoxContainer>(world, "_questRewardBox") is not { } tiles || tiles.GetParent() is not Control detail) return;
         if (detail.GetNodeOrNull(RewardBoxName) != null) return;
         var optionTitle = Native.Get<Label>(world, "_questRewardOptionTitle");
@@ -53,9 +88,8 @@ public static class NativeQuestLog
         object? receipt = null, pending = null;
         if (selection != null)
         {
+            if (TryReceipt(selection, questId, out var granted)) receipt = granted;
             var args = new object?[] { questId, null };
-            if (Native.Call(selection, "Received", args) is true) receipt = args[1];
-            args = new object?[] { questId, null };
             if (Native.Call(selection, "Chosen", args) is true) pending = args[1];
         }
         var views = Native.Get<Dictionary<int, QuestView>>(world, "_questViews");

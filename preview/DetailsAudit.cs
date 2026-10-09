@@ -173,7 +173,7 @@ public partial class Preview
             }
             else if(id=="quest_receipt")
             {
-                DetailCall(model,"OnQuestReceipt",new QuestReceipt(62,new[]{new QuestReceiptEntry(900001000,25000),new QuestReceiptEntry(900000000,10000)}));
+                QuestReceived(model,new QuestReceipt(62,new[]{new QuestReceiptEntry(900001000,25000),new QuestReceiptEntry(900000000,10000)}));
                 var built=(HudWindow)DetailField(model,"_questReceiptWindow")!;
                 foreach(var control in built.Body.GetChildren().OfType<Control>().ToArray()) control.Reparent(body);
                 typeof(World).GetField("_questReceiptWindow",BindingFlags.NonPublic|BindingFlags.Instance)!.SetValue(model,panel);
@@ -327,7 +327,7 @@ public partial class Preview
                 GD.Print("QUEST_REWARD_STAGE_OK: restored claim selection; acceptance has no reward picker");
                 foreach(var state in new[]{QuestViewState.InProgress,QuestViewState.Completed})
                 {
-                    if(state==QuestViewState.Completed) DetailCall(model,"OnQuestReceipt",new QuestReceipt(62,[new(900001000,25000),new(900000000,10000)]));
+                    if(state==QuestViewState.Completed) QuestReceived(model,new QuestReceipt(62,[new(900001000,25000),new(900000000,10000)]));
                     DetailCall(model,"ShowQuestView",rewardView with { State=state,CanClaim=false,Counts=[state==QuestViewState.Completed?(ushort)10:(ushort)5],Dialogue=state==QuestViewState.Completed?"You have protected Moradon. Your reward has been granted.":"Defeat the remaining creatures, then return to the guard." });
                     await ToSignal(GetTree().CreateTimer(.2),SceneTreeTimer.SignalName.Timeout);
                     var status=Descendants(body).OfType<Label>().Single(l=>l.HasMeta("quest_status"));
@@ -491,14 +491,15 @@ public partial class Preview
         if(!Descendants(QuestRewardRows(model)).OfType<Label>().Any(l=>l.Text=="Selected reward")) throw new Exception("Pending choice is not identified");
         await Capture("quests-selected-reward");
         entries[entries.FindIndex(q=>q.QuestId==65)]=new QuestEntry(65,2);views[65]=view with { State=QuestViewState.Completed };
-        DetailCall(model,"OnQuestReceipt",new QuestReceipt(65,[new(900001000,1875),new(900000000,2000),new(330150025,1)]));
+        QuestReceived(model,new QuestReceipt(65,[new(900001000,1875),new(900000000,2000),new(330150025,1)]));
         CheckRewardRows(model,[(900001000,1875),(900000000,2000),(330150025,1)]);
         if(pending.Chosen(65,out _) || ((Label)DetailField(model,"_questRewardTitle")!).Text!="Received rewards") throw new Exception("Granted rewards were confused with pending options");
         await Capture("quests-received-rewards");
         GD.Print("QUEST_GRANTED_REWARDS_OK");
     }
     private static Control QuestRewardRows(World model) => (Control)((Node)DetailField(model,"_questDetailBody")!).FindChild(NativeQuestLog.RewardBoxName,true,false)!;
-    private static QuestRewardSelection<QuestTransfer,QuestReceipt> QuestRewardChoices(World model) => (QuestRewardSelection<QuestTransfer,QuestReceipt>)DetailField(model,"_questRewardSelection")!;
+    private static QuestRewardSelection<QuestTransfer> QuestRewardChoices(World model) => (QuestRewardSelection<QuestTransfer>)DetailField(model,"_questRewardSelection")!;
+    private static void QuestReceived(World model,QuestReceipt receipt) { NativeQuestLog.Record(receipt);DetailCall(model,"OnQuestReceipt",receipt); }
     private static IEnumerable<Node> Descendants(Node node) { yield return node;foreach(var child in node.GetChildren()) foreach(var item in Descendants(child)) yield return item; }
     private static void CheckRewardRows(World model,(int Item,int Count)[] expected)
     {
