@@ -88,8 +88,8 @@ public partial class Preview
 
         // ---- The host: this plugin is the installed UI theme, its assembly is the one already loaded.
         PluginHost.PersistChoices = false;
-        var all = (List<PluginInfo>)Read(typeof(PluginHost), "_all")!;
-        var assemblies = (Dictionary<string, Assembly>)Read(typeof(PluginHost), "_assemblies")!;
+        var all = (List<PluginInfo>)Read(typeof(PluginHost), "all")!;
+        var assemblies = (Dictionary<string, Assembly>)Read(typeof(PluginHost), "assemblies")!;
         string dll = System.IO.Path.GetFullPath(System.IO.Path.Combine(info.Directory, info.Manifest!.Assembly));
         all.Clear(); all.Add(info); assemblies[dll] = plugin;
         typeof(PluginInfo).GetProperty("State")!.SetValue(info, PluginState.Disabled);
@@ -169,7 +169,7 @@ public partial class Preview
             ["NativeHud.extenders"] = Sum(Read(typeof(NativeHud), "_extenders")),
             ["NativeOverlays.skins"] = Sum(Read(typeof(NativeOverlays), "_skins")),
             ["NativeHud.whisperStyler"] = Read(typeof(NativeHud), "WhisperStyler") == null ? 0 : 1,
-            ["host.ui.owned"] = OwnedBy(Read(PluginHost.Ui, "_store")!, info.Id),
+            ["host.ui.owned"] = OwnedBy(Read(PluginHost.Ui, "store")!, info.Id),
         };
         int OwnedBy(object store, string owner)
         {
@@ -186,7 +186,7 @@ public partial class Preview
         {
             var type = value.GetType();
             if (type.Name.StartsWith("Owned", StringComparison.Ordinal))
-                return ((IEnumerable)Read(value, "_entries")!).Cast<object>().Count(e => Equals(e.GetType().GetField("Item1")!.GetValue(e), owner));
+                return ((IEnumerable)Read(value, "entries")!).Cast<object>().Count(e => Equals(e.GetType().GetField("Item1")!.GetValue(e), owner));
             if (type.Name == "WindowRule")
                 return type.GetFields(Any).Select(f => f.GetValue(value)).Where(v => v != null).Sum(v => OwnedIn(v!, owner));
             return 0;
@@ -228,7 +228,7 @@ public partial class Preview
             ["mini map"] = Shown(Field<MiniMap>(world, "Map.MiniMap")),
             ["plugin hud parts"] = ((IDictionary)Native.Get<object>(world, "pluginHud")!).Count > 0,
             // The top-right icons whose windows the Classic status bar's G, E and R open.
-            ["genie icon"] = Shown(Field<Control?>(world, "TopIcons.Icon:Genie")),
+            ["genie icon"] = Shown(PreviewFixtures.Field<Control?>(world, "TopIcons.Icon:Genie")),
             ["events icon"] = Shown(Field<Control?>(world, "Events.iconButton")),
             ["daily rank icon"] = Shown(Field<Control?>(world, "DailyRankWindow.drIcon")),
         };

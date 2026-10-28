@@ -26,6 +26,8 @@ public partial class Preview : Control
         {
             string auditPack=OS.GetEnvironment("LIBREKO_AUDIT_CLIENT_PACK");
             if(auditPack.Length>0 && !ProjectSettings.LoadResourcePack(auditPack,false))throw new Exception("Missing audit resource pack: "+auditPack);
+            // The client boots Game.Session and Game.Requests when its network node enters the tree; the audits read both.
+            if(Game.Session==null)AddChild(new LibreKO.Network.Net{Name="preview_net"});
             HudLayout.PersistLayouts=false;
             PluginSettings.Enabled=false;
             // The bundled 2.x art (assets/myko) is the default; the *-fallback-audit modes run with it turned off to check the Classic fallback.
@@ -53,6 +55,7 @@ public partial class Preview : Control
             attach.Invoke(game,proxies);
             NativeGame.Source=PreviewNative.Create(attach.GetParameters().Zip(proxies,(p,x)=>(p.ParameterType,(PreviewData)x)).ToDictionary(e=>e.Item1,e=>e.Item2));
             if(OS.GetCmdlineUserArgs().Contains("plugin-toggle-audit")){await CapturePluginToggleAudit(nation, info, boot);await FinishManagedAudit();return;}
+            if(OS.GetCmdlineUserArgs().Contains("new-windows-audit")){await CaptureNewWindowsAudit(nation);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("perf-classic-audit")){await CapturePerfClassicAudit(nation);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("hud-buttons-audit")){await CapturePluginToggleAudit(nation, info, boot, hudButtons: true);await FinishManagedAudit();return;}
             if(OS.GetCmdlineUserArgs().Contains("pet-world-reconnect-audit")){await CapturePetWorldReconnectAudit(nation, info);await FinishManagedAudit();return;}
