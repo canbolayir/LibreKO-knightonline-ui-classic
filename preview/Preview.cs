@@ -26,6 +26,11 @@ public partial class Preview : Control
         {
             string auditPack=OS.GetEnvironment("LIBREKO_AUDIT_CLIENT_PACK");
             if(auditPack.Length>0 && !ProjectSettings.LoadResourcePack(auditPack,false))throw new Exception("Missing audit resource pack: "+auditPack);
+            // The installed game art and item data (items.json with its sell lists) are mounted before anything reads them.
+            string content=ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck");
+            if(System.IO.File.Exists(content) && !ProjectSettings.LoadResourcePack(content,false))throw new Exception("Missing content pack: "+content);
+            // The client's GameContent autoload installs its data loaders (items, skills, quests, NPC names); without it every table loads empty.
+            Native.Call(Native.StaticOwner("LibreKO.Content.ContentLoaders"), "Install");
             // The client boots Game.Session and Game.Requests when its network node enters the tree; the audits read both.
             if(Game.Session==null)AddChild(new LibreKO.Network.Net{Name="preview_net"});
             HudLayout.PersistLayouts=false;

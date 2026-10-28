@@ -59,7 +59,7 @@ public static partial class PreviewFixtures
     private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<WorldRoot, object> previews = new();
 
     public static object ClientPreview(WorldRoot world) =>
-        previews.GetValue(world, owner => Activator.CreateInstance(Native.ClientType("LibreKO.WorldPreview")!, owner)!);
+        previews.GetValue(world, owner => new WorldPreview(owner));
 
     public static T Prepared<T>(T world) where T : WorldRoot
     {
