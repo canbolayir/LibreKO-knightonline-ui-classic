@@ -142,7 +142,7 @@ public partial class Preview
         joinButton.EmitSignal(BaseButton.SignalName.Pressed);
         Require(DetailField(world, "Bifrost.pendingJoin") is TempleEventType.ForgottenTemple && signUps.Registered == TempleEventType.None && joinButton.Text == "Join",
             "Join sends the native request and waits for the server");
-        DetailCall(world, "Bifrost.OnJoinResult", (byte)TempleJoinResult.Joined, 55);
+        DetailCall(world, "Bifrost.OnJoinResult", TempleJoinResult.Joined, TempleJoin.ForgottenTempleIndunType);
         Require(signUps.Registered == TempleEventType.ForgottenTemple && joinButton.Text == "Cancel", "The server's reply for zone 55 registers Forgotten Temple");
         await Registration("ft-registered", false, true);
         DetailCall(world, "Bifrost.OnTime", 20, TempleEventType.ForgottenTemple);

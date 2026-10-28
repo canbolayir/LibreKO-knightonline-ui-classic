@@ -10,7 +10,7 @@ using LibreKO.Network;
 /// </summary>
 public static partial class PreviewFixtures
 {
-    private static HudWindow Detached(Control control) => (HudWindow)Native.Call(typeof(WorldRoot), "Preview.DetachPreviewControl", control)!;
+    private static HudWindow Detached(Control control) => (HudWindow)WorldPreview.DetachPreviewControl(control);
 
     /// <summary>Builds one social window in a named state and returns it detached from the world.</summary>
     public static HudWindow BuildSocialUiPreview(WorldRoot world, string view)

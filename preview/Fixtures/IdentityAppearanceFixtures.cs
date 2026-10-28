@@ -224,7 +224,7 @@ public static partial class PreviewFixtures
         me.Name = "CapeTester2026"; me.Nation = nation; me.Race = nation == 1 ? 2 : 12;
         me.Class = nation == 1 ? 112 : 206; me.Hair = 0x5A3820;
         Seed(world, me);
-        Native.Call(Game.Session.Clan, "SeedPreview", Native.Call(Native.StaticOwner("LibreKO.WorldPreview"), "PreviewClan", true, ClanTypes.Royal1));
+        Native.Call(Game.Session.Clan, "SeedPreview", Native.Call(typeof(WorldPreview), "PreviewClan", true, ClanTypes.Royal1));
         Call(world, "CapeWindow.Build"); Call(world, "CapeWindow.Toggle");
         var layer = Detach<CanvasLayer>(world, "CapeWindow.layer");
         NativeCape.Prepare(Field<HudWindow>(world, "CapeWindow.Panel"), world);

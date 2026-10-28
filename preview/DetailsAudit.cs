@@ -210,7 +210,7 @@ public partial class Preview
             {
                 string field=id=="titles"?"TitlePicker.panel":"SkillPreset.presetPanel";
                 string shown=id=="titles"?"TitlePicker.Shown":"SkillPreset.presetShown";
-                string close=id=="titles"?"CloseTitlePicker":"ClosePreset";
+                string close=id=="titles"?"TitlePicker.Close":"SkillPreset.ClosePreset";
                 Native.Set(model, field, panel);
                 Native.Set(model, shown, true);
                 panel.Closed+=()=>DetailCall(model,close);

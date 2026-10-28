@@ -43,8 +43,8 @@ public static partial class PreviewFixtures
         PrepareCommunication(layer, world);
         layer.Ready += () => Callable.From(() =>
         {
-            var mails = (List<MailEntry>)Native.Call(Native.StaticOwner("LibreKO.WorldPreview"), "MailEntries")!;
-            mails.Add((MailEntry)Native.Call(Native.StaticOwner("LibreKO.WorldPreview"), "PusPreviewMail")!);
+            var mails = (List<MailEntry>)Native.Call(typeof(WorldPreview), "MailEntries")!;
+            mails.Add((MailEntry)Native.Call(typeof(WorldPreview), "PusPreviewMail")!);
             for (int i = 0; i < 24; i++) mails.Add(new MailEntry { Id = i + 10, Sender = "LongCharacterName1299", Subject = "A long message subject that should stay in its own column", Read = i % 2 == 0, SentAt = DateTime.UtcNow.AddDays(-1), Attachments = MailAttachmentState.None });
             if (view == "empty") mails.Clear();
             Call(world, "Mail.OnList", mails); Call(world, "Mail.OnUnread", mails.Count(m => !m.Read));
@@ -139,12 +139,12 @@ public static partial class PreviewFixtures
         Game.Session.Self.Sheet.SetGold(845_300_000);
         var inv = Field<Inventory>(world, "Session.Self.Inventory"); int gridStart = Inventory.GridStart;
         inv.EnsureLength(gridStart + Inventory.GridCount);
-        inv[gridStart + 3] = (ItemSlot)Native.Call(Native.StaticOwner("LibreKO.WorldPreview"), "PreviewItem", SpecialAuction.MythrilCheck, 1, 1)!;
-        inv[gridStart + 7] = (ItemSlot)Native.Call(Native.StaticOwner("LibreKO.WorldPreview"), "PreviewItem", SpecialAuction.MythrilCheck, 1, 1)!;
+        inv[gridStart + 3] = (ItemSlot)Native.Call(typeof(WorldPreview), "PreviewItem", SpecialAuction.MythrilCheck, 1, 1)!;
+        inv[gridStart + 7] = (ItemSlot)Native.Call(typeof(WorldPreview), "PreviewItem", SpecialAuction.MythrilCheck, 1, 1)!;
         Call(world, "SpecialAuctionWindow.EnsureAuctionTable"); Call(world, "SpecialAuctionWindow.BuildPanel");
         var layer = Field<CanvasLayer>(world, "SpecialAuctionWindow.layer"); PrepareMarket(layer, world);
         Call(world, "SpecialAuctionWindow.Reset"); SetField(world, "SpecialAuctionWindow.AuctionOpening", true);
-        int Const(string name) => Native.Get<int>(Native.StaticOwner("LibreKO.WorldPreview"), name);
+        int Const(string name) => Native.Get<int>(typeof(WorldPreview), name);
         int[] items = [Const("AgilityNecklace"), Const("StrengthNecklace"), Const("ShadowPiece"), Const("ElfMetalEarrings"), Const("PreviewHpPotion"), Const("PreviewMpPotion"), Const("PreviewUpgradedWeapon"), 379021000];
         int previewDay = Const("AuctionPreviewDay"), previewSeconds = Const("AuctionPreviewSeconds");
         Call(world, "SpecialAuctionWindow.OnAuctionToday", new AuctionToday(SpecialAuction.Bidding, 1, previewSeconds, previewDay,

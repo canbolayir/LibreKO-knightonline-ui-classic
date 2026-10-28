@@ -25,9 +25,8 @@ public static partial class PreviewFixtures
 
     public static void EnablePetKeyboardUiPreview(WorldRoot world)
     {
-        var chatType = Native.ClientType("LibreKO.Features.Social.ChatSystem")!;
-        var chat = Activator.CreateInstance(chatType, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new object[] { world }, null)!;
-        Native.Set(world, "Chat", chat); Native.Call(chat, "Build"); Native.Call(chat, "DetachNetwork");
+        // The prepared World constructed its chat with the client's sessions; it is built here, off the network.
+        var chat = Native.Get<object>(world, "Chat")!; Native.Call(chat, "Build"); Native.Call(chat, "DetachNetwork");
         Native.Set(world, "WorldReady", true);
         world.SetProcess(false); world.SetPhysicsProcess(false); world.SetProcessUnhandledInput(false);
         world.SetProcessInput(true);

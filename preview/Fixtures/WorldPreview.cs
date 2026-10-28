@@ -28,6 +28,8 @@ public sealed partial class WorldPreview
         Native.Call(_world, "EntitySystem.AttachLayer", entities);
         Native.Call(_world, "CameraSystem.Attach", camera);
         Native.Call(_world, "BuildFacets");
+        // The item tooltip is shared by every window that shows items; it needs only the World.
+        Native.Call(Feature("ItemTooltip"), "Build");
         Native.TryCall(_world, "BuildEscapeOrder", out _);
         Native.TryCall(_world, "ApplyHudTheme", out _);
     }

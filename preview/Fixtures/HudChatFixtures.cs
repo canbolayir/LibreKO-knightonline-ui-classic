@@ -10,9 +10,7 @@ public static partial class PreviewFixtures
 {
     public static CanvasLayer BuildChatColoursClassicUiPreview(WorldRoot world)
     {
-        var type = Native.ClientType("LibreKO.Features.Social.ChatSystem")!;
-        var chat = Activator.CreateInstance(type, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic, null, new object?[] { world }, null)!;
-        Native.Set(world, "Chat", chat);
+        var chat = Native.Get<object>(world, "Chat")!;
         Native.Call(chat, "Build");
         Native.Call(chat, "DetachNetwork");
         Native.Call(world, "ChatHost.BuildColors");
