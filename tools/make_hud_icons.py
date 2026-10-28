@@ -32,6 +32,8 @@ ICONS = [
     ('daily-rank', 'lorc_laurel-crown'),
     ('time', 'lorc_hourglass'),
     ('mail', 'lorc_envelope'),
+    # The client's own Discord mark (Client/assets/ui/icons/brand/discord.svg, Simple Icons, CC0), rasterised at 512 px.
+    ('discord', 'simpleicons_discord'),
 ]
 GLYPH, CELL, INSET = 24, 28, 2
 

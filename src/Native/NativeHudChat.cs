@@ -55,6 +55,7 @@ public static class NativeHudChat
                 if (ReferenceEquals(Native.Get<IGameWindows>(proxy, "Source"), wrapper)) Native.Set(proxy, "Source", source);
             }, world);
         HideIcons(world);
+        DressDiscord(world);
         DockClearOfStatus(world);
         // The Genie window is built after the client attaches the plugin game API.
         var built = new WeakReference<WorldRoot>(world);
@@ -92,6 +93,12 @@ public static class NativeHudChat
     }
 
     private const string TopIconPrefix = "TopIcons.Icon:";
+
+    /// <summary>The client's Discord corner button takes the Classic icon row's glyph (built with the top icons, PC only).</summary>
+    private static void DressDiscord(WorldRoot world)
+    {
+        if (IconOf(world, TopIconPrefix + "Discord") is Button discord) KnightOnlineUiClassic.Windows.ClassicDiscordGlyph.Dress(discord);
+    }
 
     private static Control? IconOf(WorldRoot world, string field) =>
         !field.StartsWith(TopIconPrefix) ? Native.Get<Control>(world, field)

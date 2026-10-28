@@ -13,7 +13,7 @@ public static class ClassicHudIcons
 
     /// <summary>Cell order of the strips; the generator's ICONS list must match.</summary>
     public static readonly string[] Order =
-        { "quests", "store", "achievements", "attendance", "genie", "events", "daily-rank", "time", "mail" };
+        { "quests", "store", "achievements", "attendance", "genie", "events", "daily-rank", "time", "mail", "discord" };
 
     public const string Normal = "normal", Hover = "hover", Pressed = "pressed", Disabled = "disabled", Glow = "glow";
 
