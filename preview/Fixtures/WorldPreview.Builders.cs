@@ -18,6 +18,7 @@ public sealed partial class WorldPreview
     {
         ItemData.EnsureLoaded();
         var soccer = Feature("SoccerSystem");
+        Native.Call(soccer, "AttachPlates", Feature("EventPlates"));
         var layer = new CanvasLayer();
         _world.AddChild(layer);
         Native.Set(soccer, "SoccerLayer", layer);

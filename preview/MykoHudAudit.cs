@@ -111,9 +111,8 @@ public partial class Preview
         // ---- Top-right group: premium, clan premium, time, the client's event title chips, GM List, content box.
         void Premium(int status, int type, int hours, params PremiumBonus[] bonuses)
         {
-            foreach (var (name, value) in new (string, object)[] { ("PremiumAccountStatus", status), ("PremiumType", type), ("PremiumHours", hours),
-                ("PremiumBonuses", (IReadOnlyList<PremiumBonus>)bonuses) })
-                typeof(Net).GetProperty(name)!.SetValue(Net.I, value);
+            // The premium state lives on the client's premium session slice now.
+            Native.Call(Game.Session.Premium, "Apply", status, type, hours, (IReadOnlyList<PremiumBonus>)bonuses);
         }
         var layer = new CanvasLayer { Layer = 70 }; AddChild(layer);
         foreach (bool expanded in new[] { false, true })
