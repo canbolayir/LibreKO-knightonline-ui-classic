@@ -50,11 +50,16 @@ public static class NativeCommunication
         var unread = Native.Get<Label>(world, "Mail.unreadPill");
         var status = Native.Get<Label>(world, "Mail.status");
         if (list == null || scroll == null || filter == null || unread == null || status == null) return;
-        var actions = filter.GetParent().GetChildren().OfType<Button>().Where(b => b != filter).ToArray();
+        var actions = filter.GetParent().GetChildren().OfType<Button>().Where(b => b is not CheckButton).ToArray();
         if (actions.Length < 2) return;
         actions[0].Name = "mail_compose";
         actions[1].Name = "mail_refresh";
         filter.Name = "mail_unread_only";
+        // e5f0e420: a parcels-only filter and the bulk row (Select all, Delete ticked, its confirmation).
+        if (Native.Get<CheckButton>(world, "Mail.parcelsOnlyToggle") is { } parcels) parcels.Name = "mail_parcels_only";
+        if (Native.Get<CheckBox>(world, "Mail.selectAll") is { } selectAll) selectAll.Name = "mail_select_all";
+        if (Native.Get<Button>(world, "Mail.deleteTicked") is { } deleteTicked) deleteTicked.Name = "mail_delete_ticked";
+        if (Native.Get<HBoxContainer>(world, "Mail.bulkConfirm") is { } bulkConfirm) bulkConfirm.Name = "mail_bulk_confirm";
         unread.Name = "mail_unread_count";
         scroll.Name = "mail_list_scroll";
         list.Name = "mail_list";
@@ -72,7 +77,8 @@ public static class NativeCommunication
         if (mails == null || filter == null) return;
         bool unreadOnly = filter.ButtonPressed;
         int index = list.GetChildren().OfType<PanelContainer>().Where(p => !p.IsQueuedForDeletion()).ToList().IndexOf(panel);
-        var shown = mails.Where(m => !unreadOnly || !m.Read).ToList();
+        bool parcelsOnly = Native.Get<CheckButton>(world, "Mail.parcelsOnlyToggle")?.ButtonPressed == true;
+        var shown = mails.Where(m => MailView.Shows(m, unreadOnly, parcelsOnly)).ToList();
         if (index < 0 || index >= shown.Count) return;
         var mail = shown[index];
         bool store = mail.Kind == MailKind.Store;
@@ -83,12 +89,15 @@ public static class NativeCommunication
         panel.TooltipText = $"{mail.Subject}\nFrom {mail.Sender}\n{mail.SentAt.ToLocalTime():dd MMM yyyy HH:mm}";
         if (panel.GetChildCount() == 0 || panel.GetChild(0).GetChildCount() == 0 || panel.GetChild(0).GetChild(0) is not HBoxContainer row) return;
         var parts = row.GetChildren().OfType<Control>().ToArray();
-        if (parts.Length < 3 || parts[1] is not VBoxContainer text || text.GetChildCount() < 2) return;
-        parts[0].Name = "mail_row_marker";
+        // e5f0e420 rows: [tick] read glyph, subject and sender, [attachment marker], date.
+        int at = Array.FindIndex(parts, p => p is VBoxContainer);
+        if (at < 1 || parts[at] is not VBoxContainer text || text.GetChildCount() < 2) return;
+        if (parts[0] is CheckBox tick) tick.Name = "mail_row_tick";
+        parts[at - 1].Name = "mail_row_marker";
         text.GetChild(0).Name = "mail_row_subject";
         text.GetChild(1).Name = "mail_row_sender";
         parts[^1].Name = "mail_row_date";
-        if (parts.Length > 3 && parts[2] is TextureRect marker) marker.Name = "mail_row_attachment";
+        if (parts.Length > at + 2 && parts[at + 1] is TextureRect marker) marker.Name = "mail_row_attachment";
     }
 
     private static void PrepareReader(HudWindow window, WorldRoot world)

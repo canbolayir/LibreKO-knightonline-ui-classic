@@ -45,6 +45,14 @@ public partial class ClassicMailPanel : Control
         ShownOnly.Gate(this, Sync);
     }
     private T Find<T>(string name) where T : Control => _native.OfType<T>().Single(c => c.Name == name);
+    private static void ClassicCheck(Button check)
+    {
+        // The original chat checkbox art for the client's check buttons and boxes.
+        var checkbox = Plugin.Kit.Layout("{nation}_chat_us").Find("btn_check_normal")!;
+        foreach (var state in new[] { "unchecked", "checked", "unchecked_disabled", "checked_disabled", "radio_unchecked", "radio_checked" })
+            check.AddThemeIconOverride(state, ClassicChatControls.Atlas(checkbox.Images.First(i => i.Tag == (state.Contains("unchecked") ? 0 : 1))));
+    }
+    private T? FindOrNull<T>(string name) where T : Control => _native.OfType<T>().FirstOrDefault(c => c.Name == name);
     private static void Font(Control control, bool bold = true, int size = 13)
     {
         control.AddThemeFontOverride("font", bold ? Plugin.Kit.Bold : Plugin.Kit.Regular);
@@ -81,18 +89,24 @@ public partial class ClassicMailPanel : Control
     private static void StyleScroll(ScrollContainer scroll) => ClassicDarkFrame.ScrollBar(scroll.GetVScrollBar(), 10);
     private void Inbox()
     {
-        Action(Find<Button>("mail_compose"), new Rect2(16, 52, 94, 26), "Write");
-        Action(Find<Button>("mail_refresh"), new Rect2(118, 52, 78, 26), "Refresh");
-        var filter = Find<CheckButton>("mail_unread_only"); Place(filter, new Rect2(204, 52, 92, 26)); Font(filter, false);
-        var checkbox = Plugin.Kit.Layout("{nation}_chat_us").Find("btn_check_normal")!;
-        foreach (var state in new[] { "unchecked", "checked", "unchecked_disabled", "checked_disabled" })
-            filter.AddThemeIconOverride(state, ClassicChatControls.Atlas(checkbox.Images.First(i => i.Tag == (state.StartsWith("unchecked") ? 0 : 1))));
-        Place(Find<Label>("mail_unread_count"), new Rect2(300, 52, 104, 26));
+        Action(Find<Button>("mail_compose"), ClassicMailLayout.Write, "Write");
+        Action(Find<Button>("mail_refresh"), ClassicMailLayout.Refresh, "Refresh");
+        var filter = Find<CheckButton>("mail_unread_only"); Place(filter, ClassicMailLayout.UnreadOnly); Font(filter, false); ClassicCheck(filter);
+        if (FindOrNull<CheckButton>("mail_parcels_only") is { } parcels) { Place(parcels, ClassicMailLayout.ParcelsOnly, keepVisibility: true); Font(parcels, false); ClassicCheck(parcels); }
+        Place(Find<Label>("mail_unread_count"), ClassicMailLayout.UnreadCount); Font(Find<Label>("mail_unread_count"), false, 12);
         Find<Label>("mail_unread_count").HorizontalAlignment = HorizontalAlignment.Right;
         Caption("Subject", new Rect2(38, 88, 176, 20)); Caption("Sender", new Rect2(214, 88, 108, 20)); Caption("Date", new Rect2(326, 88, 56, 20));
         Scroll(Find<ScrollContainer>("mail_list_scroll"), ClassicMailLayout.Inbox);
         var rows = Find<VBoxContainer>("mail_list"); rows.AddThemeConstantOverride("separation", 0); rows.CustomMinimumSize = new Vector2(1, 0);
         Watch(rows, StyleInboxRow);
+        // The bulk row: Select all on the left, Delete (n) on the right, its confirmation in Delete's place.
+        if (FindOrNull<CheckBox>("mail_select_all") is { } all) { Place(all, ClassicMailLayout.SelectAll, keepVisibility: true); Font(all, false); ClassicCheck(all); }
+        if (FindOrNull<Button>("mail_delete_ticked") is { } delete) Action(delete, ClassicMailLayout.DeleteTicked, delete.Text);
+        if (FindOrNull<HBoxContainer>("mail_bulk_confirm") is { } confirm)
+        {
+            Place(confirm, ClassicMailLayout.BulkConfirm, keepVisibility: true); confirm.Alignment = BoxContainer.AlignmentMode.End;
+            foreach (var child in confirm.GetChildren().OfType<Control>()) Font(child, child is Button, 12);
+        }
         Place(Find<Label>("mail_status"), ClassicMailLayout.InboxStatus); Find<Label>("mail_status").AutowrapMode = TextServer.AutowrapMode.WordSmart;
     }
     private static void StyleInboxRow(Control control)
@@ -108,9 +122,13 @@ public partial class ClassicMailPanel : Control
         var overlay = new Control { MouseFilter = MouseFilterEnum.Ignore }; row.AddChild(overlay);
         foreach (var field in fields)
         {
-            field.Reparent(overlay, false); field.Visible = true; field.CustomMinimumSize = Vector2.Zero; field.MouseFilter = MouseFilterEnum.Ignore;
+            // The tick takes the read glyph's place (the row's ink already tells read from unread); it keeps its clicks.
+            if (field.Name == "mail_row_marker" && fields.Any(f => f.Name == "mail_row_tick")) { field.Reparent(overlay, false); field.Visible = false; continue; }
+            field.Reparent(overlay, false); field.Visible = true; field.CustomMinimumSize = Vector2.Zero;
+            field.MouseFilter = field is CheckBox ? MouseFilterEnum.Stop : MouseFilterEnum.Ignore;
+            if (field is CheckBox tick) ClassicCheck(tick);
             var rect = field.Name.ToString() switch
-            { "mail_row_marker" => new Rect2(4, 4, 14, 18), "mail_row_subject" => new Rect2(22, 4, 170, 18), "mail_row_sender" => new Rect2(198, 4, 108, 18), "mail_row_date" => new Rect2(310, 4, 46, 18), _ => new Rect2(358, 5, 16, 16) };
+            { "mail_row_tick" or "mail_row_marker" => new Rect2(4, 4, 14, 18), "mail_row_subject" => new Rect2(22, 4, 170, 18), "mail_row_sender" => new Rect2(198, 4, 108, 18), "mail_row_date" => new Rect2(310, 4, 46, 18), _ => new Rect2(358, 5, 16, 16) };
             field.Position = rect.Position; field.Size = rect.Size;
             field.CustomMaximumSize = rect.Size; field.ClipContents = true;
             Callable.From(() => field.Size = rect.Size).CallDeferred();
