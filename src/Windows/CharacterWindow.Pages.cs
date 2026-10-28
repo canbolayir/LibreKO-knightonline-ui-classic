@@ -123,6 +123,27 @@ public partial class CharacterWindow
         _titleButton = (Button)Find(_page, "btn_title")!;
         Bind(_page, "btn_title", () => Panel?.Act("titles"));
         Bind(_page, "btn_presets", () => Panel?.Act("presets"));
+        _rankMarks = new Control { Name = "rank_marks", MouseFilter = Control.MouseFilterEnum.Pass };
+        _titleButton.GetParent().AddChild(_rankMarks);
+    }
+
+    private Control? _rankMarks;
+    private string _rankMarksShown = "";
+
+    /// <summary>The character's rank medals and King ribbon (Game.Character.RankMarks), rebuilt only when they change.</summary>
+    private void RefreshRankMarks(IReadOnlyList<GameRankRibbon> marks)
+    {
+        if (_rankMarks == null) return;
+        int count = Math.Min(marks.Count, CharacterLayout.RankMarksColumns * CharacterLayout.RankMarksRows);
+        string key = string.Join("|", marks.Take(count).Select(m => m.Count + ":" + m.Tooltip + ":" + m.Ribbon?.GetRid()));
+        if (key == _rankMarksShown) return;
+        _rankMarksShown = key;
+        foreach (var child in _rankMarks.GetChildren()) { _rankMarks.RemoveChild(child); child.QueueFree(); }
+        for (int i = 0; i < count; i++)
+        {
+            var rect = CharacterLayout.RankRibbon(i, count);
+            _rankMarks.AddChild(new ClassicRankRibbon(marks[i]) { Name = "rank_mark_" + i, Position = rect.Position, Size = rect.Size });
+        }
     }
 
     private void BuildList(string key, LayoutView view)

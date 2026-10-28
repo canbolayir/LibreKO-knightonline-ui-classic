@@ -151,6 +151,7 @@ public partial class CharacterWindow : Control
             if (Find(_page, "stat_caption_" + i) is Label caption)
                 ThemeNames.SetColor(caption, HotNames.FontColor, emphasized.Contains(i) ? ClassicReportDesign.Accent : ClassicReportDesign.Caption);
         if (_titleButton != null) { _titleButton.Text = (panel?.TitleName ?? "Title: none").Replace("Title: ", ""); _titleButton.TooltipText = panel?.TitleName ?? "Choose a title"; }
+        RefreshRankMarks(c.RankMarks);
         if (IsVisibleInTree()) RefreshPages();
     }
 }

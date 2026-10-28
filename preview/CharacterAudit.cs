@@ -79,6 +79,21 @@ public partial class Preview
                 await Settled();
             }
             await SaveAuditImage(output, prefix + "-" + page);
+            if (page == "character")
+            {
+                // Rank medals and the King ribbon: the client's art in the band under Title, inside the page, clear of every row above.
+                var ribbons = Descendants(actual).OfType<ClassicRankRibbon>().Where(r => r.IsVisibleInTree()).ToArray();
+                var titleRow = (Control)Descendants(actual).OfType<Button>().First(b => b.Name == "btn_title");
+                if (ribbons.Length != 4) throw new Exception("CHARACTER_AUDIT: four rank ribbons expected, " + ribbons.Length + " shown");
+                foreach (var ribbon in ribbons)
+                {
+                    var r = ribbon.GetGlobalRect();
+                    if (ribbon.Ribbon.Ribbon == null) throw new Exception("CHARACTER_AUDIT: ribbon " + ribbon.Name + " has no client art");
+                    if (r.Size != new Vector2(CharacterLayout.RankRibbonWidth, CharacterLayout.RankRibbonHeight)) throw new Exception("CHARACTER_AUDIT: ribbon size " + r.Size);
+                    if (r.Position.Y < titleRow.GetGlobalRect().End.Y + 2) throw new Exception("CHARACTER_AUDIT: ribbon " + ribbon.Name + " overlaps the Title row " + r);
+                    if (!actual.GetGlobalRect().Encloses(r)) throw new Exception("CHARACTER_AUDIT: ribbon " + ribbon.Name + " leaves the window " + r);
+                }
+            }
             var records = CaptureControlRecords(actual);
             System.IO.File.WriteAllText(System.IO.Path.Combine(output, prefix + "-" + page + "-bounds.json"), JsonSerializer.Serialize(records, new JsonSerializerOptions { WriteIndented = true }));
             var geometry = actualPages[page].Where(n => n.Type is "classic_button" or "classic_select" or "classic_input" or "string")
@@ -193,6 +208,10 @@ public sealed class CharacterAuditData : IGameCharacterPanel
     public object? CharacterValue(string name, Type type, object?[]? args)
     {
         if (type == typeof(void)) return null;
+        // The King ribbon and three daily-rank medal rows, summarised by the client into its own ribbon art.
+        if (name == "get_RankMarks")
+            return KnightOnlineUiClassic.Native.Native.Call(KnightOnlineUiClassic.Native.Native.StaticOwner("LibreKO.Features.Windows.RankRibbonArt"), "Summary", (IReadOnlyList<LibreKO.Domain.RankMark>)new LibreKO.Domain.RankMark[]
+                { new(50, 0, 0, 1), new(0, 2, 1, 3), new(1, 0, 4, 0), new(7, 1, 0, 0) });
         if (type == typeof(string)) return name switch { "get_Name" => "Canbo", "get_ClassName" => "Warrior", "get_NationName" => _nation == 1 ? "Karus" : "El Morad", _ => "" };
         if (type == typeof(long)) return name == "get_Exp" ? 46400L : 8705986960L;
         if (type == typeof(double)) return .00053297d;

@@ -11,6 +11,20 @@ public static class CharacterLayout
     public const int ListHeight = ListRows * ClassicDesign.RowHeight;
     public const int PagerY = 426, ActionY = 454, FooterY = 482;
 
+    /// <summary>
+    /// The rank medals and King ribbon (the client's ribbon art, 45 x 17) sit in the empty band under the Title row,
+    /// centred, seven to a line and at most two lines; the page keeps its original rows above them.
+    /// </summary>
+    public const int RankMarksTop = 512, RankMarksColumns = 7, RankMarksRows = 2, RankRibbonWidth = 45, RankRibbonHeight = 17;
+
+    /// <summary>The bounds of ribbon <paramref name="index"/> of <paramref name="count"/> on the Character Report.</summary>
+    public static Rect2 RankRibbon(int index, int count)
+    {
+        int row = index / RankMarksColumns, inRow = Math.Min(RankMarksColumns, count - row * RankMarksColumns);
+        float left = Mathf.Floor((Width - inRow * RankRibbonWidth) / 2f);
+        return new Rect2(left + index % RankMarksColumns * RankRibbonWidth, RankMarksTop + row * RankRibbonHeight, RankRibbonWidth, RankRibbonHeight);
+    }
+
     private static LayoutNode Root(string id) => new() { Type = "base", Id = id, W = Width, H = Height };
     private static LayoutNode Node(string type, string id, int x, int y, int w, int h) =>
         new() { Type = type, Id = id, X = x, Y = y, W = w, H = h };
