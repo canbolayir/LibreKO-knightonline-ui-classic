@@ -88,6 +88,9 @@ public static class NativeOverlays
         ("SoccerSystem.soccerBoard", NativeOverlay.Score, "soccer_score"),
         ("Chaos.NestTimerPanel", NativeOverlay.Toast, "event_timer"),
         ("KnightRoyaleWindow.RoyaleBoard", NativeOverlay.Board, "royale_board"),
+        // Manes' Survival: the sign-up board takes the event board frame, the boss bar the score plaque.
+        ("ManesSurvivalWindow.SignUpBoard", NativeOverlay.Board, "manes_board"),
+        ("ManesSurvivalWindow.BossBar", NativeOverlay.Score, "manes_boss_bar"),
         ("GenieSub.Sub", NativeOverlay.GenieQuick, "genie_quick"),
         ("EventTitlesWindow.TitleColumn", NativeOverlay.Titles, "event_titles"),
         ("GatherSystem.gatherChip", NativeOverlay.Chip, "gather_chip"),

@@ -593,6 +593,21 @@ public static class ClassicWorldOverlays
             part.Draw += () => part.DrawStyleBox(Bar(source), new Rect2(Vector2.Zero, part.Size));
             if (part.GetParent() is Control row) row.CustomMinimumSize = new Vector2(row.CustomMinimumSize.X, Spec.Plaque.BarHeight);
         }
+        // A health meter on the plaque (the Manes' Survival boss) takes the original red progress art.
+        var meterValues = new HashSet<Label>();
+        foreach (var meter in Descendants(strip).OfType<ProgressBar>().ToArray())
+        {
+            ProgressBar(meter, urgent: true);
+            // The value written over the meter reads as on the Classic status bars: white with a black outline.
+            foreach (var value in meter.GetParent().GetChildren().OfType<Label>())
+            {
+                meterValues.Add(value);
+                value.AddThemeColorOverride("font_color", Colors.White);
+                value.AddThemeColorOverride("font_outline_color", Colors.Black);
+                value.AddThemeConstantOverride("outline_size", 3);
+                value.AddThemeFontSizeOverride("font_size", 11);
+            }
+        }
         // A closable strip gets the plaque close; the Ranking action the chat tab art of plaque actions.
         foreach (var button in Descendants(strip).OfType<Button>())
         {
@@ -609,7 +624,8 @@ public static class ClassicWorldOverlays
                 button.SizeFlagsVertical = Control.SizeFlags.ShrinkCenter;
             }
         }
-        Keep(strip, () => { foreach (var label in labels) Ink(label, PlaqueInk); });
+        var inked = labels.Where(l => !meterValues.Contains(l)).ToArray();
+        Keep(strip, () => { foreach (var label in inked) Ink(label, PlaqueInk); });
     }
 
     private static void Announcement(Control node)

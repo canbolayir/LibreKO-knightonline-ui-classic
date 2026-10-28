@@ -74,4 +74,48 @@ public partial class Preview
         System.IO.File.WriteAllText(output + "/" + prefix + "-new-windows.json", JsonSerializer.Serialize(new { checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("NEW_WINDOWS_AUDIT_OK " + output);
     }
+
+    /// <summary>
+    /// "manes-hud-audit": the Manes' Survival sign-up board and boss bar of a prepared World, opened through the
+    /// client's own entry points and skinned by the Classic event overlays (board frame, score plaque, red meter).
+    /// </summary>
+    private async Task CaptureManesHudAudit(int nation)
+    {
+        string output = OS.GetEnvironment("LIBREKO_AUDIT_OUTPUT_DIR");
+        if (output.Length == 0) output = ProjectSettings.GlobalizePath("res://../../research/manes-hud-audit");
+        System.IO.Directory.CreateDirectory(output);
+        GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 600);
+        AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 600), MouseFilter = MouseFilterEnum.Ignore });
+        string prefix = nation == 1 ? "karus" : "human";
+        var checks = new List<string>();
+        void Require(bool valid, string text) { if (!valid) throw new Exception("MANES_HUD_AUDIT: " + text); checks.Add(text); }
+        async Task Frames(int n = 8) { for (int i = 0; i < n; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
+        var world = PreviewFixtures.Prepared(new WorldRoot());
+        var manes = Native.Get<object>(world, "ManesSurvivalWindow")!;
+        Native.Call(manes, "OpenBoard", 540, 37);
+        Native.Call(manes, "StartBar", 900);
+        Native.Call(manes, "OnBoss", new LibreKO.Network.ManesBoss("Scorpion King", 1_200_000, 744_000, 600));
+        var layer = Native.Get<CanvasLayer>(manes, "layer")!;
+        layer.GetParent().RemoveChild(layer); AddChild(layer);
+        KnightOnlineUiClassic.Native.NativeOverlays.PrepareLater(world);
+        await Frames();
+        var board = Native.Get<PanelContainer>(manes, "SignUpBoard")!;
+        var bar = Native.Get<PanelContainer>(manes, "BossBar")!;
+        Require(board.Name == "manes_board", "the sign-up board is prepared as an event board (" + board.Name + ")");
+        Require(Descendants(board).OfType<ClassicFrame>().Any(), "the sign-up board wears the Classic event board frame (" + string.Join(",", board.GetChildren().Select(c => c.Name + ":" + c.GetType().Name)) + ")");
+        Require(bar.Name == "manes_boss_bar", "the boss bar is prepared as a score plaque");
+        var meter = Descendants(bar).OfType<ProgressBar>().Single();
+        Require(meter.GetThemeStylebox("fill") is StyleBoxTexture, "the boss health meter uses the original progress art");
+        foreach (var label in Descendants(bar).OfType<Label>().Where(l => l.IsVisibleInTree() && l.Text.Length > 0 && l.GetParent() != meter.GetParent()))
+            Require(label.GetThemeFontSize("font_size") == 13, "plaque type on '" + label.Text + "'");
+        var hpText = meter.GetParent().GetChildren().OfType<Label>().Single();
+        Require(hpText.GetThemeColor("font_color") == Colors.White && hpText.GetThemeConstant("outline_size") > 0, "the boss health reads white with an outline over the red meter");
+        foreach (var control in new Control[] { board, bar })
+            Require(GetViewportRect().Encloses(control.GetGlobalRect()), control.Name + " fits the screen " + control.GetGlobalRect());
+        string file = prefix + "-manes-hud.png";
+        GetViewport().GetTexture().GetImage().SavePng(output + "/" + file);
+        System.IO.File.WriteAllText(output + "/" + prefix + "-manes-hud.json", JsonSerializer.Serialize(new { checks, file,
+            board = board.GetGlobalRect().ToString(), bar = bar.GetGlobalRect().ToString() }, new JsonSerializerOptions { WriteIndented = true }));
+        GD.Print("MANES_HUD_AUDIT_OK " + output);
+    }
 }
