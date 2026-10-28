@@ -354,6 +354,8 @@ directly, such as `UiTheme`, `ItemData` and `HudWindow`, is not listed.
 
 ### Preview only
 
+The preview fixtures build their windows on a `WorldRoot` prepared by `preview/Fixtures/WorldPreview.cs` (construct-only, then each fixture builds its window); the client carries no preview code, so the previews run on a bare upstream client.
+
 The preview fixtures and audits also reach client internals that the plugin never touches at runtime. An upstream
 rename there breaks an audit, not the game.
 
@@ -392,7 +394,7 @@ rename there breaks an audit, not the game.
 | `CollectionRaceFeature` | `OnClose` M, `OnCompleted` M, `OnCrTimerTick` M, `OnProgress` M, `Show` M | EventsAAudit.cs |
 | `CombatLogFeature` | `log` F, `MaxLines` static F | CommandFunctionAudit.cs, SkillRulesAudit.cs |
 | `CommandListFeature` | `Toggle` M, `Window` P | CommandFunctionAudit.cs |
-| `Config` | `ChatColors` static P, `HotbarLocked` static P, `LegacyQuestFallback` static P, `SettingsSavePath` static P, `WindowsPath` static M | ChatColoursAudit.cs, CommandFunctionAudit.cs, QuestDetailAudit.cs, SkillRulesAudit.cs |
+| `Config` | `ChatColors` static P, `HotbarLocked` static P, `LegacyQuestFallback` static P, `SettingsSavePath` static P, `TradeRequestsBlocked` static P, `WindowsPath` static M | ChatColoursAudit.cs, CommandFunctionAudit.cs, QuestDetailAudit.cs, SkillRulesAudit.cs |
 | `DailyRankFeature` | `drPicker` F, `LoadBoards` M | DetailsAudit.cs, EventWindowsAudit.cs |
 | `DeathDialogFeature` | `ArmRespawnButton` M, `BuildDeathDialog` M, `Hide` M, `Layer` P, `MarkRespawnPending` M, `OnExpLoss` M, `pick` F, `RefreshRows` M, `RefreshText` M, `scrolls` F, `Show` M | WorldOverlaysAudit.cs |
 | `DevelopSession` | `RebirthPending` P | RebirthAudit.cs |
@@ -432,7 +434,7 @@ rename there breaks an audit, not the game.
 | `KillSplashFeature` | `Splash` M | EventOverlaysAudit.cs |
 | `KingElectionFeature` | `OnSchedule` M | KingNationAudit.cs |
 | `CaptionFeature` | `banner` F, `EnsureBanner` M, `subtitle` F, `title` F | EventOverlaysAudit.cs |
-| `LoginNet` | `I` static P | CommandFunctionAudit.cs, GenieAudit.cs, PetWorldReconnectAudit.cs, PluginToggleAudit.cs, SkillRulesAudit.cs |
+| `Game` | `LoginServer` static P (swapped for a loopback LoginNet) | CommandFunctionAudit.cs, GenieAudit.cs, PetWorldReconnectAudit.cs, PluginToggleAudit.cs, SkillRulesAudit.cs |
 | `LookPreview` | `model` F, `pivot` F | BeautyAudit.cs, CapeAudit.cs, GenderAudit.cs, NationTransferAudit.cs |
 | `LootFeature` | `BuildPrompt` M, `BuildWindow` M, `Entries` P, `layer` F, `openBundleId` F, `RefreshWindow` M | WorldOverlaysAudit.cs |
 | `LotteryFeature` | `Open` M | WorldRootPreviewMembers.cs |
@@ -487,7 +489,7 @@ rename there breaks an audit, not the game.
 | `RouletteFeature` | `Toggle` M | EventsAAudit.cs |
 | `SealFeature` | `AskConfirm` M, `BuildWindow` M, `Close` M, `PushDigit` M, `TakeSocket` M | ClassicServicesAudit.cs, NpcOpeningAudit.cs |
 | `SeekPartyFeature` | `ApplySeekBoard` M, `BuildSeekPanel` M, `fullMoonAutoEntry` F, `SeekBoardKind` P, `seekLayer` F, `SeekPanel` P, `UpdateSeekStatus` M | PartyAudit.cs |
-| `SelfAvatar` | `KoX` F, `KoY` F, `KoZ` F | GenieAudit.cs |
+| `SelfAvatar` | `MapX` F, `MapY` F, `MapZ` F | GenieAudit.cs |
 | `SelfSession` | `Class` P, `Face` P, `Hair` P, `Inventory` P, `LastEnter` P, `Race` P, `SeedPreviewEnter` M, `Sheet` P, `TransformSkill` P | AnvilAudit.cs, BeautyAudit.cs, ChatRoomAudit.cs, ClassicServicesAudit.cs, CommandFunctionAudit.cs, CommunicationAudit.cs, DetailsAudit.cs, EventOverlaysAudit.cs, EventWindowsAudit.cs, EventsAFixtures.cs, ExchangeAudit.cs, FamiliarFixtures.cs, GenderAudit.cs, GenieAudit.cs, IdentityAppearanceFixtures.cs, IdentityAudit.cs, InventoryAudit.cs, ItemWindowsAudit.cs, MarketCommunicationFixtures.cs, MerchantAudit.cs, MykoHudAudit.cs, NpcOpeningAudit.cs, NpcServicesAudit.cs, PetEquipmentResultAudit.cs, PremiumQuestAudit.cs, PresetAudit.cs, ProgressionAudit.cs, QuestDetailAudit.cs, RepairAudit.cs, RepurchaseAudit.cs, SkillAudit.cs, SkillRulesAudit.cs, StorageAudit.cs, UpstreamIntegrationAudit.cs, UpstreamNpcAudit.cs, VendorAudit.cs |
 | `ShoppingMallFeature` | `OnCatalog` M, `OnOpen` M, `TickTimers` M | StoreAudit.cs, StoreMykoAudit.cs |
 | `ShoutFeature` | `BuildBanner` M, `layer` F | WorldOverlaysAudit.cs |
@@ -503,7 +505,7 @@ rename there breaks an audit, not the game.
 | `UpgradeFeature` | `Confirm` M, `OnResult` M, `RefreshActions` M, `Send` M, `SetAnvilBench` M, `StageAnvil` M | AnvilAudit.cs, AnvilServiceFixtures.cs, WorldRootPreviewMembers.cs |
 | `UpgradeNoticeFeature` | `BuildBanner` M, `layer` F | WorldOverlaysAudit.cs |
 | `UserInfoFeature` | `Build` M, `OnInformation` M | DetailsAudit.cs |
-| `UserOptionSession` | `PartyRequestsBlocked` P, `TradeRequestsBlocked` P | CommandFunctionAudit.cs |
+| `UserOptionSession` | `PartyRequestsBlocked` P | CommandFunctionAudit.cs |
 | `UserVoteFeature` | `askUntil` F, `askWindow` F, `Build` M, `notice` F, `OnAsk` M, `select` F, `ShowVoteNotice` M, `UserVoteTick` M | UserVoteAudit.cs |
 | `VendorFeature` | `BuildPanel` M, `OnGold` M, `OnTradeResult` M, `Open` M, `RefreshDetail` M | NpcOpeningAudit.cs, VendorAudit.cs |
 | `VendorSession` | `TradeInFlight` P | VendorAudit.cs |
@@ -514,7 +516,6 @@ rename there breaks an audit, not the game.
 | `WarpFeature` | `Close` M, `SelectRow` M | ClassicServicesAudit.cs |
 | `WhispersFeature` | `AddWhisperPost` M, `Build` M, `BuildWhisperOptions` M, `Dispose` M, `GetOrCreateWhisper` M, `OnDirectPosted` M, `OnWhisperLookChanged` M, `RefreshWhisperOptions` M | ChatRoomAudit.cs, SocialAudit.cs, SocialPromptsAudit.cs |
 | `WindowHost` | `RaiseHidden` M, `RaiseShown` M | QuestDetailAudit.cs |
-| `WorldPreview` | `AgilityNecklace` static F, `AuctionPreviewDay` static F, `AuctionPreviewSeconds` static F, `BuildChaosGuide` M, `BuildChaosLadder` M, `BuildChaosSkillPage` M, `BuildCharacterSeal` M, `BuildChatRoom` M, `BuildClanBoards` M, `BuildClanBonus` M, `BuildClanHandover` M, `BuildCombineRecipeBook` M, `BuildCommander` M, `BuildCommandList` M, `BuildDailyRank` M, `BuildEvents` M, `BuildEventTitles` M, `BuildExpSeal` M, `BuildFortune` M, `BuildItemCombine` M, `BuildItemSmash` M, `BuildKing` M, `BuildLootFilter` M, `BuildNationChat` M, `BuildNereid` M, `BuildNestTimer` M, `BuildOrderMessage` M, `BuildPowerUpStore` M, `BuildPremium` M, `BuildQuestTracker` M, `BuildRankBoard` M, `BuildRankerPaper` M, `BuildRepair` M, `BuildRoyaleScore` M, `BuildSeal` M, `BuildSiege` M, `BuildSiegeTower` M, `BuildSiegeWar` M, `BuildSoccer` M, `BuildTimedItems` M, `BuildUpgrade` M, `BuildVanguard` M, `BuildWarp` M, `BuildWarRanking` M, `BuildWarResult` M, `BuildWhisper` M, `DetachPreviewControl` static M, `ElfMetalEarrings` static F, `ExitMenu` M, `MailEntries` static M, `PreviewClan` static M, `PreviewHpPotion` static F, `PreviewItem` static M, `PreviewMpPotion` static F, `PreviewUpgradedWeapon` static F, `PusPreviewMail` static M, `ShadowPiece` static F, `ShowSealKeypad` M, `StrengthNecklace` static F | AnvilServiceFixtures.cs, ChatRoomAudit.cs, ClassicServicesAudit.cs, CommandListAudit.cs, EventOverlaysAudit.cs, EventWindowsAudit.cs, EventWindowsFixtures.cs, IdentityAppearanceFixtures.cs, ItemWindowsAudit.cs, KingNationFixtures.cs, MapFortuneFixtures.cs, MarketCommunicationFixtures.cs, MykoHudAudit.cs, PremiumQuestAudit.cs, RepairAudit.cs, SiegeFixtures.cs, SkillRulesAudit.cs, SocialFixtures.cs, SocialPromptsAudit.cs, UpstreamIntegrationAudit.cs |
 | `ZoneAbilityFeature` | `BuildChip` M, `zoneabilityTypeLbl` F | WorldOverlaysAudit.cs |
 | `ZoneSession` | `EventTitlesChangedEvent` E | MykoHudAudit.cs |
 
