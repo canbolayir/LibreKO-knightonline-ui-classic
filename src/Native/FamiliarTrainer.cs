@@ -204,7 +204,8 @@ public sealed partial class FamiliarTrainer : Node
         Rebuild(); Refresh();
     }
 
-    private bool Matches(int stage, ItemSlot slot) => Native.Call(_world, stage switch
+    // The client's own item rules, static on PetHatchFeature since the client architecture port.
+    private static bool Matches(int stage, ItemSlot slot) => Native.Call(Native.StaticOwner("LibreKO.Features.Windows.PetHatchFeature"), stage switch
     {
         0 => "IsPetEgg",
         1 => "IsFamiliarItem",
