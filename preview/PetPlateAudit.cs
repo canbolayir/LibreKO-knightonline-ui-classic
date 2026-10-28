@@ -52,8 +52,8 @@ public partial class Preview
             var label = view.GetNode<Label>("pet_plate_name");
             require(label.TextOverrunBehavior == TextServer.OverrunBehavior.TrimEllipsis && label.TooltipText == pet.Name, "A long familiar name ends with an ellipsis inside the slot");
             var at = plate.GetGlobalRect().GetCenter();
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(2);
-            foreach (bool pressed in new[] { true, false }) Input.ParseInputEvent(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = pressed });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(2);
+            foreach (bool pressed in new[] { true, false }) GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = pressed }, true);
             await Frames();
             require((bool)Native.Get<object>(world, "Pet.shown")! && !plate.Visible, "Clicking the plate opens the Familiar window, which replaces the plate");
             DetailCall(world, "Pet.Close"); await Frames();

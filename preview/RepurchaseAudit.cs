@@ -31,7 +31,7 @@ public partial class Preview
         GetViewport().GuiEmbedSubwindows = true;
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1200, 850), MouseFilter = MouseFilterEnum.Ignore });
         string prefix = nation == 1 ? "karus" : "human";
-        var original = Net.I; var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var original = Net.I; var net = LibreKO.Network.Net.I;
         var me = Game.Session.Self.LastEnter; me.Nation = nation; me.Name = "BuyBackTester"; NativeApi.Call(Game.Session.Self, "SeedPreviewEnter", me);
         Game.Session.Self.Sheet.SetGold(1_000_000);
         // The plugin on the client's own facades (as in game): the skin reads IGameRepurchase.Rows.

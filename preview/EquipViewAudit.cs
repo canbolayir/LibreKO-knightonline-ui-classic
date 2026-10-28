@@ -16,7 +16,7 @@ public partial class Preview
         if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false)) throw new Exception("Missing existing content pack");
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 740);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1200, 850), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         var world = PreviewFixtures.Prepared(new WorldRoot()); var layer = (CanvasLayer)DetailCall(world, "BuildEquipViewClassicUiPreview")!; AddChild(layer);
         var window = layer.GetChildren().OfType<HudWindow>().Single(); var panel = ClassicEquipViewSkin.Apply(window.Body)!;
         window.SetMeta("content_open_anchor", true); window.Position = new Vector2(180, 80);

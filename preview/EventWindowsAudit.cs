@@ -25,7 +25,7 @@ public partial class Preview
         ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false);
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1280, 800);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
-        var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         Native.Call(Game.Session.Self, "SeedPreviewEnter", new MyInfo { Nation = nation, Name = "Classic Preview" });
         string prefix = nation == 1 ? "karus" : "human";
         var checks = new List<string>(); var screens = new List<object>();

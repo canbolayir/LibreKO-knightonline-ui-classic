@@ -31,7 +31,7 @@ public partial class Preview
         }
         foreach (bool transform in new[] { false, true })
         {
-            var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+            var net = LibreKO.Network.Net.I;
             var world = PreviewFixtures.Prepared(new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled });
             var inventory = (Inventory)Game.Session.Self.Inventory;
             // Mirror authoritative slot events into the same domain inventory before trainer observers run.

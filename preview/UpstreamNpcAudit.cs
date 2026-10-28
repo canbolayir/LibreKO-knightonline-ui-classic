@@ -16,7 +16,7 @@ public partial class Preview
             if(!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../"+pack),false))throw new Exception("Missing "+pack);
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(1280,800);
         AddChild(new ColorRect{Color=new Color("252822"),Size=new Vector2(1280,800),MouseFilter=MouseFilterEnum.Ignore});
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
+        var net = LibreKO.Network.Net.I;
         Native.Set(Game.Session.Self, "LastEnter",new MyInfo{Nation=nation,Class=nation==1?108:208,Race=nation==1?2:12,Name="Service Preview",Gear=new int[8]}); Game.Session.Self.Inventory.Reset(new LibreKO.Domain.ItemSlot[LibreKO.Domain.InventoryConstants.InventoryTotal]);
         Game.Session.Self.Sheet.SeedWealth(1_180_000,0);ItemData.EnsureLoaded();
         var world=PreviewFixtures.Prepared(new WorldRoot());DetailCall(world,"InventoryWindow.BuildPanel");

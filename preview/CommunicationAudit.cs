@@ -11,7 +11,7 @@ public partial class Preview
         var output = OS.GetEnvironment("LIBREKO_AUDIT_OUTPUT_DIR"); System.IO.Directory.CreateDirectory(output);
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 700);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
-        var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         var checks = new List<string>(); var screens = new List<object>();
         void Require(bool value, string text) { if (!value) throw new Exception("COMMUNICATION_AUDIT: " + text); checks.Add(text); }
         async Task Frames(int count = 8) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }

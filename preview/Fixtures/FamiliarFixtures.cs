@@ -180,6 +180,8 @@ public static partial class PreviewFixtures
 
     public static void ShowPetSheet(WorldRoot world, PetSheet? sheet)
     {
+        // The skill audit's loopback connection closes; the client then drops the session familiar, so the sheet shown is the session's again.
+        if (sheet != null && Game.Session.Pet.Pet == null) Native.Set(Game.Session.Pet, "Pet", sheet);
         Call(world, "Pet.ShowSheet", sheet);
         FamiliarWindow.Of(world)?.Refresh(sheet);
     }

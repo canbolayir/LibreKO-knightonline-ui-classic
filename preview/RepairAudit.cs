@@ -28,7 +28,7 @@ public partial class Preview
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 700);
         var background = new Color("252822");
         AddChild(new ColorRect { Color = background, Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
             Name = "Repair Preview", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new ItemSlot[InventoryConstants.InventoryTotal]);
         ItemData.EnsureLoaded();

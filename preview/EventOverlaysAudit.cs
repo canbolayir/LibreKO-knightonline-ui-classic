@@ -20,7 +20,7 @@ public partial class Preview
         // A dark ground with a light band: plates and banners must read over both.
         AddChild(new ColorRect { Color = new Color("2f332a"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
         AddChild(new ColorRect { Color = new Color("b2ac98"), Position = new Vector2(0, 300), Size = new Vector2(1280, 160), MouseFilter = MouseFilterEnum.Ignore });
-        var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         Native.Call(Game.Session.Self, "SeedPreviewEnter", new MyInfo { Nation = nation, Name = "Classic Preview" });
         LibreKO.Domain.ItemData.EnsureLoaded();
         string prefix = nation == 1 ? "karus" : "human";

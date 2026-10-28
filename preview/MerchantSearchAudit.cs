@@ -13,7 +13,7 @@ public partial class Preview
         if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false)) throw new Exception("Missing existing content pack");
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 700); GetViewport().GuiEmbedSubwindows = true;
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
-        var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         Native.Call(Game.Session.Premium, "Apply", 1, 1, 720, System.Array.Empty<LibreKO.Domain.PremiumBonus>());
         var checks = new List<string>(); var screens = new List<object>();
         void Require(bool value, string text) { if (!value) throw new Exception("MERCHANT_SEARCH_AUDIT: " + text); checks.Add(text); }

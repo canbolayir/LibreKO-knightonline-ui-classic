@@ -26,7 +26,7 @@ public partial class Preview
         // The audit pushes mouse events and never moves the system mouse; menus take the cursor from those events.
         var stage = GetViewport();
         AddChild(new ColorRect { Color = new Color("2f332a"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         foreach (string pack in new[] { "build/client/LibreKO.pck", "build/client/source-content/knightonline.pck" })
             if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../" + pack), false)) throw new Exception("Missing context menu audit pack: " + pack);
         ItemData.EnsureLoaded();

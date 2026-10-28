@@ -80,7 +80,7 @@ public partial class Preview
         var captures = new List<object>();
         void Require(bool valid, string text) { if (!valid) throw new Exception("SKILL_RULES_AUDIT: " + text); checks.Add(text); }
 
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         var login = new LoginNet(); typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, login);
         Game.Session.Self.Sheet.SeedProgress(83, 0, 100);
         Game.Session.Self.Vitals.Seed(3000, 3000, 2000, 2000);

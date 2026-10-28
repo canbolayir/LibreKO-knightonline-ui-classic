@@ -17,7 +17,7 @@ public partial class Preview
         if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false)) throw new Exception("Missing existing content pack");
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 740);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1200, 850), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         PluginHost.Ui.ReplaceDialogs(request => new ClassicServiceNotice(request));
         var checks = new List<string>(); var screens = new List<object>();
         void Require(bool condition, string text) { if (!condition) throw new Exception("AUCTION_AUDIT: " + text); checks.Add(text); }

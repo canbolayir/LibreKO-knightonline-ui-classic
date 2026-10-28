@@ -23,7 +23,7 @@ public partial class Preview
         GetViewport().GuiEmbedSubwindows = true;
         AddChild(new ColorRect { Size = new Vector2(800, 680), Color = new Color("252822"), MouseFilter = MouseFilterEnum.Ignore });
         var flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        var original = Net.I; var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var original = Net.I; var net = LibreKO.Network.Net.I;
         PluginHost.Ui.ExtendWindow("pet", ClassicPetSkin.Extend);
         Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation * 100 + 6, Race = nation == 1 ? 1 : 11,
             Name = "FamiliarTester", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new ItemSlot[InventoryConstants.InventoryTotal]);

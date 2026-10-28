@@ -20,7 +20,7 @@ public partial class Preview
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(620,600);
         var backdrop=new Color("35382f");
         AddChild(new ColorRect {Color=backdrop,Size=new Vector2(620,600),MouseFilter=MouseFilterEnum.Ignore});
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
+        var net = LibreKO.Network.Net.I;
         // ff78eef: the row meter is off by default (the client keeps it off unless a plugin replaces its party HUD).
         Config.SetPartyRowMeter(PartyBoardMeterMode.Off);
         var world=PreviewFixtures.Prepared(new WorldRoot());

@@ -17,7 +17,7 @@ public partial class Preview
         if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/content/characters.pck"), false)) throw new Exception("Missing existing character pack");
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 740);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1200, 850), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         PluginHost.Ui.ExtendWindow("cape", ClassicCapeSkin.Extend);
         PluginHost.Ui.ReplaceDialogs(request => new ClassicServiceNotice(request));
         var world = PreviewFixtures.Prepared(new WorldRoot()); var layer = (CanvasLayer)DetailCall(world, "BuildCapeClassicUiPreview", nation)!; AddChild(layer);

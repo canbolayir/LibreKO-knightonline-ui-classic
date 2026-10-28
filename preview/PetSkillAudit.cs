@@ -17,8 +17,8 @@ public partial class Preview
         T Find<T>(string name) where T : Control => Descendants(panel).OfType<T>().Single(c => c.Name == name);
         async Task Click(Control control)
         {
-            var at = control.GetGlobalRect().GetCenter(); Input.ParseInputEvent(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(2);
-            foreach (bool pressed in new[] { true, false }) Input.ParseInputEvent(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = pressed });
+            var at = control.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(2);
+            foreach (bool pressed in new[] { true, false }) GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = pressed }, true);
             await Frames();
         }
         double Now() => Time.GetTicksMsec() / 1000d;
@@ -29,7 +29,7 @@ public partial class Preview
         int unlockedLevel = Math.Max(oldLevel, skillIds.Max(id => SkillData.Get(id)!.Level));
         int availableMana = Math.Max(oldMaxMp, skillIds.Max(id => SkillData.Get(id)!.Msp));
         require(skillIds.Count > 8, "Real familiar data supplies skills on the second page");
-        sheet.Level = unlockedLevel; sheet.Mp = sheet.MaxMp = availableMana; DetailCall(world, "Pet.RefreshUI");
+        sheet.Level = unlockedLevel; sheet.Mp = sheet.MaxMp = availableMana; DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
         foreach (var button in Descendants(panel).OfType<FamiliarSkillButton>())
             require(button.SkillId == skillIds[int.Parse(button.Name.ToString().Replace("pet_skill_", ""))], "First familiar skill page matches actual table order " + button.Name);
         await Click(Find<Button>("pet_skill_next"));
@@ -42,11 +42,11 @@ public partial class Preview
             require(button.SkillId == expected && (expected != 0 || button.Disabled), "Second familiar page retains skill or empty-slot identity " + i);
         }
         await capture("skills-second-page");
-        sheet.Level = 1; DetailCall(world, "Pet.RefreshUI");
+        sheet.Level = 1; DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
         require(Descendants(panel).OfType<FamiliarSkillButton>().All(button => button.SkillId == 0 || button.Disabled == !PetSkills.Unlocked(SkillData.Get(button.SkillId)!.Level, sheet.Level)),
             "Second-page level locks use the actual native requirements");
         await capture("skills-second-page-locked");
-        sheet.Level = unlockedLevel; DetailCall(world, "Pet.RefreshUI"); await Click(Find<Button>("pet_skill_previous"));
+        sheet.Level = unlockedLevel; DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh(); await Click(Find<Button>("pet_skill_previous"));
         require(Find<Label>("pet_skill_page").Text == "1/2" && Find<Button>("pet_skill_previous").Disabled, "Actual previous click restores familiar page one");
 
         using var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
@@ -58,11 +58,16 @@ public partial class Preview
         using var stream = receiver.GetStream();
         async Task ReadSkillPacket(int id, int stage)
         {
-            var header = new byte[4]; await stream.ReadExactlyAsync(header, timeout.Token);
-            require(header[0] == 0xaa && header[1] == 0x55, "Native familiar request retains original framing");
-            int length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); var body = new byte[length + 2];
-            await stream.ReadExactlyAsync(body, timeout.Token);
-            require(length == 39 && body[length] == 0x55 && body[length + 1] == 0xaa, "Native familiar request retains complete original payload length");
+            // The connection also sends its own login traffic; the familiar request is the next GS_PET frame.
+            var header = new byte[4]; int length; byte[] body;
+            do
+            {
+                await stream.ReadExactlyAsync(header, timeout.Token);
+                require(header[0] == 0xaa && header[1] == 0x55, "Native familiar request retains original framing");
+                length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); body = new byte[length + 2];
+                await stream.ReadExactlyAsync(body, timeout.Token);
+            } while (body[0] != (byte)GameOpcodes.GS_PET);
+            require(length == 39 && body[length] == 0x55 && body[length + 1] == 0xaa, $"Native familiar request retains complete original payload length ({length})");
             require(body[0] == (byte)GameOpcodes.GS_PET && body[1] == 2 && body[2] == stage
                 && BinaryPrimitives.ReadInt32LittleEndian(body.AsSpan(3)) == id && BinaryPrimitives.ReadInt32LittleEndian(body.AsSpan(7)) == 1,
                 "Actual familiar callback sends expected skill, stage and caster");
@@ -91,10 +96,10 @@ public partial class Preview
         cooldowns[instant.Id] = Now() - 1; DetailCall(world, "PetBarTick", Now());
         require(!SkillButton(instant.Id).Disabled && SkillButton(instant.Id).CooldownFraction == 0, "Native tick clears the expired cooldown without requiring a vitals reply");
         await capture("skill-cooldown-expired");
-        SetField("Avatar.Dead", true); DetailCall(world, "Pet.RefreshUI");
+        SetField("Avatar.Dead", true); DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
         DetailCall(world, "PetSkillBar.UsePetSkill", instant.Id); await Frames();
         require(!stream.DataAvailable, "Dead owner cannot submit a familiar skill through either entry point");
-        SetField("Avatar.Dead", false); sheet.Mp = 0; DetailCall(world, "Pet.RefreshUI");
+        SetField("Avatar.Dead", false); sheet.Mp = 0; DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
         var manaSkill = skillIds.Select(SkillData.Get).OfType<SkillData.Skill>().First(s => s.Msp > 0);
         DetailCall(world, "PetSkillBar.UsePetSkill", manaSkill.Id); await Frames();
         require(!stream.DataAvailable && (!cooldowns.ContainsKey(manaSkill.Id) || cooldowns[manaSkill.Id] <= Now()), "Insufficient familiar MP does not start a new skill cooldown");
@@ -102,7 +107,7 @@ public partial class Preview
         var hostile = skillIds.Select(SkillData.Get).OfType<SkillData.Skill>().First(s => s.Moral != PetSkills.OwnerMoral);
         cooldowns.Clear(); DetailCall(world, "PetSkillBar.UsePetSkill", hostile.Id); await Frames();
         require(!stream.DataAvailable && cooldowns.Count == 0, "Missing hostile target cannot start a familiar cast");
-        SetField("Selection.SelectedId", 2); DetailCall(world, "Pet.RefreshUI");
+        SetField("Selection.SelectedId", 2); DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
 
         var cast = skillIds.Select(SkillData.Get).OfType<SkillData.Skill>().First(s => s.CastSeconds > 0);
         await SelectPageFor(cast.Id); await Click(SkillButton(cast.Id)); await ReadSkillPacket(cast.Id, PetSkills.StageCasting);
@@ -119,11 +124,11 @@ public partial class Preview
         double until = Now() + cast.CastSeconds + .2;
         while (Now() < until) await Frames(1);
         require(!stream.DataAvailable, "Actual cast timer does not send a delayed effect after dismissal");
-        cooldowns.Clear(); DetailCall(world, "Pet.RefreshUI"); await SelectPageFor(cast.Id);
+        cooldowns.Clear(); DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh(); await SelectPageFor(cast.Id);
         await Click(SkillButton(cast.Id)); await ReadSkillPacket(cast.Id, PetSkills.StageCasting);
         await ReadSkillPacket(cast.Id, PetSkills.StageEffecting);
         require(cooldowns.ContainsKey(cast.Id), "Unchanged familiar completes its original cast through the native timer");
-        cooldowns.Clear(); DetailCall(world, "Pet.RefreshUI");
+        cooldowns.Clear(); DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
         await Click(SkillButton(cast.Id)); await ReadSkillPacket(cast.Id, PetSkills.StageCasting);
         var refusal = new Packet(GameOpcodes.GS_MAGIC_PROCESS);
         refusal.WriteByte(MagicSub.Fail); refusal.WriteInt(cast.Id); refusal.WriteInt(999); refusal.WriteInt(0);
@@ -141,11 +146,11 @@ public partial class Preview
         await ReadSkillPacket(cast.Id, PetSkills.StageEffecting); await Frames();
         require(Now() >= retrySince + cast.CastSeconds && !stream.DataAvailable,
             "Retry completes once and the refused cast timer cannot complete or consume the newer cast");
-        connection.Close(); cooldowns.Clear(); DetailCall(world, "Pet.RefreshUI");
+        connection.Close(); cooldowns.Clear(); DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
         DetailCall(world, "PetSkillBar.UsePetSkill", instant.Id);
         require(cooldowns.Count == 0 && !Game.Requests.Pet.Skill(PetSkills.StageEffecting, instant.Id, 1, 2, 0, 0, 0), "Disconnected familiar requests cannot leave an artificial cooldown");
         sheet.Level = oldLevel; sheet.Mp = oldMp; sheet.MaxMp = oldMaxMp; SetField("Avatar.Dead", false);
         if (Find<Label>("pet_skill_page").Text == "2/2") await Click(Find<Button>("pet_skill_previous"));
-        DetailCall(world, "Pet.RefreshUI");
+        DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
     }
 }

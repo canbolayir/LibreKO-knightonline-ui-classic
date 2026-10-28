@@ -30,7 +30,7 @@ public partial class Preview
         var ground = new Color("252822");
         AddChild(new ColorRect { Color = ground, Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
             Name = "Quest Preview", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal]);
         ItemData.EnsureLoaded();

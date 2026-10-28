@@ -15,9 +15,13 @@ public static class PreviewPackets
             var dispatcherType = client.GetType("LibreKO.Network.PacketDispatcher", throwOnError: true)!;
             dispatcher = Activator.CreateInstance(dispatcherType, nonPublic: true)!;
             dispatch = dispatcherType.GetMethod("Dispatch")!;
-            client.GetType("LibreKO.Network.Readers.PacketReaders", throwOnError: true)!
-                .GetMethod("Register", BindingFlags.Static | BindingFlags.NonPublic)!
-                .Invoke(null, [dispatcher, Game.Session, Game.Requests]);
+            var register = client.GetType("LibreKO.Network.Readers.PacketReaders", throwOnError: true)!
+                .GetMethod("Register", BindingFlags.Static | BindingFlags.NonPublic)!;
+            // e5f0e420 readers also take the frame clock (Time.GetTicksMsec), as Net registers them.
+            object?[] args = register.GetParameters().Length == 4
+                ? [dispatcher, Game.Session, Game.Requests, Delegate.CreateDelegate(register.GetParameters()[3].ParameterType, typeof(Godot.Time).GetMethod(nameof(Godot.Time.GetTicksMsec))!)]
+                : [dispatcher, Game.Session, Game.Requests];
+            register.Invoke(null, args);
             builtFor = Game.Session;
         }
         if (!(bool)dispatch!.Invoke(dispatcher, [packet])!)

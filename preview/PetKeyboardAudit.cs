@@ -12,7 +12,7 @@ public partial class Preview
         ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false);
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 740);
         GetViewport().GuiEmbedSubwindows = true;
-        var original = Net.I; var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var original = Net.I; var net = LibreKO.Network.Net.I;
         var flags = BindingFlags.Instance | BindingFlags.NonPublic;
         var world = PreviewFixtures.Prepared(new PetAuditWorld());
         var layer = (CanvasLayer)DetailCall(world, "BuildPetHatchClassicUiPreview", nation, false)!;

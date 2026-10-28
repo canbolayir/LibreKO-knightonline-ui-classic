@@ -23,7 +23,7 @@ public partial class Preview
         // A dark ground with a light band: banners and plaques must read over both.
         AddChild(new ColorRect { Color = new Color("2f332a"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
         AddChild(new ColorRect { Color = new Color("b2ac98"), Position = new Vector2(0, 120), Size = new Vector2(1280, 130), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         foreach (string pack in new[] { "build/client/LibreKO.pck", "build/client/source-content/knightonline.pck" })
             if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../" + pack), false)) throw new Exception("Missing world overlay audit pack: " + pack);
         LibreKO.Domain.ItemData.EnsureLoaded();

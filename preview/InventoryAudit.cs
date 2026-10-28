@@ -23,7 +23,7 @@ public partial class Preview
             if(!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../"+pack),false)) throw new Exception("Missing inventory audit pack: "+pack);
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(900,680);
         AddChild(new ColorRect {Color=new Color("252822"),Size=new Vector2(900,680),MouseFilter=MouseFilterEnum.Ignore});
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
+        var net = LibreKO.Network.Net.I;
         Game.Session.Self.Sheet.SeedWealth(1_786_597_823,50_000);Game.Session.Self.Sheet.SetMaxWeight(17_100);Game.Session.Self.Sheet.SeedProgress(83,0,100);
         Native.Set(Game.Session.Self, "LastEnter",new MyInfo {Nation=nation,Class=nation*100+6,Race=nation==1?1:11,
             Name="Inventory Preview",Gear=new int[8]}); Game.Session.Self.Inventory.Reset(new NativeSlot[InventoryConstants.InventoryTotal]);

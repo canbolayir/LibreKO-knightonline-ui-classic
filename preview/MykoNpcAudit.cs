@@ -51,7 +51,7 @@ public partial class Preview
         }
         UseLocal(null);
 
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net); var world = PreviewFixtures.Prepared(new WorldRoot());
+        var net = LibreKO.Network.Net.I; var world = PreviewFixtures.Prepared(new WorldRoot());
         DetailCall(world, "NpcDialogWindow.BuildNpcDialog");
         var layer = (CanvasLayer)DetailField(world, "NpcDialogWindow.layer")!; layer.Reparent(this);
         DetailCall(world, "ItemTooltip.Build");

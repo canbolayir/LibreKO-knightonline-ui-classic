@@ -24,7 +24,7 @@ public partial class Preview
         if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false)) throw new Exception("Missing existing pack knightonline.pck");
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 700);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
-        var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         ClassicCommandListSkin.Register(PluginHost.Ui);
         var checks = new List<string>(); var screens = new List<object>(); var placements = new List<object>();
         string prefix = nation == 1 ? "karus" : "human";

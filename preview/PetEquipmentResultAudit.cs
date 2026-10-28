@@ -23,7 +23,7 @@ public partial class Preview
             if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/content/" + pack + ".pck"), false))
                 throw new Exception("Missing existing inventory audit content: " + pack);
         var originalNet = Net.I;
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation * 100 + 6, Race = nation == 1 ? 1 : 11,
             Name = "FamiliarTester", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new NativeSlot[InventoryConstants.InventoryTotal]);
         Game.Session.Self.Sheet.SeedWealth(1_786_597_823, 0); Game.Session.Self.Sheet.SetMaxWeight(17_100);

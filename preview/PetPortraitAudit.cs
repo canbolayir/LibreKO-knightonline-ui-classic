@@ -21,7 +21,7 @@ public partial class Preview
                 throw new Exception("Missing existing portrait content: " + pack);
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(800, 680);
         AddChild(new ColorRect { Size = new Vector2(800, 680), Color = new Color("252822"), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         PluginHost.Ui.ExtendWindow("pet", ClassicPetSkin.Extend);
         var world = PreviewFixtures.Prepared(new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled });
         var layer = (CanvasLayer)DetailCall(world, "BuildPetClassicUiPreview", nation)!; AddChild(world); AddChild(layer);

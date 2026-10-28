@@ -26,8 +26,8 @@ public partial class Preview
         async Task Frames(int count = 4) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         async Task Click(Control control, MouseButton button = MouseButton.Left)
         {
-            var at = control.GetGlobalRect().GetCenter(); Input.ParseInputEvent(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(2);
-            foreach (bool pressed in new[] { true, false }) Input.ParseInputEvent(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = button, Pressed = pressed });
+            var at = control.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(2);
+            foreach (bool pressed in new[] { true, false }) GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = button, Pressed = pressed }, true);
             await Frames();
         }
         var screens = new List<object>();
@@ -87,10 +87,16 @@ public partial class Preview
             for (int i = 0; i < 120 && !net.Connected; i++) await Frames(1);
             require(net.Connected, "HUD skill callback uses the actual native loopback connection");
             using var stream = receiver.GetStream();
+            // The connection opens with its own version check; drop it so only the familiar traffic is left.
+            await Frames(4); var drain = new byte[4096]; while (stream.DataAvailable) await stream.ReadAsync(drain, timeout.Token);
             await Click(instant, MouseButton.Right); require(!stream.DataAvailable && cooldowns.Count == 0, "Familiar HUD right-click does not activate a skill");
             await Click(instant);
-            var header = new byte[4]; await stream.ReadExactlyAsync(header, timeout.Token);
-            int length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); var body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
+            var header = new byte[4]; int length; byte[] body;
+            do
+            {
+                await stream.ReadExactlyAsync(header, timeout.Token);
+                length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
+            } while (body[0] != (byte)GameOpcodes.GS_PET);
             require(length == 39 && body[0] == (byte)GameOpcodes.GS_PET && body[1] == 2 && body[2] == PetSkills.StageEffecting
                 && BinaryPrimitives.ReadInt32LittleEndian(body.AsSpan(3)) == instantId, "Actual Classic HUD left-click invokes the original native skill packet");
             DetailCall(world, "PetBarTick", Time.GetTicksMsec() / 1000d);
@@ -124,21 +130,37 @@ public partial class Preview
             require(tooltip!.GetThemeFont("font") == KnightOnlineUiClassic.Plugin.Kit.Bold && tooltip.GetThemeFontSize("font_size") == 13
                 && tooltip.GetVisibleLineCount() == tooltip.GetLineCount(), "Familiar HUD tooltip shares bold Classic type and shows every wrapped line");
             await Capture("tooltip");
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = new Vector2(780, 660), GlobalPosition = new Vector2(780, 660) }); await Frames();
+            GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(780, 660), GlobalPosition = new Vector2(780, 660) }, true); await Frames();
             foreach (bool pressed in new[] { true, false }) Input.ParseInputEvent(new InputEventKey { Keycode = Key.Escape, PhysicalKeycode = Key.Escape, Pressed = pressed });
             await Frames(); require(bar.Visible && !stream.DataAvailable, "Escape does not dismiss a summoned familiar or activate a HUD skill");
         }
         finally { connection.Close(); }
+        // Closing the loopback makes the client drop the session familiar (as a real disconnect does); the HUD checks go on with it summoned.
+        await Frames(4); if (Game.Session.Pet.Pet == null) Native.Set(Game.Session.Pet, "Pet", sheet);
         sheet.Level = oldLevel; sheet.Mp = oldMp; cooldowns.Clear(); DetailCall(world, "PetSkillBar.RefreshPetBar");
         var grip = Find<Control>("pet_bar_grip"); var before = bar.Position; var from = grip.GetGlobalRect().GetCenter(); var shift = new Vector2(-31, -19);
-        Input.ParseInputEvent(new InputEventMouseMotion { Position = from, GlobalPosition = from }); await Frames(2);
-        Input.ParseInputEvent(new InputEventMouseButton { Position = from, GlobalPosition = from, ButtonIndex = MouseButton.Left, Pressed = true }); await Frames(2);
-        Input.ParseInputEvent(new InputEventMouseMotion { Position = from + shift, GlobalPosition = from + shift, Relative = shift, ButtonMask = MouseButtonMask.Left }); await Frames(2);
-        Input.ParseInputEvent(new InputEventMouseButton { Position = from + shift, GlobalPosition = from + shift, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames();
+        GetViewport().PushInput(new InputEventMouseMotion { Position = from, GlobalPosition = from }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton { Position = from, GlobalPosition = from, ButtonIndex = MouseButton.Left, Pressed = true }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion { Position = from + shift, GlobalPosition = from + shift, Relative = shift, ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton { Position = from + shift, GlobalPosition = from + shift, ButtonIndex = MouseButton.Left, Pressed = false }, true); await Frames();
         require(bar.Position == before + shift && !GetViewport().GuiIsDragging(), "Original ornament moves the native familiar bar without dragging a skill icon");
         bar.Position = new Vector2(208, 580); await Capture("dragged");
         DetailCall(world, "PetSkillBar.HidePetBar"); require(!bar.Visible, "Dismissal hides the Classic familiar HUD");
         DetailCall(world, "PetSkillBar.OnPetBarSummoned", sheet); require(bar.Visible && page.Text == "1", "Summoning restores the Classic HUD with native first-page identity");
+        // e5f0e420 familiar bar: an automatic-cast skill (right-click) shows the client's auto frames over the Classic cell,
+        // and a usable familiar item dragged onto the bar fills a cell with its icon.
+        var layoutNow = Field<PetBarLayout>("PetSkillBar.Layout");
+        int autoSlot = Enumerable.Range(0, PetSkills.SlotsPerPage).FirstOrDefault(i => SkillData.Get(layoutNow[i]) is { AutoCast: true }, -1);
+        int barItem = ItemData.All().Where(i => !SkillData.IsSkill(i.Id) && PetSkills.FitsBarAsItem(i.Slot, i.Effect1)).Select(i => i.Id).FirstOrDefault();
+        require(autoSlot >= 0 && barItem != 0, "The familiar has an automatic-cast skill and the item table a bar item (" + autoSlot + ", " + barItem + ")");
+        DetailCall(world, "PetSkillBar.ToggleAutoCast", autoSlot);
+        int itemSlot = PetSkills.SlotsPerPage - 1;
+        DetailCall(world, "PetSkillBar.DropOnBar", itemSlot, barItem, -1);
+        DetailCall(world, "PetSkillBar.RefreshPetBar"); DetailCall(world, "PetBarTick", Time.GetTicksMsec() / 1000d); await Frames();
+        require(Field<PetBarLayout>("PetSkillBar.Layout").IsAuto(autoSlot), "Right-click toggles the client's automatic cast on the cell");
+        require(Field<PetBarLayout>("PetSkillBar.Layout")[itemSlot] == barItem, "A usable familiar item takes a bar cell");
+        await Capture("auto-cast-and-item");
+        DetailCall(world, "PetSkillBar.ToggleAutoCast", autoSlot); DetailCall(world, "PetSkillBar.ClearFromBar", itemSlot); DetailCall(world, "PetSkillBar.RefreshPetBar");
         await AuditPetBarPlacement(world, layer, bar, require, Capture);
         layer.Free();
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-bar.json", JsonSerializer.Serialize(new { screens }, new JsonSerializerOptions { WriteIndented = true }));

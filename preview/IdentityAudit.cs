@@ -13,7 +13,7 @@ public partial class Preview
         ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false);
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 700);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
-        var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         PluginHost.Ui.ReplaceDialogs(request => new ClassicServiceNotice(request));
         var checks = new List<string>(); var screens = new List<object>();
         void Require(bool condition, string text) { if (!condition) throw new Exception("IDENTITY_AUDIT: " + text); checks.Add(text); }

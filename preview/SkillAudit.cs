@@ -22,7 +22,7 @@ public partial class Preview
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;
         GetWindow().Size=new Vector2I(440,650);
         AddChild(new ColorRect {Color=new Color("252822"),Size=new Vector2(440,650),MouseFilter=MouseFilterEnum.Ignore});
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
+        var net = LibreKO.Network.Net.I;
         Game.Session.Self.Sheet.SeedProgress(83,0,100);
         Native.Set(Game.Session.Self, "LastEnter",new MyInfo {Nation=nation,Class=nation*100+6,Race=nation==1?1:11,
             Name="Skill Preview",Gear=new int[8]}); Game.Session.Self.Inventory.Reset(new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal]);

@@ -21,7 +21,7 @@ public partial class Preview
             if(!ProjectSettings.LoadResourcePack(System.IO.Path.GetFullPath(ProjectSettings.GlobalizePath("res://../../"+relative)),false)) throw new Exception("Portrait resource pack could not be mounted: "+relative);
         var window=GetWindow();window.ContentScaleMode=Window.ContentScaleModeEnum.Disabled;window.Size=new Vector2I(1000,700);
         AddChild(new ColorRect { Color=new Color("252822"),Size=new Vector2(1000,700),MouseFilter=MouseFilterEnum.Ignore });
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
+        var net = LibreKO.Network.Net.I;
         var model=PreviewFixtures.Prepared(new WorldRoot());
         DetailCall(model,"NpcDialogWindow.Build");
         var layer=(CanvasLayer)DetailField(model,"NpcDialogWindow.layer")!;layer.Reparent(this);

@@ -35,7 +35,7 @@ public partial class Preview
             && !bar.GetGlobalRect().Intersects(main.GetGlobalRect()), "Familiar bar aligns above the actual horizontal main hotbar with a 6 px gap");
         await capture("horizontal-main-bar");
         var saved = bar.Position; DetailCall(world, "PetSkillBar.HidePetBar"); DetailCall(world, "PetSkillBar.OnPetBarSummoned", Game.Session.Pet.Pet!); await Frames();
-        require(bar.Position == saved, "Resummoning preserves the familiar HUD position beside the main hotbar");
+        require(bar.Position == saved, $"Resummoning preserves the familiar HUD position beside the main hotbar ({saved} -> {bar.Position}, size {bar.Size}, hotbars {string.Join(",", Descendants(GetTree().Root).OfType<HotkeyBar>().Select(h => h.Name + ":" + h.IsVisibleInTree() + ":" + h.Size))}, main {main.Size} visible {main.IsVisibleInTree()})");
         main.Position = new Vector2(88, 8); ApplyDefault(); await Frames();
         require(bar.GetGlobalRect().Position.Y == main.GetGlobalRect().End.Y + 6 && !bar.GetGlobalRect().Intersects(main.GetGlobalRect()),
             "Familiar default goes below a horizontal main hotbar at the viewport top");

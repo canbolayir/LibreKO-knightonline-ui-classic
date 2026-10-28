@@ -26,7 +26,7 @@ public partial class Preview
         System.IO.Directory.CreateDirectory(output);
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 700);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         ItemData.EnsureLoaded();
         PreviewFixtures.LinkClientFacades(Plugin.Kit.Game);
         const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;

@@ -12,7 +12,7 @@ public partial class Preview
         var output = OS.GetEnvironment("LIBREKO_AUDIT_OUTPUT_DIR"); System.IO.Directory.CreateDirectory(output);
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 700); GetViewport().GuiEmbedSubwindows = true;
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
-        var offline = new LibreKO.Network.Net(); typeof(LibreKO.Network.Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         var settingsProperty = typeof(Config).GetProperty("SettingsSavePath")!; string originalPath = Config.SettingsSavePath, originalColours = Config.ChatColors;
         string isolatedPath = output + "/" + (nation == 1 ? "karus" : "human") + "-isolated-settings.cfg";
         settingsProperty.SetValue(null, isolatedPath);

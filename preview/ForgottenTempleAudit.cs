@@ -20,8 +20,7 @@ public partial class Preview
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled;
         GetWindow().Size = new Vector2I(1280, 800);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net();
-        typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         var world = PreviewFixtures.Prepared(new WorldRoot());
         DetailCall(world, "Bifrost.BuildUi");
         DetailCall(world, "BuildInZoneLeaveUi");

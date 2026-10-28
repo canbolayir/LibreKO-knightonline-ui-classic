@@ -39,7 +39,7 @@ public partial class Preview
         var window=GetWindow();window.ContentScaleMode=Window.ContentScaleModeEnum.Disabled;window.Size=new Vector2I(1000,700);
         window.GuiEmbedSubwindows=true;
         AddChild(new ColorRect { Color=new Color("252822"),Size=new Vector2(1000,700),MouseFilter=MouseFilterEnum.Ignore });
-        var offline=new Net();typeof(Net).GetProperty("I")!.SetValue(null,offline);
+        var offline = LibreKO.Network.Net.I;
         Native.Set(Game.Session.Clan, "MyClan",new MyClanInfo { InClan=true,ClanId=1,AllianceId=1,Fame=ClanRanks.Chief,Name="canCLAN",Notice="Meet at Moradon",Flag=ClanTypes.Accredited5,MaxMembers=50 });
         var output=System.IO.Path.GetFullPath(ProjectSettings.GlobalizePath("res://../../research/character-composed-audit"));System.IO.Directory.CreateDirectory(output);
         if(OS.GetCmdlineUserArgs().Contains("quest-polish-audit"))

@@ -19,7 +19,7 @@ public partial class Preview
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(800, 680);
         GetViewport().GuiEmbedSubwindows = true;
         AddChild(new ColorRect { Size = new Vector2(800, 680), Color = new Color("252822"), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         PluginHost.Ui.ExtendWindow("pet", ClassicPetSkin.Extend);
         var world = PreviewFixtures.Prepared(new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled });
         var layer = (CanvasLayer)DetailCall(world, "BuildPetClassicUiPreview", nation)!; AddChild(world); AddChild(layer);
@@ -69,10 +69,10 @@ public partial class Preview
         await Click(Tab("Skills")); await Capture("skills");
         await AuditPetEquipment(world, net, layer, window, panel, Require, Capture);
         await AuditPetSkills(world, net, panel, Require, Capture);
-        var sheet = Game.Session.Pet.Pet!; sheet.Mode = PetMode.Looting; sheet.Mp = 0; DetailCall(world, "Pet.RefreshUI");
+        var sheet = Game.Session.Pet.Pet!; sheet.Mode = PetMode.Looting; sheet.Mp = 0; DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
         Require(Find<Button>("pet_loot").ButtonPressed && !Find<Button>("pet_attack").ButtonPressed, "Mode switch follows native response");
         await Capture("no-mana");
-        Native.Set(world, "Avatar.Dead", true); DetailCall(world, "Pet.RefreshUI");
+        Native.Set(world, "Avatar.Dead", true); DetailCall(world, "Pet.RefreshUI"); KnightOnlineUiClassic.Native.FamiliarWindow.Of(world)?.Refresh();
         Require(Find<Button>("pet_feed").Disabled && Find<Button>("pet_attack").Disabled, "Dead owner cannot feed or command");
         await Click(Tab("Items")); await Capture("dead");
         DetailCall(world, "ShowPetSheet", (object?)null);
@@ -83,7 +83,7 @@ public partial class Preview
         await Capture("long-status");
         DetailCall(world, "ShowPetSheet", sheet); await Frames();
         Require(portrait.Texture != null && NpcPortraitCache.RenderRequests == 1 && NpcPortraitCache.CacheHits > 0,
-            "Reopening the same familiar reuses its 2D texture");
+            $"Reopening the same familiar reuses its 2D texture (texture {portrait.Texture != null}, renders {NpcPortraitCache.RenderRequests}, hits {NpcPortraitCache.CacheHits}, pet {Game.Session.Pet.Pet?.Name}, actor {Native.Call(world, "PetSkillBar.MyPetEntity") != null}, ents {string.Join(",", ((System.Collections.IEnumerable)Native.Get<object>(world, "EntitySystem.Ents.Values")!).Cast<object>().Select(e => Native.Get<string>(e, "Name") + "/" + Native.Get<bool>(e, "Dead")))})");
         window.Visible = false;
         await AuditPetBar(world, net, nation, output, Require);
         await AuditPetPlate(world, net, window, nation, output, Require);
@@ -151,27 +151,27 @@ public partial class Preview
             }
             async Task Click(Control control, MouseButton button = MouseButton.Left)
             {
-                var at = control.GetGlobalRect().GetCenter(); Input.ParseInputEvent(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(2);
-                foreach (bool pressed in new[] { true, false }) Input.ParseInputEvent(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = button, Pressed = pressed });
+                var at = control.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(2);
+                foreach (bool pressed in new[] { true, false }) GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = button, Pressed = pressed }, true);
                 await Frames();
             }
             async Task Drag(ItemSlotView source, ItemSlotView destination)
             {
                 var from = source.GetGlobalRect().GetCenter(); var to = destination.GetGlobalRect().GetCenter();
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = from, GlobalPosition = from }); await Frames(2);
-                Input.ParseInputEvent(new InputEventMouseButton { Position = from, GlobalPosition = from, ButtonIndex = MouseButton.Left, Pressed = true }); await Frames(2);
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = from + new Vector2(18, 0), GlobalPosition = from + new Vector2(18, 0), Relative = new Vector2(18, 0), ButtonMask = MouseButtonMask.Left }); await Frames(2);
+                GetViewport().PushInput(new InputEventMouseMotion { Position = from, GlobalPosition = from }, true); await Frames(2);
+                GetViewport().PushInput(new InputEventMouseButton { Position = from, GlobalPosition = from, ButtonIndex = MouseButton.Left, Pressed = true }, true); await Frames(2);
+                GetViewport().PushInput(new InputEventMouseMotion { Position = from + new Vector2(18, 0), GlobalPosition = from + new Vector2(18, 0), Relative = new Vector2(18, 0), ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
                 Require(GetViewport().GuiIsDragging(), "Actual inventory drag starts in " + service);
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = to, GlobalPosition = to, Relative = to - from, ButtonMask = MouseButtonMask.Left }); await Frames(2);
-                Input.ParseInputEvent(new InputEventMouseButton { Position = to, GlobalPosition = to, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames();
+                GetViewport().PushInput(new InputEventMouseMotion { Position = to, GlobalPosition = to, Relative = to - from, ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
+                GetViewport().PushInput(new InputEventMouseButton { Position = to, GlobalPosition = to, ButtonIndex = MouseButton.Left, Pressed = false }, true); await Frames();
             }
             var name = Field<LineEdit>("PetHatch.NameInput");
             await Capture("ready");
             var headerAt = panel.GetGlobalRect().Position + new Vector2(120, 24); var oldPosition = panel.Position; var shift = new Vector2(35, 18);
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = headerAt, GlobalPosition = headerAt }); await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton { Position = headerAt, GlobalPosition = headerAt, ButtonIndex = MouseButton.Left, Pressed = true }); await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = headerAt + shift, GlobalPosition = headerAt + shift, Relative = shift, ButtonMask = MouseButtonMask.Left }); await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton { Position = headerAt + shift, GlobalPosition = headerAt + shift, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = headerAt, GlobalPosition = headerAt }, true); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton { Position = headerAt, GlobalPosition = headerAt, ButtonIndex = MouseButton.Left, Pressed = true }, true); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = headerAt + shift, GlobalPosition = headerAt + shift, Relative = shift, ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton { Position = headerAt + shift, GlobalPosition = headerAt + shift, ButtonIndex = MouseButton.Left, Pressed = false }, true); await Frames(2);
             Require(panel.Position.DistanceTo(oldPosition + shift) < 1 && !GetViewport().GuiIsDragging(), "Header dragging moves the native " + service + " window (" + oldPosition + " -> " + panel.Position + ")");
             panel.Position = oldPosition; await Frames();
             int pick = Field<int>(transform ? "PetHatch.petTransformSlot" : "PetHatch.slot");

@@ -36,7 +36,7 @@ public partial class Preview
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1100, 640), MouseFilter = MouseFilterEnum.Ignore });
         // The installed content: item data (links, tooltips, text table) and the emoticon sheet.
         if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false)) throw new Exception("Missing existing content pack");
-        var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         ItemData.EnsureLoaded();
         var voice = VoiceChat.Ensure(this, Game.Session.RoomMedia, Game.Session.NationChat, Game.Session.Self, Game.Requests.RoomMedia);
         ClassicChatRoomSkin.Register(PluginHost.Ui);

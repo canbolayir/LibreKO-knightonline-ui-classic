@@ -18,7 +18,7 @@ public partial class Preview
             if(!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../"+pack),false))throw new Exception("Missing "+pack);
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(800,650);
         AddChild(new ColorRect{Color=new Color("252822"),Size=new Vector2(800,650),MouseFilter=MouseFilterEnum.Ignore});
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
+        var net = LibreKO.Network.Net.I;
         Native.Set(Game.Session.Self, "LastEnter",new MyInfo{Nation=nation,Class=nation==1?105:205,Race=nation==1?1:11,Name="Anvil Preview",Gear=new int[8]}); Game.Session.Self.Inventory.Reset(new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal]);
         var world=PreviewFixtures.Prepared(new WorldRoot());DetailCall(world,"InventoryWindow.BuildPanel");
         var orphan=(Control)DetailField(world,"InventoryWindow.InvContent")!;orphan.Visible=false;world.AddChild(orphan);

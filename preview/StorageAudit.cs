@@ -18,7 +18,7 @@ public partial class Preview
         ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false);
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(800, 650);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(800, 650), MouseFilter = MouseFilterEnum.Ignore });
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
+        var net = LibreKO.Network.Net.I;
         Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
             Name = "Storage Preview", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new NativeSlot[InventoryConstants.InventoryTotal]);
         Game.Session.Self.Sheet.SeedWealth(1_234_567, 50_000); Game.Session.Self.Sheet.SetMaxWeight(17100);

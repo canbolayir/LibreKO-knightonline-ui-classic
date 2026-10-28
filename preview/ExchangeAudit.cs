@@ -40,7 +40,7 @@ public partial class Preview
 
         AddChild(new ColorRect {Color=new Color("252822"),Size=new Vector2(800,720),MouseFilter=MouseFilterEnum.Ignore});
 
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
+        var net = LibreKO.Network.Net.I;
 
         Game.Session.Self.Sheet.SeedWealth(1_234_567,50_000);Game.Session.Self.Sheet.SetMaxWeight(10_000);Game.Session.Self.Sheet.SeedProgress(70,0,100);
 

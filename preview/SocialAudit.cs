@@ -23,7 +23,7 @@ public partial class Preview
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
         // The installed content: item data (whisper item links, text table) and the emoticon sheet.
         if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck"), false)) throw new Exception("Missing existing content pack");
-        var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
+        var offline = LibreKO.Network.Net.I;
         ClassicSocialSkin.Register(PluginHost.Ui);
         var checks = new List<string>(); var screens = new List<object>();
         string prefix = nation == 1 ? "karus" : "human";

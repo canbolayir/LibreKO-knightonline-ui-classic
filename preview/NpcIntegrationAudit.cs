@@ -27,7 +27,7 @@ public partial class Preview
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(1000,700);
         AddChild(new ColorRect { Color=new Color("252822"),Size=new Vector2(1000,700),MouseFilter=MouseFilterEnum.Ignore });
         await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);var world=PreviewFixtures.Prepared(new WorldRoot());
+        var net = LibreKO.Network.Net.I;var world=PreviewFixtures.Prepared(new WorldRoot());
         DetailCall(world,"NpcDialogWindow.BuildNpcDialog");
         var layer=(CanvasLayer)DetailField(world,"NpcDialogWindow.layer")!;layer.Reparent(this);
         DetailCall(world,"ItemTooltip.Build");
