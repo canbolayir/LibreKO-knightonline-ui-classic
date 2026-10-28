@@ -39,3 +39,7 @@ See LICENSE for the adapter code's AGPL-3.0 terms.
   - "Laurel crown" by Lorc (Daily Rank), https://game-icons.net/1x1/lorc/laurel-crown.html
   - "Hourglass" by Lorc (Event Schedule), https://game-icons.net/1x1/lorc/hourglass.html
   - "Envelope" by Lorc (Mail), https://game-icons.net/1x1/lorc/envelope.html
+- Discord corner icon: the Discord mark from Simple Icons, https://simpleicons.org, CC0 1.0 Universal, as the LibreKO
+  client ships it (`Client/assets/ui/icons/brand/discord.svg`), rasterised to `tools/source/game-icons/simpleicons_discord.png`.
+  Discord and the Discord mark are trademarks of Discord Inc.; the mark only links to the LibreKO Discord server.
+  - "Envelope" by Lorc (Mail), https://game-icons.net/1x1/lorc/envelope.html
