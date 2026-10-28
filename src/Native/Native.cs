@@ -224,10 +224,10 @@ public static class Native
 
     private static bool Walk(ref object owner, ref string member, bool report = true)
     {
-        int last = member.LastIndexOf('.');
-        if (last < 0) return true;
+        if (member.IndexOf('.') < 0) return true;
+        var (steps, leaf) = PathOf(member);
         object start = owner;
-        foreach (var step in member[..last].Split('.'))
+        foreach (var step in steps)
         {
             object? next = Find(TypeOf(owner), step) switch
             {
@@ -243,15 +243,15 @@ public static class Native
             if (next == null) return false;
             owner = next;
         }
-        member = member[(last + 1)..];
+        member = leaf;
         return true;
     }
 
     private static Type? DeclaredOwner(Type type, ref string member)
     {
-        int last = member.LastIndexOf('.');
-        if (last < 0) return type;
-        foreach (var step in member[..last].Split('.'))
+        if (member.IndexOf('.') < 0) return type;
+        var (steps, leaf) = PathOf(member);
+        foreach (var step in steps)
         {
             Type? next = Find(type, step) switch
             {
@@ -262,11 +262,20 @@ public static class Native
             if (next == null) return null;
             type = next;
         }
-        member = member[(last + 1)..];
+        member = leaf;
         return type;
     }
 
     private static readonly object Missing = new();
+
+    /// <summary>A dotted member path split once ("Exchange.ConfirmedByMe" → ["Exchange"], "ConfirmedByMe"); per-frame reads allocate nothing.</summary>
+    private static readonly ConcurrentDictionary<string, (string[] Steps, string Leaf)> _paths = new();
+
+    private static (string[] Steps, string Leaf) PathOf(string member) => _paths.GetOrAdd(member, path =>
+    {
+        int last = path.LastIndexOf('.');
+        return (path[..last].Split('.'), path[(last + 1)..]);
+    });
 
     private static MemberInfo? Find(Type type, string member) =>
         _members.GetOrAdd((type, member), key =>
