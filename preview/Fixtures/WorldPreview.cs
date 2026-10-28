@@ -42,4 +42,36 @@ public sealed partial class WorldPreview
 
     private object Feature(string property) => Native.Get<object>(_world, property)
         ?? throw new InvalidOperationException("The preview world has no " + property);
-}
+
+    /// <summary>
+    /// Constructs a client feature the World builds inside a lambda facet (the chat), with the World as its context
+    /// and the session slices and request senders its constructor names, as the World scene does.
+    /// </summary>
+    public object Construct(string typeName)
+    {
+        var type = Native.ClientType(typeName) ?? throw new InvalidOperationException("No client type " + typeName);
+        var ctor = type.GetConstructors(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic)
+            .OrderByDescending(c => c.GetParameters().Length).First();
+        var args = ctor.GetParameters().Select(p => Argument(p.ParameterType)).ToArray();
+        return ctor.Invoke(args);
+    }
+
+    private object? Argument(Type type)
+    {
+        if (type.IsInstanceOfType(_world)) return _world;
+        foreach (var owner in new object[] { Game.Session, Game.Requests })
+            foreach (var property in owner.GetType().GetProperties())
+                if (type.IsAssignableFrom(property.PropertyType)) return property.GetValue(owner);
+        return null;
+    }
+
+    /// <summary>The World's chat, constructed and built once, off the network.</summary>
+    public object EnsureChat()
+    {
+        if (Native.Get<object>(_world, "Chat") is { } chat) return chat;
+        chat = Construct("LibreKO.Features.Social.ChatSystem");
+        Native.Set(_world, "Chat", chat);
+        Native.Call(chat, "Build");
+        Native.Call(chat, "DetachNetwork");
+        return chat;
+    }}

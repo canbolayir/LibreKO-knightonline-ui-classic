@@ -25,8 +25,7 @@ public static partial class PreviewFixtures
 
     public static void EnablePetKeyboardUiPreview(WorldRoot world)
     {
-        // The prepared World constructed its chat with the client's sessions; it is built here, off the network.
-        var chat = Native.Get<object>(world, "Chat")!; Native.Call(chat, "Build"); Native.Call(chat, "DetachNetwork");
+        var chat = ((WorldPreview)ClientPreview(world)).EnsureChat();
         Native.Set(world, "WorldReady", true);
         world.SetProcess(false); world.SetPhysicsProcess(false); world.SetProcessUnhandledInput(false);
         world.SetProcessInput(true);

@@ -671,7 +671,7 @@ public partial class Preview
             var list = (HudWindow)DetailCall(world, "Preview.BuildNationChat", "private")!;
             var me = Game.Session.Self.LastEnter; me.Name = "Tester10"; me.Nation = own;
             Native.Call(Game.Session.Self, "SeedPreviewEnter", me);
-            Native.Set(world, "MyId", 9006);
+            Native.Set(world, "Avatar.CharId", 9006);
             // The client's fixture rooms plus two rooms of the other nation: an open one and a locked one.
             var open = new NationRoom(1005, "Border traders", false, other, 3, 20);
             var locked = new NationRoom(1006, "Ronark Land watch", true, other, 5, 10);

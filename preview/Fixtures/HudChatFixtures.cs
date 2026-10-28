@@ -10,9 +10,7 @@ public static partial class PreviewFixtures
 {
     public static CanvasLayer BuildChatColoursClassicUiPreview(WorldRoot world)
     {
-        var chat = Native.Get<object>(world, "Chat")!;
-        Native.Call(chat, "Build");
-        Native.Call(chat, "DetachNetwork");
+        var chat = ((WorldPreview)ClientPreview(world)).EnsureChat();
         Native.Call(world, "ChatHost.BuildColors");
         var layer = Native.Get<CanvasLayer>(world, "ChatHost.colorsLayer")!;
         var window = Native.Get<HudWindow>(world, "ChatHost.ColorsWindow")!;
