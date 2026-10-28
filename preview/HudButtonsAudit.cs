@@ -117,17 +117,19 @@ public partial class Preview
         // ---- Tooltips: English titles with the client's key binding where it has one.
         string Tip(string letter) => Letter(letter)._GetTooltip(Vector2.Zero);
         string KeyText(KeyAction action) => KeyBinds.Get(action).Text;
+        // An action the client leaves unbound (Achievements since e5f0e420) is titled without a key.
+        string Titled(string name, KeyAction action) => KeyBinds.Get(action) is { Assigned: true } chord ? name + " (" + chord.Text + ")" : name;
         Require(Tip("Q") == "Quests (" + KeyText(KeyAction.Quests) + ")", "Q tooltip names the Quest Journal key: " + Tip("Q"));
-        Require(Tip("P").StartsWith("Power-Up Store (" + KeyText(KeyAction.PowerUpStore) + ")"), "P tooltip: " + Tip("P"));
-        Require(Tip("A").StartsWith("Achievements (" + KeyText(KeyAction.Achievements) + ")"), "A tooltip: " + Tip("A"));
-        Require(Tip("D").StartsWith("Daily Attendance (" + KeyText(KeyAction.Attendance) + ")"), "D tooltip: " + Tip("D"));
-        Require(Tip("G") == "Genie (" + KeyText(KeyAction.Genie) + ")", "G tooltip: " + Tip("G"));
+        Require(Tip("P").StartsWith(Titled("Power-Up Store", KeyAction.PowerUpStore)), "P tooltip: " + Tip("P"));
+        Require(Tip("A").StartsWith(Titled("Achievements", KeyAction.Achievements)), "A tooltip: " + Tip("A"));
+        Require(Tip("D").StartsWith(Titled("Daily Attendance", KeyAction.Attendance)), "D tooltip: " + Tip("D"));
+        Require(Tip("G") == Titled("Genie", KeyAction.Genie), "G tooltip: " + Tip("G"));
         var tips = letters.ToDictionary(s => s.Letter, s => s._GetTooltip(Vector2.Zero));
 
         // ---- The replaced top-right icons stay hidden, also after the client shows them again.
         foreach (var field in new[] { "TopIcons.Icon:Genie", "Events.iconButton", "DailyRankWindow.drIcon" })
         {
-            var icon = (Control)Native.Get<object>(world, field)!;
+            var icon = PreviewFixtures.Field<Control>(world, field);
             Require(!shown(icon), field + " is hidden while the plugin runs");
             icon.Visible = true; await Frames(1);
             Require(!shown(icon), field + " stays hidden when the client shows it again");
