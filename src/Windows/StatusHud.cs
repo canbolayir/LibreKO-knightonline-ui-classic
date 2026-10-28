@@ -191,7 +191,9 @@ public partial class StatusHud : Control
         _coordinates.Text=$"{(int)_game.Map.X}, {(int)_game.Map.Z}";
         _coordinates.TooltipText=_game.Map.ZoneName;
         if (_view.Get("Text_Version") is Label zone) zone.TooltipText=_game.Map.ZoneName;
-        _view.SetText("Text_HP", $"{c.Hp}/{c.MaxHp}");
+        // Zones that show health ten times over scale the text only; the bar keeps its fraction.
+        long hpScale = c.HpTextScale;
+        _view.SetText("Text_HP", $"{c.Hp * hpScale}/{c.MaxHp * hpScale}");
         _view.SetText("Text_MSP", $"{c.Mp}/{c.MaxMp}");
         _npcList.Refresh();
         _map.QueueRedraw();
