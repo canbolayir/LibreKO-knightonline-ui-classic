@@ -149,9 +149,9 @@ public partial class Preview
         await Registration("ft-registration-urgent", true, true);
         DetailCall(world, "Bifrost.OnTime", 600, TempleEventType.ForgottenTemple);
         // The server's sign-up count adds its line under the status; the box grows by that line only.
-        DetailCall(world, "Bifrost.OnTempleSignUps", (int)TempleEventType.ForgottenTemple, 14, 9);
+        DetailCall(world, "Bifrost.OnTempleSignUps", TempleJoin.IndunType(TempleEventType.ForgottenTemple), 14, 9);
         await Registration("ft-registration-count", false, true, count: true);
-        Require(((Label)DetailField(world, "Bifrost.joinModalCount")!).Text == TempleJoin.CountLine(false, 14, 9), "registration: the Forgotten Temple count per nation");
+        Require(((Label)DetailField(world, "Bifrost.joinModalCount")!).Text == TempleJoin.CountLine(TempleEventType.ForgottenTemple, 14, 9), "registration: the Forgotten Temple sign-up count");
         // A second sign-up opens while registered for Forgotten Temple: the box stays on Forgotten Temple until the
         // player picks the other event (the events window's Join), which then reads "registered for" without Join.
         DetailCall(world, "Bifrost.OnTime", 600, TempleEventType.Chaos);
@@ -162,12 +162,12 @@ public partial class Preview
         Require(signUps.Current == TempleEventType.Chaos && joinTitle.Text.Contains("CHAOS DUNGEON"), "two sign-ups: the other event is shown on request");
         await Registration("registered-elsewhere", false, false, elsewhere: true);
         // Counts are kept per event: the Chaos sign-up (event id 24) has its own line.
-        DetailCall(world, "Bifrost.OnTempleSignUps", TempleJoin.ChaosSignUpEventId, 11, 7);
+        DetailCall(world, "Bifrost.OnTempleSignUps", TempleJoin.ChaosIndunType, 11, 7);
         await Registration("registered-elsewhere-count", false, false, elsewhere: true, count: true);
-        Require(((Label)DetailField(world, "Bifrost.joinModalCount")!).Text == TempleJoin.CountLine(true, 11, 7), "registration: the Chaos sign-up count (event id 24)");
+        Require(((Label)DetailField(world, "Bifrost.joinModalCount")!).Text == TempleJoin.CountLine(TempleEventType.Chaos, 11, 7), "registration: the Chaos sign-up count (event id 24)");
         DetailCall(world, "Bifrost.ShowSignUp", TempleEventType.ForgottenTemple);
         await Frames();
-        Require(joinButton.Visible && joinButton.Text == "Cancel" && ((Label)DetailField(world, "Bifrost.joinModalCount")!).Text == TempleJoin.CountLine(false, 14, 9),
+        Require(joinButton.Visible && joinButton.Text == "Cancel" && ((Label)DetailField(world, "Bifrost.joinModalCount")!).Text == TempleJoin.CountLine(TempleEventType.ForgottenTemple, 14, 9),
             "two sign-ups: back on Forgotten Temple with Cancel and its own count");
         // Cancelling the registration, then Juraid Mountain, which signs up at an NPC: no Join, Close alone.
         DetailCall(world, "Bifrost.OnDisband");

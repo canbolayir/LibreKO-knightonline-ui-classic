@@ -103,7 +103,7 @@ public static class NativeParty
             panel.SetMeta("seek_name", e.Name);
             panel.SetMeta("seek_level", e.IsLeaderRecruiting ? $"{e.MemberCount}/{MembersPerRecruitment}" : e.Level.ToString());
             panel.SetMeta("seek_class", e.IsLeaderRecruiting ? wanted : CharacterClassCatalog.DisplayName(e.ClassOrWanted));
-            panel.SetMeta("seek_detail", $"{Native.Call(Native.StaticOwner("LibreKO.Features.Hud.SeekPartyFeature"), "SeekZoneName", e.ZoneId)}\n{e.Message}");
+            panel.SetMeta("seek_detail", $"{ZoneCatalog.Name(e.ZoneId)}\n{e.Message}");
             if (panel.GetChildCount() > 0 && panel.GetChild(0) is HBoxContainer row && !row.GetChildren().OfType<Button>().Any(b => b.Text == "Private"))
             {
                 string name = e.Name;

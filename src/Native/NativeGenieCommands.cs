@@ -108,10 +108,15 @@ public static class NativeGenieCommands
     /// <summary>The client sets its Genie deadline whenever the server reports the remaining time.</summary>
     private static bool Reported(WorldRoot world) => Native.TryGet(world, "Genie.deadline", out double deadline) && deadline != 0;
 
+    /// <summary>How many of the first Spirit of Genie kind the bag holds (the client asks for that kind first).</summary>
     private static int SpiritCount(WorldRoot world)
     {
-        if (!Native.TryGet(Native.StaticOwner("LibreKO.Features.Hud.GenieTownFeature"), "SpiritOfItem", out int item)) return 0;
-        try { return Game.Session.Self.Inventory.CountInBackpack(item); }
+        try
+        {
+            var bag = Game.Session.Self.Inventory;
+            int item = GenieSpirit.FirstOwned(id => bag.CountInBackpack(id) > 0);
+            return item == GenieSpirit.NoSpirit ? 0 : bag.CountInBackpack(item);
+        }
         catch (Exception) { return 0; }
     }
 

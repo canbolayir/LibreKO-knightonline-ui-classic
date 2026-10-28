@@ -128,7 +128,7 @@ public static class NativeHudChat
         if (!changed) return;
         Native.TryCall(world, "MainWindows.QueueDockLayout", out _);
         // Close the gaps the hidden icons leave in the remaining top-right strip.
-        Native.TryCall(world, "TopIcons.Place", out _);
+        Native.TryCall(world, "TopIcons.PlaceAll", out _);
     }
 
     private const float StatusGap = 4f;

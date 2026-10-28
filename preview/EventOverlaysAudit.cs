@@ -141,10 +141,10 @@ public partial class Preview
         // Area banner, order message and kill splash: outlined Arial Bold text.
         {
             var world = PreviewFixtures.Prepared(new WorldRoot());
-            DetailCall(world, "KnightRoyaleWindow.EnsureAreaBanner");
-            var banner = (Control)DetailField(world, "KnightRoyaleWindow.areaBanner")!;
-            ((Label)DetailField(world, "KnightRoyaleWindow.areaTitle")!).Text = "Ronark Land";
-            ((Label)DetailField(world, "KnightRoyaleWindow.areaSubtitle")!).Text = "PK zone: both nations may attack you";
+            DetailCall(world, "Caption.EnsureBanner");
+            var banner = (Control)DetailField(world, "Caption.banner")!;
+            ((Label)DetailField(world, "Caption.title")!).Text = "Ronark Land";
+            ((Label)DetailField(world, "Caption.subtitle")!).Text = "PK zone: both nations may attack you";
             banner.Visible = true; banner.GetParent().RemoveChild(banner); layer.AddChild(banner); banner.SetAnchorsPreset(Control.LayoutPreset.TopWide);
             var order = (CanvasLayer)DetailCall(world, "Preview.BuildOrderMessage", true, 1280f)!;
             AddChild(order);

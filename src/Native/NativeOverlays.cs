@@ -91,7 +91,7 @@ public static class NativeOverlays
         ("GenieSub.Sub", NativeOverlay.GenieQuick, "genie_quick"),
         ("EventTitlesWindow.TitleColumn", NativeOverlay.Titles, "event_titles"),
         ("GatherSystem.gatherChip", NativeOverlay.Chip, "gather_chip"),
-        ("KnightRoyaleWindow.areaBanner", NativeOverlay.Announcement, "area_banner"),
+        ("Caption.banner", NativeOverlay.Announcement, "area_banner"),
         ("MsgOut.msgOut", NativeOverlay.Announcement, "skill_message"),
         ("ChatNotices.orderMessage", NativeOverlay.Announcement, "order_message"),
         ("KillSplash.killSplash", NativeOverlay.Announcement, "kill_splash"),
@@ -117,10 +117,10 @@ public static class NativeOverlays
             if (part == NativeOverlay.GenieQuick) NativeGenieQuick.Bind(node, world);
             Apply(part, node);
         }
-        // The client draws the order message (top 110) over the area banner's title (top 100); the skin stacks them.
-        if (Native.Has(world, "ChatNotices.orderMessage") && Native.Has(world, "KnightRoyaleWindow.areaBanner")
+        // The client draws the order message (top 110) over the area caption's title (top 100); the skin stacks them.
+        if (Native.Has(world, "ChatNotices.orderMessage") && Native.Has(world, "Caption.banner")
             && Native.Get<Control>(world, "ChatNotices.orderMessage") is { } order && GodotObject.IsInstanceValid(order) && !order.HasMeta(StackBelow)
-            && Native.Get<Control>(world, "KnightRoyaleWindow.areaBanner") is { } area && GodotObject.IsInstanceValid(area))
+            && Native.Get<Control>(world, "Caption.banner") is { } area && GodotObject.IsInstanceValid(area))
             order.SetMeta(StackBelow, area);
         NativeContextMenus.PrepareLater(world);
     }

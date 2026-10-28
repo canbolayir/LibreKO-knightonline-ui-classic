@@ -129,6 +129,6 @@ public static class NativePremium
         chip.MouseFilter = Control.MouseFilterEnum.Ignore;
         foreach (var child in Native.Descendants(chip).OfType<Control>()) child.MouseFilter = Control.MouseFilterEnum.Ignore;
         chip.CustomMinimumSize = new Vector2(width, chip.CustomMinimumSize.Y);
-        Native.TryCall(world, "TopIcons.Place", out _);
+        Native.TryCall(world, "TopIcons.PlaceAll", out _);
     }
 }
