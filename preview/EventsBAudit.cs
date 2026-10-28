@@ -71,7 +71,7 @@ public partial class Preview
             for (int attempt = 0; attempt < 3; attempt++)
             {
                 Vector2 hit = control.GetGlobalRect().GetCenter() + new Vector2(attempt, 0);
-                GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }); await Frames(2);
+                GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true); await Frames(2);
                 if (control is not BaseButton button || button.Disabled) return;
                 ulong until = Time.GetTicksMsec() + 1500;
                 while (button.GetDrawMode() != BaseButton.DrawMode.Hover && Time.GetTicksMsec() < until) await Frames(1);
@@ -79,13 +79,13 @@ public partial class Preview
                 if (attempt < 2) GD.Print($"EVENTS_B hover attempt {attempt + 2} on {control.Name}");
             }
         }
-        async Task Leave() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }); await Frames(2); }
+        async Task Leave() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true); await Frames(2); }
         async Task Click(Control control, MouseButton button = MouseButton.Left)
         {
             Vector2 hit = control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = button, Pressed = true, Factor = 1 });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = button, Pressed = false, Factor = 1 });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = button, Pressed = true, Factor = 1 }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = button, Pressed = false, Factor = 1 }, true);
             await Frames(2);
         }
         async Task<(WorldRoot World, HudWindow Window, ClassicBoardPanel Panel)> Open(string id, bool sheriff = false)
@@ -158,8 +158,8 @@ public partial class Preview
             Require(longCell.Text.StartsWith("Xx_") && longCell.TooltipText == longCell.Text && Width(longCell, longCell.Text) > longCell.Size.X, "Long target trimmed in its column and kept as tooltip");
             await Capture(open.Window, panel, "long");
             Vector2 hit = panel.Rows!.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = true, Factor = 1 });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = false, Factor = 1 });
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = true, Factor = 1 }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = false, Factor = 1 }, true);
             await Frames(2);
             Require(panel.Page == 1, "Mouse wheel over the list turns the page");
             await Capture(open.Window, panel, "long-page2");
@@ -224,8 +224,8 @@ public partial class Preview
             var scroll = Named<ScrollContainer>(panel, "report_detail_scroll"); Vector2 hit = scroll.GetGlobalRect().GetCenter();
             for (int i = 0; i < 4; i++)
             {
-                GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = true, Factor = 1 });
-                GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = false, Factor = 1 });
+                GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = true, Factor = 1 }, true);
+                GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = false, Factor = 1 }, true);
             }
             await Frames(2);
             Require(rail.Bar.Value > 0, "Mouse wheel scrolls the contained reason");

@@ -42,9 +42,9 @@ public partial class Preview
         async Task Hover(Control control)
         {
             var at = control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(3);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(3);
         }
-        void Leave() => GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero });
+        void Leave() => GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true);
         (WorldRoot World, HudWindow Window, ClassicProgressionPanel Panel) Open(string fixture, string view)
         {
             var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, fixture, view)!;

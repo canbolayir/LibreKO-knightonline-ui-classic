@@ -151,25 +151,25 @@ public partial class Preview
         async Task<bool> MouseDrag(Control from, Control to)
         {
             Vector2 a = from.GetGlobalRect().GetCenter(), b = to.GetGlobalRect().GetCenter();
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = a, GlobalPosition = a });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = a, GlobalPosition = a }, true);
             await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, Position = a, GlobalPosition = a, ButtonMask = MouseButtonMask.Left });
+            GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, Position = a, GlobalPosition = a, ButtonMask = MouseButtonMask.Left }, true);
             await Frames(2);
             bool dragging = false;
             for (int step = 1; step <= 8; step++)
             {
                 var at = a.Lerp(b, step / 8f);
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = at, GlobalPosition = at, Relative = (b - a) / 8f, ButtonMask = MouseButtonMask.Left });
+                GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at, Relative = (b - a) / 8f, ButtonMask = MouseButtonMask.Left }, true);
                 await Frames(1);
                 dragging |= GetViewport().GuiIsDragging();
             }
-            Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = b, GlobalPosition = b });
+            GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = b, GlobalPosition = b }, true);
             await Frames(3);
             return dragging;
         }
         async Task Capture(string state, Rect2I region, bool now = false)
         {
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = new Vector2(550, 640), GlobalPosition = new Vector2(550, 640) });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(550, 640), GlobalPosition = new Vector2(550, 640) }, true);
             // Short-lived states (a running cooldown, the ready flash) are taken on the next drawn frame.
             if (now) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
             else await Settled();

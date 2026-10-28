@@ -20,7 +20,7 @@ public partial class Preview
         string prefix = nation == 1 ? "karus" : "human";
         var window = GetWindow(); window.ContentScaleMode = Window.ContentScaleModeEnum.Disabled;
         window.Size = new Vector2I(1120, 660); window.ContentScaleSize = Vector2I.Zero;
-        Input.ParseInputEvent(new InputEventMouseMotion { Position = new Vector2(1110, 650), GlobalPosition = new Vector2(1110, 650) });
+        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(1110, 650), GlobalPosition = new Vector2(1110, 650) }, true);
         AddChild(new ColorRect { Color = new Color("34362b"), Size = new Vector2(1120, 660), MouseFilter = MouseFilterEnum.Ignore });
         AddChild(new ColorRect { Color = new Color("afa995"), Position = new Vector2(0, 0), Size = new Vector2(560, 300), MouseFilter = MouseFilterEnum.Ignore });
         var checks = new List<string>(); var screens = new List<string>(); var bounds = new Dictionary<string, object>();
@@ -184,10 +184,10 @@ public partial class Preview
         bounds["npcList"] = new { map = Rect(mapRect), list = Rect(listRect), button = Rect(Screen(npcButton)), rows = kindRows.Select(r => Rect(Screen(r))).ToArray() };
         await Shot("npc-list");
         kindRows[3].EmitSignal(Control.SignalName.MouseEntered);
-        Input.ParseInputEvent(new InputEventMouseMotion { Position = Screen(kindRows[3]).GetCenter(), GlobalPosition = Screen(kindRows[3]).GetCenter() });
+        GetViewport().PushInput(new InputEventMouseMotion { Position = Screen(kindRows[3]).GetCenter(), GlobalPosition = Screen(kindRows[3]).GetCenter() }, true);
         await Shot("npc-list-hover");
         kindRows[3].EmitSignal(BaseButton.SignalName.Pressed); await Frames(3);
-        Input.ParseInputEvent(new InputEventMouseMotion { Position = new Vector2(1110, 650), GlobalPosition = new Vector2(1110, 650) });
+        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(1110, 650), GlobalPosition = new Vector2(1110, 650) }, true);
         Require(picked == 4 && npcKind == 4 && !npcList.Visible && npcList.Row(4).ButtonPressed && !npcList.Row(2).ButtonPressed,
             "Picking Repair asks the client for that kind and closes the list so the diamonds show");
         mapCanvas.QueueRedraw(); await Frames(3);

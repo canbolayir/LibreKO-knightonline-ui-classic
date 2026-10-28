@@ -48,15 +48,15 @@ public partial class Preview
         async Task Hover(Control control, Vector2? at = null)
         {
             Vector2 hit = at ?? control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true); await Frames(2);
         }
-        async Task Leave() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }); await Frames(2); }
+        async Task Leave() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true); await Frames(2); }
         async Task Click(Control control, Vector2? at = null)
         {
             Vector2 hit = at ?? control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = true });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = true }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false }, true);
             await Frames(2);
         }
         async Task Drag(HudWindow window, string what)
@@ -152,8 +152,8 @@ public partial class Preview
             Require(rail.Bar.MaxValue > rail.Bar.Page && rail.Up.Disabled && !rail.Down.Disabled, "World Map long list overflows into the scroll bar");
             await Capture(window, "globalmap", "long", size);
             var scroll = Named<ScrollContainer>(window, "map_scroll"); Vector2 hit = scroll.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = true, Factor = 1 });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = false, Factor = 1 });
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = true, Factor = 1 }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = false, Factor = 1 }, true);
             await Frames(4);
             Require(rail.Bar.Value > 0 && rail.Bar.Value % ClassicMapFortuneLayout.Row == 0, "World Map mouse wheel scrolls the contained list by whole rows " + rail.Bar.Value);
             for (int i = 0; i < 20; i++) rail.Down.EmitSignal(BaseButton.SignalName.Pressed);

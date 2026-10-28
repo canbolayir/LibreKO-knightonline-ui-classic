@@ -114,7 +114,7 @@ public partial class Preview
                 await SaveAuditImage(output, prefix + "-" + page + "-selected");
                 var button = list.GetChildren().OfType<Button>().ElementAt(1);
                 var target = button.GetGlobalRect().GetCenter();
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = target, GlobalPosition = target });
+                GetViewport().PushInput(new InputEventMouseMotion { Position = target, GlobalPosition = target }, true);
                 await Settled();
                 await SaveAuditImage(output, prefix + "-" + page + "-selected-hover");
             }

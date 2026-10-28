@@ -41,15 +41,15 @@ public partial class Preview
             if (mode == "nation")
             {
                 Vector2 hit = up.GetGlobalRect().GetCenter();
-                GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }); await Frames(2);
+                GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true); await Frames(2);
                 Require(up.GetDrawMode().ToString() == "Hover", "Original upper arrow hit rectangle receives actual mouse hover");
                 await Capture(window, "nation-hover");
-                GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = true });
+                GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = true }, true);
                 await Capture(window, "nation-pressed");
                 Require(value.Text == "3 %", "Arrow press preserves the value until mouse release");
-                GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames(2);
+                GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false }, true); await Frames(2);
                 Require(value.Text == "4 %", "Original arrow mouse release invokes one native increment");
-                GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }); await Frames(2);
+                GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true); await Frames(2);
             }
             window.Position = new Vector2(100, 80); Vector2 origin = window.Position, pointer = origin + new Vector2(12, 4);
             controls.Single(c => c.Name == "party_drag").EmitSignal(Control.SignalName.GuiInput,

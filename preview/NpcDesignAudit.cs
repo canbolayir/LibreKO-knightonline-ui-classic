@@ -101,10 +101,10 @@ public partial class Preview
                 var rootBounds = root.GetGlobalRect();
                 var speechBounds = _designSpeech.GetGlobalRect();
                 var target = speechBounds.GetCenter();
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = target, GlobalPosition = target });
+                GetViewport().PushInput(new InputEventMouseMotion { Position = target, GlobalPosition = target }, true);
                 await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-                Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.WheelDown, Pressed = true, Position = target, GlobalPosition = target });
-                Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.WheelDown, Pressed = false, Position = target, GlobalPosition = target });
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.WheelDown, Pressed = true, Position = target, GlobalPosition = target }, true);
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.WheelDown, Pressed = false, Position = target, GlobalPosition = target }, true);
                 for (int frame = 0; frame < 3; frame++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
                 scrollInputVerified = speechBar.Value > 0;
                 if (!scrollInputVerified) failures.Add("Wheel input inside the speech area did not scroll its contents");
@@ -112,15 +112,15 @@ public partial class Preview
                 await Save("-scrolled");
                 if (root.GetGlobalRect() != rootBounds || _designSpeech.GetGlobalRect() != speechBounds || _designBounds.Any(p => p.Control.GetRect() != p.Bounds))
                     failures.Add("Scrolling changed the frame or declared layout");
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero });
+                GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true);
             }
             else if (!offer)
             {
                 var target = _designMenu[1].GetGlobalRect().GetCenter();
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = target, GlobalPosition = target });
+                GetViewport().PushInput(new InputEventMouseMotion { Position = target, GlobalPosition = target }, true);
                 for (int frame = 0; frame < 3; frame++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
                 await Save("-hover");
-                Input.ParseInputEvent(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero });
+                GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true);
             }
             else if (_designChoices.Count > 2)
             {

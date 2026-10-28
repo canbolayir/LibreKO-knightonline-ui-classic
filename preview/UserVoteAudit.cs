@@ -199,7 +199,7 @@ public partial class Preview
             // A member row (the fixture does not seed the own class, so the own row would read "Class 0").
             var row = rows[1];
             var over = row.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = over, GlobalPosition = over });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = over, GlobalPosition = over }, true);
             PopupPanel? tip = null;
             // Godot opens a tooltip after its delay in seconds; at a high frame rate 120 frames pass sooner.
             ulong until = Time.GetTicksMsec() + 3000;
@@ -218,7 +218,7 @@ public partial class Preview
                 "war board: the row tooltip shows the member, class and share inside the window " + new Rect2(tip.Position, tip.Size));
             await Shot("war-board-tooltip");
             var away = new Vector2(4, GetViewportRect().Size.Y - 4);
-            GetViewport().PushInput(new InputEventMouseMotion { Position = away, GlobalPosition = away });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = away, GlobalPosition = away }, true);
             await Frames(6);
             Require(!GodotObject.IsInstanceValid(tip) || !tip.Visible, "war board: the row tooltip closes when the pointer leaves");
         }
@@ -278,10 +278,10 @@ public partial class Preview
         var list = ((Dictionary<string, CharacterList>)typeof(CharacterWindow).GetField("_lists", flags)!.GetValue(character)!)["clan"];
         var own = list.GetChildren().OfType<Button>().First(b => b.TooltipText == "Chief / online");
         var at = own.GetGlobalRect().GetCenter();
-        GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at });
+        GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true);
         await Frames(1);
-        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Right, ButtonMask = MouseButtonMask.Right, Pressed = true, Position = at, GlobalPosition = at });
-        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Right, Pressed = false, Position = at, GlobalPosition = at });
+        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Right, ButtonMask = MouseButtonMask.Right, Pressed = true, Position = at, GlobalPosition = at }, true);
+        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Right, Pressed = false, Position = at, GlobalPosition = at }, true);
         await Frames(4);
         var menu = ClassicContextMenu.OpenLayer?.GetChildren().OfType<ClassicContextMenu>().FirstOrDefault() ?? throw new Exception("USER_VOTE_AUDIT: own row menu did not open");
         Require(menu.GetGlobalRect().Grow(2).HasPoint(at) || (menu.GetGlobalRect().Position - at).Length() < 24, "clan page: the own row menu opens at the cursor " + menu.GetGlobalRect());

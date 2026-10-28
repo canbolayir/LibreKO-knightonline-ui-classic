@@ -19,7 +19,7 @@ public partial class Preview
         System.IO.Directory.CreateDirectory(output);
         string prefix = nation == 1 ? "karus" : "human";
         var window = GetWindow(); window.ContentScaleMode = Window.ContentScaleModeEnum.Disabled; window.Size = new Vector2I(1280, 800);
-        Input.ParseInputEvent(new InputEventMouseMotion { Position = new Vector2(1275, 795), GlobalPosition = new Vector2(1275, 795) });
+        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(1275, 795), GlobalPosition = new Vector2(1275, 795) }, true);
         // A dark ground with a light band: banners and plaques must read over both.
         AddChild(new ColorRect { Color = new Color("2f332a"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
         AddChild(new ColorRect { Color = new Color("b2ac98"), Position = new Vector2(0, 120), Size = new Vector2(1280, 130), MouseFilter = MouseFilterEnum.Ignore });
@@ -329,10 +329,10 @@ public partial class Preview
         Require(Global(lootCells[6]).Position.X >= Global(loot).Position.X + Spec.Loot.GridWidth, "loot: entries 7 to 12 fill the second grid");
         var hovered = lootCells[4];
         Input.WarpMouse(Global(hovered).GetCenter());
-        GetViewport().PushInput(new InputEventMouseMotion { Position = Global(hovered).GetCenter(), GlobalPosition = Global(hovered).GetCenter() });
+        GetViewport().PushInput(new InputEventMouseMotion { Position = Global(hovered).GetCenter(), GlobalPosition = Global(hovered).GetCenter() }, true);
         await Frames(3);
         await Shot("loot-hover", ("loot", Global(loot)), ("cell", Global(hovered)));
-        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(5, 5), GlobalPosition = new Vector2(5, 5) });
+        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(5, 5), GlobalPosition = new Vector2(5, 5) }, true);
         int taken = -1;
         var takeSpy = Native.Get<System.Delegate>(hovered, "Clicked");
         hovered.Clicked += c => taken = c.Index;

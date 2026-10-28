@@ -89,18 +89,18 @@ public partial class Preview
             DetailCall(world, "NpcDialogWindow.End", topics.Length);
         }
         void Offer(int npc, QuestView view) { Close(); SetNpc(npc); DetailCall(world, "ShowQuestView", view); }
-        void Pointer(Vector2 point) => Input.ParseInputEvent(new InputEventMouseMotion { Position = point, GlobalPosition = point });
+        void Pointer(Vector2 point) => GetViewport().PushInput(new InputEventMouseMotion { Position = point, GlobalPosition = point }, true);
         async Task Click(Control control, bool release = true)
         {
             var point = control.GetGlobalRect().GetCenter();
             Pointer(point); await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, Position = point, GlobalPosition = point }); await Frames(2);
-            if (release) { Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = point, GlobalPosition = point }); await Frames(2); }
+            GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, Position = point, GlobalPosition = point }, true); await Frames(2);
+            if (release) { GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = point, GlobalPosition = point }, true); await Frames(2); }
         }
         async Task Release(Control control)
         {
             var point = control.GetGlobalRect().GetCenter();
-            Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = point, GlobalPosition = point }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = point, GlobalPosition = point }, true); await Frames(2);
         }
         Image Shot() => GetViewport().GetTexture().GetImage();
         int Count(Image image, Rect2 rect, Func<Color, bool> match)
@@ -286,8 +286,8 @@ public partial class Preview
         var talkFrame = window.GetGlobalRect(); var bar = myko.TextScroll.GetVScrollBar();
         Check(bar.MaxValue > bar.Page, "long talk overflows its box");
         var target = myko.TextScroll.GetGlobalRect().GetCenter(); Pointer(target); await Frames(1);
-        Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.WheelDown, Pressed = true, Position = target, GlobalPosition = target });
-        Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.WheelDown, Pressed = false, Position = target, GlobalPosition = target }); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.WheelDown, Pressed = true, Position = target, GlobalPosition = target }, true);
+        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.WheelDown, Pressed = false, Position = target, GlobalPosition = target }, true); await Frames(2);
         Check(bar.Value > 0 && window.GetGlobalRect() == talkFrame, "wheel scrolls the talk text inside the fixed window");
         double wheel = bar.Value; await Click(myko.Rail!.Down);
         Check(bar.Value > wheel, "down arrow scrolls the talk text");

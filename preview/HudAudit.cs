@@ -37,7 +37,7 @@ public partial class Preview
         _windowData!.WithUnreadMail=true;
         var window=GetWindow();window.ContentScaleMode=Window.ContentScaleModeEnum.Disabled;
         window.Size=new Vector2I(1120,660);window.ContentScaleSize=Vector2I.Zero;
-        Input.ParseInputEvent(new InputEventMouseMotion { Position=new Vector2(1104,644),GlobalPosition=new Vector2(1104,644) });
+        GetViewport().PushInput(new InputEventMouseMotion { Position=new Vector2(1104,644),GlobalPosition=new Vector2(1104,644) }, true);
         AddChild(new ColorRect { Color=new Color("34362b"),Size=new Vector2(1120,660),MouseFilter=MouseFilterEnum.Ignore });
         // A light background exposes font outlines, stray button fills and clipped corners.
         AddChild(new ColorRect { Color=new Color("afa995"),Position=new Vector2(0,0),Size=new Vector2(460,280),MouseFilter=MouseFilterEnum.Ignore });

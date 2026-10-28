@@ -17,9 +17,10 @@ public static class ClassicMailLayout
     public static Rect2 BulkConfirm => new(140, 324, 264, 24);
     public static Rect2 Write => new(16, 52, 80, 26);
     public static Rect2 Refresh => new(102, 52, 70, 26);
-    public static Rect2 UnreadOnly => new(178, 52, 84, 26);
-    public static Rect2 ParcelsOnly => new(264, 52, 82, 26);
-    public static Rect2 UnreadCount => new(348, 52, 56, 26);
+    public static Rect2 UnreadOnly => new(178, 52, 72, 26);
+    // Wide enough for the client's "Parcels (n)" caption.
+    public static Rect2 ParcelsOnly => new(252, 52, 96, 26);
+    public static Rect2 UnreadCount => new(350, 52, 54, 26);
     public static Rect2 Message => new(16, 124, 388, 146);
     // Four whole 35 px attachment rows.
     public static Rect2 ReadAttachments => new(16, 318, 388, 137);

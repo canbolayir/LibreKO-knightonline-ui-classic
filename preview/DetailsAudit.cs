@@ -608,11 +608,11 @@ public partial class Preview
         }
         var hover=Topic("Orc Watcher");
         var point=hover.GetGlobalRect().GetCenter();
-        Input.ParseInputEvent(new InputEventMouseMotion { Position=point,GlobalPosition=point });await Capture("npc-menu-hover");
-        Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=true,Position=point,GlobalPosition=point });await Capture("npc-menu-pressed");
-        Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=false,Position=point,GlobalPosition=point });
+        GetViewport().PushInput(new InputEventMouseMotion { Position=point,GlobalPosition=point }, true);await Capture("npc-menu-hover");
+        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=true,Position=point,GlobalPosition=point }, true);await Capture("npc-menu-pressed");
+        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=false,Position=point,GlobalPosition=point }, true);
         await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);
-        Input.ParseInputEvent(new InputEventMouseMotion { Position=Vector2.Zero,GlobalPosition=Vector2.Zero });
+        GetViewport().PushInput(new InputEventMouseMotion { Position=Vector2.Zero,GlobalPosition=Vector2.Zero }, true);
         await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);
         if(selected!=0) throw new Exception("Pointer input on an NPC option lost its native callback");
         Topic("Apples of Moradon").EmitSignal(BaseButton.SignalName.Pressed);

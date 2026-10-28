@@ -171,19 +171,19 @@ public partial class Preview
 
         var from=bag.GetGlobalRect().GetCenter();var to=own.GetGlobalRect().GetCenter();
 
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=from,GlobalPosition=from});await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion {Position=from,GlobalPosition=from}, true);await Frames(2);
 
-        Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=from,GlobalPosition=from});await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=from,GlobalPosition=from}, true);await Frames(2);
 
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=from+new Vector2(18,0),GlobalPosition=from+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left});await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion {Position=from+new Vector2(18,0),GlobalPosition=from+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
 
         Require(GetViewport().GuiIsDragging(),"Physical pointer drag carries actual inventory item");
 
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=to,GlobalPosition=to,Relative=to-from,ButtonMask=MouseButtonMask.Left});await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion {Position=to,GlobalPosition=to,Relative=to-from,ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
 
-        Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=to,GlobalPosition=to});await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=to,GlobalPosition=to}, true);await Frames(2);
 
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames();Require((bool)DetailField(world,"Exchange.amountShown")!,"Drag opens quantity prompt");
+        GetViewport().PushInput(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero}, true);await Frames();Require((bool)DetailField(world,"Exchange.amountShown")!,"Drag opens quantity prompt");
 
         var modalPanel=Descendants((CanvasLayer)DetailField(world,"Exchange.amountLayer")!).OfType<ClassicExchangeAmountPanel>().Single();
 
@@ -284,13 +284,13 @@ public partial class Preview
             var source=shell.GetNode<ClassicExchangeCell>("exchange_bag_0");var target=shell.GetNode<Control>("trade_my_offer").GetChildren().OfType<ClassicExchangeCell>().First();
             Vector2 start=source.GetGlobalRect().GetCenter(),end=target.GetGlobalRect().GetCenter();
             void Wheel(MouseButton button) {
-                Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=button,Pressed=true,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left});
-                Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=button,Pressed=false,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left});
+                GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=button,Pressed=true,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left}, true);
+                GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=button,Pressed=false,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left}, true);
             }
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=start,GlobalPosition=start});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=start,GlobalPosition=start});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=start+new Vector2(18,0),GlobalPosition=start+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=end,GlobalPosition=end,Relative=end-start,ButtonMask=MouseButtonMask.Left});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=start,GlobalPosition=start}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=start,GlobalPosition=start}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=start+new Vector2(18,0),GlobalPosition=start+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=end,GlobalPosition=end,Relative=end-start,ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
             var dial=Descendants(GetTree().Root.GetNode("DragLayer")).OfType<KnightOnlineUiClassic.Layout.ClassicStackDial>().Single();
             var icon=(Control)dial.GetParent();
             Require(GetViewport().GuiIsDragging() && dial.Text=="100" && dial.GetThemeColor("font_color")==Colors.White,"A dragged stack shows its whole count in white on the drag icon");
@@ -301,8 +301,8 @@ public partial class Preview
             await Frames(2);
             Require(dial.Text=="97" && dial.Amount==97 && dial.GetThemeColor("font_color")==KnightOnlineUiClassic.Layout.ClassicStackDial.PartColour,"The wheel picks a part of the stack, shown in gold");
             await Capture("drag-amount");
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=end,GlobalPosition=end});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames();
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=end,GlobalPosition=end}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero}, true);await Frames();
             var pending=DetailField(world,"Exchange.pending")!;
             Require(!(bool)DetailField(world,"Exchange.amountShown")! && (bool)DetailField(world,"Exchange.addInFlight")! && (int)pending.GetType().GetField("Count")!.GetValue(pending)! ==97,
                 "A part picked with the wheel is offered at once, without the quantity prompt");

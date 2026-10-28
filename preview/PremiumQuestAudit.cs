@@ -51,14 +51,14 @@ public partial class Preview
             crop.SavePng(System.IO.Path.Combine(output, file));
             screens.Add(new { state, file, rect = rect.ToString(), detail });
         }
-        async Task Move(Vector2 at) { GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(2); }
+        async Task Move(Vector2 at) { GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(2); }
         async Task Click(Control control)
         {
             var at = control.GetGlobalRect().GetCenter();
             await Move(at);
-            GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = true });
+            GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = true }, true);
             await Frames(2);
-            GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = false });
+            GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = false }, true);
             await Frames(3);
         }
         IEnumerable<Node> Everything(Node root) { yield return root; foreach (var child in root.GetChildren(true)) foreach (var node in Everything(child)) yield return node; }

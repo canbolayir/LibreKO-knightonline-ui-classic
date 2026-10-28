@@ -149,7 +149,7 @@ public partial class Preview
         Require(socket._CanDropData(Vector2.Zero, pieceDrag), "Generator drag data uses the normal inventory protocol");
         socket._DropData(Vector2.Zero, pieceDrag);
         Require((int)DetailField(pieceWorld, "PieceChange.itemId")! == validPiece, "Dropping an already-staged piece does not toggle it out");
-        Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = new Vector2(-100, -100), GlobalPosition = new Vector2(-100, -100) });
+        GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = new Vector2(-100, -100), GlobalPosition = new Vector2(-100, -100) }, true);
         await Frames();
         DetailCall(pieceWorld, "PieceChange.RefreshActions"); DetailCall(pieceWorld, "PieceChange.StartSpin"); DetailCall(pieceWorld, "PieceChange.PieceChangeTick", .1);
         Require((bool)DetailField(pieceWorld, "PieceChange.spinning")!, "Generator keeps its native reward-spin lifecycle");

@@ -68,7 +68,7 @@ public partial class Preview
         }
         async Task Capture(string state)
         {
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});
+            GetViewport().PushInput(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero}, true);
             await Settled();
             Require(Label("string_info").GetThemeFont("font")==Plugin.Kit.Bold,state+": description uses Character Report bold font");
             Require(Label("string_skill_mp").GetThemeFont("font")==Plugin.Kit.Bold,state+": details use Character Report bold font");

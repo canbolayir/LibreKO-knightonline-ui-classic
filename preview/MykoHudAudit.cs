@@ -44,13 +44,13 @@ public partial class Preview
             using (var part = image.GetRegion(r)) part.SavePng(System.IO.Path.Combine(output, file));
             screens.Add(new { state, file, crop = Rect(crop) });
         }
-        async Task Hover(Vector2 at) { GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(3); }
+        async Task Hover(Vector2 at) { GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(3); }
         async Task Click(Vector2 at)
         {
             await Hover(at);
             foreach (bool down in new[] { true, false })
             {
-                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = down, Position = at, GlobalPosition = at });
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = down, Position = at, GlobalPosition = at }, true);
                 await Frames(1);
             }
             await Frames(3);

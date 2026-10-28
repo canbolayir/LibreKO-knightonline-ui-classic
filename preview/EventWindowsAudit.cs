@@ -136,9 +136,9 @@ public partial class Preview
         async Task Hover(Control control, HudWindow window, string state)
         {
             var at = control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(3);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(3);
             await Capture(window, state);
-            GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.One, GlobalPosition = Vector2.One }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.One, GlobalPosition = Vector2.One }, true); await Frames(2);
         }
 
         // Event schedule.
@@ -262,7 +262,7 @@ public partial class Preview
                 for (int attempt = 0; attempt < 3 && tip == null; attempt++)
                 {
                     var at = chip.GetGlobalRect().GetCenter() + new Vector2(attempt, 0);
-                    GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at });
+                    GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true);
                     ulong until = Time.GetTicksMsec() + 1500;
                     while (tip == null && Time.GetTicksMsec() < until) { await Frames(1); tip = All(chip).OfType<PopupPanel>().FirstOrDefault(p => p.Visible); }
                 }
@@ -273,7 +273,7 @@ public partial class Preview
                     && tipLabel.GetThemeColor("font_color") == Colors.White && tipLabel.Text == chip.TooltipText, "events: the start tooltip in the original tooltip look: " + tipLabel.Text);
                 Require(GetViewportRect().Encloses(new Rect2(tip.Position, tip.Size)), "events: the start tooltip inside the viewport");
                 await Capture(window, "chip-tooltip");
-                GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.One, GlobalPosition = Vector2.One }); await Frames(4);
+                GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.One, GlobalPosition = Vector2.One }, true); await Frames(4);
             }
             var toggle = Part<Button>(world, "Events.myLevel");
             toggle.ButtonPressed = true; await Frames(4);

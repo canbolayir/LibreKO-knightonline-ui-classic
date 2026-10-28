@@ -91,8 +91,8 @@ public partial class ClassicMailPanel : Control
     {
         Action(Find<Button>("mail_compose"), ClassicMailLayout.Write, "Write");
         Action(Find<Button>("mail_refresh"), ClassicMailLayout.Refresh, "Refresh");
-        var filter = Find<CheckButton>("mail_unread_only"); Place(filter, ClassicMailLayout.UnreadOnly); Font(filter, false); ClassicCheck(filter);
-        if (FindOrNull<CheckButton>("mail_parcels_only") is { } parcels) { Place(parcels, ClassicMailLayout.ParcelsOnly, keepVisibility: true); Font(parcels, false); ClassicCheck(parcels); }
+        var filter = Find<CheckButton>("mail_unread_only"); Place(filter, ClassicMailLayout.UnreadOnly); Font(filter, false, 12); ClassicCheck(filter);
+        if (FindOrNull<CheckButton>("mail_parcels_only") is { } parcels) { Place(parcels, ClassicMailLayout.ParcelsOnly, keepVisibility: true); Font(parcels, false, 12); ClassicCheck(parcels); }
         Place(Find<Label>("mail_unread_count"), ClassicMailLayout.UnreadCount); Font(Find<Label>("mail_unread_count"), false, 12);
         Find<Label>("mail_unread_count").HorizontalAlignment = HorizontalAlignment.Right;
         Caption("Subject", new Rect2(38, 88, 176, 20)); Caption("Sender", new Rect2(214, 88, 108, 20)); Caption("Date", new Rect2(326, 88, 56, 20));

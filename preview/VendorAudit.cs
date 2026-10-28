@@ -145,19 +145,19 @@ public partial class Preview
         async Task PointerDrag(Control source,Control destination)
         {
             var from=source.GetGlobalRect().GetCenter();var to=destination.GetGlobalRect().GetCenter();
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=from,GlobalPosition=from});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=from,GlobalPosition=from});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=from+new Vector2(18,0),GlobalPosition=from+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=from,GlobalPosition=from}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=from,GlobalPosition=from}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=from+new Vector2(18,0),GlobalPosition=from+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
             Require(GetViewport().GuiIsDragging(),"Pointer holds the actual item during drag");
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=to,GlobalPosition=to,Relative=to-from,ButtonMask=MouseButtonMask.Left});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=to,GlobalPosition=to});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=to,GlobalPosition=to,Relative=to-from,ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=to,GlobalPosition=to}, true);await Frames(2);
         }
         async Task RightClick(Control control)
         {
-            var point=control.GetGlobalRect().GetCenter();Input.ParseInputEvent(new InputEventMouseMotion {Position=point,GlobalPosition=point});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=true,Position=point,GlobalPosition=point});
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=false,Position=point,GlobalPosition=point});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames(2);
+            var point=control.GetGlobalRect().GetCenter();GetViewport().PushInput(new InputEventMouseMotion {Position=point,GlobalPosition=point}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=true,Position=point,GlobalPosition=point}, true);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=false,Position=point,GlobalPosition=point}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero}, true);await Frames(2);
         }
         void Escape()
         {
@@ -187,13 +187,13 @@ public partial class Preview
         async Task Hold(Control source)
         {
             var point=source.GetGlobalRect().GetCenter();
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=point,GlobalPosition=point});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=point,GlobalPosition=point});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=point,GlobalPosition=point}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=point,GlobalPosition=point}, true);await Frames(2);
             Require(GetViewport().GuiIsDragging(),"Pressing a catalogue item holds its actual identity");
         }
         async Task ReleasePointer()
         {
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=Vector2.Zero,GlobalPosition=Vector2.Zero}, true);await Frames(2);
         }
         await Capture("catalogue");
         Require(sourceActions.All(id=>Descendants(vendor).OfType<BaseButton>().Any(b=>b.GetInstanceId()==id)),"All original vendor action instances retained");
@@ -221,10 +221,10 @@ public partial class Preview
         }
         var dragHandle=Descendants(shell).OfType<HBoxContainer>().Single(c=>c.IsVisibleInTree());
         var dragStart=dragHandle.GetGlobalRect().GetCenter();var oldPosition=vendor.Position;var dragDelta=new Vector2(80,20);
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=dragStart,GlobalPosition=dragStart});await Frames(2);
-        Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=dragStart,GlobalPosition=dragStart});await Frames(2);
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=dragStart+dragDelta,GlobalPosition=dragStart+dragDelta,Relative=dragDelta,ButtonMask=MouseButtonMask.Left});await Frames(2);
-        Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=dragStart+dragDelta,GlobalPosition=dragStart+dragDelta});await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion {Position=dragStart,GlobalPosition=dragStart}, true);await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=dragStart,GlobalPosition=dragStart}, true);await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion {Position=dragStart+dragDelta,GlobalPosition=dragStart+dragDelta,Relative=dragDelta,ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=dragStart+dragDelta,GlobalPosition=dragStart+dragDelta}, true);await Frames(2);
         Require(vendor.Position.DistanceTo(oldPosition+dragDelta)<1 && !GetViewport().GuiIsDragging(),"Dragging the shop header moves the real native window without picking up an item");
         await Capture("window-dragged",false);vendor.Position=oldPosition;
         var hit=await ShowItem(entry.Id);
@@ -233,7 +233,7 @@ public partial class Preview
         await RightClick(shell.BagCells[0]);await Capture("right-click-sale-quantity");
         var initialAmount=Descendants(quantity).OfType<MoneyEdit>().Single();
         Require(quantity.Visible && !InFlight() && initialAmount.Value==63,"Right-clicking a bag stack prefills its entire carried quantity");Escape();await Frames();
-        var hover=hit.GetGlobalRect().GetCenter();Input.ParseInputEvent(new InputEventMouseMotion {Position=hover,GlobalPosition=hover});await Frames();
+        var hover=hit.GetGlobalRect().GetCenter();GetViewport().PushInput(new InputEventMouseMotion {Position=hover,GlobalPosition=hover}, true);await Frames();
         var tip=(Control)DetailField(world,"ItemTooltip.TipPanel")!;tip.Position=new Vector2(693,120);await Capture("item-tooltip");
         // The client's shop-goods tooltip line: the purchase price with the zone tariff, red when the wallet is short.
         string Digits(string text)=>new string(text.Where(char.IsDigit).ToArray());
@@ -245,7 +245,7 @@ public partial class Preview
         Require(tip.Visible && priceLines.Count==1 && Digits(priceLines[0])==purchase.ToString(),
             "Catalogue hover shows the client's item tooltip with one price line, the purchase price including the tariff: "+string.Join(" | ",priceLines)+" / "+purchase+" / lines: "+string.Join(" | ",tipLines));
         Require(!tipLines.Any(t=>t.StartsWith("Buying Price")),"The plugin adds no second buying price line");
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero}, true);await Frames(2);
         var target=shell.BagCells[2];
         var selectedCell=(ItemSlotView)hit.GetParent();
         var data=selectedCell.DragOut!(selectedCell);
@@ -281,9 +281,9 @@ public partial class Preview
         await PointerDrag(hit,target);amount.Value=maximum;amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);ok.EmitSignal(BaseButton.SignalName.Pressed);
         await Capture("maximum-buy-approval");VerifyApproval(true,entry.Id,(int)maximum,(long)ItemData.BuyPrice(entry.Id)*maximum);
         var approvalCancel=Descendants(Approval()).OfType<Button>().Single(b=>b.Name=="btn_cancel").GetGlobalRect().GetCenter();
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=approvalCancel,GlobalPosition=approvalCancel});await Capture("approval-cancel-hover");
-        Input.ParseInputEvent(new InputEventMouseButton {Pressed=true,ButtonIndex=MouseButton.Left,Position=approvalCancel,GlobalPosition=approvalCancel});await Frames(1);
-        Input.ParseInputEvent(new InputEventMouseButton {Pressed=false,ButtonIndex=MouseButton.Left,Position=approvalCancel,GlobalPosition=approvalCancel});await Frames();
+        GetViewport().PushInput(new InputEventMouseMotion {Position=approvalCancel,GlobalPosition=approvalCancel}, true);await Capture("approval-cancel-hover");
+        GetViewport().PushInput(new InputEventMouseButton {Pressed=true,ButtonIndex=MouseButton.Left,Position=approvalCancel,GlobalPosition=approvalCancel}, true);await Frames(1);
+        GetViewport().PushInput(new InputEventMouseButton {Pressed=false,ButtonIndex=MouseButton.Left,Position=approvalCancel,GlobalPosition=approvalCancel}, true);await Frames();
         Require(!shell.ModalOpen && !InFlight() && inventory[Inventory.GridStart].Count==63,"The original quantity Cancel button cancels final approval without changing items or sending a trade");
         await RightClick(hit);amount.Text="10";amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);ok.EmitSignal(BaseButton.SignalName.Pressed);await Frames();
         await Approve();await Capture("buy-pending");
@@ -314,10 +314,10 @@ public partial class Preview
             var keep=inventory[Inventory.GridStart];
             Require(inventory[Inventory.GridStart+2].IsEmpty,"The split target cell is free");
             Vector2 start=shell.BagCells[0].GetGlobalRect().GetCenter(),end=shell.BagCells[2].GetGlobalRect().GetCenter();
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=start,GlobalPosition=start});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=start,GlobalPosition=start});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=start+new Vector2(18,0),GlobalPosition=start+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=end,GlobalPosition=end,Relative=end-start,ButtonMask=MouseButtonMask.Left});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=start,GlobalPosition=start}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=start,GlobalPosition=start}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=start+new Vector2(18,0),GlobalPosition=start+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=end,GlobalPosition=end,Relative=end-start,ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
             Require(GetViewport().GuiIsDragging(),"A trading-inventory stack is held by the pointer");
             var dial=Descendants(GetTree().Root).OfType<KnightOnlineUiClassic.Layout.ClassicStackDial>().Single();
             var dialIcon=(Control)dial.GetParent();
@@ -326,16 +326,16 @@ public partial class Preview
                 "The trading inventory's drag count shows the whole stack in white on the icon's bottom-right corner, in the cell's count type");
             for(int i=0;i<3;i++)
             {
-                Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.WheelDown,Pressed=true,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left});
-                Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.WheelDown,Pressed=false,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left});
+                GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.WheelDown,Pressed=true,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left}, true);
+                GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.WheelDown,Pressed=false,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left}, true);
             }
             await Frames(2);
             int part=keep.Count-3;
             Require(dial.Text==part.ToString() && dial.GetThemeColor("font_color")==KnightOnlineUiClassic.Layout.ClassicStackDial.PartColour && pager.Page==pendingPage,
                 "The wheel picks a part of the trading-inventory stack, shown in gold, without paging the catalogue");
             await Capture("bag-split-drag",false);
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=end,GlobalPosition=end});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=end,GlobalPosition=end}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero}, true);await Frames(2);
             object move=DetailField(world,"InventoryWindow.moveCur")!;
             Require(!GetViewport().GuiIsDragging() && !quantity.Visible && (bool)DetailField(world,"InventoryWindow.moveInFlight")! && (ushort)move.GetType().GetField("Amount")!.GetValue(move)! == part,
                 "Dropping the picked part on another trading-inventory cell moves it at once (the client's bag split)");

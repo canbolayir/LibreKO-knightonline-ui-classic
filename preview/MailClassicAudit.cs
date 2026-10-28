@@ -64,10 +64,10 @@ public partial class Preview
                 Require(rows.GetChildren().OfType<PanelContainer>().All(r => !r.GetMeta("mail_read").AsBool()), "Unread filter preserves native list semantics");
                 await Capture(window, "unread");
                 var firstRow = rows.GetChildren().OfType<PanelContainer>().First(); var point = firstRow.GetGlobalRect().GetCenter();
-                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, Position = point, GlobalPosition = point });
-                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = point, GlobalPosition = point }); await Frames();
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, Position = point, GlobalPosition = point }, true);
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = point, GlobalPosition = point }, true); await Frames();
                 var reader = layer.GetChildren().OfType<HudWindow>().Single(w => w.Id == "mailread");
-                Require(reader.Visible && (int)DetailField(world, "Mail.selectedId")! == 3, "Actual left-click selection opens the native reading window");
+                Require(reader.Visible && (int)DetailField(world, "Mail.selectedId")! == 3, $"Actual left-click selection opens the native reading window (visible {reader.Visible}, selected {DetailField(world, "Mail.selectedId")}, hovered {GetViewport().GuiGetHoveredControl()?.Name})");
                 reader.Visible = false; await Capture(window, "selected"); reader.Visible = true;
                 DetailCall(world, "Mail.OnRead", 3, true, "Read successfully."); await Frames();
                 Require(rows.GetChildren().OfType<PanelContainer>().All(r => !r.GetMeta("mail_selected").AsBool()), "Read response removes the selected row from unread-only inbox");
@@ -83,7 +83,8 @@ public partial class Preview
                 else Require(((ScrollContainer)DetailField(world, "Mail.readAttachmentScroll")!).GetVScrollBar().Visible, "Store attachments remain accessible inside the fixed attachment area");
                 var mails = (List<MailEntry>)DetailField(world, "Mail.mails")!;
                 int id = (int)DetailField(world, "Mail.selectedId")!; var selected = mails.Single(m => m.Id == id);
-                Require(((Button)DetailField(world, "Mail.deleteBtn")!).Disabled, "Pending attachments prevent deletion");
+                // e5f0e420: a letter with attachments can be deleted after a warning; only Power-Up Store items must be claimed first.
+                Require(((Button)DetailField(world, "Mail.deleteBtn")!).Disabled == (selected.Kind == MailKind.Store), "Only unclaimed Power-Up Store items prevent deletion");
                 Require(((Button)DetailField(world, "Mail.claimBtn")!).Visible, "Pending attachments offer claim all");
                 var claimRows = (VBoxContainer)DetailField(world, "Mail.readAttachments")!;
                 var single = claimRows.GetChildren().OfType<PanelContainer>().First();

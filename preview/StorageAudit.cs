@@ -183,19 +183,19 @@ public partial class Preview
             void Wheel(MouseButton button, Vector2 at, bool dragging = false)
             {
                 var mask = dragging ? MouseButtonMask.Left : 0;
-                Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = button, Pressed = true, Position = at, GlobalPosition = at, ButtonMask = mask });
-                Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = button, Pressed = false, Position = at, GlobalPosition = at, ButtonMask = mask });
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = button, Pressed = true, Position = at, GlobalPosition = at, ButtonMask = mask }, true);
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = button, Pressed = false, Position = at, GlobalPosition = at, ButtonMask = mask }, true);
             }
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = to, GlobalPosition = to }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = to, GlobalPosition = to }, true); await Frames(2);
             Wheel(MouseButton.WheelDown, to); await Frames(2);
             Require(storages[0].Page == 1, "Outside a drag the wheel over the stored cells still turns the page");
             Wheel(MouseButton.WheelUp, to); await Frames(2);
             Require(storages[0].Page == 0, "The wheel turns back to the first page");
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = from, GlobalPosition = from }); await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, Position = from, GlobalPosition = from }); await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = from + new Vector2(18, 0), GlobalPosition = from + new Vector2(18, 0), Relative = new Vector2(18, 0), ButtonMask = MouseButtonMask.Left }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = from, GlobalPosition = from }, true); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, Position = from, GlobalPosition = from }, true); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = from + new Vector2(18, 0), GlobalPosition = from + new Vector2(18, 0), Relative = new Vector2(18, 0), ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
             Require(GetViewport().GuiIsDragging(), "A carried stack is dragged with the pointer");
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = to, GlobalPosition = to, Relative = to - from, ButtonMask = MouseButtonMask.Left }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = to, GlobalPosition = to, Relative = to - from, ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
             for (int i = 0; i < 3; i++) Wheel(MouseButton.WheelDown, to, dragging: true);
             await Frames(2);
             // The client's count label sits on the drag icon (a GM build also labels the item id beside it).
@@ -210,8 +210,8 @@ public partial class Preview
                 && dragCount.GetGlobalRect().End == drawn.End - new Vector2(2, 2) && side == source.Size.Y,
                 "The client's drag count takes the cell's Classic count type and corner");
             await Capture(0, "warehouse-wheel-drag");
-            Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = to, GlobalPosition = to }); await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = to, GlobalPosition = to }, true); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true); await Frames(2);
             Require(!GetViewport().GuiIsDragging() && !qty.Visible && (bool)DetailField(world, "Warehouse.inFlight")! && PendingCount("Warehouse.pending") == 71,
                 "Dropping the dragged part stores the picked amount without the prompt");
             DetailCall(world, "Warehouse.OnResult", (byte)2, (byte)0); whStatus.ResetStatus();

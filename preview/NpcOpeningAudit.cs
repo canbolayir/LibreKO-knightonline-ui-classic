@@ -88,8 +88,8 @@ public partial class Preview
         async Task Frames(int count = 8) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         void Pointer(Vector2 point, bool? press = null)
         {
-            if (press == null) Input.ParseInputEvent(new InputEventMouseMotion { Position = point, GlobalPosition = point });
-            else Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = press.Value, Position = point, GlobalPosition = point });
+            if (press == null) GetViewport().PushInput(new InputEventMouseMotion { Position = point, GlobalPosition = point }, true);
+            else GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = press.Value, Position = point, GlobalPosition = point }, true);
         }
         async Task Click(Vector2 at) { Pointer(at); await Frames(2); Pointer(at, true); await Frames(2); Pointer(at, false); await Frames(3); }
         Image Shot() => GetViewport().GetTexture().GetImage();

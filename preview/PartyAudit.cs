@@ -32,7 +32,7 @@ public partial class Preview
         // The party window is gone upstream: the Classic party list replaces the client's party HUD and is
         // driven by the plugin party API the client's bridge implements.
         SetField("Avatar.CharId",300);
-        Call("Party.BuildHud"); var social=Native.Get<object>(Native.Call(world,"CreatePluginAdapters")!,"Social")!;Native.Call(LibreKO.Plugins.PluginHost.Game,"AttachSocial",social,social,social);Native.Call(LibreKO.Plugins.PluginHost.Game,"AttachWarp",social); Game.Session.Self.Vitals.Seed(3100,3400,2500,2800);
+        Call("Party.BuildHud"); var social=Native.Get<object>(Native.Call(world,"CreatePluginAdapters")!,"Social")!;Native.Call(LibreKO.Plugins.PluginHost.Game,"AttachSocial",social,social,social);Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"AttachSocial",social,social,social);Native.Call(LibreKO.Plugins.PluginHost.Game,"AttachWarp",social); Game.Session.Self.Vitals.Seed(3100,3400,2500,2800);
         var hudLayer=new CanvasLayer{Layer=64};AddChild(hudLayer);
         var partyPanel=new ClassicPartyHud(LibreKO.Plugins.PluginHost.Game.Party,()=>world);hudLayer.AddChild(partyPanel);
         Call("SeekParty.BuildSeekPanel");Field<CanvasLayer>("SeekParty.seekLayer").Reparent(this);

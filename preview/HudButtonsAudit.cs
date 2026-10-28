@@ -67,17 +67,17 @@ public partial class Preview
             int pressed = 0;
             void Count() => pressed++;
             button.Pressed += Count;
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = at, GlobalPosition = at });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true);
             await Frames(1);
             var hovered = GetViewport().GuiGetHoveredControl();
             string picked = hovered == null ? "none" : hovered.GetPath() + " " + hovered.GetType().Name + " " + Screen(hovered);
             foreach (bool down in new[] { true, false })
             {
-                Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = down, Position = at, GlobalPosition = at });
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = down, Position = at, GlobalPosition = at }, true);
                 await Frames(1);
             }
             button.Pressed -= Count;
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = new Vector2(1270, 790), GlobalPosition = new Vector2(1270, 790) });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(1270, 790), GlobalPosition = new Vector2(1270, 790) }, true);
             var open = Descendants(world).OfType<HudWindow>().Where(w => shown(w) && Screen(w).HasPoint(at / scale)).Select(w => w.Id).ToList();
             Require(pressed == 1, $"{letter} takes a real click at its rendered centre {at} (windows there: {string.Join(", ", open)}; picked {picked})");
             if (pressed == 0) button.EmitSignal(BaseButton.SignalName.Pressed);
@@ -270,14 +270,14 @@ public partial class Preview
         {
             float scale = GetWindow().Size.X / GetViewportRect().Size.X;
             var at = Screen(trackerRow).GetCenter() * scale;
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = at, GlobalPosition = at });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true);
             await Frames(1);
             foreach (bool down in new[] { true, false })
             {
-                Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = down, Position = at, GlobalPosition = at });
+                GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = down, Position = at, GlobalPosition = at }, true);
                 await Frames(1);
             }
-            Input.ParseInputEvent(new InputEventMouseMotion { Position = new Vector2(1270, 790), GlobalPosition = new Vector2(1270, 790) });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(1270, 790), GlobalPosition = new Vector2(1270, 790) }, true);
             bounds["tracker-row"] = Rect(Screen(trackerRow));
         }
         await Frames(8);

@@ -49,16 +49,16 @@ public partial class Preview
         async Task Hover(Control control)
         {
             Vector2 hit = control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true); await Frames(2);
         }
         async Task Click(Control control)
         {
             Vector2 hit = control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }); await Frames(2);
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = true }); await Frames(1);
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = true }, true); await Frames(1);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false }, true); await Frames(2);
         }
-        async Task Away() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }); await Frames(2); }
+        async Task Away() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true); await Frames(2); }
         async Task<(WorldRoot World, HudWindow Window, ClassicKingPanel Panel)> Open(string view)
         {
             var world = PreviewFixtures.Prepared(new WorldRoot()); var window = PreviewFixtures.BuildKingNationUiPreview(world, view, nation);

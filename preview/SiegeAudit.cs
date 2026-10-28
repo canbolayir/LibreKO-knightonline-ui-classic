@@ -66,15 +66,15 @@ public partial class Preview
         async Task Hover(Control control)
         {
             Vector2 hit = control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }); await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true); await Frames(2);
         }
-        async Task Leave() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }); await Frames(2); }
+        async Task Leave() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }, true); await Frames(2); }
         async Task Click(Control control)
         {
             Vector2 hit = control.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = true });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false });
+            GetViewport().PushInput(new InputEventMouseMotion { Position = hit, GlobalPosition = hit }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = true }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false }, true);
             await Frames(2);
         }
         async Task<(WorldRoot World, HudWindow Window, ClassicSiegePanel Panel)> Open(string view)
@@ -154,8 +154,8 @@ public partial class Preview
             Require(rail.Up.Disabled && !rail.Down.Disabled, id + " scroll arrows reflect the list top");
             await Capture(window, id, state, tableSize);
             var scroll = Named<ScrollContainer>(window, "siege_scroll"); Vector2 hit = scroll.GetGlobalRect().GetCenter();
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = true, Factor = 1 });
-            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = false, Factor = 1 });
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = true, Factor = 1 }, true);
+            GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.WheelDown, Pressed = false, Factor = 1 }, true);
             await Frames(2);
             Require(rail.Bar.Value > 0, id + " mouse wheel scrolls the contained list");
             for (int i = 0; i < 40; i++) rail.Down.EmitSignal(BaseButton.SignalName.Pressed);

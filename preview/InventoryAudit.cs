@@ -74,7 +74,7 @@ public partial class Preview
         async Task Capture(string state,Vector2? pointer=null)
         {
             var mouse=pointer??Vector2.Zero;
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=mouse,GlobalPosition=mouse});
+            GetViewport().PushInput(new InputEventMouseMotion {Position=mouse,GlobalPosition=mouse}, true);
             await Frames();
             var bounds=new List<object>();
             foreach(var layout in new[]{view,drawer})
@@ -132,10 +132,10 @@ public partial class Preview
         var cornerPoint=corner.GlobalPosition+new Vector2(18,14);
         await Capture("closed-corner-hover",cornerPoint);
         Require(corner.IsHovered(),"The radius receives hover above the portrait control");
-        Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=cornerPoint,GlobalPosition=cornerPoint});await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=cornerPoint,GlobalPosition=cornerPoint}, true);await Frames(2);
         Require(corner.IsPressed() && !drawer.Visible,"Corner press waits for release before opening");
         await Capture("corner-pressed",cornerPoint);
-        Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=cornerPoint,GlobalPosition=cornerPoint});await Frames();
+        GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=cornerPoint,GlobalPosition=cornerPoint}, true);await Frames();
         Require(corner.Expanded && corner.ArrowDirection==1 && drawer.Visible,"Clicking the radius opens the drawer and reverses the arrow to close");
         await Capture("open-corner-hover",cornerPoint);
         Require(view.GlobalPosition==initial,"Opening the Chaos-style left drawer keeps the main inventory fixed");
@@ -244,9 +244,9 @@ public partial class Preview
         actual._Input(new InputEventKey {Pressed=true,Keycode=Key.Escape});Require((int)typeof(InventoryWindow).GetField("_carried",BindingFlags.Instance|BindingFlags.NonPublic)!.GetValue(actual)! ==-1,"Escape cancels carry without a move");
         initial=view.GlobalPosition;
         cornerPoint=corner.GlobalPosition+new Vector2(18,14);
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=cornerPoint,GlobalPosition=cornerPoint});await Frames(2);
-        Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=cornerPoint,GlobalPosition=cornerPoint});await Frames(2);
-        Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=cornerPoint,GlobalPosition=cornerPoint});await Frames();
+        GetViewport().PushInput(new InputEventMouseMotion {Position=cornerPoint,GlobalPosition=cornerPoint}, true);await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=cornerPoint,GlobalPosition=cornerPoint}, true);await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=cornerPoint,GlobalPosition=cornerPoint}, true);await Frames();
         Require(view.GlobalPosition==initial && actual.Size==new Vector2(366,578),"Closing the drawer keeps the main inventory fixed");
         Require(!corner.Expanded && corner.ArrowDirection==-1,"Closing restores the left-pointing open arrow");
         await Capture("filled-closed");
@@ -317,10 +317,10 @@ public partial class Preview
             int free=InventoryConstants.InventoryStart+27;var freeItem=inv[free];inv[free]=default;Refresh();await Frames();
             var source=all.Single(c=>c.Slot==InventoryConstants.InventoryStart+1);var target=all.Single(c=>c.Slot==free);
             Vector2 start=source.GetGlobalRect().GetCenter(),end=target.GetGlobalRect().GetCenter();
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=start,GlobalPosition=start});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=start,GlobalPosition=start});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=start+new Vector2(18,0),GlobalPosition=start+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=end,GlobalPosition=end,Relative=end-start,ButtonMask=MouseButtonMask.Left});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=start,GlobalPosition=start}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=true,Position=start,GlobalPosition=start}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=start+new Vector2(18,0),GlobalPosition=start+new Vector2(18,0),Relative=new Vector2(18,0),ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=end,GlobalPosition=end,Relative=end-start,ButtonMask=MouseButtonMask.Left}, true);await Frames(2);
             Require(GetViewport().GuiIsDragging(),"A carried stack is dragged with the pointer");
             var dial=Descendants(GetTree().Root.GetNode("DragLayer")).OfType<ClassicStackDial>().Single();
             var icon=(Control)dial.GetParent();
@@ -328,8 +328,8 @@ public partial class Preview
                 && dial.GetThemeFontSize("font_size")==ItemCountStyle.FontSize,"The drag count shows the whole stack in white on the icon's bottom-right corner, in the cell's count type");
             for(int i=0;i<3;i++)
             {
-                Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.WheelDown,Pressed=true,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left});
-                Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.WheelDown,Pressed=false,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left});
+                GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.WheelDown,Pressed=true,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left}, true);
+                GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.WheelDown,Pressed=false,Position=end,GlobalPosition=end,ButtonMask=MouseButtonMask.Left}, true);
             }
             await Frames(2);
             Require(dial.Text=="97" && dial.GetThemeColor("font_color")==ClassicStackDial.PartColour,"The wheel picks a part of the stack, shown in gold");
@@ -338,8 +338,8 @@ public partial class Preview
                 using var image=GetViewport().GetTexture().GetImage();using var crop=image.GetRegion(rect);crop.SavePng(output+"/"+prefix+"-bag-split-drag.png");
                 captures.Add(new {state="bag-split-drag",file=prefix+"-bag-split-drag.png",width=rect.Size.X,height=rect.Size.Y,selectedBag=bags[0].Slot,slotMapping=all.Concat(bags).Select(c=>c.Slot)});
             }
-            Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=end,GlobalPosition=end});await Frames(2);
-            Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames(2);
+            GetViewport().PushInput(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=end,GlobalPosition=end}, true);await Frames(2);
+            GetViewport().PushInput(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero}, true);await Frames(2);
             Require(!GetViewport().GuiIsDragging() && !transferPrompt.Visible && (bool)DetailField(world,"InventoryWindow.moveInFlight")! && (ushort)MoveField("Amount")==97,
                 "Dropping the picked part on another bag cell moves it at once (the client's bag split)");
             DetailCall(world,"DeliverItemMoveResult",true);
