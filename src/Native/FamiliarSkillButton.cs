@@ -37,6 +37,27 @@ public partial class FamiliarSkillButton : Button
         Audio.HookButton(this);
     }
 
+    /// <summary>
+    /// The client's familiar bar is filled by dragging a skill from the familiar window onto a bar cell; the drag
+    /// carries the client's own familiar skill keys, with no source bar slot.
+    /// </summary>
+    public override Variant _GetDragData(Vector2 atPosition)
+    {
+        if (SkillId == 0 || Config.HotbarLocked) return default;
+        var preview = new PanelContainer { CustomMinimumSize = Size };
+        preview.AddChild(new TextureRect
+        {
+            Texture = Icon,
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+        });
+        DragLayer.Show(this, preview);
+        return new Godot.Collections.Dictionary { { DragSkillKey, SkillId }, { DragSlotKey, -1 } };
+    }
+
+    /// <summary>The keys of the client's familiar skill drag (PetSkillCell).</summary>
+    private const string DragSkillKey = "petSkill", DragSlotKey = "petSlot";
+
     internal void SetCooldown(float fraction)
     {
         CooldownFraction = Mathf.Clamp(fraction, 0, 1);

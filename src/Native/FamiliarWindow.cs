@@ -213,7 +213,7 @@ public sealed partial class FamiliarWindow : Node
         if (_class != petClass)
         {
             _class = petClass; _page = 0;
-            _skillIds = pet == null ? new List<int>() : PetSkills.BarSkills(SkillData.All.Select(s => (s.Id, s.Tree)), petClass);
+            _skillIds = pet == null ? new List<int>() : PetSkills.Owned(SkillData.All.Select(s => (s.Id, s.Tree)), petClass);
         }
         int pages = Math.Max(1, (_skillIds.Count + PetSkills.SlotsPerPage - 1) / PetSkills.SlotsPerPage);
         _page = Math.Clamp(_page, 0, pages - 1);
@@ -230,7 +230,7 @@ public sealed partial class FamiliarWindow : Node
             button.SkillId = skill?.Id ?? 0;
             button.Icon = skill == null ? null : locked ? SkillIcons.Enigma() : SkillIcons.Get(skill.Id);
             button.Disabled = dead || locked || pet!.Mp < skill!.Msp;
-            string tooltip = skill == null ? "" : SkillText.Tooltip(skill);
+            string tooltip = skill == null ? "" : SkillText.Tooltip(skill) + "\n" + PetSkills.AutoCastLine(skill.AutoCast);
             button.TooltipText = skill == null ? "" : tooltip + (locked ? $"\nFamiliar level {skill.Level}" : "");
         }
         RefreshCooldowns(Now());
