@@ -154,7 +154,7 @@ public partial class Preview
                 ((Control)DetailField(model,"Clan.mineBox")!).Visible=true;
                 foreach(var entry in new[]{("Clan.nameLbl","canCLAN"),("Clan.standingLbl","Accredited Knights / Grade 3"),("Clan.dutyLbl","Chief / 4 members online"),("Clan.fundLbl","Contribution: 125,000"),("Clan.noticeLbl","Meet at Moradon. Prepare for the next war.")}) ((Label)DetailField(model,entry.Item1)!).Text=entry.Item2;
                 ((Button)DetailField(model,"Clan.leaveBtn")!).Text="Disband";
-                var list=(VBoxContainer)DetailField(model,"CommandList.clan")!;
+                var list=(VBoxContainer)DetailField(model,"Clan.listBox")!;
                 var members=(List<ClanMember>)DetailField(model,"Clan.members")!;
                 members.AddRange(new[]{new ClanMember { Name="Canbo",Fame=ClanRanks.Chief,Level=83,Class=205,IsOnline=true,Memo="" },new ClanMember { Name="Guardian",Fame=ClanRanks.ViceChief,Level=80,Class=201,IsOnline=true,Memo="" },new ClanMember { Name="Magician",Fame=3,Level=78,Class=203,IsOnline=false,HoursSinceLogin=48,Memo="" }});
                 DetailCall(model,"Clan.RenderMembers");
@@ -226,7 +226,7 @@ public partial class Preview
                 var connField=typeof(Net).GetField("conn",BindingFlags.Instance|BindingFlags.NonPublic)!;
                 var connection=connField.GetValue(offline);
                 // Any redundant request must fail in this isolated offline check.
-                connField.SetValue(offline,null);
+                connField.SetValue(offline,null);offline.SetProcess(false);
                 try
                 {
                     nativePanel.Act("quest_details","501");
@@ -241,7 +241,7 @@ public partial class Preview
                     nativePanel.Act("quest_details","501");
                     GD.Print("NATIVE_QUEST_DETAILS_SELECTION_OK: cached native selection, no list reload, second quest, return to first");
                 }
-                finally { connField.SetValue(offline,connection);_windowData.LiveCharacterPanel=null; }
+                finally { connField.SetValue(offline,connection);offline.SetProcess(true);_windowData.LiveCharacterPanel=null; }
             }
             if(id=="titles") ((Label)DetailField(model,"TitlePicker.hint")!).Text="3 earned. Every claimed title's bonus already counts — this only picks the name shown above your character.";
             if(id=="character_clan_details") ((Label)DetailField(model,"Clan.noticeLbl")!).Text=string.Join(" ",Enumerable.Repeat("Prepare for the next war. Meet at Moradon.",5));
@@ -490,7 +490,8 @@ public partial class Preview
             await ToSignal(GetTree().CreateTimer(.3),SceneTreeTimer.SignalName.Timeout);
             await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
             var actions=Descendants(page).OfType<Button>().Where(b=>b.Text is "Turn in" or "Abandon" or "Track").ToArray();
-            if(actions.Any(b=>!b.IsVisibleInTree() || !page.GetGlobalRect().Encloses(b.GetGlobalRect()))) throw new Exception("Quest actions escaped the page");
+            // e5f0e420 shows only the actions that apply to the quest; the shown ones must stay on the page.
+            if(actions.Where(b=>b.IsVisibleInTree()).Any(b=>!page.GetGlobalRect().Encloses(b.GetGlobalRect()))) throw new Exception("Quest actions escaped the page: "+string.Join(", ",actions.Select(b=>b.Text+":"+b.IsVisibleInTree()+":"+b.GetGlobalRect())));
             GetViewport().GetTexture().GetImage().SavePng(System.IO.Path.Combine(output,prefix+"-"+name+".png"));
         }
         await Capture("quests-kecoon-top");
@@ -519,14 +520,17 @@ public partial class Preview
         await Capture("quests-selected-reward");
         entries[entries.FindIndex(q=>q.QuestId==65)]=new QuestEntry(65,2);views[65]=view with { State=QuestViewState.Completed };
         QuestReceived(model,new QuestReceipt(65,[new(900001000,1875),new(900000000,2000),new(330150025,1)]));
+        // The Classic reward list follows the receipt on its next sync.
+        await ToSignal(GetTree().CreateTimer(.3),SceneTreeTimer.SignalName.Timeout);
         CheckRewardRows(model,[(900001000,1875),(900000000,2000),(330150025,1)]);
-        if(pending.Chosen(65,out _) || ((Label)DetailField(model,"Quest.rewardTitle")!).Text!="Received rewards") throw new Exception("Granted rewards were confused with pending options");
+        if(pending.Chosen(65,out _) || ((Label)DetailField(model,"Quest.rewardTitle")!).Text!="Received rewards") throw new Exception($"Granted rewards were confused with pending options (chosen {pending.Chosen(65,out _)}, title '{((Label)DetailField(model,"Quest.rewardTitle")!).Text}', state {Game.Session.QuestBook.StateOf(65)}, selected {DetailField(model,"Quest.Selected")})");
         await Capture("quests-received-rewards");
         GD.Print("QUEST_GRANTED_REWARDS_OK");
     }
     private static Control QuestRewardRows(WorldRoot model) => (Control)((Node)DetailField(model,"Quest.detailBody")!).FindChild(NativeQuestLog.RewardBoxName,true,false)!;
     private static QuestRewardSelection<QuestTransfer> QuestRewardChoices(WorldRoot model) => (QuestRewardSelection<QuestTransfer>)DetailField(model,"Session.QuestBook.RewardSelection")!;
-    private static void QuestReceived(WorldRoot model,QuestReceipt receipt) { NativeQuestLog.Record(receipt);DetailCall(model,"QuestReceipt.OnReceipt",receipt); }
+    // As the client's quest reader and the Classic receipt listener do: the pending choice is turned in, the receipt shown and the detail refreshed.
+    private static void QuestReceived(WorldRoot model,QuestReceipt receipt) { Native.Call(Game.Session.QuestBook.RewardSelection,"TurnedIn",receipt.QuestId);NativeQuestLog.Record(receipt);DetailCall(model,"QuestReceipt.OnReceipt",receipt);DetailCall(model,"Quest.RefreshDetail"); }
     private static IEnumerable<Node> Ancestry(Node? node) { for(;node!=null;node=node.GetParent()) yield return node; }
     /// <summary>A user card reply as the server sends it: a clan member with rank marks, or a clanless character.</summary>
     private static UserInfoReply UserInfoFixture(int nation,bool full) => full

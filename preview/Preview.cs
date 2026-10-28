@@ -29,6 +29,8 @@ public partial class Preview : Control
             // The installed game art and item data (items.json with its sell lists) are mounted before anything reads them.
             string content=ProjectSettings.GlobalizePath("res://../../build/client/source-content/knightonline.pck");
             if(System.IO.File.Exists(content) && !ProjectSettings.LoadResourcePack(content,false))throw new Exception("Missing content pack: "+content);
+            // The client's resource scripts (BakedTable for the NPC name, quest and text tables) are registered like the client project's own.
+            typeof(Godot.Bridge.ScriptManagerBridge).GetMethod("LookupScriptsInAssembly",BindingFlags.Static|BindingFlags.NonPublic|BindingFlags.Public)!.Invoke(null,new object[]{typeof(WorldRoot).Assembly});
             // The client's GameContent autoload installs its data loaders (items, skills, quests, NPC names); without it every table loads empty.
             Native.Call(Native.StaticOwner("LibreKO.Content.ContentLoaders"), "Install");
             // The client boots Game.Session and Game.Requests when its network node enters the tree; the audits read both.
