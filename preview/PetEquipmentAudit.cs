@@ -15,8 +15,8 @@ public partial class Preview
         void SetField(string name, object value) => Native.Set(world, name, value);
         async Task Click(Control control, MouseButton button = MouseButton.Left)
         {
-            var at = control.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames(2);
-            foreach (bool pressed in new[] { true, false }) GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = button, Pressed = pressed });
+            var at = control.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(2);
+            foreach (bool pressed in new[] { true, false }) GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = button, Pressed = pressed }, true);
             await Frames();
         }
         async Task SendKey(Key key)
@@ -26,11 +26,11 @@ public partial class Preview
         }
         var originalPosition = window.Position;
         var headerAt = window.GetGlobalRect().Position + new Vector2(180, 22); var shift = new Vector2(35, 18);
-        GetViewport().PushInput(new InputEventMouseMotion { Position = headerAt, GlobalPosition = headerAt }); await Frames(2);
-        GetViewport().PushInput(new InputEventMouseButton { Position = headerAt, GlobalPosition = headerAt, ButtonIndex = MouseButton.Left, Pressed = true }); await Frames(2);
-        GetViewport().PushInput(new InputEventMouseMotion { Position = headerAt + shift, GlobalPosition = headerAt + shift, Relative = shift, ButtonMask = MouseButtonMask.Left }); await Frames(2);
-        GetViewport().PushInput(new InputEventMouseButton { Position = headerAt + shift, GlobalPosition = headerAt + shift, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames(2);
-        require(window.Position.DistanceTo(originalPosition + shift) < 1, "Pet original header forwards real pointer dragging to HudLayout");
+        GetViewport().PushInput(new InputEventMouseMotion { Position = headerAt, GlobalPosition = headerAt }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton { Position = headerAt, GlobalPosition = headerAt, ButtonIndex = MouseButton.Left, Pressed = true }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion { Position = headerAt + shift, GlobalPosition = headerAt + shift, Relative = shift, ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton { Position = headerAt + shift, GlobalPosition = headerAt + shift, ButtonIndex = MouseButton.Left, Pressed = false }, true); await Frames(2);
+        require(window.Position.DistanceTo(originalPosition + shift) < 1, $"Pet original header forwards real pointer dragging to HudLayout (from {originalPosition} to {window.Position}, layout {window.Layout?.GetType().Name} locked={window.Layout?.Locked}, hit={GetViewport().GuiGetHoveredControl()?.GetPath()}, under={string.Join(";", Descendants(GetTree().Root).OfType<Control>().Where(c => c.IsVisibleInTree() && c.MouseFilter != MouseFilterEnum.Ignore && c.GetGlobalRect().HasPoint(headerAt)).Select(c => c.Name + ":" + c.GetType().Name))}, disabled={GetViewport().GuiDisableInput}, mode={Input.MouseMode})");
         window.Position = originalPosition;
 
         var sheet = Game.Session.Pet.Pet!; var savedItems = sheet.Items.ToArray();
@@ -47,7 +47,7 @@ public partial class Preview
             require(icon.Size == new Vector2(44, 44) && icon.GetGlobalRect().Position == cell.GetGlobalRect().Position + new Vector2(2, 2), "Pet equipment icon has actual 2 px inset " + i);
             require(cell.CountLabel.GetParent().Name == "pet_item_overlay" && cell.CountLabel.OffsetRight == -2 && cell.CountLabel.OffsetBottom == -2,
                 "Pet equipment count shares the fixed Classic overlay " + i);
-            var at = cell.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }); await Frames();
+            var at = cell.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames();
             require(world.ItemTooltipVisible, "Actual familiar equipment hover opens native tooltip " + i);
             var tooltip = Field<PanelContainer>("ItemTooltip.TipPanel");
             require(Descendants(tooltip).OfType<Control>().Prepend(tooltip).All(c => c.MouseFilter == Control.MouseFilterEnum.Ignore),
@@ -56,14 +56,14 @@ public partial class Preview
             require(Descendants(tooltip).OfType<Label>().Any(label => label.Text == ItemData.DisplayName(gear[i].Id)), "Familiar item tooltip identifies the hovered equipment " + i);
             if (i == 0) await capture("equipment-tooltip");
         }
-        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(20, 20), GlobalPosition = new Vector2(20, 20) }); await Frames();
+        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(20, 20), GlobalPosition = new Vector2(20, 20) }, true); await Frames();
         require(!world.ItemTooltipVisible, "Leaving familiar equipment hides native tooltip");
 
         var inventory = (Inventory)Game.Session.Self.Inventory; inventory.EnsureLength(InventoryConstants.InventoryTotal);
         for (int i = 0; i < Inventory.GridCount; i++) inventory.ApplySlotUpdate(Inventory.GridStart + i, new LibreKO.Domain.ItemSlot { ItemId = gear[0].Id, Count = 1 });
         await Click(Find<ItemSlotView>("pet_item_0"), MouseButton.Right);
         require(!Field<bool>("InventoryWindow.moveInFlight") && Find<Label>("pet_status").Text == "Your bag is full.", "Pet equipment right-click preserves items and reports a full inventory");
-        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(20, 20), GlobalPosition = new Vector2(20, 20) }); await Frames();
+        GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(20, 20), GlobalPosition = new Vector2(20, 20) }, true); await Frames();
         await capture("bag-full");
         inventory.ApplySlotUpdate(Inventory.GridStart, default);
         await Click(Find<ItemSlotView>("pet_item_0"), MouseButton.Right);
@@ -92,12 +92,12 @@ public partial class Preview
 
         var source = new ItemSlotView(48) { Position = new Vector2(120, 370), DragOut = _ => drop }; source.Set(item); layer.AddChild(source); await Frames();
         var from = source.GetGlobalRect().GetCenter(); var to = target.GetGlobalRect().GetCenter(); var step = new Vector2(18, 2);
-        GetViewport().PushInput(new InputEventMouseMotion { Position = from, GlobalPosition = from }); await Frames(2);
-        GetViewport().PushInput(new InputEventMouseButton { Position = from, GlobalPosition = from, ButtonIndex = MouseButton.Left, Pressed = true }); await Frames(2);
-        GetViewport().PushInput(new InputEventMouseMotion { Position = from + step, GlobalPosition = from + step, Relative = step, ButtonMask = MouseButtonMask.Left }); await Frames(2);
-        GetViewport().PushInput(new InputEventMouseMotion { Position = to, GlobalPosition = to, Relative = to - from - step, ButtonMask = MouseButtonMask.Left }); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion { Position = from, GlobalPosition = from }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseButton { Position = from, GlobalPosition = from, ButtonIndex = MouseButton.Left, Pressed = true }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion { Position = from + step, GlobalPosition = from + step, Relative = step, ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
+        GetViewport().PushInput(new InputEventMouseMotion { Position = to, GlobalPosition = to, Relative = to - from - step, ButtonMask = MouseButtonMask.Left }, true); await Frames(2);
         require(GetViewport().GuiIsDragging(), "Actual inventory pointer drag reaches familiar equipment");
-        GetViewport().PushInput(new InputEventMouseButton { Position = to, GlobalPosition = to, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames();
+        GetViewport().PushInput(new InputEventMouseButton { Position = to, GlobalPosition = to, ButtonIndex = MouseButton.Left, Pressed = false }, true); await Frames();
         require(Field<bool>("InventoryWindow.moveInFlight"), "Pointer drop queues the existing familiar equipment move");
         move = Field<object>("InventoryWindow.moveCur");
         require((ItemMoveDirection)moveType.GetField("Dir")!.GetValue(move)! == ItemMoveDirection.InventoryToPet, "Familiar pointer drop uses original InventoryToPet encoding");

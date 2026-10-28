@@ -93,9 +93,13 @@ public sealed partial class FamiliarWindow : Node
             NativeWindows.Control<StatBar>(_world, field)!.GetParent().Reparent(pages[0]);
         _bag[0].GetParent().Reparent(pages[1]);
         NativeWindows.Control<Button>(_world, "Pet.feedBtn")!.GetParent().Reparent(pages[1]);
+        // The client keeps refreshing the controls it built (since e5f0e420 also its skill grid), so the ones the
+        // Classic pages replace are kept, hidden, instead of freed.
+        var hidden = new Control { Name = "pet_native_hidden", Visible = false };
+        root.AddChild(hidden);
         foreach (var node in oldChildren)
             if (node.GetParent() == root && node != name.GetParent() && node != attack.GetParent() && node != status)
-            { root.RemoveChild(node); node.QueueFree(); }
+                node.Reparent(hidden, false);
         root.MoveChild(status, root.GetChildCount() - 1);
         tabs.Selected += page => { for (int i = 0; i < pages.Length; i++) pages[i].Visible = i == page; };
 
