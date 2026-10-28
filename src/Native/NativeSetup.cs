@@ -69,6 +69,7 @@ public static partial class NativeSetup
         NativeQuestHud.Reset();
         NativeLayout.Reset();
         FamiliarBar.Reset();
+        ClassicSkin.Reset();
         NativeGame.Reset();
         NativeChat.Reset();
         NativeQuestLog.Reset();

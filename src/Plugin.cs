@@ -15,6 +15,9 @@ public sealed class Plugin : IPlugin
 
     private PluginContext? _context;
 
+    /// <summary>Client windows that are not in <see cref="PluginUi.KnownWindowIds"/> but take the Classic frame.</summary>
+    public static readonly string[] UnlistedWindowIds = { "item_rental", "manes_picks", "manes_passive", "manes_rank" };
+
     public void Initialize(PluginContext context)
     {
         _context = context;
@@ -46,6 +49,9 @@ public sealed class Plugin : IPlugin
         foreach(var id in ui.WindowIds)
             if(id is not ("inventory" or "character_info" or "skills" or "vendor" or "party" or "seek_party" or "exchange" or "anvil" or "vipwarehouse_pin" or "chat_colors" or "merchantsearch" or "marketprice" or "shoppingmall" or "specialauction" or "equipview" or "genderchange" or "changehair" or "nationtransfer" or "rebirth" or "cape" or "pet" or "pethatch" or "chat_room" or "user_vote" or "user_vote_ask" or "user_vote_notice" or "repurchase") && !ClassicCommunicationSkin.WindowIds.Contains(id) && !ClassicMailSkin.WindowIds.Contains(id) && !ClassicCouncilRate.WindowIds.Contains(id) && !ClassicSiegeSkin.WindowIds.Contains(id) && !ClassicIdentitySkin.WindowIds.Contains(id) && !ClassicServiceSkin.WindowIds.Contains(id) && !ClassicStorageSkin.WindowIds.Contains(id) && !ClassicMerchantSkin.WindowIds.Contains(id) && !CharacterDetailsSkin.WindowIds.Contains(id) && !ClassicKingSkin.WindowIds.Contains(id) && !ClassicEventsSkin.WindowIds.Contains(id) && !ClassicProgressionSkin.WindowIds.Contains(id) && !ClassicMapFortuneSkin.WindowIds.Contains(id) && !ClassicBoardSkin.WindowIds.Contains(id) && !ClassicCommandListSkin.WindowIds.Contains(id) && id != ClassicQuestNotice.WindowId)
                 ui.ExtendWindow(id, ClassicSkin.ExtendWindow);
+        // Windows the client builds outside its known window list (the item rental market and the Manes' Survival
+        // picks, passives and ranking) take the same Classic frame, buttons and type.
+        foreach (var id in UnlistedWindowIds) ui.ExtendWindow(id, ClassicSkin.ExtendWindow);
         ui.ExtendWindow("chat_colors", ClassicChatColoursSkin.Extend);
         ui.ExtendWindow("merchantsearch", ClassicMerchantSearchSkin.Extend);
         ui.ExtendWindow("marketprice", ClassicMarketPriceSkin.Extend);

@@ -73,25 +73,60 @@ public static class ClassicSkin
             }
             if (top is LibreKO.HudWindow window)
                 window.SetHeaderAccent(new Color(0.12f,0.11f,0.09f),new Color(0.58f,0.51f,0.34f),new Color(0.94f,0.87f,0.66f));
-            if(top is LibreKO.HudWindow native && native.Id is "shoppingmall" or "mail" or "mailread")
+            if(top is LibreKO.HudWindow native && native.Id is "shoppingmall" or "mail" or "mailread" or "item_rental")
                 top.AddChild(new ClassicNativeButtonSkin());
-            void Restyle(Node n)
-            {
-                if (n is Button button)
-                    foreach(var state in new[]{"normal","hover","pressed","disabled"})
-                        button.AddThemeStyleboxOverride(state,ButtonStyle(state));
-                if (n is Label label)
-                {
-                    label.AddThemeFontOverride("font",Plugin.Kit.Regular);
-                    label.AddThemeFontSizeOverride("font_size",Math.Max(12,(int)Plugin.Kit.Metric("modernFontSize",13)));
-                    label.AddThemeColorOverride("font_shadow_color",Colors.Black);
-                    label.AddThemeConstantOverride("shadow_offset_x",1); label.AddThemeConstantOverride("shadow_offset_y",1);
-                }
-                foreach(Node child in n.GetChildren()) Restyle(child);
-            }
             Restyle(body);
+            // Rows the client adds later (lists, results, logs) take the same type when they enter the tree.
+            _restyled.AddOrUpdate(body, top);
+            WatchLaterRows();
         }).CallDeferred();
     }
+
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Control, Control> _restyled = new();
+    private static NativeHooks.Hook? _laterRows;
+
+    private static void Restyle(Node n)
+    {
+        if (n is Button button)
+        {
+            foreach(var state in new[]{"normal","hover","pressed","disabled"})
+                button.AddThemeStyleboxOverride(state,ButtonStyle(state));
+            // The Karus button art is light: the client's own light captions would vanish on it.
+            if (Plugin.Kit.Nation == 1)
+                foreach(var color in new[]{"font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color"})
+                    button.AddThemeColorOverride(color,KarusButtonInk);
+        }
+        if (n is Label label)
+        {
+            label.AddThemeFontOverride("font",Plugin.Kit.Regular);
+            label.AddThemeFontSizeOverride("font_size",Math.Max(12,(int)Plugin.Kit.Metric("modernFontSize",13)));
+            label.AddThemeColorOverride("font_shadow_color",Colors.Black);
+            label.AddThemeConstantOverride("shadow_offset_x",1); label.AddThemeConstantOverride("shadow_offset_y",1);
+        }
+        foreach(Node child in n.GetChildren()) Restyle(child);
+    }
+
+    private static readonly Color KarusButtonInk = new("191713");
+
+    /// <summary>
+    /// One shared scene-tree watcher restyles the labels and buttons that enter a window skinned by
+    /// <see cref="ExtendWindow"/> after it was dressed. Only labels and buttons walk up to their window.
+    /// </summary>
+    private static void WatchLaterRows()
+    {
+        if (_laterRows is { Active: true }) return;
+        _laterRows = NativeHooks.WatchTree("tree.classic-window-rows", node =>
+        {
+            if (!Plugin.Active || node is not (Label or Godot.Button)) return;
+            for (var parent = node.GetParent(); parent != null; parent = parent.GetParent())
+            {
+                if (parent is LibreKO.HudWindow) return;
+                if (parent is Control body && _restyled.TryGetValue(body, out _)) { Restyle(node); return; }
+            }
+        });
+    }
+
+    internal static void Reset() => _laterRows = null;
 
     public static Button Button(string text, Vector2 position, Vector2 size, Action pressed)
     {
