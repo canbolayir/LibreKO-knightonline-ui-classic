@@ -123,7 +123,7 @@ public partial class Preview
             var column = (Container)DetailCall(world, "Preview.BuildEventTitles", 3, expanded)!;
             column.GetParent()?.RemoveChild(column);
             layer.AddChild(column); column.Visible = true;
-            column.Position = new Vector2(1280 - 190 - 169, 40);
+            column.Position = new Vector2(GetViewportRect().Size.X - 190 - 169, 40);
             NativeOverlays.PrepareLater(world);
             await Frames(8);
             string tag = expanded ? "expanded" : "collapsed";
@@ -148,7 +148,8 @@ public partial class Preview
             var bonusLines = NativePremium.BonusLines(true, bonusOnline);
             stack.Sync(); await Frames(4);
             var gm = stack.GmBar; var box = stack.Box; var premium = stack.PremiumBar; var clan = stack.ClanBar; var time = stack.TimePlate;
-            float right = 1280 - L.GroupRight;
+            // The group follows the real viewport edge (the client's saved display settings can size the window).
+            float right = GetViewportRect().Size.X - L.GroupRight;
             // Order and geometry: premium at the top, clan premium (in a clan), time, notice bars, GM List.
             var p = premium.GetGlobalRect();
             Require(p.Size == L.Bar && Near(p.Position, new Vector2(right - L.Bar.X, L.GroupTop)), $"{tag}: the premium bar tops the group at the right edge ({p})");

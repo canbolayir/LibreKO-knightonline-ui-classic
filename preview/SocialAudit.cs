@@ -139,7 +139,7 @@ public partial class Preview
             Require(Live().Count() == 1 && Live().All(r => r.HasMeta(ClassicSocialStyle.Styled)) && search.Text == "Siege", "nation chat: a search reply lists its rooms in Classic rows and keeps the word");
             await Capture(window, "nation-private-search");
             // A double-click on the joined room shows its room window natively.
-            DetailCall(world, "ChatReactions.Build"); DetailCall(world, "Whispers.Build"); DetailCall(world, "NationChannels.Build"); DetailCall(world, "ChatRoom.Build");
+            ((WorldPreview)PreviewFixtures.ClientPreview(world)).EnsureChat(); DetailCall(world, "ChatReactions.Build"); DetailCall(world, "Whispers.Build"); DetailCall(world, "ChatRoom.Build"); // the nation channels were built by the list fixture
             Live().First().EmitSignal(Control.SignalName.GuiInput, new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, DoubleClick = true }); await Frames(2);
             Require(((HudWindow)DetailField(world, "ChatRoom.RoomWindow")!).Visible, "nation chat: a double-click on the joined room shows its room window natively");
             DetailCall(world, "ChatRoom.Dispose"); DetailCall(world, "NationChannels.Dispose"); DetailCall(world, "Whispers.Dispose"); DetailCall(world, "ChatReactions.Dispose");
@@ -149,7 +149,7 @@ public partial class Preview
                 new(1001, "Moradon traders", false, LibreKO.Domain.Nations.Karus, 12, 50), new(1004, "Clan recruits", true, LibreKO.Domain.Nations.Karus, 2, 10),
             });
             await Frames();
-            Require(Live().Count() == 2 && Live().All(r => r.GetMeta("social_row", false).AsBool()), "nation chat: a refreshed list outside a room keeps the Classic rows");
+            Require(Live().Count() == 2 && Live().All(r => r.GetMeta("social_row", false).AsBool()), $"nation chat: a refreshed list outside a room keeps the Classic rows ({Live().Count()} live, {Live().Count(r => r.GetMeta("social_row", false).AsBool())} classic)");
             await Capture(window, "nation-private-left");
             Done(opened);
         }

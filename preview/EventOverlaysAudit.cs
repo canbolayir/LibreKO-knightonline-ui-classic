@@ -91,7 +91,7 @@ public partial class Preview
             Clear(); world.Free();
         }
         // Knight Royale sign-up board and the genie quick panel: the plain event frame.
-        foreach (var (fixture, state) in new[] { ("BuildRoyaleBoardUiPreview", "royale-board"), ("BuildGenieSubUiPreview", "genie-quick") })
+        foreach (var (fixture, state) in new[] { ("Preview.BuildRoyaleBoard", "royale-board"), ("Preview.BuildGenieSub", "genie-quick") })
         {
             var world = PreviewFixtures.Prepared(new WorldRoot());
             var board = Show((Control)DetailCall(world, fixture)!, new Vector2(480, 120));

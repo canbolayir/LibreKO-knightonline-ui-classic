@@ -45,8 +45,10 @@ public sealed partial class WorldPreview
         var strip = UiTheme.Text("", 12, UiTheme.TextHi, HorizontalAlignment.Center);
         strip.AddThemeStyleboxOverride("normal", UiTheme.MeterTrack());
         strip.CustomMinimumSize = new Vector2(MiniMap.MapSize, 18);
-        var flags = (Label)Native.Call(nereid, "Board", Control.LayoutPreset.TopLeft, 0f)!;
-        var score = (Label)Native.Call(nereid, "Board", Control.LayoutPreset.TopLeft, 0f)!;
+        // The boards as NereidFeature.Board makes them (15 px gold text on the meter track), without its full-map layer.
+        Label Board() { var b = UiTheme.Text("", 15, UiTheme.GoldBright, HorizontalAlignment.Center); b.AddThemeStyleboxOverride("normal", UiTheme.MeterTrack()); b.MouseFilter = Control.MouseFilterEnum.Ignore; return b; }
+        var flags = Board();
+        var score = Board();
         foreach (var label in new[] { flags, score })
         {
             label.GetParent()?.RemoveChild(label);
@@ -159,5 +161,36 @@ public sealed partial class WorldPreview
         Native.Call(feature, "BuildTitleColumn");
         Native.Call(feature, "Refresh");
         return DetachPreviewControl(Native.Get<Control>(feature, "TitleColumn")!);
+    }
+
+    /// <summary>The Knight Royale sign-up board: mode 1, 12 participants, 4:05 left.</summary>
+    public Control BuildRoyaleBoard()
+    {
+        ItemData.EnsureLoaded();
+        var royale = Feature("KnightRoyaleWindow");
+        Native.Call(royale, "OpenRoyaleBoard", 1, 12, 245);
+        Native.Get<Label>(royale, "RoyaleBoardTime")!.Text = KnightRoyale.Clock(245);
+        var board = Native.Get<PanelContainer>(royale, "RoyaleBoard")!;
+        board.SetAnchorsPreset(Control.LayoutPreset.TopLeft);
+        return DetachPreviewControl(board);
+    }
+
+    /// <summary>The Genie quick panel with two target monsters (one switched off) and 86 points.</summary>
+    public Control BuildGenieSub()
+    {
+        var genie = Feature("Genie");
+        if (Native.Get<CanvasLayer>(genie, "Layer") == null)
+        {
+            var layer = new CanvasLayer();
+            _world.AddChild(layer);
+            Native.Set(genie, "Layer", layer);
+        }
+        var sub = Feature("GenieSub");
+        Native.Call(sub, "Build");
+        var monsters = Native.Get<HashSet<string>>(genie, "Monsters")!; var off = Native.Get<HashSet<string>>(genie, "MonstersOff")!;
+        monsters.Clear(); off.Clear(); monsters.Add("Worm"); monsters.Add("Bulcan"); off.Add("Worm");
+        Native.Set(genie, "Points", 86);
+        Native.Call(sub, "RefreshSub");
+        return DetachPreviewControl(Native.Get<PanelContainer>(sub, "Sub")!);
     }
 }

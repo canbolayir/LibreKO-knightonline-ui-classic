@@ -12,7 +12,8 @@ public partial class Preview
         async Task Frames(int count = 4) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         var main = new HotkeyBar { Name = "pet_audit_main_hotbar" }; layer.AddChild(main); await Frames();
         var behavior = Descendants(bar).OfType<HudLayout>().Single();
-        void ApplyDefault() => typeof(HudLayout).GetMethod("ApplySavedLayout", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(behavior, null);
+        // Back to the unplaced default, as HudLayout.ResetAll does for one layout: the earlier drag check placed the bar by hand.
+        void ApplyDefault() { Native.Set(behavior, "userPlaced", false); Native.Set(behavior, "preferredPosition", null); typeof(HudLayout).GetMethod("ApplySavedLayout", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(behavior, null); }
         async Task Rotate()
         {
             var button = Descendants(main).OfType<BaseButton>().Single(c => c.Name == "rotate");
@@ -35,7 +36,7 @@ public partial class Preview
             && !bar.GetGlobalRect().Intersects(main.GetGlobalRect()), "Familiar bar aligns above the actual horizontal main hotbar with a 6 px gap");
         await capture("horizontal-main-bar");
         var saved = bar.Position; DetailCall(world, "PetSkillBar.HidePetBar"); DetailCall(world, "PetSkillBar.OnPetBarSummoned", Game.Session.Pet.Pet!); await Frames();
-        require(bar.Position == saved, $"Resummoning preserves the familiar HUD position beside the main hotbar ({saved} -> {bar.Position}, size {bar.Size}, hotbars {string.Join(",", Descendants(GetTree().Root).OfType<HotkeyBar>().Select(h => h.Name + ":" + h.IsVisibleInTree() + ":" + h.Size))}, main {main.Size} visible {main.IsVisibleInTree()})");
+        require(bar.Position == saved, $"Resummoning preserves the familiar HUD position beside the main hotbar ({saved} -> {bar.Position}, size {bar.Size}, hotbars {string.Join(",", Descendants(GetTree().Root).OfType<HotkeyBar>().Select(h => h.Name + ":" + h.IsVisibleInTree() + ":" + h.Size))}, main {main.Size} visible {main.IsVisibleInTree()}, layouts {Descendants(bar).OfType<HudLayout>().Count()}, default {Native.Get<Delegate>(behavior, "defaultPosition")?.Method.DeclaringType?.Name}:{(Native.Get<Delegate>(behavior, "defaultPosition")?.DynamicInvoke())}, meta {bar.HasMeta("hud_default_position")}, placed {behavior.UserPlaced}, preferred {Native.Get<object>(behavior, "preferredPosition")})");
         main.Position = new Vector2(88, 8); ApplyDefault(); await Frames();
         require(bar.GetGlobalRect().Position.Y == main.GetGlobalRect().End.Y + 6 && !bar.GetGlobalRect().Intersects(main.GetGlobalRect()),
             "Familiar default goes below a horizontal main hotbar at the viewport top");

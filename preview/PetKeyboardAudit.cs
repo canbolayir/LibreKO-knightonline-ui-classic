@@ -40,7 +40,7 @@ public partial class Preview
             Require(name.Text == "Kaulyx" && !ChatActive() && !NoticeOpen(), "Typing stays in the familiar name editor");
             await KeyPress(Key.Backspace); Require(name.Text == "Kauly", "Name deletion keeps native caret behavior");
             await KeyPress(Key.Enter);
-            Require(NoticeOpen() && !ChatActive() && buttons.All(b => b.Disabled), "Focused Enter opens one confirmation and freezes reparented tabs");
+            Require(NoticeOpen() && !ChatActive() && buttons.All(b => b.Disabled), $"Focused Enter opens one confirmation and freezes reparented tabs (notice {NoticeOpen()}, chat {ChatActive()}, tabs disabled {buttons.Count(b => b.Disabled)}/{buttons.Count}, accept disabled {Native.Get<Button>(KnightOnlineUiClassic.Native.FamiliarTrainer.Of(world)!, "_accept")?.Disabled}, editing {KnightOnlineUiClassic.Native.FamiliarTrainer.Of(world)?.Editing}, focus {GetViewport().GuiGetFocusOwner()?.Name})");
             await KeyPress(Key.Enter, echo: true); Require(NoticeOpen(), "Repeated Enter cannot confirm a newly opened dialog");
             await KeyPress(Key.Escape);
             Require(!NoticeOpen() && panel.Visible && buttons.All(b => !b.Disabled) && name.Text == "Kauly", "Modal Escape preserves the trainer draft and restores tabs");

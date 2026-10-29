@@ -723,7 +723,7 @@ public partial class Preview
             Require(Pending() == open.Name && !password.Visible && log.Lines(LogTab.All).Count == notices, "nations: a double-click joins the other nation's room without a notice (" + string.Join(" | ", log.Lines(LogTab.All).Skip(notices)) + ")");
 
             // The server's enter reply opens the room window; members and a line follow.
-            DetailCall(world, "ChatReactions.Build"); DetailCall(world, "Whispers.Build"); DetailCall(world, "NationChannels.Build"); DetailCall(world, "ChatRoom.Build");
+            ((WorldPreview)PreviewFixtures.ClientPreview(world)).EnsureChat(); DetailCall(world, "ChatReactions.Build"); DetailCall(world, "Whispers.Build"); DetailCall(world, "NationChannels.Build"); DetailCall(world, "ChatRoom.Build");
             var entered = new Packet(GameOpcodes.GS_NATION_CHAT);
             entered.WriteByte(NationChatWire.NationRooms); entered.WriteByte((byte)NationChatSubOpcode.PrivateEnter); entered.WriteByte(0); entered.WriteUShort((ushort)open.Id);
             Handle(entered); await Frames(4);
