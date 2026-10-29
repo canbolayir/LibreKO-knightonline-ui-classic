@@ -50,7 +50,8 @@ public partial class Preview
             "Familiar default clears the complete eight-bar horizontal stack");
         await capture("eight-main-bars");
         main.Free();
-        bar.Position = new Vector2(room.X - bar.Size.X, room.Y - bar.Size.Y);
+        // A bar the player put in the corner (an unplaced one follows its default spot instead) is clamped on a smaller window.
+        Native.Call(behavior, "Place", new Vector2(room.X - bar.Size.X, room.Y - bar.Size.Y), bar.Size);
         GetWindow().Size = new Vector2I(640, 600); await Frames(8);
         require(GetViewportRect().Encloses(bar.GetGlobalRect()) && bar.Position == new Vector2(640 - bar.Size.X, 600 - bar.Size.Y),
             "Native HudLayout clamps the familiar bar after viewport shrink without changing its dimensions");

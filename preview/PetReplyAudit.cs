@@ -10,7 +10,8 @@ public partial class Preview
 {
     private async Task AuditPetIncubationReplies(Action<bool, string> require)
     {
-        var net = new Net();
+        // The preview's booted connection: Game.Requests send through it.
+        var net = Net.I;
         var connection = (GameConn)typeof(Net).GetField("conn", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net)!;
         using var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
         using var timeout = new CancellationTokenSource(30000);
@@ -23,9 +24,14 @@ public partial class Preview
             using var stream = receiver.GetStream();
             async Task ReadRequest(byte sub)
             {
-                var header = new byte[4]; await stream.ReadExactlyAsync(header, timeout.Token);
-                int length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2));
-                var body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
+                // The connection opens with its own version check; the incubation request is the next GS_ITEM_UPGRADE frame.
+                var header = new byte[4]; int length; byte[] body;
+                do
+                {
+                    await stream.ReadExactlyAsync(header, timeout.Token);
+                    length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2));
+                    body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
+                } while (body[0] != (byte)GameOpcodes.GS_ITEM_UPGRADE);
                 require(header[0] == 0xaa && header[1] == 0x55 && body[length] == 0x55 && body[length + 1] == 0xaa,
                     "Incubation request retains native packet framing");
                 require(body[0] == (byte)GameOpcodes.GS_ITEM_UPGRADE && body[1] == sub,

@@ -64,7 +64,7 @@ public partial class Preview
         require(cells.Select(SkillId).SequenceEqual(skillIds.Take(8)), "Familiar HUD first page retains native table order");
         await Capture("first-page");
         await Click(page);
-        require(page.Text == "2" && cells.Select(SkillId).SequenceEqual(skillIds.Skip(8).Take(8)), "Actual HUD page click reaches all second-page skills and bounded empty slots");
+        require(page.Text == "2" && cells.Select(SkillId).SequenceEqual(skillIds.Skip(8).Take(8)), $"Actual HUD page click reaches all second-page skills and bounded empty slots (page {page.Text}, cells {string.Join(",", cells.Select(SkillId))}, layout {string.Join(",", skillIds.Skip(8).Take(8))})");
         await Capture("second-page");
         await Click(page); require(page.Text == "1", "Actual HUD page cycle returns to its first page");
         var sheet = Game.Session.Pet.Pet!; int oldLevel = sheet.Level, oldMp = sheet.Mp;
