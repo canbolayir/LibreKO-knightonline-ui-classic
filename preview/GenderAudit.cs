@@ -199,7 +199,7 @@ public partial class Preview
             await Click(Descendants(panel).OfType<Button>().Single(b => b.TooltipText == "Close")); Require(!window.Visible, "Original close artwork invokes native close");
             Open(); GetWindow().Size = new Vector2I(1200, 850); window.Position = new Vector2(320, 140); await Capture("wide-viewport");
         }
-        finally { layer.Free(); world.Free(); net.Free(); }
+        finally { layer.Free(); world.Free(); PreviewNet.Release(net); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-gender.json", JsonSerializer.Serialize(new { nation, checks, screens, fixture = "Native appearance controls, actual viewport input and explicit offline result callbacks", liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic gender audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

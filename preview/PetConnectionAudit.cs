@@ -165,7 +165,7 @@ public partial class Preview
         }
         finally
         {
-            connection.Close(); DetailCall(world, "DisposePetEquipmentUiPreview"); world.Free(); net.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
+            connection.Close(); DetailCall(world, "DisposePetEquipmentUiPreview"); world.Free(); PreviewNet.Release(net); typeof(Net).GetProperty("I")!.SetValue(null, original);
         }
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-connection.json",
             JsonSerializer.Serialize(new { checks, screens, completeWorldReconnect = false }, new JsonSerializerOptions { WriteIndented = true }));

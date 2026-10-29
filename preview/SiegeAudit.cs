@@ -230,6 +230,6 @@ public partial class Preview
         }
         System.IO.File.WriteAllText(output + "/" + prefix + "-siege.json",
             JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        offline.Free(); GD.Print("SIEGE_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(offline); GD.Print("SIEGE_AUDIT_OK " + checks.Count);
     }
 }

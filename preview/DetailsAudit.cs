@@ -471,7 +471,7 @@ public partial class Preview
             pluginHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(file))),
             clientHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(file)!,"LibreKO.dll")))) },new JsonSerializerOptions { WriteIndented=true }));
         GD.Print("DETAIL_AUDIT_OK");
-        offline.Free();
+        PreviewNet.Release(offline);
     }
     private async Task CaptureLongQuest(WorldRoot model,CharacterEmbeddedPage page,IGameCharacterPanel native,string prefix,string output)
     {

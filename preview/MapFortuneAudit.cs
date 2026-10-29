@@ -258,6 +258,6 @@ public partial class Preview
         }
         System.IO.File.WriteAllText(output + "/" + prefix + "-map-fortune.json",
             JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        offline.Free(); GD.Print("MAP_FORTUNE_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(offline); GD.Print("MAP_FORTUNE_AUDIT_OK " + checks.Count);
     }
 }

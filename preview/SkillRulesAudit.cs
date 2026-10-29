@@ -603,6 +603,6 @@ public partial class Preview
         GD.Print("SKILL_RULES_AUDIT_OK " + prefix + " checks=" + checks.Count + " captures=" + captures.Count);
         hotbar.QueueFree(); shell.QueueFree();
         await Frames(2);
-        world.Free(); net.Free(); login.Free();
+        world.Free(); PreviewNet.Release(net); login.Free();
     }
 }

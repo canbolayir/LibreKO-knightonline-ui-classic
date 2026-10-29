@@ -367,7 +367,7 @@ public partial class Preview
 
         System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+"-verification.json",JsonSerializer.Serialize(new{nation,checks,screens},new JsonSerializerOptions {WriteIndented=true}));
 
-        GD.Print("TRADE_AUDIT_OK "+checks.Count);world.Free();net.Free();foreach(var layer in auditLayers)layer.QueueFree();await Frames(3);
+        GD.Print("TRADE_AUDIT_OK "+checks.Count);world.Free();PreviewNet.Release(net);foreach(var layer in auditLayers)layer.QueueFree();await Frames(3);
 
     }
 

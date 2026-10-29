@@ -215,7 +215,7 @@ public partial class Preview
         System.IO.File.WriteAllText(System.IO.Path.Combine(output,prefix+"-verification.json"),JsonSerializer.Serialize(new { nation=prefix,productionComponents=true,
             pluginHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(binary))),nativeMenuCallback=true,nativeAcceptCallback=true,nativeRewardChoice=true,
             nativeCloseCallback=true,nativeHeaderClosePointer=true,speechWheel=true,lowerOverflow=true,twoColumnSections=true,portraitRenders=NpcPortraitCache.RenderRequests,retainedPortraitViewports=NpcPortraitCache.RetainedViewportCount,screens=results },new JsonSerializerOptions {WriteIndented=true}));
-        _windowData.NpcPortraitSource=null;NpcPortraitCache.Clear();tooltipLayer.Free();layer.Free();world.Free();net.Free();
+        _windowData.NpcPortraitSource=null;NpcPortraitCache.Clear();tooltipLayer.Free();layer.Free();world.Free();PreviewNet.Release(net);
         GD.Print("NPC_INTEGRATION_OK: "+prefix+", live controls, complete paged menu, accept/choice/close callbacks, fixed speech scroll, two-column targets/rewards, small viewport, cached portraits");
     }
 }

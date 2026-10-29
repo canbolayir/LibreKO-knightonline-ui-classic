@@ -316,6 +316,6 @@ public partial class Preview
         audio.Free(); GameCursor.Disable();
         inventoryShell.Free(); Dispose(repairWorld, repair); await Frames();
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-verification.json", JsonSerializer.Serialize(new { screens, checks }, new JsonSerializerOptions { WriteIndented = true }));
-        net.Free(); GD.Print("CLASSIC_SERVICES_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(net); GD.Print("CLASSIC_SERVICES_AUDIT_OK " + checks.Count);
     }
 }

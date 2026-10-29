@@ -131,8 +131,10 @@ public partial class Preview
             async Task Request(byte direction, int id, int src, int dst)
             {
                 require(Field<bool>("InventoryWindow.moveInFlight"), "Actual familiar equipment input queues the native request");
-                var header = new byte[4]; await stream.ReadExactlyAsync(header, timeout.Token);
-                int length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); var body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
+                // The connection opens with its own version check; skip that frame.
+                var header = new byte[4]; int length; byte[] body;
+                do { await stream.ReadExactlyAsync(header, timeout.Token); length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token); }
+                while (body[0] == (byte)GameOpcodes.GS_VERSION_CHECK);
                 // Clients with partial magic bag moves always append the amount; zero is the whole-stack move.
                 require(header[0] == 0xaa && header[1] == 0x55 && body[length] == 0x55 && body[length + 1] == 0xaa && (length == 9 || length == 11 && body[9] == 0 && body[10] == 0)
                     && body[0] == (byte)GameOpcodes.GS_ITEM_MOVE && body[1] == 1 && body[2] == direction
@@ -200,7 +202,7 @@ public partial class Preview
             connection.Close(); shell.Free(); DetailCall(world, "DisposePetEquipmentUiPreview");
             if (!ReferenceEquals(game, PluginHost.Game)) PluginHost.Game.Inventory.Changed -= forwardInventory;
             foreach (var g in games) { if (savedAvailable[g]) attach.Invoke(g, savedSources[g]); else typeof(PluginGame).GetMethod("Detach", flags)!.Invoke(g, null); }
-            layer.Free(); world.Free(); net.Free(); typeof(Net).GetProperty("I")!.SetValue(null, originalNet);
+            layer.Free(); world.Free(); PreviewNet.Release(net); typeof(Net).GetProperty("I")!.SetValue(null, originalNet);
         }
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-equipment-results.json", JsonSerializer.Serialize(new { screens = captures }, new JsonSerializerOptions { WriteIndented = true }));
     }

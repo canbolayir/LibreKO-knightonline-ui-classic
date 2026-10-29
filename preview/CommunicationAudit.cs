@@ -85,7 +85,7 @@ public partial class Preview
         }
         await CaptureNationRooms(nation, output, Require, Frames, screens);
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-communication.json", JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        GD.Print("Classic communication audit: " + checks.Count + " checks / " + screens.Count + " screens"); offline.Free();
+        GD.Print("Classic communication audit: " + checks.Count + " checks / " + screens.Count + " screens"); PreviewNet.Release(offline);
     }
 }
 

@@ -105,7 +105,7 @@ public partial class Preview
         }
         finally
         {
-            layer?.Free(); world?.Free(); typeof(Config).GetProperty("ChatColors")!.SetValue(null, originalColours); settingsProperty.SetValue(null, originalPath); offline.Free();
+            layer?.Free(); world?.Free(); typeof(Config).GetProperty("ChatColors")!.SetValue(null, originalColours); settingsProperty.SetValue(null, originalPath); PreviewNet.Release(offline);
         }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-chat-colours.json", JsonSerializer.Serialize(new { nation, checks, screens, settingsIsolated = isolatedPath }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic chat colours audit: " + checks.Count + " checks / " + screens.Count + " screens");

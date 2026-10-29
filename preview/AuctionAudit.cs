@@ -159,7 +159,7 @@ public partial class Preview
             DetailCall(world, "SpecialAuctionWindow.OnAuctionToday", today); GetWindow().Size = new Vector2I(1200, 850); window.Position = new Vector2(160, 120); await Capture("wide-viewport");
             millions.GetLineEdit().GrabFocus(); await KeyInput(Key.Escape); Require(!window.Visible && !(bool)DetailField(world, "SpecialAuctionWindow.shown")!, "Focused numeric Escape closes through native window callback");
         }
-        finally { foreach (var notice in Notices()) notice.Free(); layer.Free(); world.Free(); net.Free(); }
+        finally { foreach (var notice in Notices()) notice.Free(); layer.Free(); world.Free(); PreviewNet.Release(net); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-auction.json", JsonSerializer.Serialize(new { nation, checks, screens, fixture = "Native controls with explicit offline eight-lot and thirteen-day schedule fixtures", liveTransactions = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic auction audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

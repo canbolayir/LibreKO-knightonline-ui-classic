@@ -174,6 +174,6 @@ public partial class Preview
             tooltipLayer.Free(); layer.Free(); world.Free();
         }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-mail.json", JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        GD.Print("Classic mail audit: " + checks.Count + " checks / " + screens.Count + " screens"); offline.Free();
+        GD.Print("Classic mail audit: " + checks.Count + " checks / " + screens.Count + " screens"); PreviewNet.Release(offline);
     }
 }

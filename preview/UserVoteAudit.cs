@@ -304,6 +304,6 @@ public partial class Preview
         GD.Print($"USER_VOTE_AUDIT_OK {prefix} {checks.Count} checks / {screens.Count} screens");
         character.QueueFree(); world.Free();
         await Frames(2);
-        net.Free();
+        PreviewNet.Release(net);
     }
 }

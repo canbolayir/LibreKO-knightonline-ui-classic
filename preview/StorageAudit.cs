@@ -362,7 +362,7 @@ public partial class Preview
         Require(vipCells[0].DragOut!(vipCells[0]).VariantType == Variant.Type.Nil, "Locked VIP cells cannot be dragged");
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-verification.json", JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print($"Storage audit passed: {checks.Count} checks, {screens.Count} screenshots, nation {nation}");
-        world.Free(); net.Free();
+        world.Free(); PreviewNet.Release(net);
         static void RequireDefinition(int id) { if (ItemData.Get(id) == null) throw new Exception("Missing item " + id); }
     }
 }

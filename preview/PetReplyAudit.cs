@@ -140,6 +140,6 @@ public partial class Preview
             connection.Close();
             require(!Game.Requests.Pet.Hatch(13016, 600001000, 4, "Kauly") && !Pending(), "Disconnected incubation does not create a pending request");
         }
-        finally { connection.Close(); net.Free(); }
+        finally { connection.Close(); PreviewNet.Release(net); }
     }
 }

@@ -46,6 +46,7 @@ public partial class Preview
             string service = transform ? "transform" : "hatch";
             int slot = Field<int>(transform ? "PetHatch.petTransformSlot" : "PetHatch.slot");
             int scrollSlot = Field<int>("PetHatch.petScrollSlot");
+            require(!transform || scrollSlot >= 0, $"The {service} draft names its scroll (slot {slot}, scroll {scrollSlot}, tab {Native.Get<int>(Field<object>("PetHatch.tabs"), "Current")})");
             if (transform) { var material = inventory[scrollSlot]; material.Count = 2; inventory.ApplySlotUpdate(scrollSlot, material); DetailCall(world, "RebuildPetPicks"); }
             for (int i = 0; i < inventory.Length; i++) Game.Session.Self.SetInventorySlot(i, inventory[i]);
             var name = Field<LineEdit>("PetHatch.NameInput");
@@ -94,8 +95,13 @@ public partial class Preview
                     require(PreviewFixtures.PetHatchNotice(world) != null && !Field<bool>("PetHatch.inFlight"), "Actual " + service + " Enter opens confirmation before a request");
                     await KeyPress(Key.Enter);
                     require(Field<bool>("PetHatch.inFlight") && action.Disabled && (transform || !name.Editable), "Actual " + service + " confirmation locks the pending draft");
-                    var header = new byte[4]; await stream.ReadExactlyAsync(header, timeout.Token);
-                    int length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); var body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
+                    // The connection opens with its own version check; the trainer request is the next GS_ITEM_UPGRADE frame.
+                    var header = new byte[4]; int length; byte[] body;
+                    do
+                    {
+                        await stream.ReadExactlyAsync(header, timeout.Token);
+                        length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
+                    } while (body[0] != (byte)GameOpcodes.GS_ITEM_UPGRADE);
                     require(body[0] == (byte)GameOpcodes.GS_ITEM_UPGRADE && body[1] == (transform ? 10 : 6)
                         && BinaryPrimitives.ReadInt32LittleEndian(body.AsSpan(2)) == 13016 && body[10] == slot - Inventory.GridStart,
                         "Actual " + service + " UI submits the original operation, trainer and inventory slot");
@@ -146,7 +152,8 @@ public partial class Preview
                 require(transform ? !action.Disabled && Find<ItemSlotView>("pet_hatch_stage_2").Item.Count == 1 : name.Text.Length == 0 && action.Disabled && stage.Item.IsEmpty,
                     "Received " + service + " success restores correct next-operation eligibility");
                 var lines = Field<TabbedLog>("Log.log").Lines(LogTab.All); int logCount = lines.Count, mutationCount = mutations;
-                require(logCount == 1 && lines.Last().Contains(transform ? "transformed into" : "hatched from the egg"), "Received " + service + " success reaches the native Info log once");
+                // The log is shared with the earlier familiar checks of this run; the success line is new and shown once.
+                require(lines.Count(l => l.Contains(transform ? "transformed into" : "hatched from the egg")) == 1 && lines.Last().Contains(transform ? "transformed into" : "hatched from the egg"), "Received " + service + " success reaches the native Info log once (" + logCount + ": " + string.Join(" | ", lines.TakeLast(3)) + ")");
                 Receive(success); await Frames(); require(mutations == mutationCount && lines.Count == logCount && status.Text.Length > 0, "Duplicate " + service + " success cannot alter the trainer or repeat its Info notification");
                 await Capture("success");
                 if (!transform) { slot = Inventory.GridStart + 6; DetailCall(world, "SelectPetHatchItem", slot); name.Text = "Kauly"; }
@@ -157,7 +164,7 @@ public partial class Preview
             finally
             {
                 connection.Close(); DetailCall(world, "PetHatch.Dispose"); Game.Session.Items.InventorySlotEvent -= mirror;
-                layer.Free(); world.Free(); net.Free(); typeof(Net).GetProperty("I")!.SetValue(null, originalNet);
+                layer.Free(); world.Free(); PreviewNet.Release(net); typeof(Net).GetProperty("I")!.SetValue(null, originalNet);
             }
         }
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-results.json", JsonSerializer.Serialize(new { screens }, new JsonSerializerOptions { WriteIndented = true }));

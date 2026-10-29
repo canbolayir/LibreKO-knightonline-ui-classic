@@ -239,6 +239,6 @@ public partial class Preview
 
         System.IO.File.WriteAllText(output + "/" + prefix + "-king-nation.json",
             JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        offline.Free(); GD.Print("KING_NATION_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(offline); GD.Print("KING_NATION_AUDIT_OK " + checks.Count);
     }
 }

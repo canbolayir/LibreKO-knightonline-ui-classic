@@ -216,7 +216,7 @@ public partial class Preview
             await Capture("success", true);
             Reply(3, 1); Require(layer.GetChildren().OfType<Notice>().Count() == 1, "Idle duplicate success cannot create another reconnect notice");
         }
-        finally { DetailCall(world, "NationTransfer.Dispose"); layer.Free(); world.Free(); net.Free(); }
+        finally { DetailCall(world, "NationTransfer.Dispose"); layer.Free(); world.Free(); PreviewNet.Release(net); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-nationtransfer.json", JsonSerializer.Serialize(new { nation, checks, screens, liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic nation transfer audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

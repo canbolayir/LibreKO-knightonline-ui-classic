@@ -483,7 +483,7 @@ public partial class Preview
             NativeGenieQuick.Minimised = false; NativeGenieQuick.Closed = false;
             net.Reconnect.AutoReconnect = false; net.Disconnect(expected: true);
             if (GetTree().CurrentScene is WorldRoot world) { GetTree().CurrentScene = null; world.QueueFree(); await Frames(); }
-            GetTree().CurrentScene = this; net.Free(); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
+            GetTree().CurrentScene = this; PreviewNet.Release(net); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
             typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, originalLogin);
         }
     }

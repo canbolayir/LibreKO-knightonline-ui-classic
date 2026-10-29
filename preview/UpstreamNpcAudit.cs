@@ -103,6 +103,6 @@ public partial class Preview
         foreach(var layer in GetChildren().OfType<CanvasLayer>().ToArray())layer.Free();
         foreach(var field in typeof(WorldRoot).GetFields(BindingFlags.Instance|BindingFlags.NonPublic))
             if(field.GetValue(world) is Node orphan&&GodotObject.IsInstanceValid(orphan)&&orphan.GetParent()==null)orphan.Free();
-        world.Free();net.Free();await Frames();
+        world.Free();PreviewNet.Release(net);await Frames();
     }
 }

@@ -56,8 +56,10 @@ public partial class Preview
         }
         async Task Request(int slot, int id)
         {
-            var header = new byte[4]; await stream.ReadExactlyAsync(header, token);
-            int length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); var body = new byte[length + 2]; await stream.ReadExactlyAsync(body, token);
+            // The connection opens with its own version check; skip that frame.
+            var header = new byte[4]; int length; byte[] body;
+            do { await stream.ReadExactlyAsync(header, token); length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); body = new byte[length + 2]; await stream.ReadExactlyAsync(body, token); }
+            while (body[0] == (byte)GameOpcodes.GS_VERSION_CHECK);
             require(length == 10 && header[0] == 0xaa && header[1] == 0x55 && body[length] == 0x55 && body[length + 1] == 0xaa
                 && body[0] == (byte)GameOpcodes.GS_PET && body[1] == 1 && body[2] == 16 && body[3] == slot - Inventory.GridStart
                 && BinaryPrimitives.ReadInt32LittleEndian(body.AsSpan(4)) == id && body[8] == 1 && body[9] == 0,

@@ -295,7 +295,7 @@ public partial class Preview
 
         System.IO.File.WriteAllText(output + "/" + prefix + "-events-b.json",
             JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        offline.Free(); GD.Print("EVENTS_B_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(offline); GD.Print("EVENTS_B_AUDIT_OK " + checks.Count);
     }
 
     private static readonly string[] NativeBoardIds = { "bounty", "report", "fishinghall", "forces" };

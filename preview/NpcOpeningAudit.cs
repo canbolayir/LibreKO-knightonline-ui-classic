@@ -374,7 +374,7 @@ public partial class Preview
             openings = results, checks, screens
         }, new JsonSerializerOptions { WriteIndented = true }));
         _windowData.NpcPortraitSource = null; NpcPortraitCache.Clear();
-        npcLayer.Free(); clanLayer.Free(); world.Free(); net.Free();
+        npcLayer.Free(); clanLayer.Free(); world.Free(); PreviewNet.Release(net);
         GD.Print($"{tag}_OK {prefix} {checks.Count} checks");
     }
 }

@@ -119,6 +119,8 @@ public static partial class PreviewFixtures
         if (observeReplies) { Call(world, "PetHatch.Build"); Call(world, "ItemTooltip.Build"); }
         else Call(world, "PetHatch.BuildPanel");
         SeedFamiliarHatchPreview(world, transform); Call(world, "PetHatch.Open", PreviewTrainerNpc);
+        // Open() starts on the incubation tab with nothing picked; a transformation draft is shown on its own tab.
+        if (transform) { Native.Call(Field<object>(world, "PetHatch.tabs"), "Select", 1, false); Call(world, "PetHatch.ShowTab"); }
         // The client selects the first eligible items; the preview states them explicitly.
         SetField(world, "PetHatch.slot", transform ? -1 : Inventory.GridStart + 2);
         SetField(world, "PetHatch.petTransformSlot", transform ? Inventory.GridStart + 1 : -1);

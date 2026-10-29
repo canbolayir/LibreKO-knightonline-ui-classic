@@ -38,7 +38,7 @@ public partial class Preview
         });
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-portrait-checks.json",
             JsonSerializer.Serialize(checks, new JsonSerializerOptions { WriteIndented = true }));
-        DetailCall(world, "PetSkillObserveDispose"); world.Free(); net.Free();
+        DetailCall(world, "PetSkillObserveDispose"); world.Free(); PreviewNet.Release(net);
         GD.Print("PET_PORTRAIT_AUDIT: " + checks.Count + " checks");
     }
 

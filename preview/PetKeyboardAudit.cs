@@ -69,7 +69,7 @@ public partial class Preview
         }
         finally
         {
-            DetailCall(world, "SetPetKeyboardChat", false); world.Free(); net.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
+            DetailCall(world, "SetPetKeyboardChat", false); world.Free(); PreviewNet.Release(net); typeof(Net).GetProperty("I")!.SetValue(null, original);
         }
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-keyboard.json", JsonSerializer.Serialize(new { checks }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("PET_KEYBOARD_AUDIT: " + checks.Count + " checks");

@@ -196,7 +196,7 @@ public partial class Preview
             pluginHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(binary))),
             clientHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(binary)!,"LibreKO.dll"))))
         },new JsonSerializerOptions { WriteIndented=true }));
-        _windowData.NpcPortraitSource=null;NpcPortraitCache.Clear();layer.Free();model.Free();net.Free();
+        _windowData.NpcPortraitSource=null;NpcPortraitCache.Clear();layer.Free();model.Free();PreviewNet.Release(net);
         GD.Print($"NPC_PORTRAITS_ALL_OK: {eligible} NPC prototypes, {entries} real appearances, delayed reply, names above levels, 12 first-frame reopenings, zero retained viewports, bounded texture cache and 240 performance frames");
     }
 }

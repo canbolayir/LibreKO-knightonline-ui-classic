@@ -186,8 +186,11 @@ public partial class Preview
             var frame = Screen((Control)typeof(CharacterWindow).GetField("_frame", flags)!.GetValue(owner)!);
             // The docked window opens below the Classic status bar, so it covers neither the bar nor its letter row.
             var bar = plates.Merge(Screen(mail)).Merge(Screen(Descendants(status).OfType<Control>().First(c => c.Name == "Img_StateBar")));
-            Require(GetViewportRect().Encloses(frame) && !frame.Intersects(bar) && frame.Position.Y - bar.End.Y < 12,
-                $"{state}: the window frame is on screen, just below the status bar and its row ({frame} / {bar})");
+            // The client docks the window at its own spot (EdgeDock, centred in the free height); the Classic HUD only moves it down when that
+            // spot would cover the status bar. At 1:1 on 1280x800 the client's spot is already clear of the bar.
+            var stockSpot = (Vector2)Native.Call(world, "MainWindows.DockSpot", "Character")!;
+            Require(GetViewportRect().Encloses(frame) && !frame.Intersects(bar) && (Mathf.Abs(frame.Position.Y - stockSpot.Y) < 1 || frame.Position.Y - bar.End.Y < 12),
+                $"{state}: the window frame is on screen, at the client's dock spot or just below the status bar ({frame} / {bar}; client spot {stockSpot})");
             bounds["q-" + state] = new { window = Rect(frame), list = Rect(Screen(list)), rows = list.Count, selected = list.Selected };
             await Shot("q-" + state);
         }

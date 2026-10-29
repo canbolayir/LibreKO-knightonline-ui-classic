@@ -96,7 +96,7 @@ public partial class Preview
         GD.Print("PET_AUDIT: " + checks.Count + " checks, " + screens.Count + " states");
         DetailCall(world, "PetSkillObserveDispose");
         world.Free();
-        net.Free();
+        PreviewNet.Release(net);
     }
 
     private async Task AuditPetHatchGuards(List<string> checks, int nation, string output)
@@ -175,7 +175,8 @@ public partial class Preview
             Require(panel.Position.DistanceTo(oldPosition + shift) < 1 && !GetViewport().GuiIsDragging(), "Header dragging moves the native " + service + " window (" + oldPosition + " -> " + panel.Position + ")");
             panel.Position = oldPosition; await Frames();
             int pick = Field<int>(transform ? "PetHatch.petTransformSlot" : "PetHatch.slot");
-            Require(!Field<Button>("PetHatch.btn").Disabled, (transform ? "Transform" : "Hatch") + " valid draft is actionable");
+            Require(!Field<Button>("PetHatch.btn").Disabled, (transform ? "Transform" : "Hatch") + $" valid draft is actionable (rules: egg {Rule("IsPetEgg", Game.Session.Self.Inventory[Inventory.GridStart + 2])}, familiar {Rule("IsFamiliarItem", Game.Session.Self.Inventory[Inventory.GridStart + 1])} {Game.Session.Self.Inventory[Inventory.GridStart + 1].ItemId}/{LibreKO.Domain.ItemData.Get(Game.Session.Self.Inventory[Inventory.GridStart + 1].ItemId)?.Kind}, scroll {Rule("IsTransformScroll", Game.Session.Self.Inventory[Inventory.GridStart + 9])} {Game.Session.Self.Inventory[Inventory.GridStart + 9].ItemId}/{LibreKO.Domain.ItemData.Get(Game.Session.Self.Inventory[Inventory.GridStart + 9].ItemId)?.Kind}/{LibreKO.Domain.ItemData.Get(Game.Session.Self.Inventory[Inventory.GridStart + 9].ItemId)?.Effect2}, editing {KnightOnlineUiClassic.Native.FamiliarTrainer.Of(world)?.Editing})");
+            static object? Rule(string name, LibreKO.Domain.ItemSlot slot) => Native.Call(Native.StaticOwner("LibreKO.Features.Windows.PetHatchFeature"), name, slot);
             var stage = Find<ItemSlotView>("pet_hatch_stage_" + (transform ? 1 : 0));
             await Click(stage, MouseButton.Right);
             Require(stage.Item.IsEmpty && Field<Button>("PetHatch.btn").Disabled, "Right-click clears staged " + service + " item");

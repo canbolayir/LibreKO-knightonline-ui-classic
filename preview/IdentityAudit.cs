@@ -154,6 +154,6 @@ public partial class Preview
         string result = output + "/" + (nation == 1 ? "karus" : "human") + "-identity.json";
         System.IO.File.WriteAllText(result, JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Identity audit: " + checks.Count + " checks / " + screens.Count + " screens: " + result);
-        offline.Free();
+        PreviewNet.Release(offline);
     }
 }

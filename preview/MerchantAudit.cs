@@ -159,6 +159,6 @@ public partial class Preview
         Native.Call(Game.Session.Premium,"Apply",0,0,0,System.Array.Empty<LibreKO.Domain.PremiumBonus>());
         DetailCall(world,"Merchant.OnOpenResult",MerchantOpenResult.Accepted);DetailCall(world,"Merchant.StageStallItem",0);await Frames();Require(panel.Size==new Vector2(255,106) && !history.IsVisibleInTree(),"Non-premium pricing retains the original composition");await Capture("market-price-non-premium");await KeyPress(Key.Escape);DetailCall(world,"Merchant.CloseSellStall");
         System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+"-verification.json",JsonSerializer.Serialize(new{nation,checks,screens,pluginHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(ProjectSettings.GlobalizePath("res://.godot/mono/temp/bin/Debug/KnightOnlineUiClassic.dll")))),clientHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(ProjectSettings.GlobalizePath("res://.godot/mono/temp/bin/Debug/LibreKO.dll"))))},new JsonSerializerOptions{WriteIndented=true}));
-        GD.Print("MERCHANT_AUDIT_OK "+checks.Count);world.Free();net.Free();foreach(var layer in layers)layer.QueueFree();await Frames(3);
+        GD.Print("MERCHANT_AUDIT_OK "+checks.Count);world.Free();PreviewNet.Release(net);foreach(var layer in layers)layer.QueueFree();await Frames(3);
     }
 }

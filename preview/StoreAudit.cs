@@ -176,7 +176,7 @@ public partial class Preview
             }
             finally { layer.Free(); world.Free(); Platform.Override = null; }
         }
-        net.Free();
+        PreviewNet.Release(net);
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-store.json", JsonSerializer.Serialize(new { nation, design, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic store audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

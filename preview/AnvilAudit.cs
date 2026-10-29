@@ -187,7 +187,7 @@ public partial class Preview
         Require(Descendants(choice).OfType<Button>().Count(b=>b.IsVisibleInTree()&&b.Text is "Upgrade Item" or "Compound Accessory" or "Walk away")==3,"Original three-option selection menu uses live callbacks");
         string Hash(string p)=>Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(p)));
         System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+"-verification.json",JsonSerializer.Serialize(new{clientHash=Hash(ProjectSettings.GlobalizePath("res://../../LibreKO/Client/.godot/mono/temp/bin/ExportRelease/LibreKO.dll")),pluginHash=Hash(ProjectSettings.GlobalizePath("res://../bin/KnightOnlineUiClassic.dll")),screens,checks},new JsonSerializerOptions{WriteIndented=true}));
-        window.Free();choice.Free();tips.Free();world.Free();net.Free();await Frames();
+        window.Free();choice.Free();tips.Free();world.Free();PreviewNet.Release(net);await Frames();
         GD.Print("ANVIL_AUDIT_OK "+checks.Count);
     }
 }

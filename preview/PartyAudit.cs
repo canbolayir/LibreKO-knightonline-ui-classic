@@ -323,7 +323,7 @@ public partial class Preview
         SetField("SeekParty.fullMoonAutoEntry",false);
         Config.SetPartyRowMeter(PartyBoardMeterMode.Off);
         System.IO.File.WriteAllText(output+"/"+prefix+"-verification.json",JsonSerializer.Serialize(new{nation,checks,captures,pluginHash=Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(ProjectSettings.GlobalizePath("res://../bin/KnightOnlineUiClassic.dll"))))},new JsonSerializerOptions{WriteIndented=true}));
-        world.Free(); net.Free();
+        world.Free(); PreviewNet.Release(net);
         GD.Print("PARTY_AUDIT_OK "+prefix+" "+checks.Count);
     }
 }

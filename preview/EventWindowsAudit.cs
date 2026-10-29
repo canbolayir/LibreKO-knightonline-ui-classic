@@ -457,6 +457,6 @@ public partial class Preview
 
         System.IO.File.WriteAllText(output + "/" + prefix + "-event-windows.json",
             JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        offline.Free(); GD.Print("EVENT_WINDOWS_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(offline); GD.Print("EVENT_WINDOWS_AUDIT_OK " + checks.Count);
     }
 }

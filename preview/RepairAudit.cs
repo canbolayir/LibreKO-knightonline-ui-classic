@@ -238,6 +238,6 @@ public partial class Preview
             strikeSeconds = ClassicRepairHammer.StrikeSeconds, raiseSeconds = ClassicRepairHammer.RaiseSeconds, gold,
             screens, timeline, checks,
         }, new JsonSerializerOptions { WriteIndented = true }));
-        net.Free(); GD.Print("REPAIR_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(net); GD.Print("REPAIR_AUDIT_OK " + checks.Count);
     }
 }

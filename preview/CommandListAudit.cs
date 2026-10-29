@@ -293,6 +293,6 @@ public partial class Preview
         System.IO.File.WriteAllText(output + "/" + prefix + "-command.json", JsonSerializer.Serialize(new { nation, checks, screens, placements }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("COMMAND_AUDIT_OK " + prefix + " " + checks.Count + " checks / " + screens.Count + " screens");
         layer.QueueFree(); world.QueueFree();
-        await Frames(); offline.Free();
+        await Frames(); PreviewNet.Release(offline);
     }
 }

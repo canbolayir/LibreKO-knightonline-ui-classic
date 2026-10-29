@@ -225,7 +225,7 @@ public partial class Preview
             NativeApi.Call(conn, "Close");
             layer.Free();
             DetailCall(world, "Repurchase.Dispose");
-            world.Free(); net.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
+            world.Free(); PreviewNet.Release(net); typeof(Net).GetProperty("I")!.SetValue(null, original);
         }
         System.IO.File.WriteAllText(output + "/" + prefix + "-repurchase.json", JsonSerializer.Serialize(new { nation, checks, screens, transport = "the client's requests read from a loopback socket; the server replies are scripted" }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("REPURCHASE_AUDIT_OK " + prefix + " " + checks.Count + " checks");

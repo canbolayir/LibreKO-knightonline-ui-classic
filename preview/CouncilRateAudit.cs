@@ -95,6 +95,6 @@ public partial class Preview
         }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-council.json",
             JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        offline.Free(); GD.Print("COUNCIL_RATE_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(offline); GD.Print("COUNCIL_RATE_AUDIT_OK " + checks.Count);
     }
 }

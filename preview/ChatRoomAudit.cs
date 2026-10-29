@@ -835,6 +835,6 @@ public partial class Preview
         }
         System.IO.File.WriteAllText(output + "/" + prefix + "-chat-room.json", JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("CHAT_ROOM_AUDIT_OK " + prefix + " " + checks.Count + " checks / " + screens.Count + " screens");
-        await Frames(); voice.QueueFree(); await Frames(2); offline.Free();
+        await Frames(); voice.QueueFree(); await Frames(2); PreviewNet.Release(offline);
     }
 }

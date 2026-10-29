@@ -412,7 +412,7 @@ public partial class Preview
             clientHash=Hash(ProjectSettings.GlobalizePath("res://../../LibreKO/Client/.godot/mono/temp/bin/ExportRelease/LibreKO.dll")),captures,seeded,checks},new JsonSerializerOptions {WriteIndented=true}));
         GD.Print("INVENTORY_AUDIT_OK "+prefix+": "+captures.Count+" captures, "+checks.Count+" checks");
         Fx.BeginShutdown(GetTree().Root);shell.Free();
-        ((Control)DetailField(world,"InventoryWindow.InvContent")!).Free();world.Free();net.Free();await Frames(20);
+        ((Control)DetailField(world,"InventoryWindow.InvContent")!).Free();world.Free();PreviewNet.Release(net);await Frames(20);
         foreach(var release in (List<Action>)typeof(Shutdown).GetField("Releases",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!) release();
         await Frames(10);GC.Collect();GC.WaitForPendingFinalizers();await Frames(10);
     }

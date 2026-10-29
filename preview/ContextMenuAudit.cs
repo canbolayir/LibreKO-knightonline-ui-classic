@@ -304,7 +304,7 @@ public partial class Preview
         ClassicContextMenu.Close();
         character.QueueFree(); shell.QueueFree(); world.QueueFree();
         await Frames(2);
-        net.Free();
+        PreviewNet.Release(net);
         if (failures.Count > 0) throw new Exception("CONTEXT_MENU_AUDIT failed: " + string.Join("; ", failures));
         GD.Print("CONTEXT_MENU_AUDIT_OK " + checks.Count);
     }

@@ -268,7 +268,7 @@ public partial class Preview
             await Click(Descendants(panel).OfType<Button>().Single(b => b.TooltipText == "Close")); Require(!window.Visible && !Busy(), "Original close artwork invokes native close");
             Open(); GetWindow().Size = new Vector2I(1200, 850); window.Position = new Vector2(320, 140); await Capture("wide-viewport");
         }
-        finally { DetailCall(world, "ChangeHair.Dispose"); layer.Free(); world.Free(); net.Free(); }
+        finally { DetailCall(world, "ChangeHair.Dispose"); layer.Free(); world.Free(); PreviewNet.Release(net); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-beauty.json", JsonSerializer.Serialize(new { nation, checks, screens, fixture = "Actual native viewport input and network result dispatch; no live transactions", liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic beauty audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

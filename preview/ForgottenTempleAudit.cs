@@ -247,7 +247,7 @@ public partial class Preview
         GD.Print("FORGOTTEN_TEMPLE_AUDIT_OK " + checks.Count);
         foreach (var layer in GetChildren().OfType<CanvasLayer>().ToArray()) layer.Free();
         world.Free();
-        net.Free();
+        PreviewNet.Release(net);
         await Frames();
     }
 }

@@ -161,7 +161,7 @@ public partial class Preview
             await Click(Find<Button>("cape_buy")); await KeyInput(Key.Enter); net.Disconnect(expected: true); Require(!window.Visible && !Busy() && !NetBusy(), "Disconnect closes service and clears pending request");
             DetailCall(world, "ToggleCape"); GetWindow().Size = new Vector2I(1200, 850); await Capture("wide-viewport");
         }
-        finally { if (castleRestore is { } restore) ((System.Collections.Generic.Dictionary<int, Cape.CapeDef>)typeof(Cape).GetField("table", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null)!)[restore.Id] = restore.Def; DetailCall(world, "CapeWindow.Dispose"); layer.Free(); worldViewport.Free(); Cape.Enabled = capesEnabled; world.Free(); net.Free(); }
+        finally { if (castleRestore is { } restore) ((System.Collections.Generic.Dictionary<int, Cape.CapeDef>)typeof(Cape).GetField("table", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null)!)[restore.Id] = restore.Def; DetailCall(world, "CapeWindow.Dispose"); layer.Free(); worldViewport.Free(); Cape.Enabled = capesEnabled; world.Free(); PreviewNet.Release(net); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-cape.json", JsonSerializer.Serialize(new { nation, checks, screens, liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic cape audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

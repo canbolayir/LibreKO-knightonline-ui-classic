@@ -415,7 +415,7 @@ public partial class Preview
 
         System.IO.File.WriteAllText(System.IO.Path.Combine(output, prefix + "-verification.json"), JsonSerializer.Serialize(new { nation = prefix, localAssets = assets, groundAlpha = MykoQuestLayout.GroundAlpha, checks = checks.Count, checkList = checks, translucency, screens },
             new JsonSerializerOptions { WriteIndented = true }));
-        NpcPortraitCache.Clear(); tooltipLayer.Free(); layer.Free(); world.Free(); net.Free();
+        NpcPortraitCache.Clear(); tooltipLayer.Free(); layer.Free(); world.Free(); PreviewNet.Release(net);
         GD.Print($"MYKO_NPC_AUDIT_OK: {prefix}, {checks.Count} checks");
     }
 }

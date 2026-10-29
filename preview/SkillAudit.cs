@@ -268,7 +268,7 @@ public partial class Preview
         System.IO.File.WriteAllText(output+"/"+prefix+".json",JsonSerializer.Serialize(new {nation,pluginHash=Hash(pluginPath),clientHash=Hash(clientPath),
             renderer=RenderingServer.GetCurrentRenderingMethod(),captures,rules,checks,data="Real LibreKO skill data and gameplay bridge; controlled level/mastery points; one labelled long-description stress fixture"},new JsonSerializerOptions{WriteIndented=true}));
         GD.Print("SKILL_AUDIT_OK "+prefix+" captures="+captures.Count+" checks="+checks.Count+" refused="+string.Join(",",rules.Select(r=>JsonSerializer.Serialize(r))));
-        shell.Free();world.Free();net.Free();
+        shell.Free();world.Free();PreviewNet.Release(net);
         GC.Collect();GC.WaitForPendingFinalizers();
     }
 }

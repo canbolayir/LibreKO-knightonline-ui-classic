@@ -114,7 +114,7 @@ public partial class Preview
             await Click(Find<Button>("refresh")); Require((double)DetailField(world, "MerchantSearch.searchReadyAt")! == readyAfter, "Repeated Refresh respects the cooldown without resetting its deadline");
             await Click(Find<Button>("cancel")); Require(!window.Visible && !(bool)DetailField(world, "MerchantSearch.searchShown")!, "Actual Cancel follows native close callback");
         }
-        finally { layer.Free(); world.Free(); offline.Free(); }
+        finally { layer.Free(); world.Free(); PreviewNet.Release(offline); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-merchant-search.json", JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic merchant search audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

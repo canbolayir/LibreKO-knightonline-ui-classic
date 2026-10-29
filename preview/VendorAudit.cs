@@ -94,7 +94,7 @@ public partial class Preview
             approvalReference.SetText("text_msg",$"Buy 10 × {ItemData.DisplayName(entry.Id)}?\nTotal: {ItemData.BuyPrice(entry.Id)*10:n0} gold");
             await Frames(5);GetViewport().GetTexture().GetImage().SavePng(output+"/"+(nation==1?"karus":"human")+"-original-approval.png");
             System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+"-original-approval.json",JsonSerializer.Serialize(new{x=approvalReference.Position.X,y=approvalReference.Position.Y,width=approvalReference.Size.X,height=approvalReference.Size.Y}));
-            GD.Print("VENDOR_NATIVE_REFERENCE_OK");world.Free();net.Free();return;
+            GD.Print("VENDOR_NATIVE_REFERENCE_OK");world.Free();PreviewNet.Release(net);return;
         }
         var screens=new List<object>();var checks=new List<string>();var countBadges=new List<object>();
         void Require(bool valid,string message) { if(!valid) throw new Exception("VENDOR_AUDIT: "+message);checks.Add(message); }
@@ -590,6 +590,6 @@ public partial class Preview
         System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+".json",JsonSerializer.Serialize(report,new JsonSerializerOptions {WriteIndented=true}));
         GD.Print($"VENDOR_AUDIT_OK: nation={nation}; captures={screens.Count}; checks={checks.Count}");
         // World never enters the tree: this audit invokes real source controls without starting a game.
-        world.Free();net.Free();
+        world.Free();PreviewNet.Release(net);
     }
 }

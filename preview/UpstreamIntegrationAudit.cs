@@ -57,6 +57,6 @@ public partial class Preview
         var assembly=ProjectSettings.GlobalizePath("res://../bin/KnightOnlineUiClassic.dll");
         string Hash(string path)=>Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(path)));
         System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+"-verification.json",JsonSerializer.Serialize(new{pluginHash=Hash(assembly),clientHash=Hash(ProjectSettings.GlobalizePath("res://../../LibreKO/Client/.godot/mono/temp/bin/ExportRelease/LibreKO.dll")),screens,checks},new JsonSerializerOptions{WriteIndented=true}));
-        net.Free();GD.Print("UPSTREAM_INTEGRATION_AUDIT_OK "+checks.Count);
+        PreviewNet.Release(net);GD.Print("UPSTREAM_INTEGRATION_AUDIT_OK "+checks.Count);
     }
 }

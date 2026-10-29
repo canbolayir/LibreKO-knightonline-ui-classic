@@ -267,7 +267,7 @@ public partial class Preview
 
         System.IO.File.WriteAllText($"{output}/{prefix}-events-a.json", JsonSerializer.Serialize(new { nation, checks, screens, liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic events-a audit: " + checks.Count + " checks / " + screens.Count + " screens");
-        net.Free();
+        PreviewNet.Release(net);
     }
 
     private static Label TitleText(ClassicEventPanel panel) => panel.TitleLabel;

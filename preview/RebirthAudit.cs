@@ -193,7 +193,7 @@ public partial class Preview
             Require(!Busy() && !window.Visible && Game.Session.Self.Sheet.RebirthLevel == 5 && Enumerable.Range(0, 5).All(row => Game.Session.Self.Sheet.RebirthBonusAtRow(row) == capacity / 5),
                 "Accepted redistribution replaces the earned points and closes the service");
         }
-        finally { DetailCall(world, "Rebirth.Dispose"); layer.Free(); world.Free(); net.Free(); }
+        finally { DetailCall(world, "Rebirth.Dispose"); layer.Free(); world.Free(); PreviewNet.Release(net); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-rebirth.json", JsonSerializer.Serialize(new { nation, checks, screens, liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic rebirth audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

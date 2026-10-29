@@ -128,7 +128,7 @@ public partial class Preview
             Request("FreshTarget"); Reply(Snapshot("FreshTarget", nation)); GetWindow().Size = new Vector2I(1200, 850); window.Position = new Vector2(280, 130); await Capture("wide-viewport");
             for (int i = 0; i < 12; i++) { Request("Tester10"); Reply(Snapshot("Tester10", nation, empty: i % 2 == 0)); Require(Find<VBoxContainer>("inspect_stats").GetChildren().OfType<HBoxContainer>().Count() == 15, "Same-frame rebuild does not retain old stat rows " + i); }
         }
-        finally { layer.Free(); world.Free(); net.Free(); }
+        finally { layer.Free(); world.Free(); PreviewNet.Release(net); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-equipview.json", JsonSerializer.Serialize(new { nation, checks, screens, fixture = "Native read-only Equipment View callbacks, real controls and explicit offline snapshots", liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic equipment view audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

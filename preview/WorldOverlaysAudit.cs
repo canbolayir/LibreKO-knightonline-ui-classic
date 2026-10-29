@@ -345,7 +345,7 @@ public partial class Preview
         System.IO.File.WriteAllText(System.IO.Path.Combine(output, prefix + "-world-overlays.json"),
             JsonSerializer.Serialize(new { checks, failures, screenshots = screens, liveTransactions = false }, new JsonSerializerOptions { WriteIndented = true }));
         foreach (var layer in GetChildren().OfType<CanvasLayer>().ToArray()) layer.Free();
-        world.Free(); net.Free();
+        world.Free(); PreviewNet.Release(net);
         await Frames(2);
         if (failures.Count > 0) throw new Exception("WORLD_OVERLAYS_AUDIT failed: " + string.Join("; ", failures));
         GD.Print("WORLD_OVERLAYS_AUDIT_OK " + checks.Count);

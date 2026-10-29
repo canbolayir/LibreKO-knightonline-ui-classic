@@ -49,7 +49,10 @@ public partial class Preview
         string prefix = nation == 1 ? "karus" : "human";
         foreach (string pack in new[] { "knightonline.pck", "content/characters.pck", "content/armor.pck", "content/weapons.pck", "content/npcs.pck" })
             if (!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../build/client/source-content/" + pack), false)) throw new Exception("Missing existing pack " + pack);
-        GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1280, 800);
+        GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled;
+        // The HUD-button walk opens the large Power-Up Store and Character windows over the HUD; it runs on a 1600x1000 window
+        // (what 1280x800 is at the client's automatic 0.8 scale), where the windows leave the icon row free as on a full-size screen.
+        GetWindow().Size = hudButtons ? new Vector2I(1600, 1000) : new Vector2I(1280, 800);
         GetViewport().GuiEmbedSubwindows = true;
         var log = new AuditLog(); OS.AddLogger(log);
 
@@ -431,7 +434,7 @@ public partial class Preview
             GetViewport().Disable3D = false;
             net.Reconnect.AutoReconnect = false; net.Disconnect(expected: true); peer?.Close();
             if (GetTree().CurrentScene is WorldRoot current) { GetTree().CurrentScene = null; current.QueueFree(); await Frames(); }
-            GetTree().CurrentScene = this; net.Free(); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
+            GetTree().CurrentScene = this; PreviewNet.Release(net); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
             typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, originalLogin);
             OS.RemoveLogger(log);
         }

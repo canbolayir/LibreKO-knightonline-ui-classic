@@ -132,7 +132,7 @@ public partial class Preview
             Premium(0); DetailCall(world, "MarketPrice.OpenMarketPrice", 0); Require(!window.Visible && world.GetChildren().OfType<Notice>().Any(), "Premium gate retains original native notice");
             foreach (var notice in world.GetChildren().OfType<Notice>()) notice.Free();
         }
-        finally { layer.Free(); world.Free(); offline.Free(); }
+        finally { layer.Free(); world.Free(); PreviewNet.Release(offline); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-market-price.json", JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic market price audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

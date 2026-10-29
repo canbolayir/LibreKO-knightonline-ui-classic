@@ -147,7 +147,7 @@ public partial class Preview
         {
             net.Reconnect.AutoReconnect = false; net.Disconnect(expected: true);
             if (GetTree().CurrentScene is WorldRoot world) { GetTree().CurrentScene = null; world.QueueFree(); await Frames(); }
-            GetTree().CurrentScene = this; net.Free(); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
+            GetTree().CurrentScene = this; PreviewNet.Release(net); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
             typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, originalLogin);
         }
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-world-reconnect.json", JsonSerializer.Serialize(new { checks, fullWorldReconstruction = true, transport = "isolated loopback fixture", zone = "unbaked placeholder; no live server or account" }, new JsonSerializerOptions { WriteIndented = true }));

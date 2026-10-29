@@ -373,6 +373,6 @@ public partial class Preview
 
         System.IO.File.WriteAllText(output + "/" + prefix + "-progression.json",
             JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
-        offline.Free(); GD.Print("PROGRESSION_AUDIT_OK " + checks.Count);
+        PreviewNet.Release(offline); GD.Print("PROGRESSION_AUDIT_OK " + checks.Count);
     }
 }

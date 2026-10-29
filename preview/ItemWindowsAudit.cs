@@ -284,6 +284,6 @@ public partial class Preview
         System.IO.File.WriteAllText(output + "/" + prefix + (lists ? "-item-lists.json" : "-item-windows.json"),
             JsonSerializer.Serialize(new { nation, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print((lists ? "ITEM_LISTS_AUDIT_OK " : "ITEM_WINDOWS_AUDIT_OK ") + checks.Count + " checks / " + screens.Count + " screens");
-        net.Free();
+        PreviewNet.Release(net);
     }
 }
