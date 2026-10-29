@@ -109,4 +109,73 @@ public sealed partial class WorldPreview
         }
         return DetachPreviewControl(Native.Get<HudWindow>(board, "CbWindow")!);
     }
+
+    /// <summary>The leader transfer window as a chief sees it: three co-leaders, Velkan preselected.</summary>
+    public Control BuildClanHandover()
+    {
+        ItemData.EnsureLoaded();
+        Native.Call(Game.Session.Clan, "SeedPreview", PreviewClan(asChief: true));
+        var handover = Feature("ClanHandover");
+        Native.Set(handover, "HandoverPreselect", "Velkan");
+        byte ok = Native.Get<byte>(handover.GetType(), "HandoverListOk");
+        Native.Call(handover, "ShowHandoverWindow", ok, new List<string> { "Aurelia", "Velkan", "Morgrim" });
+        return DetachPreviewControl(Native.Get<HudWindow>(handover, "HandoverWindow")!);
+    }
+
+    /// <summary>A whisper window with Tester10, or two folded whispers (one with a long name) stacked.</summary>
+    public Control BuildWhisper(bool minimized = false)
+    {
+        ItemData.EnsureLoaded();
+        EnsureChat();
+        var whispers = Feature("Whispers");
+        if (Native.Get<object>(whispers, "whisperLayer") == null) Native.Call(whispers, "Build");
+        SeedWhisperTimeline();
+        // As a whisper the player opens: shown, unfolded and raised.
+        Native.Call(whispers, "OpenWhisperWith", PreviewWhisperPartner);
+        Native.TryCall(whispers, "OnDirectTimeline", out _, PreviewWhisperPartner);
+        var chat = Native.Call(whispers, "GetOrCreateWhisper", PreviewWhisperPartner, false, null)!;
+        var window = Native.Get<HudWindow>(chat, "Window")!;
+        // The client stacks unplaced whispers above its chat panel, which a preview World never lays out (it sits at the
+        // origin, so the stack hides the window); the preview places the whisper as a player would.
+        Native.Call(window.Layout, "Place", new Vector2(360, 120), window.Size);
+        window.Visible = true;
+        if (!minimized) return DetachPreviewControl(window);
+        window.SetMinimized(true);
+        var longName = Native.Call(whispers, "GetOrCreateWhisper", "Bartholomew the Third", true, null)!;
+        var stack = new VBoxContainer();
+        stack.AddThemeConstantOverride("separation", 8);
+        stack.AddChild(DetachPreviewControl(window));
+        stack.AddChild(DetachPreviewControl(Native.Get<HudWindow>(longName, "Window")!));
+        return stack;
+    }
+
+    private const string PreviewWhisperPartner = "Rikka";
+    private const int PreviewWhisperPartnerId = 9001, PreviewSelfId = 42;
+
+    /// <summary>A direct conversation with Rikka: the connection notice and twelve lines (posts 201-212), both sides.</summary>
+    private void SeedWhisperTimeline()
+    {
+        if (Native.Get<int>(_world, "Avatar.CharId") == 0) Native.Set(_world, "Avatar.CharId", PreviewSelfId);
+        int self = Native.Get<int>(_world, "Avatar.CharId");
+        var timeline = Game.Session.RoomMedia.DirectTimeline(PreviewWhisperPartner);
+        if (timeline.Posts.Count > 0) return;
+        // Yesterday's and today's lines, so the thread shows two day markers.
+        var start = DateTime.Now.Date.AddDays(-1).AddHours(21);
+        timeline.Add(RoomPost.Notice(ItemData.Text(0, "Successfully connected for a private chat"), start) with { Id = 200 });
+        string[] lines =
+        {
+            "hey, are you farming Ronark?", "yep, west side by the bridge. bring pots", "omw (Smile)", "invite me when you get here",
+            "which channel are you on?", "channel 2, near the north gate", "ok give me a sec, repairing", "no rush, I'll hold the spot",
+            "ready, invite me", "also got something for you", "nice, thanks! how much do you want for it?", "free, you helped last week",
+        };
+        for (int i = 0; i < lines.Length; i++)
+        {
+            bool mine = i % 2 == 1;
+            var post = RoomPost.Line(mine ? self : PreviewWhisperPartnerId, mine ? "Me" : PreviewWhisperPartner, lines[i], (i < 6 ? start.AddMinutes(i) : DateTime.Now.AddMinutes(i - 20))) with { Id = 201 + i };
+            // Three reacted posts: one each way and one with both reactions.
+            if (post.Id is 203 or 207) post.Reactions.Set(mine ? PreviewWhisperPartnerId : self, mine ? PreviewWhisperPartner : "Me", "\u2764");
+            if (post.Id == 210) { post.Reactions.Set(self, "Me", "\U0001F44D"); post.Reactions.Set(PreviewWhisperPartnerId, PreviewWhisperPartner, "\U0001F44D"); }
+            timeline.Add(post);
+        }
+    }
 }

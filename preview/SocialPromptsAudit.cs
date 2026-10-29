@@ -114,7 +114,7 @@ public partial class Preview
             var expanded = (Control)thread.GetParent();
             var open = Plugin.Kit.Layout("co_whisper_open_us");
             var actions = Descendants(surface).OfType<Button>().Where(b => b.Name.ToString().StartsWith("whisper_action_")).ToArray();
-            Require(actions.Length == 3 && actions.All(a => a.IsVisibleInTree() && new Rect2(0, 0, 304, 24).Encloses(a.GetRect())), "whisper: the client's three header actions sit on the original title bar");
+            Require(actions.Length == 3 && actions.All(a => a.IsVisibleInTree() && new Rect2(0, 0, 304, 24).Encloses(a.GetRect())), $"whisper: the client's three header actions sit on the original title bar ({actions.Length}; minimized {window.Minimized}; hidden {string.Join(",", actions.Take(1).SelectMany(a => Ancestry(a)).OfType<CanvasItem>().Where(c => !c.Visible).Select(c => c.Name))})");
             var title = Descendants(surface).OfType<Label>().First(l => l.Text == "Rikka" && l.IsVisibleInTree());
             Require(title.GetRect().End.X <= actions[0].Position.X, "whisper: the title stops before the header actions");
 

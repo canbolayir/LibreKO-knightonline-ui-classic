@@ -34,7 +34,7 @@ public partial class Preview : Control
             // The client's GameContent autoload installs its data loaders (items, skills, quests, NPC names); without it every table loads empty.
             Native.Call(Native.StaticOwner("LibreKO.Content.ContentLoaders"), "Install");
             // The client boots Game.Session and Game.Requests when its network node enters the tree; the audits read both.
-            if(Game.Session==null)AddChild(new LibreKO.Network.Net{Name="preview_net"});
+            if(Game.Session==null)AddChild(new LibreKO.Network.Net{Name=PreviewNet.BootName});
             // Config.Load (run by the network node) scales the UI to 0.8 below 860 px of window height, as the client does on a small
             // screen; the previews measure and sample their screenshots at 1:1, so the scale is chosen at 1.
             typeof(Config).GetProperty(nameof(Config.UiScale))!.SetValue(null,1f);typeof(Config).GetProperty(nameof(Config.UiScaleChosen))!.SetValue(null,true);Config.ApplyUiScale();
