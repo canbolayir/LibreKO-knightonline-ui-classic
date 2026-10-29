@@ -38,6 +38,7 @@ public partial class Preview : Control
             // Config.Load (run by the network node) scales the UI to 0.8 below 860 px of window height, as the client does on a small
             // screen; the previews measure and sample their screenshots at 1:1, so the scale is chosen at 1.
             typeof(Config).GetProperty(nameof(Config.UiScale))!.SetValue(null,1f);typeof(Config).GetProperty(nameof(Config.UiScaleChosen))!.SetValue(null,true);Config.ApplyUiScale();
+            GD.Print($"[preview] window on screen {GetWindow().CurrentScreen} at {GetWindow().Position}");
             HudLayout.PersistLayouts=false;
             PluginSettings.Enabled=false;
             // The bundled 2.x art (assets/myko) is the default; the *-fallback-audit modes run with it turned off to check the Classic fallback.

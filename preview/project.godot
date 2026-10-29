@@ -8,6 +8,7 @@ window/size/viewport_height=1080
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+window/size/no_focus=true
 [dotnet]
 project/assembly_name="Preview"
 [rendering]
