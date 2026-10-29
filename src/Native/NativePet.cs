@@ -17,7 +17,12 @@ public static partial class NativeSetup
         FamiliarBar.Watch();
     }
 
-    /// <summary>The World that built a native window: the target of its close handler.</summary>
+    /// <summary>
+    /// The World that built a native window: the target of its close handler, or, since the client architecture port,
+    /// the World context of the feature whose handler it is.
+    /// </summary>
     private static WorldRoot? OwnerOf(HudWindow window) =>
-        Native.Get<Action>(window, "Closed")?.GetInvocationList().Select(handler => handler.Target).OfType<WorldRoot>().FirstOrDefault();
+        Native.Get<Action>(window, "Closed")?.GetInvocationList().Select(handler => handler.Target)
+            .Select(target => target as WorldRoot ?? (target != null && Native.Has(target, "context") ? Native.Get<object>(target, "context") as WorldRoot : null))
+            .FirstOrDefault(world => world != null);
 }
