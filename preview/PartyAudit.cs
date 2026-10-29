@@ -32,7 +32,7 @@ public partial class Preview
         // The party window is gone upstream: the Classic party list replaces the client's party HUD and is
         // driven by the plugin party API the client's bridge implements.
         SetField("Avatar.CharId",300);
-        Call("Party.BuildHud"); var social=Native.Get<object>(Native.Call(world,"CreatePluginAdapters")!,"Social")!;Native.Call(LibreKO.Plugins.PluginHost.Game,"AttachSocial",social,social,social);Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"AttachSocial",social,social,social);Native.Call(LibreKO.Plugins.PluginHost.Game,"AttachWarp",social); Game.Session.Self.Vitals.Seed(3100,3400,2500,2800);
+        Call("Party.BuildHud"); var adapters=Native.Call(world,"CreatePluginAdapters")!;Native.Call(world,"PluginBridge.Connect",adapters);var social=Native.Get<object>(adapters,"Social")!;Native.Call(LibreKO.Plugins.PluginHost.Game,"AttachSocial",social,social,social);Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"AttachSocial",social,social,social);Native.Call(LibreKO.Plugins.PluginHost.Game,"AttachWarp",social); Game.Session.Self.Vitals.Seed(3100,3400,2500,2800);
         var hudLayer=new CanvasLayer{Layer=64};AddChild(hudLayer);
         var partyPanel=new ClassicPartyHud(LibreKO.Plugins.PluginHost.Game.Party,()=>world);hudLayer.AddChild(partyPanel);
         Call("SeekParty.BuildSeekPanel");Field<CanvasLayer>("SeekParty.seekLayer").Reparent(this);
@@ -174,7 +174,7 @@ public partial class Preview
         Check(buffIds.Count>=9,"installed skill table offers buff skills with art ("+buffIds.Count+")");
         typeof(Net).GetProperty("PingMs")!.SetValue(net,42);
         Game.Session.Self.Sheet.SeedProgress(70,4520,10000);
-        Call("Party.RefreshUI");Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"RaiseParty");await Settled();
+        Call("Party.RefreshUI");await Settled();
         Check(PartyTree(partyPanel).OfType<Button>().Single(b=>b.Name=="party_leave").Text=="Disband",$"leader: Leave reads Disband (kit {KnightOnlineUiClassic.Plugin.Kit.Game.Party.IsLeader}, host {LibreKO.Plugins.PluginHost.Game.Party.IsLeader}, avatar {Native.Get<int>(world,"Avatar.CharId")}, first {(Game.Session.Party.Members.Count > 0 ? Game.Session.Party.Members[0].CharId : -1)}, members {Game.Session.Party.Members.Count}, text '{PartyTree(partyPanel).OfType<Button>().Single(b=>b.Name=="party_leave").Text}', inTree {partyPanel.IsInsideTree()}, huds {Descendants(GetTree().Root).OfType<KnightOnlineUiClassic.Windows.ClassicPartyHud>().Count()}, panel {partyPanel.GetType().Name})");
         Check(party.PingMs(300)==42 && party.PingMs(306)==PartySignal.Unknown && party.PingMs(305)==PartySignal.NoSignal && Math.Abs(party.LevelPercent(300)-45.2)<.001 && Math.Abs(party.LevelPercent(303)-88)<.001,
             "party API: the client's pings (own, unknown, no signal) and level progress");
@@ -237,12 +237,12 @@ public partial class Preview
         Check(!commander.Visible,"commander restore hidden while the bar shows");
         Native.Set(Game.Session.Party, "PartyCommanderId",300);
         SetField("PartyCommander.commanderUserHidden",true);
-        Call("Party.RefreshUI");Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"RaiseParty");await Settled();
+        Call("Party.RefreshUI");await Settled();
         Check(party.CommanderBarHidden && commander.Visible,"commander: the restore action shows while the commander hid the bar");
         await Capture("commander-restore");
         commander.EmitSignal(BaseButton.SignalName.Pressed);await Settled();
         Check(!party.CommanderBarHidden && !commander.Visible,"commander: the action shows the client's commander bar again");
-        Native.Set(Game.Session.Party, "PartyCommanderId",-1);Call("Party.RefreshUI");Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"RaiseParty");await Settled();
+        Native.Set(Game.Session.Party, "PartyCommanderId",-1);Call("Party.RefreshUI");await Settled();
         partyPanel.GetNode<ClassicPartyHudRow>("party_member_3").EmitSignal(Control.SignalName.GuiInput,new InputEventMouseButton{Pressed=true,ButtonIndex=MouseButton.Left});
         await Settled();
         Check(Field<int>("Party.Pick") == 303,"left click picks the member natively without targeting a different entity");
@@ -276,7 +276,7 @@ public partial class Preview
         PressMeter();await Settled();
         Check(Config.PartyRowMeter==PartyBoardMeterMode.Off && meter.Text=="Meter: Off","Meter: off again");
         var statuses=(Dictionary<int,HashSet<byte>>)Native.Get<object>(Game.Session.Party, "status")!;
-        statuses[302]=new HashSet<byte>{2,4};Call("Party.RefreshUI");Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"RaiseParty");await Settled();
+        statuses[302]=new HashSet<byte>{2,4};Call("Party.RefreshUI");await Settled();
         Check(partyPanel.GetNode<ClassicPartyHudRow>("party_member_2").Member.HpColour!=partyPanel.GetNode<ClassicPartyHudRow>("party_member_1").Member.HpColour,"status members show the native HP look");
         var seekRows=Field<VBoxContainer>("SeekParty.seekListBox").GetChildren().OfType<Control>().ToArray();
         seekRows[2].EmitSignal(Control.SignalName.GuiInput,new InputEventMouseButton{Pressed=true,ButtonIndex=MouseButton.Left});
@@ -300,8 +300,8 @@ public partial class Preview
         Check(((LibreKO.Domain.PartyBoardFilter)Native.Get<object>(world, "SeekParty.seekFilter")!).SameZone,"filter check runs the native board filter");
         sameZone.ButtonPressed=false;
         PartyTree(boardPanel).OfType<Button>().Single(b=>b.Name=="seek_filter_toggle").EmitSignal(BaseButton.SignalName.Pressed);
-        Game.Session.Party.SeedPreview(members.Take(2).ToArray());Call("Party.RefreshUI");Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"RaiseParty");await Capture("two-members");
-        Game.Session.Party.SeedPreview();Call("Party.RefreshUI");Native.Call(KnightOnlineUiClassic.Plugin.Kit.Game,"RaiseParty");Call("OnBbsList",0,0,new List<PartyBbsEntry>());await Capture("empty");
+        Game.Session.Party.SeedPreview(members.Take(2).ToArray());Call("Party.RefreshUI");await Capture("two-members");
+        Game.Session.Party.SeedPreview();Call("Party.RefreshUI");Call("OnBbsList",0,0,new List<PartyBbsEntry>());await Capture("empty");
         Check(PartyTree(boardPanel).OfType<Button>().Single(b=>b.Text=="Private").Disabled,"empty: stale private message disabled");
         Check(!PartyTree(boardPanel).OfType<Button>().Single(b=>b.Text=="Invite").Disabled,"empty: Invite stays available for invite by name");
         // Full Moon Rift board (3277df5 Auto Entry): the client's actions in the filter panel.
