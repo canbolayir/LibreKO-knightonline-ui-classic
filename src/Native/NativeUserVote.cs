@@ -37,10 +37,10 @@ public static class NativeUserVote
         if (vote.AskReason.Length > 0) return vote.AskReason;
         // The plugin's facade forwards to the client's bridge, possibly through another facade proxy.
         object? bridge = vote;
-        for (int depth = 0; depth < 4 && bridge != null && !Native.Has(bridge, "_w"); depth++)
+        for (int depth = 0; depth < 4 && bridge != null && !Native.Has(bridge, "world"); depth++)
             bridge = Native.Has(bridge, "Source") ? Native.Get<object>(bridge, "Source") : null;
-        if (bridge == null || Native.Get<LibreKO.World>(bridge, "_w") is not { } world
-            || Native.Get<object>(world, "_userVoteAskShown") is not UserVoteAsk ask) return "";
+        if (bridge == null || Native.Get<LibreKO.Scene.WorldRoot>(bridge, "world") is not { } world
+            || Native.Get<object>(world, "UserVoteWindow.askShown") is not UserVoteAsk ask) return "";
         return ask.Reason is >= 1 and < UserVote.ReasonOther ? Captions[ask.Reason - 1] : "";
     }
 }

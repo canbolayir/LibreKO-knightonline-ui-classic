@@ -25,14 +25,14 @@ public static class NativeCommandList
     internal static void Register() => NativeWindows.Prepare("command_list", Prepare);
 
     /// <summary>Names the native lists, reads the client's rows and hands both to the Classic window.</summary>
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         PlaceAndEscape(window, world);
         if (window.HasMeta(Gate)) return;
-        var groups = Native.Get<ItemList>(world, "_cmdGroups");
-        var entries = Native.Get<ItemList>(world, "_cmdEntries");
-        if (groups == null || entries == null || Native.Get<IList>(world, "_cmdShown") == null) return;
-        if (!Native.HasMethod(world, "FillCommandEntries") || Native.ClientType("LibreKO.Domain.CommandCatalog") == null) return;
+        var groups = Native.Get<ItemList>(world, "CommandList.Groups");
+        var entries = Native.Get<ItemList>(world, "CommandList.entries");
+        if (groups == null || entries == null || Native.Get<IList>(world, "CommandList.cmdShown") == null) return;
+        if (!Native.HasMethod(world, "CommandList.FillEntries") || Native.ClientType("LibreKO.Domain.CommandCatalog") == null) return;
         NativeWindows.Name(groups, "command_client_groups");
         NativeWindows.Name(entries, "command_entries");
         window.SetMeta(WorldMeta, world);
@@ -42,25 +42,25 @@ public static class NativeCommandList
     /// <summary>The World whose command list the window shows (the skin binds once the gate is set).</summary>
     public const string WorldMeta = "classic_command_world";
 
-    public static ItemList? Groups(World world) => Native.Get<ItemList>(world, "_cmdGroups");
-    public static ItemList? Entries(World world) => Native.Get<ItemList>(world, "_cmdEntries");
+    public static ItemList? Groups(WorldRoot world) => Native.Get<ItemList>(world, "CommandList.Groups");
+    public static ItemList? Entries(WorldRoot world) => Native.Get<ItemList>(world, "CommandList.entries");
 
     /// <summary>
     /// Every command of the client's catalog in catalog order, read from the rows the client builds for each of
     /// its groups (so names, hints and the "not available yet" state stay the client's). The client's list
     /// is left showing its selected group.
     /// </summary>
-    public static List<Row> Read(World world)
+    public static List<Row> Read(WorldRoot world)
     {
         var rows = new List<Row>();
         var catalog = Native.ClientType("LibreKO.Domain.CommandCatalog");
         var entries = Entries(world);
         if (catalog == null || entries == null || Native.Get<Array>(catalog, "Groups") is not { } groups) return rows;
-        Color unavailable = Native.Get<Color>(typeof(World), "CommandUnavailableColour");
+        Color unavailable = Native.Get<Color>(Native.StaticOwner("LibreKO.Features.Windows.CommandListFeature"), "UnavailableColour");
         foreach (var group in groups)
         {
-            Native.Call(world, "FillCommandEntries", group);
-            if (Native.Get<IList>(world, "_cmdShown") is not { } shown) break;
+            Native.Call(world, "CommandList.FillEntries", group);
+            if (Native.Get<IList>(world, "CommandList.cmdShown") is not { } shown) break;
             for (int i = 0; i < shown.Count && i < entries.ItemCount; i++)
             {
                 object entry = shown[i]!;
@@ -74,7 +74,7 @@ public static class NativeCommandList
     }
 
     /// <summary>The client's title of one of its groups (its catalog text), or null when the client has no such group.</summary>
-    public static string? GroupTitle(World world, string clientGroup)
+    public static string? GroupTitle(WorldRoot world, string clientGroup)
     {
         if (Groups(world) is not { } list || Native.ClientType("LibreKO.Domain.CommandCatalog") is not { } catalog
             || Native.Get<Array>(catalog, "Groups") is not { } groups) return null;
@@ -84,21 +84,21 @@ public static class NativeCommandList
     }
 
     /// <summary>Shows the client's selected group again, as the client itself would.</summary>
-    public static void Restore(World world)
+    public static void Restore(WorldRoot world)
     {
         if (Groups(world) is not { } list || list.ItemCount == 0) return;
         int[] picked = list.GetSelectedItems();
         if (Native.ClientType("LibreKO.Domain.CommandCatalog") is { } catalog && Native.Get<Array>(catalog, "Groups") is { } groups)
-            Native.Call(world, "FillCommandEntries", groups.GetValue(picked.Length > 0 ? picked[0] : 0));
+            Native.Call(world, "CommandList.FillEntries", groups.GetValue(picked.Length > 0 ? picked[0] : 0));
     }
 
     /// <summary>
     /// Shows <paramref name="rows"/> in the client's command list. The client's <c>_cmdShown</c> receives the
     /// same entries in the same order, so the client's activation handler runs the row that was clicked.
     /// </summary>
-    public static void Show(World world, IReadOnlyList<Row> rows, Action<ItemList, int, Row> style)
+    public static void Show(WorldRoot world, IReadOnlyList<Row> rows, Action<ItemList, int, Row> style)
     {
-        if (Entries(world) is not { } list || Native.Get<IList>(world, "_cmdShown") is not { } shown) return;
+        if (Entries(world) is not { } list || Native.Get<IList>(world, "CommandList.cmdShown") is not { } shown) return;
         list.Clear();
         shown.Clear();
         foreach (var row in rows)
@@ -120,20 +120,18 @@ public static class NativeCommandList
     /// brings it back here. The client's Escape order has no entry for the command list; the entry goes ahead of
     /// the main windows and the whispers (its last two entries).
     /// </summary>
-    private static void PlaceAndEscape(HudWindow window, World world)
+    private static void PlaceAndEscape(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta(PlacedMeta)) return;
         window.SetMeta(PlacedMeta, true);
         window.DockTo(() => OpenSpot(window, world));
-        const int TrailingEntries = 2;
-        if (Native.Get<List<(Func<bool> IsOpen, Action Close)>>(world, "_escapeStack") is not { } stack) return;
         bool Open() => GodotObject.IsInstanceValid(window) && window.Visible;
         void Close() { if (GodotObject.IsInstanceValid(window)) window.Visible = false; }
-        stack.Insert(Math.Max(0, stack.Count - TrailingEntries), (Open, Close));
+        NativeEscape.CloseOnEscape(world, Open, Close);
     }
 
     /// <summary>Where the window opens now: <see cref="ClassicCommandListLayout.OpenSpot"/> for this screen and HUD.</summary>
-    public static Vector2 OpenSpot(HudWindow window, World world)
+    public static Vector2 OpenSpot(HudWindow window, WorldRoot world)
     {
         if (!GodotObject.IsInstanceValid(window)) return Vector2.Zero;
         if (!window.IsInsideTree()) return window.Position;
@@ -151,7 +149,7 @@ public static class NativeCommandList
     /// The HUD the window should not cover: the Classic HUD parts (party list, Info, taskbar, …), the client's Genie
     /// quick panel and the client's own docking obstacles (clock, premium chip, …).
     /// </summary>
-    public static List<Rect2> HudRects(World world)
+    public static List<Rect2> HudRects(WorldRoot world)
     {
         var rects = new List<Rect2>();
         if (!world.IsInsideTree()) return rects;
@@ -163,13 +161,13 @@ public static class NativeCommandList
             foreach (var part in hud.GetChildren().OfType<Control>())
                 if (part.IsVisibleInTree()) rects.Add(part.GetGlobalRect());
         }
-        if (Native.Get<Control>(world, "_genieSub") is { } genie && GodotObject.IsInstanceValid(genie) && genie.IsVisibleInTree()) rects.Add(genie.GetGlobalRect());
+        if (Native.Get<Control>(world, "GenieSub.Sub") is { } genie && GodotObject.IsInstanceValid(genie) && genie.IsVisibleInTree()) rects.Add(genie.GetGlobalRect());
         try { if (Native.TryCall(world, "DockHudRects", out var dock) && dock is IEnumerable<Rect2> client) rects.AddRange(client); }
         catch (Exception) { }
         return rects.Where(r => r.HasArea()).ToList();
     }
 
-    private static bool UnderWorldLayer(Node node, World world)
+    private static bool UnderWorldLayer(Node node, WorldRoot world)
     {
         for (Node? child = node, parent = node.GetParent(); parent != null; child = parent, parent = parent.GetParent())
             if (parent == world) return child is CanvasLayer && child != node;
@@ -177,7 +175,7 @@ public static class NativeCommandList
     }
 
     /// <summary>Runs a listed row the way a double click does (the client's <c>ItemActivated</c> handler).</summary>
-    public static void Activate(World world, int index)
+    public static void Activate(WorldRoot world, int index)
     {
         if (Entries(world) is { } list) list.EmitSignal(ItemList.SignalName.ItemActivated, (long)index);
     }

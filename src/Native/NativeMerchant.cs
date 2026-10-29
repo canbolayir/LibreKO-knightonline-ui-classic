@@ -34,9 +34,9 @@ public static class NativeMerchant
         public CanvasLayer? Advert;
     }
 
-    private static readonly ConditionalWeakTable<World, State> _states = new();
+    private static readonly ConditionalWeakTable<WorldRoot, State> _states = new();
 
-    private static State StateOf(World world) => _states.GetOrCreateValue(world);
+    private static State StateOf(WorldRoot world) => _states.GetOrCreateValue(world);
 
     private sealed class CellInput
     {
@@ -47,9 +47,9 @@ public static class NativeMerchant
     private static readonly ConditionalWeakTable<Control, CellInput> _cells = new();
     private static int _drags;
 
-    public static CanvasLayer? AdvertLayer(World world) => StateOf(world).Advert;
+    public static CanvasLayer? AdvertLayer(WorldRoot world) => StateOf(world).Advert;
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta("native_merchant")) return;
         window.SetMeta("native_merchant", true);
@@ -57,30 +57,30 @@ public static class NativeMerchant
         switch (window.Id)
         {
             case "sellstall":
-                Cells(world, "_sellStallCells", index => Native.Call(world, "UnstageStallItem", index), (bag, slot) => StageStallItemAt(world, bag, slot));
-                Cells(world, "_sellBagCells", index => Native.Call(world, "StageStallItem", index));
+                Cells(world, "Merchant.SellStallCells", index => Native.Call(world, "Merchant.UnstageStallItem", index), (bag, slot) => StageStallItemAt(world, bag, slot));
+                Cells(world, "Merchant.sellBagCells", index => Native.Call(world, "Merchant.StageStallItem", index));
                 if (Native.Descendants(window.Body).OfType<Button>().FirstOrDefault(b => b.Text == "Confirm") is { } confirm)
                     NativeVendor.Rewire(confirm, () => ConfirmSellStall(world));
                 window.VisibilityChanged += () =>
                 {
                     if (window.Visible) return;
                     if (StateOf(world).Advert is { } advert) advert.Visible = false;
-                    Native.Call(world, "CloseAmountPrompt");
+                    Native.Call(world, "Merchant.CloseAmountPrompt");
                 };
                 break;
             case "shop":
-                Cells(world, "_shopCells");
-                Cells(world, "_shopBagCells");
+                Cells(world, "Merchant.shopCells");
+                Cells(world, "Merchant.shopBagCells");
                 break;
             case "wishlist":
-                Cells(world, "_wishCells");
+                Cells(world, "MerchantBuy.wishCells");
                 break;
             case "wishfind":
-                window.VisibilityChanged += () => { if (!window.Visible) Native.Call(world, "CloseAmountPrompt"); };
+                window.VisibilityChanged += () => { if (!window.Visible) Native.Call(world, "Merchant.CloseAmountPrompt"); };
                 break;
             case "wantedstall":
-                Cells(world, "_wantedCells", null, (bag, wanted) => SellToWanted(world, bag, wanted));
-                Cells(world, "_wantedBagCells", bag => SellToFirstOrder(world, bag));
+                Cells(world, "MerchantBuy.wantedCells", null, (bag, wanted) => SellToWanted(world, bag, wanted));
+                Cells(world, "MerchantBuy.wantedBagCells", bag => SellToFirstOrder(world, bag));
                 break;
         }
         NativeWindows.Sync(window, () =>
@@ -91,7 +91,7 @@ public static class NativeMerchant
     }
 
     /// <summary>The amount prompt and advertisement layers and the stall signs, shared by every merchant window.</summary>
-    public static void PrepareWorld(World world)
+    public static void PrepareWorld(WorldRoot world)
     {
         var state = StateOf(world);
         if (state.Prepared) return;
@@ -99,22 +99,22 @@ public static class NativeMerchant
         PrepareAmount(world);
         BuildAdvert(world, state);
         WatchSigns(world);
-        Native.Get<CanvasLayer>(world, "_mctLayer")?.AddChild(new NativeMerchantDragWatch { Name = "native_merchant_drags" });
+        Native.Get<CanvasLayer>(world, "Merchant.ServiceLayer")?.AddChild(new NativeMerchantDragWatch { Name = "native_merchant_drags" });
     }
 
     /// <summary>Names the amount prompt for the Classic prompt skin and validates its quantity and price.</summary>
-    public static void PrepareAmount(World world)
+    public static void PrepareAmount(WorldRoot world)
     {
-        if (Native.Get<CanvasLayer>(world, "_amountLayer") is not { } layer || layer.HasMeta("merchant_amount")) return;
+        if (Native.Get<CanvasLayer>(world, "Merchant.AmountLayer") is not { } layer || layer.HasMeta("merchant_amount")) return;
         layer.SetMeta("merchant_amount", true);
         layer.SetMeta("merchant_error", "");
-        if (Native.Get<Control>(world, "_amountMarketRow") is { } row)
+        if (Native.Get<Control>(world, "Merchant.amountMarketRow") is { } row)
         {
             row.Name = "merchant_market_row";
             if (row.GetChildren().OfType<Button>().FirstOrDefault() is { } history) history.Name = "merchant_market_history";
         }
-        NativeWindows.Name(Native.Get<Label>(world, "_amountMarketHint"), "merchant_market_hint");
-        if (Native.Get<Button>(world, "_amountConfirmBtn") is { } confirm) NativeVendor.Rewire(confirm, () => AcceptAmount(world));
+        NativeWindows.Name(Native.Get<Label>(world, "Merchant.amountMarketHint"), "merchant_market_hint");
+        if (Native.Get<Button>(world, "Merchant.amountConfirmBtn") is { } confirm) NativeVendor.Rewire(confirm, () => AcceptAmount(world));
         layer.VisibilityChanged += () =>
         {
             if (!layer.Visible) return;
@@ -127,27 +127,27 @@ public static class NativeMerchant
         SyncAmount(world);
     }
 
-    private static void SyncAmount(World world)
+    private static void SyncAmount(WorldRoot world)
     {
-        if (Native.Get<CanvasLayer>(world, "_amountLayer") is not { } layer) return;
+        if (Native.Get<CanvasLayer>(world, "Merchant.AmountLayer") is not { } layer) return;
         // The Classic prompt moves and hides the price editor itself; the fixed price label is untouched.
-        layer.SetMeta(HotNames.MerchantPriceEditable, Native.Get<Control>(world, "_amountPriceFixed")?.Visible == false);
-        layer.SetMeta(HotNames.MerchantQuantity, Native.Get<Control>(world, "_amountCountRow")?.Visible == true);
-        layer.SetMeta(HotNames.MerchantMarketAvailable, Native.Get<Control>(world, "_amountMarketRow")?.Visible == true);
-        layer.SetMeta(HotNames.MerchantMarketOpen, Native.Get<bool>(world, "_marketPriceShown"));
+        layer.SetMeta(HotNames.MerchantPriceEditable, Native.Get<Control>(world, "Merchant.amountPriceFixed")?.Visible == false);
+        layer.SetMeta(HotNames.MerchantQuantity, Native.Get<Control>(world, "Merchant.amountCountRow")?.Visible == true);
+        layer.SetMeta(HotNames.MerchantMarketAvailable, Native.Get<Control>(world, "Merchant.amountMarketRow")?.Visible == true);
+        layer.SetMeta(HotNames.MerchantMarketOpen, Native.Get<bool>(world, "MarketPrice.marketPriceShown"));
         // Opening or closing price history changes which keys the prompt may use in the same frame.
-        if (Native.Get<HudWindow>(world, "_marketPricePanel") is { } market && !market.HasMeta(HotNames.NativeMerchantMarket))
+        if (Native.Get<HudWindow>(world, "MarketPrice.MarketPricePanel") is { } market && !market.HasMeta(HotNames.NativeMerchantMarket))
         {
             market.SetMeta(HotNames.NativeMerchantMarket, true);
             market.VisibilityChanged += () => SyncAmount(world);
         }
     }
 
-    private static void AcceptAmount(World world)
+    private static void AcceptAmount(WorldRoot world)
     {
-        if (Native.Get<CanvasLayer>(world, "_amountLayer") is not { } layer) return;
+        if (Native.Get<CanvasLayer>(world, "Merchant.AmountLayer") is not { } layer) return;
         SyncAmount(world);
-        var count = Native.Get<SpinBox>(world, "_amountCount");
+        var count = Native.Get<SpinBox>(world, "Merchant.amountCount");
         int amount = 1;
         if (layer.GetMeta("merchant_quantity", false).AsBool() && count != null
             && (!int.TryParse(count.GetLineEdit().Text.Trim(), out amount) || amount < 1 || amount > count.MaxValue))
@@ -155,18 +155,18 @@ public static class NativeMerchant
             layer.SetMeta("merchant_error", "Enter a valid quantity.");
             return;
         }
-        if (layer.GetMeta("merchant_price_editable", false).AsBool() && Native.Get<MoneyEdit>(world, "_amountPrice")?.Value < 1)
+        if (layer.GetMeta("merchant_price_editable", false).AsBool() && Native.Get<MoneyEdit>(world, "Merchant.AmountPrice")?.Value < 1)
         {
             layer.SetMeta("merchant_error", "Enter a valid price.");
             return;
         }
         if (layer.GetMeta("merchant_quantity", false).AsBool() && count != null) count.Value = amount;
-        Native.Call(world, "AcceptAmount");
+        Native.Call(world, "Merchant.AcceptAmount");
     }
 
-    private static void BuildAdvert(World world, State state)
+    private static void BuildAdvert(WorldRoot world, State state)
     {
-        if (Native.Get<LineEdit>(world, "_sellAdvert") is not { } edit) return;
+        if (Native.Get<LineEdit>(world, "Merchant.SellAdvert") is not { } edit) return;
         var layer = new CanvasLayer { Name = "merchant_advert", Layer = 77, Visible = false };
         layer.SetMeta("merchant_advert", true);
         layer.SetMeta("merchant_advert_edit", edit);
@@ -189,11 +189,11 @@ public static class NativeMerchant
     }
 
     /// <summary>Opening a Classic selling stall first asks for its advertisement.</summary>
-    public static void ConfirmSellStall(World world)
+    public static void ConfirmSellStall(WorldRoot world)
     {
         var state = StateOf(world);
-        bool staged = Native.Get<MerchantStallItem[]>(world, "_myStall")?.Any(item => !item.IsEmpty) == true;
-        bool classic = Native.Get<HudWindow>(world, "_sellStallPanel")?.HasMeta("classic_merchant") == true;
+        bool staged = Native.Get<MerchantStallItem[]>(world, "Merchant.myStall")?.Any(item => !item.IsEmpty) == true;
+        bool classic = Native.Get<HudWindow>(world, "Merchant.SellStallPanel")?.HasMeta("classic_merchant") == true;
         if (staged && classic && state.Advert != null && !state.AdvertAccepted)
         {
             state.Advert.Visible = true;
@@ -201,64 +201,64 @@ public static class NativeMerchant
         }
         state.AdvertAccepted = false;
         if (state.Advert != null) state.Advert.Visible = false;
-        Native.Call(world, "ConfirmSellStall");
+        Native.Call(world, "Merchant.ConfirmSellStall");
     }
 
     /// <summary>Lists a bag item in the listing slot it was dropped on, or the first free one.</summary>
-    public static void StageStallItemAt(World world, int gridIndex, int preferredSlot)
+    public static void StageStallItemAt(WorldRoot world, int gridIndex, int preferredSlot)
     {
-        var stall = Native.Get<MerchantStallItem[]>(world, "_myStall");
-        var sources = Native.Get<int[]>(world, "_myStallSrc");
-        if (stall == null || sources == null || Native.Get<Inventory>(world, "Inv") is not { } inv) return;
+        var stall = Native.Get<MerchantStallItem[]>(world, "Merchant.myStall");
+        var sources = Native.Get<int[]>(world, "Merchant.myStallSrc");
+        if (stall == null || sources == null || Game.Session.Self.Inventory is not { } inv) return;
         if (gridIndex < 0 || gridIndex >= Inventory.GridCount || preferredSlot >= stall.Length) return;
         int absSlot = Inventory.GridStart + gridIndex;
         if (absSlot >= inv.Length || inv[absSlot].IsEmpty) return;
         if (Array.IndexOf(sources, absSlot) >= 0)
         {
-            Native.Call(world, "SetSellStatus", "That one is already on the stall.", true);
+            Native.Call(world, "Merchant.SetSellStatus", "That one is already on the stall.", true);
             return;
         }
         int dst = preferredSlot;
         if (dst >= 0 && !stall[dst].IsEmpty)
         {
-            Native.Call(world, "SetSellStatus", "That listing slot is occupied.", true);
+            Native.Call(world, "Merchant.SetSellStatus", "That listing slot is occupied.", true);
             return;
         }
         if (dst < 0) dst = Array.FindIndex(stall, item => item.IsEmpty);
         if (dst < 0)
         {
-            Native.Call(world, "SetSellStatus", $"The stall only holds {stall.Length} items.", true);
+            Native.Call(world, "Merchant.SetSellStatus", $"The stall only holds {stall.Length} items.", true);
             return;
         }
-        Native.Call(world, "AskStallPrice", inv[absSlot], absSlot, dst);
+        Native.Call(world, "Merchant.AskStallPrice", inv[absSlot], absSlot, dst);
     }
 
     /// <summary>Sells to a buying stall; the full stack is offered and the payout cannot exceed the gold cap.</summary>
-    public static void SellToWanted(World world, int gridIndex, int wantedSlot)
+    public static void SellToWanted(WorldRoot world, int gridIndex, int wantedSlot)
     {
-        var layer = Native.Get<CanvasLayer>(world, "_amountLayer");
-        var accept = Native.Get<Delegate>(world, "_amountAccept");
-        Native.Call(world, "SellToWanted", gridIndex, wantedSlot);
-        if (layer == null || !layer.Visible || ReferenceEquals(accept, Native.Get<Delegate>(world, "_amountAccept"))) return;
-        var wanted = Native.Get<MerchantStallItem[]>(world, "_wantedItems");
+        var layer = Native.Get<CanvasLayer>(world, "Merchant.AmountLayer");
+        var accept = Native.Get<Delegate>(world, "Merchant.amountAccept");
+        Native.Call(world, "MerchantBuy.SellToWanted", gridIndex, wantedSlot);
+        if (layer == null || !layer.Visible || ReferenceEquals(accept, Native.Get<Delegate>(world, "Merchant.amountAccept"))) return;
+        var wanted = Native.Get<MerchantStallItem[]>(world, "MerchantBuy.wantedItems");
         if (wanted == null || wantedSlot < 0 || wantedSlot >= wanted.Length || wanted[wantedSlot].Price < 1) return;
-        int capacity = (CoinMax - Net.I.Sheet.Gold) / wanted[wantedSlot].Price;
+        int capacity = (CoinMax - Game.Session.Self.Sheet.Gold) / wanted[wantedSlot].Price;
         if (capacity < 1)
         {
-            Native.Call(world, "CloseAmountPrompt");
-            Native.Call(world, "SetWantedStatus", "You cannot carry any more gold.", true);
+            Native.Call(world, "Merchant.CloseAmountPrompt");
+            Native.Call(world, "MerchantBuy.SetWantedStatus", "You cannot carry any more gold.", true);
             return;
         }
-        if (Native.Get<SpinBox>(world, "_amountCount") is { } count)
+        if (Native.Get<SpinBox>(world, "Merchant.amountCount") is { } count)
         {
             count.MaxValue = Math.Max(1, Math.Min(count.MaxValue, capacity));
             count.Value = count.MaxValue;
         }
     }
 
-    private static void SellToFirstOrder(World world, int gridIndex)
+    private static void SellToFirstOrder(WorldRoot world, int gridIndex)
     {
-        if (Native.Get<Inventory>(world, "Inv") is not { } inv || Native.Get<MerchantStallItem[]>(world, "_wantedItems") is not { } wanted) return;
+        if (Game.Session.Self.Inventory is not { } inv || Native.Get<MerchantStallItem[]>(world, "MerchantBuy.wantedItems") is not { } wanted) return;
         int abs = Inventory.GridStart + gridIndex;
         if (abs >= inv.Length) return;
         int order = Array.FindIndex(wanted, item => !item.IsEmpty && item.ItemId == inv[abs].ItemId);
@@ -266,7 +266,7 @@ public static class NativeMerchant
     }
 
     /// <summary>Puts release activation over a merchant grid and routes its drops through the plugin.</summary>
-    private static void Cells(World world, string field, Action<int>? activate = null, Action<int, int>? drop = null)
+    private static void Cells(WorldRoot world, string field, Action<int>? activate = null, Action<int, int>? drop = null)
     {
         if (Native.Get<Array>(world, field) is not { } cells) return;
         foreach (var cell in cells.OfType<Control>())
@@ -304,9 +304,9 @@ public static class NativeMerchant
     internal static void DragBegan() => _drags++;
 
     /// <summary>Marks stall signs as selling or buying and rebuilds a sign when the stall switches.</summary>
-    private static void WatchSigns(World world)
+    private static void WatchSigns(WorldRoot world)
     {
-        if (Native.Get<Control>(world, "_stallSignLayer") is not { } signs) return;
+        if (Native.Get<Control>(world, "MerchantStalls.stallSignLayer") is not { } signs) return;
         NativeWindows.OnDescendantAdded(signs, node =>
         {
             if (node is not PanelContainer sign || sign.GetParent() != signs) return;
@@ -322,8 +322,8 @@ public static class NativeMerchant
                 if (!sign.HasMeta(BuyingMeta)) Mark(sign, stall);
                 if (sign.GetMeta(BuyingMeta).AsBool() != Native.Get<bool>(stall, "IsBuying"))
                 {
-                    Native.Call(typeof(World), "FreeStallSign", stall);
-                    Native.Call(world, "RefreshStallSign", charId, stall);
+                    Native.Call(Native.StaticOwner("LibreKO.Features.Windows.MerchantStallsFeature"), "FreeStallSign", stall);
+                    Native.Call(world, "MerchantStalls.RefreshStallSign", charId, stall);
                     continue;
                 }
                 if (_watchedSigns.TryAdd(sign, sign))
@@ -355,9 +355,9 @@ public static class NativeMerchant
         if (!sign.IsInGroup(SignsGroup)) sign.AddToGroup(SignsGroup);
     }
 
-    private static IEnumerable<(int CharId, object Stall)> Stalls(World world)
+    private static IEnumerable<(int CharId, object Stall)> Stalls(WorldRoot world)
     {
-        if (Native.Get<IDictionary>(world, "_stalls") is not { } stalls) yield break;
+        if (Native.Get<IDictionary>(world, "MerchantStalls.Stalls") is not { } stalls) yield break;
         foreach (DictionaryEntry entry in stalls)
             if (entry.Value != null) yield return ((int)entry.Key, entry.Value);
     }

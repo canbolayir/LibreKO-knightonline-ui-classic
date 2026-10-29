@@ -64,9 +64,18 @@ public sealed class LocalAssets
         if (File.Exists(path))
         {
             image = new Image();
-            if (image.LoadPngFromBuffer(File.ReadAllBytes(path)) != Error.Ok) image = null;
+            if (image.LoadPngFromBuffer(File.ReadAllBytes(path)) != Error.Ok) { image.Dispose(); image = null; }
         }
         return _images[png] = image;
+    }
+
+    public void Release()
+    {
+        foreach (var texture in _textures.Values) texture?.Dispose();
+        foreach (var image in _images.Values) image?.Dispose();
+        _textures.Clear();
+        _images.Clear();
+        _layouts.Clear();
     }
 
     private string TexturePath(string png) => Path.Combine(Root, "textures", Path.GetFileName(png));

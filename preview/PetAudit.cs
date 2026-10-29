@@ -21,7 +21,7 @@ public partial class Preview
         AddChild(new ColorRect { Size = new Vector2(800, 680), Color = new Color("252822"), MouseFilter = MouseFilterEnum.Ignore });
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
         PluginHost.Ui.ExtendWindow("pet", ClassicPetSkin.Extend);
-        var world = new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled };
+        var world = PreviewFixtures.Prepared(new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled });
         var layer = (CanvasLayer)DetailCall(world, "BuildPetClassicUiPreview", nation)!; AddChild(world); AddChild(layer);
         async Task Frames(int count = 6) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         await Frames();
@@ -69,17 +69,17 @@ public partial class Preview
         await Click(Tab("Skills")); await Capture("skills");
         await AuditPetEquipment(world, net, layer, window, panel, Require, Capture);
         await AuditPetSkills(world, net, panel, Require, Capture);
-        var sheet = net.Pet!; sheet.Mode = PetSheet.ModeLooting; sheet.Mp = 0; DetailCall(world, "RefreshPetUI");
+        var sheet = Game.Session.Pet.Pet!; sheet.Mode = PetMode.Looting; sheet.Mp = 0; DetailCall(world, "Pet.RefreshUI");
         Require(Find<Button>("pet_loot").ButtonPressed && !Find<Button>("pet_attack").ButtonPressed, "Mode switch follows native response");
         await Capture("no-mana");
-        typeof(World).GetField("_selfDead", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, true); DetailCall(world, "RefreshPetUI");
+        Native.Set(world, "Avatar.Dead", true); DetailCall(world, "Pet.RefreshUI");
         Require(Find<Button>("pet_feed").Disabled && Find<Button>("pet_attack").Disabled, "Dead owner cannot feed or command");
         await Click(Tab("Items")); await Capture("dead");
         DetailCall(world, "ShowPetSheet", (object?)null);
         Require(portrait.Texture == null, "Unsummoned familiar clears the old portrait immediately");
         Require(Enumerable.Range(0, 4).All(i => Find<ItemSlotView>("pet_item_" + i).Item.IsEmpty), "Unsummoned familiar clears every old item view");
         await Capture("unsummoned");
-        DetailCall(world, "SetPetStatus", "Your familiar would not eat this food. Choose another familiar food item and try again.", true);
+        DetailCall(world, "Pet.SetStatus", "Your familiar would not eat this food. Choose another familiar food item and try again.", true);
         await Capture("long-status");
         DetailCall(world, "ShowPetSheet", sheet); await Frames();
         Require(portrait.Texture != null && NpcPortraitCache.RenderRequests == 1 && NpcPortraitCache.CacheHits > 0,
@@ -104,7 +104,6 @@ public partial class Preview
         PluginHost.Ui.ReplaceDialogs(request => new ClassicServiceNotice(request));
         PluginHost.Ui.ExtendWindow("pethatch", ClassicPetHatchSkin.Extend);
         var screens = new List<object>();
-        var flags = BindingFlags.Instance | BindingFlags.NonPublic;
         async Task Frames(int count = 4) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         void Require(bool value, string message) { if (!value) throw new Exception("PET_HATCH_AUDIT: " + message); checks.Add(message); }
         async Task KeyPress(Key key)
@@ -114,16 +113,16 @@ public partial class Preview
         }
         foreach (bool transform in new[] { false, true })
         {
-            var world = new World();
+            var world = PreviewFixtures.Prepared(new WorldRoot());
             var layer = (CanvasLayer)DetailCall(world, "BuildPetHatchClassicUiPreview", nation, transform)!; AddChild(layer);
             var panel = layer.GetChildren().OfType<HudWindow>().Single();
-            T Field<T>(string name) => (T)typeof(World).GetField(name, flags)!.GetValue(world)!;
-            void Set(string name, object value) => typeof(World).GetField(name, flags)!.SetValue(world, value);
+            T Field<T>(string name) => (T)Native.Get<object>(world, name)!;
+            void Set(string name, object value) => Native.Set(world, name, value);
             panel.Position = new Vector2(217, 50);
             await Frames();
             var classic = panel.GetChildren().OfType<ClassicPetHatchPanel>().Single();
             T Find<T>(string id) where T : Control => Descendants(classic).OfType<T>().Single(c => c.Name == id);
-            var inventory = (Inventory)typeof(World).GetProperty("Inv", flags)!.GetValue(world)!;
+            var inventory = (Inventory)Game.Session.Self.Inventory;
             string service = transform ? "transform" : "hatch";
             async Task Capture(string state)
             {
@@ -166,7 +165,7 @@ public partial class Preview
                 Input.ParseInputEvent(new InputEventMouseMotion { Position = to, GlobalPosition = to, Relative = to - from, ButtonMask = MouseButtonMask.Left }); await Frames(2);
                 Input.ParseInputEvent(new InputEventMouseButton { Position = to, GlobalPosition = to, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames();
             }
-            var name = Field<LineEdit>("_petHatchName");
+            var name = Field<LineEdit>("PetHatch.NameInput");
             await Capture("ready");
             var headerAt = panel.GetGlobalRect().Position + new Vector2(120, 24); var oldPosition = panel.Position; var shift = new Vector2(35, 18);
             Input.ParseInputEvent(new InputEventMouseMotion { Position = headerAt, GlobalPosition = headerAt }); await Frames(2);
@@ -175,16 +174,16 @@ public partial class Preview
             Input.ParseInputEvent(new InputEventMouseButton { Position = headerAt + shift, GlobalPosition = headerAt + shift, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames(2);
             Require(panel.Position.DistanceTo(oldPosition + shift) < 1 && !GetViewport().GuiIsDragging(), "Header dragging moves the native " + service + " window (" + oldPosition + " -> " + panel.Position + ")");
             panel.Position = oldPosition; await Frames();
-            int pick = Field<int>(transform ? "_petTransformSlot" : "_petHatchSlot");
-            Require(!Field<Button>("_petHatchBtn").Disabled, (transform ? "Transform" : "Hatch") + " valid draft is actionable");
+            int pick = Field<int>(transform ? "PetHatch.petTransformSlot" : "PetHatch.slot");
+            Require(!Field<Button>("PetHatch.btn").Disabled, (transform ? "Transform" : "Hatch") + " valid draft is actionable");
             var stage = Find<ItemSlotView>("pet_hatch_stage_" + (transform ? 1 : 0));
             await Click(stage, MouseButton.Right);
-            Require(stage.Item.IsEmpty && Field<Button>("_petHatchBtn").Disabled, "Right-click clears staged " + service + " item");
+            Require(stage.Item.IsEmpty && Field<Button>("PetHatch.btn").Disabled, "Right-click clears staged " + service + " item");
             await Capture("empty-selection");
             await Click(Find<ItemSlotView>("pet_hatch_inventory_" + (pick - Inventory.GridStart)), MouseButton.Right);
-            Require(stage.Item.ItemId == inventory[pick].ItemId && !Field<Button>("_petHatchBtn").Disabled, "Inventory right-click stages a valid " + service + " item");
+            Require(stage.Item.ItemId == inventory[pick].ItemId && !Field<Button>("PetHatch.btn").Disabled, "Inventory right-click stages a valid " + service + " item");
             await Click(stage, MouseButton.Right); await Drag(Find<ItemSlotView>("pet_hatch_inventory_" + (pick - Inventory.GridStart)), stage);
-            Require(stage.Index == pick && !Field<Button>("_petHatchBtn").Disabled, "Pointer drag stages the chosen " + service + " item");
+            Require(stage.Index == pick && !Field<Button>("PetHatch.btn").Disabled, "Pointer drag stages the chosen " + service + " item");
             if (transform)
             {
                 var wrong = new Godot.Collections.Dictionary { ["invFrom"] = pick };
@@ -192,26 +191,26 @@ public partial class Preview
             }
             else
             {
-                name.Text = ""; name.EmitSignal(LineEdit.SignalName.TextChanged, name.Text); Require(Field<Button>("_petHatchBtn").Disabled, "Empty familiar name cannot hatch");
-                name.Text = "Bad Name"; name.EmitSignal(LineEdit.SignalName.TextChanged, name.Text); Require(Field<Button>("_petHatchBtn").Disabled, "Whitespace name cannot hatch");
+                name.Text = ""; name.EmitSignal(LineEdit.SignalName.TextChanged, name.Text); Require(Field<Button>("PetHatch.btn").Disabled, "Empty familiar name cannot hatch");
+                name.Text = "Bad Name"; name.EmitSignal(LineEdit.SignalName.TextChanged, name.Text); Require(Field<Button>("PetHatch.btn").Disabled, "Whitespace name cannot hatch");
                 name.Text = "FamiliarName123"; name.EmitSignal(LineEdit.SignalName.TextChanged, name.Text); await Capture("long-name"); name.Text = "Kauly"; name.EmitSignal(LineEdit.SignalName.TextChanged, name.Text);
             }
             GetViewport().GuiGetFocusOwner()?.ReleaseFocus();
             await KeyPress(Key.Enter);
             await Capture("confirmation");
-            Require(PreviewFixtures.PetHatchNotice(world) != null && !name.Editable && Field<Button>("_petHatchBtn").Disabled,
+            Require(PreviewFixtures.PetHatchNotice(world) != null && !name.Editable && Field<Button>("PetHatch.btn").Disabled,
                 "Confirmation freezes " + (transform ? "transformation" : "hatching") + " draft");
             await KeyPress(Key.Escape);
-            Require(PreviewFixtures.PetHatchNotice(world) == null && name.Text == "Kauly" && Field<int>(transform ? "_petTransformSlot" : "_petHatchSlot") == pick,
+            Require(PreviewFixtures.PetHatchNotice(world) == null && name.Text == "Kauly" && Field<int>(transform ? "PetHatch.petTransformSlot" : "PetHatch.slot") == pick,
                 "Escape preserves chosen items and name");
             await Click(Find<Button>("pet_hatch_accept"));
             await KeyPress(Key.Enter);
-            Require(!Field<bool>("_petHatchInFlight") && Field<Label>("_petHatchStatus").Text.StartsWith("Not connected"),
+            Require(!Field<bool>("PetHatch.inFlight") && Field<Label>("PetHatch.status").Text.StartsWith("Not connected"),
                 "Enter confirms once and disconnected send releases the operation lock");
             DetailCall(world, "OnPetHatchPressed"); await Frames();
             inventory.ApplySlotUpdate(pick, default);
             await KeyPress(Key.Enter);
-            Require(!Field<bool>("_petHatchInFlight") && Field<Label>("_petHatchStatus").Text.StartsWith("Your selection changed"),
+            Require(!Field<bool>("PetHatch.inFlight") && Field<Label>("PetHatch.status").Text.StartsWith("Your selection changed"),
                 "Changed inventory invalidates the frozen confirmation before send");
             await Capture("changed-selection");
             for (int i = 0; i < 28; i++) inventory.ApplySlotUpdate(Inventory.GridStart + i, new LibreKO.Domain.ItemSlot { ItemId = transform ? 610001000 : 600001000, Count = 1, Durability = 1, UniqueId = transform ? i + 1 : 0 });
@@ -220,19 +219,19 @@ public partial class Preview
             var sealedItem = inventory[Inventory.GridStart]; sealedItem.Flag = (byte)ItemFlag.Sealed;
             inventory.ApplySlotUpdate(Inventory.GridStart, sealedItem); DetailCall(world, "RebuildPetPicks");
             Require(stage.Item.IsEmpty && !stage._CanDropData(Vector2.Zero, new Godot.Collections.Dictionary { ["invFrom"] = Inventory.GridStart }), "Sealed item cannot be staged");
-            DetailCall(world, "OnPetHatchFailed", Net.PetHatchNameTakenCode); await Capture("long-refusal");
+            DetailCall(world, "PetHatch.OnFailed", PetWire.NameTakenCode); await Capture("long-refusal");
             sealedItem.Flag = 0; inventory.ApplySlotUpdate(Inventory.GridStart, sealedItem);
             if (transform) inventory.ApplySlotUpdate(Inventory.GridStart + 27, new LibreKO.Domain.ItemSlot { ItemId = 700019001, Count = 1, Durability = 1 });
             DetailCall(world, "RebuildPetPicks"); DetailCall(world, "SelectPetHatchItem", Inventory.GridStart);
             if (transform) DetailCall(world, "SelectPetHatchItem", Inventory.GridStart + 27);
-            Set("_petHatchInFlight", true);
-            DetailCall(world, "SetPetHatchStatus", transform ? "Transforming…" : "Hatching…", false);
-            DetailCall(world, "ClosePetHatch"); DetailCall(world, "OpenPetHatch", 99999);
-            Require(Field<bool>("_petHatchInFlight") && Field<int>("_petHatchNpc") == 13016 && Field<Button>("_petHatchBtn").Disabled,
+            Set("PetHatch.inFlight", true);
+            DetailCall(world, "PetHatch.SetStatus", transform ? "Transforming…" : "Hatching…", false);
+            DetailCall(world, "PetHatch.Close"); DetailCall(world, "PetHatch.Open", 99999);
+            Require(Field<bool>("PetHatch.inFlight") && Field<int>("PetHatch.npc") == 13016 && Field<Button>("PetHatch.btn").Disabled,
                 "Closing and reopening preserves pending operation and trainer identity");
             await Capture("pending-reopen");
-            DetailCall(world, "ResetPetHatch");
-            Require(!Field<bool>("_petHatchInFlight") && !panel.Visible && PreviewFixtures.PetHatchNotice(world) == null,
+            DetailCall(world, "PetHatch.Reset");
+            Require(!Field<bool>("PetHatch.inFlight") && !panel.Visible && PreviewFixtures.PetHatchNotice(world) == null,
                 "Connection reset clears pending draft and closes the trainer service");
             layer.Free(); world.Free();
         }

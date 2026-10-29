@@ -21,7 +21,7 @@ public partial class Preview
         AddChild(new ColorRect { Color = new Color("2f332a"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
         AddChild(new ColorRect { Color = new Color("b2ac98"), Position = new Vector2(0, 300), Size = new Vector2(1280, 160), MouseFilter = MouseFilterEnum.Ignore });
         var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
-        Native.Call(offline, "SeedPreviewEnter", new MyInfo { Nation = nation, Name = "Classic Preview" });
+        Native.Call(Game.Session.Self, "SeedPreviewEnter", new MyInfo { Nation = nation, Name = "Classic Preview" });
         LibreKO.Domain.ItemData.EnsureLoaded();
         string prefix = nation == 1 ? "karus" : "human";
         var checks = new List<string>(); var screens = new List<object>();
@@ -67,8 +67,8 @@ public partial class Preview
 
         // Soccer score (a closable war score strip).
         {
-            var world = new World();
-            var board = Show((Control)DetailCall(world, "BuildSoccerUiPreview")!, new Vector2(500, 40));
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            var board = Show((Control)DetailCall(world, "Preview.BuildSoccer")!, new Vector2(500, 40));
             NativeOverlays.PrepareLater(world);
             await Frames();
             Require(board.Name == "soccer_score" && board.HasMeta("classic_overlay"), "soccer: the score strip is prepared and skinned");
@@ -81,8 +81,8 @@ public partial class Preview
         // Monster Stone and Chaos timer toast.
         foreach (bool completed in new[] { false, true })
         {
-            var world = new World();
-            var toast = Show((Control)DetailCall(world, "BuildNestTimerUiPreview", completed)!, new Vector2(440, 40));
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            var toast = Show((Control)DetailCall(world, "Preview.BuildNestTimer", completed)!, new Vector2(440, 40));
             NativeOverlays.PrepareLater(world);
             await Frames();
             Require(toast.GetThemeStylebox("panel") is StyleBoxEmpty && Descendants(toast).OfType<TextureRect>().All(r => !r.Visible), "timer: no modern plate or gradient rules");
@@ -93,7 +93,7 @@ public partial class Preview
         // Knight Royale sign-up board and the genie quick panel: the plain event frame.
         foreach (var (fixture, state) in new[] { ("BuildRoyaleBoardUiPreview", "royale-board"), ("BuildGenieSubUiPreview", "genie-quick") })
         {
-            var world = new World();
+            var world = PreviewFixtures.Prepared(new WorldRoot());
             var board = Show((Control)DetailCall(world, fixture)!, new Vector2(480, 120));
             NativeOverlays.PrepareLater(world);
             await Frames();
@@ -110,26 +110,26 @@ public partial class Preview
         Require(ClassicNoticeBars.Available, "titles: the bundled notice art is installed (" + Plugin.Kit.Local.Root + ")");
         // Gather chip, Nereid boards.
         {
-            var world = new World();
-            DetailCall(world, "BuildGatherChip");
-            var chip = (Control)DetailField(world, "_gatherChip")!;
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            DetailCall(world, "GatherSystem.BuildGatherChip");
+            var chip = (Control)DetailField(world, "GatherSystem.gatherChip")!;
             // The chip's screen-position helper needs the live viewport; the audit places the chip itself.
             foreach (var hud in chip.GetChildren().OfType<HudLayout>().ToArray()) { chip.RemoveChild(hud); hud.Free(); }
-            ((Label)DetailField(world, "_gatherChipText")!).Text = "Gathering: Iron Ore";
+            ((Label)DetailField(world, "GatherSystem.gatherChipText")!).Text = "Gathering: Iron Ore";
             Show(chip, new Vector2(520, 200));
-            var nereid = Show((Control)DetailCall(world, "BuildNereidUiPreview")!, new Vector2(500, 360));
-            ((Label)DetailField(world, "_nereidFlagBoard")!).Text = "Monuments  Karus 3 : 2 El Morad";
-            ((Label)DetailField(world, "_nereidScoreBoard")!).Text = "Karus 1.250 : 980 El Morad";
+            var nereid = Show((Control)DetailCall(world, "Preview.BuildNereid")!, new Vector2(500, 360));
+            ((Label)DetailField(world, "Nereid.FlagBoard")!).Text = "Monuments  Karus 3 : 2 El Morad";
+            ((Label)DetailField(world, "Nereid.ScoreBoard")!).Text = "Karus 1.250 : 980 El Morad";
             // The strip lives on the client's mini map, inside the world.
-            var mapStrip = (Label)DetailField(world, "_nereidStrip")!; mapStrip.GetParent().RemoveChild(mapStrip); world.AddChild(mapStrip);
+            var mapStrip = (Label)DetailField(world, "Nereid.Strip")!; mapStrip.GetParent().RemoveChild(mapStrip); world.AddChild(mapStrip);
             NativeOverlays.PrepareLater(world);
             await Frames();
             Plaque(chip, "gather chip");
             var stop = Descendants(chip).OfType<Button>().Single();
             Require(stop.GetThemeStylebox("normal") is StyleBoxTexture && stop.Size == Spec.Plaque.Action, "gather chip: Stop on the chat tab art");
-            var strip = (Label)DetailField(world, "_nereidStrip")!;
+            var strip = (Label)DetailField(world, "Nereid.Strip")!;
             Require(strip.GetParent() is CanvasLayer plates && plates.Name == "classic_map_plates" && plates.GetParent() == world, "nereid strip: re-hosted from the hidden mini map");
-            foreach (var board in new[] { "_nereidFlagBoard", "_nereidScoreBoard", "_nereidStrip" })
+            foreach (var board in new[] { "Nereid.FlagBoard", "Nereid.ScoreBoard", "Nereid.Strip" })
             {
                 var label = (Label)DetailField(world, board)!;
                 Require(label.GetThemeColor("font_color") == ClassicWorldOverlays.PlaqueInk && label.GetNodeOrNull<Control>("plaque_back") is { ShowBehindParent: true } back
@@ -140,16 +140,16 @@ public partial class Preview
         }
         // Area banner, order message and kill splash: outlined Arial Bold text.
         {
-            var world = new World();
-            DetailCall(world, "EnsureAreaBanner");
-            var banner = (Control)DetailField(world, "_areaBanner")!;
-            ((Label)DetailField(world, "_areaTitle")!).Text = "Ronark Land";
-            ((Label)DetailField(world, "_areaSubtitle")!).Text = "PK zone: both nations may attack you";
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            DetailCall(world, "KnightRoyaleWindow.EnsureAreaBanner");
+            var banner = (Control)DetailField(world, "KnightRoyaleWindow.areaBanner")!;
+            ((Label)DetailField(world, "KnightRoyaleWindow.areaTitle")!).Text = "Ronark Land";
+            ((Label)DetailField(world, "KnightRoyaleWindow.areaSubtitle")!).Text = "PK zone: both nations may attack you";
             banner.Visible = true; banner.GetParent().RemoveChild(banner); layer.AddChild(banner); banner.SetAnchorsPreset(Control.LayoutPreset.TopWide);
-            var order = (CanvasLayer)DetailCall(world, "OrderMessageUiPreview", true, 1280f)!;
+            var order = (CanvasLayer)DetailCall(world, "Preview.BuildOrderMessage", true, 1280f)!;
             AddChild(order);
-            var splash = (Control)DetailCall(world, "BuildKillSplash", 3, nation, "Zeus")!;
-            PreviewFixtures.SetField(world, "_killSplash", splash);
+            var splash = (Control)DetailCall(world, "KillSplash.Splash", 3, nation, "Zeus")!;
+            PreviewFixtures.SetField(world, "KillSplash.killSplash", splash);
             Show(splash, new Vector2(500, 420));
             NativeOverlays.PrepareLater(world);
             await Frames();
@@ -164,13 +164,13 @@ public partial class Preview
         }
         // Siege tower Board button under the Classic target frame, and the drop-off action.
         {
-            var world = new World();
-            var box = Show((Control)DetailCall(world, "BuildSiegeTowerUiPreview")!, new Vector2(560, 260));
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            var box = Show((Control)DetailCall(world, "Preview.BuildSiegeTower")!, new Vector2(560, 260));
             var target = new TargetFrame(); AddChild(target); target.Visible = true; target.Position = new Vector2(478, 40);
             NativeOverlays.PrepareLater(world);
             await Frames(10);
-            var tower = (Button)DetailField(world, "_towerButton")!;
-            var dropOff = (Button)DetailField(world, "_dropOff")!;
+            var tower = (Button)DetailField(world, "SiegeTowerSystem.TowerButton")!;
+            var dropOff = (Button)DetailField(world, "SiegeTowerSystem.DropOff")!;
             Require(tower.GetParent() == target && tower.Visible, "siege tower: the Board button hangs under the Classic target frame");
             Require(Mathf.Abs(tower.GetGlobalRect().GetCenter().X - target.GetGlobalRect().GetCenter().X) <= 1 && tower.GetGlobalRect().Position.Y >= target.GetGlobalRect().End.Y,
                 "siege tower: centred under the target frame");
@@ -181,8 +181,8 @@ public partial class Preview
         }
         // Ranker paper.
         {
-            var world = new World();
-            var paper = Show((Control)DetailCall(world, "BuildRankerPaperUiPreview")!, new Vector2(400, 150));
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            var paper = Show((Control)DetailCall(world, "Preview.BuildRankerPaper")!, new Vector2(400, 150));
             NativeOverlays.PrepareLater(world);
             await Frames();
             foreach (var button in Descendants(paper).OfType<Button>().Where(b => b.IsVisibleInTree())) Require(button.GetThemeStylebox("normal") is StyleBoxTexture, "ranker paper: Classic button " + button.Text);
@@ -191,13 +191,13 @@ public partial class Preview
         }
         // Wanted buttons: on the hidden client mini map, re-hosted on a plaque in the Ronark Land ladder zones.
         {
-            var world = new World();
-            var vanguard = new CanvasLayer(); world.AddChild(vanguard); PreviewFixtures.SetField(world, "_vanguardLayer", vanguard);
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            var vanguard = new CanvasLayer(); world.AddChild(vanguard); PreviewFixtures.SetField(world, "VanguardWindow.Layer", vanguard);
             var map = new Control(); world.AddChild(map);
-            var toggle = new Button { TooltipText = "Wanted List UI on/off" }; map.AddChild(toggle); PreviewFixtures.SetField(world, "_wantedToggle", toggle);
-            var open = new Button { TooltipText = "Wanted List UI" }; map.AddChild(open); PreviewFixtures.SetField(world, "_wantedOpen", open);
+            var toggle = new Button { TooltipText = "Wanted List UI on/off" }; map.AddChild(toggle); PreviewFixtures.SetField(world, "VanguardWindow.wantedToggle", toggle);
+            var open = new Button { TooltipText = "Wanted List UI" }; map.AddChild(open); PreviewFixtures.SetField(world, "VanguardWindow.wantedOpen", open);
             bool opened = false; open.Pressed += () => opened = true;
-            typeof(World).GetField("_zone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.SetValue(world, 71);
+            Native.Set(world, "ZoneId", 71);
             NativeOverlays.PrepareLater(world);
             world.RemoveChild(vanguard); AddChild(vanguard);
             await Frames();
@@ -209,7 +209,7 @@ public partial class Preview
             open.EmitSignal(BaseButton.SignalName.Pressed);
             Require(opened, "wanted: List keeps the native open action");
             await Shot("wanted", plaque);
-            typeof(World).GetField("_zone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.SetValue(world, 21);
+            Native.Set(world, "ZoneId", 21);
             await Frames(2);
             Require(!plaque.Visible, "wanted: hidden outside the ladder zones");
             vanguard.QueueFree(); world.Free();

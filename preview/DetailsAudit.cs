@@ -9,8 +9,8 @@ using KnightOnlineUiClassic.Windows;
 
 public partial class Preview
 {
-    private static object? DetailField(World world,string name) => typeof(World).GetField(name,BindingFlags.NonPublic|BindingFlags.Instance)!.GetValue(world);
-    private static object? DetailCall(World world,string name,params object?[] args)
+    private static object? DetailField(WorldRoot world,string name) => PreviewFixtures.Field<object>(world, name);
+    private static object? DetailCall(WorldRoot world,string name,params object?[] args)
     {
         var fixtureArgs=args.Prepend(world).ToArray();
         var fixture=typeof(PreviewFixtures).GetMethods(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Static)
@@ -19,12 +19,16 @@ public partial class Preview
         bool Fits(MethodInfo m,bool exact)=>m.Name==name && (exact?m.GetParameters().Length==args.Length
             : m.GetParameters().Length>args.Length && m.GetParameters().Skip(args.Length).All(p=>p.HasDefaultValue))
             && m.GetParameters().Take(args.Length).Select((p,i)=>args[i]==null || p.ParameterType.IsInstanceOfType(args[i])).All(valid=>valid);
-        var methods=typeof(World).GetMethods(BindingFlags.NonPublic|BindingFlags.Instance|BindingFlags.Static);
+        object root=PreviewFixtures.Target(world,ref name);
+        int dot=name.LastIndexOf('.');
+        object target=dot<0?root:Native.Get<object>(root,name[..dot]) ?? throw new Exception("No client object at "+name[..dot]);
+        name=name[(dot+1)..];
+        var methods=target.GetType().GetMethods(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance|BindingFlags.Static);
         // A method that gained trailing optional parameters (ff78eef: OfferSlot's amount) still answers the old call.
         var method=methods.SingleOrDefault(m=>Fits(m,true)) ?? methods.Single(m=>Fits(m,false));
         var full=method.GetParameters().Length==args.Length?args
             :args.Concat(method.GetParameters().Skip(args.Length).Select(p=>p.DefaultValue)).ToArray();
-        return method.Invoke(method.IsStatic?null:world,full);
+        return method.Invoke(method.IsStatic?null:target,full);
     }
     private async Task CaptureDetails(int nation)
     {
@@ -36,7 +40,7 @@ public partial class Preview
         window.GuiEmbedSubwindows=true;
         AddChild(new ColorRect { Color=new Color("252822"),Size=new Vector2(1000,700),MouseFilter=MouseFilterEnum.Ignore });
         var offline=new Net();typeof(Net).GetProperty("I")!.SetValue(null,offline);
-        typeof(Net).GetProperty("MyClan")!.SetValue(offline,new MyClanInfo { InClan=true,ClanId=1,AllianceId=1,Fame=ClanRanks.Chief,Name="canCLAN",Notice="Meet at Moradon",Flag=ClanTypes.Accredited5,MaxMembers=50 });
+        Native.Set(Game.Session.Clan, "MyClan",new MyClanInfo { InClan=true,ClanId=1,AllianceId=1,Fame=ClanRanks.Chief,Name="canCLAN",Notice="Meet at Moradon",Flag=ClanTypes.Accredited5,MaxMembers=50 });
         var output=System.IO.Path.GetFullPath(ProjectSettings.GlobalizePath("res://../../research/character-composed-audit"));System.IO.Directory.CreateDirectory(output);
         if(OS.GetCmdlineUserArgs().Contains("quest-polish-audit"))
         {
@@ -83,132 +87,132 @@ public partial class Preview
             if(OS.GetCmdlineUserArgs().Contains("showcase-details") && id=="npc_dialog") continue;
             // The NPC page is the Classic NPC dialogue, the fallback of the bundled 2.x quest windows (myko-npc-audit's).
             UseArt(id!="npc_dialog");
-            var model=new World();
+            var model=PreviewFixtures.Prepared(new WorldRoot());
             string caption=id switch { "presets"=>"Presets","titles"=>"Titles","quests"=>"Quests","character_clan_details"=>"Knights Management","clanpoint"=>"Clan Contribution","quest_target"=>"Target","quest_receipt"=>"Reward","npc_dialog"=>"Quest","userinfo"=>"Character Info",_=>id };
             var panel=new HudWindow(id,caption,new Vector2(40,40),persistLayout:false);
             var body=panel.Body;
             character.Visible=CharacterPageRouter.Supports(id);
             if(id=="presets")
             {
-                DetailCall(model,"BuildPresetSlotBar",body);DetailCall(model,"BuildPresetStatBlock",body);DetailCall(model,"BuildPresetSkillBlock",body);
-                var plans=(PresetPlan[])DetailField(model,"_presetPlans")!;
+                DetailCall(model,"SkillPreset.BuildPresetSlotBar",body);DetailCall(model,"SkillPreset.BuildPresetStatBlock",body);DetailCall(model,"SkillPreset.BuildPresetSkillBlock",body);
+                var plans=(PresetPlan[])DetailField(model,"SkillPreset.presetPlans")!;
                 for(int i=0;i<plans.Length;i++) plans[i]=new PresetPlan();
                 plans[0].SetStats([185,55,12,0,0]);plans[0].SetTrees([60,0,0,10]);
-                typeof(World).GetField("_selfClass",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(model,nation==1?106:206);
-                offline.Sheet.SeedStats(250,120,72,50,50,50);offline.Sheet.SeedProgress(83,0,100);
-                offline.Mastery.ResetTrees(148);
-                DetailCall(model,"RefreshPresetUI");
+                Native.Set(Game.Session, "Self.Class", nation==1?106:206);
+                Game.Session.Self.Sheet.SeedStats(250,120,72,50,50,50);Game.Session.Self.Sheet.SeedProgress(83,0,100);
+                Game.Session.Self.Mastery.ResetTrees(148);
+                DetailCall(model,"SkillPreset.RefreshPresetUI");
             }
             else if(id=="titles")
             {
-                DetailCall(model,"BuildTitlePicker");var built=(HudWindow)DetailField(model,"_titlePanel")!;
+                DetailCall(model,"TitlePicker.BuildPanel");var built=(HudWindow)DetailField(model,"TitlePicker.panel")!;
                 foreach(var control in built.Body.GetChildren().OfType<Control>().ToArray()) control.Reparent(body);
-                ((Label)DetailField(model,"_titleHint")!).Text="Every earned title bonus already counts. Choose the name shown above your character.";
-                var list=(VBoxContainer)DetailField(model,"_titleList")!;
+                ((Label)DetailField(model,"TitlePicker.hint")!).Text="Every earned title bonus already counts. Choose the name shown above your character.";
+                var list=(VBoxContainer)DetailField(model,"TitlePicker.rows")!;
                 foreach(var entry in new[]{(0,"No title",""),(1,"Street Smart","Defense +10"),(2,"Protector of El Morad","HP +150, Resistance +5"),(3,"Champion of the Border Defense War","Attack +3%, National points +5%")})
-                    list.AddChild((Control)DetailCall(model,"BuildTitleRow",entry.Item1,entry.Item2,entry.Item3)!);
+                    list.AddChild((Control)DetailCall(model,"TitlePicker.BuildRow",entry.Item1,entry.Item2,entry.Item3)!);
             }
             else if(id=="quests")
             {
-                DetailCall(model,"BuildQuestLog");body.AddChild((Control)DetailField(model,"_questsContent")!);
+                DetailCall(model,"Quest.BuildLog");body.AddChild((Control)DetailField(model,"Quest.QuestsContent")!);
                 foreach(var tabs in Descendants(body).OfType<HBoxContainer>())
                     if(tabs.GetChildren().OfType<Button>().FirstOrDefault(b=>b.ToggleMode) is {} tab) tab.SetPressedNoSignal(true);
-                ((Control)DetailField(model,"_questDetailEmpty")!).Visible=false;((Control)DetailField(model,"_questDetailBody")!).Visible=true;
-                ((Label)DetailField(model,"_questDetailTitle")!).Text="Defeat the Monsters of Moradon";
-                ((Label)DetailField(model,"_questDetailSub")!).Text="Hunt / Level 10 / In Progress";
-                ((RichTextLabel)DetailField(model,"_questDetailDesc")!).Text="Help the guards protect Moradon. Defeat the creatures near the village, then return to the quest NPC for your reward.";
-                var goals=(VBoxContainer)DetailField(model,"_questObjectiveBox")!;
-                goals.AddChild((Control)DetailCall(model,"QuestValueRow","Worm","7 / 10",new Color("fff080"))!);
-                goals.AddChild((Control)DetailCall(model,"QuestValueRow","Bandicoot","5 / 5",new Color("8ff099"))!);
-                var list=(VBoxContainer)DetailField(model,"_questListBox")!;
+                ((Control)DetailField(model,"Quest.detailEmpty")!).Visible=false;((Control)DetailField(model,"Quest.detailBody")!).Visible=true;
+                ((Label)DetailField(model,"Quest.detailTitle")!).Text="Defeat the Monsters of Moradon";
+                ((Label)DetailField(model,"Quest.detailSub")!).Text="Hunt / Level 10 / In Progress";
+                ((RichTextLabel)DetailField(model,"Quest.detailDesc")!).Text="Help the guards protect Moradon. Defeat the creatures near the village, then return to the quest NPC for your reward.";
+                var goals=(VBoxContainer)DetailField(model,"Quest.objectiveBox")!;
+                goals.AddChild(LibreKO.UiKit.ValueRow("Worm","7 / 10",new Color("fff080")));
+                goals.AddChild(LibreKO.UiKit.ValueRow("Bandicoot","5 / 5",new Color("8ff099")));
+                var list=(VBoxContainer)DetailField(model,"Quest.listBox")!;
                 foreach(var child in list.GetChildren()) child.QueueFree();
                 int questId=500;
                 foreach(string title in new[]{"A New Beginning","Defeat the Monsters of Moradon","Daily Supply Delivery","Path of the Warrior"})
                 {
                     var objectives=new QuestObjectives(questId,false,new[]{new QuestKillGroup(10,new[]{1},"Worm")});
-                    ((Dictionary<int,QuestObjectives>)DetailField(model,"_questObjectives")!)[questId]=objectives;
+                    ((Dictionary<int,QuestObjectives>)DetailField(model,"Session.QuestBook.Objectives")!)[questId]=objectives;
                     QuestTransfer[] payouts=questId==501?[new(false,2,0,25000,0),new(false,1,0,10000,0),new(false,0,810418000,2,0)]:questId==502?[new(false,2,0,850,0)]:[];
                     var fixture=new QuestView(questId,1,21,false,false,false,false,QuestViewState.InProgress,0,title,"Help the guards.","",objectives,new ushort[]{7},payouts,Array.Empty<string>());
                     if(questId==503) fixture=fixture with { Transfers=[new(true,1,0,500,0),new(false,2,0,1000,0)],Options=[new(false,0,810418000,2,0),new(false,1,0,3500,0)] };
-                    ((Dictionary<int,QuestView>)DetailField(model,"_questViews")!)[questId]=fixture;
-                    ((List<QuestEntry>)DetailField(model,"_quests")!).Add(new QuestEntry(questId,1));
-                    ((Dictionary<int,ushort[]>)DetailField(model,"_questKills")!)[questId]=new ushort[]{7};
-                    list.AddChild((Control)DetailCall(model,"BuildQuestRow",questId,1,"Canbo")!);questId++;
+                    ((Dictionary<int,QuestView>)DetailField(model,"Session.QuestBook.Views")!)[questId]=fixture;
+                    ((List<QuestEntry>)DetailField(model,"Session.QuestBook.Entries")!).Add(new QuestEntry(questId,1));
+                    ((Dictionary<int,ushort[]>)DetailField(model,"Session.QuestBook.Kills")!)[questId]=new ushort[]{7};
+                    list.AddChild((Control)DetailCall(model,"Quest.BuildRow",questId,1,"Canbo")!);questId++;
                 }
-                ((Control)DetailField(model,"_questDetailBody")!).Visible=false;
-                ((Control)DetailField(model,"_questDetailEmpty")!).Visible=true;
-                ((Dictionary<string,HudWindow>)DetailField(model,"_mainWindows")!)["Quests"]=panel;
+                ((Control)DetailField(model,"Quest.detailBody")!).Visible=false;
+                ((Control)DetailField(model,"Quest.detailEmpty")!).Visible=true;
+                ((Dictionary<string,HudWindow>)DetailField(model,"MainWindows.Windows")!)["Quests"]=panel;
                 CharacterPanelBridge.For(model).SelectPage("quest");
                 panel.Visible=false;
             }
             else if(id=="character_clan_details")
             {
                 var nativeRoot=new VBoxContainer { CustomMinimumSize=new Vector2(560,0) };body.AddChild(nativeRoot);
-                DetailCall(model,"BuildClanMineView",nativeRoot);
+                DetailCall(model,"Clan.BuildMineView",nativeRoot);
                 var status=new Label { Text="Clan notice and contribution are up to date." };nativeRoot.AddChild(status);
-                typeof(World).GetField("_clanStatus",BindingFlags.NonPublic|BindingFlags.Instance)!.SetValue(model,status);
-                ((Control)DetailField(model,"_clanMineBox")!).Visible=true;
-                foreach(var entry in new[]{("_clanNameLbl","canCLAN"),("_clanStandingLbl","Accredited Knights / Grade 3"),("_clanDutyLbl","Chief / 4 members online"),("_clanFundLbl","Contribution: 125,000"),("_clanNoticeLbl","Meet at Moradon. Prepare for the next war.")}) ((Label)DetailField(model,entry.Item1)!).Text=entry.Item2;
-                ((Button)DetailField(model,"_clanLeaveBtn")!).Text="Disband";
-                var list=(VBoxContainer)DetailField(model,"_clanList")!;
-                var members=(List<ClanMember>)DetailField(model,"_clanMembers")!;
+                Native.Set(model, "Clan.status", status);
+                ((Control)DetailField(model,"Clan.mineBox")!).Visible=true;
+                foreach(var entry in new[]{("Clan.nameLbl","canCLAN"),("Clan.standingLbl","Accredited Knights / Grade 3"),("Clan.dutyLbl","Chief / 4 members online"),("Clan.fundLbl","Contribution: 125,000"),("Clan.noticeLbl","Meet at Moradon. Prepare for the next war.")}) ((Label)DetailField(model,entry.Item1)!).Text=entry.Item2;
+                ((Button)DetailField(model,"Clan.leaveBtn")!).Text="Disband";
+                var list=(VBoxContainer)DetailField(model,"CommandList.clan")!;
+                var members=(List<ClanMember>)DetailField(model,"Clan.members")!;
                 members.AddRange(new[]{new ClanMember { Name="Canbo",Fame=ClanRanks.Chief,Level=83,Class=205,IsOnline=true,Memo="" },new ClanMember { Name="Guardian",Fame=ClanRanks.ViceChief,Level=80,Class=201,IsOnline=true,Memo="" },new ClanMember { Name="Magician",Fame=3,Level=78,Class=203,IsOnline=false,HoursSinceLogin=48,Memo="" }});
-                DetailCall(model,"RenderClanMembers");
+                DetailCall(model,"Clan.RenderMembers");
                 foreach(var tabs in Descendants(body).OfType<HBoxContainer>())
                     if(tabs.GetChildren().OfType<Button>().FirstOrDefault(b=>b.ToggleMode) is {} tab) tab.SetPressedNoSignal(true);
             }
             else if(id=="clanpoint")
             {
-                try { DetailCall(model,"ClanPointsInit"); } catch(TargetInvocationException e) when(e.InnerException is NullReferenceException) { }
-                var built=(HudWindow)DetailField(model,"_clanPointsPanel")!;
+                try { DetailCall(model,"ClanPoints.Build"); } catch(TargetInvocationException e) when(e.InnerException is NullReferenceException) { }
+                var built=(HudWindow)DetailField(model,"ClanPoints.PointsPanel")!;
                 foreach(var control in built.Body.GetChildren().OfType<Control>().ToArray()) control.Reparent(body);
-                ((Label)DetailField(model,"_clanPointsMineLbl")!).Text="2,025,525,525";
-                ((Label)DetailField(model,"_clanPointsFundLbl")!).Text="125,000 (12 points)";
-                ((CheckBox)DetailField(model,"_clanPointsAuto")!).ButtonPressed=true;
-                ((Label)DetailField(model,"_clanPointsStatus")!).Text="Only accredited Knights can save Contribution.";
+                ((Label)DetailField(model,"ClanPoints.pointsMineLbl")!).Text="2,025,525,525";
+                ((Label)DetailField(model,"ClanPoints.pointsFundLbl")!).Text="125,000 (12 points)";
+                ((CheckBox)DetailField(model,"ClanPoints.pointsAuto")!).ButtonPressed=true;
+                ((Label)DetailField(model,"ClanPoints.pointsStatus")!).Text="Only accredited Knights can save Contribution.";
             }
             else if(id=="quest_target")
             {
-                DetailCall(model,"EnsureQuestTargetWindow");var built=(HudWindow)DetailField(model,"_questTargetWindow")!;
+                DetailCall(model,"QuestTarget.EnsureTargetWindow");var built=(HudWindow)DetailField(model,"QuestTarget.TargetWindow")!;
                 foreach(var control in built.Body.GetChildren().OfType<Control>().ToArray()) control.Reparent(body);
-                ((VBoxContainer)DetailField(model,"_questTargetText")!).AddChild(new Label { Text="Bandicoot\nLook near the fields outside Moradon.",AutowrapMode=TextServer.AutowrapMode.WordSmart });
-                ((Label)DetailField(model,"_questTargetCaption")!).Text="Moradon";
+                ((VBoxContainer)DetailField(model,"QuestTarget.targetText")!).AddChild(new Label { Text="Bandicoot\nLook near the fields outside Moradon.",AutowrapMode=TextServer.AutowrapMode.WordSmart });
+                ((Label)DetailField(model,"QuestTarget.targetCaption")!).Text="Moradon";
             }
             else if(id=="userinfo")
             {
-                DetailCall(model,"UserInfoInit");var built=(HudWindow)DetailField(model,"_userInfoPanel")!;
+                DetailCall(model,"UserInfo.Build");var built=(HudWindow)DetailField(model,"UserInfo.Panel")!;
                 foreach(var control in built.Body.GetChildren().OfType<Control>().ToArray()) control.Reparent(body);
                 // 3277df5: the card comes from the server reply through the client's own handler (rank boards for the row titles).
-                DetailCall(model,"LoadDailyRankBoards");
-                DetailCall(model,"OnUserInformation",UserInfoFixture(nation,true));
+                DetailCall(model,"DailyRankWindow.LoadBoards");
+                DetailCall(model,"UserInfo.OnInformation",UserInfoFixture(nation,true));
             }
             else if(id=="quest_receipt")
             {
                 QuestReceived(model,new QuestReceipt(62,new[]{new QuestReceiptEntry(900001000,25000),new QuestReceiptEntry(900000000,10000)}));
-                var built=(HudWindow)DetailField(model,"_questReceiptWindow")!;
+                var built=(HudWindow)DetailField(model,"QuestReceipt.ReceiptWindow")!;
                 foreach(var control in built.Body.GetChildren().OfType<Control>().ToArray()) control.Reparent(body);
-                typeof(World).GetField("_questReceiptWindow",BindingFlags.NonPublic|BindingFlags.Instance)!.SetValue(model,panel);
+                Native.Set(model, "QuestReceipt.ReceiptWindow", panel);
             }
             else if(id=="npc_dialog")
             {
                 panel.Title="Defeat the Monsters of Moradon";
-                DetailCall(model,"BuildNpcDialog");
-                var built=(HudWindow)DetailField(model,"_npcPanel")!;
+                DetailCall(model,"NpcDialogWindow.BuildNpcDialog");
+                var built=(HudWindow)DetailField(model,"NpcDialogWindow.Panel")!;
                 DetailCall(model,"ShowQuestView",new QuestView(62,1,21,true,false,true,false,QuestViewState.Claimable,0,
                     "Defeat the Monsters of Moradon","Return to the guard.","You have protected Moradon. Choose your reward before confirming the quest.",
                     new QuestObjectives(62,false,[new QuestKillGroup(10,[1],"Worm")]),[10],[new QuestTransfer(false,2,0,25000,0)],[])
                     { Options=[new QuestTransfer(false,1,0,10000,0),new QuestTransfer(false,2,0,30000,0)] });
                 foreach(var control in built.Body.GetChildren().OfType<Control>().ToArray()) control.Reparent(body);
-                typeof(World).GetField("_npcPanel",BindingFlags.NonPublic|BindingFlags.Instance)!.SetValue(model,panel);
+                Native.Set(model, "NpcDialogWindow.Panel", panel);
             }
             var originalActions=Descendants(body).OfType<BaseButton>().Select(b=>b.GetInstanceId()).ToHashSet();
             if(id is "titles" or "presets")
             {
-                string field=id=="titles"?"_titlePanel":"_presetPanel";
-                string shown=id=="titles"?"_titleShown":"_presetShown";
+                string field=id=="titles"?"TitlePicker.panel":"SkillPreset.presetPanel";
+                string shown=id=="titles"?"TitlePicker.Shown":"SkillPreset.presetShown";
                 string close=id=="titles"?"CloseTitlePicker":"ClosePreset";
-                typeof(World).GetField(field,BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(model,panel);
-                typeof(World).GetField(shown,BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(model,true);
+                Native.Set(model, field, panel);
+                Native.Set(model, shown, true);
                 panel.Closed+=()=>DetailCall(model,close);
             }
             int beforeButtons=originalActions.Count;
@@ -219,7 +223,7 @@ public partial class Preview
             {
                 var nativePanel=CharacterPanelBridge.For(model);
                 _windowData!.LiveCharacterPanel=nativePanel;
-                var connField=typeof(Net).GetField("_conn",BindingFlags.Instance|BindingFlags.NonPublic)!;
+                var connField=typeof(Net).GetField("conn",BindingFlags.Instance|BindingFlags.NonPublic)!;
                 var connection=connField.GetValue(offline);
                 // Any redundant request must fail in this isolated offline check.
                 connField.SetValue(offline,null);
@@ -228,19 +232,19 @@ public partial class Preview
                     nativePanel.Act("quest_details","501");
                     CharacterPageRouter.Present("quests");
                     await ToSignal(GetTree().CreateTimer(.2),SceneTreeTimer.SignalName.Timeout);
-                    if((int)DetailField(model,"_questSelected")! !=501 || !((Control)DetailField(model,"_questDetailBody")!).IsVisibleInTree() || ((Control)DetailField(model,"_questDetailEmpty")!).IsVisibleInTree()) throw new Exception("Native Details lost the selected quest");
-                    if(((Label)DetailField(model,"_questDetailTitle")!).Text!="Defeat the Monsters of Moradon") throw new Exception("Native Details opened the wrong quest");
+                    if((int)DetailField(model,"Quest.Selected")! !=501 || !((Control)DetailField(model,"Quest.detailBody")!).IsVisibleInTree() || ((Control)DetailField(model,"Quest.detailEmpty")!).IsVisibleInTree()) throw new Exception("Native Details lost the selected quest");
+                    if(((Label)DetailField(model,"Quest.detailTitle")!).Text!="Defeat the Monsters of Moradon") throw new Exception("Native Details opened the wrong quest");
                     CheckRewardRows(model,[(900001000,25000),(900000000,10000),(810418000,2)]);
                     nativePanel.Act("quest_details","502");
-                    if((int)DetailField(model,"_questSelected")! !=502 || ((Label)DetailField(model,"_questDetailTitle")!).Text!="Daily Supply Delivery") throw new Exception("Native Details failed to change the selected quest");
+                    if((int)DetailField(model,"Quest.Selected")! !=502 || ((Label)DetailField(model,"Quest.detailTitle")!).Text!="Daily Supply Delivery") throw new Exception("Native Details failed to change the selected quest");
                     CheckRewardRows(model,[(900001000,850)]);
                     nativePanel.Act("quest_details","501");
                     GD.Print("NATIVE_QUEST_DETAILS_SELECTION_OK: cached native selection, no list reload, second quest, return to first");
                 }
                 finally { connField.SetValue(offline,connection);_windowData.LiveCharacterPanel=null; }
             }
-            if(id=="titles") ((Label)DetailField(model,"_titleHint")!).Text="3 earned. Every claimed title's bonus already counts — this only picks the name shown above your character.";
-            if(id=="character_clan_details") ((Label)DetailField(model,"_clanNoticeLbl")!).Text=string.Join(" ",Enumerable.Repeat("Prepare for the next war. Meet at Moradon.",5));
+            if(id=="titles") ((Label)DetailField(model,"TitlePicker.hint")!).Text="3 earned. Every claimed title's bonus already counts — this only picks the name shown above your character.";
+            if(id=="character_clan_details") ((Label)DetailField(model,"Clan.noticeLbl")!).Text=string.Join(" ",Enumerable.Repeat("Prepare for the next war. Meet at Moradon.",5));
             panel.Position=new Vector2(40,40);
             await ToSignal(GetTree().CreateTimer(.5),SceneTreeTimer.SignalName.Timeout);
             if(composed is ClassicDetailPanel && id is "npc_dialog" or "quest_receipt")
@@ -319,11 +323,11 @@ public partial class Preview
                 var choice=Descendants(body).OfType<Control>().First(c=>c.TooltipText=="Pick this reward");
                 choice.EmitSignal(Control.SignalName.GuiInput,new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=true });
                 await ToSignal(GetTree().CreateTimer(.2),SceneTreeTimer.SignalName.Timeout);
-                if(confirm.Disabled || (int)DetailField(model,"_questRewardChoice")! !=0) throw new Exception("Native reward selection callback was lost");
+                if(confirm.Disabled || (int)DetailField(model,"NpcDialogWindow.questRewardChoice")! !=0) throw new Exception("Native reward selection callback was lost");
                 var picked=QuestRewardChoices(model);
                 if(!picked.Chosen(62,out var reward) || reward != new QuestTransfer(false,1,0,10000,0)) throw new Exception("Reward choice was not retained for its quest");
                 DetailCall(model,"OnQuestView",new QuestView(99,1,21,false,false,false,false,QuestViewState.InProgress,0,"Unrelated quest","","",new QuestObjectives(99,false,[]),[],[],[]));
-                if((int)DetailField(model,"_questRewardChoice")! !=0 || !picked.Chosen(62,out var kept) || kept!=reward) throw new Exception("Unrelated quest refresh erased the reward choice");
+                if((int)DetailField(model,"NpcDialogWindow.questRewardChoice")! !=0 || !picked.Chosen(62,out var kept) || kept!=reward) throw new Exception("Unrelated quest refresh erased the reward choice");
                 GD.Print("QUEST_PENDING_CHOICE_OK");
                 await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 GetViewport().GetTexture().GetImage().SavePng(System.IO.Path.Combine(output,prefix+"-npc-reward-selected.png"));
@@ -332,7 +336,7 @@ public partial class Preview
                     new QuestObjectives(62,false,[new QuestKillGroup(10,[1],"Worm")]),[10],[new QuestTransfer(false,2,0,25000,0)],[])
                     { Options=[new(false,1,0,10000,0),new(false,2,0,30000,0)] };
                 DetailCall(model,"ShowQuestView",rewardView);
-                if((int)DetailField(model,"_questRewardChoice")! !=0 || Descendants(body).OfType<Button>().Single(b=>b.Text=="Confirm").Disabled)
+                if((int)DetailField(model,"NpcDialogWindow.questRewardChoice")! !=0 || Descendants(body).OfType<Button>().Single(b=>b.Text=="Confirm").Disabled)
                     throw new Exception("Reopening the quest erased its pending reward choice");
                 DetailCall(model,"OnQuestView",rewardView with { State=QuestViewState.Available,CanClaim=false,CanAccept=true,Counts=[0],Dialogue="Help the guards protect Moradon. Defeat the creatures, then return for your reward." });
                 // Rebuilt native rows are freed at the end of the frame.
@@ -366,7 +370,7 @@ public partial class Preview
             if(id=="userinfo" && composed is ClassicDetailPanel card)
             {
                 // A clanless character without rank marks: the card shrinks to the facts and the clan line.
-                DetailCall(model,"OnUserInformation",UserInfoFixture(nation,false));
+                DetailCall(model,"UserInfo.OnInformation",UserInfoFixture(nation,false));
                 await ToSignal(GetTree().CreateTimer(.5),SceneTreeTimer.SignalName.Timeout);
                 CheckUserInfoCard(body,false);
                 float end=body.GetChildren().OfType<Control>().Where(c=>c.Visible).Max(c=>c.Position.Y+c.Size.Y);
@@ -377,7 +381,7 @@ public partial class Preview
                 GD.Print($"DETAIL_FIT_OK userinfo-clanless height={card.Size.Y} gap={gap}");
                 var confirm=Descendants(body).OfType<Button>().Single(b=>b.Text=="Confirm" && b.IsVisibleInTree());
                 confirm.EmitSignal(BaseButton.SignalName.Pressed);
-                if((bool)DetailField(model,"_userInfoShown")!) throw new Exception("userinfo: Confirm did not close the card through the client");
+                if((bool)DetailField(model,"UserInfo.shown")!) throw new Exception("userinfo: Confirm did not close the card through the client");
                 GD.Print("USER_INFO_CONFIRM_OK");
             }
             if(id=="character_clan_details")
@@ -389,27 +393,27 @@ public partial class Preview
                         && Plugin.Kit.Bold.GetStringSize(placed.Text,HorizontalAlignment.Left,-1,placed.GetThemeFontSize("font_size")).X>placed.Size.X-4)
                         throw new Exception("Knights Management: caption does not fit "+placed.Text+" "+placed.Size);
                 GD.Print("CLAN_MEMO_ACTION_OK "+memo.GetRect());
-                var tabField=typeof(World).GetField("_clanTab",BindingFlags.NonPublic|BindingFlags.Instance)!;
-                tabField.SetValue(model,Enum.Parse(tabField.FieldType,"Points"));
+                var tabType=Native.MemberType(model,"Clan.tab")!;
+                Native.Set(model,"Clan.tab",Enum.Parse(tabType,"Points"));
                 foreach(var button in Descendants(composed).OfType<Button>().Where(b=>b.ToggleMode)) button.SetPressedNoSignal(button.Text=="Contribution");
-                DetailCall(model,"OnClanDonationList",new List<(string,int)> { ("Canbo",125000),("Guardian",65000),("Magician",12000) });
+                DetailCall(model,"Clan.OnDonationList",new List<(string,int)> { ("Canbo",125000),("Guardian",65000),("Magician",12000) });
                 await ToSignal(GetTree().CreateTimer(.3),SceneTreeTimer.SignalName.Timeout);await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 GetViewport().GetTexture().GetImage().SavePng(System.IO.Path.Combine(output,prefix+"-clan-contribution.png"));
-                tabField.SetValue(model,Enum.Parse(tabField.FieldType,"Union"));
+                Native.Set(model,"Clan.tab",Enum.Parse(tabType,"Union"));
                 foreach(var button in Descendants(composed).OfType<Button>().Where(b=>b.ToggleMode)) button.SetPressedNoSignal(button.Text=="Union");
-                DetailCall(model,"OnAllianceList","Prepare for the next war.",new List<AllianceClanEntry> { new AllianceClanEntry { Id=1,Name="canCLAN",InAlliance=true,Officers=new List<AllianceOfficer> { new() { Fame=ClanRanks.Chief,Name="Canbo" } } },new AllianceClanEntry { Id=2,Name="Guardians",InAlliance=true,Officers=new List<AllianceOfficer> { new() { Fame=ClanRanks.Chief,Name="Guardian" } } } });
+                DetailCall(model,"Clan.OnAllianceList","Prepare for the next war.",new List<AllianceClanEntry> { new AllianceClanEntry { Id=1,Name="canCLAN",InAlliance=true,Officers=new List<AllianceOfficer> { new() { Fame=ClanRanks.Chief,Name="Canbo" } } },new AllianceClanEntry { Id=2,Name="Guardians",InAlliance=true,Officers=new List<AllianceOfficer> { new() { Fame=ClanRanks.Chief,Name="Guardian" } } } });
                 await ToSignal(GetTree().CreateTimer(.3),SceneTreeTimer.SignalName.Timeout);await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 GetViewport().GetTexture().GetImage().SavePng(System.IO.Path.Combine(output,prefix+"-clan-confederacy.png"));
-                try { DetailCall(model,"ClanPointsInit"); } catch(TargetInvocationException e) when(e.InnerException is NullReferenceException) { }
-                var donation=(HudWindow)DetailField(model,"_clanPointsPanel")!;
+                try { DetailCall(model,"ClanPoints.Build"); } catch(TargetInvocationException e) when(e.InnerException is NullReferenceException) { }
+                var donation=(HudWindow)DetailField(model,"ClanPoints.PointsPanel")!;
                 if(donation.GetParent()!=null) donation.Reparent(this);else AddChild(donation);
                 var nested=CharacterDetailsSkin.Apply(donation.Body) as CharacterEmbeddedPage ?? throw new Exception("Donation subpage was not composed");
-                typeof(World).GetField("_clanPointsShown",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(model,true);
+                Native.Set(model, "ClanPoints.PointsShown", true);
                 donation.Visible=true;CharacterPageRouter.Present("clanpoint");
                 await ToSignal(GetTree().CreateTimer(.1),SceneTreeTimer.SignalName.Timeout);
                 if(composed.Visible || !nested.Visible) throw new Exception("Nested donation did not replace management content");
                 nested.Back?.Invoke();
-                if(!composed.Visible || nested.Visible || (bool)DetailField(model,"_clanPointsShown")!) throw new Exception("Nested Back did not restore management and close the native model");
+                if(!composed.Visible || nested.Visible || (bool)DetailField(model,"ClanPoints.PointsShown")!) throw new Exception("Nested Back did not restore management and close the native model");
                 GD.Print("NESTED_DONATION_BACK_OK");
                 nested.QueueFree();donation.QueueFree();
             }
@@ -420,7 +424,7 @@ public partial class Preview
                 routed.Back?.Invoke();
                 if(routed.Visible || closed!=1) throw new Exception("Embedded Back did not close its native lifecycle");
                 if(id is "titles" or "presets")
-                    if((bool)DetailField(model,id=="titles"?"_titleShown":"_presetShown")!) throw new Exception("Native model stayed open after Back");
+                    if((bool)DetailField(model,id=="titles"?"TitlePicker.Shown":"SkillPreset.presetShown")!) throw new Exception("Native model stayed open after Back");
                 if(id=="titles")
                 {
                     panel.Visible=true;CharacterPageRouter.Present(id);
@@ -469,17 +473,17 @@ public partial class Preview
         GD.Print("DETAIL_AUDIT_OK");
         offline.Free();
     }
-    private async Task CaptureLongQuest(World model,CharacterEmbeddedPage page,IGameCharacterPanel native,string prefix,string output)
+    private async Task CaptureLongQuest(WorldRoot model,CharacterEmbeddedPage page,IGameCharacterPanel native,string prefix,string output)
     {
         var view=new QuestView(65,1,21,false,false,false,false,QuestViewState.InProgress,0,"Kecoon hunting",
             "[Sentinel] Patrick asked me to hunt five Kecoons for him.","",new QuestObjectives(65,false,[new QuestKillGroup(5,[1],"Kecoon")]),[0],
             [new(false,2,0,1875,0),new(false,1,0,2000,0)],[])
             { Options=new[]{330150005,330150015,330150025,330150035,330150075}.Select(id=>new QuestTransfer(false,0,id,1,0)).ToArray() };
-        var views=(Dictionary<int,QuestView>)DetailField(model,"_questViews")!;
-        var entries=(List<QuestEntry>)DetailField(model,"_quests")!;
+        var views=(Dictionary<int,QuestView>)DetailField(model,"Session.QuestBook.Views")!;
+        var entries=(List<QuestEntry>)DetailField(model,"Session.QuestBook.Entries")!;
         views[65]=view;entries.Add(new QuestEntry(65,1));
-        ((Dictionary<int,QuestObjectives>)DetailField(model,"_questObjectives")!)[65]=view.Objectives;
-        ((Dictionary<int,ushort[]>)DetailField(model,"_questKills")!)[65]=[0];
+        ((Dictionary<int,QuestObjectives>)DetailField(model,"Session.QuestBook.Objectives")!)[65]=view.Objectives;
+        ((Dictionary<int,ushort[]>)DetailField(model,"Session.QuestBook.Kills")!)[65]=[0];
         native.Act("quest_details","65");page.ContentScroll.ScrollVertical=0;
         async Task Capture(string name)
         {
@@ -508,21 +512,21 @@ public partial class Preview
         GD.Print("QUEST_SCROLL_BOUNDS_OK: native range, arrows, wheel, track paging, last option, fixed actions");
         var pending=QuestRewardChoices(model);
         pending.Choose(65,view.Options[2]);views[65]=view with { State=QuestViewState.Claimable,CanClaim=true,Counts=[5] };entries[entries.FindIndex(q=>q.QuestId==65)]=new QuestEntry(65,3);
-        ((Dictionary<int,ushort[]>)DetailField(model,"_questKills")!)[65]=[5];
-        DetailCall(model,"RefreshQuestDetail");page.ContentScroll.ScrollVertical=0;
+        ((Dictionary<int,ushort[]>)DetailField(model,"Session.QuestBook.Kills")!)[65]=[5];
+        DetailCall(model,"Quest.RefreshDetail");page.ContentScroll.ScrollVertical=0;
         CheckRewardRows(model,[(900001000,1875),(900000000,2000),(330150025,1)]);
         if(!Descendants(QuestRewardRows(model)).OfType<Label>().Any(l=>l.Text=="Selected reward")) throw new Exception("Pending choice is not identified");
         await Capture("quests-selected-reward");
         entries[entries.FindIndex(q=>q.QuestId==65)]=new QuestEntry(65,2);views[65]=view with { State=QuestViewState.Completed };
         QuestReceived(model,new QuestReceipt(65,[new(900001000,1875),new(900000000,2000),new(330150025,1)]));
         CheckRewardRows(model,[(900001000,1875),(900000000,2000),(330150025,1)]);
-        if(pending.Chosen(65,out _) || ((Label)DetailField(model,"_questRewardTitle")!).Text!="Received rewards") throw new Exception("Granted rewards were confused with pending options");
+        if(pending.Chosen(65,out _) || ((Label)DetailField(model,"Quest.rewardTitle")!).Text!="Received rewards") throw new Exception("Granted rewards were confused with pending options");
         await Capture("quests-received-rewards");
         GD.Print("QUEST_GRANTED_REWARDS_OK");
     }
-    private static Control QuestRewardRows(World model) => (Control)((Node)DetailField(model,"_questDetailBody")!).FindChild(NativeQuestLog.RewardBoxName,true,false)!;
-    private static QuestRewardSelection<QuestTransfer> QuestRewardChoices(World model) => (QuestRewardSelection<QuestTransfer>)DetailField(model,"_questRewardSelection")!;
-    private static void QuestReceived(World model,QuestReceipt receipt) { NativeQuestLog.Record(receipt);DetailCall(model,"OnQuestReceipt",receipt); }
+    private static Control QuestRewardRows(WorldRoot model) => (Control)((Node)DetailField(model,"Quest.detailBody")!).FindChild(NativeQuestLog.RewardBoxName,true,false)!;
+    private static QuestRewardSelection<QuestTransfer> QuestRewardChoices(WorldRoot model) => (QuestRewardSelection<QuestTransfer>)DetailField(model,"Session.QuestBook.RewardSelection")!;
+    private static void QuestReceived(WorldRoot model,QuestReceipt receipt) { NativeQuestLog.Record(receipt);DetailCall(model,"QuestReceipt.OnReceipt",receipt); }
     private static IEnumerable<Node> Ancestry(Node? node) { for(;node!=null;node=node.GetParent()) yield return node; }
     /// <summary>A user card reply as the server sends it: a clan member with rank marks, or a clanless character.</summary>
     private static UserInfoReply UserInfoFixture(int nation,bool full) => full
@@ -557,7 +561,7 @@ public partial class Preview
     }
 
     private static IEnumerable<Node> Descendants(Node node) { yield return node;foreach(var child in node.GetChildren()) foreach(var item in Descendants(child)) yield return item; }
-    private static void CheckRewardRows(World model,(int Item,int Count)[] expected)
+    private static void CheckRewardRows(WorldRoot model,(int Item,int Count)[] expected)
     {
         var rewards=QuestRewardRows(model);
         var actual=Descendants(rewards).OfType<Control>().Where(c=>c.HasMeta("quest_reward_item_id"))
@@ -567,9 +571,9 @@ public partial class Preview
             if(icon.CustomMinimumSize.X<32 || icon.CustomMinimumSize.Y<32) throw new Exception("Quest reward icon minimum collapsed");
         GD.Print("QUEST_REWARD_ROWS_OK: "+string.Join(",",actual));
     }
-    private async Task CaptureNpcFixtures(World model,ClassicNpcDialogue shell,string prefix,string output,List<object> measurements)
+    private async Task CaptureNpcFixtures(WorldRoot model,ClassicNpcDialogue shell,string prefix,string output,List<object> measurements)
     {
-        var window=(HudWindow)DetailField(model,"_npcPanel")!;
+        var window=(HudWindow)DetailField(model,"NpcDialogWindow.Panel")!;
         async Task Capture(string id)
         {
             await ToSignal(GetTree().CreateTimer(.8),SceneTreeTimer.SignalName.Timeout);
@@ -589,11 +593,11 @@ public partial class Preview
             GetViewport().GetTexture().GetImage().SavePng(System.IO.Path.Combine(output,prefix+"-"+id+".png"));
         }
         ClassicNpcAction Topic(string text) => Descendants(shell).OfType<ClassicNpcAction>().Single(b=>b.IsVisibleInTree() && b.Source?.Text.Contains(text)==true);
-        DetailCall(model,"BeginNpcDialog","[Guard] Patrick","What mission are you going to undertake?");
+        DetailCall(model,"NpcDialogWindow.Begin","[Guard] Patrick","What mission are you going to undertake?");
         int selected=-1;
         string[] topics={"[In progress] Orc Watcher hunting","Worm hunt","[In progress] Bandicoot hunting","[Ready] Kecoon hunting","[Completed] Bulcan hunting","Silk bundle delivery","Apples of Moradon","Close"};
         for(int i=0;i<topics.Length;i++) { int index=i;DetailCall(model,"AddNpcMenuButton",$"{i+1}.   {topics[i]}",(Action)(()=>selected=index)); }
-        DetailCall(model,"EndNpcDialog",topics.Length);
+        DetailCall(model,"NpcDialogWindow.End",topics.Length);
         await Capture("npc-menu-full");
         if(shell.PageCount!=1 || Descendants(shell).OfType<ClassicNpcAction>().Count(b=>b.IsVisibleInTree() && b.Name!="npc_footer_close")!=topics.Length-1) throw new Exception("The full NPC menu is not shown on one page");
         var states=new Dictionary<string,QuestViewState> { ["Orc Watcher"]=QuestViewState.InProgress,["Kecoon"]=QuestViewState.Claimable,["Bulcan"]=QuestViewState.Completed,["Worm hunt"]=QuestViewState.Available };
@@ -616,9 +620,9 @@ public partial class Preview
         Descendants(shell).OfType<Button>().Single(b=>b.Name=="npc_footer_close").EmitSignal(BaseButton.SignalName.Pressed);
         if(selected!=7) throw new Exception("The footer Close lost the server's Close option");
         float menuHeight=shell.Size.Y;
-        DetailCall(model,"BeginNpcDialog","[Guard] Patrick","Select a mission.");
+        DetailCall(model,"NpcDialogWindow.Begin","[Guard] Patrick","Select a mission.");
         for(int i=0;i<24;i++) { int index=i;DetailCall(model,"AddNpcMenuButton",$"{i+1}.   Mission {i+1}",(Action)(()=>selected=index)); }
-        DetailCall(model,"EndNpcDialog",24);
+        DetailCall(model,"NpcDialogWindow.End",24);
         if(!window.Visible) window.Visible=true;
         await Capture("npc-menu-overflow");
         if(shell.PageCount<2 || window.Size.Y>GetViewportRect().Size.Y-24) throw new Exception("Long NPC lists must page inside the screen");

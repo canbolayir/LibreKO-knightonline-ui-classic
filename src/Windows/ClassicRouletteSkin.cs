@@ -26,7 +26,7 @@ public partial class ClassicRoulettePanel : ClassicEventPanel
     private ulong _nextStep;
     private bool _spinning;
 
-    public ClassicRoulettePanel(HudWindow window, Control body, World world) : base(window, body, world, Spec.Size)
+    public ClassicRoulettePanel(HudWindow window, Control body, WorldRoot world) : base(window, body, world, Spec.Size)
     {
         Text("Prize", Spec.ReelCaption, Caption).Name = "roulette_reel_caption";
         for (int i = 0; i < _reel.Length; i++)

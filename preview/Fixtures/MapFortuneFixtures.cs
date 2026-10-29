@@ -12,11 +12,11 @@ using KnightOnlineUiClassic.Native;
 public static partial class PreviewFixtures
 {
     /// <summary>The World Map detached with its native layout, so header dragging stays live.</summary>
-    public static HudWindow BuildGlobalMapPreview(World world)
+    public static HudWindow BuildGlobalMapPreview(WorldRoot world)
     {
-        Call(world, "GlobalMapInit");
-        Call(world, "ToggleGlobalMap");
-        var window = Detach<HudWindow>(world, "_globalMapPanel");
+        Call(world, "GlobalMap.Build");
+        Call(world, "GlobalMap.Toggle");
+        var window = Detach<HudWindow>(world, "GlobalMap.panel");
         NativeMapFortune.Prepare(window, world);
         return window;
     }
@@ -31,28 +31,28 @@ public static partial class PreviewFixtures
     };
 
     /// <summary>Delivers a zone list through the native reply handler: filled (8 zones), long (18) or empty.</summary>
-    public static void FillGlobalMap(World world, string view)
+    public static void FillGlobalMap(WorldRoot world, string view)
     {
         int count = view switch { "long" => GlobalMapZones.Length, "empty" => 0, _ => 8 };
         var zones = GlobalMapZones.Take(count).Select((zone, i) => new GlobalMapZone
         {
             ZoneId = i + 1, Name = zone.Name, OwnerNation = zone.Nation, Population = i % 4 == 3 ? 0 : 12 + i * 37 % 211,
         }).ToList();
-        Call(world, "OnGlobalMapList", zones);
+        Call(world, "GlobalMap.OnList", zones);
     }
 
-    public static HudWindow BuildFortuneWindowPreview(World world, bool revealed)
+    public static HudWindow BuildFortuneWindowPreview(WorldRoot world, bool revealed)
     {
-        var window = (HudWindow)Call(world, "BuildFortuneUiPreview", revealed)!;
+        var window = (HudWindow)Call(world, "Preview.BuildFortune", revealed)!;
         NativeMapFortune.Prepare(window, world);
         return window;
     }
 
     /// <summary>The Fortune Teller detached with its native layout, so header dragging stays live.</summary>
-    public static HudWindow BuildFortuneDragPreview(World world)
+    public static HudWindow BuildFortuneDragPreview(WorldRoot world)
     {
-        Call(world, "FortuneInit"); Call(world, "OpenFortune");
-        var window = Detach<HudWindow>(world, "_fortunePanel");
+        Call(world, "Fortune.Build"); Call(world, "Fortune.Open");
+        var window = Detach<HudWindow>(world, "Fortune.Panel");
         NativeMapFortune.Prepare(window, world);
         return window;
     }

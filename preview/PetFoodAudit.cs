@@ -13,11 +13,11 @@ using ClassicSlot = KnightOnlineUiClassic.Layout.ItemSlot;
 
 public partial class Preview
 {
-    private async Task AuditPetFood(World world, Net net, Control panel, InventoryWindow actual,
+    private async Task AuditPetFood(WorldRoot world, Net net, Control panel, InventoryWindow actual,
         NetworkStream stream, CancellationToken token, int nation, string output, Action<bool, string> require)
     {
         var flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        var inventory = (Inventory)typeof(World).GetProperty("Inv", flags)!.GetValue(world)!;
+        var inventory = (Inventory)Game.Session.Self.Inventory;
         var cells = (List<ClassicSlot>)typeof(InventoryWindow).GetField("_slots", flags)!.GetValue(actual)!;
         var window = (HudWindow)panel.GetParent();
         var view = (LayoutView)typeof(InventoryWindow).GetField("_view", flags)!.GetValue(actual)!;
@@ -26,7 +26,7 @@ public partial class Preview
         var weak = foods[0]; var strong = foods[^1];
         int weakSlot = Inventory.GridStart + 7, strongSlot = Inventory.GridStart + 8, duplicateSlot = Inventory.GridStart + 6;
         var saved = new[] { weakSlot, strongSlot, duplicateSlot }.ToDictionary(s => s, s => inventory[s]);
-        int oldSatisfaction = net.Pet!.Satisfaction;
+        int oldSatisfaction = Game.Session.Pet.Pet!.Satisfaction;
         var records = new List<object>();
         T Find<T>(string name) where T : Control => Descendants(panel).OfType<T>().Single(c => c.Name == name);
         var feed = Find<Button>("pet_feed"); var status = Find<Label>("pet_status");
@@ -34,16 +34,16 @@ public partial class Preview
         Action<int, NativeSlot> mutation = (_, _) => mutations++;
         Action<int, int, int, int> result = (_, _, _, _) => results++;
         Action<int> refusal = _ => refusals++;
-        net.InventorySlotEvent += mutation; net.PetFedEvent += result; net.PetFoodRefusedEvent += refusal;
+        Game.Session.Items.InventorySlotEvent += mutation; Game.Session.Pet.PetFedEvent += result; Game.Session.Pet.PetFoodRefusedEvent += refusal;
         async Task Frames(int count = 4) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
-        void Set(int slot, NativeSlot item) { inventory.ApplySlotUpdate(slot, item); net.MirrorInventorySlot(slot, item); DetailCall(world, "RefreshInventoryUI"); }
+        void Set(int slot, NativeSlot item) { inventory.ApplySlotUpdate(slot, item); Game.Session.Self.SetInventorySlot(slot, item); DetailCall(world, "InventoryWindow.RefreshUI"); }
         async Task ClickFeed()
         {
             var at = feed.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = at, GlobalPosition = at }, true); await Frames(2);
             foreach (bool pressed in new[] { true, false }) GetViewport().PushInput(new InputEventMouseButton { Position = at, GlobalPosition = at, ButtonIndex = MouseButton.Left, Pressed = pressed }, true);
             await Frames();
         }
-        void Receive(Packet p) { p.ResetOffset(); typeof(Net).GetMethod("HandlePet", flags)!.Invoke(net, new object[] { p }); }
+        void Receive(Packet p) { p.ResetOffset(); PreviewPackets.Receive(p); }
         Packet Food(byte success, int slot, int id, short count = 0, short increase = 0)
         {
             var p = new Packet(GameOpcodes.GS_PET); p.WriteByte(1); p.WriteByte(16); p.WriteByte(success); p.WriteByte((byte)slot); p.WriteInt(id);
@@ -96,7 +96,7 @@ public partial class Preview
             await ClickFeed(); await Request(strongSlot, strong.Id);
             var success = Food(1, strongSlot - Inventory.GridStart, strong.Id, 1, 1000);
             var bytes = success.GetData();
-            bool Feeding() => typeof(Net).GetField("_petFeedRequest", flags)!.GetValue(net) != null;
+            bool Feeding() => Native.Get<object>(Game.Session.Pet, "PendingFeed") != null;
             for (int length = 0; length < bytes.Length; length++)
             {
                 if (!Feeding()) { await ClickFeed(); await Request(strongSlot, strong.Id); }
@@ -123,8 +123,8 @@ public partial class Preview
             await ClickFeed(); await Request(strongSlot, strong.Id);
             Receive(success); Satisfaction(10000); await Frames();
             var left = strongItem; left.Count = 1;
-            require(results == 1 && mutations == 1 && inventory[strongSlot].Equals(left) && net.LastEnter.Inventory[strongSlot].Equals(left),
-                "Authoritative familiar feeding preserves remaining item flags and durability in both inventories");
+            require(results == 1 && mutations == 1 && inventory[strongSlot].Equals(left),
+                "Authoritative familiar feeding preserves remaining item flags and durability in the bag");
             require(cells.Single(c => c.Slot == strongSlot).Current.Count == 1 && Find<Label>("pet_satisfaction_value").Text == $"{100f:0.00}%"
                 && status.Text == $"{10f:0.00}% satisfaction rate increase" && status.GetThemeColor("font_color") == UiTheme.TextHi,
                 "Native familiar feeding refreshes the actual count satisfaction value and result text");
@@ -135,13 +135,13 @@ public partial class Preview
             await Capture("full");
             Satisfaction(9900); await Frames(); await ClickFeed(); await Request(strongSlot, strong.Id);
             Receive(Food(1, strongSlot - Inventory.GridStart, strong.Id, 0, 100)); Satisfaction(10000); await Frames();
-            require(inventory[strongSlot].Equals(default(NativeSlot)) && net.LastEnter.Inventory[strongSlot].Equals(default(NativeSlot)) && cells.Single(c => c.Slot == strongSlot).Current.IsEmpty,
+            require(inventory[strongSlot].Equals(default(NativeSlot)) && cells.Single(c => c.Slot == strongSlot).Current.IsEmpty,
                 "Eating the final familiar food clears its exact native and rendered inventory record");
             await Capture("consumed");
-            typeof(World).GetField("_selfDead", flags)!.SetValue(world, true); DetailCall(world, "RefreshPetUI"); await Frames(); await ClickFeed();
+            Native.Set(world, "Avatar.Dead", true); DetailCall(world, "Pet.RefreshUI"); await Frames(); await ClickFeed();
             require(feed.Disabled && !stream.DataAvailable && inventory[weakSlot].Equals(weakItem), "Dead owner cannot submit familiar feeding or spend food");
             await Capture("dead");
-            typeof(World).GetField("_selfDead", flags)!.SetValue(world, false); Satisfaction(9000); Set(weakSlot, default); await Frames(); await ClickFeed();
+            Native.Set(world, "Avatar.Dead", false); Satisfaction(9000); Set(weakSlot, default); await Frames(); await ClickFeed();
             require(status.Text == "You have no familiar food." && !stream.DataAvailable && inventory[duplicateSlot].Count == 3,
                 "Duplicate familiar food follows the authoritative server exclusion and is never selected");
             GetViewport().GuiGetFocusOwner()?.ReleaseFocus();
@@ -150,10 +150,10 @@ public partial class Preview
         }
         finally
         {
-            net.InventorySlotEvent -= mutation; net.PetFedEvent -= result; net.PetFoodRefusedEvent -= refusal;
-            typeof(World).GetField("_selfDead", flags)!.SetValue(world, false);
+            Game.Session.Items.InventorySlotEvent -= mutation; Game.Session.Pet.PetFedEvent -= result; Game.Session.Pet.PetFoodRefusedEvent -= refusal;
+            Native.Set(world, "Avatar.Dead", false);
             foreach (var entry in saved) Set(entry.Key, entry.Value);
-            Satisfaction(oldSatisfaction); DetailCall(world, "SetPetStatus", "", false); DetailCall(world, "RefreshPetUI"); await Frames();
+            Satisfaction(oldSatisfaction); DetailCall(world, "Pet.SetStatus", "", false); DetailCall(world, "Pet.RefreshUI"); await Frames();
         }
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-food.json", JsonSerializer.Serialize(new { screens = records }, new JsonSerializerOptions { WriteIndented = true }));
     }

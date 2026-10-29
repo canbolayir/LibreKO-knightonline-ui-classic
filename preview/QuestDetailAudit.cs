@@ -29,8 +29,8 @@ public partial class Preview
         window.GuiEmbedSubwindows = true;
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net, new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
-            Name = "Canbo", Gear = new int[8], Inventory = new ItemSlot[InventoryConstants.InventoryTotal] });
+        Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
+            Name = "Canbo", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new ItemSlot[InventoryConstants.InventoryTotal]);
         ItemData.EnsureLoaded();
         // The owner's client runs without the legacy quest table fallback: only quests with a server view are listed.
         bool legacy = OS.GetCmdlineUserArgs().Contains("legacy-quests");
@@ -61,11 +61,11 @@ public partial class Preview
             new QuestObjectives(q.Id, false, [new QuestKillGroup(q.Need, [1], q.Monster)]), [q.Have],
             [.. q.Rewards.Select(r => new QuestTransfer(false, (byte)(r.Item == 900001000 ? 2 : 1), 0, r.Count, 0))], []);
 
-        var model = new World();
-        DetailCall(model, "BuildQuestLog");
+        var model = PreviewFixtures.Prepared(new WorldRoot());
+        DetailCall(model, "Quest.BuildLog");
         var native = new HudWindow("quests", "QUESTS", new Vector2(170, 86), 420, persistLayout: false) { Visible = false };
-        native.Body.AddChild((Control)DetailField(model, "_questsContent")!);
-        ((Dictionary<string, HudWindow>)DetailField(model, "_mainWindows")!)["Quests"] = native;
+        native.Body.AddChild((Control)DetailField(model, "Quest.QuestsContent")!);
+        ((Dictionary<string, HudWindow>)DetailField(model, "MainWindows.Windows")!)["Quests"] = native;
         var shell = new Control(); AddChild(shell);
         var host = (LibreKO.Plugins.WindowHost)Create(typeof(LibreKO.Plugins.WindowHost), "character_info", "Character", shell, (Action)(() => { }));
         var bridge = CharacterPanelBridge.For(model);
@@ -75,19 +75,19 @@ public partial class Preview
         NativeCharacterNpc.Prepare(native, model);
         var page = (CharacterEmbeddedPage)CharacterDetailsSkin.Apply(native.Body)!;
 
-        var title = (Label)DetailField(model, "_questDetailTitle")!;
-        var sub = (Label)DetailField(model, "_questDetailSub")!;
-        var facts = (Label)DetailField(model, "_questDetailFacts")!;
-        var desc = (RichTextLabel)DetailField(model, "_questDetailDesc")!;
-        var objectives = (VBoxContainer)DetailField(model, "_questObjectiveBox")!;
-        var body = (Control)DetailField(model, "_questDetailBody")!;
-        var empty = (Control)DetailField(model, "_questDetailEmpty")!;
+        var title = (Label)DetailField(model, "Quest.detailTitle")!;
+        var sub = (Label)DetailField(model, "Quest.detailSub")!;
+        var facts = (Label)DetailField(model, "Quest.detailFacts")!;
+        var desc = (RichTextLabel)DetailField(model, "Quest.detailDesc")!;
+        var objectives = (VBoxContainer)DetailField(model, "Quest.objectiveBox")!;
+        var body = (Control)DetailField(model, "Quest.detailBody")!;
+        var empty = (Control)DetailField(model, "Quest.detailEmpty")!;
         // A loopback socket stands in for the server connection, so the audit sees every packet the client sends.
         var listener = new System.Net.Sockets.TcpListener(System.Net.IPAddress.Loopback, 0); listener.Start();
         var client = new System.Net.Sockets.TcpClient(); client.Connect((System.Net.IPEndPoint)listener.LocalEndpoint);
         var server = listener.AcceptTcpClient(); listener.Stop();
-        var connection = typeof(Net).GetField("_conn", flags)!.GetValue(net)!;
-        typeof(FramedConn).GetField("_stream", flags)!.SetValue(connection, client.GetStream());
+        var connection = typeof(Net).GetField("conn", flags)!.GetValue(net)!;
+        typeof(FramedConn).GetField("stream", flags)!.SetValue(connection, client.GetStream());
         typeof(FramedConn).GetField("Connected")!.SetValue(connection, true);
         var inbox = new List<byte>();
         int requests = 0, answers = 0;
@@ -123,7 +123,7 @@ public partial class Preview
                 {
                     string file = prefix + "-reload-" + answers + "-" + reloads.Count + ".png";
                     using (var shot = GetViewport().GetTexture().GetImage()) shot.SavePng(System.IO.Path.Combine(output, file));
-                    var shown = new { file, selected = DetailField(model, "_questSelected"), hint = empty.IsVisibleInTree(), title = title.Text };
+                    var shown = new { file, selected = DetailField(model, "Quest.Selected"), hint = empty.IsVisibleInTree(), title = title.Text };
                     reloads.Add(shown);
                     GD.Print("QUEST_DETAIL_RELOAD " + shown);
                 }
@@ -144,7 +144,7 @@ public partial class Preview
             await Reloading(2);
             foreach (var q in quests) DetailCall(model, "OnQuestView", View(q));
             // The client refreshes its open journal one deferred call after a view; the audit World is not in the tree.
-            if (!model.IsInsideTree() && (bool)DetailCall(model, "QuestsTabOpen")!) DetailCall(model, "RefreshQuestLog");
+            if (!model.IsInsideTree() && (bool)DetailCall(model, "MainWindows.IsOpen", "Quests")!) DetailCall(model, "Quest.RefreshLog");
             await Reloading(4);
         }
         // Runs a user action and answers the quest log requests it sends; returns how many it sent.
@@ -169,9 +169,9 @@ public partial class Preview
         {
             await Frames(4);
             using (var shot = GetViewport().GetTexture().GetImage()) shot.SavePng(System.IO.Path.Combine(output, prefix + "-" + state + ".png"));
-            GD.Print($"QUEST_DETAIL_STATE {state}: selected={DetailField(model, "_questSelected")} body={body.IsVisibleInTree()} empty={empty.IsVisibleInTree()} title='{title.Text}' sub='{sub.Text}' facts='{facts.Text}' desc='{desc.GetParsedText()}' titleRect={title.GetGlobalRect()}");
+            GD.Print($"QUEST_DETAIL_STATE {state}: selected={DetailField(model, "Quest.Selected")} body={body.IsVisibleInTree()} empty={empty.IsVisibleInTree()} title='{title.Text}' sub='{sub.Text}' facts='{facts.Text}' desc='{desc.GetParsedText()}' titleRect={title.GetGlobalRect()}");
             Require(page.IsVisibleInTree(), state + ": Quest Details subpage is shown");
-            Require((int)DetailField(model, "_questSelected")! == q.Id, state + ": client selection is quest " + q.Id + " (was " + DetailField(model, "_questSelected") + ")");
+            Require((int)DetailField(model, "Quest.Selected")! == q.Id, state + ": client selection is quest " + q.Id + " (was " + DetailField(model, "Quest.Selected") + ")");
             Require(body.IsVisibleInTree() && !empty.IsVisibleInTree(), state + ": details body shown instead of the empty hint");
             Require(title.Text == q.Title, state + ": title '" + title.Text + "' is '" + q.Title + "'");
             Require(sub.Text.Contains("In progress") && sub.Text.Contains("Hunt"), state + ": state line '" + sub.Text + "'");
@@ -226,7 +226,7 @@ public partial class Preview
         typeof(LibreKO.Plugins.WindowHost).GetMethod("RaiseShown", flags)!.Invoke(host, null); await Frames(2);
         await Act(() => Tab("btn_state").EmitSignal(BaseButton.SignalName.Pressed));
         Require(bridge.SelectedPage == "character", "the character window is back on Character Report");
-        Require(await Act(() => { DetailCall(model, "ShowMainWindow", "Quests"); DetailCall(model, "SelectQuest", 133); }) == 0,
+        Require(await Act(() => { DetailCall(model, "MainWindows.Show", "Quests"); DetailCall(model, "Quest.Select", 133); }) == 0,
             "opening Quest Details from the tracker sends no quest log request");
         Require(bridge.SelectedPage == "quest", "the tracker brings the window to the Quest page");
         await Expect(quests[2], "tracker-open");

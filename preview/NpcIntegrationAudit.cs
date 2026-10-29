@@ -27,15 +27,15 @@ public partial class Preview
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(1000,700);
         AddChild(new ColorRect { Color=new Color("252822"),Size=new Vector2(1000,700),MouseFilter=MouseFilterEnum.Ignore });
         await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);
-        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);var world=new World();
-        DetailCall(world,"BuildNpcDialog");
-        var layer=(CanvasLayer)DetailField(world,"_npcLayer")!;layer.Reparent(this);
-        DetailCall(world,"BuildItemTooltip");
-        var tooltipLayer=(CanvasLayer)DetailField(world,"_itemTipLayer")!;tooltipLayer.Reparent(this);
-        var window=(HudWindow)DetailField(world,"_npcPanel")!;
-        var actorType=typeof(World).GetNestedType("Ent",BindingFlags.NonPublic)!;
+        var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);var world=PreviewFixtures.Prepared(new WorldRoot());
+        DetailCall(world,"NpcDialogWindow.BuildNpcDialog");
+        var layer=(CanvasLayer)DetailField(world,"NpcDialogWindow.layer")!;layer.Reparent(this);
+        DetailCall(world,"ItemTooltip.Build");
+        var tooltipLayer=(CanvasLayer)DetailField(world,"ItemTooltip.tipLayer")!;tooltipLayer.Reparent(this);
+        var window=(HudWindow)DetailField(world,"NpcDialogWindow.Panel")!;
+        var actorType=Native.ClientType("LibreKO.Presentation.EntityView")!;
         var actor=Activator.CreateInstance(actorType,nonPublic:true)!;
-        ((IDictionary)DetailField(world,"_ents")!).Add(701,actor);
+        ((EntityRegistry)DetailField(world, "EntitySystem.Ents")!)[701] = (EntityView)actor;
         var native=new NpcPortraitProbe(world);
         using var seed=JsonDocument.Parse(System.IO.File.ReadAllText(ProjectSettings.GlobalizePath("res://../../LibreKO/Server/LibreKO.Game/Seed/Data/Npcs.json")));
         var prototypes=seed.RootElement.EnumerateArray().GroupBy(p=>p.GetProperty("Id").GetInt32()).ToDictionary(g=>g.Key,g=>g.Last());
@@ -48,9 +48,9 @@ public partial class Preview
                 actorType.GetField(field)!.SetValue(actor,value);
             }
             actorType.GetField("IsNpc")!.SetValue(actor,true);actorType.GetField("Gear")!.SetValue(actor,new int[8]);
-            typeof(World).GetField("_vendorNpcId",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,701);
-            typeof(World).GetField("_npcTalkId",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,-1);
-            var scene=(PackedScene?)typeof(World).GetMethod("ResolveMobScene",BindingFlags.Instance|BindingFlags.NonPublic)!.Invoke(world,new object[]{data.GetProperty("ModelId").GetInt32()});
+            Native.Set(Game.Session, "NpcQuest.LastNpcId", 701);
+            Native.Set(Game.Session, "NpcQuest.TalkingNpcId", -1);
+            var scene=(PackedScene?)Native.Call(world, "EntityLooksSystem.ResolveMobScene", data.GetProperty("ModelId").GetInt32());
             scene?.Instantiate<Node3D>().Free();
         }
         _windowData!.NpcPortraitSource=()=>native.NpcPortrait;
@@ -100,12 +100,12 @@ public partial class Preview
                 speechScroll=shell.Speech.Text.GetVScrollBar().Value,page=shell.Page,pageCount=shell.PageCount,
                 lowerScroll=shell.QuestScroll.GetVScrollBar().MaxValue>shell.QuestScroll.GetVScrollBar().Page+.5,failures });
         }
-        void Close() => DetailCall(world,"CloseNpcDialog");
+        void Close() => DetailCall(world,"NpcDialogWindow.Close");
         void Conversation(int npc,string story,string[] topics,Action<int>? pressed=null)
         {
-            Close();SetNpc(npc);DetailCall(world,"BeginNpcDialog",prototypes[npc].GetProperty("Name").GetString()!,story);
+            Close();SetNpc(npc);DetailCall(world,"NpcDialogWindow.Begin",prototypes[npc].GetProperty("Name").GetString()!,story);
             for(int i=0;i<topics.Length;i++) { int index=i;DetailCall(world,"AddNpcMenuButton",$"{i+1}.   {topics[i]}",(Action)(()=>pressed?.Invoke(index))); }
-            DetailCall(world,"EndNpcDialog",topics.Length);
+            DetailCall(world,"NpcDialogWindow.End",topics.Length);
         }
         string[] guardTopics={"[In progress] Orc Watcher hunting","Patrick's trust","[In progress] Bandicoot hunt","[Ready] Kecoon hunting","Bulcan hunting","Wild bulcan hunting","Kekoon warrior hunt","Subdual of Gavolt","Kekoon Captain hunt","Subdual of Vulture","Giant bulcan hunting","Werewolf elimination","Subdual of Silan","Giant Gavolt hunting","Werewolf skin","Glyptodont hunt","Gloomwing hunt"};
         int menuChoice=-1;
@@ -135,10 +135,10 @@ public partial class Preview
         Input.ParseInputEvent(new InputEventMouseMotion { Position=closePoint,GlobalPosition=closePoint });await Frames(2);await Capture("close-hover");
         Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=true,Position=closePoint,GlobalPosition=closePoint });await Frames(2);await Capture("close-pressed");
         Input.ParseInputEvent(new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=false,Position=closePoint,GlobalPosition=closePoint });await Frames(2);
-        if(window.Visible || (bool)DetailField(world,"_npcDialogShown")!) throw new Exception("Header close did not invoke its native callback on actual pointer input");
+        if(window.Visible || (bool)DetailField(world,"NpcDialogWindow.shown")!) throw new Exception("Header close did not invoke its native callback on actual pointer input");
         Input.ParseInputEvent(new InputEventMouseMotion { Position=Vector2.Zero,GlobalPosition=Vector2.Zero });
         ItemData.EnsureLoaded();
-        var items=(Dictionary<int,ItemData.Item>)typeof(ItemData).GetField("_items",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
+        var items=(Dictionary<int,ItemData.Item>)typeof(ItemData).GetField("items",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
         int[] helmets=new[]{"Half Plate Helmet","Rogue Helmet","Mage Linen Cap","Priest Helmet"}.Select(name=>items.Values.First(i=>i.Name.Equals(name,StringComparison.OrdinalIgnoreCase)&&i.Icon>0).Id+5).ToArray();
         var gavolt=new QuestView(501,13013,21,true,true,false,false,QuestViewState.Available,0,"Subdual of Gavolt","Hunt five Gavolts.",
             "Gavolts raided our mill and took the wheat. Hunt five Gavolts to help the farmers supply Moradon again.",
@@ -151,7 +151,7 @@ public partial class Preview
         void MovePointer(Vector2 point) => Input.ParseInputEvent(new InputEventMouseMotion { Position=point,GlobalPosition=point });
         MovePointer(itemCard.GetGlobalRect().Position+new Vector2(20,20));await Frames(3);
         if(!world.ItemTooltipVisible) throw new Exception("Item icon hover did not open the native tooltip");
-        var tooltip=(Control)DetailField(world,"_itemTipPanel")!;
+        var tooltip=(Control)DetailField(world,"ItemTooltip.TipPanel")!;
         var tooltipText=Descendants(tooltip).OfType<Label>().Select(l=>l.Text).ToArray();
         if(!tooltipText.Any(t=>t.Contains(ItemData.DisplayName(helmets[0])))) throw new Exception("Tooltip does not describe the actual reward item");
         MovePointer(itemCard.GetGlobalRect().Position+new Vector2(70,12));await Frames(3);
@@ -177,7 +177,7 @@ public partial class Preview
         var choices=Descendants(shell).OfType<ClassicNpcCard>().Where(c=>c.Source.HasMeta("quest_reward_selected")).ToArray();
         choices[2].EmitSignal(Control.SignalName.GuiInput,new InputEventMouseButton { ButtonIndex=MouseButton.Left,Pressed=true });
         await Frames();await Capture("gavolt-ready-selected");
-        if((int)DetailField(world,"_questRewardChoice")! !=2 || confirm.Disabled || !choices[2].Source.GetMeta("quest_reward_selected").AsBool()) throw new Exception("Native reward choice or confirm state failed");
+        if((int)DetailField(world,"NpcDialogWindow.questRewardChoice")! !=2 || confirm.Disabled || !choices[2].Source.GetMeta("quest_reward_selected").AsBool()) throw new Exception("Native reward choice or confirm state failed");
         var magpie=new QuestView(570,31506,21,true,true,false,false,QuestViewState.Available,0,"Hit and Miss Festival Begins","Hunt ten of each creature.",
             "Please hunt ten of each creature: Paramun, Doom Soldier, Troll Berserker and Giant Golem.",
             new QuestObjectives(570,false,[new(10,[1],"Paramun"),new(10,[2],"Doom Soldier"),new(10,[3],"Troll Berserker"),new(10,[4],"Giant Golem")]),[0,0,0,0],[new(false,2,0,20000000,0)],[]);
@@ -195,7 +195,7 @@ public partial class Preview
         GetWindow().Size=new Vector2I(1000,540);
         Conversation(13013,"What mission are you going to undertake?",guardTopics,index=>menuChoice=index);await Ready();await Capture("guard-small-viewport");
         var close=Descendants(shell).OfType<Button>().Single(b=>b.Name=="npc_footer_close");close.EmitSignal(BaseButton.SignalName.Pressed);
-        if(window.Visible || (bool)DetailField(world,"_npcDialogShown")!) throw new Exception("Native Close fallback failed");
+        if(window.Visible || (bool)DetailField(world,"NpcDialogWindow.shown")!) throw new Exception("Native Close fallback failed");
         if(OS.GetCmdlineUserArgs().Contains("npc-portrait-regression"))
         {
             GetWindow().Size=new Vector2I(1000,700);

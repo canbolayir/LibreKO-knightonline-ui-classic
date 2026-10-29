@@ -8,7 +8,7 @@ public static partial class PreviewFixtures
 {
     public const int EventsPreviewItem = 379154000, EventsPreviewApple = 810418000;
 
-    private static CanvasLayer EventsLayer(World world, string layer, string window)
+    private static CanvasLayer EventsLayer(WorldRoot world, string layer, string window)
     {
         var node = Field<CanvasLayer>(world, layer);
         node.GetParent()?.RemoveChild(node);
@@ -18,10 +18,10 @@ public static partial class PreviewFixtures
 
     private static void EventsPlayer(int nation)
     {
-        var me = Net.I.LastEnter;
+        var me = Game.Session.Self.LastEnter;
         me.Name = "EventTester2026"; me.Nation = nation;
-        Native.Call(Net.I, "SeedPreviewEnter", me);
-        Net.I.Sheet.SeedProgress(62, 0, 1);
+        Native.Call(Game.Session.Self, "SeedPreviewEnter", me);
+        Game.Session.Self.Sheet.SeedProgress(62, 0, 1);
     }
 
     public static CollectionRaceState CollectionRaceEventsState(bool completed, bool crowded)
@@ -59,21 +59,21 @@ public static partial class PreviewFixtures
         return state;
     }
 
-    public static CanvasLayer BuildCollectionRaceEventsPreview(World world, int nation, bool completed, bool crowded)
+    public static CanvasLayer BuildCollectionRaceEventsPreview(WorldRoot world, int nation, bool completed, bool crowded)
     {
         ItemData.EnsureLoaded();
         EventsPlayer(nation);
-        Call(world, "BuildCollectionRaceWindow");
-        Call(world, "ShowCollectionRace", CollectionRaceEventsState(completed, crowded));
-        return EventsLayer(world, "_crLayer", "_crWindow");
+        Call(world, "CollectionRace.BuildWindow");
+        Call(world, "CollectionRace.Show", CollectionRaceEventsState(completed, crowded));
+        return EventsLayer(world, "CollectionRace.crLayer", "CollectionRace.CrWindow");
     }
 
-    public static CanvasLayer BuildLotteryEventsPreview(World world, int nation)
+    public static CanvasLayer BuildLotteryEventsPreview(WorldRoot world, int nation)
     {
         ItemData.EnsureLoaded();
         EventsPlayer(nation);
-        Call(world, "LotteryInit");
-        return EventsLayer(world, "_lotteryLayer", "_lotteryWindow");
+        Call(world, "Lottery.Build");
+        return EventsLayer(world, "Lottery.layer", "Lottery.window");
     }
 
     public static LotteryState LotteryEventsState(bool itemCost, int remaining, int mine)
@@ -92,18 +92,18 @@ public static partial class PreviewFixtures
         return state;
     }
 
-    public static CanvasLayer BuildRouletteEventsPreview(World world, int nation)
+    public static CanvasLayer BuildRouletteEventsPreview(WorldRoot world, int nation)
     {
         ItemData.EnsureLoaded();
         EventsPlayer(nation);
-        Call(world, "RouletteInit");
-        return EventsLayer(world, "_rouletteLayer", "_roulettePanel");
+        Call(world, "Roulette.Build");
+        return EventsLayer(world, "Roulette.layer", "Roulette.panel");
     }
 
-    public static CanvasLayer BuildTournamentEventsPreview(World world, int nation)
+    public static CanvasLayer BuildTournamentEventsPreview(WorldRoot world, int nation)
     {
         EventsPlayer(nation);
-        Call(world, "TournamentInit");
-        return EventsLayer(world, "_tournamentLayer", "_tournamentPanel");
+        Call(world, "Tournament.Build");
+        return EventsLayer(world, "Tournament.layer", "Tournament.panel");
     }
 }

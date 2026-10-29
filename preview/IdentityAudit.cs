@@ -34,9 +34,9 @@ public partial class Preview
             GetViewport().GetTexture().GetImage().SavePng(output + "/" + file);
             screens.Add(new { state, file, bounds = window.GetGlobalRect().ToString() });
         }
-        async Task<(World, HudWindow, ClassicIdentityPanel)> Build(string method, params object[] args)
+        async Task<(WorldRoot, HudWindow, ClassicIdentityPanel)> Build(string method, params object[] args)
         {
-            var world = new World(); var window = (HudWindow)DetailCall(world, method, args)!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, method, args)!;
             AddChild(window); ClassicIdentitySkin.Apply(window.Body); await Frames();
             var panel = window.GetChildren().OfType<ClassicIdentityPanel>().Single();
             window.Position = new Vector2(100, 80); await Frames(2);
@@ -50,35 +50,35 @@ public partial class Preview
         }
         var (clanWorld, clan, clanPanel) = await Build("BuildClanCreateUiPreview");
         await Capture(clan, "clan-name");
-        var name = (LineEdit)DetailField(clanWorld, "_clanCreateName")!;
+        var name = (LineEdit)DetailField(clanWorld, "ClanCreate.nameInput")!;
         name.Text = "x"; name.EmitSignal(LineEdit.SignalName.TextSubmitted, name.Text); await Frames();
-        Require(DetailField(clanWorld, "_clanCreateNotice") == null, "Invalid clan name never opens spending confirmation");
+        Require(DetailField(clanWorld, "ClanCreate.notice") == null, "Invalid clan name never opens spending confirmation");
         await Capture(clan, "clan-invalid");
         name.Text = "canCLAN"; name.EmitSignal(LineEdit.SignalName.TextSubmitted, name.Text);
-        var notice = (Notice)DetailField(clanWorld, "_clanCreateNotice")!;
+        var notice = (Notice)DetailField(clanWorld, "ClanCreate.notice")!;
         Require(notice != null, "Clan Enter opens the original second-stage fee confirmation");
         clanWorld.RemoveChild(notice!); AddChild(notice!); await Frames();
         var fee = notice!.GetChildren().OfType<ClassicServiceNotice>().Single();
-        DetailCall(clanWorld, "SubmitClanCreate");
-        Require(ReferenceEquals(notice, DetailField(clanWorld, "_clanCreateNotice")), "Repeated clan submit does not create duplicate confirmations");
+        DetailCall(clanWorld, "ClanCreate.Submit");
+        Require(ReferenceEquals(notice, DetailField(clanWorld, "ClanCreate.notice")), "Repeated clan submit does not create duplicate confirmations");
         GetViewport().GetTexture().GetImage().SavePng(output + "/" + (nation == 1 ? "karus" : "human") + "-clan-fee.png");
         screens.Add(new { state = "clan-fee", file = (nation == 1 ? "karus" : "human") + "-clan-fee.png" });
         fee._Input(new InputEventKey { Keycode = Key.Escape, Pressed = true }); await Frames();
-        Require(DetailField(clanWorld, "_clanCreateNotice") == null && clan.Visible && name.Text == "canCLAN", "Clan fee Escape returns to the unchanged name entry");
+        Require(DetailField(clanWorld, "ClanCreate.notice") == null && clan.Visible && name.Text == "canCLAN", "Clan fee Escape returns to the unchanged name entry");
         name.EmitSignal(LineEdit.SignalName.TextSubmitted, name.Text);
-        notice = (Notice)DetailField(clanWorld, "_clanCreateNotice")!; clanWorld.RemoveChild(notice); AddChild(notice); await Frames();
+        notice = (Notice)DetailField(clanWorld, "ClanCreate.notice")!; clanWorld.RemoveChild(notice); AddChild(notice); await Frames();
         notice.GetChildren().OfType<ClassicServiceNotice>().Single()._Input(new InputEventKey { Keycode = Key.Enter, Pressed = true }); await Frames();
-        Require(!clan.Visible && DetailField(clanWorld, "_clanCreateNotice") == null, "Clan fee Enter submits and closes the name entry");
+        Require(!clan.Visible && DetailField(clanWorld, "ClanCreate.notice") == null, "Clan fee Enter submits and closes the name entry");
         clan.Free(); clanWorld.Free();
 
         var (renameWorld, rename, renamePanel) = await Build("BuildNameChangeUiPreview");
         await Capture(rename, "name-change");
-        var edit = (LineEdit)DetailField(renameWorld, "_nameChangeEdit")!;
+        var edit = (LineEdit)DetailField(renameWorld, "NameChange.edit")!;
         edit.Text = "a"; edit.EmitSignal(LineEdit.SignalName.TextSubmitted, edit.Text); await Frames();
-        Require(((Label)DetailField(renameWorld, "_nameChangeStatus")!).Text == "Name must be 3-20 characters.", "Name Enter retains the native length validation");
+        Require(((Label)DetailField(renameWorld, "NameChange.status")!).Text == "Name must be 3-20 characters.", "Name Enter retains the native length validation");
         await Capture(rename, "name-invalid");
         renamePanel._UnhandledKeyInput(new InputEventKey { Keycode = Key.Escape, Pressed = true });
-        Require(!rename.Visible && !(bool)DetailField(renameWorld, "_nameChangeShown")!, "Name Escape invokes the native close behavior");
+        Require(!rename.Visible && !(bool)DetailField(renameWorld, "NameChange.shown")!, "Name Escape invokes the native close behavior");
         rename.Free(); renameWorld.Free();
 
         // The clan ID change reuses the rename window; the client switches its mode when it opens.
@@ -87,8 +87,8 @@ public partial class Preview
         var clanHint = Descendants(clanRenamePanel.Window).OfType<Label>().Single(l => l.Name == "name_change_hint");
         Require(clanHint.Text == ClassicIdentityPanel.ClanRenameHint, "Clan rename shows the Classic clan explanation");
         Require(Descendants(clanRenamePanel).OfType<Label>().Count(l => l.IsVisibleInTree() && l.Text == "Change Clan Name") == 1, "Clan rename shows its own title");
-        Require(((LineEdit)DetailField(clanRenameWorld, "_nameChangeEdit")!).Text == "", "Clan rename starts with an empty name");
-        DetailCall(clanRenameWorld, "OpenNameChange", false); await Frames();
+        Require(((LineEdit)DetailField(clanRenameWorld, "NameChange.edit")!).Text == "", "Clan rename starts with an empty name");
+        DetailCall(clanRenameWorld, "NameChange.Open", false); await Frames();
         Require(clanHint.Text == ClassicIdentityPanel.RenameHint, "Reopening as character rename restores the character explanation");
         clanRenamePanel._UnhandledKeyInput(new InputEventKey { Keycode = Key.Escape, Pressed = true });
         Require(!clanRename.Visible, "Clan rename Escape invokes the native close behavior");
@@ -102,7 +102,7 @@ public partial class Preview
             Require(ok.Disabled == empty, "Transformation confirms only when a form exists " + empty);
             if (!empty)
             {
-                var rows = (VBoxContainer)DetailField(world, "_disguiseFormRows")!;
+                var rows = (VBoxContainer)DetailField(world, "DisguiseWindow.formRows")!;
                 Require(rows.GetChildren().OfType<Button>().All(b => b.Size.Y == 19), "Transformation uses original dense one-line rows");
                 Require(rows.GetChildren().OfType<Button>().All(b => b.IsVisibleInTree() && b.Size.X >= 120), "Transformation form text is visible across the original list width");
                 var formScroll = (ScrollContainer)rows.GetParent();
@@ -117,7 +117,7 @@ public partial class Preview
                 rail.Bar.Value = 7; await Frames();
                 Require(rail.Bar.Value % ClassicIdentityPanel.DisguiseRow == 0, "Transformation list scrolls by whole rows");
                 rail.Bar.Value = 0; await Frames();
-                var groups = (VBoxContainer)DetailField(world, "_disguiseGroupRows")!;
+                var groups = (VBoxContainer)DetailField(world, "DisguiseWindow.groupRows")!;
                 groups.GetChildren().OfType<Button>().Last().EmitSignal(BaseButton.SignalName.Pressed); await Frames();
                 ok.EmitSignal(BaseButton.SignalName.Pressed);
                 notice = world.GetChildren().OfType<Notice>().Single(); world.RemoveChild(notice); AddChild(notice); await Frames();
@@ -130,25 +130,25 @@ public partial class Preview
                 Require(Descendants(notice).OfType<Button>().Count() == 2, "Transformation double-click opens confirmation rather than immediately transforming");
                 notice.GetChildren().OfType<ClassicServiceNotice>().Single()._Input(new InputEventKey { Keycode = Key.Escape, Pressed = true }); await Frames();
                 Require(window.Visible, "Transformation confirmation Escape preserves the current form and open list");
-                typeof(World).GetField("_selfTransformSkill", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.SetValue(world, 600001);
+                Native.Set(Game.Session, "Self.TransformSkill", 600001);
                 ok.EmitSignal(BaseButton.SignalName.Pressed);
                 notice = world.GetChildren().OfType<Notice>().Single(); world.RemoveChild(notice); AddChild(notice); await Frames();
                 Require(Descendants(notice).OfType<Label>().Any(l => l.Text.Contains("Transforming")), "Already transformed refusal remains native");
                 notice.GetChildren().OfType<ClassicServiceNotice>().Single()._Input(new InputEventKey { Keycode = Key.Enter, Pressed = true }); await Frames();
-                typeof(World).GetField("_selfTransformSkill", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.SetValue(world, 0);
+                Native.Set(Game.Session, "Self.TransformSkill", 0);
             }
             panel._UnhandledKeyInput(new InputEventKey { Keycode = Key.Escape, Pressed = true });
-            Require(!window.Visible && !(bool)DetailField(world, "_disguiseShown")!, "Transformation Escape invokes native cancellation " + empty);
+            Require(!window.Visible && !(bool)DetailField(world, "DisguiseWindow.shown")!, "Transformation Escape invokes native cancellation " + empty);
             window.Free(); world.Free();
         }
         // A member that still exists but changed type (the quest reward box became a flow container) is reported once,
         // as a missing member is, instead of silently reading as null.
         var reported = new List<string>(); Action<string> seen = reported.Add;
         KnightOnlineUiClassic.Native.Native.MemberMissing += seen;
-        var probe = new World();
-        KnightOnlineUiClassic.Native.Native.Get<HBoxContainer>(probe, "_questRewardBox");
-        KnightOnlineUiClassic.Native.Native.Get<HBoxContainer>(probe, "_questRewardBox");
-        bool compatible = KnightOnlineUiClassic.Native.Native.Get<Container>(probe, "_questRewardBox") == null;
+        var probe = PreviewFixtures.Prepared(new WorldRoot());
+        KnightOnlineUiClassic.Native.Native.Get<HBoxContainer>(probe, "Quest.rewardBox");
+        KnightOnlineUiClassic.Native.Native.Get<HBoxContainer>(probe, "Quest.rewardBox");
+        bool compatible = KnightOnlineUiClassic.Native.Native.Get<Container>(probe, "Quest.rewardBox") == null;
         KnightOnlineUiClassic.Native.Native.MemberMissing -= seen; probe.Free();
         Require(reported.Count(k => k == "LibreKO.World._questRewardBox") == 1 && compatible, "A native member read as another type is reported once; a compatible base type is not");
         string result = output + "/" + (nation == 1 ? "karus" : "human") + "-identity.json";

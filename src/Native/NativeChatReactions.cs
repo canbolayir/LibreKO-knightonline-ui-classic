@@ -16,9 +16,9 @@ public static class NativeChatReactions
     private const string LayerMeta = "classic_reaction_layer";
 
     /// <summary>Watches the World's reaction layer once; safe to call from every chat preparer.</summary>
-    public static void Attach(World world)
+    public static void Attach(WorldRoot world)
     {
-        if (!Native.TryGet<CanvasLayer>(world, "_reactionLayer", out var layer) || !GodotObject.IsInstanceValid(layer) || layer.HasMeta(LayerMeta)) return;
+        if (!Native.TryGet<CanvasLayer>(world, "ChatReactions.ReactionLayer", out var layer) || !GodotObject.IsInstanceValid(layer) || layer.HasMeta(LayerMeta)) return;
         layer.SetMeta(LayerMeta, true);
         foreach (var popup in layer.GetChildren().OfType<PopupPanel>()) Style(popup);
         Node.ChildEnteredTreeEventHandler added = node => { if (node is PopupPanel popup) Style(popup); };

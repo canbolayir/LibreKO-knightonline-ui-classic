@@ -31,10 +31,10 @@ public static class NativeChat
     }
 
     private static readonly Dictionary<long, Entry> _entries = new();
-    private static readonly ConditionalWeakTable<World, NearbyState> _nearby = new();
-    private static Type? ChatSystemType => Native.ClientType("LibreKO.ChatSystem");
+    private static readonly ConditionalWeakTable<WorldRoot, NearbyState> _nearby = new();
+    private static Type? ChatSystemType => Native.ClientType("LibreKO.Features.Social.ChatSystem");
 
-    private static object? ChatOf(World world) => Native.Get<object>(world, "Chat");
+    private static object? ChatOf(WorldRoot world) => Native.Get<object>(world, "Chat");
 
     /// <summary>
     /// Text the client put into its own hidden chat input when it opened the chat with a prefill (the command
@@ -43,7 +43,7 @@ public static class NativeChat
     /// </summary>
     public static string TakeTyped()
     {
-        if (NativeHudChat.World is not { } world || ChatOf(world) is not { } chat || Native.Get<LineEdit>(chat, "_input") is not { } input) return "";
+        if (NativeHudChat.World is not { } world || ChatOf(world) is not { } chat || Native.Get<LineEdit>(chat, "input") is not { } input) return "";
         string text = input.Text;
         if (text.Length > 0) input.Clear();
         return text;
@@ -52,13 +52,13 @@ public static class NativeChat
     /// <summary>Whether the plugin replaces the native chat panel (the Classic chat is active).</summary>
     public static bool ChatReplaced => Native.Call(PluginHost.Ui, "HudHidden", HudPart.Chat) is true;
 
-    internal static void Attach(World world)
+    internal static void Attach(WorldRoot world)
     {
         if (!ChatReplaced || ChatOf(world) is not { } chat) return;
         Native.Set(chat, "StatusNotice", (Action<string>)(message => Info(chat, message)));
-        if (Net.I is not { } net) return;
+        if (Game.Connection is not { } net) return;
         Action<ChatLine> recolour = line => RecolourBubble(chat, line);
-        NativeHooks.Listen("Net.ChatEvent", () => net.ChatEvent += recolour, () => net.ChatEvent -= recolour, world);
+        NativeHooks.Listen("Net.ChatEvent", () => Game.Session.Chat.ChatEvent += recolour, () => Game.Session.Chat.ChatEvent -= recolour, world);
     }
 
     /// <summary>Forgets the rendered chat history cache.</summary>
@@ -67,7 +67,7 @@ public static class NativeChat
     /// <summary>Adds a service or status notice to the chat as a yellow system line.</summary>
     public static void Info(object chat, string message)
     {
-        var entryType = Native.ClientType("LibreKO.ChatSystem+ChatEntry");
+        var entryType = Native.ClientType("LibreKO.Features.Social.ChatSystem+ChatEntry");
         if (entryType == null || Native.Call(entryType, "Raw", ChatCategory.System,
                 $"[color=#{NoticeColour}]{ClassicChatFormat.Esc(message)}[/color]") is not { } entry) return;
         Native.Call(chat, "AddEntry", entry);
@@ -75,10 +75,10 @@ public static class NativeChat
 
     private static void RecolourBubble(object chat, ChatLine line)
     {
-        if (line.Type == 2 || line.CharId < 0 && line.Name.Length == 0) return;
-        if (Native.Get<System.Collections.IDictionary>(chat, "_bubbles") is not { } bubbles || !bubbles.Contains(line.CharId)) return;
+        if (line.Type == ChatType.Private || line.CharId < 0 && line.Name.Length == 0) return;
+        if (Native.Get<System.Collections.IDictionary>(chat, "Bubbles.bubbles") is not { } bubbles || !bubbles.Contains(line.CharId)) return;
         if (bubbles[line.CharId] is not { } bubble || Native.Get<Label3D>(bubble, "Label") is not { } label) return;
-        var colour = new Color("#" + ClassicChatFormat.Channel(line.Type, line.Nation).Color);
+        var colour = new Color("#" + ClassicChatFormat.Channel((byte)line.Type, line.Nation).Color);
         colour.A = label.Modulate.A;
         label.Modulate = colour;
     }
@@ -98,7 +98,7 @@ public static class NativeChat
     /// <summary>The Classic history of one client chat store (the audits read a store they fill themselves).</summary>
     public static IReadOnlyList<string>? ReadHistory(object chat, int mask, bool timestamps, string colors)
     {
-        if (Native.Get<System.Collections.IEnumerable>(chat, "_store") is not { } store) return null;
+        if (Native.Get<System.Collections.IEnumerable>(chat, "store") is not { } store) return null;
         var overrides = colors.Split(',');
         var result = new List<string>();
         var present = new HashSet<long>();
@@ -124,7 +124,7 @@ public static class NativeChat
     {
         long seq = Native.Get<long>(raw, "Seq");
         if (_entries.TryGetValue(seq, out var cached)) return cached;
-        var entry = new Entry(seq, (int)Native.Get<ChatCategory>(raw, "Category"), Native.Get<byte>(raw, "Type"),
+        var entry = new Entry(seq, (int)Native.Get<ChatCategory>(raw, "Category"), (byte)Native.Get<ChatType>(raw, "Type"),
             Native.Get<string>(raw, "Name") ?? "", Native.Get<int>(raw, "Nation"), Native.Get<bool>(raw, "Gm"),
             Native.Get<string>(raw, "Text") ?? "", Native.Get<string>(raw, "Bbcode") ?? "", Native.Get<DateTime>(raw, "Time"));
         _entries[seq] = entry;
@@ -146,7 +146,7 @@ public static class NativeChat
     public static (int Id, string Name)? LinkInventoryItem(int slot)
     {
         if (NativeHudChat.World is not { } world || ChatOf(world) is not { } chat || !Native.Get<bool>(chat, "PluginTyping")) return null;
-        if (!Input.IsKeyPressed(Key.Shift) || Native.Get<Inventory>(world, "Inv") is not { } inventory) return null;
+        if (!Input.IsKeyPressed(Key.Shift) || Game.Session.Self.Inventory is not { } inventory) return null;
         if (slot < 0 || slot >= inventory.Length || inventory[slot].IsEmpty) return null;
         int id = inventory[slot].ItemId;
         if (id == ChatItemLink.RefusedItem) return null;
@@ -155,17 +155,17 @@ public static class NativeChat
 
     public static void ShowLinkTooltip(int itemId)
     {
-        if (NativeHudChat.World is { } world) Native.Call(world, "ShowChatItemTip", itemId);
+        if (NativeHudChat.World is { } world) Native.Call(world, "ItemTooltip.ShowItem", itemId);
     }
 
     public static void HideLinkTooltip()
     {
-        if (NativeHudChat.World is { } world) Native.Call(world, "HideItemTooltip");
+        if (NativeHudChat.World is { } world) Native.Call(world, "ItemTooltip.Hide");
     }
 
     public static void PlayerMenu(string name, Vector2 at)
     {
-        if (NativeHudChat.World is { } world) Native.Call(world, "ShowPlayerMenuByName", name, at);
+        if (NativeHudChat.World is { } world) Native.Call(world, "PlayerMenu.ShowByName", name, at);
     }
 
     /// <summary>
@@ -174,27 +174,27 @@ public static class NativeChat
     /// </summary>
     public static IReadOnlyList<NearbyRow> NearbyPlayers()
     {
-        if (NativeHudChat.World is not { } world || !Native.Get<bool>(world, "_worldReady") || Native.Get<Node3D>(world, "_self") == null)
+        if (NativeHudChat.World is not { } world || !Native.Get<bool>(world, "WorldReady") || Native.Get<Node3D>(world, "Avatar.Body") == null)
             return Array.Empty<NearbyRow>();
         var state = _nearby.GetOrCreateValue(world);
-        int zone = Native.Get<int>(world, "_zone");
+        int zone = Native.Get<int>(world, "ZoneId");
         if (state.Zone != zone)
         {
             state.Zone = zone;
-            Native.Get<System.Collections.IList>(world, "_nearbyListed")?.Clear();
-            Native.Get<System.Collections.IList>(world, "_nearbyRows")?.Clear();
+            Native.Get<System.Collections.IList>(world, "ChatHost.NearbyRows")?.Clear();
+            Native.Get<System.Collections.IList>(world, "ChatHost.NearbyRows")?.Clear();
             state.NextPoll = 0;
-            Native.Set(world, "_nearbyFirstPoll", true);
+            Native.Set(world, "ChatHost.nearbyFirstPoll", true);
         }
         ulong now = Time.GetTicksMsec();
-        if (now >= state.NextPoll && Net.I is { } net)
+        if (now >= state.NextPoll && Game.Connection is { } net)
         {
-            net.SendNearbyPlayersRequest(Native.Get<bool>(world, "_nearbyFirstPoll"));
-            Native.Set(world, "_nearbyFirstPoll", false);
+            Game.Requests.NearbyPlayers.Request(Native.Get<bool>(world, "ChatHost.nearbyFirstPoll"));
+            Native.Set(world, "ChatHost.nearbyFirstPoll", false);
             state.NextPoll = now + NearbyPollMs;
         }
-        Native.TryCall(world, "RebuildNearby", out _);
-        return Native.Get<List<NearbyRow>>(world, "_nearbyRows")?.ToArray() ?? Array.Empty<NearbyRow>();
+        Native.TryCall(world, "ChatHost.RebuildNearby", out _);
+        return Native.Get<List<NearbyRow>>(world, "ChatHost.NearbyRows")?.ToArray() ?? Array.Empty<NearbyRow>();
     }
 }
 
@@ -215,13 +215,13 @@ public static class NativeWhispers
         public string? ComposeTarget;
     }
 
-    private static readonly ConditionalWeakTable<World, State> _states = new();
+    private static readonly ConditionalWeakTable<WorldRoot, State> _states = new();
 
     internal static bool IsWhisper(HudWindow window) =>
         window.Id.StartsWith(Prefix, StringComparison.OrdinalIgnoreCase) && Native.WorldOf(window) is { } world
-        && Native.Get<CanvasLayer>(world, "_whisperLayer") is { } layer && window.GetParent() == layer;
+        && Native.Get<CanvasLayer>(world, "Whispers.whisperLayer") is { } layer && window.GetParent() == layer;
 
-    private static Type? ChatSystemType => Native.ClientType("LibreKO.ChatSystem");
+    private static Type? ChatSystemType => Native.ClientType("LibreKO.Features.Social.ChatSystem");
 
     /// <summary>A whisper line as the client's chat renders it: item links and emoticons in BBCode.</summary>
     public static string Render(string text, string hex) =>
@@ -249,16 +249,16 @@ public static class NativeWhispers
     }
 
     /// <summary>The conversation that Enter focuses, if any.</summary>
-    public static string? ComposeTarget(World world) => _states.GetOrCreateValue(world).ComposeTarget;
+    public static string? ComposeTarget(WorldRoot world) => _states.GetOrCreateValue(world).ComposeTarget;
 
-    internal static void Attach(World world)
+    internal static void Attach(WorldRoot world)
     {
         if (!NativeChat.ChatReplaced || world.HasNode("native_whisper_input")) return;
         Callable.From(() => { if (GodotObject.IsInstanceValid(world)) world.AddChild(new NativeWhisperInput(world) { Name = "native_whisper_input" }); }).CallDeferred();
     }
 
-    private static object? Conversation(World world, string name) =>
-        Native.Get<System.Collections.IDictionary>(world, "_whispers") is { } chats && chats.Contains(name) ? chats[name] : null;
+    private static object? Conversation(WorldRoot world, string name) =>
+        Native.Get<System.Collections.IDictionary>(world, "Whispers.Windows") is { } chats && chats.Contains(name) ? chats[name] : null;
 
     /// <summary>
     /// The conversation's composer on clients where whispers share the room's thread and composer (fa3cfc3);
@@ -281,13 +281,13 @@ public static class NativeWhispers
         var thread = window.Body.GetChildren().OfType<ScrollContainer>().FirstOrDefault(n => n.GetType().Name == "ChatThreadView");
         var composer = window.Body.GetChildren().OfType<Container>().FirstOrDefault(n => n.GetType().Name == "ChatComposer");
         if (thread == null || composer == null) return null;
-        var log = Native.Get<VBoxContainer>(thread, "_log");
-        var older = Native.Get<Button>(thread, "_older");
+        var log = Native.Get<VBoxContainer>(thread, "log");
+        var older = Native.Get<Button>(thread, "older");
         var input = Native.Get<LineEdit>(composer, "Input");
-        var field = Native.Get<HBoxContainer>(composer, "_field");
-        var strip = Native.Get<HBoxContainer>(composer, "_strip");
-        var record = Native.Get<Button>(composer, "_record");
-        var send = Native.Get<Button>(composer, "_send");
+        var field = Native.Get<HBoxContainer>(composer, "field");
+        var strip = Native.Get<HBoxContainer>(composer, "strip");
+        var record = Native.Get<Button>(composer, "record");
+        var send = Native.Get<Button>(composer, "send");
         if (log == null || older == null || input == null || field == null || strip == null || record == null || send == null) return null;
         return new WhisperParts(thread, log, older, composer, input, field, strip, record, send);
     }
@@ -299,14 +299,14 @@ public static class NativeWhispers
     public static Dictionary<Node, LibreKO.Domain.RoomPost> Posts(ScrollContainer thread)
     {
         var posts = new Dictionary<Node, LibreKO.Domain.RoomPost>();
-        if (Native.Get<System.Collections.IDictionary>(thread, "_rows") is not { } rows) return posts;
+        if (Native.Get<System.Collections.IDictionary>(thread, "rows") is not { } rows) return posts;
         foreach (System.Collections.DictionaryEntry entry in rows)
             if (entry.Key is LibreKO.Domain.RoomPost post && entry.Value != null && Native.Get<Control>(entry.Value, "Root") is { } root)
                 posts[root] = post;
         return posts;
     }
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         if (window.FindChild("classic_whisper", false, false) != null) return;
         string name = window.Id[Prefix.Length..];
@@ -329,7 +329,7 @@ public static class NativeWhispers
             input.FocusEntered += () => state.ComposeTarget = name;
             input.TextSubmitted += _ => Sent(state, name, input);
             // fa3cfc3: Send is the composer's icon button (tooltip "Send"); older clients have a "Send" caption.
-            var send = composer != null ? Native.Get<Button>(composer, "_send")
+            var send = composer != null ? Native.Get<Button>(composer, "send")
                 : Native.Descendants(window).OfType<Button>().FirstOrDefault(b => b.Text == "Send");
             if (send != null) send.Pressed += () => Sent(state, name, input);
         }
@@ -416,11 +416,11 @@ public static class NativeWhispers
     /// cursor becomes the compose target; a click elsewhere, or on a minimized conversation, clears it
     /// and leaves any whisper input.
     /// </summary>
-    public static void FocusAt(World world, Vector2 at)
+    public static void FocusAt(WorldRoot world, Vector2 at)
     {
         var state = _states.GetOrCreateValue(world);
-        if (Native.Get<CanvasLayer>(world, "_whisperLayer") is not { } layer
-            || Native.Get<System.Collections.IDictionary>(world, "_whispers") is not { } chats) return;
+        if (Native.Get<CanvasLayer>(world, "Whispers.whisperLayer") is not { } layer
+            || Native.Get<System.Collections.IDictionary>(world, "Whispers.Windows") is not { } chats) return;
         for (int i = layer.GetChildCount() - 1; i >= 0; i--)
         {
             if (layer.GetChild(i) is not HudWindow window || !window.Visible || !window.GetGlobalRect().HasPoint(at)) continue;
@@ -439,7 +439,7 @@ public static class NativeWhispers
     }
 
     /// <summary>Focuses the input of the compose target if that conversation is expanded.</summary>
-    public static bool TryFocusInput(World world)
+    public static bool TryFocusInput(WorldRoot world)
     {
         var state = _states.GetOrCreateValue(world);
         if (state.ComposeTarget is not { } name || Conversation(world, name) is not { } chat) return false;
@@ -458,22 +458,21 @@ public sealed record WhisperParts(
 /// <summary>Runs ahead of the world's own input handling (child nodes receive input first).</summary>
 public partial class NativeWhisperInput : Node
 {
-    private readonly World? _world;
+    private readonly WorldRoot? _world;
 
     public NativeWhisperInput() { }
 
-    public NativeWhisperInput(World world) => _world = world;
+    public NativeWhisperInput(WorldRoot world) => _world = world;
 
     public override void _Input(InputEvent ev)
     {
-        if (_world == null || !Native.Get<bool>(_world, "_worldReady") || Net.I is not { } net || net.ReconnectBlocking) return;
+        if (_world == null || !Native.Get<bool>(_world, "WorldReady") || Game.Connection is not { } net || net.Reconnect.Blocking) return;
         if (ev is InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } press)
         {
             NativeWhispers.FocusAt(_world, press.Position);
             return;
         }
         if (ev is not InputEventKey { Pressed: true, Echo: false } key || key.Keycode is not (Key.Enter or Key.KpEnter)) return;
-        if (Native.Get<bool>(_world, "_hudEditMode")) return;
         if (Native.Get<object>(_world, "Chat") is { } chat && Native.Get<bool>(chat, "IsActive")) return;
         if (GetViewport().GuiGetFocusOwner() is LineEdit or TextEdit or SpinBox) return;
         if (NativeWhispers.TryFocusInput(_world)) GetViewport().SetInputAsHandled();
@@ -483,7 +482,7 @@ public partial class NativeWhisperInput : Node
 /// <summary>Names and marks the native chat colour editor for the Classic skin and places its palette.</summary>
 public static class NativeChatColours
 {
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta("classic_chat_colours_controls")) return;
         window.SetMeta("classic_chat_colours_controls", 1);
@@ -506,7 +505,7 @@ public static class NativeChatColours
                 foot[1].Name = "chat_colour_apply";
             }
         }
-        if (Native.Get<PopupPanel>(world, "_chatPalette") is not { } palette) return;
+        if (Native.Get<PopupPanel>(world, "ChatHost.palette") is not { } palette) return;
         palette.Name = "chat_colour_palette";
         if (palette.GetChildCount() > 0)
         {
@@ -521,17 +520,17 @@ public static class NativeChatColours
     /// In the Classic editor the palette opens right-aligned under its colour button, above it when it would
     /// leave the frame, and focuses the current colour for keyboard selection.
     /// </summary>
-    private static void PlacePalette(HudWindow window, World world, PopupPanel palette)
+    private static void PlacePalette(HudWindow window, WorldRoot world, PopupPanel palette)
     {
         if (!window.HasMeta("classic_chat_colours")) return;
-        int slot = Native.Get<int>(world, "_chatPaletteSlot");
+        int slot = Native.Get<int>(world, "ChatHost.paletteSlot");
         if (Native.Descendants(window).OfType<Button>().FirstOrDefault(b => b.Name == "chat_colour_pick_" + slot) is not { } anchor) return;
         var at = anchor.GetScreenPosition() + new Vector2(0, anchor.Size.Y + 2);
         at.X += anchor.Size.X - palette.Size.X;
         if (at.Y + palette.Size.Y > window.GetScreenPosition().Y + window.Size.Y - 16)
             at.Y = anchor.GetScreenPosition().Y - palette.Size.Y - 2;
         palette.Position = (Vector2I)at;
-        var draft = Native.Get<ChatColors>(world, "_chatColorsDraft");
+        var draft = Native.Get<ChatColors>(world, "ChatHost.colorsDraft");
         Callable.From(() =>
         {
             if (!palette.Visible || palette.GetChildCount() == 0) return;

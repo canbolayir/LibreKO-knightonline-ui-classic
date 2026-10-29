@@ -51,24 +51,24 @@ public static class NativeCape
         public readonly Dictionary<Button, string> ArtKeys = new();
     }
 
-    private static readonly ConditionalWeakTable<World, State> _states = new();
+    private static readonly ConditionalWeakTable<WorldRoot, State> _states = new();
 
-    public static Notice? Confirmation(World world) => _states.TryGetValue(world, out var state) ? state.Notice : null;
-    public static int PatternPage(World world) => _states.TryGetValue(world, out var state) ? state.PatternPage : 0;
-    public static int ColourPage(World world) => _states.TryGetValue(world, out var state) ? state.ColourPage : 0;
+    public static Notice? Confirmation(WorldRoot world) => _states.TryGetValue(world, out var state) ? state.Notice : null;
+    public static int PatternPage(WorldRoot world) => _states.TryGetValue(world, out var state) ? state.PatternPage : 0;
+    public static int ColourPage(WorldRoot world) => _states.TryGetValue(world, out var state) ? state.ColourPage : 0;
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
-        if (!NativeIdentity.Begin(window, "native_cape") || Net.I is not { } net) return;
-        var sliders = new[] { "_capeR", "_capeG", "_capeB" }.Select(f => Native.Get<HSlider>(world, f)).ToArray();
-        var values = new[] { "_capeRVal", "_capeGVal", "_capeBVal" }.Select(f => Native.Get<Label>(world, f)).ToArray();
-        var ticket = Native.Get<CheckBox>(world, "_capeTicket");
-        var buy = Native.Get<Button>(world, "_capeBuyBtn");
-        var hint = Native.Get<Label>(world, "_capeHint");
-        var status = Native.Get<Label>(world, "_capeStatus");
-        var chosen = Native.Get<Label>(world, "_capeChosenLbl");
-        var requirement = Native.Get<Label>(world, "_capeReqLbl");
-        var price = Native.Get<Label>(world, "_capePriceLbl");
+        if (!NativeIdentity.Begin(window, "native_cape") || Game.Connection is not { } net) return;
+        var sliders = new[] { "CapeWindow.redSlider", "CapeWindow.greenSlider", "CapeWindow.blueSlider" }.Select(f => Native.Get<HSlider>(world, f)).ToArray();
+        var values = new[] { "CapeWindow.rVal", "CapeWindow.gVal", "CapeWindow.bVal" }.Select(f => Native.Get<Label>(world, f)).ToArray();
+        var ticket = Native.Get<CheckBox>(world, "CapeWindow.ticket");
+        var buy = Native.Get<Button>(world, "CapeWindow.buyBtn");
+        var hint = Native.Get<Label>(world, "CapeWindow.hint");
+        var status = Native.Get<Label>(world, "CapeWindow.status");
+        var chosen = Native.Get<Label>(world, "CapeWindow.chosenLbl");
+        var requirement = Native.Get<Label>(world, "CapeWindow.reqLbl");
+        var price = Native.Get<Label>(world, "CapeWindow.priceLbl");
         if (sliders.Any(s => s == null) || values.Any(v => v == null) || ticket == null || buy == null || hint == null
             || status == null || chosen == null || requirement == null || price == null) return;
 
@@ -126,23 +126,23 @@ public static class NativeCape
         buy.Name = "cape_buy";
         NativeIdentity.Rewire(buy, () => BuyPressed(world));
         var cancel = new Button { Name = "cape_cancel", Text = "Cancel", FocusMode = Control.FocusModeEnum.None };
-        cancel.Pressed += () => Native.Call(world, "CloseCape");
+        cancel.Pressed += () => Native.Call(world, "CapeWindow.Close");
         buy.GetParent().AddChild(cancel);
         hint.Name = "cape_hint"; hint.AutowrapMode = TextServer.AutowrapMode.WordSmart;
         status.Name = "cape_status"; status.AutowrapMode = TextServer.AutowrapMode.WordSmart;
 
         _states.AddOrUpdate(world, state);
-        LookFraming.Attach(state.Look, () => net.LastEnter.Race);
+        LookFraming.Attach(state.Look, () => Game.Session.Self.LastEnter.Race);
         window.VisibilityChanged += () => VisibilityChanged(world, state);
-        Action<bool, int, int, int, int, int> result = (ok, _, capeId, rr, gg, bb) => Result(world, state, ok, capeId, rr, gg, bb);
-        NativeHooks.Listen("Net.CapeResultEvent", () => net.CapeResultEvent += result, () => net.CapeResultEvent -= result, world);
+        Action<CapeChangeReply> result = reply => Result(world, state, reply.Succeeded, reply.CapeId, reply.R, reply.G, reply.B);
+        NativeHooks.Listen("Net.CapeResultEvent", () => Game.Session.Cape.CapeResultEvent += result, () => Game.Session.Cape.CapeResultEvent -= result, world);
         Action reset = () => Reset(world, state);
-        Native.Subscribe(net, "CapeResetEvent", reset, world);
+        Native.Subscribe(Game.Session.Cape, "CapeResetEvent", reset, world);
         // A lost connection resets every pending operation right after the cape; a cape reply for another
         // clan releases only the cape request.
         Action lost = () => ConnectionReset(world, state);
-        string[] connectionResets = { "PetResetEvent", "RebirthResetEvent" };
-        foreach (string member in connectionResets) Native.Subscribe(net, member, lost, world);
+        NativeHooks.Listen("Net.PetResetEvent", () => Game.Session.Pet.PetResetEvent += lost, () => Game.Session.Pet.PetResetEvent -= lost, world);
+        NativeHooks.Listen("Net.RebirthResetEvent", () => Game.Session.Develop.RebirthResetEvent += lost, () => Game.Session.Develop.RebirthResetEvent -= lost, world);
         window.SetMeta("classic_cape_controls", 1);
         NativeWindows.Sync(window, () => Gate(world));
         if (window.Visible) Opened(world, state);
@@ -154,7 +154,7 @@ public static class NativeCape
         CustomMinimumSize = new Vector2(SwatchSize, SwatchSize), ClipContents = true,
     };
 
-    private static void Pages(World world, State state, VBoxContainer parent, bool pattern)
+    private static void Pages(WorldRoot world, State state, VBoxContainer parent, bool pattern)
     {
         string prefix = pattern ? "cape_pattern_" : "cape_colour_";
         var row = new HBoxContainer(); parent.AddChild(row);
@@ -169,13 +169,13 @@ public static class NativeCape
     }
 
     /// <summary>Opens or closes the service; a pending purchase keeps it closed.</summary>
-    public static void Toggle(World world)
+    public static void Toggle(WorldRoot world)
     {
-        if (!Native.Get<bool>(world, "_capeShown") && Native.Get<bool>(world, "_capeRequestInFlight")) return;
-        Native.Call(world, "ToggleCape");
+        if (!Native.Get<bool>(world, "CapeWindow.shown") && Native.Get<bool>(world, "CapeWindow.requestInFlight")) return;
+        Native.Call(world, "CapeWindow.Toggle");
     }
 
-    private static void VisibilityChanged(World world, State state)
+    private static void VisibilityChanged(WorldRoot world, State state)
     {
         if (!state.Window.Visible)
         {
@@ -184,22 +184,22 @@ public static class NativeCape
             return;
         }
         // A request still pending keeps the service closed, as reopening could replace its draft.
-        if (Native.Get<bool>(world, "_capeRequestInFlight"))
+        if (Native.Get<bool>(world, "CapeWindow.requestInFlight"))
         {
             state.Window.Visible = false;
-            Callable.From(() => { if (Native.Get<bool>(world, "_capeShown")) Native.Call(world, "CloseCape"); }).CallDeferred();
+            Callable.From(() => { if (Native.Get<bool>(world, "CapeWindow.shown")) Native.Call(world, "CapeWindow.Close"); }).CallDeferred();
             return;
         }
         // The client finishes opening (worn cape, dye, its own catalogue) before the Classic view takes over.
         Callable.From(() => { if (GodotObject.IsInstanceValid(state.Window) && state.Window.Visible) Opened(world, state); }).CallDeferred();
     }
 
-    private static void Opened(World world, State state)
+    private static void Opened(WorldRoot world, State state)
     {
-        if (Net.I is not { } net) return;
-        var worn = net.LastEnter;
-        Native.Get<CheckBox>(world, "_capeTicket")!.SetPressedNoSignal(false);
-        var gear = Native.Call(world, "SelfGear") as int[] ?? Array.Empty<int>();
+        if (Game.Connection is not { } net) return;
+        var worn = Game.Session.Self.LastEnter;
+        Native.Get<CheckBox>(world, "CapeWindow.ticket")!.SetPressedNoSignal(false);
+        var gear = Native.Call(world, "EntityLooksSystem.SelfGear") as int[] ?? Array.Empty<int>();
         LookFraming.ShowCape(state.Look, worn.Race, worn.Face, (worn.Hair >> 24) & 0xFF,
             new Color((worn.Hair >> 16 & 255) / 255f, (worn.Hair >> 8 & 255) / 255f, (worn.Hair & 255) / 255f), gear);
         var sold = new SortedSet<int>();
@@ -207,50 +207,50 @@ public static class NativeCape
             if (SoldHere(id, def)) sold.Add(def.M);
         state.PatternIds.Clear(); state.PatternIds.AddRange(sold);
         state.PatternPage = 0;
-        int current = Native.Get<int>(world, "_capePattern");
+        int current = Native.Get<int>(world, "CapeWindow.pattern");
         ShowPattern(world, sold.Count > 0 ? (sold.Contains(current) ? current : sold.Min) : -1);
         Gate(world);
     }
 
     private static bool SoldHere(int id, Cape.CapeDef def) => !UnsoldCapes.Contains(id) && (def.Price > 0 || def.Points > 0);
 
-    private static bool Editing(World world, State state) =>
-        Native.Get<bool>(world, "_capeShown") && !Native.Get<bool>(world, "_capeRequestInFlight") && state.Notice == null;
+    private static bool Editing(WorldRoot world, State state) =>
+        Native.Get<bool>(world, "CapeWindow.shown") && !Native.Get<bool>(world, "CapeWindow.requestInFlight") && state.Notice == null;
 
-    private static MyClanInfo Clan => Net.I?.MyClan ?? default;
+    private static MyClanInfo Clan => Game.Session.Clan.MyClan;
 
     private static bool Allowed(Cape.CapeDef def) => ClanTypes.MeetsCapeRank(Clan.Flag, Clan.Grade, def.Ranking, def.Grade);
 
-    private static string NeedName(Cape.CapeDef def) => Native.Call(typeof(World), "CapeNeedName", def) as string ?? def.Name;
+    private static string NeedName(Cape.CapeDef def) => Native.Call(Native.StaticOwner("LibreKO.Features.Windows.CapeFeature"), "NeedName", def) as string ?? def.Name;
 
     /// <summary>Shows a pattern's colours; a chosen cape of another pattern is cleared.</summary>
-    public static void ShowPattern(World world, int pattern)
+    public static void ShowPattern(WorldRoot world, int pattern)
     {
         if (!_states.TryGetValue(world, out var state)) return;
-        Native.Set(world, "_capePattern", pattern);
+        Native.Set(world, "CapeWindow.pattern", pattern);
         state.ColourPage = 0;
         state.ColourIds.Clear();
         foreach (var (id, def) in Cape.Catalogue)
             if (def.M == pattern && SoldHere(id, def)) state.ColourIds.Add(id);
         state.ColourIds.Sort();
-        int choice = Native.Get<int>(world, "_capeChoice");
-        if (choice >= 0 && (!Cape.TryGet(choice, out var chosen) || chosen.M != pattern)) Native.Set(world, "_capeChoice", choice = NoCape);
+        int choice = Native.Get<int>(world, "CapeWindow.choice");
+        if (choice >= 0 && (!Cape.TryGet(choice, out var chosen) || chosen.M != pattern)) Native.Set(world, "CapeWindow.choice", choice = NoCape);
         RefreshPages(world, state);
         if (choice >= 0) Select(world, choice);
         else
         {
-            Native.Get<Label>(world, "_capeChosenLbl")!.Text = "Select a colour";
-            Native.Get<Label>(world, "_capeReqLbl")!.Text = "";
-            Native.Get<Label>(world, "_capePriceLbl")!.Text = "";
+            Native.Get<Label>(world, "CapeWindow.chosenLbl")!.Text = "Select a colour";
+            Native.Get<Label>(world, "CapeWindow.reqLbl")!.Text = "";
+            Native.Get<Label>(world, "CapeWindow.priceLbl")!.Text = "";
             RefreshPreview(world);
         }
     }
 
-    public static void Select(World world, int capeId)
+    public static void Select(WorldRoot world, int capeId)
     {
         if (!_states.TryGetValue(world, out var state) || !Cape.TryGet(capeId, out var def)) return;
-        Native.Set(world, "_capeChoice", capeId);
-        if (Native.Get<int>(world, "_capePattern") != def.M) ShowPattern(world, def.M);
+        Native.Set(world, "CapeWindow.choice", capeId);
+        if (Native.Get<int>(world, "CapeWindow.pattern") != def.M) ShowPattern(world, def.M);
         int index = state.ColourIds.IndexOf(capeId);
         if (index >= 0) state.ColourPage = index / ColoursPerPage;
         RefreshPages(world, state);
@@ -259,66 +259,66 @@ public static class NativeCape
         Gate(world);
     }
 
-    private static void DyeChanged(World world)
+    private static void DyeChanged(WorldRoot world)
     {
         RefreshPreview(world);
         Gate(world);
     }
 
-    private static void RefreshPreview(World world)
+    private static void RefreshPreview(WorldRoot world)
     {
-        if (!_states.TryGetValue(world, out var state) || Net.I is not { } net) return;
-        int choice = Native.Get<int>(world, "_capeChoice");
-        if (Native.Get<Button>(world, "_capeBuyBtn") is { } buy)
+        if (!_states.TryGetValue(world, out var state) || Game.Connection is not { } net) return;
+        int choice = Native.Get<int>(world, "CapeWindow.choice");
+        if (Native.Get<Button>(world, "CapeWindow.buyBtn") is { } buy)
             buy.Text = state.Window.HasMeta(HotNames.ClassicCape) ? (choice >= 0 ? "Buy" : "Apply") : (choice >= 0 ? "Buy cape" : "Apply dye");
-        if (!Native.Get<bool>(world, "_capeShown")) return;
-        int previewId = choice >= 0 ? choice : Native.Get<int>(world, "_capeCurrent");
+        if (!Native.Get<bool>(world, "CapeWindow.shown")) return;
+        int previewId = choice >= 0 ? choice : Native.Get<int>(world, "CapeWindow.current");
         var (r, g, b) = Dye(world);
-        var race = net.LastEnter.Race;
+        var race = Game.Session.Self.LastEnter.Race;
         LookFraming.SetCape(state.Look, previewId, new Color(r / 255f, g / 255f, b / 255f), race);
-        if (Native.Get<Node3D>(world, "_selfVisual") is not { } self) return;
+        if (Native.Get<Node3D>(world, "Avatar.Visual") is not { } self) return;
         // DressCape is an instance method since fa3cfc3 (it reads the zone: no capes in the Chaos dungeon);
         // calling it on the world binds both shapes.
-        Native.Call(world, "DressCape", self, previewId, r, g, b, false, race, true);
-        Native.Set(world, "_capePreviewing", true);
+        Native.Call(world, "EntityLooksSystem.Dress", self, previewId, r, g, b, false, race, true);
+        Native.Set(world, "CapeWindow.previewing", true);
     }
 
-    private static (int R, int G, int B) Dye(World world) =>
-        ((int)(Native.Get<HSlider>(world, "_capeR")?.Value ?? 0), (int)(Native.Get<HSlider>(world, "_capeG")?.Value ?? 0), (int)(Native.Get<HSlider>(world, "_capeB")?.Value ?? 0));
+    private static (int R, int G, int B) Dye(WorldRoot world) =>
+        ((int)(Native.Get<HSlider>(world, "CapeWindow.redSlider")?.Value ?? 0), (int)(Native.Get<HSlider>(world, "CapeWindow.greenSlider")?.Value ?? 0), (int)(Native.Get<HSlider>(world, "CapeWindow.blueSlider")?.Value ?? 0));
 
     /// <summary>The fork's UpdateCapeGate: what may be bought now, and why not.</summary>
-    public static void Gate(World world)
+    public static void Gate(WorldRoot world)
     {
         if (!_states.TryGetValue(world, out var state)) return;
         bool editing = Editing(world, state);
-        var ticket = Native.Get<CheckBox>(world, "_capeTicket")!;
-        Native.Get<Button>(world, "_capeBuyBtn")!.Disabled = !editing || !CanApply(world);
-        foreach (var field in new[] { "_capeR", "_capeG", "_capeB" }) Native.Get<HSlider>(world, field)!.Editable = editing;
+        var ticket = Native.Get<CheckBox>(world, "CapeWindow.ticket")!;
+        Native.Get<Button>(world, "CapeWindow.buyBtn")!.Disabled = !editing || !CanApply(world);
+        foreach (var field in new[] { "CapeWindow.redSlider", "CapeWindow.greenSlider", "CapeWindow.blueSlider" }) Native.Get<HSlider>(world, field)!.Editable = editing;
         ticket.Disabled = !editing;
         RefreshPages(world, state);
-        int choice = Native.Get<int>(world, "_capeChoice");
+        int choice = Native.Get<int>(world, "CapeWindow.choice");
         // The client rewrites the chosen column when the clan changes (its own SelectCape); the Classic lines win.
         if (choice >= 0 && Cape.TryGet(choice, out var def)) Describe(world, def);
         var clan = Clan;
-        Native.Get<Label>(world, "_capeHint")!.Text =
+        Native.Get<Label>(world, "CapeWindow.hint")!.Text =
             !clan.InClan ? "Join a clan to buy a cape."
             : !clan.IsChief ? "Only the clan chief can change the cape."
             : clan.Flag < ClanTypes.Promoted ? "Your clan must be promoted (Official) before buying a cape."
-            : Native.Get<bool>(world, "_selfDead") ? "You cannot change a cape while dead."
+            : Native.Get<bool>(world, "Avatar.Dead") ? "You cannot change a cape while dead."
             : ticket.ButtonPressed && !VoucherAllowed(choice) ? ItemData.Text(CapeShop.VoucherRefusedText, "You cannot purchase this item using exchange voucher")
             : ticket.ButtonPressed ? "A castellan ticket is required. Only eligible capes can be purchased."
             : $"Custom dye costs {DyePoints.ToString("n0", System.Globalization.CultureInfo.InvariantCulture)} clan points.";
     }
 
-    private static bool CanApply(World world)
+    private static bool CanApply(WorldRoot world)
     {
         var clan = Clan;
-        if (!clan.IsChief || clan.Flag < ClanTypes.Promoted || Native.Get<bool>(world, "_selfDead")) return false;
+        if (!clan.IsChief || clan.Flag < ClanTypes.Promoted || Native.Get<bool>(world, "Avatar.Dead")) return false;
         var (r, g, b) = Dye(world);
         bool dye = r != 0 || g != 0 || b != 0;
-        bool ticket = Native.Get<CheckBox>(world, "_capeTicket")!.ButtonPressed;
-        int choice = Native.Get<int>(world, "_capeChoice");
-        if (choice < 0 && (!dye || !Cape.IsRenderable(Native.Get<int>(world, "_capeCurrent")))) return false;
+        bool ticket = Native.Get<CheckBox>(world, "CapeWindow.ticket")!.ButtonPressed;
+        int choice = Native.Get<int>(world, "CapeWindow.choice");
+        if (choice < 0 && (!dye || !Cape.IsRenderable(Native.Get<int>(world, "CapeWindow.current")))) return false;
         if (choice >= 0)
         {
             if (!Cape.TryGet(choice, out var def)) return false;
@@ -333,30 +333,30 @@ public static class NativeCape
     private static bool VoucherAllowed(int capeId) => Cape.TryGet(capeId, out var def) && CapeShop.VoucherAllowed(def.Castle);
 
     /// <summary>The Classic info box lines of a chosen cape: name (note as tooltip), cost and grade.</summary>
-    private static void Describe(World world, Cape.CapeDef def)
+    private static void Describe(WorldRoot world, Cape.CapeDef def)
     {
-        var chosen = Native.Get<Label>(world, "_capeChosenLbl")!;
+        var chosen = Native.Get<Label>(world, "CapeWindow.chosenLbl")!;
         string name = def.M > 0 ? $"{def.Name} (pattern {def.M})" : def.Name;
         if (chosen.Text != name) chosen.Text = name;
         // The client's note line: "Now equipped" or the cape's description.
-        string note = Native.Has(world, "_capeNoteLbl") ? Native.Get<Label>(world, "_capeNoteLbl")?.Text ?? "" : "";
+        string note = Native.Has(world, "CapeWindow.noteLbl") ? Native.Get<Label>(world, "CapeWindow.noteLbl")?.Text ?? "" : "";
         chosen.TooltipText = note.Length > 0 ? name + "\n" + note : name;
-        var requirement = Native.Get<Label>(world, "_capeReqLbl")!;
+        var requirement = Native.Get<Label>(world, "CapeWindow.reqLbl")!;
         string need = NeedName(def).Replace(" grade ", "\nGrade ");
         if (requirement.Text != need) requirement.Text = need;
         requirement.AddThemeColorOverride("font_color", Clan.InClan && !Allowed(def) ? UiTheme.Bad : UiTheme.TextLo);
-        var price = Native.Get<Label>(world, "_capePriceLbl")!;
+        var price = Native.Get<Label>(world, "CapeWindow.priceLbl")!;
         string cost = CostText(world);
         if (price.Text != cost) price.Text = cost;
     }
 
-    private static string CostText(World world)
+    private static string CostText(WorldRoot world)
     {
-        int choice = Native.Get<int>(world, "_capeChoice");
-        if (Native.Get<CheckBox>(world, "_capeTicket")!.ButtonPressed && VoucherAllowed(choice)) return "1 castellan ticket";
+        int choice = Native.Get<int>(world, "CapeWindow.choice");
+        if (Native.Get<CheckBox>(world, "CapeWindow.ticket")!.ButtonPressed && VoucherAllowed(choice)) return "1 castellan ticket";
         Cape.TryGet(choice, out var def);
         var (r, g, b) = Dye(world);
-        if (choice >= 0 && choice == Native.Get<int>(world, "_capeCurrent") && r == 0 && g == 0 && b == 0)
+        if (choice >= 0 && choice == Native.Get<int>(world, "CapeWindow.current") && r == 0 && g == 0 && b == 0)
             return ItemData.Text(CapeShop.NowEquippedText, "Now equipped");
         int points = def.Points + (r != 0 || g != 0 || b != 0 ? DyePoints : 0);
         var costs = new List<string>();
@@ -365,7 +365,7 @@ public static class NativeCape
         return costs.Count == 0 ? "Free" : string.Join("\n", costs);
     }
 
-    private static void ChangePage(World world, State state, bool pattern, int direction)
+    private static void ChangePage(WorldRoot world, State state, bool pattern, int direction)
     {
         if (!Editing(world, state)) return;
         int count = pattern ? state.PatternIds.Count : state.ColourIds.Count;
@@ -375,10 +375,10 @@ public static class NativeCape
         RefreshPages(world, state);
     }
 
-    private static void RefreshPages(World world, State state)
+    private static void RefreshPages(WorldRoot world, State state)
     {
         bool editing = Editing(world, state);
-        int pattern = Native.Get<int>(world, "_capePattern"), choice = Native.Get<int>(world, "_capeChoice");
+        int pattern = Native.Get<int>(world, "CapeWindow.pattern"), choice = Native.Get<int>(world, "CapeWindow.choice");
         for (int slot = 0; slot < PatternsPerPage; slot++)
         {
             int index = state.PatternPage * PatternsPerPage + slot;
@@ -402,7 +402,7 @@ public static class NativeCape
             Cape.TryGet(state.ColourIds[index], out var def);
             bool locked = Clan.InClan && !Allowed(def);
             FillArt(state, button, def.C, def.M, locked);
-            button.TooltipText = Native.Call(world, "CapeCellTip", def, locked) as string ?? def.Name;
+            button.TooltipText = Native.Call(world, "CapeWindow.CellTip", def, locked) as string ?? def.Name;
         }
         state.PatternPageLabel.Text = $"{state.PatternPage + 1}/{Math.Max(1, (state.PatternIds.Count + PatternsPerPage - 1) / PatternsPerPage)}";
         state.ColourPageLabel.Text = $"{state.ColourPage + 1}/{Math.Max(1, (state.ColourIds.Count + ColoursPerPage - 1) / ColoursPerPage)}";
@@ -424,35 +424,35 @@ public static class NativeCape
         if (state.ArtKeys.TryGetValue(button, out var current) && current == key && button.GetChildCount() > 0) return;
         ClearArt(state, button);
         state.ArtKeys[button] = key;
-        if (Native.Call(typeof(World), "CapeSwatch", colour, pattern, Colors.White, locked) is not Control art) return;
+        if (Native.Call(Native.StaticOwner("LibreKO.Features.Windows.CapeFeature"), "Swatch", colour, pattern, Colors.White, locked) is not Control art) return;
         art.CustomMinimumSize = Vector2.Zero;
         art.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
         button.AddChild(art);
     }
 
     /// <summary>Opens the cost confirmation for the cape and dye chosen at this moment.</summary>
-    public static void BuyPressed(World world)
+    public static void BuyPressed(WorldRoot world)
     {
         if (!_states.TryGetValue(world, out var state) || !Editing(world, state)) return;
-        if (!Clan.IsChief) { Native.Call(world, "SetCapeStatus", "Only the clan chief can change the cape.", true); return; }
-        int capeId = Native.Get<int>(world, "_capeChoice");
+        if (!Clan.IsChief) { Native.Call(world, "CapeWindow.SetStatus", "Only the clan chief can change the cape.", true); return; }
+        int capeId = Native.Get<int>(world, "CapeWindow.choice");
         var (r, g, b) = Dye(world);
         if (capeId < 0 && r == 0 && g == 0 && b == 0)
         {
-            Native.Call(world, "SetCapeStatus", "Pick a cape, or choose a dye colour to repaint the one you have.", true);
+            Native.Call(world, "CapeWindow.SetStatus", "Pick a cape, or choose a dye colour to repaint the one you have.", true);
             return;
         }
         if (!CanApply(world)) { Gate(world); return; }
-        byte op = Native.Get<CheckBox>(world, "_capeTicket")!.ButtonPressed ? Net.CapeOpTicket : Net.CapeOpBuy;
+        var op = Native.Get<CheckBox>(world, "CapeWindow.ticket")!.ButtonPressed ? CapeSubOpcode.TicketPurchase : CapeSubOpcode.NormalPurchase;
         int revision = ++state.Revision;
-        var layer = Native.Get<Node>(world, "_capeLayer") ?? world;
-        state.Notice = Notice.Confirm(layer, ConfirmText(world, capeId, op == Net.CapeOpTicket), "Buy", "Cancel",
+        var layer = Native.Get<Node>(world, "CapeWindow.layer") ?? world;
+        state.Notice = Notice.Confirm(layer, ConfirmText(world, capeId, op == CapeSubOpcode.TicketPurchase), "Buy", "Cancel",
             () => Submit(world, revision, op, capeId, (byte)r, (byte)g, (byte)b), () => Cancel(world, revision), title: Title);
         Gate(world);
     }
 
     /// <summary>The client's confirmation wording (texts 10316/10318, or 10321 for the voucher) with the cape's cost.</summary>
-    public static string ConfirmText(World world, int capeId, bool voucher)
+    public static string ConfirmText(WorldRoot world, int capeId, bool voucher)
     {
         if (voucher) return ItemData.Text(CapeShop.VoucherConfirmText, "Do you wish to purchase with the exchange voucher?");
         var (r, g, b) = Dye(world);
@@ -470,25 +470,25 @@ public static class NativeCape
         return string.Join('\n', text.Split('\n').Select(line => line.Trim()));
     }
 
-    private static void Submit(World world, int revision, byte op, int capeId, byte r, byte g, byte b)
+    private static void Submit(WorldRoot world, int revision, CapeSubOpcode op, int capeId, byte r, byte g, byte b)
     {
-        if (!_states.TryGetValue(world, out var state) || revision != state.Revision || !Native.Get<bool>(world, "_capeShown")
-            || Native.Get<bool>(world, "_capeRequestInFlight") || state.Notice == null || Net.I is not { } net) return;
+        if (!_states.TryGetValue(world, out var state) || revision != state.Revision || !Native.Get<bool>(world, "CapeWindow.shown")
+            || Native.Get<bool>(world, "CapeWindow.requestInFlight") || state.Notice == null || Game.Connection is not { } net) return;
         state.Notice = null;
         if (!CanApply(world)) { Gate(world); return; }
-        Native.Set(world, "_capeRequestInFlight", true);
+        Native.Set(world, "CapeWindow.requestInFlight", true);
         state.Awaiting = true;
-        Native.Call(world, "SetCapeStatus", "Requesting…", false);
+        Native.Call(world, "CapeWindow.SetStatus", "Requesting…", false);
         Gate(world);
         // The fix branch's sender reports a refused send; upstream's returns nothing and always sends.
-        if (Native.Call(net, "SendCapeBuy", op, capeId, r, g, b) is false)
-            Native.Call(world, "OnCapeResult", false, -1, 0, 0, 0, 0);
+        if (!Game.Requests.Cape.Buy((byte)op, capeId, r, g, b))
+            Native.Call(world, "CapeWindow.OnResult", new CapeChangeReply(Succeeded: false, ClanOrResult: -1, CapeId: 0, R: 0, G: 0, B: 0));
     }
 
-    private static void Cancel(World world, int revision)
+    private static void Cancel(WorldRoot world, int revision)
     {
         if (!_states.TryGetValue(world, out var state) || revision != state.Revision || state.Notice == null
-            || Native.Get<bool>(world, "_capeRequestInFlight")) return;
+            || Native.Get<bool>(world, "CapeWindow.requestInFlight")) return;
         state.Notice = null;
         Gate(world);
     }
@@ -501,11 +501,11 @@ public static class NativeCape
     }
 
     /// <summary>Runs after the client applied the result: the Classic view follows the applied cape.</summary>
-    private static void Result(World world, State state, bool ok, int capeId, int r, int g, int b)
+    private static void Result(WorldRoot world, State state, bool ok, int capeId, int r, int g, int b)
     {
         if (!state.Awaiting || !GodotObject.IsInstanceValid(state.Window)) return;
         state.Awaiting = false;
-        if (ok && Native.Get<bool>(world, "_capeShown"))
+        if (ok && Native.Get<bool>(world, "CapeWindow.shown"))
         {
             if (capeId >= 0)
             {
@@ -521,27 +521,27 @@ public static class NativeCape
     /// The client released the cape request without a result (a reply for another clan, or a reset). The
     /// draft stays editable and the window says the request did not complete.
     /// </summary>
-    private static void Reset(World world, State state)
+    private static void Reset(WorldRoot world, State state)
     {
         bool awaiting = state.Awaiting;
         state.Awaiting = false;
         if (!GodotObject.IsInstanceValid(state.Window)) return;
-        Native.Set(world, "_capeRequestInFlight", false);
-        if (awaiting && Native.Get<bool>(world, "_capeShown"))
-            Native.Call(world, "SetCapeStatus", LibreKO.Domain.ItemData.Text(TryAgainText, "Try again later"), true);
+        Native.Set(world, "CapeWindow.requestInFlight", false);
+        if (awaiting && Native.Get<bool>(world, "CapeWindow.shown"))
+            Native.Call(world, "CapeWindow.SetStatus", LibreKO.Domain.ItemData.Text(TryAgainText, "Try again later"), true);
         Gate(world);
         state.Released = true;
         Callable.From(() => state.Released = false).CallDeferred();
     }
 
     /// <summary>A lost connection closes the service and forgets the draft.</summary>
-    private static void ConnectionReset(World world, State state)
+    private static void ConnectionReset(WorldRoot world, State state)
     {
         if (!state.Released || !GodotObject.IsInstanceValid(state.Window)) return;
         state.Released = false;
-        Native.Call(world, "CloseCape");
+        Native.Call(world, "CapeWindow.Close");
         Dismiss(state);
-        Native.Set(world, "_capeChoice", NoCape);
+        Native.Set(world, "CapeWindow.choice", NoCape);
     }
 }
 

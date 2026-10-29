@@ -176,14 +176,354 @@ are in "Changed shapes on upstream fa3cfc3" and the four sections after it.
 
 ## 3. Reflected client members
 
-These tables are the maintenance checklist. Every name was checked against the plugin source as a string literal
-under `src/Native`, and against the `classic-integration` client source. A *(branch)* note marks a member that
-exists only with that fix branch. The plugin feature-detects it or degrades as described in section 2. "Kind" uses:
-F field, P property, M method, E event or delegate backing field, T nested type. `World` is the owner unless a row
-says otherwise. Public API used directly, such as `Net.I` events, `UiTheme`, `ItemData` and `HudWindow`, is not
-listed. Preview-only members are listed at the end.
+These tables are the maintenance checklist: every client member the plugin reaches by name (`Native.Get`,
+`Native.Set`, `Native.Call`, `Native.Has` and the fixtures' helpers), grouped by the type that declares it, with
+the files that use it. They are produced by resolving each string-literal member path against a build of the
+client, so a path that no longer resolves is a rename to follow. "Kind" uses F field, P property, M method,
+E event and T nested type. `WorldRoot` members are mostly the features and systems a path starts from
+(`Achievement.AchPanel` is `WorldRoot.Achievement`, then `AchievementFeature.AchPanel`). Public API used
+directly, such as `UiTheme`, `ItemData` and `HudWindow`, is not listed.
 
-### Shared
+### Runtime
+
+| Type | Members | Used in |
+| --- | --- | --- |
+| `WorldRoot` | `Achievement` P, `AchievementTrophy` P, `Attendance` P, `Avatar` P, `BagCompanions` P, `BasicAttackSystem` P, `BattleEvent` P, `Bifrost` P, `BorderDefenseWar` P, `Bounty` P, `CameraSystem` P, `CapeWindow` P, `Challenge` P, `ChangeHair` P, `Chaos` P, `CharacterSealWindow` P, `Chat` P, `ChatHost` P, `ChatNotices` P, `ChatReactions` P, `ChatRoom` P, `Clan` P, `ClanBattle` P, `ClanCreate` P, `ClanPoints` P, `ClanPremium` P, `ClanWarehouse` P, `CollectionRace` P, `CommandList` P, `DailyRankWindow` P, `DeathDialog` P, `DisguiseWindow` P, `DockHudRects` M, `EntityLooksSystem` P, `EntitySystem` P, `EquipView` P, `Events` P, `EventTitlesWindow` P, `Exchange` P, `ExpSealWindow` P, `FishingHall` P, `Forces` P, `Fortune` P, `Friends` P, `GatherSystem` P, `GenderChangeWindow` P, `Genie` P, `GenieHammer` P, `GeniePotions` P, `GenieScrolls` P, `GenieSub` P, `GenieTown` P, `GlobalMap` P, `Hotbar` P, `Hotkeys` P, `InventoryWindow` P, `ItemCombineWindow` P, `ItemSmashWindow` P, `ItemTooltip` P, `KillSplash` P, `KingElection` P, `KingTreasury` P, `KnightRoyaleWindow` P, `Log` P, `Loot` P, `LootFilterWindow` P, `Lottery` P, `Mail` P, `MailCompose` P, `MailIcon` P, `MainWindows` P, `Map` P, `MarketPrice` P, `Merchant` P, `MerchantBuy` P, `MerchantSearch` P, `MerchantStalls` P, `Messenger` P, `MsgOut` P, `NameChange` P, `NationChannels` P, `NationTransfer` P, `Nereid` P, `NpcDialogWindow` P, `Party` P, `PartyInvites` P, `Pet` P, `PetHatch` P, `PetSkillBar` P, `PieceChange` P, `PlayerMenu` P, `PluginBridge` P, `pluginHud` F, `PowerUpStoreGift` P, `Premium` P, `Quest` P, `QuestNotifications` P, `QuestTracker` P, `Rank` P, `RankerMessageWindow` P, `Rebirth` P, `Repair` P, `Report` P, `Repurchase` P, `ResetConfirm` P, `Roulette` P, `ScenerySystem` P, `Seal` P, `SeekParty` P, `Selection` P, `ShoppingMall` P, `Shout` P, `Siege` P, `SiegeTowerSystem` P, `SkillCastSystem` P, `SkillPreset` P, `SoccerSystem` P, `SpecialAuctionWindow` P, `TimedItemsWindow` P, `TitlePicker` P, `TopIcons` P, `Tournament` P, `TownRecall` P, `Upgrade` P, `UpgradeNotice` P, `UserInfo` P, `UserVoteWindow` P, `VanguardWindow` P, `Vendor` P, `VipWarehouse` P, `Warehouse` P, `Warp` P, `Whispers` P, `WorldReady` P, `ZoneAbility` P, `ZoneId` P | ClassicGenieQuick.cs, ClassicLotterySkin.cs, ClassicTournamentSkin.cs, ClassicWorldOverlays.cs, FamiliarTrainer.cs, FamiliarWindow.cs, NativeAnvil.cs, NativeAppearance.cs, NativeBoards.cs, NativeCape.cs, NativeCharacterPanel.cs, NativeChat.cs, NativeChatReactions.cs, NativeChatRoom.cs, NativeCommandList.cs, NativeCommunication.cs, NativeContextMenus.cs, NativeEquipView.cs, NativeEventWindows.cs, NativeEvents.cs, NativeGenieCommands.cs, NativeGenieQuick.cs, NativeHudChat.cs, NativeIdentity.cs, NativeInventory.cs, NativeItems.cs, NativeKing.cs, NativeMapFortune.cs, NativeMarket.cs, NativeMerchant.cs, NativeNpc.cs, NativeNpcOpening.cs, NativeOverlays.cs, NativeParty.cs, NativePremium.cs, NativeProgression.cs, NativeQuestHud.cs, NativeQuestKey.cs, NativeQuestLog.cs, NativeRebirth.cs, NativeRepurchase.cs, NativeServices.cs, NativeSiege.cs, NativeSocial.cs, NativeStorage.cs, NativeTrade.cs, NativeUserVote.cs, NativeVendor.cs |
+| `AchievementFeature` | `achCategoryBox` F, `achClaimablePerTab` F, `AchHideClaimed` P, `achList` F, `achListRow` F, `achScroll` F, `achSearch` F, `AchStatus` P, `achSummary` F, `achSummaryPage` F, `achSummaryTabButton` F, `achTabButtons` F, `achTabs` F, `achTitleBanner` F, `achVisible` F, `Shown` P, `Tab` P, `ToggleAchievements` M, `ViewingSummary` P | NativeHudChat.cs, NativeProgression.cs |
+| `AchievementTrophyFeature` | `badge` F, `Trophy` P | NativeHudChat.cs |
+| `AttendanceFeature` | `bonusRow` F, `ClaimableCount` M, `countLabel` F, `Gift` P, `giftBadge` F, `Grid` P, `notice` F, `shown` F, `slots` F, `states` F, `Toggle` M | NativeHudChat.cs, NativeProgression.cs |
+| `BagCompanionFeature` | `Pairing` P, `RefreshFit` M, `RefuseItemInUse` M | NativeAnvil.cs, NativeInventory.cs, NativeServices.cs, NativeStorage.cs, NativeTrade.cs, NativeVendor.cs |
+| `BasicAttackSystem` | `AutoAttack` P | NativeHudChat.cs |
+| `BattleEventFeature` | `battleeventBanner` F, `BattleeventBoard` P, `battleeventResult` F | NativeOverlays.cs |
+| `BifrostFeature` | `banner` F, `bar` F, `inZoneLeaveAsk` F, `inZoneLeaveBanner` F, `inZoneLeaveBtn` F, `inZoneLeaveTitleLbl` F, `joinModal` F, `joinModalBar` F, `joinModalBtn` F, `joinModalCloseBtn` F, `joinModalCount` F, `joinModalStatus` F, `joinModalTimer` F, `joinModalTitle` F, `OnInZoneLeaveConfirmed` M, `SecondsLeft` M, `timerLbl` F, `titleLbl` F, `UrgentSecs` static F | NativeEvents.cs, NativeOverlays.cs |
+| `BorderDefenseWarFeature` | `BdwScoreBanner` P | NativeOverlays.cs |
+| `BountyFeature` | `listBox` F, `rewardEdit` F, `targetEdit` F | NativeBoards.cs |
+| `CameraSystem` | `StartCameraHalfTurn` M | NativeHudChat.cs |
+| `CapeFeature` | `blueSlider` F, `buyBtn` F, `bVal` F, `CellTip` M, `choice` F, `chosenLbl` F, `Close` M, `current` F, `greenSlider` F, `gVal` F, `hint` F, `layer` F, `NeedName` static M, `noteLbl` F, `OnResult` M, `pattern` F, `previewing` F, `priceLbl` F, `redSlider` F, `reqLbl` F, `requestInFlight` F, `rVal` F, `SetStatus` M, `shown` F, `status` F, `Swatch` static M, `ticket` F, `Toggle` M | NativeCape.cs |
+| `CapeSession` | `CapeResetEvent` E | NativeCape.cs |
+| `ChallengeFeature` | `askDialog` F | NativeOverlays.cs |
+| `ChangeHairFeature` | `beautyConfirm` F, `BeautyEditor` P, `BeautyInFlight` P, `BeautyPreview` P, `CloseHairPalette` M, `hairPalettePicker` F, `hairPaletteTarget` F, `status` F | NativeAppearance.cs |
+| `ChaosFeature` | `NestTimerPanel` P | NativeOverlays.cs |
+| `CharacterSealFeature` | `CsCodePage` P, `CsCodeStars` P, `csKeys` F, `CsSealingPage` P, `csSelectOk` F, `CsSelectPage` P, `CsSelectPrompt` P, `CsSelectTitle` P, `csSheetAchievements` F, `csSheetCells` F, `csSheetGold` F, `csSheetLevel` F, `csSheetName` F, `csSheetStats` F, `csSlotButtons` F, `CsSocket` P, `CsTransGold` P, `CsTransHeadline` P, `csTransShown` F, `FitAt` M, `Picked` P, `TakeFromBag` M | NativeItems.cs, NativeServices.cs |
+| `ChatHostFeature` | `colorsDraft` F, `nearbyFirstPoll` F, `NearbyRows` P, `palette` F, `paletteSlot` F, `RebuildNearby` M | NativeChat.cs |
+| `ChatNoticesFeature` | `orderMessage` F | NativeOverlays.cs |
+| `ChatReactionsFeature` | `ReactionLayer` P | NativeChatReactions.cs |
+| `ChatRoomFeature` | `roomBlink` F, `roomChannelsButton` F, `RoomComposer` P, `roomConfigButton` F, `roomDeafen` F, `roomJoin` F, `roomLayer` F, `roomLeaderBox` F, `roomLeaderHandOver` F, `roomLeaderKick` F, `roomMembersColumn` F, `roomMembersToggle` F, `roomMic` F, `roomRosterEmpty` F, `roomRosterRows` F, `RoomThread` P, `roomVoiceGear` F, `roomVoiceLeave` F, `roomVoiceRow` F, `roomVolume` F | NativeChatRoom.cs |
+| `ClanBattleFeature` | `panel` F | NativeOverlays.cs |
+| `ClanCreateFeature` | `messageLabel` F, `nameInput` F, `notice` F | NativeIdentity.cs |
+| `ClanFeature` | `allianceAsk` F, `allianceClans` F, `allianceNotice` F, `ApplyMy` M, `AskConfirm` M, `confirmAsk` F, `Content` P, `ctxMember` F, `disbandAsk` F, `EnsureLoaded` M, `inviteAsk` F, `LeaveAsk` P, `memberMenu` F, `members` F, `OnAllianceButton` M, `OnLeave` M, `OnMemberMenuAction` M, `OpenMemo` M, `RefreshTab` M, `removeAsk` F, `ShowTab` M, `status` F | NativeCharacterPanel.cs, NativeContextMenus.cs |
+| `ClanPointsFeature` | `Toggle` M | NativeCharacterPanel.cs |
+| `ClanPremiumFeature` | `chip` F, `dot` F, `inClan` F, `label` F | NativePremium.cs, NativeQuestHud.cs |
+| `ClanWarehouseFeature` | `amountPrompt` F, `AskWithdraw` M, `CanDropOn` M, `CanWithdraw` P, `cells` F, `ClanBagFit` M, `companion` F, `depositBtn` F, `DepositSlot` M, `DropOn` M, `money` F, `page` F, `shown` F, `slots` F, `status` F, `TakeFromBag` M, `TurnPage` M, `withdrawBtn` F | NativeStorage.cs |
+| `CollectionRaceFeature` | `crCollectBlock` F, `crCollectBox` F, `crCompleteBanner` F, `crCompleteTitle` F, `crCompletingLabel` F, `crHuntBlock` F, `crHuntBox` F, `crRewardsBlock` F, `crRewardsBox` F, `crTimerDigits` F, `crWinnersLabel` F, `crWinnersRow` F | NativeEventWindows.cs |
+| `CombatLogFeature` | `Notice` M | NativeCharacterPanel.cs, NativeServices.cs |
+| `CommandListFeature` | `cmdShown` F, `entries` F, `FillEntries` M, `Groups` P, `UnavailableColour` static F | NativeCommandList.cs |
+| `DailyRankFeature` | `drBlink` F, `drIcon` F, `OnIcon` M, `Window` P | NativeHudChat.cs |
+| `DeathDialogFeature` | `Panel` P | NativeOverlays.cs |
+| `DisguiseFeature` | `formRows` F, `groupRows` F, `note` F | NativeIdentity.cs |
+| `EntityLooksSystem` | `AttachWeapons` M, `Dress` M, `MobIndex` P, `ResolveMobScene` M, `SelfGear` M | FamiliarWindow.cs, NativeCape.cs, NativeNpc.cs |
+| `EntitySystem` | `Ents` P | NativeCharacterPanel.cs, NativeNpc.cs |
+| `EntityView` | `Body` F, `Dead` F, `Gear` F, `IsNpc` F, `Level` F, `ModelId` F, `Name` F, `NpcId` F, `NpcType` F, `Race` F, `Size` F | NativeCharacterPanel.cs, NativeNpc.cs |
+| `EquipViewFeature` | `pending` F, `RequestEquipmentView` M, `shown` F, `status` F | NativeEquipView.cs |
+| `EventsFeature` | `alert` F, `iconButton` F, `Toggle` M, `Window` P | NativeHudChat.cs |
+| `EventTitlesFeature` | `TitleColumn` P | NativeOverlays.cs |
+| `ExchangeFeature` | `addInFlight` F, `amountHint` F, `AmountIcon` P, `amountLayer` F, `amountMax` F, `amountName` F, `amountShown` F, `amountSlot` F, `amountSpin` F, `AnswerRequest` M, `askDialog` F, `CloseAmount` M, `ConfirmAmount` M, `confirmBtn` F, `ConfirmedByMe` P, `ConfirmedByPartner` P, `goldEdit` F, `MyGoldOffer` P, `MyOffer` P, `OfferSlot` M, `OnAddGold` M, `OnConfirm` M, `Panel` P, `PartnerName` P, `requestPending` F, `SetStatus` M, `shown` F, `status` F, `TheirGoldOffer` P, `TheirOffer` P, `waitLayer` F | NativeTrade.cs |
+| `ExpSealFeature` | `amountLabel` F, `JarRect` P, `offButton` F, `onButton` F, `percent` F, `Pick` P | NativeItems.cs |
+| `FishingHallFeature` | `fishHallList` F | NativeBoards.cs |
+| `ForcesFeature` | `angerBar` F, `joinBtn` F, `leaveBtn` F, `pointsLbl` F, `rankLbl` F, `stateLbl` F | NativeBoards.cs |
+| `FortuneFeature` | `cards` F, `face` F, `Final` P, `lines` F, `name` F, `okButton` F, `Pick` P, `reveal` F, `spin` F, `Stage` P, `stars` F | NativeMapFortune.cs |
+| `FrameClock` | `Now` static M | FamiliarWindow.cs |
+| `FriendsFeature` | `DoFriendAdd` M, `EnsureLoaded` M, `friendAddInput` F, `FriendDetailLine` static M, `friends` F, `friendStatus` F | NativeCharacterPanel.cs |
+| `GameCursor` | `applied` static F, `enabled` static F, `Peek` static M | ClassicRepairHammer.cs |
+| `GatherSystem` | `gatherChip` F | NativeOverlays.cs |
+| `GenderChangeFeature` | `confirm` F, `Editor` P, `Preview` P, `status` F | NativeAppearance.cs |
+| `GenieFeature` | `autoParty` F, `claimBtn` F, `Close` M, `cureCurse` F, `deadline` F, `genieParty` F, `hideRange` F, `hpThreshold` F, `huntInPlace` F, `modes` F, `monsterList` F, `mpThreshold` F, `Panel` P, `petPercent` F, `petPotion` F, `Points` P, `ptCode` F, `range` F, `recoverySpin` F, `RequestPending` P, `returnHome` F, `RunLabel` P, `shown` F, `SkillPicker` P, `slots` F, `start` F, `status` F, `tipLabel` F, `Toggle` M, `ToggleRun` M | NativeGenieCommands.cs, NativeGenieQuick.cs, NativeHudChat.cs, NativeProgression.cs |
+| `GenieHammerFeature` | `hammerStatus` F, `hammerThreshold` F | NativeProgression.cs |
+| `GeniePotionsFeature` | `hpSelect` F, `mpSelect` F, `petSelect` F, `PotionPicker` P | NativeProgression.cs |
+| `GenieScrollsFeature` | `autoScrolls` F, `scrollButtons` F, `scrollPicker` F, `scrollStatus` F | NativeProgression.cs |
+| `GenieSubFeature` | `RefreshSub` M, `Sub` P, `ToggleFromSub` M | ClassicGenieQuick.cs, NativeCommandList.cs, NativeGenieCommands.cs, NativeOverlays.cs |
+| `GenieTownFeature` | `other` F, `SpiritOfItem` static F | NativeGenieCommands.cs, NativeProgression.cs |
+| `GlobalMapFeature` | `list` F, `NationName` static M | NativeEquipView.cs, NativeMapFortune.cs |
+| `HotbarFeature` | `hotLoadedFromServer` F, `HotSelected` P, `SelectHotAbs` M, `Slots` P, `Usable` M | NativeHudChat.cs |
+| `HotkeysFeature` | `hotkeys` F, `padHotkeys` F | NativeQuestKey.cs |
+| `HudLayout` | `defaultPosition` F, `dragging` F, `dragMoved` F, `Frozen` P, `id` F, `MinimumSize` P, `Place` M, `ReapplyDefault` M, `resizeGrip` F, `resizeOriginMouse` F, `resizeOriginPosition` F, `resizeOriginSize` F, `resizing` F | FamiliarBar.cs, NativeCharacterNpc.cs, NativeHudChat.cs, NativeLayout.cs |
+| `HudWindow` | `dock` F, `header` F | NativeHudChat.cs, NativeUi.cs |
+| `InventoryFeature` | `AskDeleteItem` M, `CarriedWeight` M, `ConfirmDeleteItem` M, `HideDeletePrompt` M, `InvDelPanel` P, `invDelQueue` F, `MoveBetween` M, `moveInFlight` F, `moveQueue` F, `SlotAt` M | NativeAnvil.cs, NativeInventory.cs, NativeVendor.cs |
+| `ItemCombineFeature` | `button` F, `footer` F, `result` F, `shown` F, `slots` F, `strip` F | NativeServices.cs |
+| `ItemSlotView` | `countLabel` F, `DoubleClicked` E, `lockIcon` F, `RightClicked` E | NativeStorage.cs, NativeUi.cs, NativeVendor.cs |
+| `ItemSmashFeature` | `cancelBtn` F, `message` F, `results` F, `shown` F, `SmashBagFit` M, `socket` F, `startBtn` F, `stopBtn` F, `subMessage` F, `TakeFromBag` M | NativeServices.cs |
+| `ItemTooltipFeature` | `Hide` M, `Show` M, `ShowItem` M, `TipPanel` P | FamiliarTrainer.cs, FamiliarWindow.cs, NativeAnvil.cs, NativeChat.cs, NativeEquipView.cs, NativeServices.cs, NativeStorage.cs, NativeTrade.cs |
+| `ItemUpgradeSession` | `UpgradeOpenEvent` E | NativeAnvil.cs |
+| `KillSplashFeature` | `killSplash` F | NativeOverlays.cs |
+| `KingElectionFeature` | `ballotText` F, `boxOpen` F, `busy` F, `nominateText` F, `NomineeEdit` P, `options` F, `planBusy` F, `planCount` F, `PlanEdit` P, `senatorsBox` F, `senatorsLabel` F, `speechLower` F, `speechUpper` F, `voteBusy` F, `voteRows` F | NativeKing.cs |
+| `KingTreasuryFeature` | `boxOpen` F, `nationIntroEdit` F, `nationTaxBusy` F, `nationTaxNotice` F, `nationTaxNotice2` F, `nationTaxOptions` F, `nationTaxRateBusy` F, `nationTaxRateValue` F, `StepNationTaxRate` M | NativeIdentity.cs, NativeKing.cs |
+| `KnightRoyaleFeature` | `areaBanner` F, `RoyaleBoard` P | NativeOverlays.cs |
+| `LookEditor` | `colourPicker` F, `raceButtons` F | NativeAppearance.cs, NativeLook.cs |
+| `LookPreview` | `PlaceCamera` M | NativeLook.cs |
+| `LootFeature` | `cells` F, `Close` M, `Panel` P, `prompt` F | NativeOverlays.cs |
+| `LootFilterFeature` | `ruleItem` F, `ruleMenu` F | NativeContextMenus.cs |
+| `LotteryFeature` | `buyBtn` F, `Close` M, `costLabel` F, `myTicketsLabel` F, `playerHeader` F, `Render` M, `reqIcon` F, `rewardsBox` F, `soldLabel` F, `State` P, `statusLabel` F, `timerLabel` F, `winnersLabel` F | ClassicLotterySkin.cs, NativeEventWindows.cs |
+| `MailComposeFeature` | `AttachmentDrop` P, `Attachments` P, `attachRows` F, `attachTitle` F, `BodyInput` P, `bodyRemaining` F, `composeStatus` F, `Gold` P, `Recipient` P, `recipientSuggestions` F, `sendBtn` F, `SubjectInput` P | NativeCommunication.cs |
+| `MailFeature` | `claimBtn` F, `deleteBtn` F, `list` F, `listScroll` F, `mails` F, `readAttachments` F, `readAttachmentScroll` F, `readAttachmentTitle` F, `readBody` F, `readMeta` F, `readSubject` F, `selectedId` F, `shown` F, `status` F, `Toggle` M, `unreadOnlyToggle` F, `unreadPill` F | NativeCommunication.cs, NativeHudChat.cs |
+| `MailIconFeature` | `IconButton` P | NativeHudChat.cs |
+| `MainWindowsFeature` | `characterPages` F, `Hide` M, `IsOpen` M, `layer` F, `QueueDockLayout` M, `ShowCharacterPage` M, `SyncState` M, `Windows` P | NativeAnvil.cs, NativeCharacterPanel.cs, NativeHudChat.cs, NativeServices.cs, NativeStorage.cs, NativeTrade.cs |
+| `MapFeature` | `fullShown` F, `MiniMap` P, `ToggleFull` M | NativeHudChat.cs |
+| `MarketPriceFeature` | `ClearMarketPriceChart` M, `marketPriceCache` F, `marketPriceChart` F, `marketPriceItem` F, `marketPriceName` F, `MarketPriceNoHistoryText` static F, `MarketPricePanel` P, `MarketPriceSearch` P, `marketPriceShown` F, `marketPriceSlot` F, `marketPriceStatus` F, `marketPriceTrades` F, `marketPriceUpdated` F, `SetMarketPriceStatus` M | NativeMarket.cs, NativeMerchant.cs |
+| `MerchantBuyFeature` | `SellToWanted` M, `SetWantedStatus` M, `wantedBagCells` F, `wantedCells` F, `wantedItems` F, `wishCells` F | NativeMerchant.cs |
+| `MerchantFeature` | `AcceptAmount` M, `amountAccept` F, `amountConfirmBtn` F, `amountCount` F, `amountCountRow` F, `AmountLayer` P, `amountMarketHint` F, `amountMarketRow` F, `AmountPrice` P, `amountPriceFixed` F, `AskStallPrice` M, `CloseAmountPrompt` M, `ConfirmSellStall` M, `myStall` F, `myStallSrc` F, `SellAdvert` P, `sellBagCells` F, `SellStallCells` P, `SellStallPanel` P, `ServiceLayer` P, `SetSellStatus` M, `shopBagCells` F, `shopCells` F, `StageStallItem` M, `UnstageStallItem` M | NativeMerchant.cs, NativeServices.cs |
+| `MerchantSearchFeature` | `search` F, `searchEdit` F, `searchLines` F, `searchLoading` F, `searchPages` F, `searchScope` F, `searchStatus` F | NativeMarket.cs |
+| `MerchantStallsFeature` | `FreeStallSign` static M, `RefreshStallSign` M, `Stalls` P, `stallSignLayer` F | NativeMerchant.cs |
+| `MessengerFeature` | `msgrList` F, `msgrTextInput` F, `msgrToInput` F | NativeCommunication.cs |
+| `MessengerSession` | `MessengerListEvent` E | NativeCommunication.cs |
+| `ModelAnimation` | `ForceDoubleSidedOnce` static M, `ModelNodeName` static F | FamiliarWindow.cs, NativeNpc.cs |
+| `ModelNodes` | `AttachBuiltInPlugs` static M | NativeNpc.cs |
+| `MsgOutFeature` | `msgOut` F | NativeOverlays.cs |
+| `NameChangeFeature` | `btn` F, `clan` F, `Close` M, `edit` F, `hint` F, `status` F | NativeIdentity.cs |
+| `NationChannelsFeature` | `ncPrivateRows` F, `ncPrivateTab` F, `ncPublicRows` F, `ncPublicTab` F, `ncPubOpen` F, `ncRefresh` F, `ncSearchEdit` F | NativeSocial.cs |
+| `NationTransferFeature` | `CancelTransferConfirmation` M, `Open` M, `SelectTransferCharacter` M, `Send` M, `SetTransferLocked` M, `SetTransferStatus` M, `transfer` F, `transferCompleted` F, `transferConfirm` F, `transferEditor` F, `transferHeader` F, `transferInFlight` F, `transferLayer` F, `transferList` F, `transferNotice` F, `TransferPanel` P, `transferPicks` F, `transferPreview` F, `transferRevision` F, `transferRows` F, `transferShown` F, `transferStatus` F | NativeAppearance.cs |
+| `NationTransferSession` | `Candidates` P, `NationTransferOpenEvent` E | NativeAppearance.cs |
+| `NereidFeature` | `FlagBoard` P, `ScoreBoard` P, `Strip` P | NativeOverlays.cs |
+| `Notice` | `request` F | NativeAppearance.cs, NativeIdentity.cs |
+| `NpcDialogFeature` | `Close` M, `menuBox` F, `Panel` P, `QuestContent` P, `questRewardChoice` F, `shown` F | NativeAppearance.cs, NativeNpc.cs, NativeNpcOpening.cs |
+| `PartyFeature` | `hudMenu` F | NativeContextMenus.cs |
+| `PartyInvitesFeature` | `inviteAskDialog` F, `OpenInvitePrompt` M | NativeOverlays.cs, NativeParty.cs |
+| `PetFeature` | `attackBtn` F, `bagCells` F, `defendBtn` F, `dismissBtn` F, `expBar` F, `feedBtn` F, `hpBar` F, `levelLbl` F, `lootBtn` F, `mpBar` F, `nameLbl` F, `satBar` F, `status` F | FamiliarWindow.cs |
+| `PetHatchFeature` | `btn` F, `Close` M, `eggPick` F, `inFlight` F, `IsPetEgg` static M, `IsValidPetName` static M, `layer` F, `NameInput` P, `npc` F, `page` F, `petScrollSlot` F, `petTransformPage` F, `petTransformPetPick` F, `petTransformScrollPick` F, `petTransformSlot` F, `RefreshPetPickLooks` M, `SetStatus` M, `shown` F, `slot` F, `status` F, `tabs` F | FamiliarTrainer.cs |
+| `PetSkillBarFeature` | `MyPetEntity` M, `PetCooldown` M, `UsePetSkill` M | FamiliarWindow.cs |
+| `PieceChangeFeature` | `busy` F, `message` F, `Place` M, `position` F, `resultSockets` F, `shown` F, `socket` F, `spinning` F, `startBtn` F, `stopBtn` F, `subMessage` F, `talkBtn` F | NativeServices.cs |
+| `PlayerMenuFeature` | `InviteToParty` M, `ShowByName` M | NativeCharacterPanel.cs, NativeChat.cs |
+| `PluginBridgeFeature` | `LogAdd` M | NativeVendor.cs |
+| `PluginGame` | `inventory` F | NativeInventory.cs |
+| `PluginUi` | `HudHidden` M | NativeChat.cs |
+| `PowerUpStoreCartView` | `cartEmpty` F, `cartLines` F, `cartScroll` F, `cartStatus` F, `cartTitle` F, `CartWidth` static F, `checkout` F, `clearCart` F, `giftBanner` F, `giftButton` F, `giftInfo` F, `giftName` F, `shortfall` F, `totalRow` F, `WellMargin` static F | NativeMarket.cs |
+| `PowerUpStoreCatalogView` | `cards` F, `cashValue` F, `Category` P, `categoryList` F, `CategoryWidth` static F, `grid` F, `gridEmpty` F, `gridScroll` F, `gridTitle` F, `hoveredCard` F, `searchInput` F, `sortPick` F | NativeMarket.cs |
+| `PowerUpStoreDetailsView` | `detailsAdd` F, `detailsBox` F, `detailsBuy` F, `detailsCategory` F, `detailsDescription` F, `detailsIcon` F, `detailsName` F, `detailsPrice` F, `detailsStatus` F | NativeMarket.cs |
+| `PowerUpStoreGiftFeature` | `giftBox` F, `giftCard` F, `giftCardInfo` F, `giftCardName` F, `giftCardWarning` F, `giftList` F, `giftListTitle` F, `giftPickPane` F, `GiftSearch` P, `giftStatus` F | NativeMarket.cs |
+| `PowerUpStoreModel` | `Cart` P, `Catalog` P, `Categories` P, `Pending` P | NativeMarket.cs |
+| `PremiumFeature` | `Chip` P, `ClanBonusChip` P, `clanBonusMarks` F, `dot` F, `label` F | NativePremium.cs, NativeQuestHud.cs |
+| `PriceChart` | `AxisFontSize` static F, `AxisWidth` static F, `BarEdge` static F, `BarFill` static F, `BarHover` static F, `BarWidth` static F, `Baseline` static F, `bottom` F, `Column` M, `DayFontSize` static F, `days` F, `hoverDay` F, `hoverPart` F, `MarkerHalf` static F, `MarkerHeight` static F, `MaxColor` static F, `Midline` static F, `MinColor` static F, `Plot` P, `PlotPadding` static F, `top` F, `ValueY` M | NativeMarket.cs |
+| `QuantityPrompt` | `Confirm` M | NativeUi.cs |
+| `QuestFeature` | `abandonBtn` F, `AbandonSelected` M, `completeBtn` F, `CompleteSelected` M, `detailBody` F, `detailEmpty` F, `filter` F, `InFilter` M, `kind` F, `QuestsInView` M, `RefreshDetail` M, `rewardBox` F, `rewardOptionBox` F, `rewardOptionTitle` F, `rewardTitle` F, `Selected` P, `SetFilter` M, `SetKind` M, `ToggleTrackSelected` M, `trackBtn` F | NativeCharacterPanel.cs, NativeQuestLog.cs |
+| `QuestNotificationsFeature` | `notificationIndex` F, `QuestNotifications` P | NativeNpc.cs |
+| `QuestRewardSelection` | `Chosen` M | NativeQuestLog.cs |
+| `QuestRows` | `ItemIcon` static M, `ItemRow` static M | NativeQuestLog.cs |
+| `QuestTrackerFeature` | `trackerBox` F, `trackerCount` F, `trackerFold` F, `trackerHeader` F, `TrackerPanel` P | NativeQuestHud.cs |
+| `RankerMessageFeature` | `Paper` P | NativeOverlays.cs |
+| `RankFeature` | `ladderElMorad` F, `ladderKarus` F, `ladderOwnElMorad` F, `ladderOwnKarus` F | NativeProgression.cs |
+| `RebirthFeature` | `addBtns` F, `bonusLbls` F, `btn` F, `inFlight` F, `layer` F, `levelLbl` F, `OnPressed` M, `pick` F, `pickLbls` F, `pointsLbl` F, `RefreshUI` M, `removeBtns` F, `resetMode` F, `SetStatus` M, `shown` F, `status` F | NativeRebirth.cs |
+| `RepairFeature` | `All` M, `Close` M, `CostAt` M, `footer` F, `InFlight` P, `IsRepairable` M, `queue` F, `RepairableSlots` M, `shown` F, `TakeFromBag` M | NativeServices.cs |
+| `ReportFeature` | `eligible` F, `fileBtn` F, `gateLbl` F, `nextBtn` F, `pageLbl` F, `prevBtn` F, `ReasonEdit` P, `status` F, `TargetEdit` P, `voteList` F | NativeBoards.cs |
+| `RepurchaseFeature` | `rbBuy` F, `rbEmpty` F, `rbNames` F, `rbPrices` F, `RbScroll` P, `rbTimes` F | NativeRepurchase.cs |
+| `ResetConfirmFeature` | `reset` F | NativeServices.cs |
+| `RouletteFeature` | `coins` F, `coinsLabel` F, `OnSpinPressed` M, `resultLabel` F, `spinBtn` F | NativeEventWindows.cs |
+| `ScenerySystem` | `ClockLabel` P | NativePremium.cs |
+| `SealFeature` | `codeField` F, `codeRow` F, `confirm` F, `FitAt` M, `gold` F, `headline` F, `Pad` P, `prompt` F, `shown` F, `socket` F, `TakeFromBag` M, `waiting` F | NativeServices.cs |
+| `SeekPartyFeature` | `fullMoonRow` F, `seekEntries` F, `seekFilter` F, `seekFilters` F, `seekHeading` F, `seeking` F, `seekListBox` F, `seekPage` F, `seekPageLbl` F, `seekRegisterBtn` F, `SeekShown` P, `seekStatusLbl` F, `seekTotal` F, `SeekZoneName` static M, `ToggleSeek` M, `WantedClasses` static F, `wantedClassOpt` F, `wantedMsgInput` F | NativeHudChat.cs, NativeParty.cs |
+| `SelectionFeature` | `SelectedId` P | NativeCharacterPanel.cs |
+| `SelfAvatar` | `Body` F, `Dead` F, `Running` F, `Sitting` F, `Visual` F | FamiliarTrainer.cs, FamiliarWindow.cs, NativeAppearance.cs, NativeCape.cs, NativeChat.cs, NativeHudChat.cs, NativeRebirth.cs, NativeVendor.cs |
+| `ServiceTabs` | `buttons` F | FamiliarTrainer.cs |
+| `ShoppingMallFeature` | `AddDetailsToCart` M, `CartView` P, `CatalogView` P, `DetailsView` P, `FitPowerUpStore` M, `modal` F, `Model` P, `OpenDetails` M, `overlay` F, `shown` F, `Toggle` M | NativeHudChat.cs, NativeMarket.cs |
+| `ShoutFeature` | `label` F | NativeOverlays.cs |
+| `SiegeFeature` | `apply` F, `cancel` F, `challengerRows` F, `chosen` F, `defenderRows` F, `fee` F, `period` F, `scheduleRows` F, `signedUp` F, `taxRatePrompt` F, `taxRateValue` F | NativeIdentity.cs, NativeSiege.cs |
+| `SiegeTowerSystem` | `DropOff` P, `TowerButton` P | NativeOverlays.cs |
+| `SkillCastSystem` | `SelfTransformModel` M | NativeHudChat.cs |
+| `SkillPresetFeature` | `presetStatPointsLbl` F, `TogglePreset` M | NativeCharacterPanel.cs, NativeQuestLog.cs |
+| `SoccerSystem` | `soccerBoard` F | NativeOverlays.cs |
+| `SpecialAuctionFeature` | `auctionBidList` F, `AuctionCheckInput` P, `auctionChecks` F, `auctionClock` F, `auctionCurrent` F, `auctionGold` F, `auctionLog` F, `auctionLotSlots` F, `AuctionMillions` P, `auctionMinimum` F, `auctionPages` F, `auctionPlaceBid` F, `auctionRefresh` F, `auctionRowButtons` F, `auctionSchedule` F, `auctionSelectedName` F, `auctionStatus` F, `auctionTabButtons` F, `auctionTotal` F, `auctionWinList` F, `auctionWords` F, `NoHistoryText` static F | NativeMarket.cs |
+| `StatBar` | `frac` F | ClassicEventFamily.cs |
+| `TempleSignUpBoard` | `Current` P, `Registered` P, `SecondsLeft` M | NativeOverlays.cs |
+| `TimedItemsFeature` | `tiHideToday` F, `tiNames` F, `tiPlaces` F, `tiRows` F, `tiScroll` F, `tiSlots` F, `tiTimes` F | NativeItems.cs |
+| `TitlePickerFeature` | `Toggle` M | NativeCharacterPanel.cs |
+| `TopIconBadge` | `Blink` P | NativeHudChat.cs |
+| `TopIconsFeature` | `Icon` M, `Place` M, `powerUpStoreIcon` F | NativeHudChat.cs, NativePremium.cs |
+| `TournamentFeature` | `countLbl` F, `regBtn` F, `registered` F, `roundLbl` F, `stateLbl` F, `unregBtn` F | ClassicTournamentSkin.cs, NativeEventWindows.cs |
+| `TownRecallFeature` | `dialog` F | NativeOverlays.cs |
+| `UpgradeFeature` | `accessoryResultSocket` F, `accessorySockets` F, `anvilBench` F, `anvilCompanion` F, `anvilFooter` F, `AnvilId` P, `btn` F, `ClearSocket` M, `ClearSockets` M, `Close` M, `DismissConfirm` M, `InteractionLocked` P, `IsTarget` static M, `itemIds` F, `itemResultSocket` F, `itemSockets` F, `layer` F, `OnBenchChanged` M, `OpenAnvilBench` M, `pendingResult` F, `PlacementError` M, `positions` F, `scanTween` F, `Session` P, `ShowAnvilPrompt` M, `shown` F, `sockets` F | NativeAnvil.cs |
+| `UpgradeNoticeFeature` | `label` F | NativeOverlays.cs |
+| `UserInfoFeature` | `RequestInformation` M | NativeCharacterPanel.cs |
+| `UserVoteFeature` | `askShown` F | NativeUserVote.cs |
+| `VanguardFeature` | `Layer` P, `wantedOpen` F, `wantedToggle` F | ClassicWorldOverlays.cs, NativeOverlays.cs |
+| `VendorFeature` | `buy` F, `BuyAmount` M, `BuyRoom` M, `CanBuy` M, `Catalogue` P, `CellIds` P, `Cells` P, `Close` M, `companion` F, `Currency` P, `entries` F, `footer` F, `group` F, `LoyaltyShop` P, `Panel` P, `selected` F, `SelectItem` M, `SellSlot` M, `shown` F, `ShowPage` M, `TradePrompt` P, `Wallet` P | NativeAnvil.cs, NativeVendor.cs |
+| `VipWarehouseFeature` | `amountPrompt` F, `AskWithdraw` M, `CanDropOnVault` M, `cells` F, `clearPinBtn` F, `companion` F, `DepositSlot` M, `DropOnVault` M, `expiryLbl` F, `IsVaultKey` static M, `keyCell` F, `open` F, `OpenVaultFromBag` M, `pinDlg` F, `pinEdit` F, `pinPrompt` F, `pinSet` F, `setPinBtn` F, `shown` F, `Status` P, `StoredItems` P, `SubmitPin` M, `TakeFromBag` M, `VaultKeys` static F, `VipBagFit` M | NativeInventory.cs, NativeSkills.cs, NativeStorage.cs |
+| `WarehouseFeature` | `AmountPrompt` P, `AskWithdraw` M, `CanDropOn` M, `Cells` P, `companion` F, `depositBtn` F, `DepositSlot` M, `DropOn` M, `Money` P, `shown` F, `Status` P, `StorageTransferBusy` P, `StoredItems` P, `TakeFromBag` M, `WhBagFit` M, `withdrawBtn` F | NativeStorage.cs |
+| `WarpFeature` | `desc` F, `goldLbl` F, `image` F, `levelsLabel` F, `rows` F, `scroll` F, `Selected` P, `status` F, `travel` F | NativeServices.cs |
+| `WeaponMounts` | `WeaponWearer` static M | NativeNpc.cs |
+| `WhispersFeature` | `OpenWhisperWith` M, `whisperLayer` F, `Windows` P | FamiliarTrainer.cs, NativeCharacterPanel.cs, NativeChat.cs, NativeParty.cs |
+| `ZoneAbilityFeature` | `ZoneabilityChip` P | NativeOverlays.cs |
+
+### Preview only
+
+The preview fixtures and audits also reach client internals that the plugin never touches at runtime. An upstream
+rename there breaks an audit, not the game.
+
+| Type | Members | Used in |
+| --- | --- | --- |
+| `WorldRoot` | `BuffSystem` P, `BuildEscapeOrder` M, `ChaosSkillWindow` P, `ClassChange` P, `CreatePluginAdapters` M, `CreatePluginGenie` M, `EntityStatesSystem` P, `escapeOrder` F, `ExpBar` P, `GameMenu` P, `HudLauncher` P, `loadingLayer` F, `MyId` P, `NpcInteraction` P, `PartyCommander` P, `Progression` P, `QuestReceipt` P, `QuestTarget` P, `StatusHud` P, `WarBoard` P | AnvilAudit.cs, ChatRoomAudit.cs, ClassicServicesAudit.cs, CommandFunctionAudit.cs, DetailsAudit.cs, EventWindowsAudit.cs, ExchangeAudit.cs, GenieAudit.cs, InventoryAudit.cs, MailAudit.cs, MapFortuneAudit.cs, MerchantAudit.cs, NpcOpeningAudit.cs, NpcPortraitAudit.cs, NpcServicesAudit.cs, PartyAudit.cs, PetWorldReconnectAudit.cs, PluginToggleAudit.cs, PreviewFixtures.cs, RepairAudit.cs, SkillAudit.cs, SkillRulesAudit.cs, StorageAudit.cs, UpstreamIntegrationAudit.cs, UserVoteAudit.cs, VendorAudit.cs |
+| `AchievementSession` | `ApplyList` M, `ApplySummary` M, `Clear` M | ProgressionFixtures.cs |
+| `AttendanceSession` | `NoteAutoOpened` M | ProgressionFixtures.cs |
+| `BasicAttackSystem` | `AutoTargetId` P, `BasicAttackRange` M, `StopAutoAttack` M | GenieAudit.cs |
+| `BattleEventFeature` | `battleeventBannerLbl` F, `battleeventResultLbl` F, `BuildUi` M | WorldOverlaysAudit.cs |
+| `BifrostFeature` | `BuildUi` M, `CloseJoinModal` M, `OnDisband` M, `OnInZoneLeavePressed` M, `OnJoinResult` M, `OnTempleSignUps` M, `OnTime` M, `ShowSignUp` M | EventWindowsAudit.cs, ForgottenTempleAudit.cs, UpstreamNpcAudit.cs |
+| `BorderDefenseWarFeature` | `BuildBdwScoreBanner` M, `HudLayer` P | WorldOverlaysAudit.cs |
+| `BountyFeature` | `OnPost` M, `panel` F | EventsBAudit.cs, EventsBFixtures.cs |
+| `BuffSystem` | `ContinuanceSkill` P, `TextCastingFailed` static F | SkillRulesAudit.cs |
+| `Cape` | `table` static F | CapeAudit.cs |
+| `CapeFeature` | `Dispose` M, `UpdateGate` M | CapeAudit.cs, IdentityAppearanceFixtures.cs |
+| `CapeSession` | `Pending` P | CapeAudit.cs |
+| `ChallengeFeature` | `BuildPrompt` M, `requestPending` F | WorldOverlaysAudit.cs |
+| `ChangeHairFeature` | `Close` M, `Dispose` M, `hairPalette` F, `Open` M, `ShowBeautyLook` M | BeautyAudit.cs, IdentityAppearanceFixtures.cs |
+| `ChangeHairSession` | `Request` P | IdentityAppearanceFixtures.cs |
+| `ChaosSkillWindowFeature` | `chaosSkillIcons` F, `ChaosSkillPages` P, `ChaosSkillPageTick` M, `ChaosSkillsPerPage` static F, `FlipChaosSkillPage` M | EventWindowsAudit.cs, SkillRulesAudit.cs |
+| `CharacterSealFeature` | `BuildTrans` M, `BuildWindow` M, `Close` M, `Layer` P, `OnSealedAchievements` M | ItemWindowsAudit.cs, NpcOpeningAudit.cs |
+| `ChatHostFeature` | `BuildColors` M, `CloseColors` M, `colorsLayer` F, `ColorsWindow` P, `OpenColors` M | ChatColoursAudit.cs, HudChatFixtures.cs |
+| `ChatReactionsFeature` | `Build` M, `Dispose` M, `OpenReactionBar` M, `OpenReactionDetails` M | ChatRoomAudit.cs, SocialAudit.cs |
+| `ChatRoomFeature` | `Build` M, `BuildPeerPopup` M, `ChatRoomNotice` M, `Dispose` M, `RoomConfig` P, `roomConfigError` F, `roomConfigKeep` F, `roomConfigName` F, `RoomVoiceSettings` P, `StartBlink` M | ChatRoomAudit.cs, SocialAudit.cs |
+| `ChatThreadView` | `log` F, `older` F, `PillOf` M, `ReactButtonOf` M | ChatRoomAudit.cs, SocialPromptsAudit.cs |
+| `ClanBattleFeature` | `BuildBanner` M, `label` F | WorldOverlaysAudit.cs |
+| `ClanCreateFeature` | `Build` M, `Close` M, `Submit` M | IdentityAudit.cs, NpcOpeningAudit.cs |
+| `ClanFeature` | `BuildMineView` M, `dutyLbl` F, `fundLbl` F, `nameLbl` F, `noticeLbl` F, `OnAllianceList` M, `OnDonationList` M, `RenderMembers` M, `standingLbl` F, `tab` F | DetailsAudit.cs |
+| `ClanPointsFeature` | `Build` M, `PointsShown` P | DetailsAudit.cs |
+| `ClanPremiumFeature` | `BuildChip` M, `RefreshChip` M | PremiumQuestAudit.cs |
+| `ClanPremiumSession` | `ClanPremiumActive` P, `ClanPremiumEndsAt` P | PremiumQuestAudit.cs |
+| `ClanSession` | `ClanOnlineCount` P, `MyClan` P, `SeedPreview` M | CapeAudit.cs, DetailsAudit.cs, IdentityAppearanceFixtures.cs, StorageAudit.cs, UserVoteAudit.cs |
+| `ClanWarehouseFeature` | `BuildPanel` M, `layer` F, `OnResult` M, `Panel` P, `Refresh` M | StorageAudit.cs |
+| `ClassChangeFeature` | `BuildPanel` M, `OnNpc` M | ClassicServicesAudit.cs, NpcOpeningAudit.cs |
+| `CollectionRaceFeature` | `OnClose` M, `OnCompleted` M, `OnCrTimerTick` M, `OnProgress` M, `Show` M | EventsAAudit.cs |
+| `CombatLogFeature` | `log` F, `MaxLines` static F | CommandFunctionAudit.cs, SkillRulesAudit.cs |
+| `CommandListFeature` | `Toggle` M, `Window` P | CommandFunctionAudit.cs |
+| `Config` | `ChatColors` static P, `HotbarLocked` static P, `LegacyQuestFallback` static P, `SettingsSavePath` static P, `WindowsPath` static M | ChatColoursAudit.cs, CommandFunctionAudit.cs, QuestDetailAudit.cs, SkillRulesAudit.cs |
+| `DailyRankFeature` | `drPicker` F, `LoadBoards` M | DetailsAudit.cs, EventWindowsAudit.cs |
+| `DeathDialogFeature` | `ArmRespawnButton` M, `BuildDeathDialog` M, `Hide` M, `Layer` P, `MarkRespawnPending` M, `OnExpLoss` M, `pick` F, `RefreshRows` M, `RefreshText` M, `scrolls` F, `Show` M | WorldOverlaysAudit.cs |
+| `DevelopSession` | `RebirthPending` P | RebirthAudit.cs |
+| `DisguiseFeature` | `Dispose` M, `groups` F, `PickGroup` M | UpstreamNpcAudit.cs |
+| `EntityStatesSystem` | `sitRequestPending` F | CommandFunctionAudit.cs |
+| `EventsFeature` | `TickEventClocks` M, `tickIn` F | EventWindowsAudit.cs, HudButtonsAudit.cs |
+| `EventTitlesFeature` | `Refresh` M | MykoHudAudit.cs |
+| `ExchangeFeature` | `Abort` M, `BuildPanel` M, `layer` F, `OfferSlotAmount` M, `OnAddResult` M, `OnAgree` M, `OnCancel` M, `OnOtherAdd` M, `OnOtherDecide` M, `OnRequest` M, `Open` M, `ShowWait` M | ExchangeAudit.cs, VendorTradeMerchantFixtures.cs |
+| `ExchangeSession` | `ExchangeOtherAddEvent` E | ExchangeAudit.cs |
+| `ExpBarFeature` | `layer` F | PluginToggleAudit.cs |
+| `ExpSealSession` | `ExpSealState` P | ItemWindowsAudit.cs |
+| `FishingHallFeature` | `fishHallPanel` F | EventsBFixtures.cs |
+| `ForcesFeature` | `panel` F | EventsBFixtures.cs |
+| `FortuneFeature` | `Build` M, `Open` M, `PickCard` M, `Reveal` M | MapFortuneAudit.cs, UpstreamNpcAudit.cs |
+| `FramedConn` | `Connected` F, `stream` F | QuestDetailAudit.cs |
+| `FxParticles` | `shared` F | InventoryAudit.cs |
+| `GameCursor` | `kind` static F | ClassicServicesAudit.cs, RepairAudit.cs |
+| `GameMenuFeature` | `battleTimer` F, `exitArmed` F, `shown` F, `Toggle` M | CommandFunctionAudit.cs |
+| `GameSession` | `NpcQuest` P, `QuestBook` P, `Self` P, `UserOption` P, `Vendor` P | BeautyAudit.cs, CommandFunctionAudit.cs, DetailsAudit.cs, FamiliarFixtures.cs, GenieAudit.cs, IdentityAppearanceFixtures.cs, IdentityAudit.cs, InventoryAudit.cs, MarketCommunicationFixtures.cs, MykoNpcAudit.cs, NpcIntegrationAudit.cs, NpcOpeningAudit.cs, NpcPortraitAudit.cs, PremiumQuestAudit.cs, PresetAudit.cs, SkillAudit.cs, SkillRulesAudit.cs, VendorAudit.cs |
+| `GatherSystem` | `BuildGatherChip` M | EventOverlaysAudit.cs |
+| `GenderChangeFeature` | `shown` F | NpcServicesAudit.cs |
+| `GenieFeature` | `Genie` P, `Monsters` P, `RefreshMonsters` M, `RefreshSlots` M | GenieAudit.cs |
+| `GenieSession` | `GenieRunning` P | CommandListAudit.cs, ProgressionFixtures.cs, SkillRulesAudit.cs |
+| `GlobalMapFeature` | `Dispose` M, `Toggle` M | MapFortuneAudit.cs |
+| `HotbarFeature` | `ChaosBattleLocked` P, `HotPage` P, `layer` F, `LocalPath` M, `SkillItemHeld` M | EventWindowsAudit.cs, PluginToggleAudit.cs, SkillRulesAudit.cs |
+| `HotkeysFeature` | `keyActions` F | SkillAudit.cs, SkillRulesAudit.cs |
+| `HudLauncherFeature` | `layer` F | PluginToggleAudit.cs |
+| `HudLayout` | `ApplySavedLayout` M, `BeginDrag` M, `BeginResize` M, `CycleBackgroundOpacity` M | ChatDockAudit.cs, PetBarPlacementAudit.cs |
+| `IconVeilView` | `wash` F | RepairAudit.cs |
+| `InventoryFeature` | `BuildPanel` M, `moveCur` F, `OnItemMoveResult` M, `OnItemRemoveResult` M, `RefreshUI` M | AnvilAudit.cs, AnvilServiceFixtures.cs, ClassicServicesAudit.cs, ExchangeAudit.cs, InventoryAudit.cs, MerchantAudit.cs, NpcOpeningAudit.cs, PetEquipmentAudit.cs, PetFoodAudit.cs, StorageAudit.cs, UpstreamNpcAudit.cs, VendorAudit.cs |
+| `ItemCombineFeature` | `AskCombineCount` M, `OpenCombineRecipeBook` M, `SelectCombineCategory` M, `SelectCombineRecipe` M | ClassicServicesAudit.cs, UpstreamNpcAudit.cs |
+| `ItemData` | `items` static F, `pieces` static F, `sell` static F | ClassicServicesAudit.cs, ExchangeAudit.cs, HuntIconOptions.cs, MerchantAudit.cs, MerchantPalette.cs, MykoNpcAudit.cs, NpcDesignAudit.cs, NpcIntegrationAudit.cs, VendorAudit.cs |
+| `ItemSlotView` | `Clicked` E | WorldOverlaysAudit.cs |
+| `ItemsSession` | `PendingMove` P | PetEquipmentResultAudit.cs |
+| `ItemTooltipFeature` | `Build` M, `tipLayer` F, `Visible` P | ChatRoomAudit.cs, ExchangeAudit.cs, MailClassicAudit.cs, MerchantAudit.cs, MykoNpcAudit.cs, NpcIntegrationAudit.cs, NpcOpeningAudit.cs, StorageAudit.cs, WorldRootPreviewMembers.cs |
+| `KeyBinds` | `Changed` static E | HudButtonsAudit.cs |
+| `KillSplashFeature` | `Splash` M | EventOverlaysAudit.cs |
+| `KingElectionFeature` | `OnSchedule` M | KingNationAudit.cs |
+| `KnightRoyaleFeature` | `EnsureAreaBanner` M | EventOverlaysAudit.cs |
+| `LoginNet` | `I` static P | CommandFunctionAudit.cs, GenieAudit.cs, PetWorldReconnectAudit.cs, PluginToggleAudit.cs, SkillRulesAudit.cs |
+| `LookPreview` | `model` F, `pivot` F | BeautyAudit.cs, CapeAudit.cs, GenderAudit.cs, NationTransferAudit.cs |
+| `LootFeature` | `BuildPrompt` M, `BuildWindow` M, `Entries` P, `layer` F, `openBundleId` F, `RefreshWindow` M | WorldOverlaysAudit.cs |
+| `LotteryFeature` | `Open` M | WorldRootPreviewMembers.cs |
+| `MailComposeFeature` | `OnBodyChanged` M, `OnSendResult` M, `OpenCompose` M, `RefreshRecipientSuggestions` M, `SendComposed` M | MailClassicAudit.cs |
+| `MailFeature` | `OnList` M, `OnRead` M | MailAudit.cs, MailClassicAudit.cs |
+| `MainWindowsFeature` | `Show` M | QuestDetailAudit.cs |
+| `MarketPriceFeature` | `Build` M, `BuildMarketPricePanel` M, `CloseMarketPrice` M, `OnMarketPrice` M, `OpenMarketPrice` M, `RequestMarketPriceWindow` M, `SelectMarketPriceItem` M | MarketPriceAudit.cs, MerchantAudit.cs, UpstreamNpcAudit.cs |
+| `MerchantBuyFeature` | `BuildBuyPanels` M, `CloseWantedStall` M, `CloseWishList` M, `OnBuyList` M, `OnBuySold` M, `OnWishItemPicked` M, `OnWishSlotClicked` M, `OpenWishList` M, `RefreshWantedStall` M, `RefreshWishList` M | MerchantAudit.cs |
+| `MerchantFeature` | `BuildAmountPrompt` M, `BuildPanels` M, `BuyFromStall` M, `CloseSellStall` M, `CloseShop` M, `MenuShown` P, `OnBuy` M, `OnGold` M, `OnItemAdd` M, `OnList` M, `OnOpenResult` M, `RefreshShop` M | AnvilServiceFixtures.cs, CommandFunctionAudit.cs, MerchantAudit.cs |
+| `MerchantSearchFeature` | `OnSearchLoaded` M, `OnSearchOpen` M, `OnSearchRows` M, `searchShown` F | MerchantSearchAudit.cs, NpcServicesAudit.cs |
+| `MessengerFeature` | `Dispose` M, `DoSend` M | CommunicationAudit.cs |
+| `NameChangeFeature` | `Open` M | IdentityAudit.cs |
+| `NationChannelsFeature` | `Build` M, `Dispose` M, `NationShown` P, `OnNationRooms` M, `OnNationSearch` M, `RefreshNationButtons` M | ChatRoomAudit.cs, CommandFunctionAudit.cs, CommunicationAudit.cs, SocialAudit.cs |
+| `NationChatSession` | `PendingRoom` P | ChatRoomAudit.cs |
+| `NationTransferFeature` | `Dispose` M | NationTransferAudit.cs |
+| `NationTransferSession` | `Pending` P | NationTransferAudit.cs |
+| `Notice` | `onConfirm` F | NationTransferAudit.cs |
+| `NpcDialogFeature` | `Begin` M, `Build` M, `BuildNpcDialog` M, `End` M | AnvilAudit.cs, DetailsAudit.cs, ExchangeAudit.cs, MerchantAudit.cs, MykoNpcAudit.cs, NpcIntegrationAudit.cs, NpcOpeningAudit.cs, NpcPortraitAudit.cs, VendorAudit.cs |
+| `NpcInteractionFeature` | `RangeTick` M | NpcPortraitAudit.cs |
+| `NpcQuestSession` | `LastNpcId` P, `LastNpcName` P, `TalkingNpcId` P | MykoNpcAudit.cs, NpcIntegrationAudit.cs, NpcOpeningAudit.cs, NpcPortraitAudit.cs, VendorAudit.cs |
+| `PartyCommanderFeature` | `commanderUserHidden` F | PartyAudit.cs |
+| `PartyFeature` | `BuildHud` M, `FollowHighlight` M, `MenuKick` static F, `Pick` P, `RefreshUI` M | ContextMenuAudit.cs, PartyAudit.cs |
+| `PartyInvitesFeature` | `BuildPrompts` M, `dialogLayer` F, `invitePending` F | PartyAudit.cs, WorldOverlaysAudit.cs |
+| `PartySession` | `PartyCommanderId` P, `status` F | PartyAudit.cs |
+| `PartyWarBoardFeature` | `Build` M, `meterToggleSentAt` F, `OnWarBoard` M, `Panel` P, `warBoardSentAt` F, `WarBoardTick` M | PartyAudit.cs, UserVoteAudit.cs |
+| `PetFeature` | `Close` M, `Open` M, `Panel` P, `RefreshUI` M, `SetStatus` M, `shown` F | PetEquipmentAudit.cs, PetFoodAudit.cs, PetPlateAudit.cs, PetPortraitAudit.cs, PetSkillAudit.cs, PetWorldReconnectAudit.cs |
+| `PetHatchFeature` | `OnFailed` M, `Open` M, `Reset` M | PetAudit.cs |
+| `PetSession` | `PendingFeed` P, `PendingIncubation` P | PetFoodAudit.cs, PetReplyAudit.cs |
+| `PetSkillBarFeature` | `CanFinishPetSkill` M, `HidePetBar` M, `OnPetBarSummoned` M, `PetBarSkills` P, `petSkillGeneration` F, `PetSkillReadyAt` P, `RefreshPetBar` M | PetBarAudit.cs, PetBarPlacementAudit.cs, PetSkillAudit.cs |
+| `PieceChangeFeature` | `BuildPanel` M, `npcId` F, `PieceChangeTick` M, `RefreshActions` M, `RefreshBackpack` M, `StartSpin` M, `StopSpin` M | ClassicServicesAudit.cs |
+| `PluginGame` | `Attach` M, `AttachGenie` M, `AttachSocial` M, `AttachUserInfo` M, `AttachUserVote` M, `AttachWarp` M, `hotbar` F, `RaiseGenie` M, `RaiseHotbar` M, `RaiseHotbarReady` M, `RaiseInventory` M, `RaiseLogLine` M, `RaiseUserInfo` M, `RaiseUserVote` M | AnvilAudit.cs, ClassicServicesAudit.cs, ExchangeAudit.cs, InventoryAudit.cs, MerchantAudit.cs, PartyAudit.cs, PartyVoteFixtures.cs, PetEquipmentResultAudit.cs, Preview.cs, RepairAudit.cs, SkillAudit.cs, SkillRulesAudit.cs, StorageAudit.cs, UpstreamIntegrationAudit.cs, UserVoteAudit.cs, VendorAudit.cs |
+| `PluginInfo` | `Enabled` P, `Instance` P, `State` P | PluginToggleAudit.cs |
+| `PowerUpStoreCartView` | `RenderCart` M | StoreAudit.cs |
+| `PowerUpStoreGiftFeature` | `OnRecipient` M | StoreAudit.cs |
+| `PremiumFeature` | `OnStatus` M | PremiumQuestAudit.cs |
+| `ProgressionFeature` | `OnGoldChange` M | VendorAudit.cs |
+| `ProgressSession` | `SelfAbnormal` P | EventWindowsAudit.cs, SkillRulesAudit.cs |
+| `QuantityPrompt` | `max` F | VendorAudit.cs |
+| `QuestBook` | `ApplyKillCounts` M, `ApplyLog` M, `ApplyObjectives` M, `ApplyStrings` M, `ApplyView` M, `Entries` P, `Kills` P, `Objectives` P, `RewardSelection` P, `Strings` P, `Tracked` P, `Views` P | CharacterNpcFixtures.cs, DetailsAudit.cs, PremiumQuestAudit.cs |
+| `QuestFeature` | `BuildLog` M, `BuildRow` M, `RefreshLog` M, `Select` M | DetailsAudit.cs, PremiumQuestAudit.cs, QuestDetailAudit.cs |
+| `QuestNotificationsFeature` | `Dismiss` M, `EnsureNotificationWindow` M, `RefreshNotification` M | PremiumQuestAudit.cs |
+| `QuestReceiptFeature` | `OnReceipt` M, `ReceiptWindow` P | DetailsAudit.cs |
+| `QuestTargetFeature` | `EnsureTargetWindow` M | DetailsAudit.cs |
+| `QuestTrackerFeature` | `RefreshTracker` M | PremiumQuestAudit.cs |
+| `RebirthFeature` | `Dispose` M, `OpenPicker` M, `OpenReset` M | RebirthAudit.cs |
+| `RepairFeature` | `Build` M, `Dispose` M, `OnResult` M, `Open` M | AnvilServiceFixtures.cs, ClassicServicesAudit.cs, NpcOpeningAudit.cs, RepairAudit.cs |
+| `RepairSession` | `RepairNpcEvent` E | NpcOpeningAudit.cs |
+| `ReportFeature` | `OnResult` M, `panel` F | EventsBAudit.cs, EventsBFixtures.cs |
+| `RepurchaseFeature` | `Dispose` M, `On` M, `Open` M | RepurchaseAudit.cs |
+| `ResetConfirmFeature` | `CancelReset` M | ClassicServicesAudit.cs, NpcOpeningAudit.cs |
+| `RoomMediaSession` | `HideRoomPanel` M | ChatRoomAudit.cs |
+| `RouletteFeature` | `Toggle` M | EventsAAudit.cs |
+| `SealFeature` | `AskConfirm` M, `BuildWindow` M, `Close` M, `PushDigit` M, `TakeSocket` M | ClassicServicesAudit.cs, NpcOpeningAudit.cs |
+| `SeekPartyFeature` | `ApplySeekBoard` M, `BuildSeekPanel` M, `fullMoonAutoEntry` F, `SeekBoardKind` P, `seekLayer` F, `SeekPanel` P, `UpdateSeekStatus` M | PartyAudit.cs |
+| `SelfAvatar` | `KoX` F, `KoY` F, `KoZ` F | GenieAudit.cs |
+| `SelfSession` | `Class` P, `Face` P, `Hair` P, `Inventory` P, `LastEnter` P, `Race` P, `SeedPreviewEnter` M, `Sheet` P, `TransformSkill` P | AnvilAudit.cs, BeautyAudit.cs, ChatRoomAudit.cs, ClassicServicesAudit.cs, CommandFunctionAudit.cs, CommunicationAudit.cs, DetailsAudit.cs, EventOverlaysAudit.cs, EventWindowsAudit.cs, EventsAFixtures.cs, ExchangeAudit.cs, FamiliarFixtures.cs, GenderAudit.cs, GenieAudit.cs, IdentityAppearanceFixtures.cs, IdentityAudit.cs, InventoryAudit.cs, ItemWindowsAudit.cs, MarketCommunicationFixtures.cs, MerchantAudit.cs, MykoHudAudit.cs, NpcOpeningAudit.cs, NpcServicesAudit.cs, PetEquipmentResultAudit.cs, PremiumQuestAudit.cs, PresetAudit.cs, ProgressionAudit.cs, QuestDetailAudit.cs, RepairAudit.cs, RepurchaseAudit.cs, SkillAudit.cs, SkillRulesAudit.cs, StorageAudit.cs, UpstreamIntegrationAudit.cs, UpstreamNpcAudit.cs, VendorAudit.cs |
+| `ShoppingMallFeature` | `OnCatalog` M, `OnOpen` M, `TickTimers` M | StoreAudit.cs, StoreMykoAudit.cs |
+| `ShoutFeature` | `BuildBanner` M, `layer` F | WorldOverlaysAudit.cs |
+| `Shutdown` | `Releases` static F | InventoryAudit.cs |
+| `SiegeFeature` | `BuildWindows` M, `guardShown` F, `officeShown` F, `OpenGuard` M, `OpenOffice` M, `OpenTaxRate` M, `taxListShown` F | CouncilRateAudit.cs, SiegeAudit.cs, UpstreamNpcAudit.cs |
+| `SkillCastSystem` | `CanCastWithGear` M, `InSkillRange` M, `PendingCasts` P | GenieAudit.cs, SkillRulesAudit.cs |
+| `SkillPresetFeature` | `BuildPresetSkillBlock` M, `BuildPresetSlotBar` M, `BuildPresetStatBlock` M, `presetPanel` F, `presetShown` F, `presetSlot` F, `RefreshPresetUI` M, `SelectPresetSlot` M | DetailsAudit.cs, PresetAudit.cs |
+| `SpecialAuctionFeature` | `auctionClickedAt` F, `auctionToday` F, `BuildPanel` M, `Close` M, `EnsureAuctionTable` M, `OnAuctionBid` M, `OnAuctionClaim` M, `OnAuctionCollect` M, `OnAuctionLog` M, `OnAuctionMyInfo` M, `OnAuctionToday` M, `Open` M, `RefreshAuctionBalance` M, `RefreshAuctionToday` M, `RenderAuctionSchedule` M, `ShowAuctionTab` M, `TickSpecialAuction` M | AuctionAudit.cs, UpstreamNpcAudit.cs |
+| `StatusHudFeature` | `Root` P | PluginToggleAudit.cs |
+| `TitlePickerFeature` | `BuildPanel` M, `BuildRow` M, `panel` F, `Shown` P | DetailsAudit.cs |
+| `TournamentFeature` | `Toggle` M | EventsAAudit.cs |
+| `TownRecallFeature` | `Build` M | WorldOverlaysAudit.cs |
+| `UpgradeFeature` | `Confirm` M, `OnResult` M, `RefreshActions` M, `Send` M, `SetAnvilBench` M, `StageAnvil` M | AnvilAudit.cs, AnvilServiceFixtures.cs, WorldRootPreviewMembers.cs |
+| `UpgradeNoticeFeature` | `BuildBanner` M, `layer` F | WorldOverlaysAudit.cs |
+| `UserInfoFeature` | `Build` M, `OnInformation` M | DetailsAudit.cs |
+| `UserOptionSession` | `PartyRequestsBlocked` P, `TradeRequestsBlocked` P | CommandFunctionAudit.cs |
+| `UserVoteFeature` | `askUntil` F, `askWindow` F, `Build` M, `notice` F, `OnAsk` M, `select` F, `ShowVoteNotice` M, `UserVoteTick` M | UserVoteAudit.cs |
+| `VendorFeature` | `BuildPanel` M, `OnGold` M, `OnTradeResult` M, `Open` M, `RefreshDetail` M | NpcOpeningAudit.cs, VendorAudit.cs |
+| `VendorSession` | `TradeInFlight` P | VendorAudit.cs |
+| `VipWarehouseFeature` | `BuildPanel` M, `expiresAt` F, `inFlight` F, `layer` F, `OnResult` M, `Panel` P, `Refresh` M, `ShowPinDialog` M | NpcOpeningAudit.cs, StorageAudit.cs |
+| `Vitals` | `Mp` P | GenieAudit.cs |
+| `WarehouseFeature` | `AskGoldTransfer` M, `Build` M, `BuildPanel` M, `Close` M, `Dispose` M, `layer` F, `OnResult` M, `Panel` P, `Refresh` M, `WithdrawInto` M | NpcOpeningAudit.cs, StorageAudit.cs |
+| `WarehouseSession` | `WarehouseNpcEvent` E | NpcOpeningAudit.cs |
+| `WarpFeature` | `Close` M, `SelectRow` M | ClassicServicesAudit.cs |
+| `WhispersFeature` | `AddWhisperPost` M, `Build` M, `BuildWhisperOptions` M, `Dispose` M, `GetOrCreateWhisper` M, `OnDirectPosted` M, `OnWhisperLookChanged` M, `RefreshWhisperOptions` M | ChatRoomAudit.cs, SocialAudit.cs, SocialPromptsAudit.cs |
+| `WindowHost` | `RaiseHidden` M, `RaiseShown` M | QuestDetailAudit.cs |
+| `WorldPreview` | `AgilityNecklace` static F, `AuctionPreviewDay` static F, `AuctionPreviewSeconds` static F, `BuildChaosGuide` M, `BuildChaosLadder` M, `BuildChaosSkillPage` M, `BuildCharacterSeal` M, `BuildChatRoom` M, `BuildClanBoards` M, `BuildClanBonus` M, `BuildClanHandover` M, `BuildCombineRecipeBook` M, `BuildCommander` M, `BuildCommandList` M, `BuildDailyRank` M, `BuildEvents` M, `BuildEventTitles` M, `BuildExpSeal` M, `BuildFortune` M, `BuildItemCombine` M, `BuildItemSmash` M, `BuildKing` M, `BuildLootFilter` M, `BuildNationChat` M, `BuildNereid` M, `BuildNestTimer` M, `BuildOrderMessage` M, `BuildPowerUpStore` M, `BuildPremium` M, `BuildQuestTracker` M, `BuildRankBoard` M, `BuildRankerPaper` M, `BuildRepair` M, `BuildRoyaleScore` M, `BuildSeal` M, `BuildSiege` M, `BuildSiegeTower` M, `BuildSiegeWar` M, `BuildSoccer` M, `BuildTimedItems` M, `BuildUpgrade` M, `BuildVanguard` M, `BuildWarp` M, `BuildWarRanking` M, `BuildWarResult` M, `BuildWhisper` M, `DetachPreviewControl` static M, `ElfMetalEarrings` static F, `ExitMenu` M, `MailEntries` static M, `PreviewClan` static M, `PreviewHpPotion` static F, `PreviewItem` static M, `PreviewMpPotion` static F, `PreviewUpgradedWeapon` static F, `PusPreviewMail` static M, `ShadowPiece` static F, `ShowSealKeypad` M, `StrengthNecklace` static F | AnvilServiceFixtures.cs, ChatRoomAudit.cs, ClassicServicesAudit.cs, CommandListAudit.cs, EventOverlaysAudit.cs, EventWindowsAudit.cs, EventWindowsFixtures.cs, IdentityAppearanceFixtures.cs, ItemWindowsAudit.cs, KingNationFixtures.cs, MapFortuneFixtures.cs, MarketCommunicationFixtures.cs, MykoHudAudit.cs, PremiumQuestAudit.cs, RepairAudit.cs, SiegeFixtures.cs, SkillRulesAudit.cs, SocialFixtures.cs, SocialPromptsAudit.cs, UpstreamIntegrationAudit.cs |
+| `ZoneAbilityFeature` | `BuildChip` M, `zoneabilityTypeLbl` F | WorldOverlaysAudit.cs |
+| `ZoneSession` | `EventTitlesChangedEvent` E | MykoHudAudit.cs |
+
+### Notes by window group
+
+The notes below were written window group by window group while the plugin was ported. Their member names are
+the client's names before it split its world scene into features (`_trophy` is now `AchievementTrophy.Trophy`);
+the tables above are the current names. The behaviour they describe still holds.
+
+#### Shared
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -197,7 +537,7 @@ listed. Preview-only members are listed at the end.
 | `ShowItemTooltip(int,ItemSlot,string)`, `HideItemTooltip()`, `MoveBetween(int,int)`, `HideMainWindow(string)`, `CombatNotice(string)` | M | Common actions |
 | `ResolveMobScene(int)`, static `ForceDoubleSidedOnce(Node,string)`, `ModelNodeName` | M/F | NPC and familiar portrait models |
 
-### HUD, chat, whispers
+#### HUD, chat, whispers
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -226,7 +566,7 @@ listed. Preview-only members are listed at the end.
 | Public: `PremiumNames.Name`, `PremiumText`/`PremiumFallback`, `Net.ClanOnlineCount`, `Net.NoClanBonus`, `ClanBonusCard` | API | Premium names from the text table in the approved title case (`NativePremium.ClassicCase`, "Gold Premium: 2d 4h" on the plaque, time and benefits in its tooltip/box); clan bonus marks and text (`NativePremium.BonusOf/BonusLines`) |
 | `HudLayout._corner`, `_resizing`, `_dragging`, `_dragMoved`, `_resizeOriginMouse`, `_resizeOriginPosition`, `_resizeOriginSize`, `Frozen`, `MinimumSize`, `Place(Vector2,Vector2)` | F/P/M | Legacy grip, seam snapping |
 
-### Character and NPC
+#### Character and NPC
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -247,7 +587,7 @@ listed. Preview-only members are listed at the end.
 | `_seekListBox`, `_seekRegisterBtn`, `_seeking`, `_seekPageLbl`, `_seekTotal`, `_seekPage`, static `SeekZoneName` | F/M | Seek-party board |
 | `_inZoneLeaveAsk`, `OnInZoneLeaveConfirmed`, static `IsTempleEventZone` | F/M | Event leave confirmation |
 
-### Inventory and storage
+#### Inventory and storage
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -262,7 +602,7 @@ listed. Preview-only members are listed at the end.
 | `StorageTransferBusy` *(fix/storage-transfers)* | P | Busy state. Falls back to the in-flight fields. |
 | `Net._conn` and its `Send(Packet)` | F/M | In-vault rearrangement (op 4) |
 
-### Vendor, trade, merchant
+#### Vendor, trade, merchant
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -282,7 +622,7 @@ listed. Preview-only members are listed at the end.
 | `AcceptAmount`, `AskStallPrice`, `CloseAmountPrompt`, `ConfirmSellStall`, `SellToWanted`, `SetSellStatus`, `SetWantedStatus`, `StageStallItem`, `UnstageStallItem`, `RefreshStallSign`, static `FreeStallSign` | M | Merchant actions |
 | `MerchantCell.Index`, `OnActivate` (set), `OnDropFrom` (set), `Item`, `_count`; `Stall.Sign`, `SignCells`, `IsBuying` | F/P | Release activation, slot drops, sign rebuild |
 
-### Magic Anvil and NPC services
+#### Magic Anvil and NPC services
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -298,7 +638,7 @@ listed. Preview-only members are listed at the end.
 | `_reset` (`Pending`, `Kind`) *(fix/npc-service-requests)*, otherwise `_resetKind` | F | Redistribution pending |
 | `_repairShown`, `_repairInFlight`, `_repairQueue`, `_repairFooter`, `RepairTakeFromBag(int)`, `RepairAll()`, `CloseRepair()`, `IsRepairable(int)`, `RepairCostAt(int)`, `RepairableSlots()` | F/M | Classic repair mode |
 
-### Storage, items and services on upstream cd63f98
+#### Storage, items and services on upstream cd63f98
 
 These members replace the rows above where the 2619 review renamed or removed them (`_vipWhPage`,
 `_vipWhPageLbl`, `_vipWhExpirySec`, `_clanWhPageLbl`, `_clanWhLoaded`, `_clanWhLoading`, `_clanWhGoldInput`,
@@ -328,7 +668,7 @@ sets the vaults' pending state itself; every transfer runs through the client's 
 | `_lootFilterWindow` body controls (named by order) | - | Loot Filter (`loot_filter`) |
 | `PluginUi.ReplaceExitMenu` (`ExitMenuRequest`) | API | Classic exit menu (`co_exitmenu`) with the temporary item list |
 
-### Market and communication
+#### Market and communication
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -344,7 +684,7 @@ sets the vaults' pending state itself; every transfer runs through the client's 
 | The 15 `_auction*` fields of `AuctionFields`; `_auctionTabButtons`, `_auctionPages`, `_auctionLotSlots`; const `SpecialAuctionNoHistoryText` | F | Akara's Altar names, tabs, lots |
 | `_auctionPlaceBid`, `_auctionRefresh`, `_auctionRowButtons` *(fix/auction-replies)* | F | Structural fallback without them |
 
-### Social on upstream cd63f98 (nation chat, party HUD, trade grids, boards, prompts)
+#### Social on upstream cd63f98 (nation chat, party HUD, trade grids, boards, prompts)
 
 Upstream removed the chat-room window, the party window and the trade row lists; the `_chatRoom*`,
 `ChatRoomListEvent`, `_partyMembersBox` and `_exMineList/_exTheirsList/_exBagList` rows above no longer apply.
@@ -362,7 +702,7 @@ Upstream removed the chat-room window, the party window and the trade row lists;
 | `ToggleGenie()`, `ToggleGenieFromSub()` (fallback `ToggleGenieRun()`), `_genieShown`, `_genieRequestPending`, `_geniePoints`, `_genieDeadline`, `_genieRunLabel`, `_geniePanel` (its "Use Spirit of Genie" button), `CountInBackpack(int)`, static `SpiritOfGenieItem`, `Net.GenieRunning` | F/M | Genie rows of the command list (`NativeGenieCommands`): each runs the client's own action and is greyed while the client's state refuses it, with the client's status line as the reason. Missing members drop the Genie group. |
 | `ChatSystem._input` | F | Prefill the client opens the chat with ("/PM ", "/RoyalOrder ") taken into the Classic chat input (`NativeChat.TakeTyped`) |
 
-### Party, user vote, user card and clan page on upstream 3277df5
+#### Party, user vote, user card and clan page on upstream 3277df5
 
 The party list, war board, user vote windows and character card use the plugin facades the client added in
 3277df5; the reflected `ToggleRowMeter()`, `ToggleWarBoard()` and `_warBoardRowShares` of the cd63f98 social row
@@ -380,7 +720,7 @@ above are no longer read.
 | `OpenClanMemo()` | M | Clan memo from the clan page's own-row menu and the Knights Management Memo action |
 | `Net.ClanOnlineCount`, `Net.NoClanBonus`, `ClanBonusCard` (public) | API | Clan online bonus line on the Classic clan page |
 
-### Identity and appearance
+#### Identity and appearance
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -404,7 +744,7 @@ above are no longer read.
 | `LookPreview._pivot`, `_model` (set) | F | `LookFraming` |
 | `LookEditor._races`, `_faceLbl`/`_hairLbl` (set), `_colour`, `_raceButtons`; `_locked`, `_faceSteps`/`_hairSteps`, `SetLocked` *(fix/beauty-shop)* | F/M | Editor names, 1-based display, lock |
 
-### Familiar
+#### Familiar
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -416,7 +756,7 @@ above are no longer read.
 | `Net.SendPetHatch`, `SendPetTransform` | M | `bool` on fix/familiar-replies, `void` upstream |
 | `HudLayout._moveGripOverlay`; bar recognised by the type names `PetSkillCell` and `HotGrip` | F | Familiar bar grip and default position |
 
-### World overlays
+#### World overlays
 
 `NativeOverlays` prepares the overlays without a window id once the world is attached (`BecameAvailable`). It names
 the controls below and mirrors the countdown urgency and registration state into metas; the client keeps every
@@ -445,7 +785,7 @@ Overlays the client builds later are prepared through their fields four times a 
 | `_towerButton`, `_dropOff` | F | Siege tower Board button (moved under the Classic target frame) and drop-off |
 | `_rankerPaper` | F | Ranker paper buttons and text |
 
-### Events, rankings and progression
+#### Events, rankings and progression
 
 | Member | Kind | Used for |
 | --- | --- | --- |
@@ -460,7 +800,7 @@ Overlays the client builds later are prepared through their fields four times a 
 The event, ranking and war windows of the event-window family (`ClassicEventFamily.WindowIds`) are restyled from their
 own controls and need no reflected member.
 
-### HUD on the bundled 2.x art (`assets/myko`)
+#### HUD on the bundled 2.x art (`assets/myko`)
 
 Used only when the layouts are found (bundled in `assets/myko`, see `src/LocalAssets.cs`); without them nothing below is read.
 
@@ -469,7 +809,7 @@ Used only when the layouts are found (bundled in `assets/myko`, see `src/LocalAs
 | `_premiumChip`, `_clanPremiumChip`, `_clanPremiumInClan`, `_clockLabel`, `PlaceTopIcons` | F/M | Top-right group: clan premium bar and the time box; the client's chips and clock are hidden while the group shows them (the premium chip stays as an invisible spacer so the client's remaining top icons keep clear) (`NativePremium`) |
 | `Net.GmListEvent` (`Action<IReadOnlyList<string>>`) | E | Not in the client yet. When a client adds it, the GM List bar follows it (`NativeGmList.Attach`); until then the list is empty |
 
-### Chat rooms, voice and chat categories on upstream 3277df5
+#### Chat rooms, voice and chat categories on upstream 3277df5
 
 The nation chat rooms open a group-chat style room window (`chat_room`). The Classic room (`ClassicChatRoomSkin`,
 `ClassicChatRoomLayout`, preparer `NativeChatRoom`) frames the client's own room through `FrameWindow("chat_room")`;
@@ -494,7 +834,7 @@ the room or `VoiceChat`; the plugin subscribes no room or voice event (it reads 
 emoticons in room posts need the installed content (`items.json`, `assets/ui/emoticons/sheet.png`), which
 `chat-room-audit` mounts from `build/client/source-content/knightonline.pck`.
 
-### Changed shapes on upstream ff78eef
+#### Changed shapes on upstream ff78eef
 
 The plugin compiles unchanged on ff78eef; these reflected members changed shape at run time. Each call adapts to
 the member it finds, so older clients keep the previous path.
@@ -512,7 +852,7 @@ transfer and cape service previews fitted the outstretched bind-pose arms and sh
 smaller. `LookFraming` and `InventoryPortrait` now compose the bone poses from the animated local poses
 (`LookFraming.ShownBonePoses`), which restores the approved framing.
 
-### Stack split and storage amounts on upstream ff78eef
+#### Stack split and storage amounts on upstream ff78eef
 
 Upstream 115b830 splits a dragged stack with the mouse wheel: the client's `StackDial` steps 1/5/10/50/100 per four
 quick notches, the drag icon shows the count (white for the whole stack, `UiTheme.GoldBright` for a part) and the
@@ -549,7 +889,7 @@ quantity prompt and adds the wheel:
 | `_whCompanion`, `_vipCompanion`, `_clanCompanion`; `BagCompanion.Take`, `IntoBag` (`Func<int, int, int?, bool>`, init) | F/P | A right-click or drop in the Classic bag window while a storage is open takes the same route |
 | `OfferSlot(int abs, int? amount)` | M | Trade: a wheel part is offered without the prompt; the whole stack still asks (`OfferSlot(int)` on older clients) |
 
-### Party HUD and War Board on upstream ff78eef
+#### Party HUD and War Board on upstream ff78eef
 
 Upstream rewrote its party HUD (class diamond with a level gauge, ping signal, buff row, drag reordering, a settings
 popup) and removed its row meter switch ("the damage/healing switch lives on the war board only"). The Classic party
@@ -567,7 +907,7 @@ list keeps the original cells and shows the new member data through the party fa
 
 `MoveRowTo` (drag reordering) is not used: the Classic cells keep the Move up / Move down arrows (`MoveRow`).
 
-### Chat after room lines left the main chat on upstream ff78eef
+#### Chat after room lines left the main chat on upstream ff78eef
 
 Chat room lines stay in the room window: the client no longer subscribes `RoomChatEvent` in `ChatSystem`
 (`OnRoomChat` is gone), and it removed the `\` prefix, `ChatRoomChannel`, `UseRoomChannel`, `NotInChatRoomText`
@@ -583,7 +923,7 @@ and `ChatEntry.Place`. `ChatCategories.Each` no longer lists `ChatCategory.ChatR
 | `ChatType.ChatRoom` (33) | API | `ClassicChatFormat.Channel` keeps its `room` tag and ink, because the client keeps the type, its category and its colour slot; no chat log line or bubble carries it |
 | `NationRoom.Nation`, `NationRow` nation marks (`assets/ui/nation_chat/karus.png`, `elmorad.png`) | Look | Rooms of either nation are listed and joined through the unchanged Classic nation chat skin; `chat-room-audit` checks a room of the other nation in the list, its password prompt, and its room window opened by the server's reply |
 
-### Changed shapes on upstream fa3cfc3
+#### Changed shapes on upstream fa3cfc3
 
 Upstream fa3cfc3 (events on the USKO timetable, a new events window, chat reactions, whispers on the room thread)
 changed these members. The two compile breaks and the one run-time break are fixed in place; the window changes are
@@ -600,7 +940,7 @@ On a client before fa3cfc3 the new members are missing: each path checks for the
 | `_ncPriJoin`, `_ncPriLeave`, `_ncPriOpen`, `_ncPriChange`, `_ncPriPersons`, `_ncSearch`, `_ncMembers*`, `OpenNationSearch`, `NationChatRules.Summary`, window ids `nation_chat_members`, `nation_chat_search` (removed) | F/M | The Private tab is a search row (`_ncSearchEdit`, Search, Create room); members live in the room window |
 | `_bifrostRemaining`, `_isEventRegistered`, `_eventType`, `EndBifrostEvent` (removed): sign-ups are `Net.SignUps` (`TempleSignUpBoard`: `Current`, `Registered`, `SecondsLeft`) | F | The Classic registration and countdown read the urgent and registered state from them (section "Events window and temple sign-ups on upstream fa3cfc3") |
 
-### Events window and temple sign-ups on upstream fa3cfc3
+#### Events window and temple sign-ups on upstream fa3cfc3
 
 Upstream rewrote the events window (`events`) as a card list and keeps temple sign-ups per event, so two can be
 open at once. The Classic event family composes the new window from its own controls (`ClassicEventSchedule`, found
@@ -620,7 +960,7 @@ Chaos blink); `event-windows-audit` checks it. The former 516-pixel body width o
 before fa3cfc3 the old events window keeps its natural width (`ClassicEventFamilyLayout.BodyWidth` stays as the
 declarative per-window hook).
 
-### Chat room on the shared thread and composer, with reactions, on upstream fa3cfc3
+#### Chat room on the shared thread and composer, with reactions, on upstream fa3cfc3
 
 The room's log and composer are the client's shared controls (`ChatThreadView`, `ChatComposer`), also used by the
 whispers. `NativeChatRoom.Prepare` names them and their parts for the skin and the audit; the Classic room restyles
@@ -642,7 +982,7 @@ covers the thread, the composer or the reactions, and the plugin subscribes no r
 | `_roomVolume`, `_roomPeerVolume` (`VoiceLevels.MaxVolume` 2, "up to 200%") | Look | Classic slider unchanged; the range and the tooltip stay the client's |
 | `_ncPriJoin` (removed; a double-click on a row enters) | F | Preview only: `chat-room-audit` enters rooms of both nations by double-click |
 
-### Whispers and the Channel list Private tab on upstream fa3cfc3
+#### Whispers and the Channel list Private tab on upstream fa3cfc3
 
 Whispers run on the room's thread view and composer (`ChatThreadView`, `ChatComposer`): voice notes, reactions and
 90-day history. The Classic PM (`ClassicWhisperSkin`, `ClassicWhisperThread`, `ClassicWhisperLayout`, preparer
@@ -660,7 +1000,7 @@ composer, and the plugin subscribes no thread, composer or voice event (it conne
 | `Config.WhisperSize` (`BubbleMax`, the thread's minimum size) | Look | The original frame keeps its log area (pinned every frame) and lines wrap at the log width |
 | `_ncSearchEdit` (Private tab: room name, Search, Create room), rows with the "Double-click to enter" tooltip | F | Named `nation_search_edit`. The generic social restyle draws the row: the Classic edit field, the action buttons and 22 px rows. `_ncPriOpen` and the members preparer are gone, and `nation_chat_members` and `nation_chat_search` left `ClassicSocialLayout.WindowIds` |
 
-### Skill bar and the Chaos lock on upstream fa3cfc3
+#### Skill bar and the Chaos lock on upstream fa3cfc3
 
 In the Chaos dungeon, fa3cfc3 refuses every skill while the character blinks after a respawn
 (`ChaosBattle.BattleLocked`: zone 85 and `Net.SelfAbnormal == RespawnBlink.Blinking`, read as `ChaosBattleLocked` by
@@ -679,7 +1019,7 @@ members are used by the preview only:
   `_chaosSkillIcons` and `ChaosSkillIcon.Skill`
 - `_combatLog`, `TextCastingFailed`, `SystemText`, `_pendingCasts` and `_continuanceSkill`
 
-### Preview-only members
+#### Preview-only members
 
 The preview fixtures also reach client internals that the plugin never touches at runtime. Examples are the
 `Build*Panel`/`Build*Window` builders, the `On*` reply handlers, `Net.SeedPreviewEnter`/`SeedPreviewPet`, the
@@ -847,8 +1187,8 @@ None of these is required. Each would replace a reflection or a workaround.
    and CS8604 in `ClassicVendorSkin`. A failure here means a public API type changed.
 2. **Check reflected names statically.** Extract every string literal passed to `Native.*` under `src/Native`.
    Check each identifier against the new client's `Client/src`. Compare method arity too, because overloads change
-   between upstream and the fix branches (`MoveBetween`, `SellSlot`, `SendNationTransfer`). Every name in section 3
-   must exist on `classic-integration`. Only the names marked with a branch may be absent upstream.
+   between upstream and the fix branches (`MoveBetween`, `SellSlot`, `SendNationTransfer`). Every name in the section 3
+   tables must exist on `classic-integration`. Only the names marked with a branch may be absent upstream.
 3. **Run the plugin unit tests:** `dotnet test tests/AnvilRules.Tests` and `dotnet test tests/ClassicChatFormat.Tests`.
    The plugin csproj excludes `tests/**`.
 4. **Build the preview against `classic-integration`:**

@@ -13,9 +13,9 @@ namespace KnightOnlineUiClassic.Native;
 /// </summary>
 internal static class NativeQuestKey
 {
-    internal static void Attach(World world, PluginGame game)
+    internal static void Attach(WorldRoot world, PluginGame game)
     {
-        var attached = new WeakReference<World>(world);
+        var attached = new WeakReference<WorldRoot>(world);
         // Deferred: the World builds its hotkeys after it attaches the plugin game API, and rebuilds them on a rebind.
         Action route = () => Callable.From(() =>
         {
@@ -25,18 +25,18 @@ internal static class NativeQuestKey
         route();
     }
 
-    private static void Route(World world, PluginGame game)
+    private static void Route(WorldRoot world, PluginGame game)
     {
         var key = (world, nameof(NativeQuestKey));
         NativeHooks.ReleaseKey(key);
         Action toggle = () => CharacterWindow.ToggleQuestList(game);
         var restore = new List<Action>();
-        Patch(world, "_hotkeys", KeyBinds.Get(KeyAction.Quests), toggle, restore);
-        Patch(world, "_padHotkeys", KeyBinds.GetPad(KeyAction.Quests), toggle, restore);
+        Patch(world, "Hotkeys.hotkeys", KeyBinds.Get(KeyAction.Quests), toggle, restore);
+        Patch(world, "Hotkeys.padHotkeys", KeyBinds.GetPad(KeyAction.Quests), toggle, restore);
         if (restore.Count > 0) NativeHooks.Hold("World hotkeys (quest key)", () => { foreach (var undo in restore) undo(); }, world, key);
     }
 
-    private static void Patch<TChord>(World world, string member, TChord chord, Action toggle, List<Action> restore) where TChord : notnull
+    private static void Patch<TChord>(WorldRoot world, string member, TChord chord, Action toggle, List<Action> restore) where TChord : notnull
     {
         if (Native.Get<Dictionary<TChord, Action>>(world, member) is not { } table || !table.TryGetValue(chord, out var native)) return;
         table[chord] = toggle;

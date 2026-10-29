@@ -38,9 +38,9 @@ public partial class Preview
 
         // Player menu: the client's rows for a player out of view.
         {
-            var world = new World();
-            DetailCall(world, "ShowPlayerMenuByName", "Rikka", new Vector2(420, 260));
-            var layer = (CanvasLayer)DetailField(world, "_playerMenuSkinLayer")!;
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            DetailCall(world, "PlayerMenu.ShowByName", "Rikka", new Vector2(420, 260));
+            var layer = (CanvasLayer)DetailField(world, "PlayerMenu.skinLayer")!;
             layer.Reparent(this);
             var menu = Descendants(layer).OfType<ClassicPlayerMenu>().Single();
             await Frames(4);
@@ -51,14 +51,14 @@ public partial class Preview
             Require(panel.Position == new Vector2(422, 262), "player menu: opens at the cursor " + panel.Position);
             await Shot("player-menu", panel);
             rows.Single(r => r.Text == "Copy name").EmitSignal(BaseButton.SignalName.Pressed); await Frames(2);
-            Require(DetailField(world, "_playerMenuSkinLayer") == null, "player menu: a row runs the client's action and closes the menu");
-            DetailCall(world, "ShowPlayerMenuByName", "LongCharacterName1299", new Vector2(980, 690));
-            var edge = (CanvasLayer)DetailField(world, "_playerMenuSkinLayer")!; edge.Reparent(this); await Frames(4);
+            Require(DetailField(world, "PlayerMenu.skinLayer") == null, "player menu: a row runs the client's action and closes the menu");
+            DetailCall(world, "PlayerMenu.ShowByName", "LongCharacterName1299", new Vector2(980, 690));
+            var edge = (CanvasLayer)DetailField(world, "PlayerMenu.skinLayer")!; edge.Reparent(this); await Frames(4);
             var edgePanel = (Control)edge.FindChild("player_menu_panel", true, false)!;
             Require(GetViewportRect().Encloses(edgePanel.GetGlobalRect()), "player menu: near the screen edge it stays on screen");
             await Shot("player-menu-edge", edgePanel);
             Descendants(edge).OfType<ClassicPlayerMenu>().Single().EmitSignal(Control.SignalName.GuiInput, new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true }); await Frames(2);
-            Require(DetailField(world, "_playerMenuSkinLayer") == null, "player menu: a click outside closes it");
+            Require(DetailField(world, "PlayerMenu.skinLayer") == null, "player menu: a click outside closes it");
             if (GodotObject.IsInstanceValid(layer)) layer.QueueFree();
             if (GodotObject.IsInstanceValid(edge)) edge.QueueFree();
             world.QueueFree();
@@ -99,9 +99,9 @@ public partial class Preview
         // original send cell runs the composer's Send (not "Load older messages"); the record cell, the recording
         // strip and the composer's emoticon picker sit in the original frame.
         {
-            var world = new World();
-            var window = (HudWindow)DetailCall(world, "BuildWhisperUiPreview", false)!;
-            var layer = (CanvasLayer)DetailField(world, "_whisperLayer")!;
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            var window = (HudWindow)DetailCall(world, "Preview.BuildWhisper", false)!;
+            var layer = (CanvasLayer)DetailField(world, "Whispers.whisperLayer")!;
             layer.Reparent(this); layer.AddChild(window); window.Visible = true;
             var thread = Descendants(window.Body).OfType<ChatThreadView>().Single();
             var composer = Descendants(window.Body).OfType<ChatComposer>().Single();
@@ -122,10 +122,10 @@ public partial class Preview
             // refresh them), restyled without bubbles or time stamps.
             var logArea = new Rect2(open.Find("exit_chat")!.Position, open.Find("exit_chat")!.SizeVec);
             Require(surface.IsAncestorOf(thread) && thread.GetRect() == logArea, "whisper: the client's thread fills the original log area " + thread.GetRect());
-            var log = Native.Get<VBoxContainer>(thread, "_log")!;
-            var timeline = Net.I.DirectTimeline("Rikka");
+            var log = Native.Get<VBoxContainer>(thread, "log")!;
+            var timeline = Game.Session.RoomMedia.DirectTimeline("Rikka");
             var posts = NativeWhispers.Posts(thread);
-            int self = (int)DetailField(world, "_myId")!;
+            int self = (int)DetailField(world, "MyId")!;
             Require(posts.Count == timeline.Posts.Count(p => p.Kind != LibreKO.Domain.RoomPostKind.Notice) && posts.Keys.All(r => r.GetParent() == log),
                 "whisper: every post keeps the thread's own row in its log (" + posts.Count + ")");
             Require(log.GetChildren().All(r => r.HasMeta(ClassicWhisperThread.RowMeta)), "whisper: every row of the thread is restyled Classic");
@@ -170,7 +170,7 @@ public partial class Preview
             var pills = Descendants(log).OfType<PanelContainer>().Where(p => p.Name == "whisper_reactions" && p.IsVisibleInTree()).ToArray();
             Require(pills.Length == 3 && pills.All(p => p.GetThemeStylebox("panel") is StyleBoxFlat { CornerRadiusTopLeft: 0 } box && box.BorderColor == ClassicDarkFrame.Line && threadBox.Position.X - .5f <= p.GetGlobalRect().Position.X && p.GetGlobalRect().End.X <= threadBox.End.X + .5f),
                 "whisper: the three reacted posts carry the Classic reaction chip inside the log");
-            var older = Native.Get<Button>(thread, "_older")!;
+            var older = Native.Get<Button>(thread, "older")!;
             Require(older.Visible && older.Name == "whisper_older" && older.GetThemeFont("font") == Plugin.Kit.Bold && older.Size.Y == ClassicSocialLayout.ActionHeight, "whisper: 'Load older messages' is a Classic action");
             // The react button of a pinned line stays visible like the client's, on the line, inside the log.
             var gift = timeline.Find(207)!;
@@ -203,12 +203,12 @@ public partial class Preview
             thread.Refresh(plain); await Frames(2);
             var plainPill = Descendants(plainRow).OfType<PanelContainer>().Single(p => p.Name == "whisper_reactions");
             Require(plainRow.GetParent() == log && plainPill.IsVisibleInTree() && plainPill.GetThemeStylebox("panel") is StyleBoxFlat { CornerRadiusTopLeft: 0 }, "whisper: a reaction refresh keeps the row and shows the Classic chip");
-            var chats = (System.Collections.IDictionary)DetailField(world, "_whispers")!;
-            DetailCall(world, "AddWhisperPost", chats["Rikka"], LibreKO.Domain.RoomPost.Line(PreviewPartner(timeline, self), "Rikka", "on my way", DateTime.Now)); await Frames(3);
+            var chats = (System.Collections.IDictionary)DetailField(world, "Whispers.Windows")!;
+            DetailCall(world, "Whispers.AddWhisperPost", chats["Rikka"], LibreKO.Domain.RoomPost.Line(PreviewPartner(timeline, self), "Rikka", "on my way", DateTime.Now)); await Frames(3);
             var fresh = (Control)log.GetChildren().Last();
             Require(fresh.GetMeta(ClassicWhisperThread.RowMeta, "").AsString() == "line" && Descendants(fresh).OfType<RichTextLabel>().Single().Text.Contains("[color=#" + ClassicWhisperThread.Partner.ToHtml(false) + "]"), "whisper: a new line from the partner arrives as a cyan Classic line");
             // A size or transparency change re-renders the whole thread (Reset and Render) and resizes the window.
-            DetailCall(world, "OnWhisperLookChanged"); await Frames(3);
+            DetailCall(world, "Whispers.OnWhisperLookChanged"); await Frames(3);
             Require(log.GetChildCount() > 0 && log.GetChildren().All(r => r.HasMeta(ClassicWhisperThread.RowMeta)) && thread.GetRect() == logArea && window.Size == open.SizeVec,
                 "whisper: after a look change the re-rendered rows are Classic and the frame keeps its log area " + thread.GetRect() + " " + window.Size);
 
@@ -250,8 +250,8 @@ public partial class Preview
             if (!picker.Visible) { picker.Popup(); await Frames(2); }
             await Shot("whisper-emoticons", window);
             picker.Hide();
-            DetailCall(world, "BuildWhisperOptions"); DetailCall(world, "RefreshWhisperOptions");
-            var options = (PopupPanel)DetailField(world, "_whisperOptions")!;
+            DetailCall(world, "Whispers.BuildWhisperOptions"); DetailCall(world, "Whispers.RefreshWhisperOptions");
+            var options = (PopupPanel)DetailField(world, "Whispers.whisperOptions")!;
             options.Position = (Vector2I)(window.GlobalPosition + new Vector2(150, 30)); options.Popup(); await Frames(4);
             Require(options.HasMeta("classic_popup"), "whisper: the size and transparency popup uses the Classic menu panel");
             await Shot("whisper-options", window);
@@ -278,9 +278,9 @@ public partial class Preview
             // An incoming voice note from a new partner opens a minimized conversation (the client's ShowIncomingWhisper,
             // which needs the world's viewport) that blinks in the Classic bar.
             var note = new LibreKO.Domain.RoomPost(301, LibreKO.Domain.RoomPostKind.VoiceNote, 4242, "Valka", DateTime.Now, "", 52, 12000) { Waveform = Enumerable.Range(0, 48).Select(i => (byte)(40 + (i * 37) % 180)).ToArray() };
-            Net.I.DirectTimeline("Valka").Add(note);
-            DetailCall(world, "GetOrCreateWhisper", "Valka", true);
-            DetailCall(world, "OnDirectPosted", "Valka", note);
+            Game.Session.RoomMedia.DirectTimeline("Valka").Add(note);
+            DetailCall(world, "Whispers.GetOrCreateWhisper", "Valka", true);
+            DetailCall(world, "Whispers.OnDirectPosted", "Valka", note);
             var incoming = Native.Get<HudWindow>(chats["Valka"]!, "Window")!;
             NativeWhispers.Prepare(incoming, world); await Frames(4);
             var compact = Descendants(incoming).OfType<Label>().Single(l => l.Text == "Valka" && l.IsVisibleInTree());

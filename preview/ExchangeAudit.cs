@@ -42,13 +42,13 @@ public partial class Preview
 
         var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
 
-        net.Sheet.SeedWealth(1_234_567,50_000);net.Sheet.SetMaxWeight(10_000);net.Sheet.SeedProgress(70,0,100);
+        Game.Session.Self.Sheet.SeedWealth(1_234_567,50_000);Game.Session.Self.Sheet.SetMaxWeight(10_000);Game.Session.Self.Sheet.SeedProgress(70,0,100);
 
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net,new MyInfo {Nation=nation,Class=nation==1?105:205,Race=nation==1?1:11,Name="Classic Preview",Gear=new int[8],Inventory=new NativeSlot[InventoryConstants.InventoryTotal]});
+        Native.Set(Game.Session.Self, "LastEnter",new MyInfo {Nation=nation,Class=nation==1?105:205,Race=nation==1?1:11,Name="Classic Preview",Gear=new int[8]}); Game.Session.Self.Inventory.Reset(new NativeSlot[InventoryConstants.InventoryTotal]);
 
         ItemData.EnsureLoaded();
 
-        var groups=(Dictionary<int,List<ItemData.SellEntry>>)typeof(ItemData).GetField("_sell",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
+        var groups=(Dictionary<int,List<ItemData.SellEntry>>)typeof(ItemData).GetField("sell",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
 
         var ids=groups.Values.SelectMany(g=>g).Select(e=>e.Id).Distinct().Where(id=>ItemData.Get(id)!=null && ItemData.IsSellable(id)).ToArray();
 
@@ -56,31 +56,31 @@ public partial class Preview
 
         var single=ids.Where(id=>ItemData.Get(id)!.Countable==0).Take(13).ToArray();
 
-        var world=new World();var inventory=(Inventory)typeof(World).GetProperty("Inv",BindingFlags.Instance|BindingFlags.NonPublic)!.GetValue(world)!;inventory.EnsureLength(InventoryConstants.InventoryTotal);
+        var world=PreviewFixtures.Prepared(new WorldRoot());var inventory=(Inventory)Game.Session.Self.Inventory;inventory.EnsureLength(InventoryConstants.InventoryTotal);
 
         void Seed() {inventory[Inventory.GridStart]=new NativeSlot {ItemId=stack,Count=100,Durability=ItemData.MaxDurabilityOf(stack)};for(int i=0;i<single.Length;i++)inventory[Inventory.GridStart+i+1]=new NativeSlot {ItemId=single[i],Count=1,Durability=ItemData.MaxDurabilityOf(single[i])};}
 
-        Seed();DetailCall(world,"BuildInventoryPanel");var orphan=(Control)DetailField(world,"_invContent")!;orphan.Visible=false;world.AddChild(orphan);DetailCall(world,"BuildNpcDialog");DetailCall(world,"BuildExchangePanel");
+        Seed();DetailCall(world,"InventoryWindow.BuildPanel");var orphan=(Control)DetailField(world,"InventoryWindow.InvContent")!;orphan.Visible=false;world.AddChild(orphan);DetailCall(world,"NpcDialogWindow.BuildNpcDialog");DetailCall(world,"Exchange.BuildPanel");
 
-        var bridge=Activator.CreateInstance(typeof(World).GetNestedType("PluginGameBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{world},null)!;
+        var bridge=Native.Call(world, "CreatePluginAdapters")!;
 
-        var attach=typeof(PluginGame).GetMethod("Attach",BindingFlags.Instance|BindingFlags.NonPublic)!;attach.Invoke(game,Enumerable.Repeat(bridge,attach.GetParameters().Length).ToArray());
+        var attach=typeof(PluginGame).GetMethod("Attach",BindingFlags.Instance|BindingFlags.NonPublic)!;Native.Call(bridge, "AttachTo", game);
 
         // A trade request closes the vendor and the warehouse first; their quantity prompts exist in a running world.
-        foreach(string closer in new[]{"_tradePrompt","_whAmount"}){var quantity=new QuantityPrompt(76);world.AddChild(quantity);typeof(World).GetField(closer,BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,quantity);}
+        foreach(string closer in new[]{"Vendor.TradePrompt","Warehouse.AmountPrompt"}){var quantity=new QuantityPrompt(76);world.AddChild(quantity);Native.Set(world, closer, quantity);}
         // The client subscribes its partner-offer handler at world start, before any plugin preparer.
-        net.ExchangeOtherAddEvent+=(item,count,dura,unique)=>DetailCall(world,"OnExchangeOtherAdd",item,count,dura,unique);
-        NativeTrade.Prepare((HudWindow)DetailField(world,"_exPanel")!,world);
+        Game.Session.Exchange.ExchangeOtherAddEvent+=(item,count,dura,unique)=>DetailCall(world,"Exchange.OnOtherAdd",item,count,dura,unique);
+        NativeTrade.Prepare((HudWindow)DetailField(world,"Exchange.Panel")!,world);
 
         CanvasLayer TradeLayer(string name)=>name switch{"_exRequestLayer"=>NativeTrade.RequestLayer(world)!,"_exFinalLayer"=>NativeTrade.FinalLayer(world)!,_=>(CanvasLayer)DetailField(world,name)!};
 
-        var auditLayers=new[]{"_exLayer","_exAmountLayer","_exWaitLayer","_exRequestLayer","_exFinalLayer","_itemTipLayer"}.Select(TradeLayer).ToArray();
+        var auditLayers=new[]{"Exchange.layer","Exchange.amountLayer","Exchange.waitLayer","_exRequestLayer","_exFinalLayer","ItemTooltip.tipLayer"}.Select(TradeLayer).ToArray();
 
         foreach(var layer in auditLayers)layer.Reparent(this);
 
-        var window=(HudWindow)DetailField(world,"_exPanel")!;var shell=ClassicExchangeSkin.Apply(window.Body)!;
+        var window=(HudWindow)DetailField(world,"Exchange.Panel")!;var shell=ClassicExchangeSkin.Apply(window.Body)!;
 
-        typeof(World).GetField("_exPartnerName",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,"Knight Online");DetailCall(world,"OpenExchange");
+        Native.Set(world, "Exchange.PartnerName", "Knight Online");DetailCall(world,"Exchange.Open");
 
         var screens=new List<object>();var checks=new List<string>();
 
@@ -129,7 +129,7 @@ public partial class Preview
 
             Require(!Descendants(shell).OfType<ScrollContainer>().Any(),"No scrolling offers: "+name);
 
-            var modal=Descendants((CanvasLayer)DetailField(world,"_exAmountLayer")!).OfType<ClassicExchangeAmountPanel>().Single();
+            var modal=Descendants((CanvasLayer)DetailField(world,"Exchange.amountLayer")!).OfType<ClassicExchangeAmountPanel>().Single();
 
             foreach(var control in Descendants(modal).OfType<Control>().Where(c=>c.IsVisibleInTree() && c is Button or Label or TextureRect or LineEdit))Require(modal.GetGlobalRect().Encloses(control.GetGlobalRect()),"Quantity modal control contained: "+control.Name+" / "+name);
 
@@ -152,12 +152,12 @@ public partial class Preview
         }
 
         await Frames(20);await Capture("empty");
-        {var pairing=DetailField(world,"_bagPairing")!;Require(!(bool)pairing.GetType().GetField("_openedByCompanion",BindingFlags.Instance|BindingFlags.NonPublic)!.GetValue(pairing)!,"The Classic trade carries its own bag grid; the inventory the client docked is closed again");}
+        {var pairing=DetailField(world,"BagCompanions.Pairing")!;Require(!(bool)pairing.GetType().GetField("_openedByCompanion",BindingFlags.Instance|BindingFlags.NonPublic)!.GetValue(pairing)!,"The Classic trade carries its own bag grid; the inventory the client docked is closed again");}
         Require(shell.GetNode<ClassicExchangeCell>("exchange_bag_0").Item?.ItemId==stack && shell.GetNode<ClassicExchangeCell>("exchange_bag_1").Item?.ItemId==single[0],"Carried grid shows the bag slots from the client inventory");
 
-        foreach(var key in new[]{Key.Enter,Key.KpEnter}) {await KeyPress(key);await Frames(2);Require(!(bool)DetailField(world,"_exConfirmedByMe")!,"Enter never confirms empty trade: "+key);}
+        foreach(var key in new[]{Key.Enter,Key.KpEnter}) {await KeyPress(key);await Frames(2);Require(!(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"Enter never confirms empty trade: "+key);}
 
-        Require(!((Button)DetailField(world,"_exConfirmBtn")!).HasFocus(),"Final decision has no keyboard focus");
+        Require(!((Button)DetailField(world,"Exchange.confirmBtn")!).HasFocus(),"Final decision has no keyboard focus");
 
         var bag=shell.GetNode<ClassicExchangeCell>("exchange_bag_0");
 
@@ -183,47 +183,47 @@ public partial class Preview
 
         Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=to,GlobalPosition=to});await Frames(2);
 
-        Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames();Require((bool)DetailField(world,"_exAmountShown")!,"Drag opens quantity prompt");
+        Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames();Require((bool)DetailField(world,"Exchange.amountShown")!,"Drag opens quantity prompt");
 
-        var modalPanel=Descendants((CanvasLayer)DetailField(world,"_exAmountLayer")!).OfType<ClassicExchangeAmountPanel>().Single();
+        var modalPanel=Descendants((CanvasLayer)DetailField(world,"Exchange.amountLayer")!).OfType<ClassicExchangeAmountPanel>().Single();
 
-        await KeyPress(Key.Escape);Require(!(bool)DetailField(world,"_exAmountShown")!,"Escape cancels quantity without changing inventory");Require(inventory[Inventory.GridStart].Count==100,"Cancelled quantity keeps full stack");await Frames();
+        await KeyPress(Key.Escape);Require(!(bool)DetailField(world,"Exchange.amountShown")!,"Escape cancels quantity without changing inventory");Require(inventory[Inventory.GridStart].Count==100,"Cancelled quantity keeps full stack");await Frames();
 
         
 
-        shell.GetNode<ClassicExchangeCell>("exchange_bag_0")._GuiInput(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=true});await Frames();Require((bool)DetailField(world,"_exAmountShown")!,"Stack opens original quantity modal");
+        shell.GetNode<ClassicExchangeCell>("exchange_bag_0")._GuiInput(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=true});await Frames();Require((bool)DetailField(world,"Exchange.amountShown")!,"Stack opens original quantity modal");
 
-        var spin=(SpinBox)DetailField(world,"_exAmountSpin")!;Require(spin.GetLineEdit().Text=="100","Offer quantity starts at entire available stack");await Capture("quantity");
+        var spin=(SpinBox)DetailField(world,"Exchange.amountSpin")!;Require(spin.GetLineEdit().Text=="100","Offer quantity starts at entire available stack");await Capture("quantity");
 
         foreach(string invalid in new[]{"","abc","0","-1","101","2147483648"}) {
 
             spin.GetLineEdit().Text=invalid;await KeyPress(Key.Enter);await Frames(2);
 
-            Require((bool)DetailField(world,"_exAmountShown")! && !(bool)DetailField(world,"_exAddInFlight")!,"Invalid quantity remains open without sending: "+invalid);
+            Require((bool)DetailField(world,"Exchange.amountShown")! && !(bool)DetailField(world,"Exchange.addInFlight")!,"Invalid quantity remains open without sending: "+invalid);
 
         }
 
         await Capture("invalid-quantity");
 
-        spin.GetLineEdit().Text="10";await KeyPress(Key.Enter);Require((bool)DetailField(world,"_exAddInFlight")!,"Quantity sends add request");
+        spin.GetLineEdit().Text="10";await KeyPress(Key.Enter);Require((bool)DetailField(world,"Exchange.addInFlight")!,"Quantity sends add request");
 
-        Require(inventory[Inventory.GridStart].Count==100,"Inventory unchanged before server acknowledgment");DetailCall(world,"OnExchangeConfirm");Require(!(bool)DetailField(world,"_exConfirmedByMe")!,"Cannot confirm pending add");
+        Require(inventory[Inventory.GridStart].Count==100,"Inventory unchanged before server acknowledgment");DetailCall(world,"Exchange.OnConfirm");Require(!(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"Cannot confirm pending add");
 
-        DetailCall(world,"OnExchangeAddResult",true);await KeyPress(Key.Enter);await KeyPress(Key.KpEnter);await Frames(2);Require(!(bool)DetailField(world,"_exConfirmedByMe")!,"Enter after quantity acknowledgment never confirms final trade");Require(inventory[Inventory.GridStart].Count==90,"Successful add reduces only acknowledged quantity");
+        DetailCall(world,"Exchange.OnAddResult",true);await KeyPress(Key.Enter);await KeyPress(Key.KpEnter);await Frames(2);Require(!(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"Enter after quantity acknowledgment never confirms final trade");Require(inventory[Inventory.GridStart].Count==90,"Successful add reduces only acknowledged quantity");
 
-        DetailCall(world,"OfferSlotAmount",Inventory.GridStart,10);DetailCall(world,"OnExchangeAddResult",true);Require((int)DetailCall(world,"ExchangeOfferCount")! ==1,"Repeated stack offers share one visible capacity slot");
+        DetailCall(world,"OfferSlotAmount",Inventory.GridStart,10);DetailCall(world,"Exchange.OnAddResult",true);Require((int)DetailCall(world,"ExchangeOfferCount")! ==1,"Repeated stack offers share one visible capacity slot");
 
-        DetailCall(world,"OpenExchangeGold");await Frames();await Capture("coins");spin.GetLineEdit().Text="12345";await KeyPress(Key.KpEnter);DetailCall(world,"OnExchangeAddResult",true);Require(net.Sheet.Gold==1_222_222,"Coins deducted only after acknowledgment");
+        DetailCall(world,"OpenExchangeGold");await Frames();await Capture("coins");spin.GetLineEdit().Text="12345";await KeyPress(Key.KpEnter);DetailCall(world,"Exchange.OnAddResult",true);Require(Game.Session.Self.Sheet.Gold==1_222_222,"Coins deducted only after acknowledgment");
 
-        for(int i=0;i<11;i++){DetailCall(world,"OfferSlotAmount",Inventory.GridStart+i+1,1);DetailCall(world,"OnExchangeAddResult",true);}
+        for(int i=0;i<11;i++){DetailCall(world,"OfferSlotAmount",Inventory.GridStart+i+1,1);DetailCall(world,"Exchange.OnAddResult",true);}
 
-        for(int i=0;i<12;i++)DetailCall(world,"OnExchangeOtherAdd",single[i],1,ItemData.MaxDurabilityOf(single[i]),0);
+        for(int i=0;i<12;i++)DetailCall(world,"Exchange.OnOtherAdd",single[i],1,ItemData.MaxDurabilityOf(single[i]),0);
 
-        DetailCall(world,"OnExchangeOtherAdd",Net.ExchangeGoldItem,54321,(short)0,0);
+        DetailCall(world,"Exchange.OnOtherAdd",LibreKO.Network.Requests.ExchangeRequests.ExchangeGoldItem,54321,(short)0,0);
 
         await Capture("twelve-slots");
 
-        DetailCall(world,"OfferSlot",Inventory.GridStart+12);Require(!(bool)DetailField(world,"_exAddInFlight")!,"Thirteenth distinct item is rejected");
+        DetailCall(world,"Exchange.OfferSlot",Inventory.GridStart+12);Require(!(bool)DetailField(world,"Exchange.addInFlight")!,"Thirteenth distinct item is rejected");
 
         bag=shell.GetNode<ClassicExchangeCell>("exchange_bag_0");
 
@@ -231,28 +231,28 @@ public partial class Preview
 
         Require((int)DetailCall(world,"ExchangeOfferCount")! ==12,"Capacity covers twelve offers");
 
-        Click((Button)DetailField(world,"_exConfirmBtn")!);await Capture("final-approval-first");
-        Require(NativeTrade.FinalPending(world) && !(bool)DetailField(world,"_exConfirmedByMe")!,"First participant also needs explicit approval");
+        Click((Button)DetailField(world,"Exchange.confirmBtn")!);await Capture("final-approval-first");
+        Require(NativeTrade.FinalPending(world) && !(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"First participant also needs explicit approval");
         var firstFinal=TradeLayer("_exFinalLayer");
         Click(Descendants(firstFinal).OfType<Button>().Single(b=>b.Name=="exchange_final_decline"));await Frames();
         Require(!firstFinal.Visible && !shell.OfferBlocked,"No returns to editable offers before partner locks");
         bag._GuiInput(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=true});await Frames();
-        Require((bool)DetailField(world,"_exAmountShown")!,"Right click can edit the offer after declining approval");
-        spin.GetLineEdit().Text="1";await KeyPress(Key.Enter);DetailCall(world,"OnExchangeAddResult",true);
+        Require((bool)DetailField(world,"Exchange.amountShown")!,"Right click can edit the offer after declining approval");
+        spin.GetLineEdit().Text="1";await KeyPress(Key.Enter);DetailCall(world,"Exchange.OnAddResult",true);
         Require(inventory[Inventory.GridStart].Count==79,"Declined approval allows adding another item quantity");
-        Click((Button)DetailField(world,"_exConfirmBtn")!);await Frames();Require(firstFinal.Visible,"Trade can be pressed again after editing");
+        Click((Button)DetailField(world,"Exchange.confirmBtn")!);await Frames();Require(firstFinal.Visible,"Trade can be pressed again after editing");
         DetailCall(world,"CloseExchangeFinal");
-        DetailCall(world,"OnExchangeOtherDecide");await Capture("partner-confirmed");
+        DetailCall(world,"Exchange.OnOtherDecide");await Capture("partner-confirmed");
 
-        foreach(var key in new[]{Key.Enter,Key.KpEnter}) {await KeyPress(key);await KeyPress(key,true);await Frames(2);Require(!(bool)DetailField(world,"_exConfirmedByMe")!,"Partner confirmation cannot turn Enter into a final decision: "+key);}
+        foreach(var key in new[]{Key.Enter,Key.KpEnter}) {await KeyPress(key);await KeyPress(key,true);await Frames(2);Require(!(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"Partner confirmation cannot turn Enter into a final decision: "+key);}
 
         Require(shell.OfferBlocked && !shell.Blocked,"Partner lock disables editing but allows own Trade decision");
         bag._GuiInput(new InputEventMouseButton {ButtonIndex=MouseButton.Right,Pressed=true});DetailCall(world,"OfferSlotAmount",Inventory.GridStart,1);DetailCall(world,"OpenExchangeGold");
-        Require(!(bool)DetailField(world,"_exAmountShown")! && !(bool)DetailField(world,"_exAddInFlight")!,"Partner lock prevents right click, item additions and coin edits");
+        Require(!(bool)DetailField(world,"Exchange.amountShown")! && !(bool)DetailField(world,"Exchange.addInFlight")!,"Partner lock prevents right click, item additions and coin edits");
         var finalLayer=TradeLayer("_exFinalLayer");
         var finalAccept=Descendants(finalLayer).OfType<Button>().Single(b=>b.Name=="exchange_final_accept");
         var finalDecline=Descendants(finalLayer).OfType<Button>().Single(b=>b.Name=="exchange_final_decline");
-        Click((Button)DetailField(world,"_exConfirmBtn")!);await Capture("final-approval");
+        Click((Button)DetailField(world,"Exchange.confirmBtn")!);await Capture("final-approval");
         var finalPanel=Descendants(finalLayer).OfType<ClassicExchangeNoticePanel>().Single();
         var prompt=finalPanel.GetNode<Label>("final_prompt");
         Require(prompt.GetRect()==KnightOnlineUiClassic.Layout.ClassicExchangeNoticeLayout.Message(true,prompt.Size.Y) && prompt.GetLineCount()*prompt.GetLineHeight()<=prompt.Size.Y+.5f,"Final approval prompt matches actual pixel bounds: "+prompt.GetRect());
@@ -262,23 +262,23 @@ public partial class Preview
             Require(control.GetThemeFont("font")==Plugin.Kit.Bold && control.GetThemeFontSize("font_size")==12,"Approval uses the same Arial Bold 12px skill font: "+control.Name);
         }
         Require(finalAccept.Position.Y==finalDecline.Position.Y && finalAccept.Position.X==finalPanel.Size.X-finalDecline.GetRect().End.X,"Final approval buttons have equal baseline and side margins");
-        Require(finalLayer.Visible && !(bool)DetailField(world,"_exConfirmedByMe")!,"Trade button opens approval without sending a decision");
+        Require(finalLayer.Visible && !(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"Trade button opens approval without sending a decision");
         await KeyPress(Key.Enter);await KeyPress(Key.KpEnter);
-        Require(finalLayer.Visible && !(bool)DetailField(world,"_exConfirmedByMe")!,"Enter and numpad Enter never accept final approval");
-        Click(finalDecline);Require(!finalLayer.Visible && (bool)DetailField(world,"_exShown")! && !(bool)DetailField(world,"_exConfirmedByMe")!,"No returns to the unchanged trade");
-        Click((Button)DetailField(world,"_exConfirmBtn")!);await Frames();await KeyPress(Key.Escape);
-        Require(!finalLayer.Visible && (bool)DetailField(world,"_exShown")!,"Escape cancels approval without cancelling trade");
-        Click((Button)DetailField(world,"_exConfirmBtn")!);await Frames();
+        Require(finalLayer.Visible && !(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"Enter and numpad Enter never accept final approval");
+        Click(finalDecline);Require(!finalLayer.Visible && (bool)DetailField(world,"Exchange.shown")! && !(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"No returns to the unchanged trade");
+        Click((Button)DetailField(world,"Exchange.confirmBtn")!);await Frames();await KeyPress(Key.Escape);
+        Require(!finalLayer.Visible && (bool)DetailField(world,"Exchange.shown")!,"Escape cancels approval without cancelling trade");
+        Click((Button)DetailField(world,"Exchange.confirmBtn")!);await Frames();
         // Delivered as the network does, through the client's reply event.
-        Native.Get<Action<int,int,short,int>>(net,"ExchangeOtherAddEvent")!.Invoke(stack,1,(short)0,0);
-        Require(!finalLayer.Visible && !(bool)DetailField(world,"_exConfirmedByMe")!,"Partner offer changes invalidate pending approval");
-        Click(finalAccept);Require(!(bool)DetailField(world,"_exConfirmedByMe")!,"Stale Yes cannot confirm a changed offer");
-        Click((Button)DetailField(world,"_exConfirmBtn")!);await Frames();Click(finalAccept);
-        Require((bool)DetailField(world,"_exConfirmedByMe")! && !finalLayer.Visible,"Explicit Yes locks own trade");await Capture("confirmed");
+        Native.Get<Action<int,int,short,int>>(Game.Session.Exchange, "ExchangeOtherAddEvent")!.Invoke(stack,1,(short)0,0);
+        Require(!finalLayer.Visible && !(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"Partner offer changes invalidate pending approval");
+        Click(finalAccept);Require(!(bool)DetailField(world,"Exchange.ConfirmedByMe")!,"Stale Yes cannot confirm a changed offer");
+        Click((Button)DetailField(world,"Exchange.confirmBtn")!);await Frames();Click(finalAccept);
+        Require((bool)DetailField(world,"Exchange.ConfirmedByMe")! && !finalLayer.Visible,"Explicit Yes locks own trade");await Capture("confirmed");
 
-        DetailCall(world,"AbortExchange",true);Require(inventory[Inventory.GridStart].Count==100,"Cancel restores both stack submissions to their original slot");Require(net.Sheet.Gold==1_234_567,"Cancel restores offered coins");
+        DetailCall(world,"Exchange.Abort",true);Require(inventory[Inventory.GridStart].Count==100,"Cancel restores both stack submissions to their original slot");Require(Game.Session.Self.Sheet.Gold==1_234_567,"Cancel restores offered coins");
 
-        DetailCall(world,"OpenExchange");await Capture("cancel-restored");
+        DetailCall(world,"Exchange.Open");await Capture("cancel-restored");
         // Mouse-wheel amount (ff78eef): a part picked while dragging a stack is offered at once; the whole stack asks the count.
         {
             var source=shell.GetNode<ClassicExchangeCell>("exchange_bag_0");var target=shell.GetNode<Control>("trade_my_offer").GetChildren().OfType<ClassicExchangeCell>().First();
@@ -303,23 +303,23 @@ public partial class Preview
             await Capture("drag-amount");
             Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=end,GlobalPosition=end});await Frames(2);
             Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames();
-            var pending=DetailField(world,"_exPending")!;
-            Require(!(bool)DetailField(world,"_exAmountShown")! && (bool)DetailField(world,"_exAddInFlight")! && (int)pending.GetType().GetField("Count")!.GetValue(pending)! ==97,
+            var pending=DetailField(world,"Exchange.pending")!;
+            Require(!(bool)DetailField(world,"Exchange.amountShown")! && (bool)DetailField(world,"Exchange.addInFlight")! && (int)pending.GetType().GetField("Count")!.GetValue(pending)! ==97,
                 "A part picked with the wheel is offered at once, without the quantity prompt");
-            DetailCall(world,"OnExchangeAddResult",true);await Frames();
+            DetailCall(world,"Exchange.OnAddResult",true);await Frames();
             Require(inventory[Inventory.GridStart].Count==3 && shell.GetNode<ClassicExchangeCell>("exchange_bag_0").Item?.Count==3,"The acknowledged part leaves the rest of the stack in the bag");
             await Capture("drag-amount-offered");
-            DetailCall(world,"AbortExchange",true);Require(inventory[Inventory.GridStart].Count==100,"Cancel restores the offered part");
-            DetailCall(world,"OpenExchange");await Frames();
+            DetailCall(world,"Exchange.Abort",true);Require(inventory[Inventory.GridStart].Count==100,"Cancel restores the offered part");
+            DetailCall(world,"Exchange.Open");await Frames();
         }
 
-        DetailCall(world,"OfferSlotAmount",Inventory.GridStart,10);DetailCall(world,"OnExchangeAddResult",false);Require(inventory[Inventory.GridStart].Count==100,"Rejected server add preserves inventory");await Capture("rejected-add");
+        DetailCall(world,"OfferSlotAmount",Inventory.GridStart,10);DetailCall(world,"Exchange.OnAddResult",false);Require(inventory[Inventory.GridStart].Count==100,"Rejected server add preserves inventory");await Capture("rejected-add");
 
-        DetailCall(world,"OpenExchangeGold");await Frames();Require((bool)DetailField(world,"_exAmountShown")!,"Coins reuse original quantity frame");
+        DetailCall(world,"OpenExchangeGold");await Frames();Require((bool)DetailField(world,"Exchange.amountShown")!,"Coins reuse original quantity frame");
 
-        await KeyPress(Key.Escape);Require(net.Sheet.Gold==1_234_567,"Cancelled coin offer preserves wallet");
+        await KeyPress(Key.Escape);Require(Game.Session.Self.Sheet.Gold==1_234_567,"Cancelled coin offer preserves wallet");
 
-        DetailCall(world,"AbortExchange",true);await Frames();
+        DetailCall(world,"Exchange.Abort",true);await Frames();
 
         var requestLayer=TradeLayer("_exRequestLayer");
 
@@ -329,41 +329,41 @@ public partial class Preview
 
         var decline=Descendants(request).OfType<Button>().Single(b=>b.Name=="exchange_decline");
 
-        DetailCall(world,"OnExchangeRequest",123);await Capture("request");
+        DetailCall(world,"Exchange.OnRequest",123);await Capture("request");
         NoticeRhythm(request,request.Message,new[]{accept,decline},"trade request");
 
-        Require(requestLayer.Visible && !((ConfirmationDialog)DetailField(world,"_exAskDialog")!).Visible,"Incoming request uses original message art instead of native desktop dialog");
+        Require(requestLayer.Visible && !((ConfirmationDialog)DetailField(world,"Exchange.askDialog")!).Visible,"Incoming request uses original message art instead of native desktop dialog");
 
-        await KeyPress(Key.Enter);await KeyPress(Key.KpEnter);await Frames();Require((bool)DetailField(world,"_exRequestPending")! && !(bool)DetailField(world,"_exShown")!,"Incoming request also requires a mouse decision");
+        await KeyPress(Key.Enter);await KeyPress(Key.KpEnter);await Frames();Require((bool)DetailField(world,"Exchange.requestPending")! && !(bool)DetailField(world,"Exchange.shown")!,"Incoming request also requires a mouse decision");
 
-        DetailCall(world,"OnExchangeRequest",124);Require((int)DetailField(world,"_exPartnerId")! ==123,"Second request cannot overwrite pending requester");
+        DetailCall(world,"Exchange.OnRequest",124);Require((int)DetailField(world,"Exchange.partnerId")! ==123,"Second request cannot overwrite pending requester");
 
-        Click(decline);await Frames();Require(!(bool)DetailField(world,"_exRequestPending")! && !requestLayer.Visible,"No declines and closes request");
+        Click(decline);await Frames();Require(!(bool)DetailField(world,"Exchange.requestPending")! && !requestLayer.Visible,"No declines and closes request");
 
-        DetailCall(world,"OnExchangeRequest",123);await KeyPress(Key.Escape);await Frames();Require(!(bool)DetailField(world,"_exRequestPending")!,"Escape declines request");
+        DetailCall(world,"Exchange.OnRequest",123);await KeyPress(Key.Escape);await Frames();Require(!(bool)DetailField(world,"Exchange.requestPending")!,"Escape declines request");
 
-        DetailCall(world,"OnExchangeRequest",123);DetailCall(world,"OnExchangeCancel");await Frames();Require(!requestLayer.Visible && !(bool)DetailField(world,"_exRequestPending")!,"Withdrawn request closes without accepting");
+        DetailCall(world,"Exchange.OnRequest",123);DetailCall(world,"Exchange.OnCancel");await Frames();Require(!requestLayer.Visible && !(bool)DetailField(world,"Exchange.requestPending")!,"Withdrawn request closes without accepting");
 
-        Click(accept);Require(!(bool)DetailField(world,"_exShown")!,"Stale accept callback cannot open withdrawn trade");
+        Click(accept);Require(!(bool)DetailField(world,"Exchange.shown")!,"Stale accept callback cannot open withdrawn trade");
 
-        DetailCall(world,"OnExchangeRequest",123);Click(accept);await Frames();Require((bool)DetailField(world,"_exShown")! && !requestLayer.Visible,"Yes opens trade exactly once");await Capture("request-accepted");
+        DetailCall(world,"Exchange.OnRequest",123);Click(accept);await Frames();Require((bool)DetailField(world,"Exchange.shown")! && !requestLayer.Visible,"Yes opens trade exactly once");await Capture("request-accepted");
 
-        DetailCall(world,"AbortExchange",true);DetailCall(world,"ShowExchangeWait","Waiting for Knight Online to accept the trade…");await Capture("waiting");
-        {var wait=Descendants((CanvasLayer)DetailField(world,"_exWaitLayer")!).OfType<ClassicExchangeNoticePanel>().Single();NoticeRhythm(wait,wait.Message,new[]{wait.Cancel},"trade waiting");}
+        DetailCall(world,"Exchange.Abort",true);DetailCall(world,"Exchange.ShowWait","Waiting for Knight Online to accept the trade…");await Capture("waiting");
+        {var wait=Descendants((CanvasLayer)DetailField(world,"Exchange.waitLayer")!).OfType<ClassicExchangeNoticePanel>().Single();NoticeRhythm(wait,wait.Message,new[]{wait.Cancel},"trade waiting");}
 
-        var waitLayer=(CanvasLayer)DetailField(world,"_exWaitLayer")!;
+        var waitLayer=(CanvasLayer)DetailField(world,"Exchange.waitLayer")!;
 
-        await KeyPress(Key.Enter);await KeyPress(Key.KpEnter);await Frames();Require(waitLayer.Visible && (bool)DetailField(world,"_exWaiting")!,"Enter leaves outgoing request waiting");
+        await KeyPress(Key.Enter);await KeyPress(Key.KpEnter);await Frames();Require(waitLayer.Visible && (bool)DetailField(world,"Exchange.Waiting")!,"Enter leaves outgoing request waiting");
 
-        Click(Descendants(waitLayer).OfType<ClassicExchangeNoticePanel>().Single().Cancel);await Frames();Require(!(bool)DetailField(world,"_exWaiting")! && !waitLayer.Visible,"Waiting Cancel withdraws outgoing request");
+        Click(Descendants(waitLayer).OfType<ClassicExchangeNoticePanel>().Single().Cancel);await Frames();Require(!(bool)DetailField(world,"Exchange.Waiting")! && !waitLayer.Visible,"Waiting Cancel withdraws outgoing request");
 
-        DetailCall(world,"ShowExchangeWait","Waiting for Knight Online to accept the trade…");await KeyPress(Key.Escape);await Frames();Require(!(bool)DetailField(world,"_exWaiting")!,"Escape withdraws outgoing request");
+        DetailCall(world,"Exchange.ShowWait","Waiting for Knight Online to accept the trade…");await KeyPress(Key.Escape);await Frames();Require(!(bool)DetailField(world,"Exchange.Waiting")!,"Escape withdraws outgoing request");
 
-        DetailCall(world,"ShowExchangeWait","Waiting for Knight Online to accept the trade…");DetailCall(world,"OnExchangeAgree",false);Require(!waitLayer.Visible && !(bool)DetailField(world,"_exShown")!,"Partner rejection closes waiting window");
+        DetailCall(world,"Exchange.ShowWait","Waiting for Knight Online to accept the trade…");DetailCall(world,"Exchange.OnAgree",false);Require(!waitLayer.Visible && !(bool)DetailField(world,"Exchange.shown")!,"Partner rejection closes waiting window");
 
-        DetailCall(world,"ShowExchangeWait","Waiting for Knight Online to accept the trade…");DetailCall(world,"OnExchangeAgree",true);Require(!waitLayer.Visible && (bool)DetailField(world,"_exShown")!,"Partner acceptance replaces waiting window with trade");
+        DetailCall(world,"Exchange.ShowWait","Waiting for Knight Online to accept the trade…");DetailCall(world,"Exchange.OnAgree",true);Require(!waitLayer.Visible && (bool)DetailField(world,"Exchange.shown")!,"Partner acceptance replaces waiting window with trade");
 
-        DetailCall(world,"AbortExchange",true);
+        DetailCall(world,"Exchange.Abort",true);
 
         System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+"-verification.json",JsonSerializer.Serialize(new{nation,checks,screens},new JsonSerializerOptions {WriteIndented=true}));
 

@@ -12,7 +12,7 @@ namespace KnightOnlineUiClassic.Native;
 /// </summary>
 public static class NativeWindows
 {
-    public delegate void Preparer(HudWindow window, World world);
+    public delegate void Preparer(HudWindow window, WorldRoot world);
 
     private static readonly Dictionary<string, List<Preparer>> _preparers = new(StringComparer.OrdinalIgnoreCase);
     private static readonly List<(Func<HudWindow, bool> Match, Preparer Prepare)> _patterns = new();
@@ -107,7 +107,7 @@ public static class NativeWindows
         return true;
     }
 
-    public static T? Control<T>(World world, string field) where T : Node => Native.Get<T>(world, field);
+    public static T? Control<T>(WorldRoot world, string field) where T : Node => Native.Get<T>(world, field);
 }
 
 public partial class NativeSync : Node

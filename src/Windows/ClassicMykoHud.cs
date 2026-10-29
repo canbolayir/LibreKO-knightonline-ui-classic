@@ -41,11 +41,11 @@ public static class ClassicMykoArt
         var parts = root.Images.Where(include).ToList();
         if (parts.Count == 0) return null;
         int width = parts.Max(n => n.X + n.W), height = parts.Max(n => n.Y + n.H);
-        var frame = Image.CreateEmpty(width, height, false, Image.Format.Rgba8);
+        using var frame = Image.CreateEmpty(width, height, false, Image.Format.Rgba8);
         foreach (var node in parts)
         {
             if (node.Texture == null || Plugin.Kit.Local.Image(node.Texture) is not { } sheet) return null;
-            var part = sheet.GetRegion(new Rect2I(node.SrcX, node.SrcY, node.SrcW, node.SrcH));
+            using var part = sheet.GetRegion(new Rect2I(node.SrcX, node.SrcY, node.SrcW, node.SrcH));
             if (part.GetFormat() != Image.Format.Rgba8) part.Convert(Image.Format.Rgba8);
             if (node.FlipH) part.FlipX();
             if (node.FlipV) part.FlipY();

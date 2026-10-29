@@ -21,126 +21,123 @@ public static partial class PreviewFixtures
     private const int PreviewEtarothScroll = 700019001;
     private const int PreviewAutomaticLooting = 700012000;
     private const int PreviewTrainerNpc = 13016;
-    private static readonly Dictionary<World, Delegate> PetSkillObservers = new();
+    private static readonly Dictionary<WorldRoot, Delegate> PetSkillObservers = new();
 
-    public static void EnablePetKeyboardUiPreview(World world)
+    public static void EnablePetKeyboardUiPreview(WorldRoot world)
     {
-        var chatType = Native.ClientType("LibreKO.ChatSystem")!;
+        var chatType = Native.ClientType("LibreKO.Features.Social.ChatSystem")!;
         var chat = Activator.CreateInstance(chatType, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new object[] { world }, null)!;
         Native.Set(world, "Chat", chat); Native.Call(chat, "Build"); Native.Call(chat, "DetachNetwork");
-        Native.Set(world, "_worldReady", true);
+        Native.Set(world, "WorldReady", true);
         world.SetProcess(false); world.SetPhysicsProcess(false); world.SetProcessUnhandledInput(false);
         world.SetProcessInput(true);
     }
 
-    public static bool PetKeyboardChatActive(World world) => Native.Get<bool>(Native.Get<object>(world, "Chat")!, "IsActive");
+    public static bool PetKeyboardChatActive(WorldRoot world) => Native.Get<bool>(Native.Get<object>(world, "Chat")!, "IsActive");
 
-    public static void SetPetKeyboardChat(World world, bool active)
+    public static void SetPetKeyboardChat(WorldRoot world, bool active)
     {
         if (Native.Get<object>(world, "Chat") is { } chat) Native.Call(chat, active ? "Open" : "Close");
     }
 
-    public static CanvasLayer BuildPetClassicUiPreview(World world, int nation) => BuildPetControlUiPreview(world, nation, false);
+    public static CanvasLayer BuildPetClassicUiPreview(WorldRoot world, int nation) => BuildPetControlUiPreview(world, nation, false);
 
-    public static CanvasLayer BuildPetEquipmentResponseUiPreview(World world, int nation) => BuildPetControlUiPreview(world, nation, true);
+    public static CanvasLayer BuildPetEquipmentResponseUiPreview(WorldRoot world, int nation) => BuildPetControlUiPreview(world, nation, true);
 
-    private static CanvasLayer BuildPetControlUiPreview(World world, int nation, bool observeInventory)
+    private static CanvasLayer BuildPetControlUiPreview(WorldRoot world, int nation, bool observeInventory)
     {
         ItemData.EnsureLoaded(); SkillData.EnsureLoaded();
-        var enter = Net.I.LastEnter; enter.Nation = nation; enter.Name = "FamiliarTester";
-        Native.Call(Net.I, "SeedPreviewEnter", enter);
-        var ents = Field<IDictionary>(world, "_ents");
+        var enter = Game.Session.Self.LastEnter; enter.Nation = nation; enter.Name = "FamiliarTester";
+        Native.Call(Game.Session.Self, "SeedPreviewEnter", enter);
+        var ents = Field<EntityRegistry>(world, "EntitySystem.Ents");
         ents[1] = Entity(new() { ["Id"] = 1, ["Name"] = "Kauly", ["IsNpc"] = true, ["NpcType"] = NpcTypes.Pet, ["ModelId"] = 25500, ["Level"] = 12 });
-        SetField(world, "_myId", 42); SetField(world, "_selectedId", 2);
+        SetField(world, "Avatar.CharId", 42); SetField(world, "Selection.SelectedId", 2);
         ents[2] = Entity(new() { ["Id"] = 2, ["Name"] = "Gavolt", ["IsNpc"] = true, ["IsMonster"] = true, ["Attackable"] = true, ["Level"] = 10 });
         if (observeInventory)
         {
-            Call(world, "InventoryInit");
-            var content = Field<Control>(world, "_invContent"); content.Visible = false; world.AddChild(content);
-            Call(world, "PetInit");
+            Call(world, "InventoryWindow.Build");
+            var content = Field<Control>(world, "InventoryWindow.InvContent"); content.Visible = false; world.AddChild(content);
+            Call(world, "Pet.Build");
         }
-        else Call(world, "BuildPetPanel");
+        else Call(world, "Pet.BuildPanel");
         ObservePetSkills(world);
-        if (!observeInventory) Call(world, "BuildItemTooltip");
-        var tooltip = Field<CanvasLayer>(world, "_itemTipLayer"); var layer = Field<CanvasLayer>(world, "_petLayer");
+        if (!observeInventory) Call(world, "ItemTooltip.Build");
+        var tooltip = Field<CanvasLayer>(world, "ItemTooltip.tipLayer"); var layer = Field<CanvasLayer>(world, "Pet.layer");
         world.RemoveChild(tooltip); layer.AddChild(tooltip);
         var sheet = new PetSheet { Index = 1, Name = "Kauly", Class = 101, Level = 12,
             Hp = 131, MaxHp = 168, Mp = 170, MaxMp = 190, ExpPercent = 4375,
-            Satisfaction = 7240, Attack = 51, Defence = 110, Mode = PetSheet.ModeAttack };
+            Satisfaction = 7240, Attack = 51, Defence = 110, Mode = PetMode.Attack };
         for (int i = 0; i < sheet.Resists.Length; i++) sheet.Resists[i] = 20 + i * 5;
         sheet.Items[0] = new ItemSlot { ItemId = PreviewAutomaticLooting, Count = 1, Durability = 1 };
-        Native.Call(Net.I, "SeedPreviewPet", sheet); Call(world, "OpenPet");
+        Native.Set(Game.Session.Pet, "Pet", sheet); Call(world, "Pet.Open");
         if (!observeInventory) world.RemoveChild(layer);
         return layer;
     }
 
-    private static object Entity(Dictionary<string, object> values)
+    private static EntityView Entity(Dictionary<string, object> values)
     {
-        var entity = Activator.CreateInstance(Native.ClientType("LibreKO.World+Ent")!, true)!;
+        var entity = Activator.CreateInstance(Native.ClientType("LibreKO.Presentation.EntityView")!, true)!;
         foreach (var (name, value) in values) Native.Set(entity, name, value);
-        return entity;
+        return (EntityView)entity;
     }
 
     /// <summary>The client observes familiar skill refusals once its familiar bar exists; the preview has no bar yet.</summary>
-    private static void ObservePetSkills(World world)
+    private static void ObservePetSkills(WorldRoot world)
     {
-        var handler = Delegate.CreateDelegate(typeof(Action<int, int, int, int, short[]>), world, "OnPetSkillMagic");
-        Net.I.MagicEvent += (Action<int, int, int, int, short[]>)handler;
+        var handler = Delegate.CreateDelegate(typeof(Action<MagicReply>), Native.Get<object>(world, "PetSkillBar")!, "OnPetSkillMagic");
+        Game.Session.Combat.MagicEvent += (Action<MagicReply>)handler;
         PetSkillObservers[world] = handler;
     }
 
-    public static void PetSkillObserveDispose(World world)
+    public static void PetSkillObserveDispose(WorldRoot world)
     {
-        if (PetSkillObservers.Remove(world, out var handler)) Net.I.MagicEvent -= (Action<int, int, int, int, short[]>)handler;
-        SetField(world, "_petSkillGeneration", Field<int>(world, "_petSkillGeneration") + 1);
-        Field<IDictionary>(world, "_petSkillCasts").Clear();
+        if (PetSkillObservers.Remove(world, out var handler)) Game.Session.Combat.MagicEvent -= (Action<MagicReply>)handler;
+        SetField(world, "PetSkillBar.petSkillGeneration", Field<int>(world, "PetSkillBar.petSkillGeneration") + 1);
+        Field<IDictionary>(world, "PetSkillBar.petSkillCasts").Clear();
     }
 
-    public static void DisposePetEquipmentUiPreview(World world)
+    public static void DisposePetEquipmentUiPreview(WorldRoot world)
     {
-        Unsubscribe(world.GetViewport(), "SizeChanged", world, "RefreshInventoryUI");
-        foreach (var (evt, method) in new[] { ("ItemMoveResultEvent", "OnItemMoveResult"), ("ItemRemoveResultEvent", "OnItemRemoveResult"),
-                     ("InventorySlotEvent", "OnInventorySlotUpdate"), ("ItemGainedEvent", "OnItemGained"),
-                     ("InventoryGridRefreshEvent", "OnInventoryGridRefresh"), ("GoldChangeEvent", "OnInventoryGoldChange") })
-            Unsubscribe(Net.I, evt, world, method);
-        Call(world, "PetDispose"); PetSkillObserveDispose(world);
+        Unsubscribe(world.GetViewport(), "SizeChanged", Native.Get<object>(world, "InventoryWindow")!, "RefreshUI");
+        Call(world, "InventoryWindow.Dispose");
+        Call(world, "Pet.Dispose"); PetSkillObserveDispose(world);
     }
 
-    private static void Unsubscribe(object source, string evt, World world, string method)
+    private static void Unsubscribe(object source, string evt, object target, string method)
     {
         var info = source.GetType().GetEvent(evt, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)!;
-        info.RemoveEventHandler(source, Delegate.CreateDelegate(info.EventHandlerType!, world, method));
+        info.RemoveEventHandler(source, Delegate.CreateDelegate(info.EventHandlerType!, target, method));
     }
 
-    public static CanvasLayer BuildPetHatchClassicUiPreview(World world, int nation, bool transform) => BuildPetHatchUiPreview(world, nation, transform, false);
+    public static CanvasLayer BuildPetHatchClassicUiPreview(WorldRoot world, int nation, bool transform) => BuildPetHatchUiPreview(world, nation, transform, false);
 
-    public static CanvasLayer BuildPetHatchResponseUiPreview(World world, int nation, bool transform) => BuildPetHatchUiPreview(world, nation, transform, true);
+    public static CanvasLayer BuildPetHatchResponseUiPreview(WorldRoot world, int nation, bool transform) => BuildPetHatchUiPreview(world, nation, transform, true);
 
-    private static CanvasLayer BuildPetHatchUiPreview(World world, int nation, bool transform, bool observeReplies)
+    private static CanvasLayer BuildPetHatchUiPreview(WorldRoot world, int nation, bool transform, bool observeReplies)
     {
         ItemData.EnsureLoaded();
-        var enter = Net.I.LastEnter; enter.Nation = nation;
-        Native.Call(Net.I, "SeedPreviewEnter", enter);
-        if (observeReplies) { Call(world, "PetHatchInit"); Call(world, "BuildItemTooltip"); }
-        else Call(world, "BuildPetHatchPanel");
-        SeedFamiliarHatchPreview(world, transform); Call(world, "OpenPetHatch", PreviewTrainerNpc);
+        var enter = Game.Session.Self.LastEnter; enter.Nation = nation;
+        Native.Call(Game.Session.Self, "SeedPreviewEnter", enter);
+        if (observeReplies) { Call(world, "PetHatch.Build"); Call(world, "ItemTooltip.Build"); }
+        else Call(world, "PetHatch.BuildPanel");
+        SeedFamiliarHatchPreview(world, transform); Call(world, "PetHatch.Open", PreviewTrainerNpc);
         // The client selects the first eligible items; the preview states them explicitly.
-        SetField(world, "_petHatchSlot", transform ? -1 : Inventory.GridStart + 2);
-        SetField(world, "_petTransformSlot", transform ? Inventory.GridStart + 1 : -1);
-        SetField(world, "_petScrollSlot", transform ? Inventory.GridStart + 9 : -1);
-        Call(world, "RefreshPetPickLooks");
-        Field<LineEdit>(world, "_petHatchName").Text = "Kauly"; Call(world, "RefreshPetHatchUI");
-        var layer = Field<CanvasLayer>(world, "_petHatchLayer");
+        SetField(world, "PetHatch.slot", transform ? -1 : Inventory.GridStart + 2);
+        SetField(world, "PetHatch.petTransformSlot", transform ? Inventory.GridStart + 1 : -1);
+        SetField(world, "PetHatch.petScrollSlot", transform ? Inventory.GridStart + 9 : -1);
+        Call(world, "PetHatch.RefreshPetPickLooks");
+        Field<LineEdit>(world, "PetHatch.NameInput").Text = "Kauly"; Call(world, "PetHatch.RefreshUI");
+        var layer = Field<CanvasLayer>(world, "PetHatch.layer");
         world.RemoveChild(layer); return layer;
     }
 
-    private static void SeedFamiliarHatchPreview(World world, bool transform)
+    private static void SeedFamiliarHatchPreview(WorldRoot world, bool transform)
     {
-        var inventory = Field<Inventory>(world, "Inv");
+        var inventory = Field<Inventory>(world, "Session.Self.Inventory");
         inventory.EnsureLength(InventoryConstants.InventoryTotal);
         if (transform)
         {
-            Net.I.PetItems[PreviewPetIndex] = new PetItemInfo(PreviewPetIndex, "Kauly", 101, 12, 4200, 7300);
+            Native.Call(Game.Session.Pet, "Remember", new PetItemInfo(PreviewPetIndex, "Kauly", 101, 12, 4200, 7300));
             inventory.ApplySlotUpdate(Inventory.GridStart + 1, new ItemSlot { ItemId = PreviewKaulItem, Count = 1, Durability = 1, UniqueId = PreviewPetIndex });
             inventory.ApplySlotUpdate(Inventory.GridStart + 4, new ItemSlot { ItemId = PreviewImageChange, Count = 1, Durability = 1 });
             inventory.ApplySlotUpdate(Inventory.GridStart + 9, new ItemSlot { ItemId = PreviewEtarothScroll, Count = 1, Durability = 1 });
@@ -152,61 +149,61 @@ public static partial class PreviewFixtures
         }
     }
 
-    public static CanvasLayer BuildPetBarClassicUiPreview(World world)
+    public static CanvasLayer BuildPetBarClassicUiPreview(WorldRoot world)
     {
         var layer = new CanvasLayer { Layer = 64 };
-        SetField(world, "_petBarLayer", layer);
-        Call(world, "BuildPetBar"); Call(world, "OnPetBarSummoned", Net.I.Pet!);
+        SetField(world, "PetSkillBar.PetBarLayer", layer);
+        Call(world, "PetSkillBar.BuildPetBar"); Call(world, "PetSkillBar.OnPetBarSummoned", Game.Session.Pet.Pet!);
         return layer;
     }
 
     /// <summary>The client's familiar plate on its own layer, outside the (process-disabled) audit world.</summary>
-    public static CanvasLayer BuildPetPlateClassicUiPreview(World world)
+    public static CanvasLayer BuildPetPlateClassicUiPreview(WorldRoot world)
     {
-        Call(world, "PetPlateInit");
-        var layer = Field<CanvasLayer>(world, "_petPlateLayer");
+        Call(world, "Pet.PlateInit");
+        var layer = Field<CanvasLayer>(world, "Pet.plateLayer");
         layer.GetParent()?.RemoveChild(layer);
         return layer;
     }
 
     /// <summary>The bar's effective default position, including a familiar bar extender's placement.</summary>
-    public static Vector2 PetBarDefaultPosition(World world)
+    public static Vector2 PetBarDefaultPosition(WorldRoot world)
     {
-        var bar = Field<PanelContainer>(world, "_petBar");
+        var bar = Field<PanelContainer>(world, "PetSkillBar.PetBar");
         var layout = bar.GetChildren().OfType<HudLayout>().Single();
-        return Native.Get<Func<Vector2>>(layout, "_defaultPosition")!();
+        return Native.Get<Func<Vector2>>(layout, "defaultPosition")!();
     }
 
-    public static void RefreshPetUI(World world)
+    public static void RefreshPetUI(WorldRoot world)
     {
-        Call(world, "RefreshPetUI");
+        Call(world, "Pet.RefreshUI");
         FamiliarWindow.Of(world)?.Refresh();
     }
 
-    public static void ShowPetSheet(World world, PetSheet? sheet)
+    public static void ShowPetSheet(WorldRoot world, PetSheet? sheet)
     {
-        Call(world, "ShowPetSheet", sheet);
+        Call(world, "Pet.ShowSheet", sheet);
         FamiliarWindow.Of(world)?.Refresh(sheet);
     }
 
-    public static void PetBarTick(World world, double now)
+    public static void PetBarTick(WorldRoot world, double now)
     {
-        Call(world, "PetBarTick", now);
-        if (Field<bool>(world, "_petShown") && FamiliarWindow.Of(world) is { } window) { window.RefreshPortrait(); window.RefreshCooldowns(now); }
+        Call(world, "PetSkillBar.PetBarTick", now);
+        if (Field<bool>(world, "Pet.shown") && FamiliarWindow.Of(world) is { } window) { window.RefreshPortrait(); window.RefreshCooldowns(now); }
     }
 
-    public static void RefreshPetPortrait(World world) => FamiliarWindow.Of(world)?.RefreshPortrait();
+    public static void RefreshPetPortrait(WorldRoot world) => FamiliarWindow.Of(world)?.RefreshPortrait();
 
-    public static void RebuildPetPicks(World world)
+    public static void RebuildPetPicks(WorldRoot world)
     {
-        Call(world, "RebuildPetPicks");
+        Call(world, "PetHatch.RebuildPetPicks");
         if (FamiliarTrainer.Of(world) is { } trainer) { trainer.Rebuild(); trainer.Refresh(); }
     }
 
-    public static void SelectPetHatchItem(World world, int abs) => FamiliarTrainer.Of(world)!.Select(abs);
+    public static void SelectPetHatchItem(WorldRoot world, int abs) => FamiliarTrainer.Of(world)!.Select(abs);
 
-    public static void OnPetHatchPressed(World world) => FamiliarTrainer.Of(world)!.RequestConfirmation();
+    public static void OnPetHatchPressed(WorldRoot world) => FamiliarTrainer.Of(world)!.RequestConfirmation();
 
     /// <summary>The trainer's open confirmation, formerly the client's <c>_petHatchNotice</c>.</summary>
-    public static Notice? PetHatchNotice(World world) => FamiliarTrainer.Of(world)?.Notice;
+    public static Notice? PetHatchNotice(WorldRoot world) => FamiliarTrainer.Of(world)?.Notice;
 }

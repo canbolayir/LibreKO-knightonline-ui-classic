@@ -43,12 +43,12 @@ public abstract partial class ClassicEventPanel : Control
     public static Color Caption => new("e2c68b");
     public static Color Ink => ClassicDesign.Text;
     public static Color Muted => new("aaa69e");
-    public static Color Ready => new("a0db92");
+    public static Color Accepted => new("a0db92");
     public static Color Refused => new("dd9292");
     public static Color Amount => new("dfc184");
 
     public HudWindow Window { get; }
-    protected World World { get; }
+    protected WorldRoot World { get; }
     protected readonly Control[] NativeControls;
     /// <summary>Everything except the title strip; hidden while the window is minimized.</summary>
     public Control Content { get; }
@@ -60,7 +60,7 @@ public abstract partial class ClassicEventPanel : Control
     private Vector2 _full;
     private bool _minimized;
 
-    protected ClassicEventPanel(HudWindow window, Control body, World world, Vector2 size, float alpha = 1)
+    protected ClassicEventPanel(HudWindow window, Control body, WorldRoot world, Vector2 size, float alpha = 1)
     {
         Window = window; World = world; Name = "classic_events"; TextureFilter = TextureFilterEnum.Nearest;
         NativeControls = CharacterDetailsSkin.Tree(body).OfType<Control>().ToArray();
@@ -302,9 +302,9 @@ public abstract partial class ClassicEventPanel : Control
     }
 
     public static Texture2D? ItemIcon(int itemId) =>
-        itemId > 0 && (itemId == LibreKO.Domain.QuestData.CoinItemId || LibreKO.Domain.ItemData.Get(itemId) != null) ? LibreKO.Domain.ItemData.Icon(itemId) : null;
+        itemId > 0 && (itemId == LibreKO.Domain.QuestData.CoinItemId || LibreKO.Domain.ItemData.Get(itemId) != null) ? LibreKO.ItemIcons.Get(itemId) : null;
 
-    public static Texture2D? GoldIcon => LibreKO.Domain.ItemData.Icon(LibreKO.Domain.QuestData.CoinItemId);
+    public static Texture2D? GoldIcon => LibreKO.ItemIcons.Get(LibreKO.Domain.QuestData.CoinItemId);
 
     protected static void Scroll(ScrollContainer scroll) => ClassicDarkFrame.Scroll(scroll);
 
@@ -317,6 +317,6 @@ public abstract partial class ClassicEventPanel : Control
 
     /// <summary>Classic ink for a native semantic modulate (good, bad or dim).</summary>
     protected static Color Semantic(Color native, Color fallback) =>
-        native.IsEqualApprox(UiTheme.Good) ? Ready : native.IsEqualApprox(UiTheme.Bad) ? Refused
+        native.IsEqualApprox(UiTheme.Good) ? Accepted : native.IsEqualApprox(UiTheme.Bad) ? Refused
         : native.IsEqualApprox(UiTheme.TextDim) || native.IsEqualApprox(UiTheme.TextLo) ? Muted : fallback;
 }

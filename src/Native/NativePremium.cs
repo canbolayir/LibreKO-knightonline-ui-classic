@@ -18,11 +18,11 @@ public static class NativePremium
 
     public readonly record struct Clan(bool InClan, bool Active, long EndsAt);
 
-    public static Account Current(Net? net)
+    public static Account Current(IGameConnection? net)
     {
-        if (net == null || net.PremiumAccountStatus == 0 || net.PremiumHours <= 0) return new(false, "No Premium", 0, Array.Empty<PremiumBonus>());
-        string name = net.PremiumAccountStatus == PcRoomStatus ? "PC Room" : PremiumName(net.PremiumType);
-        return new(true, name, net.PremiumHours, net.PremiumBonuses);
+        if (net == null || Game.Session.Premium.PremiumAccountStatus == 0 || Game.Session.Premium.PremiumHours <= 0) return new(false, "No Premium", 0, Array.Empty<PremiumBonus>());
+        string name = Game.Session.Premium.PremiumAccountStatus == PcRoomStatus ? "PC Room" : PremiumName(Game.Session.Premium.PremiumType);
+        return new(true, name, Game.Session.Premium.PremiumHours, Game.Session.Premium.PremiumBonuses);
     }
 
     /// <summary>
@@ -57,8 +57,8 @@ public static class NativePremium
         return rem > 0 ? $"{days}d {rem}h" : $"{days}d";
     }
 
-    public static Clan ClanOf(World? world, Net? net) =>
-        new(world != null && Native.Get<bool>(world, "_clanPremiumInClan"), net?.ClanPremiumActive == true, net?.ClanPremiumEndsAt ?? 0);
+    public static Clan ClanOf(WorldRoot? world, IGameConnection? net) =>
+        new(world != null && Native.Get<bool>(world, "ClanPremium.inClan"), Game.Session.ClanPremium.ClanPremiumActive, Game.Session.ClanPremium.ClanPremiumEndsAt);
 
     /// <summary>
     /// The clan online bonus the client's chip shows (3277df5 <c>_clanBonusChip</c>): the online count the server
@@ -67,10 +67,10 @@ public static class NativePremium
     /// </summary>
     public readonly record struct ClanBonus(bool Shown, int Online, string Marks, string Tooltip);
 
-    public static ClanBonus BonusOf(Net? net, int? online = null)
+    public static ClanBonus BonusOf(IGameConnection? net, int? online = null)
     {
-        int count = online ?? net?.ClanOnlineCount ?? Net.NoClanBonus;
-        bool shown = count != Net.NoClanBonus && net?.MyClan.InClan == true;
+        int count = online ?? Game.Session.Clan.ClanOnlineCount;
+        bool shown = count != ClanSession.NoClanBonus && Game.Session.Clan.MyClan.InClan;
         return BonusLines(shown, count);
     }
 
@@ -112,23 +112,23 @@ public static class NativePremium
     }
 
     /// <summary>The client's clock text ("12:00  Clear"): the time of day the server sends and the weather.</summary>
-    public static string? Clock(World? world) =>
-        world != null && Native.Get<RichTextLabel>(world, "_clockLabel") is { } label && GodotObject.IsInstanceValid(label) ? label.GetParsedText().Trim() : null;
+    public static string? Clock(WorldRoot? world) =>
+        world != null && Native.Get<RichTextLabel>(world, "ScenerySystem.ClockLabel") is { } label && GodotObject.IsInstanceValid(label) ? label.GetParsedText().Trim() : null;
 
     /// <summary>
     /// Hides the client's clan premium chip, clan bonus chip and clock while the group shows them. The account premium
     /// chip stays as an invisible spacer <paramref name="width"/> wide: the client lines its remaining top icons up
     /// left of it.
     /// </summary>
-    public static void HideClientChips(World world, float width)
+    public static void HideClientChips(WorldRoot world, float width)
     {
-        foreach (var field in new[] { "_clanPremiumChip", "_clanBonusChip", "_clockLabel" })
+        foreach (var field in new[] { "ClanPremium.chip", "Premium.ClanBonusChip", "ScenerySystem.ClockLabel" })
             if (Native.Get<CanvasItem>(world, field) is { Visible: true } native) native.Visible = false;
-        if (Native.Get<Control>(world, "_premiumChip") is not { } chip || chip.Modulate.A == 0) return;
+        if (Native.Get<Control>(world, "Premium.Chip") is not { } chip || chip.Modulate.A == 0) return;
         chip.Modulate = Colors.Transparent;
         chip.MouseFilter = Control.MouseFilterEnum.Ignore;
         foreach (var child in Native.Descendants(chip).OfType<Control>()) child.MouseFilter = Control.MouseFilterEnum.Ignore;
         chip.CustomMinimumSize = new Vector2(width, chip.CustomMinimumSize.Y);
-        Native.TryCall(world, "PlaceTopIcons", out _);
+        Native.TryCall(world, "TopIcons.Place", out _);
     }
 }

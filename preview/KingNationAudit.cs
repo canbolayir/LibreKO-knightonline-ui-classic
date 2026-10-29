@@ -59,15 +59,15 @@ public partial class Preview
             GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false }); await Frames(2);
         }
         async Task Away() { GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.Zero, GlobalPosition = Vector2.Zero }); await Frames(2); }
-        async Task<(World World, HudWindow Window, ClassicKingPanel Panel)> Open(string view)
+        async Task<(WorldRoot World, HudWindow Window, ClassicKingPanel Panel)> Open(string view)
         {
-            var world = new World(); var window = PreviewFixtures.BuildKingNationUiPreview(world, view, nation);
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = PreviewFixtures.BuildKingNationUiPreview(world, view, nation);
             AddChild(window); var panel = ClassicKingSkin.Apply(window.Body)!;
             Require(panel != null, view + " Classic King skin applied to the prepared native window");
             await Frames(); return (world, window, panel!);
         }
         T Named<T>(Node root, string name) where T : Control => Descendants(root).OfType<T>().Single(c => c.Name == name);
-        void Done(World world, HudWindow window) { window.QueueFree(); world.QueueFree(); }
+        void Done(WorldRoot world, HudWindow window) { window.QueueFree(); world.QueueFree(); }
         void Drag(HudWindow window, string name)
         {
             window.Position = new Vector2(100, 80); Vector2 origin = window.Position, pointer = origin + new Vector2(60, 6);
@@ -94,16 +94,16 @@ public partial class Preview
                 await Click(election);
                 Require(Named<Button>(window, "king_option_4").Visible, "Clicking the original option row runs the native page change (five election rows)");
                 await Click(Named<Button>(window, "king_option_0"));
-                Require((bool)DetailField(world, "_kingBusy")!, "Nominate row starts the native schedule request");
+                Require((bool)DetailField(world, "KingElection.busy")!, "Nominate row starts the native schedule request");
                 await Away(); await Capture(window, "kingelection", "pending");
                 Require(Named<Button>(window, "king_option_1").Disabled, "Pending election request disables the option rows");
-                DetailCall(world, "OnKingSchedule", new KingSchedule(0, 0, 0, 0, 0, 0));
+                DetailCall(world, "KingElection.OnSchedule", new KingSchedule(KingScheduleKind.None, 0, 0, 0, 0, 0));
                 await Frames();
                 Require(!Named<Button>(window, "king_option_1").Disabled, "Native reply releases the option rows");
                 var close = Named<Button>(window, "king_close");
                 Require(close.Visible && close.GetRect() == ClassicKingLayout.ElectionClose, "Close stays reachable in the original top corner");
                 Escape(panel);
-                Require(!window.Visible && !(bool)DetailField(world, "_kingElectionShown")!, "Escape runs the native election close");
+                Require(!window.Visible && !(bool)DetailField(world, "KingElection.electionShown")!, "Escape runs the native election close");
             }
             if (view == "king-election-senators")
                 Require(Named<ScrollContainer>(window, "king_senators").GetRect() == ClassicKingLayout.ElectionSenators, "Senator names stay inside their bounded scroll region");
@@ -122,11 +122,11 @@ public partial class Preview
             id.Text = "Abcdefghijklmnopqrst"; await Capture(window, "kingnominate", "long");
             id.Text = "Rikka";
             await Click(Named<Button>(window, "king_nominate_accept"));
-            Require(!window.Visible && (bool)DetailField(world, "_kingBoxOpen")!, "OK runs the native nomination confirmation");
+            Require(!window.Visible && (bool)DetailField(world, "KingElection.boxOpen")!, "OK runs the native nomination confirmation");
             Done(world, window); await Frames();
             (world, window, panel) = await Open("king-nominate");
             Escape(panel);
-            Require(!window.Visible && (bool)DetailField(world, "_kingElectionShown")!, "Escape runs native Cancel and returns to the election officer");
+            Require(!window.Visible && (bool)DetailField(world, "KingElection.electionShown")!, "Escape runs native Cancel and returns to the election officer");
             Done(world, window); await Frames();
         }
 
@@ -141,10 +141,10 @@ public partial class Preview
             Require(Named<Label>(window, "king_plan_count").GetThemeColor("font_color") == new Color("ff6a5a"), "Plan over the native limit shows a refused count");
             await Capture(window, "kingplan", "over-limit");
             Named<Button>(window, "king_plan_accept").EmitSignal(BaseButton.SignalName.Pressed);
-            Require(!(bool)DetailField(world, "_kingPlanBusy")!, "Over-limit plan is refused by native validation");
+            Require(!(bool)DetailField(world, "KingElection.planBusy")!, "Over-limit plan is refused by native validation");
             edit.Text = "Fair taxes."; edit.EmitSignal(TextEdit.SignalName.TextChanged);
             await Click(Named<Button>(window, "king_plan_accept"));
-            Require((bool)DetailField(world, "_kingPlanBusy")!, "OK posts the plan through the native request");
+            Require((bool)DetailField(world, "KingElection.planBusy")!, "OK posts the plan through the native request");
             await Away(); await Capture(window, "kingplan", "pending");
             Require(Named<Button>(window, "king_plan_accept").Disabled, "Pending plan disables duplicate posting");
             Escape(panel);
@@ -170,11 +170,11 @@ public partial class Preview
             await Click(Named<Button>(window, "king_vote_select_9"));
             await Away(); await Capture(window, "kingvote", "full");
             await Click(Named<Button>(window, "king_vote_pledge_2"));
-            Require((bool)DetailField(world, "_kingVoteBusy")!, "Pledge runs the native pledge request");
+            Require((bool)DetailField(world, "KingElection.voteBusy")!, "Pledge runs the native pledge request");
             await Away(); await Capture(window, "kingvote", "pending");
             Require(Named<Button>(window, "king_vote_accept").Disabled && Named<Button>(window, "king_vote_pledge_0").Disabled, "Pending request disables Vote and Pledge");
             Escape(panel);
-            Require(!window.Visible && !(bool)DetailField(world, "_kingVoteShown")!, "Escape runs the native list close");
+            Require(!window.Visible && !(bool)DetailField(world, "KingElection.voteShown")!, "Escape runs the native list close");
             Done(world, window); await Frames();
         }
 
@@ -187,11 +187,11 @@ public partial class Preview
             panel._UnhandledKeyInput(new InputEventKey { Pressed = true, Keycode = Key.Enter });
             Require(window.Visible, "Enter never casts a ballot");
             await Click(Named<Button>(window, "king_ballot_against"));
-            Require(!window.Visible && (bool)DetailField(world, "_kingBusy")!, "Against casts the native ballot");
+            Require(!window.Visible && (bool)DetailField(world, "KingElection.busy")!, "Against casts the native ballot");
             Done(world, window); await Frames();
             (world, window, panel) = await Open("king-ballot");
             Escape(panel);
-            Require(!window.Visible && !(bool)DetailField(world, "_kingBallotShown")!, "Escape runs native Cancel");
+            Require(!window.Visible && !(bool)DetailField(world, "KingElection.ballotShown")!, "Escape runs native Cancel");
             Done(world, window); await Frames();
         }
 
@@ -202,11 +202,11 @@ public partial class Preview
             Drag(window, "nationtax");
             await Hover(Named<Button>(window, "nation_tax_rate")); await Capture(window, "nationtax", "hover");
             await Click(Named<Button>(window, "nation_tax_rate"));
-            Require((bool)DetailField(world, "_nationTaxBusy")!, "Change Tax Rate runs the native tariff request");
+            Require((bool)DetailField(world, "KingTreasury.nationTaxBusy")!, "Change Tax Rate runs the native tariff request");
             await Away(); await Capture(window, "nationtax", "pending");
             Require(Named<Button>(window, "nation_tax_fund").Disabled, "Pending treasury request disables the services");
             await Click(Named<Button>(window, "king_close"));
-            Require(!window.Visible && !(bool)DetailField(world, "_nationTaxShown")!, "Exit runs the native close");
+            Require(!window.Visible && !(bool)DetailField(world, "KingTreasury.nationTaxShown")!, "Exit runs the native close");
             Done(world, window); await Frames();
             (world, window, panel) = await Open("nation-tax-citizen");
             await Capture(window, "nationtax", "citizen");
@@ -233,7 +233,7 @@ public partial class Preview
             Done(world, window); await Frames();
             (world, window, panel) = await Open("nation-intro");
             Escape(panel);
-            Require(!window.Visible && !(bool)DetailField(world, "_nationIntroShown")!, "Escape runs the native close");
+            Require(!window.Visible && !(bool)DetailField(world, "KingTreasury.nationIntroShown")!, "Escape runs the native close");
             Done(world, window); await Frames();
         }
 

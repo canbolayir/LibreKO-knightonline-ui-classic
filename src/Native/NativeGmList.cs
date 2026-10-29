@@ -35,7 +35,7 @@ public static class NativeGmList
     /// <summary>Follows the client's GM list once the client has one; a client without it keeps the empty list quietly.</summary>
     public static void Attach(Godot.Node lifetime)
     {
-        if (Net.I is not { } net || !Native.Has(net, NetEvent)) return;
+        if (Game.Connection is not { } net || !Native.Has(net, NetEvent)) return;
         Native.Subscribe(net, NetEvent, new Action<IReadOnlyList<string>>(names => Set(names)), lifetime);
         if (Native.Has(net, NetList) && Native.Get<IReadOnlyList<string>>(net, NetList) is { } current) Set(current);
     }

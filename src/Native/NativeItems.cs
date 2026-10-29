@@ -27,7 +27,7 @@ public static class NativeItems
     public const string PreparedMeta = "native_items";
     public const string PageMeta = "items_page";
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta(PreparedMeta)) return;
         window.SetMeta(PreparedMeta, true);
@@ -41,40 +41,40 @@ public static class NativeItems
         }
     }
 
-    private static void Name(World world, string field, string name) => NativeWindows.Name(Native.Get<Node>(world, field), name);
+    private static void Name(WorldRoot world, string field, string name) => NativeWindows.Name(Native.Get<Node>(world, field), name);
 
-    private static void NameAll(World world, string field, string prefix)
+    private static void NameAll(WorldRoot world, string field, string prefix)
     {
         if (Native.Get<Array>(world, field) is not { } nodes) return;
         for (int i = 0; i < nodes.Length; i++) NativeWindows.Name(nodes.GetValue(i) as Node, prefix + i);
     }
 
-    private static void PrepareExpSeal(HudWindow window, World world)
+    private static void PrepareExpSeal(HudWindow window, WorldRoot world)
     {
-        Name(world, "_expSealJar", "exp_seal_jar");
-        Name(world, "_expSealPercent", "exp_seal_percent");
-        Name(world, "_expSealAmount", "exp_seal_amount");
-        Name(world, "_expSealOn", "exp_seal_on");
-        Name(world, "_expSealOff", "exp_seal_off");
-        Name(world, "_expSealPick", "exp_seal_pick");
-        if (Native.Get<OptionButton>(world, "_expSealPick")?.GetParent() is Container store)
+        Name(world, "ExpSealWindow.JarRect", "exp_seal_jar");
+        Name(world, "ExpSealWindow.percent", "exp_seal_percent");
+        Name(world, "ExpSealWindow.amountLabel", "exp_seal_amount");
+        Name(world, "ExpSealWindow.onButton", "exp_seal_on");
+        Name(world, "ExpSealWindow.offButton", "exp_seal_off");
+        Name(world, "ExpSealWindow.Pick", "exp_seal_pick");
+        if (Native.Get<OptionButton>(world, "ExpSealWindow.Pick")?.GetParent() is Container store)
             NativeWindows.Name(store.GetChildren().OfType<Button>().FirstOrDefault(b => b is not OptionButton), "exp_seal_obtain");
-        if (Native.Get<Button>(world, "_expSealOn")?.GetParent() is Container toggle)
+        if (Native.Get<Button>(world, "ExpSealWindow.onButton")?.GetParent() is Container toggle)
             NativeWindows.Name(toggle.GetChildren().OfType<Label>().FirstOrDefault(), "exp_seal_caption");
         // The switch state the native buttons show by tinting; the Classic buttons show it as pressed.
-        NativeWindows.Sync(window, () => window.SetMeta("exp_seal_state", Net.I is { } net ? (int)net.ExpSealState : 0));
+        NativeWindows.Sync(window, () => window.SetMeta("exp_seal_state", (int)Game.Session.ExpSeal.ExpSealState));
     }
 
-    private static void PrepareTimedItems(World world)
+    private static void PrepareTimedItems(WorldRoot world)
     {
-        NameAll(world, "_tiRows", "timed_row_");
-        NameAll(world, "_tiSlots", "timed_cell_");
-        NameAll(world, "_tiNames", "timed_name_");
-        NameAll(world, "_tiPlaces", "timed_place_");
-        NameAll(world, "_tiTimes", "timed_time_");
-        Name(world, "_tiScroll", "timed_scroll");
-        Name(world, "_tiHideToday", "timed_hide");
-        if (Native.Get<Control>(world, "_tiHideToday")?.GetParent() is not Control canvas) return;
+        NameAll(world, "TimedItemsWindow.tiRows", "timed_row_");
+        NameAll(world, "TimedItemsWindow.tiSlots", "timed_cell_");
+        NameAll(world, "TimedItemsWindow.tiNames", "timed_name_");
+        NameAll(world, "TimedItemsWindow.tiPlaces", "timed_place_");
+        NameAll(world, "TimedItemsWindow.tiTimes", "timed_time_");
+        Name(world, "TimedItemsWindow.tiScroll", "timed_scroll");
+        Name(world, "TimedItemsWindow.tiHideToday", "timed_hide");
+        if (Native.Get<Control>(world, "TimedItemsWindow.tiHideToday")?.GetParent() is not Control canvas) return;
         var labels = canvas.GetChildren().OfType<Label>().Where(l => !l.Name.ToString().StartsWith("timed_")).ToArray();
         if (labels.Length >= 2)
         {
@@ -103,18 +103,18 @@ public static class NativeItems
         NativeWindows.Name(body.GetChildren().OfType<VBoxContainer>().LastOrDefault(), "loot_rules");
     }
 
-    private static void PrepareCharacterSeal(HudWindow window, World world)
+    private static void PrepareCharacterSeal(HudWindow window, WorldRoot world)
     {
-        Name(world, "_csSealingPage", "cs_page_help");
-        Name(world, "_csSelectPage", "cs_page_select");
-        Name(world, "_csCodePage", "cs_page_code");
-        Name(world, "_csSelectTitle", "cs_select_title");
-        Name(world, "_csSelectPrompt", "cs_select_prompt");
-        Name(world, "_csCodeStars", "cs_code_stars");
-        Name(world, "_csSelectOk", "cs_select_ok");
-        Name(world, "_csKeys", "cs_keys");
-        NameAll(world, "_csSlotButtons", "cs_slot_");
-        if (Native.Get<VBoxContainer>(world, "_csSealingPage") is { } help)
+        Name(world, "CharacterSealWindow.CsSealingPage", "cs_page_help");
+        Name(world, "CharacterSealWindow.CsSelectPage", "cs_page_select");
+        Name(world, "CharacterSealWindow.CsCodePage", "cs_page_code");
+        Name(world, "CharacterSealWindow.CsSelectTitle", "cs_select_title");
+        Name(world, "CharacterSealWindow.CsSelectPrompt", "cs_select_prompt");
+        Name(world, "CharacterSealWindow.CsCodeStars", "cs_code_stars");
+        Name(world, "CharacterSealWindow.csSelectOk", "cs_select_ok");
+        Name(world, "CharacterSealWindow.csKeys", "cs_keys");
+        NameAll(world, "CharacterSealWindow.csSlotButtons", "cs_slot_");
+        if (Native.Get<VBoxContainer>(world, "CharacterSealWindow.CsSealingPage") is { } help)
         {
             var titles = help.GetChildren().OfType<Label>().ToArray();
             var panels = help.GetChildren().OfType<PanelContainer>().ToArray();
@@ -123,9 +123,9 @@ public static class NativeItems
                 NativeWindows.Name(panels[i].GetChildren().OfType<Label>().FirstOrDefault(), "cs_help_text_" + i);
             NameButtons(help, "cs_seal", "cs_unseal");
         }
-        if (Native.Get<VBoxContainer>(world, "_csSelectPage") is { } select)
+        if (Native.Get<VBoxContainer>(world, "CharacterSealWindow.CsSelectPage") is { } select)
             NativeWindows.Name(select.GetChildren().OfType<HBoxContainer>().LastOrDefault()?.GetChildren().OfType<Button>().LastOrDefault(), "cs_select_cancel");
-        if (Native.Get<VBoxContainer>(world, "_csCodePage") is { } code)
+        if (Native.Get<VBoxContainer>(world, "CharacterSealWindow.CsCodePage") is { } code)
         {
             NativeWindows.Name(code.GetChildren().OfType<Label>().FirstOrDefault(), "cs_code_title");
             var rows = code.GetChildren().OfType<HBoxContainer>().ToArray();
@@ -138,14 +138,14 @@ public static class NativeItems
         NativeWindows.Sync(window, () =>
         {
             window.SetMeta(PageMeta, CharacterSealPage(world));
-            window.SetMeta("cs_picked", Native.Get<int>(world, "_csPicked"));
+            window.SetMeta("cs_picked", Native.Get<int>(world, "CharacterSealWindow.Picked"));
         });
     }
 
     /// <summary>The visible Character Seal page: help, select or code.</summary>
-    public static string CharacterSealPage(World world) =>
-        Native.Get<Control>(world, "_csSelectPage") is { Visible: true } ? "select"
-        : Native.Get<Control>(world, "_csCodePage") is { Visible: true } ? "code"
+    public static string CharacterSealPage(WorldRoot world) =>
+        Native.Get<Control>(world, "CharacterSealWindow.CsSelectPage") is { Visible: true } ? "select"
+        : Native.Get<Control>(world, "CharacterSealWindow.CsCodePage") is { Visible: true } ? "code"
         : "help";
 
     private static void NameButtons(Node row, string first, string second)
@@ -156,25 +156,25 @@ public static class NativeItems
         buttons[1].Name = second;
     }
 
-    private static void PrepareSheet(HudWindow window, World world)
+    private static void PrepareSheet(HudWindow window, WorldRoot world)
     {
-        Name(world, "_csSheetName", "sheet_name");
-        Name(world, "_csSheetAchievements", "sheet_achievements");
-        NameAll(world, "_csSheetCells", "sheet_cell_");
-        if (Native.Get<Control>(world, "_csSheetLevel")?.GetParent()?.GetParent() is VBoxContainer identity)
+        Name(world, "CharacterSealWindow.csSheetName", "sheet_name");
+        Name(world, "CharacterSealWindow.csSheetAchievements", "sheet_achievements");
+        NameAll(world, "CharacterSealWindow.csSheetCells", "sheet_cell_");
+        if (Native.Get<Control>(world, "CharacterSealWindow.csSheetLevel")?.GetParent()?.GetParent() is VBoxContainer identity)
         {
             identity.Name = "sheet_identity";
             NativeWindows.Name(identity.GetParent()?.GetParent()?.GetChildren().OfType<Button>().FirstOrDefault(), "sheet_achievements_button");
         }
-        if (Native.Get<Array>(world, "_csSheetStats")?.GetValue(0) is Control stat)
+        if (Native.Get<Array>(world, "CharacterSealWindow.csSheetStats")?.GetValue(0) is Control stat)
             NativeWindows.Name(stat.GetParent(), "sheet_stats");
-        if (Native.Get<Control>(world, "_csSheetGold")?.GetParent()?.GetParent() is VBoxContainer wealth) wealth.Name = "sheet_wealth";
-        if (Native.Get<Array>(world, "_csSheetCells") is { Length: > 0 } cells)
+        if (Native.Get<Control>(world, "CharacterSealWindow.csSheetGold")?.GetParent()?.GetParent() is VBoxContainer wealth) wealth.Name = "sheet_wealth";
+        if (Native.Get<Array>(world, "CharacterSealWindow.csSheetCells") is { Length: > 0 } cells)
         {
             NativeWindows.Name((cells.GetValue(0) as Node)?.GetParent(), "sheet_equip");
             NativeWindows.Name((cells.GetValue(cells.Length - 1) as Node)?.GetParent(), "sheet_bag");
         }
         NativeWindows.Sync(window, () => window.SetMeta(PageMeta,
-            Native.Get<Control>(world, "_csSheetAchievements") is { Visible: true } ? "achievements" : ""));
+            Native.Get<Control>(world, "CharacterSealWindow.csSheetAchievements") is { Visible: true } ? "achievements" : ""));
     }
 }

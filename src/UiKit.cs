@@ -16,7 +16,7 @@ public sealed class UiKit
 
     public PluginContext Context { get; }
     public PluginGame Game => Context.Game;
-    public int Nation => Game.Available ? Game.Character.Nation : LibreKO.Network.Net.I?.LastEnter.Nation ?? 2;
+    public int Nation => Game.Available ? Game.Character.Nation : LibreKO.Game.Session.Self.LastEnter.Nation;
     public PluginLog Log => Context.Log;
     public int LayoutCount { get; }
     public int TextureCount { get; }
@@ -76,6 +76,7 @@ public sealed class UiKit
     public Texture2D? Texture(string png) => Context.Assets.Texture($"{TextureDir}/{png}");
     private LocalAssets? _local;
     public LocalAssets Local => _local ??= new LocalAssets(Context.Assets.Root);
+    internal void Release() { _local?.Release(); _local = null; }
     public float Metric(string name,float fallback) => _metrics.TryGetValue(name,out var value) && float.IsFinite(value) ? value : fallback;
 
     public Font ChatFont => ThemeDB.FallbackFont;

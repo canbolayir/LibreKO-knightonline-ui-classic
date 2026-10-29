@@ -14,12 +14,12 @@ public static partial class PreviewFixtures
     public const int KingPreviewTribute = 12_500_000;
     public const int KingPreviewTreasury = 845_300_000;
 
-    public static HudWindow BuildKingNationUiPreview(World world, string view, int nation)
+    public static HudWindow BuildKingNationUiPreview(WorldRoot world, string view, int nation)
     {
-        var window = (HudWindow)Call(world, "BuildKingUiPreview", view)!;
-        var me = Net.I.LastEnter; me.Nation = nation; Seed(world, me);
+        var window = (HudWindow)Call(world, "Preview.BuildKing", view)!;
+        var me = Game.Session.Self.LastEnter; me.Nation = nation; Seed(world, me);
         if (view is "nation-tax" or "nation-tax-citizen")
-            Call(world, "OnKingTreasury", new KingTreasury(view == "nation-tax" ? NationTreasury.KingView : NationTreasury.CitizenView,
+            Call(world, "KingTreasury.OnTreasury", new KingTreasury(view == "nation-tax" ? NationTreasury.KingView : NationTreasury.CitizenView,
                 view == "nation-tax" ? KingPreviewTribute : 0, KingPreviewTreasury));
         // The client's preview helper frees the window's drag behaviour; restore a non-persisting one so
         // the audit can exercise native dragging through the Classic grip.
@@ -30,11 +30,11 @@ public static partial class PreviewFixtures
     }
 
     /// <summary>A full ten-candidate list with long names and clans.</summary>
-    public static void FillKingCandidates(World world)
+    public static void FillKingCandidates(WorldRoot world)
     {
         var names = new[] { "Rikka", "Zeus", "Morgana", "Hermes", "Valkyrie", "Sylph", "Ardream", "Krowaz", "Talon", "Longnamedcandidate" };
         var clans = new[] { "Valhalla", "Olympus", "Avalon", "", "Shieldmaidens", "Windwalkers", "Ardream Guard", "Krowaz Legion", "Talons", "Averylongclannamehere" };
-        Call(world, "OnKingCandidates", new KingCandidates(KingElection.Success,
+        Call(world, "KingElection.OnCandidates", new KingCandidates(KingWire.Success,
             names.Select((name, i) => new KingCandidate(i + 1, name, clans[i])).ToList()));
     }
 }

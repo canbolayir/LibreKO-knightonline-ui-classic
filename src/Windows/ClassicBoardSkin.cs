@@ -297,7 +297,7 @@ public partial class ClassicBoardPanel : Control
             };
             if (Window.Id == "report" && labels.Length > 2) row.SetMeta(HotNames.BoardDetail, labels[2].Text);
             if (Window.Id == "bounty" && order[2] is { } poster && poster.Text.StartsWith("by ", StringComparison.Ordinal)) poster.Text = poster.Text[3..];
-            string me = LibreKO.Network.Net.I?.LastEnter.Name ?? "";
+            string me = LibreKO.Game.Session.Self.LastEnter.Name ?? "";
             bool mine = Window.Id == "fishinghall" && me.Length > 0 && order.ElementAtOrDefault(1)?.Text == me;
             int rank = Window.Id == "fishinghall" && int.TryParse(order[0]?.Text.TrimStart('#'), out int r) ? r : 0;
             for (int i = 0; i < order.Length && i < _columns.Length; i++)
@@ -595,8 +595,8 @@ public partial class ClassicBoardGauge : Control
         _source = source; MouseFilter = MouseFilterEnum.Ignore; TextureFilter = TextureFilterEnum.Nearest;
         _art = Plugin.Kit.Layout(ClassicBoardLayout.Gauge).Find("Progress_HP")!;
     }
-    public static bool Readable(Control bar) => KnightOnlineUiClassic.Native.Native.Has(bar, "_frac");
-    public float Fraction => Mathf.Clamp(KnightOnlineUiClassic.Native.Native.Get<float>(_source, "_frac"), 0, 1);
+    public static bool Readable(Control bar) => KnightOnlineUiClassic.Native.Native.Has(bar, "frac");
+    public float Fraction => Mathf.Clamp(KnightOnlineUiClassic.Native.Native.Get<float>(_source, "frac"), 0, 1);
     public override void _Draw()
     {
         foreach (var part in _art.Images.OrderBy(a => a.Tag))

@@ -1,6 +1,7 @@
 using Godot;
 using LibreKO;
 using LibreKO.Domain;
+using LibreKO.Network;
 using LibreKO.Plugins;
 using KnightOnlineUiClassic.Layout;
 using KnightOnlineUiClassic.Native;
@@ -78,11 +79,11 @@ public partial class ClassicUserVoteDialog : Control
         }
         else if (window.Id == ClassicUserVoteSkin.AskId)
         {
-            var answers = new (string Name, string Text, byte Answer)[] { ("vote_yes", "Yes", UserVote.AnswerYes), ("vote_draw", "Draw", UserVote.AnswerDraw), ("vote_no", "No", UserVote.AnswerNo) };
+            var answers = new (string Name, string Text, byte Answer)[] { ("vote_yes", "Yes", (byte)UserVoteAnswer.Yes), ("vote_draw", "Draw", (byte)UserVoteAnswer.Draw), ("vote_no", "No", (byte)UserVoteAnswer.No) };
             for (int i = 0; i < answers.Length; i++)
             {
-                byte answer = answers[i].Answer;
-                Action(answers[i].Name, answers[i].Text, Spec.Answer(size.Y, i), answer == UserVote.AnswerNo, () => Answer(answer));
+                var answer = (UserVoteAnswer)answers[i].Answer;
+                Action(answers[i].Name, answers[i].Text, Spec.Answer(size.Y, i), answer == UserVoteAnswer.No, () => Answer(answer));
             }
         }
         else Action("vote_notice_ok", "OK", Message.Single(size.Y), false, CloseNotice);
@@ -164,7 +165,7 @@ public partial class ClassicUserVoteDialog : Control
         _vote.CancelSelect();
     }
 
-    private void Answer(byte answer)
+    private void Answer(UserVoteAnswer answer)
     {
         if (_done) return;
         _done = true;

@@ -1,6 +1,7 @@
 using Godot;
 using LibreKO;
 using LibreKO.Domain;
+using LibreKO.Network;
 using LibreKO.Plugins;
 using KnightOnlineUiClassic.Layout;
 using Spec = KnightOnlineUiClassic.Layout.ClassicPartyHudLayout.WarBoard;
@@ -55,8 +56,8 @@ public partial class ClassicWarBoard : Control
         close.Pressed += () => _party.ToggleWarBoard();
         AddChild(close);
         close.SetMeta("war_board_close", true);
-        _damage = Tab("war_board_damage", "Damage", "Damage dealt", PartyWarBoard.ModeDamage, 0);
-        _healing = Tab("war_board_healing", "Healing", "Healing", PartyWarBoard.ModeHealing, 1);
+        _damage = Tab("war_board_damage", "Damage", "Damage dealt", PartyBoardMeterMode.Damage, 0);
+        _healing = Tab("war_board_healing", "Healing", "Healing", PartyBoardMeterMode.Healing, 1);
         for (int i = 0; i < _rows.Length; i++)
         {
             _rows[i] = new ClassicWarBoardRow { Name = "war_board_row_" + i, Visible = false };
@@ -76,7 +77,7 @@ public partial class ClassicWarBoard : Control
         Resized += Layout;
     }
 
-    private Button Tab(string name, string text, string tip, byte mode, int index)
+    private Button Tab(string name, string text, string tip, PartyBoardMeterMode mode, int index)
     {
         var tab = ClassicChatControls.Tab(text);
         tab.Name = name; tab.ToggleMode = true; tab.TooltipText = tip;
@@ -132,9 +133,9 @@ public partial class ClassicWarBoard : Control
         if (!IsInsideTree()) return;
         Visible = _party.InParty && _party.WarBoardOpen;
         if (!Visible) return;
-        byte mode = _party.WarBoardMode;
-        _damage.SetPressedNoSignal(mode == PartyWarBoard.ModeDamage);
-        _healing.SetPressedNoSignal(mode == PartyWarBoard.ModeHealing);
+        var mode = _party.WarBoardMode;
+        _damage.SetPressedNoSignal(mode == PartyBoardMeterMode.Damage);
+        _healing.SetPressedNoSignal(mode == PartyBoardMeterMode.Healing);
         _syncing = true; _alpha.SetValueNoSignal(_party.WarBoardAlpha); _syncing = false;
         ApplyAlpha(_party.WarBoardAlpha);
         var rows = _party.WarBoardRows;

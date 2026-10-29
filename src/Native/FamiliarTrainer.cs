@@ -21,10 +21,10 @@ public sealed partial class FamiliarTrainer : Node
     private const int TransformTab = 1;
     private const string SelectionChanged = "Your selection changed. Please choose the items again.";
     private const string NotSent = "Not connected. Please try again after reconnecting.";
-    private static readonly string[] SlotFields = { "_petHatchSlot", "_petTransformSlot", "_petScrollSlot" };
-    private static readonly ConditionalWeakTable<World, FamiliarTrainer> Trainers = new();
+    private static readonly string[] SlotFields = { "PetHatch.slot", "PetHatch.petTransformSlot", "PetHatch.petScrollSlot" };
+    private static readonly ConditionalWeakTable<WorldRoot, FamiliarTrainer> Trainers = new();
 
-    private readonly World _world;
+    private readonly WorldRoot _world;
     private readonly HudWindow _window;
     private readonly ItemSlotView[] _stages = new ItemSlotView[3];
     private readonly ItemSlotView[] _inventory = new ItemSlotView[Inventory.GridCount];
@@ -33,27 +33,27 @@ public sealed partial class FamiliarTrainer : Node
     private LineEdit _name = null!;
     private Button _accept = null!;
     private Label _description = null!;
-    private Net? _net;
+    private IGameConnection? _net;
     private int _revision;
     private bool _wasVisible;
 
     /// <summary>The confirmation that is waiting for an answer, if any.</summary>
     public Notice? Notice { get; private set; }
 
-    private FamiliarTrainer(World world, HudWindow window) { _world = world; _window = window; Name = "familiar_trainer"; }
+    private FamiliarTrainer(WorldRoot world, HudWindow window) { _world = world; _window = window; Name = "familiar_trainer"; }
 
     public FamiliarTrainer() { _world = null!; _window = null!; }
 
-    public static FamiliarTrainer? Of(World world) =>
+    public static FamiliarTrainer? Of(WorldRoot world) =>
         Trainers.TryGetValue(world, out var trainer) && IsInstanceValid(trainer) ? trainer : null;
 
-    internal static void Prepare(HudWindow window, World world)
+    internal static void Prepare(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta("classic_pet_hatch_controls") || Of(world) != null) return;
-        foreach (string field in new[] { "_petHatchTabs", "_petHatchPage", "_petTransformPage", "_petHatchName", "_petHatchBtn", "_petHatchStatus",
-                     "_petHatchEggPick", "_petTransformPetPick", "_petTransformScrollPick" })
+        foreach (string field in new[] { "PetHatch.tabs", "PetHatch.page", "PetHatch.petTransformPage", "PetHatch.NameInput", "PetHatch.btn", "PetHatch.status",
+                     "PetHatch.eggPick", "PetHatch.petTransformPetPick", "PetHatch.petTransformScrollPick" })
             if (Native.Get<Node>(world, field) == null) return;
-        if (!Native.Has(world, "_petHatchInFlight") || !Native.HasMethod(typeof(World), "IsPetEgg")) return;
+        if (!Native.Has(world, "PetHatch.inFlight") || !Native.HasMethod(Native.StaticOwner("LibreKO.Features.Windows.PetHatchFeature"), "IsPetEgg")) return;
         var trainer = new FamiliarTrainer(world, window);
         trainer.Build();
         Trainers.AddOrUpdate(world, trainer);
@@ -63,10 +63,10 @@ public sealed partial class FamiliarTrainer : Node
     }
 
     private T Field<T>(string name) where T : class => Native.Get<T>(_world, name)!;
-    private Inventory Inv => Native.Get<Inventory>(_world, "Inv")!;
-    private bool Shown => Native.Get<bool>(_world, "_petHatchShown");
-    private bool InFlight => Native.Get<bool>(_world, "_petHatchInFlight");
-    private bool SelfDead => Native.Get<bool>(_world, "_selfDead");
+    private Inventory Inv => Game.Session.Self.Inventory;
+    private bool Shown => Native.Get<bool>(_world, "PetHatch.shown");
+    private bool InFlight => Native.Get<bool>(_world, "PetHatch.inFlight");
+    private bool SelfDead => Native.Get<bool>(_world, "Avatar.Dead");
     private bool Transforming => _tabs.Current == TransformTab;
 
     /// <summary>Whether the draft may change: the trainer is open, nothing is pending and the owner is alive.</summary>
@@ -74,17 +74,17 @@ public sealed partial class FamiliarTrainer : Node
 
     private void Build()
     {
-        _tabs = Field<ServiceTabs>("_petHatchTabs"); _tabs.Name = "pet_hatch_tabs";
-        _name = Field<LineEdit>("_petHatchName"); _name.Name = "pet_hatch_name";
-        _accept = Field<Button>("_petHatchBtn"); _accept.Name = "pet_hatch_accept";
-        var status = Field<Label>("_petHatchStatus"); status.Name = "pet_hatch_status";
+        _tabs = Field<ServiceTabs>("PetHatch.tabs"); _tabs.Name = "pet_hatch_tabs";
+        _name = Field<LineEdit>("PetHatch.NameInput"); _name.Name = "pet_hatch_name";
+        _accept = Field<Button>("PetHatch.btn"); _accept.Name = "pet_hatch_accept";
+        var status = Field<Label>("PetHatch.status"); status.Name = "pet_hatch_status";
         foreach (var button in _accept.GetParent().GetChildren().OfType<Button>())
             if (button != _accept && button.Text == "Close") button.Name = "pet_hatch_cancel";
         _window.Title = "Familiar";
         var root = _window.Body;
-        var hatchPage = Field<VBoxContainer>("_petHatchPage"); hatchPage.Name = "pet_hatch_page";
-        var transformPage = Field<VBoxContainer>("_petTransformPage"); transformPage.Name = "pet_transform_page";
-        var picks = new[] { Field<Label>("_petHatchEggPick"), Field<Label>("_petTransformPetPick"), Field<Label>("_petTransformScrollPick") };
+        var hatchPage = Field<VBoxContainer>("PetHatch.page"); hatchPage.Name = "pet_hatch_page";
+        var transformPage = Field<VBoxContainer>("PetHatch.petTransformPage"); transformPage.Name = "pet_transform_page";
+        var picks = new[] { Field<Label>("PetHatch.eggPick"), Field<Label>("PetHatch.petTransformPetPick"), Field<Label>("PetHatch.petTransformScrollPick") };
         foreach (var child in hatchPage.GetChildren().Concat(transformPage.GetChildren()).OfType<CanvasItem>())
             if (child != _name) child.Visible = false;
 
@@ -121,7 +121,7 @@ public sealed partial class FamiliarTrainer : Node
         _window.VisibilityChanged += OnVisibilityChanged;
         _wasVisible = _window.Visible;
         for (int stage = 0; stage < _selected.Length; stage++) _selected[stage] = Native.Get<int>(_world, SlotFields[stage]);
-        Observe(Net.I);
+        Observe(Game.Connection);
         Rebuild(); Refresh();
     }
 
@@ -146,17 +146,18 @@ public sealed partial class FamiliarTrainer : Node
     /// <summary>Replaces the client's direct send on a signal with the trainer's confirmation.</summary>
     private void Rewire(GodotObject source, StringName signal, Callable replacement)
     {
+        var feature = Native.Get<object>(_world, "PetHatch");
         foreach (var connection in source.GetSignalConnectionList(signal))
         {
             var callable = connection["callable"].AsCallable();
-            if (callable.Delegate?.Target == _world) source.Disconnect(signal, callable);
+            if (callable.Delegate?.Target is { } target && (target == _world || target == feature)) source.Disconnect(signal, callable);
         }
         source.Connect(signal, replacement);
     }
 
     public override void _ExitTree() { Observe(null); Dismiss(); }
 
-    private void Observe(Net? net)
+    private void Observe(IGameConnection? net)
     {
         if (_net == net && _observing is { Active: true }) return;
         _observing?.Release();
@@ -165,12 +166,12 @@ public sealed partial class FamiliarTrainer : Node
         if (net == null) return;
         _observing = NativeHooks.Listen("Net.Pet (familiar trainer)", () =>
         {
-            net.InventorySlotEvent += OnInventorySlot; net.InventoryGridRefreshEvent += OnInventoryGrid;
-            net.PetHatchedEvent += OnResult; net.PetTransformedEvent += OnResult;
+            Game.Session.Items.InventorySlotEvent += OnInventorySlot; Game.Session.Items.InventoryGridRefreshEvent += OnInventoryGrid;
+            Game.Session.Pet.PetHatchedEvent += OnResult; Game.Session.Pet.PetTransformedEvent += OnResult;
         }, () =>
         {
-            net.InventorySlotEvent -= OnInventorySlot; net.InventoryGridRefreshEvent -= OnInventoryGrid;
-            net.PetHatchedEvent -= OnResult; net.PetTransformedEvent -= OnResult;
+            Game.Session.Items.InventorySlotEvent -= OnInventorySlot; Game.Session.Items.InventoryGridRefreshEvent -= OnInventoryGrid;
+            Game.Session.Pet.PetHatchedEvent -= OnResult; Game.Session.Pet.PetTransformedEvent -= OnResult;
         });
     }
 
@@ -199,7 +200,7 @@ public sealed partial class FamiliarTrainer : Node
     private void Tick()
     {
         if (!IsInstanceValid(_world)) return;
-        if (_net != Net.I) Observe(Net.I);
+        if (_net != Game.Connection) Observe(Game.Connection);
         Rebuild(); Refresh();
     }
 
@@ -234,7 +235,7 @@ public sealed partial class FamiliarTrainer : Node
         int stage = StageFor(abs);
         if (stage < 0) return;
         _selected[stage] = abs;
-        Native.Call(_world, "SetPetHatchStatus", "", false);
+        Native.Call(_world, "PetHatch.SetStatus", "", false);
         Rebuild(); Refresh();
     }
 
@@ -261,7 +262,7 @@ public sealed partial class FamiliarTrainer : Node
             if (Native.Get<int>(_world, SlotFields[stage]) == abs) continue;
             Native.Set(_world, SlotFields[stage], abs); changed = true;
         }
-        if (changed) Native.Call(_world, "RefreshPetPickLooks");
+        if (changed) Native.Call(_world, "PetHatch.RefreshPetPickLooks");
         for (int stage = 0; stage < _stages.Length; stage++)
         {
             int abs = _selected[stage];
@@ -289,11 +290,11 @@ public sealed partial class FamiliarTrainer : Node
         var inv = Inv;
         bool Valid(int stage) => _selected[stage] >= 0 && _selected[stage] < inv.Length && Matches(stage, inv[_selected[stage]]);
         bool ready = Transforming ? Valid(1) && Valid(2)
-            : Valid(0) && Native.Call(_world, "IsValidPetName", _name.Text) is true;
+            : Valid(0) && Native.Call(Native.StaticOwner("LibreKO.Features.Windows.PetHatchFeature"), "IsValidPetName", _name.Text) is true;
         if (_accept.Disabled != (!editing || !ready)) _accept.Disabled = !editing || !ready;
         if (_name.Editable != editing) _name.Editable = editing;
         // Skins may move the tab buttons out of the tab strip; the strip still owns them.
-        foreach (var tab in Native.Get<List<Button>>(_tabs, "_buttons") ?? _tabs.GetChildren().OfType<Button>().ToList())
+        foreach (var tab in Native.Get<List<Button>>(_tabs, "buttons") ?? _tabs.GetChildren().OfType<Button>().ToList())
             if (tab.Disabled != !editing) tab.Disabled = !editing;
     }
 
@@ -304,12 +305,12 @@ public sealed partial class FamiliarTrainer : Node
         if (_accept.Disabled || !Editing) return;
         bool transform = Transforming;
         int slot = transform ? _selected[1] : _selected[0];
-        int scroll = _selected[2], npc = Native.Get<int>(_world, "_petHatchNpc");
+        int scroll = _selected[2], npc = Native.Get<int>(_world, "PetHatch.npc");
         var inv = Inv;
         var item = inv[slot]; var material = transform ? inv[scroll] : default;
         string name = _name.Text;
         int revision = ++_revision;
-        Notice = Notice.Confirm(Native.Get<Node>(_world, "_petHatchLayer") ?? _window,
+        Notice = Notice.Confirm(Native.Get<Node>(_world, "PetHatch.layer") ?? _window,
             transform ? "Would you like to transform this familiar?\nThe transformation scroll will be used."
                 : $"Would you like to incubate the egg?\nFamiliar name: {name}",
             "Yes", "No", () => Submit(revision, transform, npc, slot, item, scroll, material, name),
@@ -325,37 +326,25 @@ public sealed partial class FamiliarTrainer : Node
         bool same = slot >= Inventory.GridStart && slot < inv.Length && inv[slot].Equals(item)
             && (transform ? Matches(1, inv[slot]) && scroll >= Inventory.GridStart && scroll < inv.Length
                 && inv[scroll].Equals(material) && Matches(2, inv[scroll])
-                : Matches(0, inv[slot]) && Native.Call(_world, "IsValidPetName", name) is true);
+                : Matches(0, inv[slot]) && Native.Call(Native.StaticOwner("LibreKO.Features.Windows.PetHatchFeature"), "IsValidPetName", name) is true);
         if (SelfDead || !same)
         {
-            Rebuild(); Native.Call(_world, "SetPetHatchStatus", SelectionChanged, true); Refresh();
+            Rebuild(); Native.Call(_world, "PetHatch.SetStatus", SelectionChanged, true); Refresh();
             return;
         }
-        Native.Set(_world, "_petHatchInFlight", true);
+        Native.Set(_world, "PetHatch.inFlight", true);
         bool sent = transform
             ? SendTransform(npc, item, slot - Inventory.GridStart, material.ItemId, scroll - Inventory.GridStart)
-            : Send("SendPetHatch", npc, item.ItemId, slot - Inventory.GridStart, name) ?? false;
-        if (!sent) { Native.Set(_world, "_petHatchInFlight", false); Native.Call(_world, "SetPetHatchStatus", NotSent, true); }
-        else Native.Call(_world, "SetPetHatchStatus", transform ? "Transforming…" : "Hatching…", false);
+            : Send(() => Game.Requests.Pet.Hatch(npc, item.ItemId, slot - Inventory.GridStart, name));
+        if (!sent) { Native.Set(_world, "PetHatch.inFlight", false); Native.Call(_world, "PetHatch.SetStatus", NotSent, true); }
+        else Native.Call(_world, "PetHatch.SetStatus", transform ? "Transforming…" : "Hatching…", false);
         Refresh();
     }
 
-    /// <summary>
-    /// Sends through the client. Returns null when the client has no sender with these arguments; clients whose
-    /// senders report nothing count a live connection as sent.
-    /// </summary>
-    private static bool? Send(string sender, params object[] args)
-    {
-        var net = Net.I;
-        if (!net.Connected) return false;
-        return Native.TryCall(net, sender, out var result, args) ? result is not false : null;
-    }
+    private static bool Send(Func<bool> send) => Game.Connection.Connected && send();
 
-    /// <summary>Clients that verify the familiar's identity take its unique id from the live bag.</summary>
     private static bool SendTransform(int npc, ItemSlot familiar, int petSlot, int materialItemId, int materialSlot) =>
-        Send("SendPetTransform", npc, familiar.ItemId, petSlot, (int)familiar.UniqueId, materialItemId, materialSlot)
-        ?? Send("SendPetTransform", npc, familiar.ItemId, petSlot, materialItemId, materialSlot)
-        ?? false;
+        Send(() => Game.Requests.Pet.Transform(npc, familiar.ItemId, petSlot, (int)familiar.UniqueId, materialItemId, materialSlot));
 
     private void Cancel(int revision)
     {
@@ -371,26 +360,25 @@ public sealed partial class FamiliarTrainer : Node
     }
 
     private void ShowTooltip(int abs, ItemSlot item) => FamiliarWindow.ShowItemTooltip(_world, abs, item);
-    private void HideTooltip() => Native.Call(_world, "HideItemTooltip");
+    private void HideTooltip() => Native.Call(_world, "ItemTooltip.Hide");
 
     public override void _Input(InputEvent ev)
     {
         if (ev is not InputEventKey { Pressed: true, Echo: false } key || key.Keycode is not (Key.Enter or Key.KpEnter or Key.Escape)) return;
         if (!Shown || !_window.IsVisibleInTree() || Notice != null) return;
         // Keys the world gives to HUD editing, active chat and a focused whisper keep that precedence.
-        if (Native.TryGet<bool>(_world, "_hudEditMode", out bool editing) && editing) return;
         if (Native.Has(_world, "Chat") && Native.Get<object>(_world, "Chat") is { } chat && Native.Get<bool>(chat, "IsActive")) return;
         var focus = GetViewport().GuiGetFocusOwner();
         if (key.Keycode == Key.Escape && WhisperOwns(focus)) return;
         if (focus is LineEdit or TextEdit or SpinBox && !_window.IsAncestorOf(focus)) return;
         GetViewport().SetInputAsHandled();
-        if (key.Keycode == Key.Escape) Native.Call(_world, "ClosePetHatch");
+        if (key.Keycode == Key.Escape) Native.Call(_world, "PetHatch.Close");
         else RequestConfirmation();
     }
 
     private bool WhisperOwns(Control? focus)
     {
-        if (focus == null || Native.Get<IDictionary>(_world, "_whispers") is not { } whispers) return false;
+        if (focus == null || Native.Get<IDictionary>(_world, "Whispers.Windows") is not { } whispers) return false;
         for (Node? node = focus; node != null; node = node.GetParent())
         {
             if (node is not HudWindow window) continue;

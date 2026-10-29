@@ -106,7 +106,7 @@ public partial class ClassicPremiumInk : Node
 
     private void Sync()
     {
-        NativePremium.Account? account = _kind == ClassicPremiumChipKind.Account ? NativePremium.Current(LibreKO.Network.Net.I) : null;
+        NativePremium.Account? account = _kind == ClassicPremiumChipKind.Account ? NativePremium.Current(Game.Connection) : null;
         if (account is { } state && _chip != null && GodotObject.IsInstanceValid(_chip))
         {
             string tooltip = state.Active ? NativePremium.Details(state) : "";

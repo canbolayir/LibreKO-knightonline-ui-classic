@@ -14,7 +14,7 @@ public static class ClassicMerchantSkin
         window.SetMeta("classic_merchant",true);
         if(window.Id=="wishfind") {var search=new ClassicMerchantSearch(window,body);window.AddChild(search);window.ResetSize();return search;}
         var panel=new ClassicMerchantPanel(window,body);window.AddChild(panel);window.ResetSize();
-        Node parent=window;while(parent.GetParent()!=null && parent is not World)parent=parent.GetParent();
+        Node parent=window;while(parent.GetParent()!=null && parent is not WorldRoot)parent=parent.GetParent();
         foreach(var layer in CharacterDetailsSkin.Tree(parent).OfType<CanvasLayer>().Where(l=>l.HasMeta("merchant_amount")))ClassicMerchantAmount.Apply(layer);
         foreach(var layer in CharacterDetailsSkin.Tree(parent).OfType<CanvasLayer>().Where(l=>l.HasMeta("merchant_advert")))ClassicMerchantAdvert.Apply(layer);
         return panel;
@@ -69,7 +69,7 @@ public partial class ClassicMerchantPanel : Control
                 ClassicMerchantSkin.Button(button,Plugin.Kit.Layout("co_tradeprice_us").Find("btn_ok")!,this,rect);
             }
             var cancel=new Button {Text="Cancel"};AddChild(cancel);cancel.Pressed+=()=>close.EmitSignal(BaseButton.SignalName.Pressed);
-            ClassicMerchantSkin.Button(cancel,Plugin.Kit.Layout("co_tradeprice_us").Find("btn_cancel")!,this,new Rect2(91,129,144,27));return;
+            ClassicMerchantSkin.Button(cancel,Plugin.Kit.Layout("co_tradeprice_us").Find("btn_cancel")!,this,new Rect2(91,201,144,27));return;
         }
         var heading=grip.GetChildren().OfType<Label>().First(l=>l.SizeFlagsHorizontal.HasFlag(SizeFlags.ExpandFill));
         ClassicVendorSkin.Move(heading,this,new Rect2(42,2,280,18));ClassicMerchantSkin.Font(heading);heading.HorizontalAlignment=HorizontalAlignment.Center;heading.ClipText=true;heading.AddThemeColorOverride("font_color",ClassicMerchantSkin.MerchantHeading(wish || window.Id=="wantedstall"));
@@ -89,7 +89,7 @@ public partial class ClassicMerchantPanel : Control
         for(int i=0;i<money.Length;i++){var rect=sell?new Rect2(130,350+i*30,204,22):new Rect2(193,157,153,21);ClassicVendorSkin.Move(money[i],this,rect);ClassicMerchantSkin.Font(money[i]);money[i].VerticalAlignment=VerticalAlignment.Center;money[i].SetMeta("merchant_balance_rect",true);}
         if(sell){foreach(var entry in new[]{("Total",350),("Coins",380)}){var label=Text(entry.Item1,new Rect2(24,entry.Item2,90,22));label.Name="money_caption_"+entry.Item1.ToLowerInvariant();label.AddThemeColorOverride("font_color",new Color("c8b68e"));}}
         var status=controls.OfType<Label>().Last();ClassicVendorSkin.Move(status,this,new Rect2(15,sell?406:135,334,18));ClassicMerchantSkin.Font(status);status.AutowrapMode=TextServer.AutowrapMode.Off;status.ClipText=true;status.SetMeta("merchant_status_rect",true);status.HorizontalAlignment=HorizontalAlignment.Center;
-        foreach(var button in controls.OfType<Button>()) {
+        foreach(var button in controls.OfType<Button>().Where(b=>b is not CheckBox)) {
             var source=_art.Find(button.Text is "Cancel"?"btn_cancel":"btn_ok") ?? Plugin.Kit.Layout("co_tradeinventory_us").Find(button.Text is "Cancel"?"btn_cancel":"btn_ok")!;
             var rect=new Rect2(source.Position,source.SizeVec);
             if(!sell && button.Text=="Cancel")rect=new Rect2(220,397,71,25);
@@ -98,6 +98,7 @@ public partial class ClassicMerchantPanel : Control
         }
         if(!sell && !wish){var ok=new Button {Text="OK"};AddChild(ok);ok.Pressed+=()=>close.EmitSignal(BaseButton.SignalName.Pressed);ClassicMerchantSkin.Button(ok,_art.Find("btn_ok")!,this,new Rect2(146,397,71,25));}
         foreach(var edit in controls.OfType<LineEdit>()){ClassicVendorSkin.Move(edit,this,new Rect2(24,388,314,18));ClassicMerchantSkin.Font(edit);edit.AddThemeStyleboxOverride("normal",new StyleBoxEmpty());edit.AddThemeStyleboxOverride("focus",new StyleBoxEmpty());}
+        if(sell && controls.OfType<CheckBox>().FirstOrDefault() is {} slave)SlaveToggle(slave);
         if(wish) {
             var summary=controls.OfType<VBoxContainer>().First(v=>v.CustomMinimumSize.Y==76);
             ClassicVendorSkin.Move(summary,this,new Rect2(16,193,332,180));summary.AddThemeConstantOverride("separation",0);
@@ -105,6 +106,16 @@ public partial class ClassicMerchantPanel : Control
             summary.ChildEnteredTree+=node=>{if(node is Control c){ClassicMerchantSkin.Font(c);if(c is Label label){label.ClipText=true;label.TooltipText=label.Text;}c.AddThemeColorOverride("font_color",new Color("c0c0c0"));}};
         }
         Resized+=()=>Size=CustomMinimumSize;
+    }
+    private void SlaveToggle(CheckBox toggle)
+    {
+        var caption=toggle.GetParent().GetChildren().OfType<Label>().FirstOrDefault();
+        ClassicVendorSkin.Move(toggle,this,new Rect2(12,436,68,21));ClassicMerchantSkin.Font(toggle);toggle.Text="Slave";
+        var check=Plugin.Kit.Layout("el_chat_us").Find("btn_check_normal")!;
+        foreach(string state in new[]{"unchecked","checked","unchecked_disabled","checked_disabled"})toggle.AddThemeIconOverride(state,ClassicChatControls.Atlas(check.Images.First(i=>i.Tag==(state.StartsWith("unchecked")?0:1))));
+        foreach(string state in new[]{"normal","hover","pressed","hover_pressed","disabled","focus"})toggle.AddThemeStyleboxOverride(state,new StyleBoxEmpty());
+        foreach(string state in new[]{"font_color","font_hover_color","font_pressed_color","font_hover_pressed_color","font_focus_color"})toggle.AddThemeColorOverride(state,new Color("00ff40"));
+        if(caption!=null)toggle.MouseEntered+=()=>toggle.TooltipText=caption.Text+"\n"+caption.TooltipText;
     }
     public override void _Draw(){DrawRect(new Rect2(Vector2.Zero,Size),Colors.Black);foreach(var part in _art.Images)DrawTextureRectRegion(Plugin.Kit.Texture(part.Texture!),new Rect2(part.Position,part.SizeVec),new Rect2(part.SrcX,part.SrcY,part.SrcW,part.SrcH),Window.Id=="merchantmenu"?Colors.White:ClassicMerchantSkin.MerchantAccent(Window.Id is "wishlist" or "wantedstall"));if(Window.Id=="sellstall")DrawLine(new Vector2(24,376),new Vector2(334,376),new Color("929aa7",0.3f));if(Window.Id=="wishlist")DrawRect(new Rect2(12,190,339,197),Colors.Black);}
 }

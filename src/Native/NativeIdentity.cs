@@ -29,7 +29,7 @@ public static class NativeIdentity
     public const string ClanFeeText = "Creating a clan costs {0:n0} coins. Do you want to create this clan?";
 
     /// <summary>Runs the preparer of an identity, council or equipment view window built outside the client's window flow.</summary>
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         switch (window.Id)
         {
@@ -41,66 +41,66 @@ public static class NativeIdentity
         }
     }
 
-    public static void PrepareNameChange(HudWindow window, World world)
+    public static void PrepareNameChange(HudWindow window, WorldRoot world)
     {
         if (!Begin(window, "native_identity")) return;
         var body = window.Body;
         // Upstream fills the hint when the window opens (character or clan rename); older clients built it with text.
-        var hint = Native.Has(world, "_nameChangeHint") ? Native.Get<Label>(world, "_nameChangeHint")
+        var hint = Native.Has(world, "NameChange.hint") ? Native.Get<Label>(world, "NameChange.hint")
             : body.GetChildren().OfType<Label>().FirstOrDefault(l => l.Text.StartsWith("Requires a Scroll", StringComparison.Ordinal));
         NativeWindows.Name(hint, "name_change_hint");
-        NativeWindows.Name(Native.Get<LineEdit>(world, "_nameChangeEdit"), "name_change_name");
-        var accept = Native.Get<Button>(world, "_nameChangeBtn");
+        NativeWindows.Name(Native.Get<LineEdit>(world, "NameChange.edit"), "name_change_name");
+        var accept = Native.Get<Button>(world, "NameChange.btn");
         NativeWindows.Name(accept, "name_change_accept");
-        var status = Native.Get<Label>(world, "_nameChangeStatus");
+        var status = Native.Get<Label>(world, "NameChange.status");
         NativeWindows.Name(status, "name_change_status");
         if (accept == null || status == null || hint == null) return;
         var cancel = new Button { Name = "name_change_cancel", Text = "Cancel", FocusMode = Control.FocusModeEnum.None };
-        cancel.Pressed += () => Native.Call(world, "CloseNameChange");
+        cancel.Pressed += () => Native.Call(world, "NameChange.Close");
         body.AddChild(cancel);
         body.MoveChild(cancel, status.GetIndex());
         window.SetMeta("classic_identity_controls", 1);
         // Clan rename (opened by the clan ID change reply) reuses this window.
         window.SetMeta("name_change_clan", false);
-        if (Native.Has(world, "_nameChangeClan"))
-            NativeWindows.Sync(window, () => window.SetMeta("name_change_clan", Native.Get<bool>(world, "_nameChangeClan")));
+        if (Native.Has(world, "NameChange.clan"))
+            NativeWindows.Sync(window, () => window.SetMeta("name_change_clan", Native.Get<bool>(world, "NameChange.clan")));
     }
 
     /// <summary>True while the rename window serves a clan ID change.</summary>
     public static bool RenamesClan(HudWindow window) => window.GetMeta("name_change_clan", false).AsBool();
 
-    public static void PrepareClanCreate(HudWindow window, World world)
+    public static void PrepareClanCreate(HudWindow window, WorldRoot world)
     {
         if (!Begin(window, "native_identity")) return;
-        NativeWindows.Name(Native.Get<Label>(world, "_clanCreateMessage"), "clan_create_message");
-        NativeWindows.Name(Native.Get<LineEdit>(world, "_clanCreateName"), "clan_create_name");
+        NativeWindows.Name(Native.Get<Label>(world, "ClanCreate.messageLabel"), "clan_create_message");
+        NativeWindows.Name(Native.Get<LineEdit>(world, "ClanCreate.nameInput"), "clan_create_name");
         var buttons = Native.Descendants(window.Body).OfType<Button>().ToArray();
         bool named = NativeWindows.Name(buttons.FirstOrDefault(b => b.Text == "Create"), "clan_create_accept")
             & NativeWindows.Name(buttons.FirstOrDefault(b => b.Text == "Cancel"), "clan_create_cancel");
-        if (!named || !Native.Has(world, "_clanCreateMessage") || !Native.Has(world, "_clanCreateName")) return;
+        if (!named || !Native.Has(world, "ClanCreate.messageLabel") || !Native.Has(world, "ClanCreate.nameInput")) return;
         window.SetMeta("classic_identity_controls", 1);
         // The Classic fee question speaks of coins, as the original text table does.
         string fee = string.Format(ClanFeeText, ClanTypes.CreationCoins);
         NativeWindows.Sync(window, () =>
         {
-            if (Native.Get<Notice>(world, "_clanCreateNotice") is { } notice && GodotObject.IsInstanceValid(notice)
-                && Native.Get<DialogRequest>(notice, "_request") is { } request && request.Message != fee)
+            if (Native.Get<Notice>(world, "ClanCreate.notice") is { } notice && GodotObject.IsInstanceValid(notice)
+                && Native.Get<DialogRequest>(notice, "request") is { } request && request.Message != fee)
                 notice.SetMessage(fee);
         });
     }
 
-    public static void PrepareDisguise(HudWindow window, World world)
+    public static void PrepareDisguise(HudWindow window, WorldRoot world)
     {
         if (!Begin(window, "native_identity")) return;
-        var groups = Native.Get<VBoxContainer>(world, "_disguiseGroupRows");
-        var forms = Native.Get<VBoxContainer>(world, "_disguiseFormRows");
+        var groups = Native.Get<VBoxContainer>(world, "DisguiseWindow.groupRows");
+        var forms = Native.Get<VBoxContainer>(world, "DisguiseWindow.formRows");
         NativeWindows.Name(groups, "disguise_groups");
         NativeWindows.Name(forms, "disguise_forms");
-        NativeWindows.Name(Native.Get<Label>(world, "_disguiseNote"), "disguise_note");
+        NativeWindows.Name(Native.Get<Label>(world, "DisguiseWindow.note"), "disguise_note");
         var buttons = Native.Descendants(window.Body).OfType<Button>().Where(b => b.GetParent() != groups && b.GetParent() != forms).ToArray();
         bool named = NativeWindows.Name(buttons.FirstOrDefault(b => b.Text == "OK"), "disguise_accept")
             & NativeWindows.Name(buttons.FirstOrDefault(b => b.Text == "Close"), "disguise_cancel");
-        if (!named || groups == null || forms == null || !Native.Has(world, "_disguiseNote")) return;
+        if (!named || groups == null || forms == null || !Native.Has(world, "DisguiseWindow.note")) return;
         foreach (var rows in new[] { groups, forms })
         {
             foreach (var row in rows.GetChildren()) MarkDisguiseRow(row);
@@ -117,13 +117,13 @@ public static class NativeIdentity
         button.SetMeta("identity_selected", button.GetThemeColor("font_color") == UiTheme.GoldBright);
     }
 
-    public static void PrepareCouncilRate(HudWindow window, World world)
+    public static void PrepareCouncilRate(HudWindow window, WorldRoot world)
     {
         if (!Begin(window, "native_council")) return;
         bool nation = window.Id == "nationtaxrate";
         var body = window.Body;
-        var prompt = nation ? body.GetChildren().OfType<Label>().FirstOrDefault() : Native.Get<Label>(world, "_siegeTaxRatePrompt");
-        var value = Native.Get<Label>(world, nation ? "_nationTaxRateValue" : "_siegeTaxRateValue");
+        var prompt = nation ? body.GetChildren().OfType<Label>().FirstOrDefault() : Native.Get<Label>(world, "Siege.taxRatePrompt");
+        var value = Native.Get<Label>(world, nation ? "KingTreasury.nationTaxRateValue" : "Siege.taxRateValue");
         var arrows = value?.GetParent()?.GetParent();
         var footer = body.GetChildren().OfType<HBoxContainer>().LastOrDefault(row => row != arrows);
         var steps = arrows?.GetChildren().OfType<Button>().ToArray() ?? Array.Empty<Button>();
@@ -134,14 +134,14 @@ public static class NativeIdentity
         actions[0].Name = "taxrate_accept"; actions[1].Name = "taxrate_cancel";
         window.SetMeta("classic_council_controls", 1);
         window.SetMeta("council_rate_pending", false);
-        if (nation) NativeWindows.Sync(window, () => window.SetMeta("council_rate_pending", Native.Get<bool>(world, "_nationTaxRateBusy")));
+        if (nation) NativeWindows.Sync(window, () => window.SetMeta("council_rate_pending", Native.Get<bool>(world, "KingTreasury.nationTaxRateBusy")));
     }
 
     /// <summary>Changes the nation tax rate unless a tariff request is pending.</summary>
-    public static void StepNationTaxRate(World world, int delta)
+    public static void StepNationTaxRate(WorldRoot world, int delta)
     {
-        if (Native.Get<bool>(world, "_nationTaxRateBusy")) return;
-        Native.Call(world, "StepNationTaxRate", delta);
+        if (Native.Get<bool>(world, "KingTreasury.nationTaxRateBusy")) return;
+        Native.Call(world, "KingTreasury.StepNationTaxRate", delta);
     }
 
     internal static bool Begin(HudWindow window, string marker)

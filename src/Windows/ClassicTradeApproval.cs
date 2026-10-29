@@ -34,7 +34,7 @@ public partial class ClassicTradeApproval : CanvasLayer
         label.AutowrapMode = TextServer.AutowrapMode.WordSmart; label.MaxLinesVisible = 2;
         label.ClipText = true; label.TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis;
         label.TooltipText = itemName; label.MouseFilter = Control.MouseFilterEnum.Pass;
-        var icon = new TextureRect { Name = "trade_item_icon", Texture = ItemData.Icon(details["item_id"].AsInt32()),
+        var icon = new TextureRect { Name = "trade_item_icon", Texture = ItemIcons.Get(details["item_id"].AsInt32()),
             ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, MouseFilter = Control.MouseFilterEnum.Pass, TooltipText = itemName };
         _panel.AddChild(icon); ClassicNpcLayout.Place(icon, ClassicTradeApprovalLayout.Icon);
         Text("trade_quantity_caption", "Quantity", ClassicTradeApprovalLayout.QuantityCaption, 12, ClassicDesign.Muted);

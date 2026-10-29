@@ -17,7 +17,7 @@ public partial class Preview
         var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
         var checks = new List<string>(); var screens = new List<object>();
         string prefix = nation == 1 ? "karus" : "human";
-        void Require(bool condition, string text) { if (!condition) throw new Exception("MAP_FORTUNE_AUDIT: " + text); checks.Add(text); }
+        void Require([System.Diagnostics.CodeAnalysis.DoesNotReturnIf(false)] bool condition, string text) { if (!condition) throw new Exception("MAP_FORTUNE_AUDIT: " + text); checks.Add(text); }
         async Task Frames(int count = 8) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         T Named<T>(Node root, string name) where T : Node => Descendants(root).OfType<T>().Single(c => c.Name == name);
         Rect2 Within(Control panel, Control control) => new(control.GetGlobalRect().Position - panel.GetGlobalRect().Position, control.GetGlobalRect().Size);
@@ -69,17 +69,17 @@ public partial class Preview
             Require(window.Position == origin + new Vector2(30, 15), what + " title band uses native dragging");
             await Frames(2);
         }
-        async Task Escape(World world, HudWindow window, string field, string what)
+        async Task Escape(WorldRoot world, HudWindow window, string field, string what)
         {
             Require(window.Visible && (bool)DetailField(world, field)!, what + " open before Escape");
             // The native escape stack closes its first open entry. Entries for systems a preview world never
             // builds cannot be queried; skipping them leaves the stack order intact for everything else.
-            DetailCall(world, "BuildEscapeStack");
-            foreach (System.Runtime.CompilerServices.ITuple entry in (System.Collections.IEnumerable)DetailField(world, "_escapeStack")!)
+            DetailCall(world, "BuildEscapeOrder");
+            foreach (var (isOpen, close, _) in PreviewFixtures.EscapeEntries(world))
             {
                 bool open;
-                try { open = ((Func<bool>)entry[0]!)(); } catch (NullReferenceException) { continue; }
-                if (open) { ((Action)entry[1]!)(); break; }
+                try { open = isOpen(); } catch (NullReferenceException) { continue; }
+                if (open) { close(); break; }
             }
             await Frames(2);
             Require(!window.Visible && !(bool)DetailField(world, field)!, what + " Escape invokes the native close");
@@ -89,13 +89,13 @@ public partial class Preview
         // World Map.
         {
             var size = ClassicMapFortuneLayout.Map.Size;
-            var world = new World(); var window = (HudWindow)DetailCall(world, "BuildGlobalMapPreview")!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildGlobalMapPreview")!;
             AddChild(window); var panel = (ClassicMapPanel)ClassicMapFortuneSkin.Apply(window.Body)!;
             Require(panel != null, "World Map Classic skin applied to the prepared native window");
             await Frames();
             var rows = Named<VBoxContainer>(window, "map_rows"); var total = Named<Label>(panel, "map_total");
             var close = panel.CloseButton; var rail = panel.Rail;
-            Require(window.Visible && (bool)DetailField(world, "_globalMapShown")!, "World Map opens through the native toggle");
+            Require(window.Visible && (bool)DetailField(world, "GlobalMap.shown")!, "World Map opens through the native toggle");
             Require(rows.GetChildCount() == 0 && total.Text.Length == 0, "World Map waits for the native zone reply");
             Require(Connected(close), "World Map close keeps the native handler");
             await Capture(window, "globalmap", "loading", size);
@@ -170,24 +170,24 @@ public partial class Preview
             DetailCall(world, "FillGlobalMap", "filled"); await Frames();
             CheckRows(8);
             await Click(close);
-            Require(!window.Visible && !(bool)DetailField(world, "_globalMapShown")!, "World Map close mouse click invokes the native close");
-            DetailCall(world, "ToggleGlobalMap"); await Frames(2);
+            Require(!window.Visible && !(bool)DetailField(world, "GlobalMap.shown")!, "World Map close mouse click invokes the native close");
+            DetailCall(world, "GlobalMap.Toggle"); await Frames(2);
             Require(window.Visible, "World Map toggles open again natively");
-            await Escape(world, window, "_globalMapShown", "World Map");
-            DetailCall(world, "ToggleGlobalMap"); await Frames(2);
+            await Escape(world, window, "GlobalMap.shown", "World Map");
+            DetailCall(world, "GlobalMap.Toggle"); await Frames(2);
             await Drag(window, "World Map");
-            DetailCall(world, "GlobalMapDispose");
+            DetailCall(world, "GlobalMap.Dispose");
             window.QueueFree(); await Frames(2); world.Free(); await Frames(2);
         }
 
         // Fortune Teller.
         {
             var size = ClassicMapFortuneLayout.Fortune.Size;
-            var world = new World(); var window = (HudWindow)DetailCall(world, "BuildFortuneWindowPreview", false)!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildFortuneWindowPreview", false)!;
             AddChild(window); var panel = ClassicMapFortuneSkin.Apply(window.Body)!;
             Require(panel is ClassicFortunePanel, "Fortune Classic skin applied to the prepared native window");
             await Frames();
-            var deck = (FortuneDeck)DetailField(world, "_fortuneDeck")!;
+            var deck = (FortuneDeck)DetailField(world, "Fortune.Deck")!;
             Require(deck.Readings.Length > 0 && deck.FramesOf(Fortune.SpinFrames).Length > 0 && deck.FramesOf(Fortune.FinalFrames).Length > 0, "Fortune deck has readings and both card animations");
             var pick = Named<Control>(window, "fortune_pick"); var stage = Named<Control>(window, "fortune_stage");
             var cards = Enumerable.Range(0, Fortune.CardsShown).Select(i => Named<TextureButton>(window, "fortune_card_" + i)).ToArray();
@@ -216,7 +216,7 @@ public partial class Preview
             await Frames(6);
             await Capture(window, "fortune", "spin", size);
             await ToSignal(GetTree().CreateTimer(2.4), SceneTreeTimer.SignalName.Timeout); await Frames(4);
-            var drawn = (FortuneReading)DetailField(world, "_fortuneReading")!;
+            var drawn = (FortuneReading)DetailField(world, "Fortune.Reading")!;
             Require(name.Visible && name.Text == drawn.Title && ok.Visible && !reveal.Visible, "Fortune turn completes into the native reading");
             Require(face.Texture != null && stars.GetChildren().OfType<TextureRect>().Count(s => !s.IsQueuedForDeletion()) == Math.Clamp(drawn.Level, 0, Fortune.MaxStars), "Fortune reveals the card face and the reading's stars");
             void CheckLines()
@@ -234,25 +234,25 @@ public partial class Preview
             CheckLines();
             await Capture(window, "fortune", "reading", size);
             var longest = deck.Readings.OrderByDescending(r => r.Lines.Select(l => l.Length).DefaultIfEmpty(0).Max()).First();
-            DetailCall(world, "RevealFortune", longest); Named<Flipbook>(window, "fortune_final").Stop(); await Frames(4);
+            DetailCall(world, "Fortune.Reveal", longest); Named<Flipbook>(window, "fortune_final").Stop(); await Frames(4);
             Require(name.Text == longest.Title && lines.Any(l => l.GetLineCount() > 1), "Fortune longest reading line wraps inside the column");
             CheckLines();
             await Capture(window, "fortune", "reading-long", size);
             await Hover(ok); Require(ok.GetDrawMode() == BaseButton.DrawMode.Hover, "Fortune OK receives actual mouse hover");
             await Capture(window, "fortune", "ok-hover", size);
             await Click(ok);
-            Require(!window.Visible && !(bool)DetailField(world, "_fortuneShown")!, "Fortune OK mouse click invokes the native close");
-            DetailCall(world, "OpenFortune"); await Frames(2);
+            Require(!window.Visible && !(bool)DetailField(world, "Fortune.shown")!, "Fortune OK mouse click invokes the native close");
+            DetailCall(world, "Fortune.Open"); await Frames(2);
             Require(window.Visible && pick.Visible && !stage.Visible && cards.All(c => Within(panel, c) == c.GetMeta(ClassicMapFortuneSkin.ExpectedRect).AsRect2()), "Fortune reopens on a fresh card fan");
             await Click(panel.CloseButton);
-            Require(!window.Visible && !(bool)DetailField(world, "_fortuneShown")!, "Fortune close mouse click invokes the native close");
+            Require(!window.Visible && !(bool)DetailField(world, "Fortune.shown")!, "Fortune close mouse click invokes the native close");
             window.QueueFree(); await Frames(2); world.Free(); await Frames(2);
         }
         {
-            var world = new World(); var window = (HudWindow)DetailCall(world, "BuildFortuneDragPreview")!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildFortuneDragPreview")!;
             AddChild(window); ClassicMapFortuneSkin.Apply(window.Body); await Frames();
-            await Escape(world, window, "_fortuneShown", "Fortune");
-            DetailCall(world, "OpenFortune"); await Frames(2);
+            await Escape(world, window, "Fortune.shown", "Fortune");
+            DetailCall(world, "Fortune.Open"); await Frames(2);
             await Drag(window, "Fortune");
             window.QueueFree(); await Frames(2); world.Free(); await Frames(2);
         }

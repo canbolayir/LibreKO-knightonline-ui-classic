@@ -14,11 +14,11 @@ public partial class Preview
         GetViewport().GuiEmbedSubwindows = true;
         var original = Net.I; var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
         var flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        var world = new PetAuditWorld();
+        var world = PreviewFixtures.Prepared(new PetAuditWorld());
         var layer = (CanvasLayer)DetailCall(world, "BuildPetHatchClassicUiPreview", nation, false)!;
         world.AddChild(layer); AddChild(world);
         DetailCall(world, "EnablePetKeyboardUiPreview");
-        T Field<T>(string name) => (T)typeof(World).GetField(name, flags)!.GetValue(world)!;
+        T Field<T>(string name) => (T)Native.Get<object>(world, name)!;
         var checks = new List<string>();
         void Require(bool ok, string text) { if (!ok) throw new Exception("PET_KEYBOARD_AUDIT: " + text); checks.Add(text); }
         async Task Frames(int count = 4) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
@@ -28,10 +28,10 @@ public partial class Preview
             await Frames();
         }
         bool ChatActive() => (bool)DetailCall(world, "PetKeyboardChatActive")!;
-        var name = Field<LineEdit>("_petHatchName"); var panel = Field<HudWindow>("_petHatchPanel");
+        var name = Field<LineEdit>("PetHatch.NameInput"); var panel = Field<HudWindow>("PetHatch.Panel");
         bool NoticeOpen() => PreviewFixtures.PetHatchNotice(world) != null;
-        var tabs = Field<ServiceTabs>("_petHatchTabs");
-        var buttons = (List<Button>)typeof(ServiceTabs).GetField("_buttons", flags)!.GetValue(tabs)!;
+        var tabs = Field<ServiceTabs>("PetHatch.tabs");
+        var buttons = (List<Button>)typeof(ServiceTabs).GetField("buttons", flags)!.GetValue(tabs)!;
         try
         {
             await Frames();
@@ -47,14 +47,14 @@ public partial class Preview
             GetViewport().GuiGetFocusOwner()?.ReleaseFocus(); await KeyPress(Key.KpEnter);
             Require(NoticeOpen() && !ChatActive(), "Unfocused keypad Enter takes precedence over global chat opening");
             await KeyPress(Key.Enter);
-            Require(!NoticeOpen() && !Field<bool>("_petHatchInFlight") && Field<Label>("_petHatchStatus").Text.StartsWith("Not connected"), "Confirmation Enter sends once and disconnected failure unlocks");
-            typeof(World).GetField("_petHatchInFlight", flags)!.SetValue(world, true); DetailCall(world, "RefreshPetHatchUI");
+            Require(!NoticeOpen() && !Field<bool>("PetHatch.inFlight") && Field<Label>("PetHatch.status").Text.StartsWith("Not connected"), "Confirmation Enter sends once and disconnected failure unlocks");
+            Native.Set(world, "PetHatch.inFlight", true); DetailCall(world, "PetHatch.RefreshUI");
             GetViewport().GuiGetFocusOwner()?.ReleaseFocus(); await KeyPress(Key.Enter);
             Require(!NoticeOpen() && !ChatActive() && buttons.All(b => b.Disabled), "Pending input cannot reopen confirmation, chat or editable tabs");
-            await KeyPress(Key.Escape); Require(!panel.Visible && Field<bool>("_petHatchInFlight"), "Pending Escape hides without cancelling the authoritative request");
-            DetailCall(world, "OpenPetHatch", 99999);
-            Require(buttons.All(b => b.Disabled) && Field<int>("_petHatchNpc") == 13016, "Pending reopen retains trainer identity and the tab lock");
-            typeof(World).GetField("_petHatchInFlight", flags)!.SetValue(world, false); DetailCall(world, "RefreshPetHatchUI");
+            await KeyPress(Key.Escape); Require(!panel.Visible && Field<bool>("PetHatch.inFlight"), "Pending Escape hides without cancelling the authoritative request");
+            DetailCall(world, "PetHatch.Open", 99999);
+            Require(buttons.All(b => b.Disabled) && Field<int>("PetHatch.npc") == 13016, "Pending reopen retains trainer identity and the tab lock");
+            Native.Set(world, "PetHatch.inFlight", false); DetailCall(world, "PetHatch.RefreshUI");
             name.GrabFocus(); await KeyPress(Key.Tab); await KeyPress(Key.Tab, shift: true);
             Require(!NoticeOpen() && !ChatActive(), "Tab and Shift-Tab never submit the operation or open chat");
             var other = new LineEdit { Position = new Vector2(10, 10), Size = new Vector2(120, 30) }; AddChild(other); other.GrabFocus();

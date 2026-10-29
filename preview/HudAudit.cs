@@ -162,7 +162,7 @@ public partial class Preview
             foreach(string pack in new[]{"build/client/LibreKO.pck","build/client/source-content/knightonline.pck"})
                 if(!ProjectSettings.LoadResourcePack(ProjectSettings.GlobalizePath("res://../../"+pack),false)) throw new Exception("Missing chat audit pack");
             ItemData.EnsureLoaded();
-            var type=typeof(World).Assembly.GetType("LibreKO.ChatSystem")!;
+            var type=typeof(WorldRoot).Assembly.GetType("LibreKO.ChatSystem")!;
             var system=Activator.CreateInstance(type,BindingFlags.Instance|BindingFlags.NonPublic,null,new object?[]{null},null)!;
             var entryType=type.GetNestedType("ChatEntry",BindingFlags.NonPublic)!;
             var store=type.GetField("_store",BindingFlags.Instance|BindingFlags.NonPublic)!.GetValue(system)!;

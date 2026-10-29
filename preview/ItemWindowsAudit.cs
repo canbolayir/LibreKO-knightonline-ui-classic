@@ -27,17 +27,16 @@ public partial class Preview
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 700);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net, new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
-            Name = "Item Preview", Gear = new int[8], Inventory = new ItemSlot[InventoryConstants.InventoryTotal] });
+        Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
+            Name = "Item Preview", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new ItemSlot[InventoryConstants.InventoryTotal]);
         ItemData.EnsureLoaded();
         PluginHost.Ui.ReplaceDialogs(request => new ClassicServiceNotice(request));
         var checks = new List<string>(); var screens = new List<object>();
         string prefix = nation == 1 ? "karus" : "human";
         void Require(bool valid, string text) { if (!valid) throw new Exception("ITEM_WINDOWS_AUDIT: " + text); checks.Add(text); }
         async Task Frames(int n = 8) { for (int i = 0; i < n; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
-        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        void Set(object owner, string field, object? value) => owner.GetType().GetField(field, flags)!.SetValue(owner, value);
-        Inventory InventoryOf(World w) => (Inventory)typeof(World).GetProperty("Inv", flags)!.GetValue(w)!;
+        void Set(object owner, string field, object? value) => Native.Set(owner, field, value);
+        Inventory InventoryOf(WorldRoot w) => (Inventory)Game.Session.Self.Inventory;
 
         void Bounds(Control panel, string state)
         {
@@ -84,9 +83,9 @@ public partial class Preview
                 controls = panel == null ? Array.Empty<object>() : Descendants(panel).OfType<Control>().Where(c => c.IsVisibleInTree() && (c.HasMeta(ClassicItemsPanel.ExpectedRect) || c.HasMeta("service_expected_rect")))
                     .Select(c => (object)new { name = c.Name.ToString(), rect = c.GetGlobalRect().ToString() }).ToArray() });
         }
-        async Task<(World, HudWindow, Control)> Build(string method, params object[] args)
+        async Task<(WorldRoot, HudWindow, Control)> Build(string method, params object[] args)
         {
-            var world = new World(); InventoryOf(world).EnsureLength(InventoryConstants.InventoryTotal);
+            var world = PreviewFixtures.Prepared(new WorldRoot()); InventoryOf(world).EnsureLength(InventoryConstants.InventoryTotal);
             var window = (HudWindow)DetailCall(world, method, args)!;
             AddChild(window);
             Control panel;
@@ -101,7 +100,7 @@ public partial class Preview
             Require(panel != null, window.Id + " receives its Classic skin");
             await Frames(); return (world, window, panel!);
         }
-        void Dispose(World world, Control window) { if (GodotObject.IsInstanceValid(window)) window.Free(); world.Free(); }
+        void Dispose(WorldRoot world, Control window) { if (GodotObject.IsInstanceValid(window)) window.Free(); world.Free(); }
         T Named<T>(Node root, string name) where T : Node => Descendants(root).OfType<T>().Single(n => n.Name == name);
 
         if (!lists)
@@ -109,7 +108,7 @@ public partial class Preview
             // Disassemble ------------------------------------------------------------------------
             foreach (bool result in new[] { false, true })
             {
-                var (world, window, panel) = await Build("BuildItemSmashUiPreview", result);
+                var (world, window, panel) = await Build("Preview.BuildItemSmash", result);
                 await Capture(window, result ? "itemsmash-result" : "itemsmash-staged", panel);
                 Require(Descendants(panel).OfType<ItemSlotView>().Count(c => c.Name.ToString().StartsWith("smash_bag_") && c.IsVisibleInTree()) == 28,
                     "Disassemble keeps the full Classic bag (28 cells) instead of the docked inventory " + result);
@@ -118,13 +117,13 @@ public partial class Preview
                 var staged = Named<ItemSlotView>(panel, "smash_bag_0");
                 if (!result)
                 {
-                    Require(staged.Look == SlotLook.Selected && !((Button)DetailField(world, "_smashStartBtn")!).Disabled, "The staged item is marked in the bag and Start is offered");
-                    var drop = Descendants((Node)DetailField(world, "_smashSocket")!).OfType<KnightOnlineUiClassic.Native.ServiceDropTarget>().Single();
+                    Require(staged.Look == SlotLook.Selected && !((Button)DetailField(world, "ItemSmashWindow.startBtn")!).Disabled, "The staged item is marked in the bag and Start is offered");
+                    var drop = Descendants((Node)DetailField(world, "ItemSmashWindow.socket")!).OfType<KnightOnlineUiClassic.Native.ServiceDropTarget>().Single();
                     Require(drop._CanDropData(Vector2.Zero, new Godot.Collections.Dictionary { { "invFrom", Inventory.GridStart } }), "A carried item can be dragged onto the disassembly socket");
                     Named<Button>(panel, "smash_cancel").EmitSignal(BaseButton.SignalName.Pressed); await Frames(2);
-                    Require((int)DetailField(world, "_smashSlot")! == -1 && staged.Look == SlotLook.Normal, "Cancel clears the bench through the native action");
+                    Require((int)DetailField(world, "ItemSmashWindow.slot")! == -1 && staged.Look == SlotLook.Normal, "Cancel clears the bench through the native action");
                     staged._GuiInput(new InputEventMouseButton { Pressed = true, ButtonIndex = MouseButton.Right }); await Frames(2);
-                    Require((int)DetailField(world, "_smashSlot")! == Inventory.GridStart, "Right-click on a bag cell stages it through the client's bag action");
+                    Require((int)DetailField(world, "ItemSmashWindow.slot")! == Inventory.GridStart, "Right-click on a bag cell stages it through the client's bag action");
                     await Capture(window, "itemsmash-restaged", panel);
                 }
                 else Require(results.Count(r => r is Control c && Descendants(c).OfType<TextureRect>().Any(t => t.Texture != null)) == 3, "The disassembly result shows the received pieces");
@@ -134,7 +133,7 @@ public partial class Preview
             // Character Seal ---------------------------------------------------------------------
             foreach (string page in new[] { "help", "select", "code" })
             {
-                var (world, window, panel) = await Build("BuildCharacterSealUiPreview", page == "help" ? "sealing" : page);
+                var (world, window, panel) = await Build("Preview.BuildCharacterSeal", page == "help" ? "sealing" : page);
                 await Frames(4);
                 Require(window.GetMeta("items_page").AsString() == page, "Character Seal follows the native page " + page);
                 await Capture(window, "char-seal-" + page, panel);
@@ -159,7 +158,7 @@ public partial class Preview
                     Require(slots[1].GetThemeColor("font_color") == ClassicDesign.FrameTitle, "The picked slot is highlighted");
                     var free = slots.First(s => !s.Disabled && s != slots[1]);
                     free.EmitSignal(BaseButton.SignalName.Pressed); await Frames(2);
-                    Require((int)DetailField(world, "_csPicked")! == Array.IndexOf(slots, free) && free.GetThemeColor("font_color") == ClassicDesign.FrameTitle,
+                    Require((int)DetailField(world, "CharacterSealWindow.Picked")! == Array.IndexOf(slots, free) && free.GetThemeColor("font_color") == ClassicDesign.FrameTitle,
                         "A slot click picks it natively and moves the highlight");
                     Require(slots.Any(s => s.Disabled), "Unpickable slots stay visible but disabled");
                     await Capture(window, "char-seal-select-picked", panel);
@@ -177,29 +176,29 @@ public partial class Preview
                 }
                 if (page == "help")
                 {
-                    DetailCall(world, "BuildCharacterSealTrans");
+                    DetailCall(world, "CharacterSealWindow.BuildTrans");
                     Named<Button>(panel, "cs_seal").EmitSignal(BaseButton.SignalName.Pressed);
-                    Require(!window.Visible && ((Control)DetailField(world, "_csTrans")!).Visible, "Seal opens the native scroll transfer window");
+                    Require(!window.Visible && ((Control)DetailField(world, "CharacterSealWindow.CsTrans")!).Visible, "Seal opens the native scroll transfer window");
                 }
                 Dispose(world, window); await Frames();
             }
             {
-                var (world, window, panel) = await Build("BuildCharacterSealUiPreview", "trans");
+                var (world, window, panel) = await Build("Preview.BuildCharacterSeal", "trans");
                 var inventory = InventoryOf(world);
                 inventory[Inventory.GridStart + 2] = new ItemSlot { ItemId = 800111000, Count = 1 };
-                Set(world, "_csTransShown", true);
+                Set(world, "CharacterSealWindow.csTransShown", true);
                 await Capture(window, "char-seal-trans", panel);
                 Require(Descendants(panel).OfType<ItemSlotView>().Count(c => c.Name.ToString().StartsWith("cstrans_bag_") && c.IsVisibleInTree()) == 28, "The scroll transfer keeps the Classic bag");
                 Named<ItemSlotView>(panel, "cstrans_bag_2")._GuiInput(new InputEventMouseButton { Pressed = true, ButtonIndex = MouseButton.Right }); await Frames(2);
-                Require((int)DetailField(world, "_csBagSlot")! == Inventory.GridStart + 2 && Named<ItemSlotView>(panel, "cstrans_bag_2").Look == SlotLook.Selected,
+                Require((int)DetailField(world, "CharacterSealWindow.csBagSlot")! == Inventory.GridStart + 2 && Named<ItemSlotView>(panel, "cstrans_bag_2").Look == SlotLook.Selected,
                     "Right-click places the scroll through the client's bag action and marks it");
                 await Capture(window, "char-seal-trans-staged", panel);
                 Dispose(world, window); await Frames();
             }
             foreach (bool achievements in new[] { false, true })
             {
-                var (world, window, panel) = await Build("BuildCharacterSealUiPreview", "sheet");
-                if (achievements) { DetailCall(world, "OnSealedAchievements", new[] { 1, 2, 3 }); await Frames(4); }
+                var (world, window, panel) = await Build("Preview.BuildCharacterSeal", "sheet");
+                if (achievements) { DetailCall(world, "CharacterSealWindow.OnSealedAchievements", new[] { 1, 2, 3 }); await Frames(4); }
                 await Capture(window, achievements ? "char-seal-sheet-achievements" : "char-seal-sheet", panel);
                 Require(Descendants(panel).OfType<ItemSlotView>().Count(c => c.Name.ToString().StartsWith("sheet_cell_") && c.IsVisibleInTree()) == 42, "The Cypher Ring sheet shows 14 gear and 28 bag cells");
                 Require(panel.Size == ClassicItemsLayout.Size("char_seal_sheet", achievements ? "achievements" : ""), "The sheet grows only for the achievements line " + achievements);
@@ -209,8 +208,8 @@ public partial class Preview
             // EXP Seal ---------------------------------------------------------------------------
             foreach (bool on in new[] { false, true })
             {
-                var (world, window, panel) = await Build("BuildExpSealUiPreview");
-                typeof(Net).GetProperty("ExpSealState")!.SetValue(net, on ? ExpSeal.StateOn : ExpSeal.StateOff);
+                var (world, window, panel) = await Build("Preview.BuildExpSeal");
+                Native.Set(Game.Session.ExpSeal, "ExpSealState", on ? ExpSealState.On : ExpSealState.Off);
                 await Frames(2);
                 await Capture(window, on ? "exp-seal-on" : "exp-seal-off", panel);
                 var onButton = Named<Button>(panel, "exp_seal_on"); var offButton = Named<Button>(panel, "exp_seal_off");
@@ -225,7 +224,7 @@ public partial class Preview
         {
             // Temporary Item List ----------------------------------------------------------------
             {
-                var (world, window, panel) = await Build("BuildTimedItemsUiPreview");
+                var (world, window, panel) = await Build("Preview.BuildTimedItems");
                 await Capture(window, "timed-items", panel);
                 var bar = Named<VScrollBar>(panel, "timed_scroll");
                 Require(bar.IsVisibleInTree() && bar.MaxValue == 2, "Four temporary items page by three rows with the Classic scroll bar");
@@ -242,7 +241,7 @@ public partial class Preview
 
             // Loot Filter ------------------------------------------------------------------------
             {
-                var (world, window, panel) = await Build("BuildLootFilterUiPreview");
+                var (world, window, panel) = await Build("Preview.BuildLootFilter");
                 await Capture(window, "loot-filter", panel);
                 var checksShown = Descendants(panel).OfType<CheckBox>().Where(c => c.IsVisibleInTree()).ToArray();
                 Require(checksShown.Length == 11 && checksShown.All(c => c.GetThemeIcon("checked") is AtlasTexture), "Eleven Classic check boxes (switch, four groups, six grades)");
@@ -257,9 +256,9 @@ public partial class Preview
             PluginHost.Ui.ReplaceExitMenu(request => new ClassicExitMenu(request));
             foreach (bool timed in new[] { false, true })
             {
-                var world = new World(); InventoryOf(world).EnsureLength(InventoryConstants.InventoryTotal);
-                var esc = (CanvasLayer)DetailCall(world, "ExitMenuUiPreview", timed)!;
-                var skin = (CanvasLayer)DetailField(world, "_exitSkinLayer")!; skin.Reparent(this);
+                var world = PreviewFixtures.Prepared(new WorldRoot()); InventoryOf(world).EnsureLength(InventoryConstants.InventoryTotal);
+                var esc = (CanvasLayer)DetailCall(world, "Preview.ExitMenu", timed)!;
+                var skin = (CanvasLayer)DetailField(world, "GameMenu.exitSkinLayer")!; skin.Reparent(this);
                 await Frames();
                 var menu = Descendants(skin).OfType<ClassicExitMenu>().Single();
                 var view = menu.Menu;
@@ -278,7 +277,7 @@ public partial class Preview
                 string file = prefix + (timed ? "-exit-menu-timed.png" : "-exit-menu.png");
                 GetViewport().GetTexture().GetImage().SavePng(output + "/" + file); screens.Add(new { state = timed ? "exit-menu-timed" : "exit-menu", file });
                 view.Get<BaseButton>("btn_cancel")!.EmitSignal(BaseButton.SignalName.Pressed); await Frames();
-                Require(!(bool)DetailField(world, "_escShown")! && (!GodotObject.IsInstanceValid(skin) || skin.IsQueuedForDeletion()), "Cancel runs the client's row and closes the menu");
+                Require(!(bool)DetailField(world, "GameMenu.shown")! && (!GodotObject.IsInstanceValid(skin) || skin.IsQueuedForDeletion()), "Cancel runs the client's row and closes the menu");
                 esc.Free(); world.Free(); await Frames();
             }
         }

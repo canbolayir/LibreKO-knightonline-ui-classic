@@ -49,7 +49,7 @@ public partial class Preview
         }
         foreach (string id in new[] { "messenger" })
         {
-            var world = new World(); var layer = (CanvasLayer)DetailCall(world, "BuildCommunicationUiPreview", id)!; AddChild(layer);
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var layer = (CanvasLayer)DetailCall(world, "BuildCommunicationUiPreview", id)!; AddChild(layer);
             var window = layer.GetChildren().OfType<HudWindow>().Single(); var panel = ClassicCommunicationSkin.Apply(window.Body)!;
             await Frames(); window.Position = new Vector2(50, 30); await Frames(2);
             var grip = Descendants(panel).OfType<Control>().Single(c => c.Name == "party_drag"); var start = window.Position;
@@ -60,8 +60,8 @@ public partial class Preview
             await Capture(window, id);
             if (id == "messenger")
             {
-                var rows = (VBoxContainer)DetailField(world, "_msgrList")!; var to = (LineEdit)DetailField(world, "_msgrToInput")!;
-                var message = (LineEdit)DetailField(world, "_msgrTextInput")!;
+                var rows = (VBoxContainer)DetailField(world, "Messenger.msgrList")!; var to = (LineEdit)DetailField(world, "Messenger.msgrToInput")!;
+                var message = (LineEdit)DetailField(world, "Messenger.msgrTextInput")!;
                 Require(to.MaxLength == 20 && message.MaxLength == 128, "Messenger retains native input limits");
                 Require(rows.GetChildren().OfType<PanelContainer>().Count() == 3, "Messenger preserves online and offline rows");
                 var action = Descendants(rows).OfType<Button>().First(); await Click(action);
@@ -69,8 +69,8 @@ public partial class Preview
                 to.GrabFocus(); await KeyInput(Key.Enter); Require(message.HasFocus(), "Recipient Enter advances to message without sending");
                 message.Text = "Ready for the hunt."; await Capture(window, "whisper-ready"); await KeyInput(Key.Enter);
                 Require(message.Text == "" && to.Text == "Rikka", "Message Enter follows native send and clears only message");
-                message.Text = "  "; DetailCall(world, "DoMessengerSend"); Require(message.Text == "  ", "Blank message does not send");
-                to.Text = ""; message.Text = "Keep draft"; DetailCall(world, "DoMessengerSend"); Require(message.Text == "Keep draft", "Missing recipient does not send");
+                message.Text = "  "; DetailCall(world, "Messenger.DoSend"); Require(message.Text == "  ", "Blank message does not send");
+                to.Text = ""; message.Text = "Keep draft"; DetailCall(world, "Messenger.DoSend"); Require(message.Text == "Keep draft", "Missing recipient does not send");
                 var many = new List<MessengerBuddy>(); for (int i = 0; i < 24; i++) many.Add(new MessengerBuddy { CharId = i + 1, Name = "LongCharacterName1299", Online = i % 2 == 0 });
                 DetailCall(world, "OnMessengerList", many); await Frames();
                 Require(rows.GetChildCount() == 24, "Refresh immediately replaces old buddy children");
@@ -78,8 +78,8 @@ public partial class Preview
                 await Capture(window, "messenger-full");
                 DetailCall(world, "OnMessengerList", new List<MessengerBuddy>()); Require(rows.GetChildCount() == 1 && rows.GetChild(0) is Label { Text: "No one else online." }, "Empty buddy response has immediate empty state");
                 await Capture(window, "messenger-empty"); to.GrabFocus(); await KeyInput(Key.Escape);
-                Require(!window.Visible && !(bool)DetailField(world, "_msgrShown")!, "Focused recipient Escape follows native Messenger close");
-                DetailCall(world, "MessengerDispose");
+                Require(!window.Visible && !(bool)DetailField(world, "Messenger.msgrShown")!, "Focused recipient Escape follows native Messenger close");
+                DetailCall(world, "Messenger.Dispose");
             }
             layer.Free(); world.Free();
         }
@@ -101,8 +101,8 @@ public partial class Preview
     {
         ClassicSocialSkin.Register(LibreKO.Plugins.PluginHost.Ui);
         string prefix = nation == 1 ? "karus" : "human";
-        var me = Net.I.LastEnter; me.Name = "Tester10"; me.Nation = LibreKO.Domain.Nations.Karus; Native.Call(Net.I, "SeedPreviewEnter", me);
-        var world = new World(); var window = (HudWindow)DetailCall(world, "BuildSocialUiPreview", "nation-private")!;
+        var me = Game.Session.Self.LastEnter; me.Name = "Tester10"; me.Nation = LibreKO.Domain.Nations.Karus; Native.Call(Game.Session.Self, "SeedPreviewEnter", me);
+        var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildSocialUiPreview", "nation-private")!;
         var layer = new CanvasLayer(); AddChild(layer); layer.AddChild(window); window.Visible = true;
         KnightOnlineUiClassic.Native.NativeSocial.Prepare(window, world);
         async Task Capture(string state)
@@ -115,7 +115,7 @@ public partial class Preview
         }
         IEnumerable<PanelContainer> Live(VBoxContainer rows) => rows.GetChildren().OfType<PanelContainer>().Where(r => !r.IsQueuedForDeletion());
         Button Shown(string text) => Descendants(window).OfType<Button>().Single(b => b.Text == text && b.IsVisibleInTree());
-        var rows = (VBoxContainer)DetailField(world, "_ncPrivateRows")!; var scroll = (ScrollContainer)rows.GetParent();
+        var rows = (VBoxContainer)DetailField(world, "NationChannels.ncPrivateRows")!; var scroll = (ScrollContainer)rows.GetParent();
         await Capture("nation-rooms");
         float height = window.Size.Y, pitch = 22;
         Require(scroll.Size.Y % pitch == 0 && Live(rows).All(r => r.Size.Y == pitch), "Room list shows whole 22 px rows " + scroll.Size + " " + string.Join(",", Live(rows).Select(r => r.Size.Y)));
@@ -123,24 +123,24 @@ public partial class Preview
         Require(Shown("Search").Visible && Shown("Create room").Visible && NoRoomButtons(), "The Private tab is a search row: Search and Create room, no Enter, Leave or Open");
         var many = new List<LibreKO.Network.NationRoom>();
         for (int i = 0; i < 24; i++) many.Add(new LibreKO.Network.NationRoom(2000 + i, "A long room name for the market " + i, i % 3 == 0, LibreKO.Domain.Nations.Karus, 12, 50));
-        DetailCall(world, "OnNationRooms", many); await Frames(6);
+        DetailCall(world, "NationChannels.OnNationRooms", many); await Frames(6);
         Require(Live(rows).Count() == 24, "Room refresh immediately replaces prior rows");
         Require(scroll.GetVScrollBar().Visible && window.Size.Y == height, "Long room list scrolls within the fixed list");
         Require(Live(rows).All(r => r.HasMeta(ClassicSocialStyle.Styled) && r.GetMeta("social_row", false).AsBool()), "Refreshed rooms use the Classic row");
         await Capture("nation-rooms-full");
-        DetailCall(world, "OnNationRooms", new List<LibreKO.Network.NationRoom>()); await Frames(6);
+        DetailCall(world, "NationChannels.OnNationRooms", new List<LibreKO.Network.NationRoom>()); await Frames(6);
         Require(!Live(rows).Any() && window.Size.Y == height, "Empty room reply leaves no stale rows and keeps the frame");
-        Net.I.NationChat.Left(); DetailCall(world, "RefreshNationButtons"); await Frames(2);
+        Game.Session.NationChat.NationChat.Left(); DetailCall(world, "NationChannels.RefreshNationButtons"); await Frames(2);
         Require(Shown("Search").Visible && NoRoomButtons(), "Without a room the search row stays");
         await Capture("nation-rooms-empty");
-        DetailCall(world, "OnNationRooms", new List<LibreKO.Network.NationRoom> { new(3001, "Clan recruits", true, LibreKO.Domain.Nations.Karus, 2, 10) }); await Frames(4);
-        var password = (HudWindow)DetailField(world, "_ncPassword")!;
+        DetailCall(world, "NationChannels.OnNationRooms", new List<LibreKO.Network.NationRoom> { new(3001, "Clan recruits", true, LibreKO.Domain.Nations.Karus, 2, 10) }); await Frames(4);
+        var password = (HudWindow)DetailField(world, "NationChannels.ncPassword")!;
         Live(rows).First().EmitSignal(Control.SignalName.GuiInput, new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true }); await Frames(2);
-        Require(!password.Visible && (int)DetailField(world, "_ncSelectedRoom")! == 3001, "A single click selects the room without entering");
+        Require(!password.Visible && (int)DetailField(world, "NationChannels.NationSelectedRoom")! == 3001, "A single click selects the room without entering");
         Live(rows).First().EmitSignal(Control.SignalName.GuiInput, new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, DoubleClick = true }); await Frames(4);
         Require(password.Visible && password.GetChildren().OfType<ClassicSocialFrame>().Count() == 1, "A double-click on a locked room asks for its password in the Classic frame");
-        Require(((LineEdit)DetailField(world, "_ncPasswordEdit")!).Text == "", "Password prompt opens empty");
-        Require(KnightOnlineUiClassic.ClassicChatFormat.Channel(LibreKO.Domain.ChatType.ChatRoom).Tag == "room", "Room lines carry the Classic room channel tag");
-        DetailCall(world, "NationChatDispose"); layer.QueueFree(); world.QueueFree(); await Frames(2);
+        Require(((LineEdit)DetailField(world, "NationChannels.ncPasswordEdit")!).Text == "", "Password prompt opens empty");
+        Require(KnightOnlineUiClassic.ClassicChatFormat.Channel((byte)ChatType.ChatRoom).Tag == "room", "Room lines carry the Classic room channel tag");
+        DetailCall(world, "NationChannels.Dispose"); layer.QueueFree(); world.QueueFree(); await Frames(2);
     }
 }

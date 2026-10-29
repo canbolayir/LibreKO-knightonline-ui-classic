@@ -112,11 +112,11 @@ public partial class ClassicGenieQuickState : Node
         Sync();
     }
 
-    private void Reopen(LibreKO.World? world)
+    private void Reopen(LibreKO.Scene.WorldRoot? world)
     {
         NativeGenieQuick.Closed = false;
         // The client decides whether the panel shows (time left or running); without a world it is shown as it was.
-        if (world == null || !Native.Native.TryCall(world, "RefreshGenieSub", out _)) _panel.Show();
+        if (world == null || !Native.Native.TryCall(world, "GenieSub.RefreshSub", out _)) _panel.Show();
     }
 
     /// <summary>Applies the minimised state: the monster rows fold away and the panel fits its rows.</summary>

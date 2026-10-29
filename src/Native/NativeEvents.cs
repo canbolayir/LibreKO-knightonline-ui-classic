@@ -17,16 +17,16 @@ public static class NativeEvents
         public int Zone;
     }
 
-    private static readonly ConditionalWeakTable<World, LeaveState> _leave = new();
+    private static readonly ConditionalWeakTable<WorldRoot, LeaveState> _leave = new();
 
     /// <summary>The open leave confirmation of a world, if any.</summary>
-    public static Notice? LeavePrompt(World world) =>
+    public static Notice? LeavePrompt(WorldRoot world) =>
         _leave.TryGetValue(world, out var state) && state.Prompt is { } prompt && GodotObject.IsInstanceValid(prompt) && !prompt.IsQueuedForDeletion() ? prompt : null;
 
     /// <summary>Takes over the client's event leave confirmation once its in-zone UI exists.</summary>
-    public static void Prepare(World world)
+    public static void Prepare(WorldRoot world)
     {
-        if (Native.Get<ConfirmationDialog>(world, "_inZoneLeaveAsk") is not { } dialog || dialog.HasMeta("classic_leave_prompt")) return;
+        if (Native.Get<ConfirmationDialog>(world, "Bifrost.inZoneLeaveAsk") is not { } dialog || dialog.HasMeta("classic_leave_prompt")) return;
         dialog.SetMeta("classic_leave_prompt", true);
         dialog.AboutToPopup += () =>
         {
@@ -37,10 +37,10 @@ public static class NativeEvents
         (dialog.GetParent() ?? (Node)world).AddChild(watcher);
     }
 
-    private static int Zone(World world) => Convert.ToInt32(Native.Get<object>(world, "_zone") ?? 0);
-    private static bool InEvent(World world) => Native.Call(typeof(World), "IsTempleEventZone", Zone(world)) is true;
+    private static int Zone(WorldRoot world) => Convert.ToInt32(Native.Get<object>(world, "ZoneId") ?? 0);
+    private static bool InEvent(WorldRoot world) => LibreKO.Domain.TempleZones.IsTempleEventZone(Zone(world));
 
-    private static void Ask(World world)
+    private static void Ask(WorldRoot world)
     {
         if (!InEvent(world) || LeavePrompt(world) != null) return;
         var state = _leave.GetOrCreateValue(world);
@@ -49,16 +49,16 @@ public static class NativeEvents
             "Leave", "Cancel", () => Confirmed(world), () => state.Prompt = null, title: "Leave Event");
     }
 
-    private static void Confirmed(World world)
+    private static void Confirmed(WorldRoot world)
     {
         if (!_leave.TryGetValue(world, out var state)) return;
         state.Prompt = null;
         if (!GodotObject.IsInstanceValid(world) || Zone(world) != state.Zone || !InEvent(world)) return;
-        Native.Call(world, "OnInZoneLeaveConfirmed");
+        Native.Call(world, "Bifrost.OnInZoneLeaveConfirmed");
     }
 
     /// <summary>Dismisses a confirmation that no longer matches the current zone.</summary>
-    public static void Refresh(World world)
+    public static void Refresh(WorldRoot world)
     {
         if (!_leave.TryGetValue(world, out var state) || LeavePrompt(world) is not { } prompt) return;
         if (Zone(world) == state.Zone && InEvent(world)) return;

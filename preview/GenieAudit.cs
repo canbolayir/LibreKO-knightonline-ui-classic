@@ -36,7 +36,7 @@ public partial class Preview
         NativeGenieQuick.Minimised = false; NativeGenieQuick.Closed = false;
         new Plugin().Initialize((PluginContext)Create(typeof(PluginContext), info, new List<PluginInfo> { info }, PluginHost.Ui, PluginHost.Game));
         var original = Net.I; var net = new Net(); GetTree().Root.AddChild(net);
-        var originalLogin = LoginNet.I; var loginNet = new LoginNet(); GetTree().Root.AddChild(loginNet);
+        var originalLogin = Game.LoginServer; var loginNet = new LoginNet(); GetTree().Root.AddChild(loginNet);
         loginNet.Login("offline-audit", "offline-audit");
         var project = new ConfigFile(); project.Load(ProjectSettings.GlobalizePath("res://../../LibreKO/Client/project.godot"));
         foreach (string action in project.GetSectionKeys("input")) if (!InputMap.HasAction(action)) InputMap.AddAction(action);
@@ -48,7 +48,6 @@ public partial class Preview
         foreach (var child in template.GetChildren()) child.Owner = template;
         var worldScene = new PackedScene(); worldScene.Pack(template); template.Free();
         worldScene.TakeOverPath("res://scenes/World.tscn");
-        var flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Static;
         var checks = new List<string>();
         var findings = new List<object>();
         var bounds = new Dictionary<string, object>();
@@ -62,9 +61,8 @@ public partial class Preview
             while (!condition() && Time.GetTicksMsec() < deadline) await Frames(1);
             Require(condition(), message());
         }
-        object? Get(object owner, string field) => (owner is World ? typeof(World) : owner.GetType()).GetField(field, flags)?.GetValue(owner)
-            ?? (owner is World ? typeof(World) : owner.GetType()).GetProperty(field, flags)?.GetValue(owner);
-        object? Call(World w, string method, params object?[] args) => typeof(World).GetMethod(method, flags)!.Invoke(w, args);
+        object? Get(object owner, string field) => Native.Get<object>(owner, field);
+        object? Call(WorldRoot w, string method, params object?[] args) => Native.Call(w, method, args);
         async Task Send(NetworkStream stream, Packet packet)
         {
             byte[] body = packet.GetBytes(); byte[] frame = new byte[body.Length + 6]; frame[0] = 0xaa; frame[1] = 0x55;
@@ -104,8 +102,8 @@ public partial class Preview
         var sent = new ConcurrentQueue<string>();
         using var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
         int port = ((IPEndPoint)listener.LocalEndpoint).Port;
-        net.LoginResultEvent += (ok, _) => { if (ok) net.SelectChar("GenieTester"); };
-        net.EnterWorldEvent += _ => GetTree().ChangeSceneToFile("res://scenes/World.tscn");
+        Game.Session.PreGame.LoginResultEvent += (ok, _) => { if (ok) Game.Requests.PreGame.SelectCharacter("GenieTester"); };
+        Game.Session.PreGame.EnterWorldEvent += _ => GetTree().ChangeSceneToFile("res://scenes/World.tscn");
         GetTree().CurrentScene = null;
         using var stop = new CancellationTokenSource();
         try
@@ -117,9 +115,9 @@ public partial class Preview
             await Read(stream, GameOpcodes.GS_LOGIN); var login = new Packet(GameOpcodes.GS_LOGIN); login.WriteByte((byte)nation); await Send(stream, login);
             await Read(stream, GameOpcodes.GS_SELECT_CHARACTER); var select = new Packet(GameOpcodes.GS_SELECT_CHARACTER); select.WriteByte(1); select.WriteShort(32700); select.WriteShort(100); select.WriteShort(100); select.WriteShort(0); await Send(stream, select);
             await Read(stream, GameOpcodes.GS_GAMESTART); await Send(stream, MyInfoPacket());
-            await Until(() => GetTree().CurrentScene is World w && (bool)Get(w, "_worldReady")!, "Native World scene builds every facet", 60);
-            var world = (World)GetTree().CurrentScene;
-            await Until(() => Get(world, "_loadingLayer") == null, "Native loading screen completes", 60);
+            await Until(() => GetTree().CurrentScene is WorldRoot w && (bool)Get(w, "WorldReady")!, "Native World scene builds every facet", 60);
+            var world = (WorldRoot)GetTree().CurrentScene;
+            await Until(() => Get(world, "loadingLayer") == null, "Native loading screen completes", 60);
             _ = Task.Run(async () =>
             {
                 try
@@ -155,11 +153,6 @@ public partial class Preview
                 Mouse(at); await Frames(1); Mouse(at, true); await Frames(1); Mouse(at, false); await Frames(3);
                 Mouse(new Vector2(5, 5)); await Frames(2);
             }
-            void Key(Key key)
-            {
-                GetViewport().PushInput(new InputEventKey { Keycode = key, PhysicalKeycode = key, Pressed = true }, true);
-                GetViewport().PushInput(new InputEventKey { Keycode = key, PhysicalKeycode = key, Pressed = false }, true);
-            }
             string R(Rect2 r) => FormattableString.Invariant($"{r.Position.X} {r.Position.Y} {r.Size.X} {r.Size.Y}");
             void Shot(string name, Rect2? crop = null)
             {
@@ -176,7 +169,7 @@ public partial class Preview
             }
 
             // ---- Part 1: the quick panel ---------------------------------------------------------------------------
-            var panel = (PanelContainer)Get(world, "_genieSub")!;
+            var panel = (PanelContainer)Get(world, "GenieSub.Sub")!;
             await Server(6, 87);
             await Until(() => panel.IsVisibleInTree(), "the client shows the quick panel once the server reports Genie time");
             await Until(() => panel.HasMeta("classic_overlay") && panel.FindChild(ClassicGenieQuick.Minimise, true, false) != null, "the Classic quick panel skin applies to the client's _genieSub");
@@ -251,20 +244,20 @@ public partial class Preview
             await Server(6, 85); await Frames(6);
             Require(!panel.Visible, "closed: the client's refresh does not bring the panel back");
             Shot("genie-quick-closed", full);
-            Call(world, "ToggleGenie"); await Frames(6);
+            Call(world, "Genie.Toggle"); await Frames(6);
             Require(panel.IsVisibleInTree() && !NativeGenieQuick.Closed, "opening the Genie window (Genie key, command list, settings) brings the panel back");
-            Call(world, "CloseGenie"); await Frames(2);
+            Call(world, "Genie.Close"); await Frames(2);
 
             // Close it again, then start the Genie: a start shows the panel with the running state.
             await Click(close);
             Require(!panel.Visible, "closed again");
             Drain();
-            Call(world, "ToggleGenieRun");
+            Call(world, "Genie.ToggleRun");
             var startRequests = new List<string>();
             await UntilWith(() => { startRequests.AddRange(Drain()); return startRequests.Contains("GS_GENIE_SYSTEM:1:4"); },
-                () => "Start asks the server to start the Genie: " + string.Join(" ", startRequests) + " pending=" + Get(world, "_genieRequestPending") + " dead=" + Get(world, "_selfDead"));
+                () => "Start asks the server to start the Genie: " + string.Join(" ", startRequests) + " pending=" + Get(world, "Genie.RequestPending") + " dead=" + Get(world, "Avatar.Dead"));
             await Server(4, 1, 120);
-            await Until(() => net.GenieRunning, "the server starts the Genie");
+            await Until(() => Game.Session.Genie.GenieRunning, "the server starts the Genie");
             await Frames(6);
             Require(panel.IsVisibleInTree() && toggle.Text == "Stop" && points.Text == "120 min", "a Genie start brings the panel back with Stop and the time");
             Layout("running", false);
@@ -279,20 +272,20 @@ public partial class Preview
             // R Attack is the Genie's basic attack: with Attack Mode on it selects a monster from the list (all monsters
             // when the list is empty) within its range of the start point, walks into reach and runs the client's auto
             // attack (the R key's attack), relayed as GS_GENIE_SYSTEM 2/3. Attack skills, when set, are cast in between.
-            var modes = (System.Collections.IDictionary)Get(world, "_genieModes")!;
+            var modes = (System.Collections.IDictionary)Get(world, "Genie.modes")!;
             // The client replaces its GenieSetup wholesale when options arrive; read it again for every edit.
-            GenieSetup Setup() => (GenieSetup)Get(world, "_genie")!;
+            GenieSetup Setup() => (GenieSetup)Get(world, "Genie.Genie")!;
             Array.Clear(Setup().Attack);
             CheckButton Mode(GenieMode mode) => (CheckButton)modes[mode]!;
-            var mobIndex = (System.Collections.IDictionary?)Get(world, "_mobIndex");
+            var mobIndex = (System.Collections.IDictionary?)Get(world, "EntityLooksSystem.MobIndex");
             int model = mobIndex?.Keys.Cast<object>().Select(Convert.ToInt32).FirstOrDefault() ?? 1;
             int nextMob = 30001;
-            var ents = (System.Collections.IDictionary)Get(world, "_ents")!;
-            var monsters = (HashSet<string>)Get(world, "_genieMonsters")!;
-            Vector2 Self() => new((float)Get(world, "_myKoX")!, (float)Get(world, "_myKoZ")!);
+            var ents = (EntityRegistry)Get(world, "EntitySystem.Ents")!;
+            var monsters = (HashSet<string>)Get(world, "Genie.Monsters")!;
+            Vector2 Self() => new((float)Get(world, "Avatar.MapX")!, (float)Get(world, "Avatar.MapZ")!);
             Packet NpcIn(int id, short npcId, Vector2 at)
             {
-                float y = (float)Get(world, "_myKoY")!;
+                float y = (float)Get(world, "Avatar.MapY")!;
                 var p = new Packet(GameOpcodes.GS_NPC_INOUT); p.WriteByte(1); p.WriteInt(id); p.WriteShort(npcId); p.WriteByte(1); p.WriteShort((short)model);
                 p.WriteInt(0); p.WriteByte(0); p.WriteInt(0); p.WriteShort(100); p.WriteInt(0); p.WriteInt(0); p.WriteByte(0); p.WriteByte(10);
                 p.WriteShort((short)Math.Round(at.X * 10)); p.WriteShort((short)Math.Round(at.Y * 10)); p.WriteShort((short)Math.Round(y * 10));
@@ -303,12 +296,12 @@ public partial class Preview
             {
                 int id = nextMob++;
                 await Send(stream, NpcIn(id, npcId, Self() + new Vector2(distance, side)));
-                await Until(() => ents.Contains(id), "the fixture monster " + id + " spawns");
+                await Until(() => ents.ContainsKey(id), "the fixture monster " + id + " spawns");
                 return id;
             }
             async Task MoveMob(int id, Vector2 to)
             {
-                float y = (float)Get(world, "_myKoY")!;
+                float y = (float)Get(world, "Avatar.MapY")!;
                 var p = new Packet(GameOpcodes.GS_NPC_MOVE); p.WriteByte(1); p.WriteInt(id);
                 p.WriteShort((short)Math.Round(to.X * 10)); p.WriteShort((short)Math.Round(to.Y * 10)); p.WriteShort((short)Math.Round(y * 10)); p.WriteUShort(20);
                 await Send(stream, p);
@@ -317,32 +310,32 @@ public partial class Preview
             async Task Despawn(int id)
             {
                 var p = new Packet(GameOpcodes.GS_NPC_INOUT); p.WriteByte(2); p.WriteInt(id); await Send(stream, p);
-                await Until(() => !ents.Contains(id), "the fixture monster " + id + " leaves");
+                await Until(() => !ents.ContainsKey(id), "the fixture monster " + id + " leaves");
             }
             async Task<List<string>> Watch(double seconds) { Drain(); await Seconds(seconds); return Drain(); }
             int Count(List<string> list, string op) => list.Count(o => o == op);
             const string RelayAttack = "GS_GENIE_SYSTEM:2:3", RelayMove = "GS_GENIE_SYSTEM:2:1", RelayMagic = "GS_GENIE_SYSTEM:2:4";
-            int Selected() => (int)Get(world, "_selectedId")!;
-            bool Auto() => Get(world, "_autoAttack") is true;
-            int AutoTarget() => (int)Get(world, "_autoTargetId")!;
+            int Selected() => (int)Get(world, "Selection.SelectedId")!;
+            bool Auto() => Get(world, "BasicAttackSystem.AutoAttack") is true;
+            int AutoTarget() => (int)Get(world, "BasicAttackSystem.AutoTargetId")!;
             void Finding(string scenario, List<string> requests, bool ok, string note)
             {
                 findings.Add(new { scenario, ok, note, attacks = Count(requests, RelayAttack), moves = Count(requests, RelayMove), magic = Count(requests, RelayMagic),
                     plainAttacks = Count(requests, "GS_ATTACK"), autoAttack = Auto(), autoTarget = AutoTarget(), selected = Selected(),
-                    distance = Selected() >= 0 && ents.Contains(Selected()) ? Distance(Selected()) : -1, basicReach = Selected() >= 0 && ents.Contains(Selected()) ? BasicReach(Selected()) : -1,
+                    distance = Selected() >= 0 && ents.ContainsKey(Selected()) ? Distance(Selected()) : -1, basicReach = Selected() >= 0 && ents.ContainsKey(Selected()) ? BasicReach(Selected()) : -1,
                     requests = requests.GroupBy(r => r).ToDictionary(g => g.Key, g => g.Count()) });
             }
             object Ent(int id) => ents[id]!;
             object? EntField(int id, string name) => Ent(id).GetType().GetField(name)?.GetValue(Ent(id)) ?? Ent(id).GetType().GetProperty(name)?.GetValue(Ent(id));
-            float BasicReach(int id) => (float)typeof(World).GetMethod("BasicAttackRange", flags)!.Invoke(world, new[] { Ent(id) })!;
+            float BasicReach(int id) => (float)Native.Call(world, "BasicAttackSystem.BasicAttackRange", Ent(id))!;
             float Distance(int id)
             {
-                var a = ((Node3D)EntField(id, "Body")!).GlobalPosition; var b = ((Node3D)Get(world, "_self")!).GlobalPosition;
+                var a = ((Node3D)EntField(id, "Body")!).GlobalPosition; var b = ((Node3D)Get(world, "Avatar.Body")!).GlobalPosition;
                 return new Vector2(a.X - b.X, a.Z - b.Z).Length();
             }
 
             Mode(GenieMode.Attack).ButtonPressed = true; Mode(GenieMode.BasicAttack).ButtonPressed = true; Mode(GenieMode.Combo).ButtonPressed = false; Mode(GenieMode.LeaderTarget).ButtonPressed = false;
-            monsters.Clear(); DetailCall(world, "RefreshGenieMonsters");
+            monsters.Clear(); DetailCall(world, "Genie.RefreshMonsters");
 
             // 1. A monster in reach: selected and attacked.
             int near = await Spawn(1.0f);
@@ -382,17 +375,17 @@ public partial class Preview
             int listed = await Spawn(-3.0f, 102);
             string listedName = (string)EntField(listed, "Name")!, unlistedName = (string)EntField(unlisted, "Name")!;
             Require(listedName != unlistedName, "two monster kinds with different names: " + listedName + " / " + unlistedName);
-            monsters.Add(listedName); DetailCall(world, "RefreshGenieMonsters");
+            monsters.Add(listedName); DetailCall(world, "Genie.RefreshMonsters");
             var filtered = await Watch(5);
             bool listOk = Selected() == listed && AutoTarget() == listed && Count(filtered, RelayAttack) > 0;
             Finding("R Attack, monster list", filtered, listOk, "only the listed monster, though another is nearer");
             Require(listOk, $"R Attack: with a monster list the Genie attacks only listed monsters ({listedName}; selected {Selected()})");
-            monsters.Clear(); DetailCall(world, "RefreshGenieMonsters");
+            monsters.Clear(); DetailCall(world, "Genie.RefreshMonsters");
             await Despawn(unlisted); await Despawn(listed);
 
             // 6. Out of the Genie's range from its start point: ignored.
-            var range = (SpinBox)Get(world, "_genieRange")!;
-            Call(world, "StopAutoAttack");
+            var range = (SpinBox)Get(world, "Genie.range")!;
+            Call(world, "BasicAttackSystem.StopAutoAttack");
             int outside = await Spawn((float)range.Value + 10f);
             var ignored = await Watch(3);
             bool rangeOk = Count(ignored, RelayAttack) == 0 && Selected() != outside;
@@ -413,35 +406,33 @@ public partial class Preview
             // A melee skill reaches further than the basic attack (weapon + radii + 2 against weapon + half the radii);
             // a ranged spell much further. The fixture switches the character's class for the mage case.
             Mode(GenieMode.BasicAttack).ButtonPressed = true;
-            var learned = typeof(World).GetMethod("SkillRequirementMet", flags)!;
             // The fixture character has spent no skill points; it gets enough in every tree to own its class skills.
-            var slots = Net.I.Mastery.ToArray(); Array.Fill(slots, (byte)80); Net.I.Mastery.Seed(slots);
-            bool approachFixed = typeof(World).Assembly.GetType("LibreKO.Domain.GenieApproach") != null;
-            int ownClass = (int)Get(world, "_selfClass")!;
-            var cooldowns = Net.I.SkillCooldowns;
-            var vitals = Net.I.Vitals;
+            var slots = Game.Session.Self.Mastery.ToArray(); Array.Fill(slots, (byte)80); Game.Session.Self.Mastery.Seed(slots);
+            bool approachFixed = typeof(WorldRoot).Assembly.GetType("LibreKO.Domain.GenieApproach") != null;
+            int ownClass = (int)Get(world, "Session.Self.Class")!;
+            var vitals = Game.Session.Self.Vitals;
             async Task SkillCase(string label, int classCode, bool ranged, string blocker)
             {
-                typeof(World).GetField("_selfClass", flags)!.SetValue(world, classCode);
+                Native.Set(Game.Session, "Self.Class", classCode);
                 var skill = LibreKO.Domain.SkillData.ForClass(classCode)
                     // Anger Explosion casts only in rage mode (3277df5, SkillUsable.AngerAllows); the fixture has no rage.
-                    .Where(k => k.IsEnemy && k.Range > 0 && (bool)learned.Invoke(world, new object[] { k })! && LibreKO.Domain.SkillUsable.AngerAllows(k.Id, Net.I.AngerFull)
+                    .Where(k => k.IsEnemy && k.Range > 0 && Game.Session.Self.SkillLearned(k) && LibreKO.Domain.SkillUsable.AngerAllows(k.Id, Game.Session.Pvp.AngerFull)
                         && (ranged ? LibreKO.Domain.SkillReach.Kind(k.Type1, k.Type2) != LibreKO.Domain.SkillReach.KindMelee && k.Range >= 10
                                    : LibreKO.Domain.SkillReach.Kind(k.Type1, k.Type2) == LibreKO.Domain.SkillReach.KindMelee))
                     .OrderBy(k => k.Range).FirstOrDefault();
-                if (skill == null) { checks.Add($"{label}: class {classCode} has no learned {(ranged ? "ranged" : "melee")} attack skill; skipped"); typeof(World).GetField("_selfClass", flags)!.SetValue(world, ownClass); return; }
-                Array.Clear(Setup().Attack); Setup().Attack[0] = skill.Id; DetailCall(world, "RefreshGenieSlots");
-                Call(world, "StopAutoAttack");
+                if (skill == null) { checks.Add($"{label}: class {classCode} has no learned {(ranged ? "ranged" : "melee")} attack skill; skipped"); Native.Set(Game.Session, "Self.Class", ownClass); return; }
+                Array.Clear(Setup().Attack); Setup().Attack[0] = skill.Id; DetailCall(world, "Genie.RefreshSlots");
+                Call(world, "BasicAttackSystem.StopAutoAttack");
                 int probe = await Spawn(1.0f);
                 float reach = BasicReach(probe);
                 await Despawn(probe);
-                Call(world, "StopAutoAttack");
+                Call(world, "BasicAttackSystem.StopAutoAttack");
                 float distance = ranged ? Math.Min(skill.Range, 8f) : reach + 1.2f;
                 int mob = await Spawn(distance);
-                bool inSkill = (bool)typeof(World).GetMethod("InSkillRange", flags)!.Invoke(world, new[] { (object)mob, skill })!;
+                bool inSkill = (bool)Native.Call(world, "SkillCastSystem.InSkillRange", (object)mob, skill)!;
                 Require(inSkill && distance > reach, $"{label}: the monster stands inside {skill.Name}'s reach and outside the basic reach ({distance:0.0} m, basic {reach:0.0})");
                 int mana = vitals.Mp;
-                if (blocker == "cooldown") cooldowns[skill.Id] = Time.GetTicksMsec() / 1000.0 + 600;
+                if (blocker == "cooldown") Native.Call(Game.Session.Self, "StartCooldown", skill.Id, Time.GetTicksMsec() / 1000.0 + 600);
                 else typeof(LibreKO.Domain.Vitals).GetProperty("Mp")!.SetValue(vitals, 0);
                 var waiting = await Watch(5);
                 bool waitOk = Count(waiting, RelayMove) > 0 && Count(waiting, RelayAttack) > 0 && Distance(mob) <= BasicReach(mob) + .5f;
@@ -451,19 +442,19 @@ public partial class Preview
                 if (approachFixed) Require(waitOk, waitText);
                 else checks.Add((waitOk ? "" : "KNOWN CORE DEFECT (no GenieApproach in this client): ") + waitText);
                 Shot("genie-world-" + label + "-" + blocker);
-                cooldowns.Remove(skill.Id);
+                Native.Call(Game.Session.Self, "CancelCooldown", skill.Id);
                 if (blocker != "cooldown") typeof(LibreKO.Domain.Vitals).GetProperty("Mp")!.SetValue(vitals, mana);
                 var ready = await Watch(5);
-                bool gear = (bool)typeof(World).GetMethod("CanCastWithGear", flags)!.Invoke(world, new object[] { skill, false })!;
+                bool gear = (bool)Native.Call(world, "SkillCastSystem.CanCastWithGear", skill, false)!;
                 bool readyOk = Count(ready, RelayAttack) + Count(ready, RelayMagic) > 0 && (!gear || Count(ready, RelayMagic) > 0);
                 Finding($"{label}: {skill.Name} ready again (castable with this gear: {gear})", ready, readyOk, "the skill is cast again when castable, the swings go on otherwise");
                 string readyText = $"{label}: once {skill.Name} is ready the Genie casts it (when the gear allows it) or keeps swinging ({Count(ready, RelayMagic)} magic, {Count(ready, RelayAttack)} attacks, castable {gear})";
                 if (approachFixed) Require(readyOk, readyText);
                 else checks.Add((readyOk ? "" : "KNOWN CORE DEFECT (no GenieApproach in this client): ") + readyText);
-                Setup().Attack[0] = 0; DetailCall(world, "RefreshGenieSlots");
-                Call(world, "StopAutoAttack");
+                Setup().Attack[0] = 0; DetailCall(world, "Genie.RefreshSlots");
+                Call(world, "BasicAttackSystem.StopAutoAttack");
                 await Despawn(mob);
-                typeof(World).GetField("_selfClass", flags)!.SetValue(world, ownClass);
+                Native.Set(Game.Session, "Self.Class", ownClass);
             }
             await SkillCase("melee", ownClass, false, "cooldown");
             await SkillCase("mage", nation * 100 + 9, true, "cooldown");
@@ -471,12 +462,12 @@ public partial class Preview
 
             // Stop the Genie (after the client's toggle cooldown); the panel returns to Start.
             Mode(GenieMode.BasicAttack).ButtonPressed = true;
-            Call(world, "ToggleGenieRun");
-            await Until(() => !net.GenieRunning, "the Genie stops");
+            Call(world, "Genie.ToggleRun");
+            await Until(() => !Game.Session.Genie.GenieRunning, "the Genie stops");
             await Server(5, 1, 118); await Frames(4);
             Require(toggle.Text == "Start" && points.Text == "118 min", "stopped: Start and the time");
 
-            File.WriteAllText(output + "/" + prefix + "-genie.json", JsonSerializer.Serialize(new { client = typeof(World).Assembly.GetType("LibreKO.Domain.GenieApproach") != null ? "with the GenieApproach core fix" : "upstream without the GenieApproach core fix", checks, bounds, findings, transport = "isolated loopback fixture; the server replies are scripted" },
+            File.WriteAllText(output + "/" + prefix + "-genie.json", JsonSerializer.Serialize(new { client = typeof(WorldRoot).Assembly.GetType("LibreKO.Domain.GenieApproach") != null ? "with the GenieApproach core fix" : "upstream without the GenieApproach core fix", checks, bounds, findings, transport = "isolated loopback fixture; the server replies are scripted" },
                 new JsonSerializerOptions { WriteIndented = true, Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping }));
             GD.Print("GENIE_AUDIT_OK " + prefix + " " + checks.Count + " checks");
         }
@@ -490,10 +481,10 @@ public partial class Preview
         {
             stop.Cancel();
             NativeGenieQuick.Minimised = false; NativeGenieQuick.Closed = false;
-            net.AutoReconnect = false; net.Disconnect(expected: true);
-            if (GetTree().CurrentScene is World world) { GetTree().CurrentScene = null; world.QueueFree(); await Frames(); }
+            net.Reconnect.AutoReconnect = false; net.Disconnect(expected: true);
+            if (GetTree().CurrentScene is WorldRoot world) { GetTree().CurrentScene = null; world.QueueFree(); await Frames(); }
             GetTree().CurrentScene = this; net.Free(); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
-            typeof(LoginNet).GetProperty("I")!.SetValue(null, originalLogin);
+            typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, originalLogin);
         }
     }
 }

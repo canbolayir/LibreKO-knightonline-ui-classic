@@ -21,7 +21,7 @@ public partial class Preview
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
         PluginHost.Ui.ReplaceDialogs(request => request.Title == "Nation Transfer" ? new ClassicServiceNotice(request) : new KnightOnlineUiClassic.Windows.MessageBox(request));
         PluginHost.Ui.ExtendWindow("nationtransfer", ClassicGenderSkin.Extend);
-        var world = new World(); var layer = (CanvasLayer)DetailCall(world, "BuildNationTransferClassicUiPreview", nation)!; AddChild(layer);
+        var world = PreviewFixtures.Prepared(new WorldRoot()); var layer = (CanvasLayer)DetailCall(world, "BuildNationTransferClassicUiPreview", nation)!; AddChild(layer);
         var window = layer.GetChildren().OfType<HudWindow>().Single(); window.SetMeta("content_open_anchor", true);
         await Frames(4);
         var panel = window.GetChildren().OfType<ClassicGenderPanel>().Single();
@@ -54,7 +54,7 @@ public partial class Preview
             viewport.PushInput(new InputEventMouseButton { Position = p, GlobalPosition = p, ButtonIndex = MouseButton.Left, Pressed = true }, true);
             viewport.PushInput(new InputEventMouseButton { Position = p, GlobalPosition = p, ButtonIndex = MouseButton.Left, Pressed = false }, true); await Frames();
         }
-        void Dispatch(Packet packet) => typeof(Net).GetMethod("HandleNationTransfer", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(net, new object[] { packet });
+        void Dispatch(Packet packet) => PreviewPackets.Receive(packet);
         Packet CandidatePacket(IReadOnlyList<NationTransferCandidate> list)
         {
             var p = new Packet(GameOpcodes.GS_NATION_TRANSFER); p.WriteByte(2); p.WriteByte(1); p.WriteByte((byte)list.Count);
@@ -64,11 +64,11 @@ public partial class Preview
         void Open(IReadOnlyList<NationTransferCandidate> list) => Dispatch(CandidatePacket(list));
         void Reply(byte sub, byte result, params byte[] tail)
         { var p = new Packet(GameOpcodes.GS_NATION_TRANSFER); p.WriteByte(sub); p.WriteByte(result); p.WriteBytes(tail); Dispatch(p); }
-        bool Busy() => (bool)DetailField(world, "_transferInFlight")!;
-        bool NetBusy() => (bool)typeof(Net).GetField("_nationTransferPending", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(net)!;
-        Notice? Confirmation() => (Notice?)DetailField(world, "_transferNotice");
-        Dictionary<int, NationTransferPick> Picks() => (Dictionary<int, NationTransferPick>)DetailField(world, "_transferPicks")!;
-        Node3D Pivot() => (Node3D)typeof(LookPreview).GetField("_pivot", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(preview)!;
+        bool Busy() => (bool)DetailField(world, "NationTransfer.transferInFlight")!;
+        bool NetBusy() => (bool)Native.Get<object>(Game.Session.NationTransfer, "Pending")!;
+        Notice? Confirmation() => (Notice?)DetailField(world, "NationTransfer.transferNotice");
+        Dictionary<int, NationTransferPick> Picks() => (Dictionary<int, NationTransferPick>)DetailField(world, "NationTransfer.transferPicks")!;
+        Node3D Pivot() => (Node3D)typeof(LookPreview).GetField("pivot", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(preview)!;
         async Task Capture(string state, bool popup = false)
         {
             await Frames(); Require(window.Size == ClassicNationTransferLayout.Size, state + " fixed service dimensions");
@@ -145,7 +145,7 @@ public partial class Preview
             await KeyInput(Key.Escape, colour.GetPopup()); Require(window.Visible && !colour.GetPopup().Visible && Confirmation() == null, "Popup Escape closes only the colour picker");
             await KeyInput(Key.Enter); Require(Confirmation() == null && !Busy(), "Service Enter never bypasses certificate confirmation");
             await Click(accept); Require(Confirmation() != null && accept.Disabled && !Busy(), "Transfer button opens one captured certificate confirmation"); await Capture("confirmation");
-            var notice = Confirmation()!; var confirmCallback = (Action)typeof(Notice).GetField("_onConfirm", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(notice)!;
+            var notice = Confirmation()!; var confirmCallback = (Action)typeof(Notice).GetField("onConfirm", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(notice)!;
             var modal = (Control)typeof(ClassicServiceNotice).GetField("_panel", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(Descendants(notice).OfType<ClassicServiceNotice>().Single())!;
             var modalBefore = modal.Position; var modalGrip = modal.GetGlobalRect().Position + new Vector2(100, 20); var modalDelta = new Vector2(19, 13);
             GetViewport().PushInput(new InputEventMouseMotion { Position = modalGrip, GlobalPosition = modalGrip }, true); await Frames(1);
@@ -158,7 +158,7 @@ public partial class Preview
             await Click(accept); confirmCallback(); Require(!Busy() && Confirmation() != null, "Stale callback cannot submit a replacement confirmation");
             await KeyInput(Key.Enter); Require(Busy() && NetBusy() && Confirmation() == null, "Certificate confirmation Enter submits exactly once"); await Capture("pending");
             var picks = Picks().Values.OrderBy(p => p.Slot).ToArray();
-            Require(!net.SendNationTransfer(picks), "Network refuses a second outstanding account transfer");
+            Require(!Game.Requests.NationTransfer.Submit(picks), "Network refuses a second outstanding account transfer");
             await Click(Find<Button>("transfer_character_0")); await Click(Find<Button>("look_face_next"));
             Require(Picks().Values.OrderBy(p => p.Slot).SequenceEqual(picks), "Pending character and appearance controls cannot replace captured picks");
             Reply(3, 99);
@@ -211,12 +211,12 @@ public partial class Preview
             Open(candidates.Take(1).ToArray()); await Capture("single-character");
             GetWindow().Size = new Vector2I(1200, 850); window.Position = new Vector2(220, 140); await Capture("wide-viewport");
             await Click(accept); await KeyInput(Key.Enter); Reply(3, 1); await Frames();
-            Require(!window.Visible && !Busy() && !NetBusy() && net.Nation == candidates[0].Nation, "Success applies captured target and closes service");
+            Require(!window.Visible && !Busy() && !NetBusy() && Game.Session.Self.Nation == candidates[0].Nation, "Success applies captured target and closes service");
             Require(layer.GetChildren().OfType<Notice>().Count() == 1, "Success shows one native return-to-character notice");
             await Capture("success", true);
             Reply(3, 1); Require(layer.GetChildren().OfType<Notice>().Count() == 1, "Idle duplicate success cannot create another reconnect notice");
         }
-        finally { DetailCall(world, "NationTransferDispose"); layer.Free(); world.Free(); net.Free(); }
+        finally { DetailCall(world, "NationTransfer.Dispose"); layer.Free(); world.Free(); net.Free(); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-nationtransfer.json", JsonSerializer.Serialize(new { nation, checks, screens, liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic nation transfer audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

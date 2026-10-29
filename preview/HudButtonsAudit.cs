@@ -13,7 +13,7 @@ using KnightOnlineUiClassic.Windows;
 // those icons stay hidden while the plugin runs (the toggle states check that they come back when it is disabled).
 public partial class Preview
 {
-    private async Task<object> ProbeHudButtons(World world, int nation, string output, Action<bool, string> require, Func<Node?, bool> shown)
+    private async Task<object> ProbeHudButtons(WorldRoot world, int nation, string output, Action<bool, string> require, Func<Node?, bool> shown)
     {
         string prefix = nation == 1 ? "karus" : "human";
         const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
@@ -25,9 +25,8 @@ public partial class Preview
             require(ok, "hud buttons: " + message);
         }
         async Task Frames(int count = 4) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
-        object? Get(object owner, string member) =>
-            owner.GetType().GetField(member, flags | BindingFlags.Public)?.GetValue(owner) ?? owner.GetType().GetProperty(member, flags | BindingFlags.Public)?.GetValue(owner);
-        void Set(World owner, string member, object value) => typeof(World).GetField(member, flags)!.SetValue(owner, value);
+        object? Get(object owner, string member) => Native.Get<object>(owner, member);
+        void Set(WorldRoot owner, string member, object value) => Native.Set(owner, member, value);
         // Screen rectangles: the HUD and the windows sit on canvas layers with their own scale.
         Rect2 Screen(Control c) { var t = c.GetGlobalTransformWithCanvas(); return new Rect2(t.Origin, c.Size * t.Scale); }
         object Rect(Rect2 r) => new { x = r.Position.X, y = r.Position.Y, w = r.Size.X, h = r.Size.Y };
@@ -126,9 +125,9 @@ public partial class Preview
         var tips = letters.ToDictionary(s => s.Letter, s => s._GetTooltip(Vector2.Zero));
 
         // ---- The replaced top-right icons stay hidden, also after the client shows them again.
-        foreach (var field in new[] { "_genieIcon", "_eventsIcon", "_drIcon" })
+        foreach (var field in new[] { "TopIcons.Icon:Genie", "Events.iconButton", "DailyRankWindow.drIcon" })
         {
-            var icon = (Control)typeof(World).GetField(field, flags)!.GetValue(world)!;
+            var icon = (Control)Native.Get<object>(world, field)!;
             Require(!shown(icon), field + " is hidden while the plugin runs");
             icon.Visible = true; await Frames(1);
             Require(!shown(icon), field + " stays hidden when the client shows it again");
@@ -141,8 +140,8 @@ public partial class Preview
         var covering = Descendants(world).OfType<Control>().Where(c => c.IsVisibleInTree() && c is HudWindow && Screen(c).Intersects(plates)).Select(c => c.Name.ToString()).ToList();
         Require(covering.Count == 0, "no window covers the letter row (" + string.Join(", ", covering) + ")");
         // Quiet E and R first (no event due, rankings viewed) so the normal row is deterministic.
-        Set(world, "_eventsTickIn", 1e6);
-        Set(world, "_eventsAlert", false); Set(world, "_drBlink", false);
+        Set(world, "Events.tickIn", 1e6);
+        Set(world, "Events.alert", false); Set(world, "DailyRankWindow.drBlink", false);
         await ToSignal(GetTree().CreateTimer(0.4), SceneTreeTimer.SignalName.Timeout);
         Require(!Letter("E").Lit && !Letter("R").Lit, "E and R are quiet without an event due or new rankings");
         await Shot("row-normal", row);
@@ -157,7 +156,7 @@ public partial class Preview
         foreach (var s in plateButtons) { s.Disabled = false; s.QueueRedraw(); }
 
         // E and R carry the attention states of the replaced icons: an event starting soon, a new day's rankings.
-        Set(world, "_eventsAlert", true); Set(world, "_drBlink", true);
+        Set(world, "Events.alert", true); Set(world, "DailyRankWindow.drBlink", true);
         await ToSignal(GetTree().CreateTimer(0.4), SceneTreeTimer.SignalName.Timeout);
         Require(Letter("E").Lit && Letter("E")._GetTooltip(Vector2.Zero) == "Events — an event starts soon", "E flashes while an event starts soon: " + Letter("E")._GetTooltip(Vector2.Zero));
         Require(Letter("R").Lit && Letter("R")._GetTooltip(Vector2.Zero) == "Daily Rank — new rankings today", "R flashes for a new day's rankings: " + Letter("R")._GetTooltip(Vector2.Zero));
@@ -165,14 +164,14 @@ public partial class Preview
         bool Flash(ClassicStatusShortcut s) => (bool)typeof(ClassicStatusShortcut).GetField("_lit", flags)!.GetValue(s)!;
         for (int i = 0; i < 240 && !(Flash(Letter("E")) && Flash(Letter("R"))); i++) await Frames(1);
         await Shot("row-alert", row);
-        Set(world, "_eventsTickIn", 0.0);
+        Set(world, "Events.tickIn", 0.0);
 
         // ---- Q: the Quest page's journal list, from every starting point; never the Quest Details subpage.
         var owner = CharacterPageRouter.Owner!;
         var pages = (Dictionary<string, KnightOnlineUiClassic.Layout.LayoutView>)typeof(CharacterWindow).GetField("_pages", flags)!.GetValue(owner)!;
         var lists = (Dictionary<string, CharacterList>)typeof(CharacterWindow).GetField("_lists", flags)!.GetValue(owner)!;
         var extras = (Dictionary<string, Button>)typeof(CharacterWindow).GetField("_extras", flags)!.GetValue(owner)!;
-        bool DetailsOpen() => (bool)typeof(World).GetMethod("MainWindowOpen")!.Invoke(world, ["Quests"])!;
+        bool DetailsOpen() => (bool)Native.Call(world, "MainWindows.IsOpen", ["Quests"])!;
         async Task QuestList(string state)
         {
             await Frames(6);
@@ -248,7 +247,7 @@ public partial class Preview
         var pad = KeyBinds.GetPad(KeyAction.Quests);
         if (pad.Assigned)
         {
-            ((Dictionary<PadChord, Action>)DetailField(world, "_padHotkeys")!)[pad]();
+            ((Dictionary<PadChord, Action>)DetailField(world, "Hotkeys.padHotkeys")!)[pad]();
             await QuestList("pad-closed");
             windows.Close("character_info");
             await Frames(4);
@@ -280,10 +279,10 @@ public partial class Preview
             bounds["tracker-row"] = Rect(Screen(trackerRow));
         }
         await Frames(8);
-        var detailTitle = (Label)DetailField(world, "_questDetailTitle")!;
-        Require(DetailsOpen() && !owner.QuestListShown && Get(owner, "_embedded") != null && (int)DetailField(world, "_questSelected")! == trackedId
+        var detailTitle = (Label)DetailField(world, "Quest.detailTitle")!;
+        Require(DetailsOpen() && !owner.QuestListShown && Get(owner, "_embedded") != null && (int)DetailField(world, "Quest.Selected")! == trackedId
             && detailTitle.IsVisibleInTree() && detailTitle.Text == "Animal Blood",
-            $"a tracker click opens Quest Details on its quest (selected {DetailField(world, "_questSelected")}, title '{detailTitle.Text}')");
+            $"a tracker click opens Quest Details on its quest (selected {DetailField(world, "Quest.Selected")}, title '{detailTitle.Text}')");
         await Shot("tracker-details");
         await PressQuestKey();
         await QuestList("f10-from-tracker-details");
@@ -292,9 +291,9 @@ public partial class Preview
         // ---- P A D G E R: the client's own windows, opened and closed again by the same button.
         var natives = new Dictionary<string, Func<bool>>
         {
-            ["genie"] = () => (bool)typeof(World).GetField("_genieShown", flags)!.GetValue(world)!,
-            ["events"] = () => ((CanvasItem)typeof(World).GetField("_eventsPanel", flags)!.GetValue(world)!).Visible,
-            ["daily_rank"] = () => typeof(World).GetField("_drWindow", flags)!.GetValue(world) is CanvasItem { Visible: true },
+            ["genie"] = () => (bool)Native.Get<object>(world, "Genie.shown")!,
+            ["events"] = () => ((CanvasItem)Native.Get<object>(world, "Events.Window")!).Visible,
+            ["daily_rank"] = () => Native.Get<object>(world, "DailyRankWindow.Window") is CanvasItem { Visible: true },
         };
         foreach (var s in letters.Skip(1))
         {
@@ -314,7 +313,7 @@ public partial class Preview
                 Require(status.MiniMapBounds is { } map && map.Size.X > 100 && !Screen(window).Intersects(map),
                     $"G: the Genie window opens clear of the minimap drawn above it ({Screen(window)} / {status.MiniMapBounds})");
             if (id == "daily_rank") await ToSignal(GetTree().CreateTimer(0.4), SceneTreeTimer.SignalName.Timeout);
-            if (id == "daily_rank") Require(!s.Lit && !(bool)typeof(World).GetField("_drBlink", flags)!.GetValue(world)!, "R records today's rankings as viewed and stops flashing");
+            if (id == "daily_rank") Require(!s.Lit && !(bool)Native.Get<object>(world, "DailyRankWindow.drBlink")!, "R records today's rankings as viewed and stops flashing");
             await Shot("open-" + s.Letter);
             await Click(s);
             await Frames(6);
@@ -337,7 +336,7 @@ public partial class Preview
             await Frames(6);
             Require(!windows.IsOpen("events") && !events(), "the clock again closes the Events window");
         }
-        Set(world, "_eventsAlert", false);
+        Set(world, "Events.alert", false);
         await Frames(4);
 
         var result = new { nation, checks, failures, screens, bounds, tooltips = tips };

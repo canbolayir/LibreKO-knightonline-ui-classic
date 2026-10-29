@@ -20,7 +20,7 @@ public static class NativeUi
 
     extension(HudWindow window)
     {
-        public PanelContainer? Header => Native.Get<PanelContainer>(window, "_header");
+        public PanelContainer? Header => Native.Get<PanelContainer>(window, "header");
 
         public Action<bool>? AttentionStyler
         {
@@ -31,7 +31,7 @@ public static class NativeUi
 
     extension(ItemSlotView view)
     {
-        public Label CountLabel => Native.Get<Label>(view, "_count")!;
+        public Label CountLabel => Native.Get<Label>(view, "countLabel")!;
     }
 
     extension(MoneyEdit edit)

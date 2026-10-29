@@ -40,7 +40,7 @@ public static class LookFraming
     public static void Attach(LookPreview preview, Func<int> race)
     {
         if (_framings.TryGetValue(preview, out _)) return;
-        if (Native.Get<Node3D>(preview, "_pivot") is not { } pivot || preview.GetChildCount() == 0
+        if (Native.Get<Node3D>(preview, "pivot") is not { } pivot || preview.GetChildCount() == 0
             || preview.GetChild(0) is not SubViewport viewport || viewport.GetChildren().OfType<Camera3D>().FirstOrDefault() is not { } camera) return;
         var framing = new Framing { Preview = preview, Camera = camera, Pivot = pivot, Race = race };
         _framings.AddOrUpdate(preview, framing);
@@ -51,7 +51,7 @@ public static class LookFraming
         if (Model(preview) is { } model && model.IsInsideTree()) Entered(framing, model);
     }
 
-    public static Node3D? Model(LookPreview preview) => Native.Get<Node3D>(preview, "_model");
+    public static Node3D? Model(LookPreview preview) => Native.Get<Node3D>(preview, "model");
 
     /// <summary>
     /// The client's head zoom: zoomed in, the client places the camera on the head; zoomed out, the Classic
@@ -63,7 +63,7 @@ public static class LookFraming
         if (_framings.TryGetValue(preview, out var framing)) Fit(framing);
     }
 
-    public static bool Zoomed(LookPreview preview) => Native.Get<bool>(preview, "_zoomed");
+    public static bool Zoomed(LookPreview preview) => Native.Get<bool>(preview, "zoomed");
 
     /// <summary>Builds a model with equipment; the native preview only shows a bare body.</summary>
     public static void Show(LookPreview preview, int race, int face, int hairStyle, Color hairColour, int[] gear)
@@ -74,7 +74,7 @@ public static class LookFraming
         Default(framing, race);
         var model = CharacterPreview.Build(race, face, gear, hairStyle, hairColour);
         if (model == null) return;
-        Native.Set(preview, "_model", model);
+        Native.Set(preview, "model", model);
         framing.Expected = model;
         framing.Pivot.AddChild(model);
     }
@@ -110,7 +110,7 @@ public static class LookFraming
             model.GetParent()?.RemoveChild(model);
             model.QueueFree();
         }
-        Native.Set(preview, "_model", null);
+        Native.Set(preview, "model", null);
     }
 
     private static void Entered(Framing framing, Node node)
@@ -265,10 +265,10 @@ public static class NativeLookEditor
     public static void Attach(LookEditor editor, Func<bool>? colourAvailable = null)
     {
         if (_adapters.TryGetValue(editor, out _)) return;
-        var races = Native.Get<VBoxContainer>(editor, "_races");
-        var face = Native.Get<Label>(editor, "_faceLbl");
-        var hair = Native.Get<Label>(editor, "_hairLbl");
-        var colour = Native.Get<ColorPickerButton>(editor, "_colour");
+        var races = Native.Get<VBoxContainer>(editor, "racesBox");
+        var face = Native.Get<Label>(editor, "faceLbl");
+        var hair = Native.Get<Label>(editor, "hairLbl");
+        var colour = Native.Get<ColorPickerButton>(editor, "colourPicker");
         if (races == null || face == null || hair == null || colour == null) return;
         var adapter = new Adapter { Editor = editor, Face = face, Hair = hair, Colour = colour, Races = races, ColourAvailable = colourAvailable };
         _adapters.AddOrUpdate(editor, adapter);
@@ -276,7 +276,7 @@ public static class NativeLookEditor
         races.Name = "look_races";
         foreach (var title in editor.GetChildren().OfType<Label>())
             title.Name = title.Text switch { "Race" => "look_race_heading", "Appearance" => "look_appearance_heading", _ => title.Name };
-        foreach (var (part, value, field) in new[] { ("face", face, "_faceSteps"), ("hair", hair, "_hairSteps") })
+        foreach (var (part, value, field) in new[] { ("face", face, "faceSteps"), ("hair", hair, "hairSteps") })
         {
             string id = "look_" + part;
             value.Name = id + "_value";
@@ -289,8 +289,8 @@ public static class NativeLookEditor
         colour.GetPopup().AddChild(new LookColourPopupInput(colour.GetPopup()));
 
         // The editor writes 0-based numbers into these; the visible labels show the original 1-based ones.
-        Native.Set(editor, "_faceLbl", new Label());
-        Native.Set(editor, "_hairLbl", new Label());
+        Native.Set(editor, "faceLbl", StandIn(editor));
+        Native.Set(editor, "hairLbl", StandIn(editor));
         races.ChildEnteredTree += node => RaceAdded(adapter, node);
         Entering(races);
         NameRaces(adapter);
@@ -300,6 +300,13 @@ public static class NativeLookEditor
         // The numbering only shows with the editor; follow it while shown, and once more when it opens.
         KnightOnlineUiClassic.Layout.ShownOnly.Gate(sync, editor, () => Refresh(editor));
         Refresh(editor);
+    }
+
+    private static Label StandIn(Node editor)
+    {
+        var label = new Label { Visible = false };
+        editor.AddChild(label);
+        return label;
     }
 
     /// <summary>Refreshes the Classic numbering and colour availability after the editor changed.</summary>
@@ -325,11 +332,11 @@ public static class NativeLookEditor
         Refresh(editor);
     }
 
-    public static bool Locked(LookEditor editor) => Native.Get<bool>(editor, "_locked");
+    public static bool Locked(LookEditor editor) => Native.Get<bool>(editor, "locked");
 
     public static void CloseColourPicker(LookEditor editor)
     {
-        if (Native.Get<ColorPickerButton>(editor, "_colour") is { } colour) colour.GetPopup().Hide();
+        if (Native.Get<ColorPickerButton>(editor, "colourPicker") is { } colour) colour.GetPopup().Hide();
     }
 
     private static void RaceAdded(Adapter adapter, Node node)
@@ -373,7 +380,7 @@ public static class NativeLookEditor
 
     private static void NameRaces(Adapter adapter)
     {
-        if (!GodotObject.IsInstanceValid(adapter.Editor) || Native.Get<IList>(adapter.Editor, "_raceButtons") is not { } buttons) return;
+        if (!GodotObject.IsInstanceValid(adapter.Editor) || Native.Get<IList>(adapter.Editor, "raceButtons") is not { } buttons) return;
         foreach (var entry in buttons)
             if (entry is ITuple { Length: 2 } pair && pair[0] is int race && pair[1] is Button button && GodotObject.IsInstanceValid(button))
                 button.Name = "look_race_" + race;

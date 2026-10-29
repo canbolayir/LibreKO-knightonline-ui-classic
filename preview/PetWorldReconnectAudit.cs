@@ -23,7 +23,7 @@ public partial class Preview
         GetViewport().GuiEmbedSubwindows = true;
         new Plugin().Initialize((PluginContext)Create(typeof(PluginContext), info, new List<PluginInfo> { info }, PluginHost.Ui, PluginHost.Game));
         var original = Net.I; var net = new Net(); GetTree().Root.AddChild(net);
-        var originalLogin = LoginNet.I; var loginNet = new LoginNet(); GetTree().Root.AddChild(loginNet);
+        var originalLogin = Game.LoginServer; var loginNet = new LoginNet(); GetTree().Root.AddChild(loginNet);
         loginNet.Login("offline-audit", "offline-audit");
         var project = new ConfigFile(); project.Load(ProjectSettings.GlobalizePath("res://../../LibreKO/Client/project.godot"));
         foreach (string action in project.GetSectionKeys("input")) if (!InputMap.HasAction(action)) InputMap.AddAction(action);
@@ -35,7 +35,6 @@ public partial class Preview
         foreach (var child in template.GetChildren()) child.Owner = template;
         var worldScene = new PackedScene(); worldScene.Pack(template); template.Free();
         worldScene.TakeOverPath("res://scenes/World.tscn");
-        var flags = BindingFlags.Instance | BindingFlags.NonPublic;
         var checks = new List<string>();
         void Require(bool ok, string message) { if (!ok) throw new Exception("PET_WORLD_RECONNECT_AUDIT: " + message); checks.Add(message); }
         async Task Frames(int count = 4) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
@@ -45,7 +44,7 @@ public partial class Preview
             while (!condition() && Time.GetTicksMsec() < deadline) await Frames(1);
             Require(condition(), message);
         }
-        T Field<T>(World world, string field) => (T)typeof(World).GetField(field, flags)!.GetValue(world)!;
+        T Field<T>(WorldRoot world, string field) => (T)Native.Get<object>(world, field)!;
         async Task Send(NetworkStream stream, Packet packet)
         {
             byte[] body = packet.GetBytes(); byte[] frame = new byte[body.Length + 6]; frame[0] = 0xaa; frame[1] = 0x55;
@@ -102,14 +101,14 @@ public partial class Preview
         }
         using var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
         int port = ((IPEndPoint)listener.LocalEndpoint).Port;
-        net.LoginResultEvent += (ok, _) => { if (ok) net.SelectChar("FamiliarTester"); };
-        net.EnterWorldEvent += _ => GetTree().ChangeSceneToFile("res://scenes/World.tscn");
+        Game.Session.PreGame.LoginResultEvent += (ok, _) => { if (ok) Game.Requests.PreGame.SelectCharacter("FamiliarTester"); };
+        Game.Session.PreGame.EnterWorldEvent += _ => GetTree().ChangeSceneToFile("res://scenes/World.tscn");
         // Keep the audit runner alive when the native reconnect path replaces CurrentScene.
         GetTree().CurrentScene = null;
         try
         {
             net.BeginGameLogin("127.0.0.1", port, "offline-audit", "offline-audit");
-            World? previous = null;
+            WorldRoot? previous = null;
             for (int session = 0; session < 2; session++)
             {
                 using var peer = await listener.AcceptTcpClientAsync().WaitAsync(TimeSpan.FromSeconds(30)); var stream = peer.GetStream();
@@ -118,38 +117,38 @@ public partial class Preview
                 await Read(stream, GameOpcodes.GS_LOGIN); var login = new Packet(GameOpcodes.GS_LOGIN); login.WriteByte((byte)nation); await Send(stream, login);
                 await Read(stream, GameOpcodes.GS_SELECT_CHARACTER); var select = new Packet(GameOpcodes.GS_SELECT_CHARACTER); select.WriteByte(1); select.WriteShort(32700); select.WriteShort(100); select.WriteShort(100); select.WriteShort(0); await Send(stream, select);
                 await Read(stream, GameOpcodes.GS_GAMESTART); await Send(stream, MyInfoPacket((short)(session == 0 ? 2 : 5)));
-                await Until(() => GetTree().CurrentScene is World w && !ReferenceEquals(w, previous) && Field<bool>(w, "_worldReady"), "Native World scene builds every facet / session " + session);
-                var world = (World)GetTree().CurrentScene;
+                await Until(() => GetTree().CurrentScene is WorldRoot w && !ReferenceEquals(w, previous) && Field<bool>(w, "WorldReady"), "Native World scene builds every facet / session " + session);
+                var world = (WorldRoot)GetTree().CurrentScene;
                 Require(previous == null || !GodotObject.IsInstanceValid(previous), "Previous World is disposed before reconstruction");
-                var inventory = (Inventory)typeof(World).GetProperty("Inv", flags)!.GetValue(world)!;
+                var inventory = (Inventory)Game.Session.Self.Inventory;
                 Require(inventory[Inventory.GridStart].Count == (session == 0 ? 2 : 5) && inventory[Inventory.GridStart].Durability == 456 && inventory[Inventory.GridStart].Flag == 2,
                     "Fresh MYINFO owns reconstructed inventory count, durability and flags / session " + session);
-                Require(!Field<bool>(world, "_moveInFlight") && !Field<bool>(world, "_petHatchInFlight"), "No pending inventory or trainer lock survives scene creation");
-                Require(net.Pet == null && net.PetItems.ContainsKey(77), "MYINFO restores owned familiar metadata without a stale summoned state");
-                await Send(stream, Summon()); await Until(() => net.Pet != null, "Summoned familiar reply accepted after world initialization");
-                DetailCall(world, "OpenPet"); await Frames();
-                var panel = Field<HudWindow>(world, "_petPanel");
-                Require(Descendants(panel).OfType<ClassicPetPanel>().Any() && Field<Label>(world, "_petNameLbl").Text == "Kauly", "Full native bridge presents Classic Familiar controls");
-                await Until(() => Field<LoadingScreen?>(world, "_loadingLayer") == null, "Native loading screen completes before visual review");
+                Require(!Field<bool>(world, "InventoryWindow.moveInFlight") && !Field<bool>(world, "PetHatch.inFlight"), "No pending inventory or trainer lock survives scene creation");
+                Require(Game.Session.Pet.Pet == null && Game.Session.Pet.Items.ContainsKey(77), "MYINFO restores owned familiar metadata without a stale summoned state");
+                await Send(stream, Summon()); await Until(() => Game.Session.Pet.Pet != null, "Summoned familiar reply accepted after world initialization");
+                DetailCall(world, "Pet.Open"); await Frames();
+                var panel = Field<HudWindow>(world, "Pet.Panel");
+                Require(Descendants(panel).OfType<ClassicPetPanel>().Any() && Field<Label>(world, "Pet.nameLbl").Text == "Kauly", "Full native bridge presents Classic Familiar controls");
+                await Until(() => Field<LoadingScreen?>(world, "loadingLayer") == null, "Native loading screen completes before visual review");
                 GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(1190, 10), GlobalPosition = new Vector2(1190, 10) }, true);
                 await Frames();
                 GetViewport().GetTexture().GetImage().SavePng(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-world-" + session + ".png");
                 if (session == 0)
                 {
-                    Require(net.SendPetHatch(13016, 600001000, 4, "Kauly"), "Pre-disconnect trainer request enters native pending state");
+                    Require(Game.Requests.Pet.Hatch(13016, 600001000, 4, "Kauly"), "Pre-disconnect trainer request enters native pending state");
                     previous = world; peer.Close();
-                    await Until(() => net.ReconnectState != Net.ReconnectPhase.Idle, "Native transport loss starts automatic reconnect");
-                    Require(net.Pet == null && net.PetItems.Count == 0, "Disconnect clears the old familiar session before relogin");
+                    await Until(() => net.Reconnect.State != ReconnectPhase.Idle, "Native transport loss starts automatic reconnect");
+                    Require(Game.Session.Pet.Pet == null && Game.Session.Pet.Items.Count == 0, "Disconnect clears the old familiar session before relogin");
                 }
             }
-            Require(net.ReconnectState == Net.ReconnectPhase.Idle && net.ReconnectAttempt == 1, "Native relogin, selection, MYINFO and scene reconstruction complete on one reconnect");
+            Require(net.Reconnect.State == ReconnectPhase.Idle && net.Reconnect.Attempt == 1, "Native relogin, selection, MYINFO and scene reconstruction complete on one reconnect");
         }
         finally
         {
-            net.AutoReconnect = false; net.Disconnect(expected: true);
-            if (GetTree().CurrentScene is World world) { GetTree().CurrentScene = null; world.QueueFree(); await Frames(); }
+            net.Reconnect.AutoReconnect = false; net.Disconnect(expected: true);
+            if (GetTree().CurrentScene is WorldRoot world) { GetTree().CurrentScene = null; world.QueueFree(); await Frames(); }
             GetTree().CurrentScene = this; net.Free(); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
-            typeof(LoginNet).GetProperty("I")!.SetValue(null, originalLogin);
+            typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, originalLogin);
         }
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-world-reconnect.json", JsonSerializer.Serialize(new { checks, fullWorldReconstruction = true, transport = "isolated loopback fixture", zone = "unbaked placeholder; no live server or account" }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("PET_WORLD_RECONNECT_AUDIT: " + checks.Count + " checks");

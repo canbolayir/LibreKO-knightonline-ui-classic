@@ -32,26 +32,26 @@ public partial class Preview
         foreach (bool transform in new[] { false, true })
         {
             var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
-            var world = new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled };
-            var inventory = (Inventory)typeof(World).GetProperty("Inv", flags)!.GetValue(world)!;
+            var world = PreviewFixtures.Prepared(new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled });
+            var inventory = (Inventory)Game.Session.Self.Inventory;
             // Mirror authoritative slot events into the same domain inventory before trainer observers run.
             Action<int, LibreKO.Domain.ItemSlot> mirror = inventory.ApplySlotUpdate;
-            net.InventorySlotEvent += mirror;
+            Game.Session.Items.InventorySlotEvent += mirror;
             var layer = (CanvasLayer)DetailCall(world, "BuildPetHatchResponseUiPreview", nation, transform)!;
             AddChild(world); AddChild(layer); await Frames();
             var panel = layer.GetChildren().OfType<HudWindow>().Single(); panel.Position = new Vector2(217, 50);
             var classic = panel.GetChildren().OfType<ClassicPetHatchPanel>().Single();
-            T Field<T>(string name) => (T)typeof(World).GetField(name, flags)!.GetValue(world)!;
+            T Field<T>(string name) => (T)Native.Get<object>(world, name)!;
             T Find<T>(string name) where T : Control => Descendants(classic).OfType<T>().Single(c => c.Name == name);
             string service = transform ? "transform" : "hatch";
-            int slot = Field<int>(transform ? "_petTransformSlot" : "_petHatchSlot");
-            int scrollSlot = Field<int>("_petScrollSlot");
+            int slot = Field<int>(transform ? "PetHatch.petTransformSlot" : "PetHatch.slot");
+            int scrollSlot = Field<int>("PetHatch.petScrollSlot");
             if (transform) { var material = inventory[scrollSlot]; material.Count = 2; inventory.ApplySlotUpdate(scrollSlot, material); DetailCall(world, "RebuildPetPicks"); }
-            for (int i = 0; i < inventory.Length; i++) net.MirrorInventorySlot(i, inventory[i]);
-            var name = Field<LineEdit>("_petHatchName");
-            var status = Field<Label>("_petHatchStatus");
-            var action = Field<Button>("_petHatchBtn");
-            int mutations = 0; net.InventorySlotEvent += (_, _) => mutations++;
+            for (int i = 0; i < inventory.Length; i++) Game.Session.Self.SetInventorySlot(i, inventory[i]);
+            var name = Field<LineEdit>("PetHatch.NameInput");
+            var status = Field<Label>("PetHatch.status");
+            var action = Field<Button>("PetHatch.btn");
+            int mutations = 0; Game.Session.Items.InventorySlotEvent += (_, _) => mutations++;
             async Task Capture(string state)
             {
                 await Frames(); require(panel.Size == ClassicPetHatchLayout.Size && GetViewportRect().Encloses(panel.GetGlobalRect()), "Received " + service + " UI keeps its fixed contained composition / " + state);
@@ -64,7 +64,7 @@ public partial class Preview
                 string file = (nation == 1 ? "karus" : "human") + "-" + service + "-reply-" + state + ".png";
                 GetViewport().GetTexture().GetImage().SavePng(output + "/" + file); screens.Add(new { service, state, file });
             }
-            var connection = (KoConn)typeof(Net).GetField("_conn", flags)!.GetValue(net)!;
+            var connection = (GameConn)typeof(Net).GetField("conn", flags)!.GetValue(net)!;
             using var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
             using var timeout = new CancellationTokenSource(30000);
             try
@@ -73,7 +73,7 @@ public partial class Preview
                 var hover = stage.GetGlobalRect().GetCenter();
                 GetViewport().PushInput(new InputEventMouseMotion { Position = hover, GlobalPosition = hover }, true); await Frames();
                 require(world.ItemTooltipVisible, "Actual " + service + " staged item hover opens the native item tooltip");
-                var tooltip = Field<PanelContainer>("_itemTipPanel");
+                var tooltip = Field<PanelContainer>("ItemTooltip.TipPanel");
                 require(GetViewportRect().Encloses(tooltip.GetGlobalRect()) && Descendants(tooltip).OfType<Label>().Any(l => l.Text == ItemData.DisplayName(stage.Item.ItemId)), "Actual " + service + " tooltip is contained and identifies the staged item");
                 await Capture("tooltip");
                 var gridCell = Find<ItemSlotView>("pet_hatch_inventory_" + (slot - Inventory.GridStart));
@@ -91,9 +91,9 @@ public partial class Preview
                     if (!transform) await Click(name);
                     else GetViewport().GuiGetFocusOwner()?.ReleaseFocus();
                     await KeyPress(Key.Enter);
-                    require(PreviewFixtures.PetHatchNotice(world) != null && !Field<bool>("_petHatchInFlight"), "Actual " + service + " Enter opens confirmation before a request");
+                    require(PreviewFixtures.PetHatchNotice(world) != null && !Field<bool>("PetHatch.inFlight"), "Actual " + service + " Enter opens confirmation before a request");
                     await KeyPress(Key.Enter);
-                    require(Field<bool>("_petHatchInFlight") && action.Disabled && (transform || !name.Editable), "Actual " + service + " confirmation locks the pending draft");
+                    require(Field<bool>("PetHatch.inFlight") && action.Disabled && (transform || !name.Editable), "Actual " + service + " confirmation locks the pending draft");
                     var header = new byte[4]; await stream.ReadExactlyAsync(header, timeout.Token);
                     int length = BinaryPrimitives.ReadUInt16LittleEndian(header.AsSpan(2)); var body = new byte[length + 2]; await stream.ReadExactlyAsync(body, timeout.Token);
                     require(body[0] == (byte)GameOpcodes.GS_ITEM_UPGRADE && body[1] == (transform ? 10 : 6)
@@ -102,7 +102,7 @@ public partial class Preview
                 }
                 void Receive(Packet packet)
                 {
-                    packet.ResetOffset(); typeof(Net).GetMethod("HandleItemUpgrade", flags)!.Invoke(net, new object[] { packet });
+                    packet.ResetOffset(); PreviewPackets.Receive(packet);
                 }
                 Packet Refused()
                 {
@@ -123,40 +123,40 @@ public partial class Preview
                 await Submit(); await Capture("pending");
                 var truncated = new Packet(GameOpcodes.GS_ITEM_UPGRADE); truncated.WriteByte((byte)(transform ? 10 : 6)); truncated.WriteByte(1); Receive(truncated);
                 await Frames();
-                require(!Field<bool>("_petHatchInFlight") && !action.Disabled && inventory[slot].Equals(before) && mutations == 0
+                require(!Field<bool>("PetHatch.inFlight") && !action.Disabled && inventory[slot].Equals(before) && mutations == 0
                     && status.Text == (transform ? "The familiar could not be transformed." : "Familiar hatching failed.") && status.GetThemeColor("font_color") == UiTheme.Bad,
                     "Truncated " + service + " response releases the actual UI with the failure text and no partial item mutation");
                 await Capture("malformed");
                 await Submit();
                 Receive(Refused()); await Frames();
-                require(!Field<bool>("_petHatchInFlight") && !action.Disabled && inventory[slot].Equals(before) && mutations == 0 && status.Text.Length > 0,
+                require(!Field<bool>("PetHatch.inFlight") && !action.Disabled && inventory[slot].Equals(before) && mutations == 0 && status.Text.Length > 0,
                     "Received " + service + " refusal restores the same editable draft without spending items");
                 require(status.GetThemeColor("font_color") == UiTheme.Bad && (transform || name.Editable && name.Text == "Kauly"), "Received " + service + " refusal retains the native warning color and name");
                 if (!transform) require(status.Text.Contains("name is already in use"), "Native name-taken response presents the complete retry explanation");
                 await Capture("refusal");
-                await Submit(); DetailCall(world, "ClosePetHatch"); await Frames();
-                require(!panel.Visible && Field<bool>("_petHatchInFlight"), "Closing pending " + service + " does not discard its native request");
-                DetailCall(world, "OpenPetHatch", 99999); await Frames();
-                require(panel.Visible && Field<int>("_petHatchNpc") == 13016 && action.Disabled, "Reopening pending " + service + " keeps the original trainer and frozen operation");
+                await Submit(); DetailCall(world, "PetHatch.Close"); await Frames();
+                require(!panel.Visible && Field<bool>("PetHatch.inFlight"), "Closing pending " + service + " does not discard its native request");
+                DetailCall(world, "PetHatch.Open", 99999); await Frames();
+                require(panel.Visible && Field<int>("PetHatch.npc") == 13016 && action.Disabled, "Reopening pending " + service + " keeps the original trainer and frozen operation");
                 var success = Success(); Receive(success); await Frames();
-                require(!Field<bool>("_petHatchInFlight") && inventory[slot].ItemId == (transform ? 610015000 : 610001000)
+                require(!Field<bool>("PetHatch.inFlight") && inventory[slot].ItemId == (transform ? 610015000 : 610001000)
                     && (transform ? inventory[scrollSlot].Count == beforeMaterial.Count - 1 : inventory[slot].UniqueId == 109), "Received " + service + " success updates the actual trainer item views from native authority");
                 require(status.Text.StartsWith("Kauly " + (transform ? "transformed into " : "hatched.")) && status.GetThemeColor("font_color") == UiTheme.TextHi,
                     "Received " + service + " success presents the native result text and normal color");
                 require(transform ? !action.Disabled && Find<ItemSlotView>("pet_hatch_stage_2").Item.Count == 1 : name.Text.Length == 0 && action.Disabled && stage.Item.IsEmpty,
                     "Received " + service + " success restores correct next-operation eligibility");
-                var lines = Field<TabbedLog>("_combatLog").Lines(LogTab.All); int logCount = lines.Count, mutationCount = mutations;
+                var lines = Field<TabbedLog>("Log.log").Lines(LogTab.All); int logCount = lines.Count, mutationCount = mutations;
                 require(logCount == 1 && lines.Last().Contains(transform ? "transformed into" : "hatched from the egg"), "Received " + service + " success reaches the native Info log once");
                 Receive(success); await Frames(); require(mutations == mutationCount && lines.Count == logCount && status.Text.Length > 0, "Duplicate " + service + " success cannot alter the trainer or repeat its Info notification");
                 await Capture("success");
                 if (!transform) { slot = Inventory.GridStart + 6; DetailCall(world, "SelectPetHatchItem", slot); name.Text = "Kauly"; }
-                await Submit(); typeof(Net).GetMethod("ResetPet", flags)!.Invoke(net, null); await Frames();
-                require(!panel.Visible && !Field<bool>("_petHatchInFlight") && PreviewFixtures.PetHatchNotice(world) == null, "Native connection reset closes and unlocks the actual " + service + " trainer");
+                await Submit(); Native.Call(Game.Session.Pet, "Reset"); await Frames();
+                require(!panel.Visible && !Field<bool>("PetHatch.inFlight") && PreviewFixtures.PetHatchNotice(world) == null, "Native connection reset closes and unlocks the actual " + service + " trainer");
                 Receive(success); await Frames(); require(!panel.Visible && mutations == mutationCount && lines.Count == logCount, "Delayed " + service + " success after reset cannot reopen the trainer or mutate inventory");
             }
             finally
             {
-                connection.Close(); DetailCall(world, "PetHatchDispose"); net.InventorySlotEvent -= mirror;
+                connection.Close(); DetailCall(world, "PetHatch.Dispose"); Game.Session.Items.InventorySlotEvent -= mirror;
                 layer.Free(); world.Free(); net.Free(); typeof(Net).GetProperty("I")!.SetValue(null, originalNet);
             }
         }

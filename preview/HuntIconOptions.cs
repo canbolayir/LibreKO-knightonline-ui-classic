@@ -23,10 +23,10 @@ public partial class Preview
         {
             var catalog = new List<(string Key, string Name, string Path, Texture2D Texture)>();
             foreach (var skill in SkillData.All.Where(s => Regex.IsMatch(s.Name, "slash|scream|howling|cleave|sword|attack|strike|stab|pierc|shot|hunt|curse|target|soul|thrust", RegexOptions.IgnoreCase)).GroupBy(s => s.Name).Select(g => g.First()).Take(54))
-                if (SkillData.Icon(skill.Id) is { } icon) catalog.Add(("S" + skill.Id, skill.Name, $"res://assets/skills/icons/{skill.Id}.png", icon));
-            var items = (Dictionary<int, ItemData.Item>)typeof(ItemData).GetField("_items", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
+                if (SkillIcons.Get(skill.Id) is { } icon) catalog.Add(("S" + skill.Id, skill.Name, $"res://assets/skills/icons/{skill.Id}.png", icon));
+            var items = (Dictionary<int, ItemData.Item>)typeof(ItemData).GetField("items", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
             foreach (var item in items.Values.Where(i => Regex.IsMatch(i.Name, "monster stone|skull|fang|claw|bone", RegexOptions.IgnoreCase)).GroupBy(i => i.Icon).Select(g => g.First()).Take(14))
-                if (ResourceLoader.Exists($"res://assets/items/icons/{item.Icon}.png")) catalog.Add(("I" + item.Id, item.Name, $"res://assets/items/icons/{item.Icon}.png", ItemData.Icon(item.Id)));
+                if (ResourceLoader.Exists($"res://assets/items/icons/{item.Icon}.png")) catalog.Add(("I" + item.Id, item.Name, $"res://assets/items/icons/{item.Icon}.png", ItemIcons.Get(item.Id)));
             for (int i = 0; i < catalog.Count; i++)
             {
                 var part = catalog[i]; int x = 20 + i % 10 * 96, y = 10 + i / 10 * 100;
@@ -59,7 +59,7 @@ public partial class Preview
         var sourceList = new List<object>();
         foreach (var candidate in choices)
         {
-            Texture2D? texture = candidate.Skill ? SkillData.Icon(candidate.Id) : ItemData.Icon(candidate.Id);
+            Texture2D? texture = candidate.Skill ? SkillIcons.Get(candidate.Id) : ItemIcons.Get(candidate.Id);
             if (texture == null) throw new Exception("Missing candidate artwork: " + candidate.Name);
             int iconId = candidate.Skill ? candidate.Id : ItemData.Get(candidate.Id)!.Icon;
             string source = $"res://assets/{(candidate.Skill ? "skills" : "items")}/icons/{iconId}.png";

@@ -20,25 +20,25 @@ public static class NativeChatRoom
     /// <summary>The room's World members: the thread, the composer, the voice row and the members column.</summary>
     private static readonly (string Field, string Name)[] Named =
     {
-        ("_roomThread", "room_log_scroll"), ("_roomComposer", "room_composer_row"),
-        ("_roomVoiceRow", "room_voice_row"), ("_roomMembersToggle", "room_members_toggle"),
-        ("_roomConfigButton", "room_config"), ("_roomJoin", "room_join"), ("_roomDeafen", "room_deafen"), ("_roomVolume", "room_volume"),
-        ("_roomMic", "room_mic"), ("_roomVoiceGear", "room_voice_gear"), ("_roomVoiceLeave", "room_voice_leave"),
-        ("_roomMembersColumn", "room_members_column"), ("_roomRosterRows", "room_roster_rows"), ("_roomRosterEmpty", "room_roster_empty"),
-        ("_roomLeaderBox", "room_leader_box"), ("_roomLeaderHandOver", "room_leader_handover"), ("_roomLeaderKick", "room_leader_kick"),
+        ("ChatRoom.RoomThread", "room_log_scroll"), ("ChatRoom.RoomComposer", "room_composer_row"),
+        ("ChatRoom.roomVoiceRow", "room_voice_row"), ("ChatRoom.roomMembersToggle", "room_members_toggle"),
+        ("ChatRoom.roomConfigButton", "room_config"), ("ChatRoom.roomJoin", "room_join"), ("ChatRoom.roomDeafen", "room_deafen"), ("ChatRoom.roomVolume", "room_volume"),
+        ("ChatRoom.roomMic", "room_mic"), ("ChatRoom.roomVoiceGear", "room_voice_gear"), ("ChatRoom.roomVoiceLeave", "room_voice_leave"),
+        ("ChatRoom.roomMembersColumn", "room_members_column"), ("ChatRoom.roomRosterRows", "room_roster_rows"), ("ChatRoom.roomRosterEmpty", "room_roster_empty"),
+        ("ChatRoom.roomLeaderBox", "room_leader_box"), ("ChatRoom.roomLeaderHandOver", "room_leader_handover"), ("ChatRoom.roomLeaderKick", "room_leader_kick"),
     };
 
     /// <summary>The thread's post column and its "Load older messages" button.</summary>
-    private static readonly (string Field, string Name)[] ThreadNamed = { ("_log", "room_log"), ("_older", "room_older") };
+    private static readonly (string Field, string Name)[] ThreadNamed = { ("log", "room_log"), ("older", "room_older") };
 
     /// <summary>The composer's field, input, voice-note and send buttons, and the recording strip.</summary>
     private static readonly (string Field, string Name)[] ComposerNamed =
     {
-        ("_field", "room_field"), ("Input", "room_input"), ("_record", "room_record"), ("_send", "room_send"),
-        ("_strip", "room_record_strip"), ("_clock", "room_record_clock"), ("_level", "room_record_level"),
+        ("field", "room_field"), ("Input", "room_input"), ("record", "room_record"), ("send", "room_send"),
+        ("strip", "room_record_strip"), ("clock", "room_record_clock"), ("levelBar", "room_record_level"),
     };
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         NativeChatReactions.Attach(world);
         if (window.HasMeta(ControlsMeta)) return;
@@ -52,8 +52,8 @@ public static class NativeChatRoom
         if (thread.GetParent()?.GetParent() is not HBoxContainer main) return;
         foreach (var (control, name) in controls) control!.Name = name;
         main.Name = "room_main";
-        NativeWindows.Name(Native.Get<Button>(world, "_roomChannelsButton"), "room_channels");
-        if (Native.Get<CanvasLayer>(world, "_roomLayer") is { } layer) StylePopups(layer);
+        NativeWindows.Name(Native.Get<Button>(world, "ChatRoom.roomChannelsButton"), "room_channels");
+        if (Native.Get<CanvasLayer>(world, "ChatRoom.roomLayer") is { } layer) StylePopups(layer);
         StylePopups(window);
         // The composer keeps its emoticon picker as its own child.
         StylePopups(composer);
@@ -92,12 +92,12 @@ public static class NativeChatRoom
     /// The client blinks the minimized room by fading the whole window when a line from someone else arrives;
     /// the Classic compact bar carries the whisper attention blink instead, until the room is restored.
     /// </summary>
-    private static void Attention(HudWindow window, World world)
+    private static void Attention(HudWindow window, WorldRoot world)
     {
         bool attention = false;
         NativeWindows.Sync(window, () =>
         {
-            var blink = Native.Get<Tween>(world, "_roomBlink");
+            var blink = Native.Get<Tween>(world, "ChatRoom.roomBlink");
             if (blink != null && blink.IsValid())
             {
                 blink.Kill();

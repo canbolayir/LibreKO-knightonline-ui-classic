@@ -11,65 +11,65 @@ using KnightOnlineUiClassic.Native;
 /// </summary>
 public static partial class PreviewFixtures
 {
-    private static void Seed(World world, MyInfo me) => Native.Call(Net.I, "SeedPreviewEnter", me);
+    private static void Seed(WorldRoot world, MyInfo me) => Native.Call(Game.Session.Self, "SeedPreviewEnter", me);
 
-    private static T Detach<T>(World world, string field) where T : Node
+    private static T Detach<T>(WorldRoot world, string field) where T : Node
     {
         var node = Field<T>(world, field);
         node.GetParent().RemoveChild(node);
         return node;
     }
 
-    public static Control BuildCouncilRateUiPreview(World world, string view)
+    public static Control BuildCouncilRateUiPreview(WorldRoot world, string view)
     {
         ItemData.EnsureLoaded();
         if (view == "nation")
         {
-            var king = new CanvasLayer(); world.AddChild(king); SetField(world, "_kingLayer", king);
-            Call(world, "BuildNationTaxRate"); Call(world, "OnKingTariffRead", new KingTariff(KingElection.Success, 3));
-            var nation = Detach<HudWindow>(world, "_nationTaxRatePanel");
+            var king = new CanvasLayer(); world.AddChild(king); SetField(world, "KingTreasury.layer", king);
+            Call(world, "KingTreasury.BuildNationTaxRate"); Call(world, "KingTreasury.OnTariffRead", new KingTariff(KingWire.Success, 3));
+            var nation = Detach<HudWindow>(world, "KingTreasury.NationTaxRatePanel");
             NativeIdentity.Prepare(nation, world);
             return nation;
         }
-        var siege = new CanvasLayer(); world.AddChild(siege); SetField(world, "_siegeLayer", siege);
-        Call(world, "BuildSiegeTaxRate"); SetField(world, "_siegeRates", new SiegeTaxRates(SiegeWarfare.Success, 3, 4, SiegeWarfare.FeeLimit));
-        Call(world, "OpenSiegeTaxRate", view == "fee" ? SiegeRateKind.DungeonFee : SiegeRateKind.Moradon);
-        var window = Detach<HudWindow>(world, "_siegeTaxRatePanel");
+        var siege = new CanvasLayer(); world.AddChild(siege); SetField(world, "Siege.layer", siege);
+        Call(world, "Siege.BuildTaxRate"); SetField(world, "Siege.rates", new SiegeTaxRates(SiegeWire.Success, 3, 4, SiegeWarfare.FeeLimit));
+        Call(world, "Siege.OpenTaxRate", view == "fee" ? SiegeRateKind.DungeonFee : SiegeRateKind.Moradon);
+        var window = Detach<HudWindow>(world, "Siege.TaxRatePanel");
         NativeIdentity.Prepare(window, world);
         return window;
     }
 
-    public static void StepNationTaxRate(World world, int delta) => NativeIdentity.StepNationTaxRate(world, delta);
+    public static void StepNationTaxRate(WorldRoot world, int delta) => NativeIdentity.StepNationTaxRate(world, delta);
 
-    public static Control BuildClanCreateUiPreview(World world)
+    public static Control BuildClanCreateUiPreview(WorldRoot world)
     {
-        Call(world, "ClanCreateInit");
-        var window = Field<HudWindow>(world, "_clanCreatePanel");
-        window.Ready += () => Callable.From(() => { Call(world, "OpenClanCreate", $"Name your clan. Founding it costs {ClanTypes.CreationCoins:n0} gold and makes you its chief."); }).CallDeferred();
+        Call(world, "ClanCreate.Build");
+        var window = Field<HudWindow>(world, "ClanCreate.panel");
+        window.Ready += () => Callable.From(() => { Call(world, "ClanCreate.Open", $"Name your clan. Founding it costs {ClanTypes.CreationCoins:n0} gold and makes you its chief."); }).CallDeferred();
         window.GetParent().RemoveChild(window);
         NativeIdentity.Prepare(window, world);
         return window;
     }
 
-    public static Control BuildNameChangeUiPreview(World world) => BuildNameChangeUiPreview(world, false);
+    public static Control BuildNameChangeUiPreview(WorldRoot world) => BuildNameChangeUiPreview(world, false);
 
     /// <summary>The clan ID change (opened by the clan rename reply) reuses the rename window.</summary>
-    public static Control BuildClanNameChangeUiPreview(World world) => BuildNameChangeUiPreview(world, true);
+    public static Control BuildClanNameChangeUiPreview(WorldRoot world) => BuildNameChangeUiPreview(world, true);
 
-    private static Control BuildNameChangeUiPreview(World world, bool clan)
+    private static Control BuildNameChangeUiPreview(WorldRoot world, bool clan)
     {
-        Call(world, "BuildNameChangePanel");
-        var window = Field<HudWindow>(world, "_nameChangePanel");
-        window.Ready += () => Callable.From(() => { Call(world, "OpenNameChange", clan); }).CallDeferred();
+        Call(world, "NameChange.BuildPanel");
+        var window = Field<HudWindow>(world, "NameChange.panel");
+        window.Ready += () => Callable.From(() => { Call(world, "NameChange.Open", clan); }).CallDeferred();
         window.GetParent().RemoveChild(window);
         NativeIdentity.Prepare(window, world);
         return window;
     }
 
-    public static Control BuildDisguiseUiPreview(World world, bool empty)
+    public static Control BuildDisguiseUiPreview(WorldRoot world, bool empty)
     {
-        Call(world, "BuildDisguisePanel");
-        SetField(world, "_disguiseGroups", empty ? Array.Empty<DisguiseGroup>() : new[]
+        Call(world, "DisguiseWindow.BuildPanel");
+        SetField(world, "DisguiseWindow.groups", empty ? Array.Empty<DisguiseGroup>() : new[]
         {
             new DisguiseGroup(30, Enumerable.Range(0, 18).Select(i => new DisguiseForm(i + 1,
                 i == 0 ? "Kecoon" : i == 1 ? "Orc Watcher" : "Transformation creature " + (i + 1), 30, 600001 + i, 379091000, 1,
@@ -77,40 +77,40 @@ public static partial class PreviewFixtures
             new DisguiseGroup(50, new[] { new DisguiseForm(19, "Giant Golem", 50, 600020, 379091000, 1, "", 0) }),
             new DisguiseGroup(70, new[] { new DisguiseForm(20, "Dark Mare", 70, 600021, 379091000, 1, "", 0) })
         });
-        Field<CharacterSheet>(world, "Sheet").ApplyLevel(55, 0, 100, 1000);
-        Call(world, "PickDisguiseGroup", 0); SetField(world, "_disguiseShown", true);
-        var window = Detach<HudWindow>(world, "_disguisePanel");
+        Field<CharacterSheet>(world, "Session.Self.Sheet").ApplyLevel(55, 0, 100, 1000);
+        Call(world, "DisguiseWindow.PickGroup", 0); SetField(world, "DisguiseWindow.shown", true);
+        var window = Detach<HudWindow>(world, "DisguiseWindow.Panel");
         window.Visible = true;
         NativeIdentity.Prepare(window, world);
         return window;
     }
 
-    public static CanvasLayer BuildEquipViewClassicUiPreview(World world)
+    public static CanvasLayer BuildEquipViewClassicUiPreview(WorldRoot world)
     {
-        ItemData.EnsureLoaded(); Call(world, "BuildItemTooltip"); Call(world, "EquipViewInit");
-        var inventory = Field<Inventory>(world, "Inv");
+        ItemData.EnsureLoaded(); Call(world, "ItemTooltip.Build"); Call(world, "EquipView.Build");
+        var inventory = Field<Inventory>(world, "Session.Self.Inventory");
         inventory.EnsureLength(InventoryConstants.InventoryTotal);
         inventory[InventoryConstants.InventoryStart] = new ItemSlot { ItemId = 389015000, Count = 100, Durability = 1 };
-        var layer = Field<CanvasLayer>(world, "_equipViewLayer");
-        Field<CanvasLayer>(world, "_itemTipLayer").Reparent(layer, false);
+        var layer = Field<CanvasLayer>(world, "EquipView.layer");
+        Field<CanvasLayer>(world, "ItemTooltip.tipLayer").Reparent(layer, false);
         world.RemoveChild(layer);
-        NativeEquipView.Prepare(Field<HudWindow>(world, "_equipViewPanel"), world);
+        NativeEquipView.Prepare(Field<HudWindow>(world, "EquipView.Panel"), world);
         return layer;
     }
 
-    public static void RequestEquipmentView(World world, string name) => NativeEquipView.Request(world, name);
+    public static void RequestEquipmentView(WorldRoot world, string name) => NativeEquipView.Request(world, name);
 
     /// <summary>A reply reaches the client's handler and then the plugin's, as the network event does.</summary>
-    public static void OnEquipmentView(World world, Net.EquipmentViewResult result, Net.EquipmentView view)
+    public static void OnEquipmentView(WorldRoot world, EquipmentViewResult result, EquipmentView view)
     {
-        Call(world, "OnEquipmentView", result, view);
+        Call(world, "EquipView.OnEquipmentView", result, view);
         NativeEquipView.Received(world, result, view);
     }
 
     /// <summary>The fork placed the tooltip in its own viewport; the audit world itself is not in the tree.</summary>
-    public static void UpdateInventoryTooltip(World world)
+    public static void UpdateInventoryTooltip(WorldRoot world)
     {
-        var panel = Field<Control>(world, "_itemTipPanel");
+        var panel = Field<Control>(world, "ItemTooltip.TipPanel");
         if (panel == null || !panel.Visible || panel.GetViewport() is not { } viewport) return;
         var visible = viewport.GetVisibleRect().Size;
         var p = viewport.GetMousePosition() + new Vector2(16, 16);
@@ -121,7 +121,7 @@ public static partial class PreviewFixtures
         panel.Position = p;
     }
 
-    public static Net.EquipmentView EquipViewPreviewSnapshot(string name, int nation, bool empty = false, bool maximum = false)
+    public static EquipmentView EquipViewPreviewSnapshot(string name, int nation, bool empty = false, bool maximum = false)
     {
         var worn = new List<(int Slot, int ItemId, short Durability, byte Flag)>();
         if (!empty)
@@ -136,110 +136,110 @@ public static partial class PreviewFixtures
                 worn.Add((InventoryConstants.CospreStart + positions[i], id, 1, 0));
             }
         }
-        return new Net.EquipmentView(name, nation == 1 ? 101 : 201, nation == 1 ? 1 : 11, 0, 0, 83, 5, nation,
+        return new EquipmentView(name, nation == 1 ? 101 : 201, nation == 1 ? 1 : 11, 0, 0, 83, 5, nation,
             maximum ? 32767 : 7836, maximum ? 32767 : 7696, 255, maximum ? 255 : 13, 255, 10, 60, 8, 50, 0, 50, 0,
             maximum ? 32767 : 2103, maximum ? 32767 : 238, 120, 90, 140, 50, 130, 170, worn);
     }
 
-    public static CanvasLayer BuildGenderClassicUiPreview(World world, int nation)
+    public static CanvasLayer BuildGenderClassicUiPreview(WorldRoot world, int nation)
     {
         ItemData.EnsureLoaded();
-        var me = Net.I.LastEnter;
+        var me = Game.Session.Self.LastEnter;
         me.Name = "Tester10"; me.Nation = nation; me.Class = nation == 1 ? 112 : 206;
         me.Race = nation == 1 ? 2 : 12; me.Face = 1; me.Hair = (2 << 24) | 0x5A3820;
         Seed(world, me);
-        Call(world, "BuildGenderPanel"); Call(world, "OpenGenderChange");
-        var layer = Detach<CanvasLayer>(world, "_genderLayer");
-        NativeAppearance.Prepare(Field<HudWindow>(world, "_genderPanel"), world);
+        Call(world, "GenderChangeWindow.BuildPanel"); Call(world, "GenderChangeWindow.Open");
+        var layer = Detach<CanvasLayer>(world, "GenderChangeWindow.layer");
+        NativeAppearance.Prepare(Field<HudWindow>(world, "GenderChangeWindow.Panel"), world);
         return layer;
     }
 
-    public static CanvasLayer BuildBeautyClassicUiPreview(World world, int nation)
+    public static CanvasLayer BuildBeautyClassicUiPreview(WorldRoot world, int nation)
     {
         ItemData.EnsureLoaded();
-        var me = Net.I.LastEnter;
+        var me = Game.Session.Self.LastEnter;
         me.Name = "AppearanceTester2026"; me.Nation = nation; me.Class = nation == 1 ? 112 : 206;
         me.Race = nation == 1 ? 2 : 12; me.Face = 0; me.Hair = 0x5A3820;
         Seed(world, me);
-        SetField(world, "_selfRace", me.Race); SetField(world, "_selfFace", me.Face); SetField(world, "_selfHair", me.Hair);
-        Call(world, "ChangeHairInit"); Call(world, "OpenChangeHair");
-        var layer = Detach<CanvasLayer>(world, "_changeHairLayer");
-        NativeAppearance.Prepare(Field<HudWindow>(world, "_changeHairPanel"), world);
+        SetField(world, "Session.Self.Race", me.Race); SetField(world, "Session.Self.Face", me.Face); SetField(world, "Session.Self.Hair", me.Hair);
+        Call(world, "ChangeHair.Build"); Call(world, "ChangeHair.Open");
+        var layer = Detach<CanvasLayer>(world, "ChangeHair.layer");
+        NativeAppearance.Prepare(Field<HudWindow>(world, "ChangeHair.Panel"), world);
         return layer;
     }
 
     /// <summary>The client's request tracker: one outstanding Beauty Shop request at a time.</summary>
     public static bool ChangeHairPending(Net net) =>
-        Native.Get<object>(net, "_changeHairRequest") is { } request && Native.Get<bool>(request, "Pending");
+        Native.Get<object>(Game.Session.ChangeHair, "Request") is { } request && Native.Get<bool>(request, "Pending");
 
     /// <summary>The hair palette the Beauty Shop built on demand, prepared as the client's window flow would.</summary>
-    public static HudWindow? PrepareHairPalette(World world)
+    public static HudWindow? PrepareHairPalette(WorldRoot world)
     {
-        if (Native.Get<HudWindow>(world, "_hairPalette") is not { } palette) return null;
+        if (Native.Get<HudWindow>(world, "ChangeHair.hairPalette") is not { } palette) return null;
         NativeAppearance.Prepare(palette, world);
         return palette;
     }
 
-    public static CanvasLayer BuildNationTransferClassicUiPreview(World world, int nation)
+    public static CanvasLayer BuildNationTransferClassicUiPreview(WorldRoot world, int nation)
     {
         ItemData.EnsureLoaded();
-        var me = Net.I.LastEnter;
+        var me = Game.Session.Self.LastEnter;
         me.Name = "AppearanceTester2026"; me.Nation = nation; me.Class = nation == 1 ? 112 : 206;
         me.Race = nation == 1 ? 2 : 12; me.Face = 0; me.Hair = 0x5A3820;
         Seed(world, me);
-        Call(world, "NationTransferInit");
-        var layer = Detach<CanvasLayer>(world, "_transferLayer");
-        NativeAppearance.Prepare(Field<HudWindow>(world, "_transferPanel"), world);
+        Call(world, "NationTransfer.Build");
+        var layer = Detach<CanvasLayer>(world, "NationTransfer.transferLayer");
+        NativeAppearance.Prepare(Field<HudWindow>(world, "NationTransfer.TransferPanel"), world);
         return layer;
     }
 
-    public static CanvasLayer BuildRebirthClassicUiPreview(World world, int nation)
+    public static CanvasLayer BuildRebirthClassicUiPreview(WorldRoot world, int nation)
     {
         ItemData.EnsureLoaded();
-        var me = Net.I.LastEnter;
+        var me = Game.Session.Self.LastEnter;
         me.Name = "RebirthTester2026"; me.Nation = nation;
         Seed(world, me);
-        Net.I.Sheet.SeedProgress(83, 0, 1);
-        Net.I.Sheet.SeedRebirth(4, 3, 1, 2, 1, 1);
-        Call(world, "RebirthInit"); Call(world, "OpenRebirthPicker");
-        var layer = Detach<CanvasLayer>(world, "_rebirthLayer");
-        NativeRebirth.Prepare(Field<HudWindow>(world, "_rebirthPanel"), world);
+        Game.Session.Self.Sheet.SeedProgress(83, 0, 1);
+        Game.Session.Self.Sheet.SeedRebirth(4, 3, 1, 2, 1, 1);
+        Call(world, "Rebirth.Build"); Call(world, "Rebirth.OpenPicker");
+        var layer = Detach<CanvasLayer>(world, "Rebirth.layer");
+        NativeRebirth.Prepare(Field<HudWindow>(world, "Rebirth.panel"), world);
         return layer;
     }
 
-    public static void RefreshRebirthUI(World world)
+    public static void RefreshRebirthUI(WorldRoot world)
     {
-        Native.Call(world, "RefreshRebirthUI");
+        Native.Call(world, "Rebirth.RefreshUI");
         NativeRebirth.Refresh(world);
     }
 
-    public static void OnRebirthPressed(World world) => NativeRebirth.Pressed(world);
+    public static void OnRebirthPressed(WorldRoot world) => NativeRebirth.Pressed(world);
 
-    public static void EditRebirthPoint(World world, int row, bool add) => NativeRebirth.EditPoint(world, row, add);
+    public static void EditRebirthPoint(WorldRoot world, int row, bool add) => NativeRebirth.EditPoint(world, row, add);
 
-    public static CanvasLayer BuildCapeClassicUiPreview(World world, int nation)
+    public static CanvasLayer BuildCapeClassicUiPreview(WorldRoot world, int nation)
     {
         ItemData.EnsureLoaded();
-        var me = Net.I.LastEnter;
+        var me = Game.Session.Self.LastEnter;
         me.Name = "CapeTester2026"; me.Nation = nation; me.Race = nation == 1 ? 2 : 12;
         me.Class = nation == 1 ? 112 : 206; me.Hair = 0x5A3820;
         Seed(world, me);
-        Native.Call(Net.I, "SeedPreviewClan", Native.Call(typeof(World), "PreviewClan", true, ClanTypes.Royal1));
-        Call(world, "CapeInit"); Call(world, "ToggleCape");
-        var layer = Detach<CanvasLayer>(world, "_capeLayer");
-        NativeCape.Prepare(Field<HudWindow>(world, "_capePanel"), world);
+        Native.Call(Game.Session.Clan, "SeedPreview", Native.Call(Native.StaticOwner("LibreKO.WorldPreview"), "PreviewClan", true, ClanTypes.Royal1));
+        Call(world, "CapeWindow.Build"); Call(world, "CapeWindow.Toggle");
+        var layer = Detach<CanvasLayer>(world, "CapeWindow.layer");
+        NativeCape.Prepare(Field<HudWindow>(world, "CapeWindow.Panel"), world);
         return layer;
     }
 
-    public static void ToggleCape(World world) => NativeCape.Toggle(world);
+    public static void ToggleCape(WorldRoot world) => NativeCape.Toggle(world);
 
-    public static void ShowCapePattern(World world, int pattern) => NativeCape.ShowPattern(world, pattern);
+    public static void ShowCapePattern(WorldRoot world, int pattern) => NativeCape.ShowPattern(world, pattern);
 
-    public static void SelectCape(World world, int capeId) => NativeCape.Select(world, capeId);
+    public static void SelectCape(WorldRoot world, int capeId) => NativeCape.Select(world, capeId);
 
-    public static void UpdateCapeGate(World world)
+    public static void UpdateCapeGate(WorldRoot world)
     {
-        Native.Call(world, "UpdateCapeGate");
+        Native.Call(world, "CapeWindow.UpdateGate");
         NativeCape.Gate(world);
     }
 }

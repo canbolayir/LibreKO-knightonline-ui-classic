@@ -116,8 +116,11 @@ public sealed class Plugin : IPlugin
         FreeOutsideWorld();
         NpcPortraitCache.Clear();
         ClassicStraightArt.Clear();
+        ClassicChatRoomSkin.ClearKnobs();
+        Layout.MykoQuestLayout.Clear();
         CharacterPageRouter.Reset();
         Layout.ClassicNpcLayout.Reset();
+        Kit.Release();
         _context = null;
         Kit = null!;
     }
@@ -132,7 +135,7 @@ public sealed class Plugin : IPlugin
         {
             foreach (var child in node.GetChildren())
             {
-                if (child is LibreKO.World) continue;
+                if (child is LibreKO.Scene.WorldRoot) continue;
                 if (child.GetType().Assembly == plugin) found.Add(child);
                 else Visit(child);
             }

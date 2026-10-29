@@ -12,17 +12,17 @@ public static partial class PreviewFixtures
 {
     public const string BoardPlayer = "Rivermaster";
 
-    public static HudWindow BuildBoardWindowPreview(World world, string id, bool sheriff)
+    public static HudWindow BuildBoardWindowPreview(WorldRoot world, string id, bool sheriff)
     {
-        var me = Net.I.LastEnter; me.Name = BoardPlayer; Seed(world, me);
+        var me = Game.Session.Self.LastEnter; me.Name = BoardPlayer; Seed(world, me);
         var (init, panel, toggle) = id switch
         {
-            "bounty" => ("BountyInit", "_bountyPanel", "ToggleBounty"),
-            "report" => ("ReportInit", "_reportPanel", "ToggleReport"),
-            "fishinghall" => ("FishingHallInit", "_fishHallPanel", "ToggleFishingHall"),
-            _ => ("ForcesInit", "_forcesPanel", "ToggleForces"),
+            "bounty" => ("BountyInit", "Bounty.panel", "ToggleBounty"),
+            "report" => ("ReportInit", "Report.panel", "ToggleReport"),
+            "fishinghall" => ("FishingHallInit", "FishingHall.fishHallPanel", "ToggleFishingHall"),
+            _ => ("ForcesInit", "Forces.panel", "ToggleForces"),
         };
-        SetField(world, "_isGm", sheriff);
+        SetField(world, "PlayerSystem.IsGm", sheriff);
         Call(world, init);
         var window = Detach<HudWindow>(world, panel);
         Call(world, toggle);
@@ -38,7 +38,7 @@ public static partial class PreviewFixtures
     };
 
     /// <summary>Open bounties; <paramref name="longNames"/> adds a target and poster wider than their columns.</summary>
-    public static void FillBounties(World world, int count, bool longNames)
+    public static void FillBounties(WorldRoot world, int count, bool longNames)
     {
         var list = Enumerable.Range(0, count).Select(i => new BountyEntry
         {
@@ -47,11 +47,11 @@ public static partial class PreviewFixtures
             Poster = longNames && i == 2 ? "TheExtremelyPatientAvenger" : BoardNames[(i + 7) % BoardNames.Length],
             Reward = i == 0 ? 25_000_000 : 50_000 * (i + 1),
         }).ToList();
-        Call(world, "OnBountyList", list);
+        Call(world, "Bounty.OnList", list);
     }
 
     /// <summary>Hall of fame ranks; the local player holds rank 5.</summary>
-    public static void FillFishingHall(World world, int count)
+    public static void FillFishingHall(WorldRoot world, int count)
     {
         var list = Enumerable.Range(0, count).Select(i => new FishingHallEntry
         {
@@ -59,7 +59,7 @@ public static partial class PreviewFixtures
             Name = i == 4 ? BoardPlayer : i == 2 ? "GrandmasterOfTheSilverLake" : BoardNames[i % BoardNames.Length],
             Score = 1_250_000 - i * 37_500,
         }).ToList();
-        Call(world, "OnFishingHallList", list);
+        Call(world, "FishingHall.OnList", list);
     }
 
     private const string LongReason =
@@ -68,16 +68,16 @@ public static partial class PreviewFixtures
         "were collected by the clan leaders who were present at the time.";
 
     /// <summary>One server page of open reports.</summary>
-    public static void FillReports(World world, int totalPages, int count, bool longReason)
+    public static void FillReports(WorldRoot world, int totalPages, int count, bool longReason)
     {
-        var list = Enumerable.Range(0, count).Select(i => new Net.ReportEntry(500 + i,
+        var list = Enumerable.Range(0, count).Select(i => new ReportEntry(500 + i,
             i == 3 ? "MuchTooLongCharacterNameHere" : BoardNames[(i * 3) % BoardNames.Length], (byte)(i % 3), (byte)(i % 2),
             longReason && i == 1 ? LongReason : "Botting in Ronark Land.")).ToList();
-        Call(world, "OnReportList", (byte)totalPages, list);
+        Call(world, "Report.OnList", (byte)totalPages, list);
     }
 
-    public static void FillForces(World world, bool joined, int rank, int points, int anger)
+    public static void FillForces(WorldRoot world, bool joined, int rank, int points, int anger)
     {
-        Call(world, "OnForcesStatus", new ForcesStatus { Joined = joined, Rank = (byte)rank, Points = points, AngerPct = (byte)anger });
+        Call(world, "Forces.OnStatus", new ForcesStatus { Joined = joined, Rank = (byte)rank, Points = points, AngerPct = (byte)anger });
     }
 }

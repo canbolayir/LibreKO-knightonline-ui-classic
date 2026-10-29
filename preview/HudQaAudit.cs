@@ -253,9 +253,9 @@ public partial class Preview
         int first = known.Length > 0 ? known[0] : 379273000, second = known.Length > 1 ? known[1] : 379274000;
         var questDrops = new List<GameTargetDrop>
         {
-            new(ItemData.Icon(first), new TargetQuestDrop(first, 2, 3).Line(ItemData.DisplayName(first))),
-            new(ItemData.Icon(second), new TargetQuestDrop(second, 0, 3).Line(ItemData.DisplayName(second))),
-            new(ItemData.Icon(first), new TargetQuestDrop(first, 1, 10).Line("Ancient Blood Seeker Heart of the Lower Abyss Caves")),
+            new(ItemIcons.Get(first), new TargetQuestDrop(first, 2, 3).Line(ItemData.DisplayName(first))),
+            new(ItemIcons.Get(second), new TargetQuestDrop(second, 0, 3).Line(ItemData.DisplayName(second))),
+            new(ItemIcons.Get(first), new TargetQuestDrop(first, 1, 10).Line("Ancient Blood Seeker Heart of the Lower Abyss Caves")),
         };
         target.Values = name => name switch {
             "get_Has" => true, "get_Name" => "Bandicoot", "get_Level" => 14, "get_Hp" => 380, "get_MaxHp" => 1000,

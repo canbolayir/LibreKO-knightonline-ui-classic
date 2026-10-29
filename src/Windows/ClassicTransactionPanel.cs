@@ -326,7 +326,7 @@ internal static class ClassicTradeDrag
     {
         var root = new Control { MouseFilter = Control.MouseFilterEnum.Ignore };
         var content = new Control { Position = new Vector2(-22,-22), Size = new Vector2(44,44), MouseFilter = Control.MouseFilterEnum.Ignore }; root.AddChild(content);
-        content.AddChild(new TextureRect { Texture = ItemData.Icon(itemId), Size = content.Size, ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+        content.AddChild(new TextureRect { Texture = ItemIcons.Get(itemId), Size = content.Size, ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, MouseFilter = Control.MouseFilterEnum.Ignore });
         LibreKO.UpgradeBadge.Show(content,itemId); return root;
     }

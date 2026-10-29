@@ -53,7 +53,7 @@ public partial class ClassicCommandListFrame : Control
     private readonly ClassicCommandListFocus _focus = null!;
     private readonly ClassicCommandScroll _groupScroll = null!;
     private ClassicCommandScroll? _commandScroll;
-    private World? _world;
+    private WorldRoot? _world;
     private ItemList? _entries;
     private List<(string Title, List<Row> Rows)> _model = new();
     private IReadOnlyList<Row> _shown = Array.Empty<Row>();
@@ -123,7 +123,7 @@ public partial class ClassicCommandListFrame : Control
         if (GetParent() is not HudWindow window) return;
         if (window.HasMeta(NativeCommandList.Gate))
         {
-            if (window.GetMeta(NativeCommandList.WorldMeta).AsGodotObject() is World world && IsInstanceValid(world)) Bind(world);
+            if (window.GetMeta(NativeCommandList.WorldMeta).AsGodotObject() is WorldRoot world && IsInstanceValid(world)) Bind(world);
             return;
         }
         // Without the client members the preparer needs, the client's own two lists stay usable on the original art.
@@ -139,7 +139,7 @@ public partial class ClassicCommandListFrame : Control
     }
 
     /// <summary>Takes the client's command list into the lower box and lists the Classic groups in the upper box.</summary>
-    private void Bind(World world)
+    private void Bind(WorldRoot world)
     {
         if (NativeCommandList.Entries(world) is not { } entries) return;
         _world = world;

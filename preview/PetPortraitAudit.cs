@@ -23,7 +23,7 @@ public partial class Preview
         AddChild(new ColorRect { Size = new Vector2(800, 680), Color = new Color("252822"), MouseFilter = MouseFilterEnum.Ignore });
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
         PluginHost.Ui.ExtendWindow("pet", ClassicPetSkin.Extend);
-        var world = new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled };
+        var world = PreviewFixtures.Prepared(new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled });
         var layer = (CanvasLayer)DetailCall(world, "BuildPetClassicUiPreview", nation)!; AddChild(world); AddChild(layer);
         for (int i = 0; i < 6; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
         var window = layer.GetChildren().OfType<HudWindow>().Single(); window.Position = new Vector2(240, 70);
@@ -42,21 +42,19 @@ public partial class Preview
         GD.Print("PET_PORTRAIT_AUDIT: " + checks.Count + " checks");
     }
 
-    private async Task AuditPetPortraitForms(World world, Net net, HudWindow window, ClassicPetPanel panel,
+    private async Task AuditPetPortraitForms(WorldRoot world, Net net, HudWindow window, ClassicPetPanel panel,
         int nation, string output, Action<bool, string> require)
     {
         string source = ProjectSettings.GlobalizePath("res://../../LibreKO/Server/LibreKO.Game/Seed/Data/PetTransforms.json");
         var forms = JsonSerializer.Deserialize<FamiliarForm[]>(File.ReadAllText(source))!.OrderBy(f => f.ModelId).ToArray();
         require(forms.Length == 30 && forms.Select(f => f.ModelId).Distinct().Count() == forms.Length,
             "Familiar portrait audit covers every distinct authoritative transform model");
-        var flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        var actors = (IDictionary)typeof(World).GetField("_ents", flags)!.GetValue(world)!;
+        var actors = Native.Get<EntityRegistry>(world, "EntitySystem.Ents")!;
         var actor = actors[1]!; var modelField = actor.GetType().GetField("ModelId")!;
         int originalModel = (int)modelField.GetValue(actor)!;
-        var deadField = typeof(World).GetField("_selfDead", flags)!;
-        bool originalDead = (bool)deadField.GetValue(world)!;
-        deadField.SetValue(world, false);
-        var sheet = net.Pet!;
+        bool originalDead = Native.Get<bool>(world, "Avatar.Dead");
+        Native.Set(world, "Avatar.Dead", false);
+        var sheet = Game.Session.Pet.Pet!;
         var portrait = Descendants(panel).OfType<ClassicFamiliarPortrait>().Single();
         var view = Descendants(panel).OfType<FamiliarPortraitView>().Single();
         var snapshots = new List<object>(); var textures = new Dictionary<int, ulong>();
@@ -102,12 +100,12 @@ public partial class Preview
                 cacheEntries = NpcPortraitCache.EntryCount, textureBytes = NpcPortraitCache.CachedTextureBytes });
         }
         window.Visible = true;
-        DetailCall(world, "SetPetStatus", "", false); DetailCall(world, "ShowPetSheet", sheet);
+        DetailCall(world, "Pet.SetStatus", "", false); DetailCall(world, "ShowPetSheet", sheet);
         var ability = Descendants(panel).OfType<Button>().Single(b => b.Text == "Ability");
         ability.EmitSignal(BaseButton.SignalName.Pressed); await Frames();
         int renders = NpcPortraitCache.RenderRequests, entries = NpcPortraitCache.EntryCount;
         foreach (var form in forms)
-            require(DetailCall(world, "ResolveMobScene", form.ModelId) is PackedScene,
+            require(DetailCall(world, "EntityLooksSystem.ResolveMobScene", form.ModelId) is PackedScene,
                 "Existing content supplies authoritative familiar transform model " + form.ModelId);
         // Queue two uncached appearances before either renderer completes; only the newest may reach the control.
         Select(forms[0].ModelId); require(portrait.Texture == null, "Transform clears the previous familiar portrait immediately");
@@ -148,11 +146,11 @@ public partial class Preview
         require(portrait.Texture == null && view.Appearance == null, "Dismissed transformed familiar clears its portrait immediately");
         await Capture("dismissed", null);
         modelField.SetValue(actor, originalModel);
-        DetailCall(world, "SetPetStatus", "", false); DetailCall(world, "ShowPetSheet", sheet); await Ready(originalModel);
+        DetailCall(world, "Pet.SetStatus", "", false); DetailCall(world, "ShowPetSheet", sheet); await Ready(originalModel);
         require(NpcPortraitCache.RenderRequests == renders + forms.Length,
             "Returning to default Kaul reuses its existing portrait after all transformations");
         await Capture("default-restored", null);
-        deadField.SetValue(world, originalDead); DetailCall(world, "RefreshPetUI");
+        Native.Set(world, "Avatar.Dead", originalDead); DetailCall(world, "Pet.RefreshUI");
         window.Visible = false;
         File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-pet-portraits.json",
             JsonSerializer.Serialize(new { source, screens = snapshots }, new JsonSerializerOptions { WriteIndented = true }));

@@ -28,7 +28,7 @@ public static class NativeCommunication
 
     private const string MessengerEmptyText = "No one else online.";
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         switch (window.Id)
         {
@@ -41,14 +41,14 @@ public static class NativeCommunication
 
     private static bool Prepared(HudWindow window, string gate) => window.HasMeta(gate);
 
-    private static void PrepareInbox(HudWindow window, World world)
+    private static void PrepareInbox(HudWindow window, WorldRoot world)
     {
         if (Prepared(window, "classic_mail_controls")) return;
-        var list = Native.Get<VBoxContainer>(world, "_mailList");
-        var scroll = Native.Get<ScrollContainer>(world, "_mailListScroll");
-        var filter = Native.Get<CheckButton>(world, "_mailUnreadOnly");
-        var unread = Native.Get<Label>(world, "_mailUnreadPill");
-        var status = Native.Get<Label>(world, "_mailStatus");
+        var list = Native.Get<VBoxContainer>(world, "Mail.list");
+        var scroll = Native.Get<ScrollContainer>(world, "Mail.listScroll");
+        var filter = Native.Get<CheckButton>(world, "Mail.unreadOnlyToggle");
+        var unread = Native.Get<Label>(world, "Mail.unreadPill");
+        var status = Native.Get<Label>(world, "Mail.status");
         if (list == null || scroll == null || filter == null || unread == null || status == null) return;
         var actions = filter.GetParent().GetChildren().OfType<Button>().Where(b => b != filter).ToArray();
         if (actions.Length < 2) return;
@@ -64,11 +64,11 @@ public static class NativeCommunication
         window.SetMeta("classic_mail_controls", 1);
     }
 
-    private static void DescribeMailRow(World world, VBoxContainer list, Node node)
+    private static void DescribeMailRow(WorldRoot world, VBoxContainer list, Node node)
     {
         if (node is not PanelContainer panel || panel.GetParent() != list) return;
-        var mails = Native.Get<List<MailEntry>>(world, "_mails");
-        var filter = Native.Get<CheckButton>(world, "_mailUnreadOnly");
+        var mails = Native.Get<List<MailEntry>>(world, "Mail.mails");
+        var filter = Native.Get<CheckButton>(world, "Mail.unreadOnlyToggle");
         if (mails == null || filter == null) return;
         bool unreadOnly = filter.ButtonPressed;
         int index = list.GetChildren().OfType<PanelContainer>().Where(p => !p.IsQueuedForDeletion()).ToList().IndexOf(panel);
@@ -78,7 +78,7 @@ public static class NativeCommunication
         bool store = mail.Kind == MailKind.Store;
         panel.SetMeta("mail_row", true);
         panel.SetMeta("mail_read", mail.Read);
-        panel.SetMeta("mail_selected", mail.Id == Native.Get<int>(world, "_mailSelectedId"));
+        panel.SetMeta("mail_selected", mail.Id == Native.Get<int>(world, "Mail.selectedId"));
         panel.SetMeta("mail_store", store);
         panel.TooltipText = $"{mail.Subject}\nFrom {mail.Sender}\n{mail.SentAt.ToLocalTime():dd MMM yyyy HH:mm}";
         if (panel.GetChildCount() == 0 || panel.GetChild(0).GetChildCount() == 0 || panel.GetChild(0).GetChild(0) is not HBoxContainer row) return;
@@ -91,17 +91,17 @@ public static class NativeCommunication
         if (parts.Length > 3 && parts[2] is TextureRect marker) marker.Name = "mail_row_attachment";
     }
 
-    private static void PrepareReader(HudWindow window, World world)
+    private static void PrepareReader(HudWindow window, WorldRoot world)
     {
         if (Prepared(window, "classic_mail_controls")) return;
-        var subject = Native.Get<Label>(world, "_mailReadSubject");
-        var meta = Native.Get<Label>(world, "_mailReadMeta");
-        var body = Native.Get<Label>(world, "_mailReadBody");
-        var title = Native.Get<Label>(world, "_mailReadAttachmentTitle");
-        var scroll = Native.Get<ScrollContainer>(world, "_mailReadAttachmentScroll");
-        var attachments = Native.Get<VBoxContainer>(world, "_mailReadAttachments");
-        var claim = Native.Get<Button>(world, "_mailClaimBtn");
-        var delete = Native.Get<Button>(world, "_mailDeleteBtn");
+        var subject = Native.Get<Label>(world, "Mail.readSubject");
+        var meta = Native.Get<Label>(world, "Mail.readMeta");
+        var body = Native.Get<Label>(world, "Mail.readBody");
+        var title = Native.Get<Label>(world, "Mail.readAttachmentTitle");
+        var scroll = Native.Get<ScrollContainer>(world, "Mail.readAttachmentScroll");
+        var attachments = Native.Get<VBoxContainer>(world, "Mail.readAttachments");
+        var claim = Native.Get<Button>(world, "Mail.claimBtn");
+        var delete = Native.Get<Button>(world, "Mail.deleteBtn");
         if (subject == null || meta == null || body == null || title == null || scroll == null || attachments == null || claim == null || delete == null) return;
         subject.Name = "mail_read_subject";
         meta.Name = "mail_read_meta";
@@ -115,11 +115,11 @@ public static class NativeCommunication
         window.SetMeta("classic_mail_controls", 1);
     }
 
-    private static void DescribeAttachment(World world, VBoxContainer attachments, Node node)
+    private static void DescribeAttachment(WorldRoot world, VBoxContainer attachments, Node node)
     {
         if (node.GetParent() != attachments) return;
-        var mails = Native.Get<List<MailEntry>>(world, "_mails");
-        int selected = Native.Get<int>(world, "_mailSelectedId");
+        var mails = Native.Get<List<MailEntry>>(world, "Mail.mails");
+        int selected = Native.Get<int>(world, "Mail.selectedId");
         var mail = mails?.FirstOrDefault(m => m.Id == selected);
         int index = node.GetIndex();
         if (mail == null || index >= mail.Items.Count) return;
@@ -128,15 +128,15 @@ public static class NativeCommunication
         row.SetMeta("mail_attachment_claimed", claimed);
     }
 
-    private static void PrepareCompose(HudWindow window, World world)
+    private static void PrepareCompose(HudWindow window, WorldRoot world)
     {
         if (Prepared(window, "classic_mail_controls")) return;
         var named = new (string Field, string Name)[]
         {
-            ("_mailTo", "mail_to"), ("_mailToSuggest", "mail_to_suggest"), ("_mailSubject", "mail_subject"),
-            ("_mailBodyRemaining", "mail_body_remaining"), ("_mailBody", "mail_body"), ("_mailGold", "mail_gold"),
-            ("_mailAttachTitle", "mail_attach_title"), ("_mailDropZone", "mail_drop_zone"), ("_mailAttachRows", "mail_attach_rows"),
-            ("_mailSendBtn", "mail_send"), ("_mailComposeStatus", "mail_compose_status"),
+            ("MailCompose.Recipient", "mail_to"), ("MailCompose.recipientSuggestions", "mail_to_suggest"), ("MailCompose.SubjectInput", "mail_subject"),
+            ("MailCompose.bodyRemaining", "mail_body_remaining"), ("MailCompose.BodyInput", "mail_body"), ("MailCompose.Gold", "mail_gold"),
+            ("MailCompose.attachTitle", "mail_attach_title"), ("MailCompose.AttachmentDrop", "mail_drop_zone"), ("MailCompose.attachRows", "mail_attach_rows"),
+            ("MailCompose.sendBtn", "mail_send"), ("MailCompose.composeStatus", "mail_compose_status"),
         };
         var controls = named.Select(n => (Control: Native.Get<Control>(world, n.Field), n.Name)).ToArray();
         if (controls.Any(c => c.Control == null)) return;
@@ -148,8 +148,8 @@ public static class NativeCommunication
 
         var drop = controls.Single(c => c.Name == "mail_drop_zone").Control!;
         var rows = controls.Single(c => c.Name == "mail_attach_rows").Control!;
-        var hint = Native.Get<Label>(drop, "_hint");
-        var picks = Native.Get<System.Collections.ICollection>(world, "_mailAttachments");
+        var hint = Native.Get<Label>(drop, "hint");
+        var picks = Native.Get<System.Collections.ICollection>(world, "MailCompose.Attachments");
         void ClassicHint()
         {
             if (hint != null && picks != null && window.HasMeta("classic_mail")) hint.Visible = picks.Count == 0;
@@ -158,21 +158,21 @@ public static class NativeCommunication
         NativeWindows.Sync(window, () =>
         {
             ClassicHint();
-            if (drop.HasMeta("classic_mail_idle") && Native.Get<StyleBox>(drop, "_idle") != drop.GetMeta("classic_mail_idle").AsGodotObject())
+            if (drop.HasMeta("classic_mail_idle") && Native.Get<StyleBox>(drop, "idle") != drop.GetMeta("classic_mail_idle").AsGodotObject())
             {
-                Native.Set(drop, "_idle", drop.GetMeta("classic_mail_idle").AsGodotObject());
-                Native.Set(drop, "_hot", drop.GetMeta("classic_mail_hot").AsGodotObject());
+                Native.Set(drop, "idle", drop.GetMeta("classic_mail_idle").AsGodotObject());
+                Native.Set(drop, "hot", drop.GetMeta("classic_mail_hot").AsGodotObject());
             }
         });
         window.SetMeta("classic_mail_controls", 1);
     }
 
-    private static void PrepareMessenger(HudWindow window, World world)
+    private static void PrepareMessenger(HudWindow window, WorldRoot world)
     {
         if (Prepared(window, "classic_communication_controls")) return;
-        var list = Native.Get<VBoxContainer>(world, "_msgrList");
-        var to = Native.Get<LineEdit>(world, "_msgrToInput");
-        var message = Native.Get<LineEdit>(world, "_msgrTextInput");
+        var list = Native.Get<VBoxContainer>(world, "Messenger.msgrList");
+        var to = Native.Get<LineEdit>(world, "Messenger.msgrToInput");
+        var message = Native.Get<LineEdit>(world, "Messenger.msgrTextInput");
         if (list == null || to == null || message == null || list.GetParent() is not ScrollContainer scroll) return;
         var send = message.GetParent().GetChildren().OfType<Button>().FirstOrDefault();
         if (send == null) return;
@@ -183,7 +183,7 @@ public static class NativeCommunication
         send.Name = "messenger_send";
         foreach (var row in list.GetChildren()) DescribeBuddy(list, row);
         NativeWindows.OnDescendantAdded(list, node => DescribeBuddy(list, node));
-        PrependReplyHandler<List<MessengerBuddy>>("MessengerListEvent", "OnMessengerList", world, _ => DetachRows(list));
+        PrependReplyHandler<List<MessengerBuddy>>(Game.Session.Messenger, "MessengerListEvent", Native.Get<object>(world, "Messenger"), "OnList", world, _ => DetachRows(list));
         window.SetMeta("classic_communication_controls", 1);
     }
 
@@ -223,17 +223,16 @@ public static class NativeCommunication
     /// Runs <paramref name="before"/> ahead of the client's own reply handler, so the replaced rows are gone
     /// when the client checks whether the refreshed list is empty.
     /// </summary>
-    private static void PrependReplyHandler<T>(string evt, string handler, World world, Action<T> before)
+    private static void PrependReplyHandler<T>(object source, string evt, object? target, string handler, WorldRoot world, Action<T> before)
     {
-        var net = Net.I;
-        if (net == null || !Native.TryGet<Action<T>>(net, evt, out var current)) return;
-        Prepend(net, evt, handler, world, current, before);
+        if (target == null || !Native.TryGet<Action<T>>(source, evt, out var current)) return;
+        Prepend(source, evt, target, handler, world, current, before);
     }
 
-    private static void Prepend(Net net, string evt, string handler, World world, Delegate current, Delegate before)
+    private static void Prepend(object net, string evt, object target, string handler, WorldRoot world, Delegate current, Delegate before)
     {
         var calls = current.GetInvocationList();
-        if (!calls.Any(d => d.Target == world && d.Method.Name == handler)) return;
+        if (!calls.Any(d => d.Target == target && d.Method.Name == handler)) return;
         if (_replyHooks.TryGetValue(evt, out var previous)) previous.Release();
         if (Native.Get<Delegate>(net, evt) is { } now) calls = now.GetInvocationList();
         if (!Native.Set(net, evt, Delegate.Combine(calls.Prepend(before).ToArray()))) return;

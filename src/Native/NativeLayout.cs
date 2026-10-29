@@ -73,8 +73,8 @@ public static partial class NativeLayout
     {
         var layout = window.Layout;
         if (!GodotObject.IsInstanceValid(layout) || layout.HasMeta(AnchorKept)) return;
-        if (Native.Get<Func<Vector2>>(layout, "_defaultPosition") is not { } placement) return;
-        if (Native.Set(layout, "_defaultPosition", (Func<Vector2>)(() => window.HasMeta(ContentOpenAnchor) ? window.Position : placement())))
+        if (Native.Get<Func<Vector2>>(layout, "defaultPosition") is not { } placement) return;
+        if (Native.Set(layout, "defaultPosition", (Func<Vector2>)(() => window.HasMeta(ContentOpenAnchor) ? window.Position : placement())))
             layout.SetMeta(AnchorKept, true);
     }
 
@@ -95,7 +95,7 @@ public static partial class NativeLayout
 
         public override void _Process(double delta)
         {
-            if (Native.Get<Control>(_layout, "_corner") is not { } corner) return;
+            if (Native.Get<Control>(_layout, "resizeGrip") is not { } corner) return;
             SetProcess(false);
             corner.SelfModulate = Colors.Transparent;
             corner.CustomMinimumSize = GripSize;
@@ -170,7 +170,7 @@ public static partial class NativeLayout
             }
         }
 
-        private bool Resizing => Native.Get<bool>(Layout, "_resizing");
+        private bool Resizing => Native.Get<bool>(Layout, "resizing");
 
         private bool Frozen => Native.Get<bool>(Layout, "Frozen");
 
@@ -188,7 +188,7 @@ public static partial class NativeLayout
 
         private void OnMoved()
         {
-            if (Partner != null && Native.Get<bool>(Layout, "_dragging") && Native.Get<bool>(Layout, "_dragMoved")) Detach();
+            if (Partner != null && Native.Get<bool>(Layout, "dragging") && Native.Get<bool>(Layout, "dragMoved")) Detach();
         }
 
         public override void _Process(double delta)
@@ -203,8 +203,8 @@ public static partial class NativeLayout
         private void OnResized()
         {
             if (_applying || !Resizing) return;
-            var key = (Native.Get<Vector2>(Layout, "_resizeOriginMouse"), Native.Get<Vector2>(Layout, "_resizeOriginPosition"),
-                Native.Get<Vector2>(Layout, "_resizeOriginSize"));
+            var key = (Native.Get<Vector2>(Layout, "resizeOriginMouse"), Native.Get<Vector2>(Layout, "resizeOriginPosition"),
+                Native.Get<Vector2>(Layout, "resizeOriginSize"));
             if (_session != key)
             {
                 _session = key;

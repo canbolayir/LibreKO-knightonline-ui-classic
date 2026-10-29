@@ -456,8 +456,8 @@ public partial class SkillCell : Control
         State = skill == null ? SkillLearnState.Locked : state;
         Visible = skill != null;
         _icon.Texture = skill is not { } s ? null
-            : State == SkillLearnState.Locked ? SkillData.EnigmaIcon()
-            : SkillData.Icon(s.Id) ?? SkillData.EnigmaIcon();
+            : State == SkillLearnState.Locked ? SkillIcons.Enigma()
+            : SkillIcons.Get(s.Id) ?? SkillIcons.Enigma();
         float shade = State == SkillLearnState.Learnable ? LearnableShade : 1f;
         _icon.SelfModulate = new Color(shade, shade, shade);
         TooltipText = skill is { } t ? t.Tooltip + (reason.Length > 0 ? "\n" + reason : "") : "";

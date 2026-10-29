@@ -17,26 +17,24 @@ public partial class Preview
         GetWindow().Size=new Vector2I(1280,800);
         AddChild(new ColorRect{Color=new Color("252822"),Size=new Vector2(1280,800),MouseFilter=MouseFilterEnum.Ignore});
         var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net,new MyInfo{Nation=nation,Class=nation==1?108:208,Race=nation==1?2:12,Name="Service Preview",Gear=new int[8],Inventory=new LibreKO.Domain.ItemSlot[LibreKO.Domain.InventoryConstants.InventoryTotal]});
-        const BindingFlags flags=BindingFlags.Instance|BindingFlags.NonPublic;
+        Native.Set(Game.Session.Self, "LastEnter",new MyInfo{Nation=nation,Class=nation==1?108:208,Race=nation==1?2:12,Name="Service Preview",Gear=new int[8]}); Game.Session.Self.Inventory.Reset(new LibreKO.Domain.ItemSlot[LibreKO.Domain.InventoryConstants.InventoryTotal]);
         var screens=new List<object>();var checks=new List<string>();
         async Task Frames(){for(int i=0;i<12;i++)await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);}
-        foreach(var spec in new[]{("gender","BuildGenderChangeUiPreview","_genderShown"),("nation","BuildNationTransferUiPreview","_transferShown"),("search","BuildMerchantSearchUiPreview","_merchantSearchShown")})
+        foreach(var spec in new[]{("gender","BuildGenderChange","GenderChangeWindow.shown"),("nation","BuildNationTransfer","NationTransfer.transferShown"),("search","BuildMerchantSearch","MerchantSearch.searchShown")})
         {
-            var world=new World();
-            var panel=(Control)typeof(World).GetMethod(spec.Item2,flags)!.Invoke(world,null)!;
+            var world=PreviewFixtures.Prepared(new WorldRoot());
+            var panel=(Control)Native.Call(PreviewFixtures.ClientPreview(world), spec.Item2)!;
             AddChild(panel);await Frames();panel.Position=((GetViewportRect().Size-panel.Size)/2).Round();await Frames();
             if(!GetViewportRect().Grow(.1f).Encloses(panel.GetGlobalRect()))throw new Exception(spec.Item1+" exceeds viewport");
             checks.Add(spec.Item1+" rendered native window fits viewport");
             string file=(nation==1?"karus":"human")+"-"+spec.Item1+".png";
             GetViewport().GetTexture().GetImage().SavePng(output+"/"+file);screens.Add(new{state=spec.Item1,file});
-            typeof(World).GetMethod("BuildEscapeStack",flags)!.Invoke(world,null);
-            var entries=(List<(Func<bool>,Action)>)typeof(World).GetField("_escapeStack",flags)!.GetValue(world)!;
+            Native.Call(world, "BuildEscapeOrder");
+            var entries=PreviewFixtures.EscapeEntries(world).Select(e=>(e.IsOpen,e.Close)).ToList();
             // Locate the entry by its own visibility flag; upstream inserts entries by precedence, so indices drift.
-            var shown=typeof(World).GetField(spec.Item3,flags)!;
             bool Open((Func<bool>,Action) e){try{return e.Item1();}catch(NullReferenceException){return false;}}
-            var open=entries.Where(Open).ToList();shown.SetValue(world,false);
-            var owned=open.Where(e=>!Open(e)).ToList();shown.SetValue(world,true);
+            var open=entries.Where(Open).ToList();Native.Set(world,spec.Item3,false);
+            var owned=open.Where(e=>!Open(e)).ToList();Native.Set(world,spec.Item3,true);
             if(owned.Count!=1)throw new Exception(spec.Item1+" not registered as open in Escape stack");
             var entry=owned[0];
             entry.Item2();

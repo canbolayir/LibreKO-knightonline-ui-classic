@@ -33,7 +33,6 @@ public sealed class NativeAnvil
     private const int ChoiceTextWidth = 245;
     private const int ChoiceFontSize = 12;
     private const int ChoiceOutline = 4;
-    private const byte ResultSucceeded = 1;
     private const string ChoiceWindowId = "anvil_choice";
     private const string Title = "Magic Anvil";
     private const string SelectText = "You can upgrade your item at the magic anvil. Please select what you want to upgrade.";
@@ -51,9 +50,9 @@ public sealed class NativeAnvil
     private const int SlotRing = 12;
     private const int SlotBelt = 14;
 
-    private static readonly ConditionalWeakTable<World, NativeAnvil> _anvils = new();
+    private static readonly ConditionalWeakTable<WorldRoot, NativeAnvil> _anvils = new();
 
-    private readonly World _world;
+    private readonly WorldRoot _world;
     private readonly List<ItemSlotView> _bag = new();
     private int[] _errorSelection = Array.Empty<int>();
 
@@ -62,23 +61,23 @@ public sealed class NativeAnvil
     public Button Cancel { get; }
     public Button Back { get; }
 
-    public static NativeAnvil? Of(World world) => _anvils.TryGetValue(world, out var anvil) ? anvil : null;
+    public static NativeAnvil? Of(WorldRoot world) => _anvils.TryGetValue(world, out var anvil) ? anvil : null;
 
-    public static NativeAnvil? Prepare(HudWindow window, World world)
+    public static NativeAnvil? Prepare(HudWindow window, WorldRoot world)
     {
         if (Of(world) is { } existing) return existing;
-        if (!Native.Has(world, "_upgradeItemIds") || !Native.Has(world, "_anvilFooter")) return null;
+        if (!Native.Has(world, "Upgrade.itemIds") || !Native.Has(world, "Upgrade.anvilFooter")) return null;
         var anvil = new NativeAnvil(window, world);
         _anvils.Add(world, anvil);
         return anvil;
     }
 
-    private NativeAnvil(HudWindow window, World world)
+    private NativeAnvil(HudWindow window, WorldRoot world)
     {
         Window = window;
         _world = world;
         NameSockets();
-        foreach (string field in new[] { "_itemSockets", "_accessorySockets" })
+        foreach (string field in new[] { "Upgrade.itemSockets", "Upgrade.accessorySockets" })
             if (Native.Get<ItemSlotView?[]>(world, field) is { } sockets)
                 for (int i = 0; i < sockets.Length; i++)
                     if (sockets[i] is { } socket)
@@ -88,7 +87,7 @@ public sealed class NativeAnvil
                         socket.Dropped = (_, data) => StageDrop(index, data);
                     }
 
-        var footer = Native.Get<FooterBand>(world, "_anvilFooter")!;
+        var footer = Native.Get<FooterBand>(world, "Upgrade.anvilFooter")!;
         Cancel = new Button { Name = "anvil_cancel", Text = "Cancel", FocusMode = Control.FocusModeEnum.None };
         Cancel.Pressed += Reset;
         footer.Right.AddChild(Cancel);
@@ -96,7 +95,7 @@ public sealed class NativeAnvil
         Back.Pressed += () =>
         {
             if (Locked) return;
-            Native.Call(_world, "CloseUpgrade");
+            Native.Call(_world, "Upgrade.Close");
             ShowChoice();
         };
         footer.Right.AddChild(Back);
@@ -104,9 +103,8 @@ public sealed class NativeAnvil
         Choice = BuildChoice();
         InstallCompanion();
         ReplaceOpenHandler();
-        var net = Net.I;
-        NativeHooks.Listen("Net.ItemMoveResultEvent", () => net.ItemMoveResultEvent += OnItemMoveResult,
-            () => net.ItemMoveResultEvent -= OnItemMoveResult, world);
+        NativeHooks.Listen("Net.ItemMoveResultEvent", () => Game.Session.Items.ItemMoveResultEvent += OnItemMoveResult,
+            () => Game.Session.Items.ItemMoveResultEvent -= OnItemMoveResult, world);
         window.VisibilityChanged += () =>
         {
             if (window.Visible && window.HasMeta("embedded_inventory")) Callable.From(KeepInventoryClosed).CallDeferred();
@@ -117,19 +115,19 @@ public sealed class NativeAnvil
 
     // Native state ------------------------------------------------------------------------------
 
-    private Inventory Inv => Native.Get<Inventory>(_world, "Inv")!;
-    private int[] Ids => Native.Get<int[]>(_world, "_upgradeItemIds")!;
-    private int[] Positions => Native.Get<int[]>(_world, "_upgradePositions")!;
-    private ItemSlotView?[] Sockets => Native.Get<ItemSlotView?[]>(_world, "_upgradeSockets") ?? Array.Empty<ItemSlotView?>();
-    private bool Compound => Native.Get<object>(_world, "_anvilBench") is { } bench && Convert.ToInt32(bench) == CompoundBench;
+    private Inventory Inv => Game.Session.Self.Inventory;
+    private int[] Ids => Native.Get<int[]>(_world, "Upgrade.itemIds")!;
+    private int[] Positions => Native.Get<int[]>(_world, "Upgrade.positions")!;
+    private ItemSlotView?[] Sockets => Native.Get<ItemSlotView?[]>(_world, "Upgrade.sockets") ?? Array.Empty<ItemSlotView?>();
+    private bool Compound => Native.Get<object>(_world, "Upgrade.anvilBench") is { } bench && Convert.ToInt32(bench) == CompoundBench;
     private int MaterialEnd => Compound ? AccessoryBenchSlots : UpgradeSlotCount;
-    private bool Shown => Native.Get<bool>(_world, "_upgradeShown");
-    private bool Awaiting => Native.Get<UpgradeSession>(_world, "_upgradeSession") is { Awaiting: true };
+    private bool Shown => Native.Get<bool>(_world, "Upgrade.shown");
+    private bool Awaiting => Native.Get<UpgradeSession>(_world, "Upgrade.Session") is { Awaiting: true };
 
     /// <summary>Whether a request, its answer or its result animation currently owns the bench.</summary>
-    public bool Locked => Native.Has(_world, "UpgradeInteractionLocked")
-        ? Native.Get<bool>(_world, "UpgradeInteractionLocked")
-        : Awaiting || Native.Get<object>(_world, "_upgradePendingResult") != null || Native.Get<object>(_world, "_upgradeScanTween") != null;
+    public bool Locked => Native.Has(_world, "Upgrade.InteractionLocked")
+        ? Native.Get<bool>(_world, "Upgrade.InteractionLocked")
+        : Awaiting || Native.Get<object>(_world, "Upgrade.pendingResult") != null || Native.Get<object>(_world, "Upgrade.scanTween") != null;
 
     private static bool InMainBag(int abs, Inventory inventory) =>
         abs >= Inventory.GridStart && abs < Inventory.GridStart + Inventory.GridCount && abs < inventory.Length;
@@ -146,7 +144,7 @@ public sealed class NativeAnvil
     private static bool IsAccessoryMaterial(int itemId) =>
         itemId is >= AccessoryScrollFirst and <= AccessoryScrollLast or AccessoryTrina;
 
-    private bool IsUpgradeTarget(int itemId) => Native.Call(_world, "IsUpgradeTarget", itemId) is true;
+    private bool IsUpgradeTarget(int itemId) => Native.Call(Native.StaticOwner("LibreKO.Features.Windows.UpgradeFeature"), "IsTarget", itemId) is true;
 
     // Classic placement -------------------------------------------------------------------------
 
@@ -167,7 +165,7 @@ public sealed class NativeAnvil
         for (int i = 0; i < positions.Length; i++)
             if (positions[i] == abs - Inventory.GridStart)
             {
-                Native.Call(_world, "ClearUpgradeSocket", i);
+                Native.Call(_world, "Upgrade.ClearSocket", i);
                 RefreshBag();
                 return;
             }
@@ -188,7 +186,7 @@ public sealed class NativeAnvil
             if (free < 0) problem = MaterialsFullText;
             return free;
         }
-        problem = Native.Call(_world, "UpgradePlacementError", itemId) as string ?? MisfitText;
+        problem = Native.Call(_world, "Upgrade.PlacementError", itemId) as string ?? MisfitText;
         return -1;
     }
 
@@ -317,8 +315,8 @@ public sealed class NativeAnvil
     private void BenchChanged()
     {
         Window.RemoveMeta("anvil_error");
-        Native.Call(_world, "RefreshBagFit");
-        Native.Call(_world, "OnUpgradeBenchChanged");
+        Native.Call(_world, "BagCompanions.RefreshFit");
+        Native.Call(_world, "Upgrade.OnBenchChanged");
         RefreshBag();
     }
 
@@ -331,12 +329,12 @@ public sealed class NativeAnvil
         var positions = Positions;
         if (Locked || socket < 0 || socket >= MaterialEnd || !InMainBag(abs, Inv) || positions[socket] < 0) return false;
         int from = Inventory.GridStart + positions[socket];
-        Native.Call(_world, "ClearUpgradeSocket", socket);
+        Native.Call(_world, "Upgrade.ClearSocket", socket);
         if (from != abs)
         {
             for (int other = 0; other < positions.Length; other++)
-                if (positions[other] == abs - Inventory.GridStart) Native.Call(_world, "ClearUpgradeSocket", other);
-            if (Inv[from].Count <= 1) Native.Call(_world, "MoveBetween", from, abs);
+                if (positions[other] == abs - Inventory.GridStart) Native.Call(_world, "Upgrade.ClearSocket", other);
+            if (Inv[from].Count <= 1) Native.Call(_world, "InventoryWindow.MoveBetween", from, abs);
         }
         RefreshBag();
         return true;
@@ -347,16 +345,16 @@ public sealed class NativeAnvil
     {
         if (Locked) return;
         Window.RemoveMeta("anvil_error");
-        Native.Call(_world, "DismissUpgradeConfirm");
-        Native.Call(_world, "ClearUpgradeSockets");
-        Native.Call(_world, "ShowAnvilPrompt");
-        Native.Call(_world, "RefreshBagFit");
+        Native.Call(_world, "Upgrade.DismissConfirm");
+        Native.Call(_world, "Upgrade.ClearSockets");
+        Native.Call(_world, "Upgrade.ShowAnvilPrompt");
+        Native.Call(_world, "BagCompanions.RefreshFit");
         RefreshBag();
     }
 
     private void Error(string text)
     {
-        Native.Get<FooterBand>(_world, "_anvilFooter")?.Status(text, bad: true);
+        Native.Get<FooterBand>(_world, "Upgrade.anvilFooter")?.Status(text, bad: true);
         Window.SetMeta("anvil_error", text);
         _errorSelection = (int[])Ids.Clone();
     }
@@ -373,8 +371,8 @@ public sealed class NativeAnvil
             var cell = new ItemSlotView(BagCellSize) { Name = "anvil_bag_" + i, Index = abs };
             cell.RightClicked += _ => Take(abs);
             cell.DoubleClicked += _ => Take(abs);
-            cell.Hovered += s => Native.Call(_world, "ShowItemTooltip", abs, s.Item, "");
-            cell.Unhovered += _ => Native.Call(_world, "HideItemTooltip");
+            cell.Hovered += s => Native.Call(_world, "ItemTooltip.Show", abs, s.Item, "");
+            cell.Unhovered += _ => Native.Call(_world, "ItemTooltip.Hide");
             cell.DragOut = _ => Locked ? default(Variant) : new Godot.Collections.Dictionary { { "invFrom", abs } };
             cell.CanDrop = (_, data) => CanDropInBag(abs, data);
             cell.Dropped = (_, data) => DropInBag(abs, data);
@@ -397,7 +395,7 @@ public sealed class NativeAnvil
     /// <summary>The drag preview for an embedded bag cell pressed at <paramref name="pressed"/>.</summary>
     public static Control DragPreview(ItemSlotView cell, Vector2 pressed)
     {
-        var icon = Native.Get<TextureRect>(cell, "_icon")!;
+        var icon = Native.Get<TextureRect>(cell, "icon")!;
         return KnightOnlineUiClassic.Layout.IconDragPreview.Create(icon, KnightOnlineUiClassic.Layout.IconDragPreview.GrabPoint(cell, icon, pressed));
     }
 
@@ -424,8 +422,8 @@ public sealed class NativeAnvil
         var positions = Positions;
         for (int socket = 0; socket < positions.Length; socket++)
             if (positions[socket] == from - Inventory.GridStart || positions[socket] == abs - Inventory.GridStart)
-                Native.Call(_world, "ClearUpgradeSocket", socket);
-        Native.Call(_world, "MoveBetween", from, abs);
+                Native.Call(_world, "Upgrade.ClearSocket", socket);
+        Native.Call(_world, "InventoryWindow.MoveBetween", from, abs);
         RefreshBag();
     }
 
@@ -434,7 +432,7 @@ public sealed class NativeAnvil
     {
         foreach (var cell in _bag)
         {
-            var item = Native.Call(_world, "SlotAt", cell.Index) is ItemSlot shown ? shown : default;
+            var item = Native.Call(_world, "InventoryWindow.SlotAt", cell.Index) is ItemSlot shown ? shown : default;
             if (IsStaged(cell.Index))
             {
                 if (item.Count > 1) item.Count--;
@@ -452,10 +450,10 @@ public sealed class NativeAnvil
 
     private void KeepInventoryClosed()
     {
-        if (!Window.Visible || Native.Get<object>(_world, "_bagPairing") is not { } pairing) return;
-        if (!Native.Get<bool>(pairing, "_openedByCompanion")) return;
-        Native.Set(pairing, "_openedByCompanion", false);
-        Native.Call(_world, "HideMainWindow", "Inventory");
+        if (!Window.Visible || Native.Get<object>(_world, "BagCompanions.Pairing") is not { } pairing) return;
+        if (!Native.Get<bool>(pairing, "openedByCompanion")) return;
+        Native.Set(pairing, "openedByCompanion", false);
+        Native.Call(_world, "MainWindows.Hide", "Inventory");
     }
 
     /// <summary>
@@ -464,9 +462,9 @@ public sealed class NativeAnvil
     /// </summary>
     private void InstallCompanion()
     {
-        if (Native.Get<object>(_world, "_anvilCompanion") != null) return;
-        var companionType = Native.ClientType("LibreKO.World+BagCompanion");
-        var fitType = Native.ClientType("LibreKO.World+BagFit");
+        if (Native.Get<object>(_world, "Upgrade.anvilCompanion") != null) return;
+        var companionType = Native.ClientType("LibreKO.Features.BagCompanion");
+        var fitType = Native.ClientType("LibreKO.Features.BagFit");
         if (companionType == null || fitType == null) return;
         int normal = Convert.ToInt32(Enum.Parse(fitType, "Normal"));
         int staged = Convert.ToInt32(Enum.Parse(fitType, "Staged"));
@@ -476,12 +474,12 @@ public sealed class NativeAnvil
             Expression.Convert(Expression.Invoke(Expression.Constant(fitOf), slot), fitType), slot).Compile();
         Func<int, bool> take = Take;
         Func<int, string> note = _ => "";
-        Action close = () => Native.Call(_world, "CloseUpgrade");
+        Action close = () => Native.Call(_world, "Upgrade.Close");
         // ff78eef: IntoBag also receives the amount picked with the mouse wheel; anvil items move whole.
         object intoBag = Native.MemberType(companionType, "IntoBag") == typeof(Func<int, int, int?, bool>)
             ? new Func<int, int, int?, bool>((socket, abs, _) => IntoBag(socket, abs))
             : new Func<int, int, bool>(IntoBag);
-        Native.Set(_world, "_anvilCompanion", Activator.CreateInstance(companionType, take, fit, note, close, intoBag));
+        Native.Set(_world, "Upgrade.anvilCompanion", Activator.CreateInstance(companionType, take, fit, note, close, intoBag));
     }
 
     // Selection window --------------------------------------------------------------------------
@@ -511,7 +509,7 @@ public sealed class NativeAnvil
         var leave = new Button { Text = "Walk away", FocusMode = Control.FocusModeEnum.None };
         leave.Pressed += () => choice.Visible = false;
         choice.Body.AddChild(leave);
-        Native.Get<CanvasLayer>(_world, "_upgradeLayer")?.AddChild(choice);
+        Native.Get<CanvasLayer>(_world, "Upgrade.layer")?.AddChild(choice);
         return choice;
     }
 
@@ -520,21 +518,22 @@ public sealed class NativeAnvil
     private void OpenBench(int bench)
     {
         Choice.Visible = false;
-        if (Native.ClientType("LibreKO.World+AnvilBench") is { } type)
-            Native.Call(_world, "OpenAnvilBench", Enum.ToObject(type, bench));
+        if (Native.ClientType("LibreKO.Features.Windows.UpgradeFeature+AnvilBench") is { } type)
+            Native.Call(_world, "Upgrade.OpenAnvilBench", Enum.ToObject(type, bench));
     }
 
     /// <summary>The anvil NPC opens the Classic selection window instead of the generic NPC menu.</summary>
     private void ReplaceOpenHandler()
     {
-        if (Delegate.CreateDelegate(typeof(Action<int>), _world, "OnUpgradeOpen", false, false) is not Action<int> native) return;
-        NativeHooks.Replace(Net.I, "UpgradeOpenEvent", handler => handler.Equals(native), (Action<int>)Open, _world);
+        if (Native.Get<object>(_world, "Upgrade") is not { } upgrade
+            || Delegate.CreateDelegate(typeof(Action<int>), upgrade, "OnOpen", false, false) is not Action<int> native) return;
+        NativeHooks.Replace(Game.Session.ItemUpgrade, "UpgradeOpenEvent", handler => handler.Equals(native), (Action<int>)Open, _world);
     }
 
     private void Open(int anvilId)
     {
-        Native.Set(_world, "_upgradeAnvilId", anvilId);
-        Native.Call(_world, "CloseVendor");
+        Native.Set(_world, "Upgrade.AnvilId", anvilId);
+        Native.Call(_world, "Vendor.Close");
         ShowChoice();
     }
 
@@ -545,10 +544,10 @@ public sealed class NativeAnvil
         Window.SetMeta(HotNames.AnvilBusy, Locked);
         Window.SetMeta(HotNames.AnvilCompound, Compound);
         if (Awaiting) Window.RemoveMeta(HotNames.AnvilScanSuccess);
-        else if (Native.Get<object>(_world, "_upgradePendingResult") is UpgradeResult result)
-            Window.SetMeta(HotNames.AnvilScanSuccess, result.ResultCode == ResultSucceeded);
+        else if (Native.Get<object>(_world, "Upgrade.pendingResult") is UpgradeResult result)
+            Window.SetMeta(HotNames.AnvilScanSuccess, result.ResultCode == ItemUpgradeResult.Succeeded);
         if (Window.HasMeta(HotNames.AnvilError) && !Ids.AsSpan().SequenceEqual(_errorSelection)) Window.RemoveMeta(HotNames.AnvilError);
-        if (Window.HasMeta(HotNames.EmbeddedInventory) && Native.Get<Button>(_world, "_upgradeBtn") is { } action && action.Text != "OK")
+        if (Window.HasMeta(HotNames.EmbeddedInventory) && Native.Get<Button>(_world, "Upgrade.btn") is { } action && action.Text != "OK")
             action.Text = "OK";
         RefreshBag();
         foreach (var view in CountedCells()) NativeServices.CountBadge(view);
@@ -556,22 +555,22 @@ public sealed class NativeAnvil
 
     private IEnumerable<ItemSlotView> CountedCells()
     {
-        foreach (string field in new[] { "_itemSockets", "_accessorySockets" })
+        foreach (string field in new[] { "Upgrade.itemSockets", "Upgrade.accessorySockets" })
             if (Native.Get<ItemSlotView?[]>(_world, field) is { } sockets)
                 foreach (var socket in sockets)
                     if (socket != null) yield return socket;
-        foreach (string field in new[] { "_itemResultSocket", "_accessoryResultSocket" })
+        foreach (string field in new[] { "Upgrade.itemResultSocket", "Upgrade.accessoryResultSocket" })
             if (Native.Get<ItemSlotView>(_world, field) is { } socket) yield return socket;
         foreach (var cell in _bag) yield return cell;
     }
 
     private void NameSockets()
     {
-        foreach (var (field, prefix) in new[] { ("_itemSockets", "anvil_item_"), ("_accessorySockets", "anvil_accessory_") })
+        foreach (var (field, prefix) in new[] { ("Upgrade.itemSockets", "anvil_item_"), ("Upgrade.accessorySockets", "anvil_accessory_") })
             if (Native.Get<ItemSlotView?[]>(_world, field) is { } sockets)
                 for (int i = 0; i < sockets.Length; i++) NativeWindows.Name(sockets[i], prefix + i);
-        NativeWindows.Name(Native.Get<ItemSlotView>(_world, "_itemResultSocket"), "anvil_result_item");
-        NativeWindows.Name(Native.Get<ItemSlotView>(_world, "_accessoryResultSocket"), "anvil_result_accessory");
+        NativeWindows.Name(Native.Get<ItemSlotView>(_world, "Upgrade.itemResultSocket"), "anvil_result_item");
+        NativeWindows.Name(Native.Get<ItemSlotView>(_world, "Upgrade.accessoryResultSocket"), "anvil_result_accessory");
     }
 }
 

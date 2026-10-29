@@ -41,36 +41,35 @@ public partial class Preview
         AddChild(new ColorRect { Color = backdrop, Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net, new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
-            Name = "Opening Preview", Gear = new int[8], Inventory = new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal] });
-        net.Sheet.SeedWealth(12_000_000, 0); net.Sheet.SeedProgress(60, 0, 1);
+        Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
+            Name = "Opening Preview", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal]);
+        Game.Session.Self.Sheet.SeedWealth(12_000_000, 0); Game.Session.Self.Sheet.SeedProgress(60, 0, 1);
         ItemData.EnsureLoaded();
-        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        var world = new World();
-        ((Inventory)typeof(World).GetProperty("Inv", flags)!.GetValue(world)!).EnsureLength(InventoryConstants.InventoryTotal);
-        DetailCall(world, "BuildInventoryPanel");
-        var orphan = (Control)DetailField(world, "_invContent")!; orphan.Visible = false; world.AddChild(orphan);
-        DetailCall(world, "BuildItemTooltip");
-        DetailCall(world, "BuildNpcDialog");
-        DetailCall(world, "WarehouseInit"); DetailCall(world, "BuildVipWarehousePanel"); DetailCall(world, "BuildSealWindow");
-        var sealLayer = new CanvasLayer(); world.AddChild(sealLayer); typeof(World).GetField("_csLayer", flags)!.SetValue(world, sealLayer); DetailCall(world, "BuildCharacterSealWindow");
-        DetailCall(world, "ClanCreateInit");
+        var world = PreviewFixtures.Prepared(new WorldRoot());
+        ((Inventory)Game.Session.Self.Inventory).EnsureLength(InventoryConstants.InventoryTotal);
+        DetailCall(world, "InventoryWindow.BuildPanel");
+        var orphan = (Control)DetailField(world, "InventoryWindow.InvContent")!; orphan.Visible = false; world.AddChild(orphan);
+        DetailCall(world, "ItemTooltip.Build");
+        DetailCall(world, "NpcDialogWindow.BuildNpcDialog");
+        DetailCall(world, "Warehouse.Build"); DetailCall(world, "VipWarehouse.BuildPanel"); DetailCall(world, "Seal.BuildWindow");
+        var sealLayer = new CanvasLayer(); world.AddChild(sealLayer); Native.Set(world, "CharacterSealWindow.Layer", sealLayer); DetailCall(world, "CharacterSealWindow.BuildWindow");
+        DetailCall(world, "ClanCreate.Build");
         // The Blacksmith's services and the client's own network subscription (RepairInit), the merchant window and the redistribution menu.
-        DetailCall(world, "RepairInit"); DetailCall(world, "BuildVendorPanel"); DetailCall(world, "BuildClassChangePanel");
-        var npcLayer = (Node)DetailField(world, "_npcLayer")!; npcLayer.Reparent(this);
+        DetailCall(world, "Repair.Build"); DetailCall(world, "Vendor.BuildPanel"); DetailCall(world, "ClassChange.BuildPanel");
+        var npcLayer = (Node)DetailField(world, "NpcDialogWindow.layer")!; npcLayer.Reparent(this);
         // Clan naming focuses its field, which needs the scene tree; the window itself stays out of the captures.
-        var clanLayer = (Node)DetailField(world, "_clanCreateLayer")!; clanLayer.Reparent(this);
-        var window = (HudWindow)DetailField(world, "_npcPanel")!;
+        var clanLayer = (Node)DetailField(world, "ClanCreate.layer")!; clanLayer.Reparent(this);
+        var window = (HudWindow)DetailField(world, "NpcDialogWindow.Panel")!;
 
-        var actorType = typeof(World).GetNestedType("Ent", flags)!;
+        var actorType = Native.ClientType("LibreKO.Presentation.EntityView")!;
         var actor = Activator.CreateInstance(actorType, nonPublic: true)!;
-        ((IDictionary)DetailField(world, "_ents")!).Add(701, actor);
+        ((EntityRegistry)DetailField(world, "EntitySystem.Ents")!)[701] = (EntityView)actor;
         void Npc(string name, int id, int type)
         {
             foreach (var (field, value) in new (string, object)[] { ("NpcId", id), ("ModelId", id), ("Level", 50), ("NpcType", type), ("Name", name), ("IsNpc", true), ("Gear", new int[8]) })
                 actorType.GetField(field)!.SetValue(actor, value);
-            typeof(World).GetField("_vendorNpcId", flags)!.SetValue(world, 701); typeof(World).GetField("_npcTalkId", flags)!.SetValue(world, -1);
-            typeof(World).GetField("_vendorNpcName", flags)!.SetValue(world, name);
+            Native.Set(Game.Session, "NpcQuest.LastNpcId", 701); Native.Set(Game.Session, "NpcQuest.TalkingNpcId", -1);
+            Native.Set(Game.Session, "NpcQuest.LastNpcName", name);
         }
         var portrait = new NpcPortraitProbe(world); _windowData!.NpcPortraitSource = () => portrait.NpcPortrait;
 
@@ -112,7 +111,7 @@ public partial class Preview
             screens.Add(new { state, file, window = rect.ToString(),
                 rows = rows?.Select(r => new { caption = r.Text, rect = r.GetGlobalRect().ToString(), mode = r.GetDrawMode().ToString() }).ToArray() });
         }
-        Button[] Choices() => Descendants((Node)DetailField(world, "_npcMenuBox")!).OfType<Button>().ToArray();
+        Button[] Choices() => Descendants((Node)DetailField(world, "NpcDialogWindow.menuBox")!).OfType<Button>().ToArray();
         var viewport = new Rect2(Vector2.Zero, GetViewportRect().Size);
 
         // Shared checks for an opening window drawn with `layout` at `frame` (global), greeting and rows given.
@@ -186,17 +185,17 @@ public partial class Preview
 
         async Task<object> Opening(OpeningCase c)
         {
-            async Task Open() { DetailCall(world, "CloseNpcDialog"); Npc(c.NpcName, c.NpcId, c.NpcType); c.Open(); await Frames(); }
+            async Task Open() { DetailCall(world, "NpcDialogWindow.Close"); Npc(c.NpcName, c.NpcId, c.NpcType); c.Open(); await Frames(); }
             string name = c.State;
 
             // The previous presentation: the shared NPC dialogue (the 2.x quest menu, or the Classic dialogue) with the client's choices.
             if (art)
             {
                 // The 2.x menu stands aside while the view still holds the previous opening: let a plain menu clear it first.
-                DetailCall(world, "CloseNpcDialog");
-                DetailCall(world, "BeginNpcDialog", c.NpcName, "How can I help you?");
+                DetailCall(world, "NpcDialogWindow.Close");
+                DetailCall(world, "NpcDialogWindow.Begin", c.NpcName, "How can I help you?");
                 DetailCall(world, "AddNpcMenuButton", "1.   Close", (Action)(() => { }));
-                DetailCall(world, "EndNpcDialog", 1); await Frames(4);
+                DetailCall(world, "NpcDialogWindow.End", 1); await Frames(4);
                 Require(!view.Active, $"{name}: a plain menu clears the opening view");
             }
             view.ProcessMode = ProcessModeEnum.Disabled; view.Visible = false; if (!art) dialogue.Visible = true;
@@ -267,11 +266,11 @@ public partial class Preview
             Pointer(Vector2.Zero); await Frames(2);
 
             // Another NPC's menu afterwards returns to the shared NPC dialogue.
-            DetailCall(world, "CloseNpcDialog");
-            DetailCall(world, "BeginNpcDialog", c.NpcName, "How can I help you? Select a service below.");
+            DetailCall(world, "NpcDialogWindow.Close");
+            DetailCall(world, "NpcDialogWindow.Begin", c.NpcName, "How can I help you? Select a service below.");
             DetailCall(world, "AddNpcMenuButton", "1.   Tell me more...", (Action)(() => { }));
-            DetailCall(world, "AddNpcMenuButton", "2.   Close", (Action)(() => DetailCall(world, "CloseNpcDialog")));
-            DetailCall(world, "EndNpcDialog", 2); await Frames(10);
+            DetailCall(world, "AddNpcMenuButton", "2.   Close", (Action)(() => DetailCall(world, "NpcDialogWindow.Close")));
+            DetailCall(world, "NpcDialogWindow.End", 2); await Frames(10);
             Require(!view.Visible && Shared().Visible && Mathf.Abs(window.GetGlobalRect().Size.X - SharedWidth()) < .5f, $"{name}: a quest or talk menu afterwards shows the shared NPC dialogue again ({window.GetGlobalRect().Size.X})");
             // The running game's path: the reply raises the client's network event, the client (subscribed in its
             // Init) builds the menu and the plugin's handler marks it once that menu exists.
@@ -280,7 +279,7 @@ public partial class Preview
             Require(view.Visible && view.Kind == c.Kind && !dialogue.Visible && !myko.Visible && window.GetGlobalRect().Size == frame.Size && view.Rows.Count == native.Length,
                 $"{name}: the client's network event after another menu opens the {c.Layout.Art} window again");
             using (var network = Shot()) Save(network, window.GetGlobalRect(), c.State + "-network-reopen", view.Rows);
-            DetailCall(world, "CloseNpcDialog"); await Frames(2);
+            DetailCall(world, "NpcDialogWindow.Close"); await Frames(2);
             return new { npc = c.NpcName, art = c.Layout.Art, window = frame.ToString(), shift = view.Shift, choices = view.Rows.Select(r => r.Text).ToArray(), servicesVerified = verified };
         }
 
@@ -288,27 +287,27 @@ public partial class Preview
         const int sellingGroup = 255000;
         results.Add(await Opening(new OpeningCase(NativeNpcOpening.Inn, "inn", ClassicNpcOpeningLayout.Inn, "[Inn Hostess] Lined", 12000, 31,
             () => DetailCall(world, "OnWarehouseNpc"),
-            () => ((Action)typeof(Net).GetField("WarehouseNpcEvent", flags)!.GetValue(net)!)(),
+            () => ((Action)Native.Get<object>(Game.Session.Warehouse, "WarehouseNpcEvent")!)(),
             "Create a Clan", new()
             {
-                ["Use storage"] = new(() => { }, () => (bool)DetailField(world, "_whShown")!, () => DetailCall(world, "CloseWarehouse")),
-                ["Use [VIP] storage"] = new(() => typeof(World).GetField("_vipWhInFlight", flags)!.SetValue(world, true), () => !(bool)DetailField(world, "_vipWhInFlight")!, () => { }),
-                ["Create a Clan"] = new(() => { }, () => (bool)DetailField(world, "_clanCreateShown")!, () => DetailCall(world, "CloseClanCreate")),
-                ["Seal / Cancel (anti-theft)"] = new(() => { }, () => (bool)DetailField(world, "_sealShown")! && DetailField(world, "_sealMode")!.ToString() == "Secret", () => DetailCall(world, "CloseSealWindow")),
-                ["Seal / Cancel"] = new(() => { }, () => (bool)DetailField(world, "_sealShown")! && DetailField(world, "_sealMode")!.ToString() == "Bind", () => DetailCall(world, "CloseSealWindow")),
-                ["Character Seal/Unseal"] = new(() => { }, () => ((HudWindow)DetailField(world, "_csWindow")!).Visible, () => DetailCall(world, "CloseCharacterSeal")),
-                ["Close"] = new(() => { }, () => !(bool)DetailField(world, "_npcDialogShown")!, () => { }),
+                ["Use storage"] = new(() => { }, () => (bool)DetailField(world, "Warehouse.shown")!, () => DetailCall(world, "Warehouse.Close")),
+                ["Use [VIP] storage"] = new(() => Native.Set(world, "VipWarehouse.inFlight", true), () => !(bool)DetailField(world, "VipWarehouse.inFlight")!, () => { }),
+                ["Create a Clan"] = new(() => { }, () => (bool)DetailField(world, "ClanCreate.shown")!, () => DetailCall(world, "ClanCreate.Close")),
+                ["Seal / Cancel (anti-theft)"] = new(() => { }, () => (bool)DetailField(world, "Seal.shown")! && DetailField(world, "Seal.mode")!.ToString() == "Secret", () => DetailCall(world, "Seal.Close")),
+                ["Seal / Cancel"] = new(() => { }, () => (bool)DetailField(world, "Seal.shown")! && DetailField(world, "Seal.mode")!.ToString() == "Bind", () => DetailCall(world, "Seal.Close")),
+                ["Character Seal/Unseal"] = new(() => { }, () => ((HudWindow)DetailField(world, "CharacterSealWindow.CsWindow")!).Visible, () => DetailCall(world, "CharacterSealWindow.Close")),
+                ["Close"] = new(() => { }, () => !(bool)DetailField(world, "NpcDialogWindow.shown")!, () => { }),
             })));
         if (!innOnly)
         {
             results.Add(await Opening(new OpeningCase(NativeNpcOpening.Smith, "smith", ClassicNpcOpeningLayout.Smith, "[Blacksmith]", 12209, 22,
                 () => PreviewFixtures.OnRepairNpc(world, sellingGroup),
-                () => ((Action<int>)typeof(Net).GetField("RepairNpcEvent", flags)!.GetValue(net)!)(sellingGroup),
+                () => ((Action<int>)Native.Get<object>(Game.Session.Repair, "RepairNpcEvent")!)(sellingGroup),
                 "Repair", new()
                 {
-                    ["Buy / Sell"] = new(() => { }, () => (bool)DetailField(world, "_vendorShown")! && (int)DetailField(world, "_vendorGroup")! == sellingGroup, () => DetailCall(world, "CloseVendor")),
-                    ["Repair"] = new(() => { }, () => (bool)DetailField(world, "_repairShown")!, () => DetailCall(world, "CloseRepair")),
-                    ["Close"] = new(() => { }, () => !(bool)DetailField(world, "_npcDialogShown")!, () => { }),
+                    ["Buy / Sell"] = new(() => { }, () => (bool)DetailField(world, "Vendor.shown")! && (int)DetailField(world, "Vendor.group")! == sellingGroup, () => DetailCall(world, "Vendor.Close")),
+                    ["Repair"] = new(() => { }, () => (bool)DetailField(world, "Repair.shown")!, () => DetailCall(world, "Repair.Close")),
+                    ["Close"] = new(() => { }, () => !(bool)DetailField(world, "NpcDialogWindow.shown")!, () => { }),
                 })));
             results.Add(await Redistribution());
         }
@@ -318,14 +317,14 @@ public partial class Preview
         {
             const string name = "change";
             var layout = ClassicNpcOpeningLayout.Change;
-            var layer = (Node)DetailField(world, "_classChangeLayer")!; layer.Reparent(this);
-            var menu = (HudWindow)DetailField(world, "_classChangePanel")!;
+            var layer = (Node)DetailField(world, "ClassChange.layer")!; layer.Reparent(this);
+            var menu = (HudWindow)DetailField(world, "ClassChange.Panel")!;
             NativeServices.Prepare(menu, world);
             var panel = ClassicServiceSkin.Apply(menu.Body)!;
             Npc("[Redistribution]", 35000, 35);
-            DetailCall(world, "OnClassChangeNpc"); await Frames(4);
+            DetailCall(world, "ClassChange.OnNpc"); await Frames(4);
             menu.Position = ((viewport.Size - panel.Size) / 2).Floor(); await Frames(4);
-            Require(menu.Visible && (bool)DetailField(world, "_classChangeShown")!, "change: the client's redistribution NPC reply opens its menu");
+            Require(menu.Visible && (bool)DetailField(world, "ClassChange.shown")!, "change: the client's redistribution NPC reply opens its menu");
             var greeting = Descendants(panel).OfType<Label>().Single(l => l.Name == "redistribution_description");
             var rows = new[] { "Redistribute stat points", "Redistribute mastery points", ClassicNpcOpeningLayout.LeaveCaption }
                 .Select(text => Descendants(panel).OfType<Button>().Single(b => b.Text == text && b.Visible)).ToArray();
@@ -341,7 +340,7 @@ public partial class Preview
 
             int Kind() => NativeServices.RedistributionKind(world);
             var first = await States(name, name, frame, rows, layout, Kind);
-            Require(Kind() == Net.ResetKindStat && menu.Visible, "change: 'Redistribute stat points' asks the client for the stat reset price");
+            Require((ResetKind)Kind() == ResetKind.Stat && menu.Visible, "change: 'Redistribute stat points' asks the client for the stat reset price");
             await Frames(3);
             // The client's pending price query disables both choices; the leave row stays available.
             Pointer(first.GetGlobalRect().GetCenter()); await Frames(3);
@@ -354,13 +353,13 @@ public partial class Preview
                     && Count(disabled, rows[2].GetGlobalRect(), ink.Color) >= 12, "change: while the price is pending both choices are grey (also under the pointer), Walk away stays yellow");
             }
             await Click(rows[1].GetGlobalRect().GetCenter());
-            Require(Kind() == Net.ResetKindStat, "change: a disabled row does not reach the client");
-            DetailCall(world, "CancelReset"); await Frames(3);
+            Require((ResetKind)Kind() == ResetKind.Stat, "change: a disabled row does not reach the client");
+            DetailCall(world, "ResetConfirm.CancelReset"); await Frames(3);
             await Click(rows[1].GetGlobalRect().GetCenter());
-            Require(Kind() == Net.ResetKindSkill, "change: 'Redistribute mastery points' asks the client for the mastery reset price");
-            DetailCall(world, "CancelReset"); await Frames(3);
+            Require((ResetKind)Kind() == ResetKind.Skill, "change: 'Redistribute mastery points' asks the client for the mastery reset price");
+            DetailCall(world, "ResetConfirm.CancelReset"); await Frames(3);
             await Click(rows[2].GetGlobalRect().GetCenter());
-            Require(!(bool)DetailField(world, "_classChangeShown")! && !menu.Visible, "change: Walk away closes the client's redistribution menu");
+            Require(!(bool)DetailField(world, "ClassChange.shown")! && !menu.Visible, "change: Walk away closes the client's redistribution menu");
             Pointer(Vector2.Zero); await Frames(2);
             var captions = rows.Select(r => r.Text).ToArray();
             layer.Free();
@@ -368,7 +367,7 @@ public partial class Preview
                 servicesVerified = new[] { "Stat points", "Mastery points", "Close" } };
         }
 
-        DetailCall(world, "WarehouseDispose"); DetailCall(world, "RepairDispose");
+        DetailCall(world, "Warehouse.Dispose"); DetailCall(world, "Repair.Dispose");
         System.IO.File.WriteAllText(System.IO.Path.Combine(output, prefix + (innOnly ? "-inn.json" : "-npc-opening.json")), JsonSerializer.Serialize(new
         {
             nation = prefix, clientHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.IO.File.ReadAllBytes(ProjectSettings.GlobalizePath("res://../../LibreKO/Client/.godot/mono/temp/bin/ExportRelease/LibreKO.dll")))),

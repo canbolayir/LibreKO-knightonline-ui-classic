@@ -41,6 +41,7 @@ public static partial class NativeSetup
         RegisterOverlays(context);
         RegisterQuestHud(context);
         NativeWindows.Register(context.Ui);
+        NativeEscape.Attach(context.Ui);
     }
 
     /// <summary>
@@ -55,7 +56,7 @@ public static partial class NativeSetup
         var sweep = new Dictionary<string, int>
         {
             ["game"] = NativeHooks.Sweep(game),
-            ["net"] = Net.I is { } net ? NativeHooks.Sweep(net) : 0,
+            ["net"] = Game.Connection is { } net ? NativeHooks.Sweep(net) : 0,
             ["tree"] = NativeHooks.SweepTree(),
         };
         NativeHooks.RecordSweep(sweep);

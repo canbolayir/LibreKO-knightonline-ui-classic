@@ -22,7 +22,7 @@ public partial class Preview
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
         PluginHost.Ui.ReplaceDialogs(request => request.Title == "Rebirth" ? new ClassicServiceNotice(request) : new KnightOnlineUiClassic.Windows.MessageBox(request));
         PluginHost.Ui.ExtendWindow("rebirth", ClassicRebirthSkin.Extend);
-        var world = new World();
+        var world = PreviewFixtures.Prepared(new WorldRoot());
         var layer = (CanvasLayer)DetailCall(world, "BuildRebirthClassicUiPreview", nation)!;
         AddChild(layer);
         async Task Frames(int count = 6) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
@@ -32,11 +32,11 @@ public partial class Preview
         var panel = window.GetChildren().OfType<ClassicRebirthPanel>().Single();
         T Find<T>(string name) where T : Control => Descendants(panel).OfType<T>().Single(c => c.Name == name);
         var accept = Find<Button>("rebirth_accept");
-        var pick = (RebirthPick)DetailField(world, "_rebirthPick")!;
+        var pick = (RebirthPick)DetailField(world, "Rebirth.pick")!;
         var checks = new List<string>(); var screens = new List<object>();
         void Require(bool valid, string text) { if (!valid) throw new Exception("REBIRTH_AUDIT: " + text); checks.Add(text); }
-        bool Busy() => (bool)DetailField(world, "_rebirthInFlight")!;
-        bool NetBusy() => (bool)typeof(Net).GetField("_rebirthPending", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net)!;
+        bool Busy() => (bool)DetailField(world, "Rebirth.inFlight")!;
+        bool NetBusy() => (bool)Native.Get<object>(Game.Session.Develop, "RebirthPending")!;
         Notice? Confirmation() => NativeRebirth.Confirmation(world);
         async Task KeyInput(Key key)
         {
@@ -54,11 +54,11 @@ public partial class Preview
         void Reply(params byte[] bytes)
         {
             var p = new Packet(GameOpcodes.GS_CLASS_CHANGE); p.WriteByte(7); p.WriteBytes(bytes);
-            typeof(Net).GetMethod("HandleClassChange", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(net, new object[] { p });
+            PreviewPackets.Receive(p);
         }
         // The rebirth reply is [7][result i16]: 1 is success, -1 to -10 are refusals.
         void Result(short code) => Reply((byte)(code & 0xff), (byte)((code >> 8) & 0xff));
-        const short noQualification = -2;
+        const RebirthResult noQualification = RebirthResult.NoQualification;
         string RefusalText() => ItemData.Text(RebirthWire.ResultText(noQualification), "Mekin refused the rebirth.");
         async Task Capture(string state)
         {
@@ -75,9 +75,9 @@ public partial class Preview
             for (int row = 0; row < 5; row++)
             {
                 bool reset = NativeRebirth.Redistributing(world);
-                Require(Find<Label>("rebirth_total_" + row).Text == "+" + (reset ? pick.PickedAt(row) : net.Sheet.RebirthBonusAtRow(row) + (net.Sheet.RebirthLevel >= 15 ? 0 : pick.PickedAt(row))),
+                Require(Find<Label>("rebirth_total_" + row).Text == "+" + (reset ? pick.PickedAt(row) : Game.Session.Self.Sheet.RebirthBonusAtRow(row) + (Game.Session.Self.Sheet.RebirthLevel >= 15 ? 0 : pick.PickedAt(row))),
                     state + (reset ? " total is the new placement " : " total preserves existing bonus ") + row);
-                bool locked = Busy() || Confirmation() != null || (bool)DetailField(world, "_selfDead")! || !reset && (net.Sheet.RebirthLevel >= 15 || net.Sheet.Level < 83);
+                bool locked = Busy() || Confirmation() != null || (bool)DetailField(world, "Avatar.Dead")! || !reset && (Game.Session.Self.Sheet.RebirthLevel >= 15 || Game.Session.Self.Sheet.Level < 83);
                 Require(Find<Button>("rebirth_add_" + row).Disabled == (locked || !pick.CanAdd(row)), state + " add availability " + row);
                 Require(Find<Button>("rebirth_remove_" + row).Disabled == (locked || !pick.CanRemove(row)), state + " remove availability " + row);
             }
@@ -102,8 +102,8 @@ public partial class Preview
         try
         {
             await Capture("initial"); Require(accept.Disabled && pick.Remaining == 2, "Rebirth starts with exactly two unassigned points");
-            Require(!net.SendRebirthStatChange(new byte[] { 1, 0, 0, 0, 0 }) && !net.SendRebirthStatChange(new byte[] { 2 }), "Network rejects incomplete and short allocations");
-            Result(RebirthWire.Accepted); Require(net.Sheet.RebirthLevel == 4, "Unsolicited success does not add a rebirth level");
+            Require(!Game.Requests.Develop.RebirthStatChange(new byte[] { 1, 0, 0, 0, 0 }) && !Game.Requests.Develop.RebirthStatChange(new byte[] { 2 }), "Network rejects incomplete and short allocations");
+            Result((short)RebirthResult.Success); Require(Game.Session.Self.Sheet.RebirthLevel == 4, "Unsolicited success does not add a rebirth level");
             await Click(Find<Button>("rebirth_add_0")); await Capture("one-point");
             await Click(Find<Button>("rebirth_add_2")); await Capture("split-points");
             Require(pick.PickedAt(0) == 1 && pick.PickedAt(2) == 1 && !accept.Disabled, "Native row clicks allocate independent bonus points");
@@ -121,7 +121,7 @@ public partial class Preview
             Require((modalFrame.Position - modalBefore - modalDelta).Length() < 1, "Confirmation header supports native dragging");
             await Capture("confirmation-dragged");
             var oldNotice = Confirmation()!;
-            var request = (DialogRequest)typeof(Notice).GetField("_request", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(oldNotice)!;
+            var request = (DialogRequest)typeof(Notice).GetField("request", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(oldNotice)!;
             DetailCall(world, "OnRebirthPressed"); Require(ReferenceEquals(oldNotice, Confirmation()), "Repeated submit creates only one confirmation");
             DetailCall(world, "EditRebirthPoint", 0, false); Require(pick.PickedAt(0) == 2, "Confirmation locks the captured allocation");
             await KeyInput(Key.Escape); await Capture("cancelled");
@@ -129,30 +129,30 @@ public partial class Preview
             await Click(accept); request.Confirm(); Require(!Busy() && Confirmation() != null, "Stale modal callback cannot submit a replacement confirmation");
             await KeyInput(Key.Enter); await Capture("pending");
             Require(Busy() && NetBusy(), "Confirmation Enter sends exactly one native request");
-            Require(!net.SendRebirthStatChange(new byte[] { 0, 2, 0, 0, 0 }), "Network independently rejects a second outstanding request");
+            Require(!Game.Requests.Develop.RebirthStatChange(new byte[] { 0, 2, 0, 0, 0 }), "Network independently rejects a second outstanding request");
             // The client reads a malformed or unknown reply as its busy refusal: the request ends and the picks stay.
-            string busyText = ItemData.Text(RebirthWire.ResultText(RebirthWire.Busy), "Mekin refused the rebirth.");
+            string busyText = ItemData.Text(RebirthWire.ResultText(RebirthResult.Unavailable), "Mekin refused the rebirth.");
             foreach (var malformed in new Action[] { () => Reply(), () => Reply(1), () => Result(2), () => Result(-11), () => Reply(1, 1, 0, 0, 0) })
             {
                 malformed();
                 Require(!Busy() && !NetBusy() && pick.PickedAt(0) == 2 && Find<Label>("rebirth_status").Text == busyText, "A malformed or unknown reply ends the request as the client's busy refusal");
-                Result(RebirthWire.Accepted); Require(net.Sheet.RebirthLevel == 4, "A late success after the refusal cannot add a stage");
+                Result((short)RebirthResult.Success); Require(Game.Session.Self.Sheet.RebirthLevel == 4, "A late success after the refusal cannot add a stage");
                 await Click(accept); await KeyInput(Key.Enter); Require(Busy() && NetBusy(), "The kept allocation can be confirmed again");
             }
-            Result(noQualification); await Capture("refused");
+            Result((short)noQualification); await Capture("refused");
             Require(!Busy() && !NetBusy() && pick.PickedAt(0) == 2 && !accept.Disabled, "Refusal retains picks and allows editing and retry");
             Require(Find<Label>("rebirth_status").Text == RefusalText(), "Refusal shows the server's rebirth refusal text");
-            typeof(World).GetField("_selfDead", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, true);
+            Native.Set(world, "Avatar.Dead", true);
             DetailCall(world, "RefreshRebirthUI"); await Capture("dead");
             DetailCall(world, "OnRebirthPressed"); Require(!Busy() && Confirmation() == null, "Dead character cannot spend the qualification");
-            typeof(World).GetField("_selfDead", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, false);
-            net.Sheet.SeedProgress(82, 0, 1); DetailCall(world, "RefreshRebirthUI"); await Capture("level-required");
-            net.Sheet.SeedProgress(83, 0, 1); net.Sheet.SeedRebirth(15, 30, 0, 0, 0, 0); DetailCall(world, "RefreshRebirthUI"); await Capture("maximum-level");
+            Native.Set(world, "Avatar.Dead", false);
+            Game.Session.Self.Sheet.SeedProgress(82, 0, 1); DetailCall(world, "RefreshRebirthUI"); await Capture("level-required");
+            Game.Session.Self.Sheet.SeedProgress(83, 0, 1); Game.Session.Self.Sheet.SeedRebirth(15, 30, 0, 0, 0, 0); DetailCall(world, "RefreshRebirthUI"); await Capture("maximum-level");
             Require(accept.Disabled && !Find<Label>("rebirth_level").Text.Contains("16"), "Fifteen-stage maximum is preserved without advertising stage sixteen");
-            net.Sheet.SeedRebirth(14, 27, 0, 0, 1, 0); DetailCall(world, "RefreshRebirthUI"); await Capture("final-stage");
+            Game.Session.Self.Sheet.SeedRebirth(14, 27, 0, 0, 1, 0); DetailCall(world, "RefreshRebirthUI"); await Capture("final-stage");
             Require(Find<Label>("rebirth_status").Text.Length == 0, "Eligibility recovery clears stale restriction messages");
-            net.Sheet.SeedRebirth(4, 3, 1, 2, 1, 1);
-            DetailCall(world, "SetRebirthStatus", "Mekin refused the rebirth. Complete the qualification before trying again.", true);
+            Game.Session.Self.Sheet.SeedRebirth(4, 3, 1, 2, 1, 1);
+            DetailCall(world, "Rebirth.SetStatus", "Mekin refused the rebirth. Complete the qualification before trying again.", true);
             DetailCall(world, "RefreshRebirthUI"); await Capture("long-status");
             var viewport = GetViewport(); Vector2 before = window.Position, p = before + new Vector2(50, 20), delta = new(46, 28);
             viewport.PushInput(new InputEventMouseMotion { Position = p, GlobalPosition = p }, true); await Frames(1);
@@ -162,24 +162,24 @@ public partial class Preview
             Require((window.Position - before - delta).Length() < 1, "Native header drag retains complete frame geometry"); await Capture("dragged");
             await Click(accept); await KeyInput(Key.Enter); await KeyInput(Key.Escape);
             Require(!window.Visible && Busy() && NetBusy(), "Closing pending service retains submitted allocation and identity");
-            DetailCall(world, "OpenRebirthPicker"); await Frames();
+            DetailCall(world, "Rebirth.OpenPicker"); await Frames();
             Require(window.Visible && Busy() && accept.Disabled && pick.PickedAt(0) == 2 && Find<Label>("rebirth_status").Text == "Reincarnating…",
                 "Reopening a pending operation shows its locked allocation");
             await Capture("pending-reopened");
             await KeyInput(Key.Escape); Require(!window.Visible && Busy() && NetBusy(), "Closing the reopened service retains the pending operation");
-            Result(noQualification); Require(!window.Visible && !Busy() && !NetBusy(), "Late refusal never reopens a closed service");
-            DetailCall(world, "OpenRebirthPicker"); await Click(Find<Button>("rebirth_add_1")); await Click(Find<Button>("rebirth_add_4"));
+            Result((short)noQualification); Require(!window.Visible && !Busy() && !NetBusy(), "Late refusal never reopens a closed service");
+            DetailCall(world, "Rebirth.OpenPicker"); await Click(Find<Button>("rebirth_add_1")); await Click(Find<Button>("rebirth_add_4"));
             GetWindow().Size = new Vector2I(1200, 850); await Capture("wide-viewport");
             await Click(accept); await KeyInput(Key.Enter); net.Disconnect(expected: true);
             Require(!Busy() && !NetBusy() && !window.Visible && pick.Placed == 0, "Disconnect closes service and clears stale operation");
-            DetailCall(world, "OpenRebirthPicker"); await Click(Find<Button>("rebirth_add_1")); await Click(Find<Button>("rebirth_add_4"));
-            await Click(accept); await KeyInput(Key.Enter); Result(RebirthWire.Accepted); await Frames();
-            Require(net.Sheet.RebirthLevel == 5 && net.Sheet.RebirthBonusAtRow(1) == 2 && net.Sheet.RebirthBonusAtRow(4) == 2 && !window.Visible, "Success applies only the confirmed snapshot once and closes the service");
-            Result(RebirthWire.Accepted); Require(net.Sheet.RebirthLevel == 5, "Duplicate idle success cannot add another stage");
+            DetailCall(world, "Rebirth.OpenPicker"); await Click(Find<Button>("rebirth_add_1")); await Click(Find<Button>("rebirth_add_4"));
+            await Click(accept); await KeyInput(Key.Enter); Result((short)RebirthResult.Success); await Frames();
+            Require(Game.Session.Self.Sheet.RebirthLevel == 5 && Game.Session.Self.Sheet.RebirthBonusAtRow(1) == 2 && Game.Session.Self.Sheet.RebirthBonusAtRow(4) == 2 && !window.Visible, "Success applies only the confirmed snapshot once and closes the service");
+            Result((short)RebirthResult.Success); Require(Game.Session.Self.Sheet.RebirthLevel == 5, "Duplicate idle success cannot add another stage");
 
             // Redistribution: the client's reset mode reuses the window with every earned point to place again.
-            DetailCall(world, "OpenRebirthReset"); await Frames();
-            int capacity = net.Sheet.RebirthLevel * RebirthPick.PointsPerRebirth;
+            DetailCall(world, "Rebirth.OpenReset"); await Frames();
+            int capacity = Game.Session.Self.Sheet.RebirthLevel * RebirthPick.PointsPerRebirth;
             Require(window.Visible && pick.Capacity == capacity && pick.Placed == 0 && accept.Text == "Redistribute" && accept.Disabled,
                 "Redistribution opens with every earned point to place");
             await Capture("redistribute");
@@ -188,12 +188,12 @@ public partial class Preview
             await Capture("redistribute-placed");
             await Click(accept); Require(Confirmation() != null && !Busy(), "Redistribution asks before sending"); await Capture("redistribute-confirmation");
             await KeyInput(Key.Enter); Require(Busy() && Confirmation() == null, "Confirming sends the redistribution");
-            var resetReply = new Packet(GameOpcodes.GS_CLASS_CHANGE); resetReply.WriteByte(Net.ClassChangeRebirthReset); resetReply.WriteByte(1);
-            typeof(Net).GetMethod("HandleClassChange", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(net, new object[] { resetReply });
-            Require(!Busy() && !window.Visible && net.Sheet.RebirthLevel == 5 && Enumerable.Range(0, 5).All(row => net.Sheet.RebirthBonusAtRow(row) == capacity / 5),
+            var resetReply = new Packet(GameOpcodes.GS_CLASS_CHANGE); resetReply.WriteByte((byte)ClassChangeSubOpcode.RebirthStatReset); resetReply.WriteByte(1);
+            PreviewPackets.Receive(resetReply);
+            Require(!Busy() && !window.Visible && Game.Session.Self.Sheet.RebirthLevel == 5 && Enumerable.Range(0, 5).All(row => Game.Session.Self.Sheet.RebirthBonusAtRow(row) == capacity / 5),
                 "Accepted redistribution replaces the earned points and closes the service");
         }
-        finally { DetailCall(world, "RebirthDispose"); layer.Free(); world.Free(); net.Free(); }
+        finally { DetailCall(world, "Rebirth.Dispose"); layer.Free(); world.Free(); net.Free(); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-rebirth.json", JsonSerializer.Serialize(new { nation, checks, screens, liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic rebirth audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

@@ -26,7 +26,7 @@ public partial class Preview
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1280, 800);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
         var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
-        Native.Call(offline, "SeedPreviewEnter", new MyInfo { Nation = nation, Name = "Classic Preview" });
+        Native.Call(Game.Session.Self, "SeedPreviewEnter", new MyInfo { Nation = nation, Name = "Classic Preview" });
         string prefix = nation == 1 ? "karus" : "human";
         var checks = new List<string>(); var screens = new List<object>();
         void Require(bool condition, string text) { if (!condition) throw new Exception("EVENT_WINDOWS_AUDIT: " + text); checks.Add(text); }
@@ -49,12 +49,12 @@ public partial class Preview
         }
         float TextWidth(Control control, string text) => control.GetThemeFont("font").GetStringSize(text, HorizontalAlignment.Left, -1, control.GetThemeFontSize("font_size")).X;
         bool Connected(BaseButton button) => button.GetSignalConnectionList(BaseButton.SignalName.Pressed).Count > 0;
-        var palette = new[] { ClassicDesign.FrameTitle, ClassicEventPanel.Caption, ClassicEventPanel.Ink, ClassicEventPanel.Muted, ClassicEventPanel.Ready,
+        var palette = new[] { ClassicDesign.FrameTitle, ClassicEventPanel.Caption, ClassicEventPanel.Ink, ClassicEventPanel.Muted, ClassicEventPanel.Accepted,
             ClassicEventPanel.Refused, new Color("ffe094"), new Color("9cd8f0"), new Color("efd9b4"), ClassicDesign.Muted };
 
-        async Task<(World World, HudWindow Window)> Open(string fixture, params object?[] args)
+        async Task<(WorldRoot World, HudWindow Window)> Open(string fixture, params object?[] args)
         {
-            var world = new World();
+            var world = PreviewFixtures.Prepared(new WorldRoot());
             var window = (HudWindow)DetailCall(world, fixture, args)!;
             AddChild(window);
             window.Visible = true;
@@ -122,7 +122,7 @@ public partial class Preview
             screens.Add(new { window = window.Id, state, file, bounds = box.ToString() });
         }
 
-        async Task Close(World world, HudWindow window)
+        async Task Close(WorldRoot world, HudWindow window)
         {
             var close = window.Header?.GetChildren().OfType<HBoxContainer>().First().GetChildren().OfType<Button>().FirstOrDefault(b => b.TooltipText == "Close");
             if (close is { Visible: true })
@@ -150,19 +150,19 @@ public partial class Preview
             var cellRegion = ClassicProgressionPanel.CellBox().RegionRect;
             bool Lit(Control control) => control.GetThemeStylebox("panel") is StyleBoxTexture { ModulateColor.R: > 1.01f };
             bool OnInset(Control control) => control.GetThemeStylebox("panel") is StyleBoxTexture { DrawCenter: false } box && box.RegionRect == insetRegion;
-            var statusInks = new[] { ClassicEventPanel.Ready, ClassicEventPanel.Caption, ClassicEventFamily.Highlight };
-            T Part<T>(World world, string field) where T : class => (T)DetailField(world, field)!;
-            PanelContainer[] Cards(World world) => Part<VBoxContainer>(world, "_eventsCards").GetChildren().OfType<PanelContainer>().Where(c => !c.IsQueuedForDeletion()).ToArray();
-            Label[] Statuses(World world) => Cards(world).Select(c => Descendants(c).OfType<Label>().First(l => l.HorizontalAlignment == HorizontalAlignment.Right)).ToArray();
+            var statusInks = new[] { ClassicEventPanel.Accepted, ClassicEventPanel.Caption, ClassicEventFamily.Highlight };
+            T Part<T>(WorldRoot world, string field) where T : class => (T)DetailField(world, field)!;
+            PanelContainer[] Cards(WorldRoot world) => Part<VBoxContainer>(world, "Events.cards").GetChildren().OfType<PanelContainer>().Where(c => !c.IsQueuedForDeletion()).ToArray();
+            Label[] Statuses(WorldRoot world) => Cards(world).Select(c => Descendants(c).OfType<Label>().First(l => l.HorizontalAlignment == HorizontalAlignment.Right)).ToArray();
 
             // Every shown card and the filters, in the composition of the given page and check state; returns the card count.
-            int Schedule(World world, HudWindow window, string state, bool races, bool mine, int? live = null)
+            int Schedule(WorldRoot world, HudWindow window, string state, bool races, bool mine, int? live = null)
             {
                 string tag = "events " + state;
-                var tabs = new[] { Part<Button>(world, "_eventsTabEvents"), Part<Button>(world, "_eventsTabRaces") };
-                var toggle = Part<Button>(world, "_eventsMyLevel");
-                var scroll = Part<ScrollContainer>(world, "_eventsScroll");
-                var empty = Part<Label>(world, "_eventsEmpty");
+                var tabs = new[] { Part<Button>(world, "Events.tab"), Part<Button>(world, "Events.TabRaces") };
+                var toggle = Part<Button>(world, "Events.myLevel");
+                var scroll = Part<ScrollContainer>(world, "Events.Scroll");
+                var empty = Part<Label>(world, "Events.empty");
                 var filters = (Control)tabs[0].GetParent();
                 Require(scroll.Size.X >= 640 && Mathf.IsEqualApprox(window.Size.X, scroll.Size.X + 2 * Spec.Margin), tag + ": the client's 640-pixel list in the plain frame " + window.Size);
                 Require(tabs[0].ButtonPressed == !races && tabs[1].ButtonPressed == races, tag + ": the chosen tab is pressed");
@@ -244,12 +244,12 @@ public partial class Preview
                 return cards.Length;
             }
 
-            var (world, window) = await Open("BuildEventsUiPreview");
+            var (world, window) = await Open("Preview.BuildEvents");
             var buttons = Descendants(window.Body).OfType<Button>().Where(b => b.Text is "Join" or "Open").ToArray();
             Require(buttons.Length == 1 && buttons.All(Connected), "events: the sign-up row keeps its native Join action");
             int all = Schedule(world, window, "schedule", false, false, live: 1);
             // The client rewrites the status ink every second; the card keeps the Classic ink.
-            DetailCall(world, "TickEventClocks"); await Frames(2);
+            DetailCall(world, "Events.TickEventClocks"); await Frames(2);
             Require(Statuses(world).All(l => statusInks.Contains(l.GetThemeColor("font_color"))), "events: the status keeps the Classic ink after the client's tick");
             await Capture(window, "schedule");
             await Hover(buttons[0], window, "join-hover");
@@ -275,31 +275,31 @@ public partial class Preview
                 await Capture(window, "chip-tooltip");
                 GetViewport().PushInput(new InputEventMouseMotion { Position = Vector2.One, GlobalPosition = Vector2.One }); await Frames(4);
             }
-            var toggle = Part<Button>(world, "_eventsMyLevel");
+            var toggle = Part<Button>(world, "Events.myLevel");
             toggle.ButtonPressed = true; await Frames(4);
             int fitting = Schedule(world, window, "only-my-level", false, true, live: 1);
             Require(fitting > 0 && fitting < all && Cards(world).All(c => Descendants(c).OfType<Label>().First().GetThemeColor("font_color") != ClassicEventPanel.Muted),
                 $"events: Only my level keeps the {fitting} of {all} events level 62 may join");
             await Capture(window, "only-my-level");
-            Part<Button>(world, "_eventsTabRaces").ButtonPressed = true; await Frames(4);
-            Require(Schedule(world, window, "empty", true, true) == 0 && Part<Label>(world, "_eventsEmpty").Text == "Nothing to show here.", "events: no race for level 62 shows the empty text");
+            Part<Button>(world, "Events.TabRaces").ButtonPressed = true; await Frames(4);
+            Require(Schedule(world, window, "empty", true, true) == 0 && Part<Label>(world, "Events.empty").Text == "Nothing to show here.", "events: no race for level 62 shows the empty text");
             await Capture(window, "empty");
-            toggle.ButtonPressed = false; Part<Button>(world, "_eventsTabEvents").ButtonPressed = true; await Frames(4);
+            toggle.ButtonPressed = false; Part<Button>(world, "Events.tab").ButtonPressed = true; await Frames(4);
             Require(Schedule(world, window, "schedule-again", false, false, live: 1) == all, "events: the page and the filter switch back");
 
             // Join with two temple sign-ups open: the card's temple becomes the shown sign-up in the Classic registration.
-            DetailCall(world, "BuildBifrostUi");
-            var layer = Part<CanvasLayer>(world, "_bifrostLayer");
+            DetailCall(world, "Bifrost.BuildUi");
+            var layer = Part<CanvasLayer>(world, "Bifrost.layer");
             layer.Reparent(this);
             NativeOverlays.Prepare(world);
-            var signUps = offline.SignUps;
-            var join = Part<Control>(world, "_joinModal");
-            var joinTitle = Part<Label>(world, "_joinModalTitle");
-            DetailCall(world, "OnBifrostTime", 600, TempleEventType.ForgottenTemple);
+            var signUps = Game.Session.Bifrost.SignUps;
+            var join = Part<Control>(world, "Bifrost.joinModal");
+            var joinTitle = Part<Label>(world, "Bifrost.joinModalTitle");
+            DetailCall(world, "Bifrost.OnTime", 600, TempleEventType.ForgottenTemple);
             Require(join.Visible && joinTitle.Text.Contains("FORGOTTEN TEMPLE"), "events: the client offers the first sign-up by itself");
-            DetailCall(world, "CloseJoinModal");
-            DetailCall(world, "OnBifrostTime", 412, TempleEventType.BorderDefenseWar);
-            DetailCall(world, "CloseJoinModal");
+            DetailCall(world, "Bifrost.CloseJoinModal");
+            DetailCall(world, "Bifrost.OnTime", 412, TempleEventType.BorderDefenseWar);
+            DetailCall(world, "Bifrost.CloseJoinModal");
             signUps.Select(TempleEventType.ForgottenTemple);
             Require(signUps.Open.Count == 2 && !join.Visible && signUps.Current == TempleEventType.ForgottenTemple, "events: two temple sign-ups open, the registration closed");
             // The filters rebuilt the cards: the Join of the rebuilt Border Defense War card.
@@ -312,33 +312,33 @@ public partial class Preview
                 "events: Join opens the registration of its own temple (" + joinTitle.Text + ")");
             Require(registration != null && registration.Visible && !join.GetChildren().OfType<CenterContainer>().Single().Visible
                 && registration.Size == ClassicOverlayLayout.Registration.Size, "events: the Classic registration box, not the client's panel");
-            Require(Part<Button>(world, "_joinModalBtn") is { Visible: true, Text: "Join" } && joinTitle.GetThemeColor("font_color") == ClassicWorldOverlays.MessageTitle,
+            Require(Part<Button>(world, "Bifrost.joinModalBtn") is { Visible: true, Text: "Join" } && joinTitle.GetThemeColor("font_color") == ClassicWorldOverlays.MessageTitle,
                 "events: the registration offers Join for Border Defense War");
             await Capture(window, "join-registration");
-            DetailCall(world, "CloseJoinModal");
+            DetailCall(world, "Bifrost.CloseJoinModal");
             layer.QueueFree();
             await Close(world, window);
 
-            (world, window) = await Open("BuildEventsUiPreview", "races");
+            (world, window) = await Open("Preview.BuildEvents", "races");
             Require(Schedule(world, window, "races", true, false, live: 1) == 1, "events: the Collection Races page lists the race");
             await Capture(window, "races");
             await Close(world, window);
-            (world, window) = await Open("BuildEventsUiPreview", "end");
+            (world, window) = await Open("Preview.BuildEvents", "end");
             await Frames(4);
-            var endScroll = Part<ScrollContainer>(world, "_eventsScroll");
+            var endScroll = Part<ScrollContainer>(world, "Events.Scroll");
             Schedule(world, window, "end", false, false, live: 1);
             var last = Cards(world).Last();
             Require(endScroll.ScrollVertical > 0 && Inside(endScroll.GetGlobalRect(), last.GetGlobalRect()), "events: the end of the list shows the last card whole " + last.GetGlobalRect());
             await Capture(window, "end");
             await Close(world, window);
             (world, window) = await Open("BuildEventsScheduleUiPreview", "loading");
-            Require(Schedule(world, window, "loading", false, false) == 0 && Part<Label>(world, "_eventsEmpty").Text == "Loading the schedule...", "events: the loading text");
+            Require(Schedule(world, window, "loading", false, false) == 0 && Part<Label>(world, "Events.empty").Text == "Loading the schedule...", "events: the loading text");
             Require(window.Size.Y <= Spec.TitleTop + Spec.TitleHeight + Spec.ContentGap + Sched.TabHeight + Spec.BodyGap + Sched.EmptyHeight + 4 + Spec.Margin + 8,
                 "events: the loading schedule is a short box, not the empty list " + window.Size);
             await Capture(window, "loading");
             await Close(world, window);
             (world, window) = await Open("BuildEventsShiftUiPreview", "shift");
-            var shift = Part<Label>(world, "_eventsShift");
+            var shift = Part<Label>(world, "Events.shift");
             Require(shift.IsVisibleInTree() && shift.Text.StartsWith("A game master moved the event clock") && shift.GetThemeColor("font_color") == ClassicEventPanel.Caption,
                 "events: the clock shift line in the caption ink: " + shift.Text);
             Schedule(world, window, "clock-shift", false, false, live: 1);
@@ -362,58 +362,58 @@ public partial class Preview
         foreach (var view in new[] { "daily-rank", "daily-rank-clan" })
         {
             var (world, window) = await Open("BuildDailyRankBoardsUiPreview", view);
-            Require(Native.Get<OptionButton>(world, "_drPicker")!.Text.Length > 0, "daily_rank: the board picker shows the chosen board");
+            Require(Native.Get<OptionButton>(world, "DailyRankWindow.drPicker")!.Text.Length > 0, "daily_rank: the board picker shows the chosen board");
             await Capture(window, view == "daily-rank" ? "players" : "clans");
             await Close(world, window);
         }
         {
-            var (world, window) = await Open("BuildRankBoardUiPreview");
+            var (world, window) = await Open("Preview.BuildRankBoard");
             await Capture(window, "filled");
             await Close(world, window);
         }
         // Border Defense War result and ranking.
         {
-            var (world, window) = await Open("BuildWarResultUiPreview");
+            var (world, window) = await Open("Preview.BuildWarResult");
             await Capture(window, "finished");
             await Close(world, window);
-            (world, window) = await Open("BuildWarRankingUiPreview");
+            (world, window) = await Open("Preview.BuildWarRanking");
             await Capture(window, "filled");
             await Close(world, window);
         }
         // Chaos Dungeon.
         foreach (bool final in new[] { false, true })
         {
-            var (world, window) = await Open("BuildChaosLadderUiPreview", final);
+            var (world, window) = await Open("Preview.BuildChaosLadder", final);
             await Capture(window, final ? "final" : "running");
             await Close(world, window);
         }
         {
-            var (world, window) = await Open("BuildChaosSkillPageUiPreview");
+            var (world, window) = await Open("Preview.BuildChaosSkillPage");
             // Read only: the family restyle leaves the client's dimming (Modulate) on the Chaos skill icons. Cube skills
             // stay dimmed until their item is in the bag, and every skill while the character blinks in the dungeon.
-            var dim = typeof(World).GetNestedType("HotSlotCell", BindingFlags.NonPublic)?.GetField("DimColor")?.GetValue(null) is Color color ? color : new Color(.5f, .5f, .5f);
+            var dim = Native.ClientType("LibreKO.Features.Hud.HotSlotCell")?.GetField("DimColor")?.GetValue(null) is Color color ? color : new Color(.5f, .5f, .5f);
             TextureRect[] icons = Array.Empty<TextureRect>();
             int pages = 0, cubes = 0;
             for (int page = 0; page < 3; page++)
             {
                 pages++;
-                if (page > 0) { DetailCall(world, "FlipChaosSkillPage", 1); await Frames(2); }
+                if (page > 0) { DetailCall(world, "ChaosSkillWindow.FlipChaosSkillPage", 1); await Frames(2); }
                 icons = Descendants(window.Body).OfType<TextureRect>().Where(t => t.GetType().Name == "ChaosSkillIcon" && !t.IsQueuedForDeletion()).ToArray();
-                DetailCall(world, "ChaosSkillPageTick"); await Frames(2);
-                Require(icons.Length > 0 && icons.All(i => i.Modulate == ((bool)DetailCall(world, "SkillItemHeld", Native.Get<object>(i, "Skill"))! ? Colors.White : dim)),
+                DetailCall(world, "ChaosSkillWindow.ChaosSkillPageTick"); await Frames(2);
+                Require(icons.Length > 0 && icons.All(i => i.Modulate == ((bool)DetailCall(world, "Hotbar.SkillItemHeld", Native.Get<object>(i, "Skill"))! ? Colors.White : dim)),
                     $"chaos_skill page {page + 1}: the client's item dimming stays on the Classic page ({icons.Count(i => i.Modulate == dim)} of {icons.Length} dimmed)");
                 cubes += icons.Count(i => i.Modulate == dim);
                 if (page == 0) await Capture(window, "page");
                 else if (icons.Any(i => i.Modulate == dim)) { await Capture(window, "page-items"); break; }
             }
             checks.Add($"chaos_skill: {cubes} item skill(s) dimmed without their item, {pages} page(s) checked");
-            Native.Set(offline, "SelfAbnormal", RespawnBlink.Blinking);
-            DetailCall(world, "ChaosSkillPageTick"); await Frames(2);
+            Native.Set(Game.Session.Progress, "SelfAbnormal", RespawnBlink.Blinking);
+            DetailCall(world, "ChaosSkillWindow.ChaosSkillPageTick"); await Frames(2);
             Require(icons.All(i => i.Modulate == dim), "chaos_skill: every skill dimmed while blinking in the dungeon");
             await Capture(window, "page-blink");
-            Native.Set(offline, "SelfAbnormal", 0);
+            Native.Set(Game.Session.Progress, "SelfAbnormal", 0);
             await Close(world, window);
-            (world, window) = await Open("BuildChaosGuideUiPreview");
+            (world, window) = await Open("Preview.BuildChaosGuide");
             await Capture(window, "guide");
             await Close(world, window);
         }
@@ -434,7 +434,7 @@ public partial class Preview
         // Wanted.
         foreach (var (mode, view) in new[] { (1, "invite"), (3, "invite-mini"), (2, "list"), (4, "list-mini") })
         {
-            var (world, window) = await Open("BuildVanguardUiPreview", mode);
+            var (world, window) = await Open("Preview.BuildVanguard", mode);
             var actions = Descendants(window.Body).OfType<Button>().Where(b => b.Text.Length > 0 && b is not CheckBox).ToArray();
             if (view == "list") Require(actions.Length == 0 && Descendants(window.Body).OfType<CheckBox>().Single().GetSignalConnectionList(BaseButton.SignalName.Toggled).Count > 0,
                 window.Id + ": the Wanted list keeps its native hide option");
@@ -445,12 +445,12 @@ public partial class Preview
         // Castle siege war and Knight Royale.
         foreach (var view in new[] { "unheld", "held" })
         {
-            var (world, window) = view == "held" ? await Open("BuildSiegeWarUiPreview") : await Open("BuildSiegeWarStateUiPreview", view);
+            var (world, window) = view == "held" ? await Open("Preview.BuildSiegeWar") : await Open("BuildSiegeWarStateUiPreview", view);
             await Capture(window, view);
             await Close(world, window);
         }
         {
-            var (world, window) = await Open("BuildRoyaleScoreUiPreview");
+            var (world, window) = await Open("Preview.BuildRoyaleScore");
             await Capture(window, "running");
             await Close(world, window);
         }

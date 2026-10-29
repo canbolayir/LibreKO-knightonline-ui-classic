@@ -51,7 +51,8 @@ public partial class InventoryPortrait : SubViewportContainer
             for(int x=0;x<Math.Min(cut,mask.GetWidth());x++) mask.SetPixel(x,y,Colors.Transparent);
         }
         Material=new ShaderMaterial {Shader=new Shader {Code="shader_type canvas_item; uniform sampler2D portrait_mask : filter_nearest, repeat_disable; void fragment(){ COLOR=texture(TEXTURE,UV)*COLOR; COLOR.a*=texture(portrait_mask,UV).a; }"}};
-        ((ShaderMaterial)Material).SetShaderParameter("portrait_mask",ImageTexture.CreateFromImage(mask));
+        using var maskTexture=ImageTexture.CreateFromImage(mask);
+        ((ShaderMaterial)Material).SetShaderParameter("portrait_mask",maskTexture);
     }
     public override void _ExitTree() { if(Plugin.Active) Plugin.Kit.Game.Inventory.Changed-=Refresh; }
     private void Refresh()
@@ -60,7 +61,7 @@ public partial class InventoryPortrait : SubViewportContainer
         _viewport.ProcessMode=visible?ProcessModeEnum.Inherit:ProcessModeEnum.Disabled;
         _viewport.RenderTargetUpdateMode=visible ? SubViewport.UpdateMode.Always : SubViewport.UpdateMode.Disabled;
         if(!visible || !_scene.IsInsideTree() || !Plugin.Kit.Game.Available || !Godot.FileAccess.FileExists("res://assets/characters/index.json")) return;
-        var info=Net.I.LastEnter;
+        var info=Game.Session.Self.LastEnter;
         int[] gear=InventoryConstants.VisualSlots.Select(s=>Plugin.Kit.Game.Inventory.At(s).ItemId).ToArray();
         string signature=$"{info.Race}:{info.Face}:{info.Hair}:"+string.Join(',',gear);
         if(signature==_signature) return;

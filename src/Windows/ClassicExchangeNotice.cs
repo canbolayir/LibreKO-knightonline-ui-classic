@@ -79,7 +79,7 @@ public partial class ClassicExchangeNoticePanel : Control
     public override void _Draw()
     {
         DrawRect(new Rect2(Vector2.Zero,Size),Colors.Black);
-        ClassicMessageArt.Draw(this,Size.Y);
+        ClassicMessageArt.Paint(this,Size.Y);
     }
     public override void _Input(InputEvent ev) {
         if(!IsVisibleInTree() || ev is not InputEventKey {Pressed:true,Echo:false} key)return;

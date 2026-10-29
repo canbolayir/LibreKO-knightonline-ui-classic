@@ -72,9 +72,9 @@ public partial class Preview
             screens.Add(new { state, file, bounds = window.GetGlobalRect().ToString() });
         }
 
-        async Task<(World World, HudWindow Window)> Open(string view)
+        async Task<(WorldRoot World, HudWindow Window)> Open(string view)
         {
-            var world = new World();
+            var world = PreviewFixtures.Prepared(new WorldRoot());
             var window = (HudWindow)DetailCall(world, "BuildSocialUiPreview", view)!;
             var layer = new CanvasLayer { Name = "social_" + view };
             AddChild(layer); layer.AddChild(window); window.Visible = true;
@@ -83,7 +83,7 @@ public partial class Preview
             Require(window.GetChildren().OfType<ClassicSocialFrame>().Count() == 1, view + ": native window uses the Classic social frame");
             return (world, window);
         }
-        void Done((World World, HudWindow Window) opened)
+        void Done((WorldRoot World, HudWindow Window) opened)
         {
             var layer = opened.Window.GetParent();
             layer.QueueFree(); opened.World.QueueFree();
@@ -94,19 +94,19 @@ public partial class Preview
         // Nation chat: public channels with the joined channel, then a selection.
         {
             var opened = await Open("nation-public"); var (world, window) = opened;
-            var rows = (VBoxContainer)DetailField(world, "_ncPublicRows")!;
+            var rows = (VBoxContainer)DetailField(world, "NationChannels.ncPublicRows")!;
             Require(Descendants(window).OfType<Button>().Single(b => b.Name == "nation_refresh").Text == "Refresh", "nation chat: refresh carries a word, not a glyph");
             await Capture(window, "nation-public");
             Require(rows.GetChildren().OfType<PanelContainer>().Count(r => r.GetMeta("social_selected", false).AsBool()) == 1, "nation chat: one selected channel row");
             Click(rows.GetChildren().OfType<PanelContainer>().First());
             await Frames();
-            Require((int)DetailField(world, "_ncSelectedChannel")! == 1, "nation chat: a row click selects the channel natively");
+            Require((int)DetailField(world, "NationChannels.NationSelectedChannel")! == 1, "nation chat: a row click selects the channel natively");
             var live = rows.GetChildren().OfType<PanelContainer>().Where(r => !r.IsQueuedForDeletion()).ToArray();
             Require(live[0].GetMeta("social_selected", false).AsBool() && live[0].HasMeta(ClassicSocialStyle.Styled), "nation chat: the rebuilt selected row is styled Classic");
             Require(ButtonOf(window, "Leave").Visible && !Descendants(window).OfType<Button>().Any(b => b.Text == "Enter" && b.IsVisibleInTree()), "nation chat: joined channel shows Leave");
             await Capture(window, "nation-public-selected");
             Descendants(window).OfType<Button>().Single(b => b.Name == "social_close").EmitSignal(BaseButton.SignalName.Pressed);
-            Require(!window.Visible && !(bool)DetailField(world, "_nationChatShown")!, "nation chat: the Classic close button runs the native close");
+            Require(!window.Visible && !(bool)DetailField(world, "NationChannels.NationShown")!, "nation chat: the Classic close button runs the native close");
             Done(opened);
         }
         // Nation chat, Private tab (fa3cfc3): the room list over a search row (room name, Search, Create room); a
@@ -114,9 +114,9 @@ public partial class Preview
         // live in the room window.
         {
             var opened = await Open("nation-private"); var (world, window) = opened;
-            var rows = (VBoxContainer)DetailField(world, "_ncPrivateRows")!;
+            var rows = (VBoxContainer)DetailField(world, "NationChannels.ncPrivateRows")!;
             var list = (ScrollContainer)rows.GetParent();
-            var search = (LineEdit)DetailField(world, "_ncSearchEdit")!;
+            var search = (LineEdit)DetailField(world, "NationChannels.ncSearchEdit")!;
             IEnumerable<PanelContainer> Live() => rows.GetChildren().OfType<PanelContainer>().Where(r => !r.IsQueuedForDeletion());
             await Capture(window, "nation-private");
             var find = ButtonOf(window, "Search"); var create = ButtonOf(window, "Create room");
@@ -134,17 +134,17 @@ public partial class Preview
             Require(Live().All(r => r.TooltipText == "Double-click to enter" && !Descendants(r).OfType<TextureRect>().Any(t => t.IsVisibleInTree())), "nation chat: rows carry the client's double-click hint and no lock or nation icon");
             // Search: the client sends the word (an empty field lists every room) and its reply fills the Private tab.
             search.Text = "Siege"; find.EmitSignal(BaseButton.SignalName.Pressed); await Frames(2);
-            DetailCall(world, "OnNationSearch", new List<NationRoom> { new(offline.NationChat.RoomId, "Siege at nine", true, LibreKO.Domain.Nations.Karus, 4, 30) });
+            DetailCall(world, "NationChannels.OnNationSearch", new List<NationRoom> { new(Game.Session.NationChat.NationChat.RoomId, "Siege at nine", true, LibreKO.Domain.Nations.Karus, 4, 30) });
             await Frames();
             Require(Live().Count() == 1 && Live().All(r => r.HasMeta(ClassicSocialStyle.Styled)) && search.Text == "Siege", "nation chat: a search reply lists its rooms in Classic rows and keeps the word");
             await Capture(window, "nation-private-search");
             // A double-click on the joined room shows its room window natively.
-            DetailCall(world, "ChatRoomInit");
+            DetailCall(world, "ChatReactions.Build"); DetailCall(world, "Whispers.Build"); DetailCall(world, "NationChannels.Build"); DetailCall(world, "ChatRoom.Build");
             Live().First().EmitSignal(Control.SignalName.GuiInput, new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true, DoubleClick = true }); await Frames(2);
-            Require(((HudWindow)DetailField(world, "_roomWindow")!).Visible, "nation chat: a double-click on the joined room shows its room window natively");
-            DetailCall(world, "ChatRoomDispose");
+            Require(((HudWindow)DetailField(world, "ChatRoom.RoomWindow")!).Visible, "nation chat: a double-click on the joined room shows its room window natively");
+            DetailCall(world, "ChatRoom.Dispose"); DetailCall(world, "NationChannels.Dispose"); DetailCall(world, "Whispers.Dispose"); DetailCall(world, "ChatReactions.Dispose");
             // Outside a room the list keeps the plain row inks.
-            offline.NationChat.Left(); DetailCall(world, "OnNationRooms", new List<NationRoom>
+            Game.Session.NationChat.NationChat.Left(); DetailCall(world, "NationChannels.OnNationRooms", new List<NationRoom>
             {
                 new(1001, "Moradon traders", false, LibreKO.Domain.Nations.Karus, 12, 50), new(1004, "Clan recruits", true, LibreKO.Domain.Nations.Karus, 2, 10),
             });
@@ -169,7 +169,7 @@ public partial class Preview
             Require(slots.Length > 0 && slots.All(s => s.GetThemeStylebox("normal") is StyleBoxTexture), "commander: order slots sit in the Classic cell");
             GD.Print("SOCIAL_AUDIT commander icons with art: " + slots.Count(s => s.GetChildren().OfType<TextureRect>().Any(t => t.Texture != null)) + "/" + slots.Length);
             flip.EmitSignal(BaseButton.SignalName.Pressed); await Frames();
-            Require(DetailField(world, "_commanderSlots") is VBoxContainer, "commander: Rotate runs the native flip");
+            Require(DetailField(world, "PartyCommander.commanderSlots") is VBoxContainer, "commander: Rotate runs the native flip");
             await Capture(window, "commander-vertical");
             Done(opened);
         }
@@ -182,7 +182,7 @@ public partial class Preview
         // Leader transfer: the preselected heir enables Confirm; another pick moves the selection.
         {
             var opened = await Open("clanhandover"); var (world, window) = opened;
-            var choices = (Button[])DetailField(world, "_handoverChoices")!;
+            var choices = (Button[])DetailField(world, "ClanHandover.handoverChoices")!;
             Require(choices.Count(c => c.Visible && c.ButtonPressed) == 1 && !ButtonOf(window, "Confirm").Disabled, "leader transfer: preselected heir enables Confirm");
             await Capture(window, "clanhandover");
             choices[0].ButtonPressed = true; await Frames();

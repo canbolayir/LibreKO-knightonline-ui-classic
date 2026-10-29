@@ -1,5 +1,6 @@
 using Godot;
 using LibreKO;
+using LibreKO.Network;
 using LibreKO.Plugins;
 using KnightOnlineUiClassic.Layout;
 
@@ -18,7 +19,7 @@ namespace KnightOnlineUiClassic.Windows;
 public partial class ClassicPartyHud : Control
 {
     private readonly IGameParty _party = null!;
-    private readonly Func<World?> _world = null!;
+    private readonly Func<WorldRoot?> _world = null!;
     private readonly ClassicPartyHudRow[] _rows = new ClassicPartyHudRow[8];
     private readonly Control _actions = new() { Name = "party_actions", MouseFilter = MouseFilterEnum.Ignore };
     private readonly Button _leave = null!, _meter = null!, _rejoin = null!, _commander = null!;
@@ -27,7 +28,7 @@ public partial class ClassicPartyHud : Control
 
     public ClassicPartyHud() { }
 
-    public ClassicPartyHud(IGameParty party, Func<World?> world)
+    public ClassicPartyHud(IGameParty party, Func<WorldRoot?> world)
     {
         _party = party; _world = world;
         Name = "classic_party_hud"; MouseFilter = MouseFilterEnum.Ignore; TextureFilter = TextureFilterEnum.Nearest;
@@ -75,7 +76,7 @@ public partial class ClassicPartyHud : Control
     }
 
     public IGameParty Party => _party;
-    public World? World => _world();
+    public WorldRoot? World => _world();
 
     public override void _Ready()
     {
@@ -115,7 +116,7 @@ public partial class ClassicPartyHud : Control
         }
         _leave.Text = _party.IsLeader ? "Disband" : "Leave";
         _leave.TooltipText = _party.IsLeader ? "Disband the party" : "Leave the party";
-        _meter.Text = _party.RowMeterMode switch { 1 => "Meter: Damage", 2 => "Meter: Healing", _ => "Meter: Off" };
+        _meter.Text = _party.RowMeterMode switch { PartyBoardMeterMode.Damage => "Meter: Damage", PartyBoardMeterMode.Healing => "Meter: Healing", _ => "Meter: Off" };
         _rejoin.Text = _party.AutoRejoin ? "Re-invite: On" : "Re-invite: Off";
         _rejoin.TooltipText = WrapTip(_party.AutoRejoinTip);
         bool commander = _party.CommanderBarHidden;
@@ -270,12 +271,12 @@ public partial class ClassicPartyHudRow : Control
         bool undead = _member.HpLook == LibreKO.Domain.PartyHpLook.Undead;
         if (_member.MaxHp > 0) Bar(HpArt(), ClassicPartyHudLayout.Hp, Fill(_member.Hp, _member.MaxHp), undead ? new Color(.55f, .55f, .55f) : null);
         if (_member.MaxMp > 0) Bar("progress_mp_0_curse", ClassicPartyHudLayout.Mp, Fill(_member.Mp, _member.MaxMp));
-        byte mode = _hud.Party.RowMeterMode;
-        if (mode != 0)
+        var mode = _hud.Party.RowMeterMode;
+        if (mode != PartyBoardMeterMode.Off)
         {
             var meter = ClassicPartyHudLayout.Meter;
             DrawRect(meter, new Color(0, 0, 0, .9f));
-            DrawRect(new Rect2(meter.Position, new Vector2(meter.Size.X * _share, meter.Size.Y)), mode == 2 ? ClassicPartyHudLayout.MeterHealing : ClassicPartyHudLayout.MeterDamage);
+            DrawRect(new Rect2(meter.Position, new Vector2(meter.Size.X * _share, meter.Size.Y)), mode == PartyBoardMeterMode.Healing ? ClassicPartyHudLayout.MeterHealing : ClassicPartyHudLayout.MeterDamage);
         }
         if (_member.Picked) DrawRect(ClassicPartyHudLayout.Selection, new Color("00ff00"), false, 1);
     }

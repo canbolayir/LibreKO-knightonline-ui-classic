@@ -15,13 +15,13 @@ namespace KnightOnlineUiClassic.Native;
 public static class NativeNpcOpening
 {
     public const string Inn = "inn", Smith = "smith";
-    private static readonly ConditionalWeakTable<World, NativeHooks.Hook> _inn = new(), _smith = new();
+    private static readonly ConditionalWeakTable<WorldRoot, NativeHooks.Hook> _inn = new(), _smith = new();
     private static readonly ConditionalWeakTable<Node, string> _choices = new();
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
-        if (Net.I is not { } net) return;
-        var weakWorld = new WeakReference<World>(world);
+        if (Game.Connection is not { } net) return;
+        var weakWorld = new WeakReference<WorldRoot>(world);
         // The client may subscribe before or after the plugin; mark once its menu is built.
         void Mark(string kind)
         {
@@ -31,22 +31,22 @@ public static class NativeNpcOpening
         if (!Held(_inn, world))
         {
             Action handler = () => Mark(Inn);
-            _inn.AddOrUpdate(world, NativeHooks.Listen("Net.WarehouseNpcEvent", () => net.WarehouseNpcEvent += handler, () => net.WarehouseNpcEvent -= handler, world));
+            _inn.AddOrUpdate(world, NativeHooks.Listen("Net.WarehouseNpcEvent", () => Game.Session.Warehouse.WarehouseNpcEvent += handler, () => Game.Session.Warehouse.WarehouseNpcEvent -= handler, world));
         }
         if (!Held(_smith, world))
         {
             Action<int> handler = _ => Mark(Smith);
-            _smith.AddOrUpdate(world, NativeHooks.Listen("Net.RepairNpcEvent", () => net.RepairNpcEvent += handler, () => net.RepairNpcEvent -= handler, world));
+            _smith.AddOrUpdate(world, NativeHooks.Listen("Net.RepairNpcEvent", () => Game.Session.Repair.RepairNpcEvent += handler, () => Game.Session.Repair.RepairNpcEvent -= handler, world));
         }
     }
 
-    private static bool Held(ConditionalWeakTable<World, NativeHooks.Hook> hooks, World world) => hooks.TryGetValue(world, out var held) && held.Active;
+    private static bool Held(ConditionalWeakTable<WorldRoot, NativeHooks.Hook> hooks, WorldRoot world) => hooks.TryGetValue(world, out var held) && held.Active;
 
     /// <summary>Marks the choice buttons of the NPC dialogue the client has just built as the <paramref name="kind"/> opening.</summary>
-    public static void Opened(World world, string kind)
+    public static void Opened(WorldRoot world, string kind)
     {
-        if (Native.Get<HudWindow>(world, "_npcPanel") is not { Visible: true }) return;
-        if (Native.Get<VBoxContainer>(world, "_npcMenuBox") is not { } menu || !GodotObject.IsInstanceValid(menu)) return;
+        if (Native.Get<HudWindow>(world, "NpcDialogWindow.Panel") is not { Visible: true }) return;
+        if (Native.Get<VBoxContainer>(world, "NpcDialogWindow.menuBox") is not { } menu || !GodotObject.IsInstanceValid(menu)) return;
         foreach (var choice in menu.GetChildren().OfType<Button>()) _choices.AddOrUpdate(choice, kind);
     }
 

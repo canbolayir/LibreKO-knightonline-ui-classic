@@ -22,15 +22,15 @@ public partial class Preview
         var window=GetWindow();window.ContentScaleMode=Window.ContentScaleModeEnum.Disabled;window.Size=new Vector2I(1000,700);
         AddChild(new ColorRect { Color=new Color("252822"),Size=new Vector2(1000,700),MouseFilter=MouseFilterEnum.Ignore });
         var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
-        var model=new World();
-        DetailCall(model,"BuildNpcDialog");DetailCall(model,"BuildInteractionDialogs");
-        var layer=(CanvasLayer)DetailField(model,"_npcLayer")!;layer.Reparent(this);
-        var panel=(HudWindow)DetailField(model,"_npcPanel")!;
-        var actorType=typeof(World).GetNestedType("Ent",BindingFlags.NonPublic)!;
+        var model=PreviewFixtures.Prepared(new WorldRoot());
+        DetailCall(model,"NpcDialogWindow.Build");
+        var layer=(CanvasLayer)DetailField(model,"NpcDialogWindow.layer")!;layer.Reparent(this);
+        var panel=(HudWindow)DetailField(model,"NpcDialogWindow.Panel")!;
+        var actorType=Native.ClientType("LibreKO.Presentation.EntityView")!;
         var actor=Activator.CreateInstance(actorType,nonPublic:true)!;
         void Field(string name,object value) => actorType.GetField(name,BindingFlags.Instance|BindingFlags.Public)!.SetValue(actor,value);
-        void Target(string name,int value) => typeof(World).GetField(name,BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(model,value);
-        ((IDictionary)DetailField(model,"_ents")!).Add(701,actor);
+        void Target(string name,int value) => Native.Set(model, name, value);
+        ((EntityRegistry)DetailField(model, "EntitySystem.Ents")!)[701] = (EntityView)actor;
         var native=new NpcPortraitProbe(model);
         var seedPath=ProjectSettings.GlobalizePath("res://../../LibreKO/Server/LibreKO.Game/Seed/Data/Npcs.json");
         using var seed=JsonDocument.Parse(System.IO.File.ReadAllText(seedPath));
@@ -41,18 +41,18 @@ public partial class Preview
             Field("NpcId",id);Field("ModelId",data.GetProperty("ModelId").GetInt32());Field("Level",data.GetProperty("Level").GetInt32());
             Field("NpcType",data.GetProperty("NpcType").GetInt32());Field("IsNpc",true);Field("Name",data.GetProperty("Name").GetString()!);
             Field("Gear",new int[8]);
-            Target("_vendorNpcId",701);Target("_npcTalkId",-1);
+            Target("Session.NpcQuest.LastNpcId",701);Target("Session.NpcQuest.TalkingNpcId",-1);
         }
         const string royalStory="How are you? I am the Enchanter dispatched to Moradon Castle. I offer buffs to help you on your journey. There are three types of buffs that you can receive: attack power, defensive power and enhancement of physical strength, and they can be stacked! Possible payment means are Noah, and, for those people between level 36 and 60, can pay with the [sign of victory] too.";
         void Open(string? story=null)
         {
-            DetailCall(model,"CloseNpcDialog");
+            DetailCall(model,"NpcDialogWindow.Close");
             string name=(string)actorType.GetField("Name")!.GetValue(actor)!;
             bool royal=name.Contains("Royal National Enchanter");
-            DetailCall(model,"BeginNpcDialog",name,story??(royal?royalStory:"How can I help you? Select a service below."));
+            DetailCall(model,"NpcDialogWindow.Begin",name,story??(royal?royalStory:"How can I help you? Select a service below."));
             var options=royal?new[]{"1.   [Buff]Noah/Symbol of Victory","2.   Spirit Aisles' of Mounting","3.   Settlement support free of charge buff"}:new[]{"1.   Tell me more...","2.   Close"};
             foreach(string option in options) DetailCall(model,"AddNpcMenuButton",option,(Action)(()=>{}));
-            DetailCall(model,"EndNpcDialog",options.Length);
+            DetailCall(model,"NpcDialogWindow.End",options.Length);
         }
         async Task WaitFrame() => await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
         async Task Settle()
@@ -84,9 +84,9 @@ public partial class Preview
             if(portrait.GetGlobalRect().Intersects(speech)) violations.Add("portrait overlaps speech");
             return violations.ToArray();
         }
-        SetNpc(31508);Target("_npcTalkId",701);
-        DetailCall(model,"NpcTick",.01);
-        if((int)DetailField(model,"_npcTalkId")! !=-1) throw new Exception("Delayed NPC reply regression fixture did not clear the transient target");
+        SetNpc(31508);Target("Session.NpcQuest.TalkingNpcId",701);
+        DetailCall(model,"NpcInteraction.RangeTick",.01);
+        if((int)DetailField(model,"Session.NpcQuest.TalkingNpcId")! !=-1) throw new Exception("Delayed NPC reply regression fixture did not clear the transient target");
         Open();await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);
         shell=(ClassicNpcDialogue)CharacterDetailsSkin.Apply(panel.Body)!;
         await Settle();await Shot("baseline");
@@ -102,7 +102,7 @@ public partial class Preview
         {
             SetNpc(fixture.Id);
             // A visible world NPC has its resource loaded before the player opens dialogue.
-            var scene=(PackedScene?)typeof(World).GetMethod("ResolveMobScene",BindingFlags.Instance|BindingFlags.NonPublic)!.Invoke(model,new object[]{prototypes[fixture.Id].GetProperty("ModelId").GetInt32()});
+            var scene=(PackedScene?)Native.Call(model, "EntityLooksSystem.ResolveMobScene", prototypes[fixture.Id].GetProperty("ModelId").GetInt32());
             if(scene==null) throw new Exception("Missing fixture NPC appearance: "+fixture.Key);
             scene.Instantiate<Node3D>().Free();
             int before=NpcPortraitCache.RenderRequests;

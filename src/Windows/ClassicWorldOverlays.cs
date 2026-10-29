@@ -214,7 +214,7 @@ public static class ClassicWorldOverlays
             // Turkish system; the title keeps the English capitals.
             if (title.Text.Contains('\u0130')) title.Text = title.Text.Replace('\u0130', 'I');
             // Registered here: the ready ink; registered for another open sign-up (Join hidden): the muted hint.
-            Ink(status, host.GetMeta(NativeOverlays.Registered, false).AsBool() ? ClassicEventPanel.Ready
+            Ink(status, host.GetMeta(NativeOverlays.Registered, false).AsBool() ? ClassicEventPanel.Accepted
                 : host.GetMeta(NativeOverlays.RegisteredElsewhere, false).AsBool() ? ClassicDesign.Muted : ClassicDesign.Text);
         });
     }
@@ -520,7 +520,7 @@ public static class ClassicWorldOverlays
     /// </summary>
     private static void Wanted(Button button)
     {
-        if (NativeApi.WorldOf(button) is not { } world || NativeApi.Get<CanvasLayer>(world, "_vanguardLayer") is not { } layer) return;
+        if (NativeApi.WorldOf(button) is not { } world || NativeApi.Get<CanvasLayer>(world, "VanguardWindow.Layer") is not { } layer) return;
         if (layer.GetNodeOrNull<ClassicWantedPlaque>("classic_wanted") is not { } plaque)
         {
             plaque = new ClassicWantedPlaque(world) { Name = "classic_wanted" };
@@ -672,13 +672,13 @@ public partial class ClassicMessageArt : Control
 {
     public ClassicMessageArt() { MouseFilter = MouseFilterEnum.Ignore; TextureFilter = TextureFilterEnum.Nearest; Resized += QueueRedraw; }
 
-    public override void _Draw() => Draw(this, Size.Y);
+    public override void _Draw() => Paint(this, Size.Y);
 
     /// <summary>
     /// Draws the nine original pieces. A taller box stretches the middle band (y 64); a box shorter than the two
     /// 64-pixel halves trims their inner rows, which are plain frame sides, so the corners stay intact.
     /// </summary>
-    public static void Draw(CanvasItem item, float height)
+    public static void Paint(CanvasItem item, float height)
     {
         var root = Plugin.Kit.Layout("{nation}_messagebox_us");
         // Both halves are 64 pixels high, as is the band's offset.
@@ -825,12 +825,12 @@ public partial class ClassicLootPanel : Control
 /// </summary>
 public partial class ClassicWantedPlaque : Control
 {
-    private readonly World _world;
+    private readonly WorldRoot _world;
     private readonly List<Button> _buttons = new();
 
     public ClassicWantedPlaque() { _world = null!; }
 
-    public ClassicWantedPlaque(World world)
+    public ClassicWantedPlaque(WorldRoot world)
     {
         _world = world; MouseFilter = MouseFilterEnum.Ignore; TextureFilter = TextureFilterEnum.Nearest;
         SetAnchorsPreset(LayoutPreset.TopRight);
@@ -868,7 +868,7 @@ public partial class ClassicWantedPlaque : Control
     public override void _Process(double delta)
     {
         if (!GodotObject.IsInstanceValid(_world)) return;
-        int zone = Convert.ToInt32(NativeApi.Get<object>(_world, "_zone") ?? 0);
+        int zone = Convert.ToInt32(NativeApi.Get<object>(_world, "ZoneId") ?? 0);
         bool shown = LibreKO.Domain.PkLadder.IsLadderZone(zone);
         if (Visible != shown) Visible = shown;
         var at = new Vector2(GetViewportRect().Size.X - Size.X - ClassicOverlayLayout.Wanted.Margin, ClassicOverlayLayout.Wanted.Top);

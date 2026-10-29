@@ -16,7 +16,7 @@ public static class NativeGenieQuick
         Toggle = "genie_quick_toggle", Settings = "genie_quick_settings", Gauge = "genie_quick_gauge",
         Points = "genie_quick_points", Row = "genie_quick_row_";
 
-    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Node, World> _worlds = new();
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Node, WorldRoot> _worlds = new();
 
     /// <summary>The player's choice for this session: the panel folded to its caption and time rows.</summary>
     public static bool Minimised { get; set; }
@@ -24,9 +24,9 @@ public static class NativeGenieQuick
     /// <summary>The player closed the panel; the Genie window or a Genie start brings it back.</summary>
     public static bool Closed { get; set; }
 
-    internal static void Bind(Node panel, World world) => _worlds.AddOrUpdate(panel, world);
+    internal static void Bind(Node panel, WorldRoot world) => _worlds.AddOrUpdate(panel, world);
 
-    public static World? WorldOf(Node panel) => _worlds.TryGetValue(panel, out var world) && GodotObject.IsInstanceValid(world) ? world : null;
+    public static WorldRoot? WorldOf(Node panel) => _worlds.TryGetValue(panel, out var world) && GodotObject.IsInstanceValid(world) ? world : null;
 
     public readonly record struct Parts(VBoxContainer Column, HBoxContainer Head, Label Title, Button Toggle, Button Settings,
         Control Gauge, Label Points, IReadOnlyList<HBoxContainer> Rows);
@@ -49,9 +49,9 @@ public static class NativeGenieQuick
     }
 
     /// <summary>Whether the client's Genie window is open.</summary>
-    public static bool WindowShown(World? world) => world != null && Native.Has(world, "_genieShown") && Native.Get<bool>(world, "_genieShown");
+    public static bool WindowShown(WorldRoot? world) => world != null && Native.Has(world, "Genie.shown") && Native.Get<bool>(world, "Genie.shown");
 
-    public static bool Running => Net.I?.GenieRunning == true;
+    public static bool Running => Game.Session.Genie.GenieRunning == true;
 
     /// <summary>The client writes the minutes as a bare number; the Classic gauge names the unit.</summary>
     public static string TimeText(string minutes) => int.TryParse(minutes, out int value) ? value + " min" : minutes;

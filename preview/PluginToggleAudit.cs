@@ -98,7 +98,7 @@ public partial class Preview
 
         // ---- Loopback session and the native World scene (the same fixture as pet-world-reconnect-audit).
         var original = Net.I; var net = new Net(); GetTree().Root.AddChild(net);
-        var originalLogin = LoginNet.I; var loginNet = new LoginNet(); GetTree().Root.AddChild(loginNet);
+        var originalLogin = Game.LoginServer; var loginNet = new LoginNet(); GetTree().Root.AddChild(loginNet);
         loginNet.Login("offline-audit", "offline-audit");
         var project = new ConfigFile(); project.Load(ProjectSettings.GlobalizePath("res://../../LibreKO/Client/project.godot"));
         foreach (string action in project.GetSectionKeys("input")) if (!InputMap.HasAction(action)) InputMap.AddAction(action);
@@ -110,8 +110,7 @@ public partial class Preview
         foreach (var child in template.GetChildren()) child.Owner = template;
         var worldScene = new PackedScene(); worldScene.Pack(template); template.Free();
         worldScene.TakeOverPath("res://scenes/World.tscn");
-        var flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        T Field<T>(World world, string field) => (T)typeof(World).GetField(field, flags)!.GetValue(world)!;
+        T Field<T>(WorldRoot world, string field) => (T)Native.Get<object>(world, field)!;
         async Task Send(NetworkStream stream, Packet packet)
         {
             byte[] body = packet.GetBytes(); byte[] frame = new byte[body.Length + 6]; frame[0] = 0xaa; frame[1] = 0x55;
@@ -216,22 +215,22 @@ public partial class Preview
         HashSet<string> MetaKeys() => TreeNodes().SelectMany(n => n.GetMetaList().Select(k => k.ToString())).ToHashSet();
         bool Shown(Node? node)
         {
-            for (var n = node; n != null && n is not World; n = n.GetParent())
+            for (var n = node; n != null && n is not WorldRoot; n = n.GetParent())
                 if (n is CanvasItem { Visible: false } || n is CanvasLayer { Visible: false }) return false;
             return node != null && GodotObject.IsInstanceValid(node);
         }
-        Dictionary<string, bool> HudState(World world) => new()
+        Dictionary<string, bool> HudState(WorldRoot world) => new()
         {
-            ["status bars"] = Shown(Field<Control?>(world, "_statusHud")),
-            ["hotbar"] = Shown(Field<CanvasLayer>(world, "_hotbarLayer").GetChildren().OfType<Control>().FirstOrDefault()),
-            ["exp bar"] = Field<CanvasLayer?>(world, "_expBarLayer") is { Visible: true },
-            ["launcher"] = Field<CanvasLayer>(world, "_hudLauncherLayer").Visible,
-            ["mini map"] = Shown(Field<MiniMap>(world, "_miniMap")),
-            ["plugin hud parts"] = ((IDictionary)typeof(World).GetField("_pluginHud", flags)!.GetValue(world)!).Count > 0,
+            ["status bars"] = Shown(Field<Control?>(world, "StatusHud.Root")),
+            ["hotbar"] = Shown(Field<CanvasLayer>(world, "Hotbar.layer").GetChildren().OfType<Control>().FirstOrDefault()),
+            ["exp bar"] = Field<CanvasLayer?>(world, "ExpBar.layer") is { Visible: true },
+            ["launcher"] = Field<CanvasLayer>(world, "HudLauncher.layer").Visible,
+            ["mini map"] = Shown(Field<MiniMap>(world, "Map.MiniMap")),
+            ["plugin hud parts"] = ((IDictionary)Native.Get<object>(world, "pluginHud")!).Count > 0,
             // The top-right icons whose windows the Classic status bar's G, E and R open.
-            ["genie icon"] = Shown(Field<Control?>(world, "_genieIcon")),
-            ["events icon"] = Shown(Field<Control?>(world, "_eventsIcon")),
-            ["daily rank icon"] = Shown(Field<Control?>(world, "_drIcon")),
+            ["genie icon"] = Shown(Field<Control?>(world, "TopIcons.Icon:Genie")),
+            ["events icon"] = Shown(Field<Control?>(world, "Events.iconButton")),
+            ["daily rank icon"] = Shown(Field<Control?>(world, "DailyRankWindow.drIcon")),
         };
         Image? Shot(string state)
         {
@@ -242,7 +241,7 @@ public partial class Preview
         // Pixels compared: the Classic controls (top-level plugin controls, with their transforms), except the inventory
         // portrait, which is a live 3D render of the character (idle animation). Native top icons blink and stay out.
         Rect2 Screen(Control c) { var t = c.GetGlobalTransformWithCanvas(); return new Rect2(t.Origin, c.Size * t.Scale); }
-        bool[] Classic(World w, Image image, out int covered, out int live)
+        bool[] Classic(WorldRoot w, Image image, out int covered, out int live)
         {
             int width = image.GetWidth(), height = image.GetHeight();
             var mask = new bool[width * height];
@@ -271,12 +270,12 @@ public partial class Preview
             return differing;
         }
 
-        World? world = null;
-        async Task<World> Rebuilt(World? previous, string why)
+        WorldRoot? world = null;
+        async Task<WorldRoot> Rebuilt(WorldRoot? previous, string why)
         {
-            await Until(() => GetTree().CurrentScene is World w && !ReferenceEquals(w, previous) && Field<bool>(w, "_worldReady"), "World scene is rebuilt in place: " + why);
-            var next = (World)GetTree().CurrentScene;
-            await Until(() => Field<LoadingScreen?>(next, "_loadingLayer") == null, "World loading completes: " + why);
+            await Until(() => GetTree().CurrentScene is WorldRoot w && !ReferenceEquals(w, previous) && Field<bool>(w, "WorldReady"), "World scene is rebuilt in place: " + why);
+            var next = (WorldRoot)GetTree().CurrentScene;
+            await Until(() => Field<LoadingScreen?>(next, "loadingLayer") == null, "World loading completes: " + why);
             Require(previous == null || !GodotObject.IsInstanceValid(previous), "The previous World is freed: " + why);
             await Frames(10);
             return next;
@@ -295,7 +294,7 @@ public partial class Preview
 
         async Task Disabled(string state)
         {
-            world = (World)GetTree().CurrentScene;
+            world = (WorldRoot)GetTree().CurrentScene;
             await OpenWindows();
             var registries = Registries(); var handlers = Handlers(); var hud = HudState(world);
             var classicNodes = TreeNodes().Where(Ours).Select(n => n.GetPath().ToString()).ToList();
@@ -324,7 +323,7 @@ public partial class Preview
 
         async Task Enabled(string state)
         {
-            world = (World)GetTree().CurrentScene;
+            world = (WorldRoot)GetTree().CurrentScene;
             await OpenWindows();
             var instance = Instance();
             var registries = Registries(); var handlers = Handlers(); var hud = HudState(world);
@@ -382,8 +381,8 @@ public partial class Preview
 
         using var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
         int port = ((IPEndPoint)listener.LocalEndpoint).Port;
-        net.LoginResultEvent += (ok, _) => { if (ok) net.SelectChar("ToggleTester"); };
-        net.EnterWorldEvent += _ => GetTree().ChangeSceneToFile("res://scenes/World.tscn");
+        Game.Session.PreGame.LoginResultEvent += (ok, _) => { if (ok) Game.Requests.PreGame.SelectCharacter("ToggleTester"); };
+        Game.Session.PreGame.EnterWorldEvent += _ => GetTree().ChangeSceneToFile("res://scenes/World.tscn");
         GetTree().CurrentScene = null;
         RenderingServer.SetDefaultClearColor(new Color("34362b"));
         GetViewport().Disable3D = true;
@@ -430,10 +429,10 @@ public partial class Preview
         finally
         {
             GetViewport().Disable3D = false;
-            net.AutoReconnect = false; net.Disconnect(expected: true); peer?.Close();
-            if (GetTree().CurrentScene is World current) { GetTree().CurrentScene = null; current.QueueFree(); await Frames(); }
+            net.Reconnect.AutoReconnect = false; net.Disconnect(expected: true); peer?.Close();
+            if (GetTree().CurrentScene is WorldRoot current) { GetTree().CurrentScene = null; current.QueueFree(); await Frames(); }
             GetTree().CurrentScene = this; net.Free(); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
-            typeof(LoginNet).GetProperty("I")!.SetValue(null, originalLogin);
+            typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, originalLogin);
             OS.RemoveLogger(log);
         }
         File.WriteAllText(System.IO.Path.Combine(output, prefix + "-plugin-toggle.json"), JsonSerializer.Serialize(new { checks, failures, states },

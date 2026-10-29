@@ -21,9 +21,9 @@ public partial class ClassicLotteryPanel : ClassicEventPanel
     private readonly VBoxContainer _winnerRows;
     private int _winnersRevision = -1;
 
-    public ClassicLotteryPanel(HudWindow window, Control body, World world) : base(window, body, world, Spec.Size)
+    public ClassicLotteryPanel(HudWindow window, Control body, WorldRoot world) : base(window, body, world, Spec.Size)
     {
-        AddClose(() => NativeApi.Call(World, "CloseLottery"));
+        AddClose(() => NativeApi.Call(World, "Lottery.Close"));
         Inset(Spec.Info);
         string[] captions = { "Time remaining", "Tickets sold", "Prize winners" };
         string[] values = { "lottery_time", "lottery_sold", "lottery_winners" };
@@ -31,12 +31,12 @@ public partial class ClassicLotteryPanel : ClassicEventPanel
         {
             var rect = Spec.InfoRow(row);
             Text(captions[row], new Rect2(rect.Position, new Vector2(150, rect.Size.Y)), Caption);
-            Value(Find<Label>(values[row]), new Rect2(rect.Position.X + 150, rect.Position.Y, rect.Size.X - 150, rect.Size.Y), row == 0 ? Ready : Ink);
+            Value(Find<Label>(values[row]), new Rect2(rect.Position.X + 150, rect.Position.Y, rect.Size.X - 150, rect.Size.Y), row == 0 ? Accepted : Ink);
         }
         _time = Find<Label>("lottery_time");
         Inset(Spec.Tickets);
         Text("Your tickets", new Rect2(Spec.TicketsRow.Position, new Vector2(150, Spec.TicketsRow.Size.Y)), Caption);
-        Value(Find<Label>("lottery_tickets"), new Rect2(Spec.TicketsRow.Position.X + 150, Spec.TicketsRow.Position.Y, Spec.TicketsRow.Size.X - 150, Spec.TicketsRow.Size.Y), Ready);
+        Value(Find<Label>("lottery_tickets"), new Rect2(Spec.TicketsRow.Position.X + 150, Spec.TicketsRow.Position.Y, Spec.TicketsRow.Size.X - 150, Spec.TicketsRow.Size.Y), Accepted);
         Value(Find<Label>("lottery_player"), Spec.Player, ClassicReportDesign.Caption, HorizontalAlignment.Center);
 
         var slot = Find<PanelContainer>("lottery_req_slot");
@@ -60,7 +60,7 @@ public partial class ClassicLotteryPanel : ClassicEventPanel
         _coin.SetMeta(ExpectedRect, Spec.CostCoin);
         Action(Find<Button>("lottery_buy"), Spec.Buy);
         _status = Find<Label>("lottery_status");
-        Value(_status, Spec.Status, Ready, HorizontalAlignment.Center);
+        Value(_status, Spec.Status, Accepted, HorizontalAlignment.Center);
 
         _prizeCaption = Text("Prize", Spec.PrizeCaption, Caption);
         _prizeCaption.Name = "lottery_prize_caption";
@@ -91,7 +91,7 @@ public partial class ClassicLotteryPanel : ClassicEventPanel
         Refresh();
     }
 
-    private LibreKO.Network.LotteryState? State => NativeApi.Get<LibreKO.Network.LotteryState>(World, "_lotteryState");
+    private LibreKO.Network.LotteryState? State => NativeApi.Get<LibreKO.Network.LotteryState>(World, "Lottery.State");
 
     protected override void Refresh()
     {
@@ -100,7 +100,7 @@ public partial class ClassicLotteryPanel : ClassicEventPanel
         _coin.Visible = active && state!.ReqItemId is QuestData.CoinItemId or 0;
         // The client tints the timer only while it counts; derive the ink from the draw itself.
         _time.SelfModulate = Colors.White;
-        ThemeNames.SetColor(_time, HotNames.FontColor, !active ? Muted : state!.RemainingSeconds <= 60 ? Refused : Ready);
+        ThemeNames.SetColor(_time, HotNames.FontColor, !active ? Muted : state!.RemainingSeconds <= 60 ? Refused : Accepted);
         if (_status.SelfModulate != Colors.White)
         {
             ThemeNames.SetColor(_status, HotNames.FontColor, Semantic(_status.SelfModulate, Ink));

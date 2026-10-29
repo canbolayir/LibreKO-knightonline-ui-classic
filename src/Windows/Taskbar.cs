@@ -30,7 +30,7 @@ public partial class Taskbar : Control
         }
         // The client's skill key: the Chaos skill page in the Chaos dungeon, the skill window everywhere else.
         _view.OnPressed("btn_skill",()=>_game.Commands.Run(KeyAction.Skills));
-        _view.OnPressed("btn_option",()=>SettingsPanel.Open(GetTree().Root));
+        _view.OnPressed("btn_option",()=>_game.Commands.OpenSettings());
         _view.OnPressed("btn_control",_game.Commands.TradeWithTarget);
         _view.OnPressed("btn_exit",_game.Commands.OpenGameMenu);
         foreach(var (id,text) in new[]{("btn_map","Map"),("btn_inventory","Inventory"),("btn_character","Character"),("btn_skill","Skill"),

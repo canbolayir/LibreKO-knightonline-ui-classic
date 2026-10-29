@@ -41,13 +41,13 @@ public partial class Preview
         // the loot cells and menus under it receive the mouse as in the game.
         var world = new ContextMenuAuditWorld(); AddChild(world);
         const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        T Field<T>(string name) => (T)typeof(World).GetField(name, Flags)!.GetValue(world)!;
-        void SetField(string name, object? value) => typeof(World).GetField(name, Flags)!.SetValue(world, value);
+        T Field<T>(string name) => (T)Native.Get<object>(world, name)!;
+        void SetField(string name, object? value) => Native.Set(world, name, value);
         object? Call(string method, params object?[] args) => DetailCall(world, method, args);
-        SetField("_myId", 300);
-        Call("BuildLootWindow"); Call("BuildPartyHud");
+        SetField("myId", 300);
+        Call("Loot.BuildWindow"); Call("Party.BuildHud");
         string clanError = "";
-        try { Call("BuildClanPage"); } catch (Exception e) { clanError = e.InnerException?.Message ?? e.Message; }
+        try { Call("Clan.BuildPage"); } catch (Exception e) { clanError = e.InnerException?.Message ?? e.Message; }
 
         var checks = new List<string>(); var failures = new List<string>(); var screens = new List<object>();
         void Require(bool valid, string text) { if (valid) checks.Add(text); else { failures.Add(text); GD.PushError("CONTEXT_MENU_AUDIT: " + text); } }
@@ -121,22 +121,22 @@ public partial class Preview
         }
 
         // ---- Loot box (client look first) -----------------------------------------------------------------
-        var lootLayer = Field<CanvasLayer>("_lootLayer"); var lootPanel = Field<PanelContainer>("_lootPanel");
-        var lootCells = Field<ItemSlotView[]>("_lootCells");
-        var entries = new List<LootEntry> { new(Net.GoldItemId, 1520), new(plain, 1), new(stackable, 25), new(longest, 1) };
+        var lootLayer = Field<CanvasLayer>("Loot.layer"); var lootPanel = Field<PanelContainer>("Loot.Panel");
+        var lootCells = Field<ItemSlotView[]>("Loot.cells");
+        var entries = new List<LootEntry> { new(LootWire.GoldItemId, 1520), new(plain, 1), new(stackable, 25), new(longest, 1) };
         if (graded > 0) entries.Add(new(graded, 1));
         void ShowLoot()
         {
-            var list = Field<List<LootEntry>>("_lootEntries"); list.Clear(); list.AddRange(entries);
-            SetField("_openBundleId", 7);
-            Call("RefreshLootWindow"); lootLayer.Visible = true;
+            var list = Field<List<LootEntry>>("Loot.Entries"); list.Clear(); list.AddRange(entries);
+            SetField("Loot.openBundleId", 7);
+            Call("Loot.RefreshWindow"); lootLayer.Visible = true;
         }
         ShowLoot(); lootPanel.Position = new Vector2(560, 260);
         await Frames();
         ItemSlotView Cell(int item) => lootCells.First(c => c.Item.ItemId == item);
         string[] lootRows = { "Always auto-loot this item", "Never auto-loot this item", "Clear the rule for this item" };
         await Click(Cell(plain).GetGlobalRect().GetCenter(), MouseButton.Right);
-        var nativeMenu = Field<PopupMenu>("_lootRuleMenu");
+        var nativeMenu = Field<PopupMenu>("LootFilterWindow.ruleMenu");
         Require(nativeMenu != null && nativeMenu.Visible && OpenMenu() == null, "client look: the loot rule menu is the client's plain popup");
         if (nativeMenu != null)
         {
@@ -145,18 +145,18 @@ public partial class Preview
             nativeMenu.Hide(); world.RemoveChild(nativeMenu); nativeMenu.Free();
         }
         // The client builds its menu again on the next right click, as on a fresh world.
-        SetField("_lootRuleMenu", null);
+        SetField("LootFilterWindow.ruleMenu", null);
 
         // ---- Classic --------------------------------------------------------------------------------------
         NativeOverlays.Prepare(world);
         await Frames(3);
-        var filter = Field<LootFilter>("_lootFilter");
+        var filter = Field<LootFilter>("LootFilterWindow.lootFilter");
         async Task<Control?> OpenLoot(int item, string what)
         {
             var at = Cell(item).GetGlobalRect().GetCenter();
             await Click(at, MouseButton.Right);
             var panel = CheckMenu(what, "loot_menu", ItemData.DisplayName(item).Trim(), ItemGrade.Tint(item), lootRows, at);
-            var native = Field<PopupMenu>("_lootRuleMenu");
+            var native = Field<PopupMenu>("LootFilterWindow.ruleMenu");
             Require(native != null && !native.Visible, $"{what}: the client's popup is hidden behind the Classic menu");
             return panel;
         }
@@ -181,7 +181,7 @@ public partial class Preview
         await OpenLoot(plain, "loot menu outside");
         await Click(new Vector2(40, 40));
         Require(OpenMenu() == null && !filter.Always.Contains(plain) && !filter.Never.Contains(plain), "loot menu: a click outside closes without a rule");
-        await Click(Cell(Net.GoldItemId).GetGlobalRect().GetCenter(), MouseButton.Right);
+        await Click(Cell(LootWire.GoldItemId).GetGlobalRect().GetCenter(), MouseButton.Right);
         Require(OpenMenu() == null, "loot menu: coins have no rule menu, as in the client");
         var longMenu = await OpenLoot(longest, "loot menu long name");
         var longTitle = (Label?)OpenMenu()?.FindChild("loot_menu_name", true, false);
@@ -201,13 +201,13 @@ public partial class Preview
         lootPanel.Position = viewport.Size - lootPanel.Size - new Vector2(2, 2); await Frames(3);
         var edgeMenu = await OpenLoot(entries[^1].ItemId, "loot menu at the screen edge");
         await Shot("loot-menu-edge", edgeMenu);
-        ClassicContextMenu.Close(); Call("CloseLoot"); await Frames(2);
+        ClassicContextMenu.Close(); Call("Loot.Close"); await Frames(2);
 
         // ---- Player menu (the client's seam) --------------------------------------------------------------
         var playerAt = new Vector2(420, 260);
         Move(playerAt); await Frames(1);
-        Call("ShowPlayerMenuByName", "Rikka", playerAt); await Frames(3);
-        var playerLayer = Field<CanvasLayer>("_playerMenuSkinLayer");
+        Call("PlayerMenu.ShowByName", "Rikka", playerAt); await Frames(3);
+        var playerLayer = Field<CanvasLayer>("PlayerMenu.skinLayer");
         var playerMenu = playerLayer?.GetChildren().OfType<ClassicPlayerMenu>().FirstOrDefault();
         Require(playerMenu != null, "player menu: the client's seam builds the Classic player menu");
         if (playerMenu != null)
@@ -220,7 +220,7 @@ public partial class Preview
             Require(panel.Position == Spec.Place(playerAt, panel.Size, viewport.Size) && viewport.Encloses(panel.GetGlobalRect()), "player menu: at the cursor, inside the viewport");
             await Shot("player-menu", panel);
             rows.Single(r => r.Text == "Copy name").EmitSignal(BaseButton.SignalName.Pressed); await Frames(2);
-            Require(Field<CanvasLayer?>("_playerMenuSkinLayer") == null, "player menu: a row runs the client's action and closes");
+            Require(Field<CanvasLayer?>("PlayerMenu.skinLayer") == null, "player menu: a row runs the client's action and closes");
         }
 
         // ---- Clan member menu -----------------------------------------------------------------------------
@@ -230,34 +230,34 @@ public partial class Preview
             NativeContextMenus.PrepareLater(world);
             var clanAt = new Vector2(300, 520);
             Move(clanAt); await Frames(1);
-            Call("OpenMemberMenu", "Guardian"); await Frames(3);
-            var clanNative = Field<PopupMenu>("_clanMemberMenu");
+            Call("Clan.OpenMemberMenu", "Guardian"); await Frames(3);
+            var clanNative = Field<PopupMenu>("Clan.memberMenu");
             var clanMenu = CheckMenu("clan member menu", "clan_menu", "Guardian", null, new[] { "Whisper", "Invite to party", "User information" }, clanAt);
             Require(!clanNative.Visible, "clan member menu: the client's popup is hidden; its '— name —' row became the title");
             await Shot("clan-menu", clanMenu);
             long clanPressed = -1; clanNative.IdPressed += id => clanPressed = id;
             await Click(Row("Invite to party").GetGlobalRect().GetCenter());
-            var log = Field<TabbedLog>("_combatLog").Lines(LogTab.All).ToArray();
+            var log = Field<TabbedLog>("Log.log").Lines(LogTab.All).ToArray();
             Require(clanPressed == 2 && OpenMenu() == null && log.Any(l => l!.Contains("Inviting Guardian")), "clan member menu: Invite to party runs the client's invite");
         }
 
         // ---- Party member menu ----------------------------------------------------------------------------
         var members = Enumerable.Range(0, 4).Select(i => new PartyMember(300 + i, 1, new[] { "Knight", "Priest", "Rogue", "Mage" }[i], 3400, 3000, 70 + i, nation * 100 + 1 + i, 2800, 2600)).ToArray();
-        net.SeedPartyPreview(members);
+        Game.Session.Party.SeedPreview(members);
         var partyAt = new Vector2(1180, 120);
         Move(partyAt); await Frames(1);
         NativeParty.PrepareMemberMenu(world, "Priest");
-        Require((bool)Call("ShowPartyMemberMenu", 301)!, "party member menu: the client opens its member menu for the leader");
+        Require((bool)Call("Party.ShowMemberMenu", 301)!, "party member menu: the client opens its member menu for the leader");
         await Frames(3);
-        var partyNative = Field<PopupMenu>("_partyHudMenu");
+        var partyNative = Field<PopupMenu>("Party.hudMenu");
         var partyMenu = CheckMenu("party member menu", "party_menu", "Priest", null, new[] { "Make leader", "Kick out", "Make commander" }, partyAt);
         Require(!partyNative.Visible, "party member menu: the client's popup is hidden");
         await Shot("party-menu", partyMenu);
         long partyPressed = -1; partyNative.IdPressed += id => partyPressed = id;
         var before = world.GetChildren().ToHashSet();
         await Click(Row("Kick out").GetGlobalRect().GetCenter());
-        int kick = (int)typeof(World).GetField("PartyMenuKick", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null)!;
-        Require(partyPressed == kick && Field<int>("_partyHudMenuMember") == -1 && OpenMenu() == null, "party member menu: Kick out runs the client's kick confirmation");
+        int kick = (int)Native.Get<object>(Native.StaticOwner("LibreKO.Features.Hud.PartyFeature"), "MenuKick")!;
+        Require(partyPressed == kick && Field<int>("Party.hudMenuMember") == -1 && OpenMenu() == null, "party member menu: Kick out runs the client's kick confirmation");
         foreach (var added in world.GetChildren().Where(c => !before.Contains(c)).ToArray()) added.QueueFree();
         await Frames(2);
 
@@ -311,7 +311,7 @@ public partial class Preview
 }
 
 /// <summary>A client world without its game loop and world input, for the context-menu audit.</summary>
-public partial class ContextMenuAuditWorld : World
+public partial class ContextMenuAuditWorld : WorldRoot
 {
     public override void _Ready() { }
     public override void _ExitTree() { }

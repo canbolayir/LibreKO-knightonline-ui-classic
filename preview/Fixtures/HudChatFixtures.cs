@@ -8,18 +8,18 @@ using KnightOnlineUiClassic.Native;
 /// </summary>
 public static partial class PreviewFixtures
 {
-    public static CanvasLayer BuildChatColoursClassicUiPreview(World world)
+    public static CanvasLayer BuildChatColoursClassicUiPreview(WorldRoot world)
     {
-        var type = Native.ClientType("LibreKO.ChatSystem")!;
+        var type = Native.ClientType("LibreKO.Features.Social.ChatSystem")!;
         var chat = Activator.CreateInstance(type, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic, null, new object?[] { world }, null)!;
         Native.Set(world, "Chat", chat);
         Native.Call(chat, "Build");
         Native.Call(chat, "DetachNetwork");
-        Native.Call(world, "BuildChatColors");
-        var layer = Native.Get<CanvasLayer>(world, "_chatColorsLayer")!;
-        var window = Native.Get<HudWindow>(world, "_chatColorsWindow")!;
+        Native.Call(world, "ChatHost.BuildColors");
+        var layer = Native.Get<CanvasLayer>(world, "ChatHost.colorsLayer")!;
+        var window = Native.Get<HudWindow>(world, "ChatHost.ColorsWindow")!;
         NativeChatColours.Prepare(window, world);
-        Native.Call(world, "OpenChatColors");
+        Native.Call(world, "ChatHost.OpenColors");
         var panel = Native.Get<Control>(chat, "Panel")!;
         panel.Reparent(layer, false);
         panel.Visible = false;

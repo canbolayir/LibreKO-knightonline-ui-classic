@@ -25,7 +25,7 @@ public partial class Preview
         async Task Frames(int count = 6) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         void Raise(string name, params object?[] args)
         {
-            var handler = (Delegate?)typeof(Net).GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net);
+            var handler = Native.Get<Delegate>(PreviewFixtures.NetOwner(name), name);
             handler?.DynamicInvoke(args);
         }
         async Task Hover(Control control)
@@ -77,9 +77,9 @@ public partial class Preview
             GetViewport().GetTexture().GetImage().SavePng(output + "/" + file);
             screens.Add(new { window = name, state, file, bounds = bounds.ToString() });
         }
-        async Task<(World, CanvasLayer, HudWindow, ClassicEventPanel)> Open(string fixture, string field, params object?[] args)
+        async Task<(WorldRoot, CanvasLayer, HudWindow, ClassicEventPanel)> Open(string fixture, string field, params object?[] args)
         {
-            var world = new World();
+            var world = PreviewFixtures.Prepared(new WorldRoot());
             var layer = (CanvasLayer)DetailCall(world, fixture, args)!;
             AddChild(layer);
             var window = (HudWindow)DetailField(world, field)!;
@@ -94,20 +94,20 @@ public partial class Preview
 
         // Collection Race -------------------------------------------------------------------------------
         {
-            var (world, layer, window, panel) = await Open("BuildCollectionRaceEventsPreview", "_crWindow", nation, false, false);
+            var (world, layer, window, panel) = await Open("BuildCollectionRaceEventsPreview", "CollectionRace.CrWindow", nation, false, false);
             window.Position = new Vector2(620, 60);
             await Capture(window, panel, "collectionrace", "progress");
             var cards = Descendants(panel).OfType<ClassicNpcCard>().ToArray();
             Require(cards.Length == 7, "Collection Race shows every native objective and reward row as a quest card");
             Require(cards.All(c => panel.GetGlobalRect().Encloses(c.GetGlobalRect())), "Collection Race cards stay inside the frame");
             Require(Find<Label>(panel, "cr_winners").Text == "3 / 16" && Find<Control>(panel, "cr_row_winners").Visible, "Winner limit row mirrors the native row");
-            DetailCall(world, "OnCrTimerTick"); await Frames();
+            DetailCall(world, "CollectionRace.OnCrTimerTick"); await Frames();
             Require(Find<Label>(panel, "cr_time").Text == "55 : 59", "Native timer keeps counting inside the Classic row");
-            DetailCall(world, "OnCollectionRaceProgress", 7, new[] { 9, 10, 12 }); await Frames();
+            DetailCall(world, "CollectionRace.OnProgress", 7, new[] { 9, 10, 12 }); await Frames();
             var hunt = Descendants(panel).OfType<ClassicNpcCard>().First(c => c.Name == "monster_card");
             Require(Descendants(hunt).OfType<Label>().Any(l => l.Text == "9 / 15"), "Progress updates rebuild the hunt card from the native row");
             await Capture(window, panel, "collectionrace", "updated");
-            DetailCall(world, "OnCollectionRaceCompleted", "Collection Race complete!"); await Frames();
+            DetailCall(world, "CollectionRace.OnCompleted", "Collection Race complete!"); await Frames();
             Require(Find<Label>(panel, "cr_complete_title").IsVisibleInTree(), "Completion banner shown");
             await Capture(window, panel, "collectionrace", "completed");
             var toggle = panel.MinimizeButton!;
@@ -116,7 +116,7 @@ public partial class Preview
             await Capture(window, panel, "collectionrace", "minimized");
             await Click(toggle); await Frames();
             Require(!window.Minimized && panel.Content.Visible, "Original arrow restores the tracker");
-            DetailCall(world, "ShowCollectionRace", PreviewFixtures.CollectionRaceEventsState(false, true)); await Frames(10);
+            DetailCall(world, "CollectionRace.Show", PreviewFixtures.CollectionRaceEventsState(false, true)); await Frames(10);
             window.Position = new Vector2(620, 60);
             Require(panel.Size.Y <= ClassicEventsLayout.CollectionRace.MaxHeight && !Find<Control>(panel, "cr_row_winners").Visible, "Long race stays within the maximum frame and hides an unlimited winner row");
             var scroll = Find<ScrollContainer>(panel, "cr_scroll");
@@ -125,14 +125,14 @@ public partial class Preview
             await Capture(window, panel, "collectionrace", "long");
             scroll.ScrollVertical = 10000; await Frames();
             await Capture(window, panel, "collectionrace", "long-bottom");
-            DetailCall(world, "OnCollectionRaceClose"); await Frames();
+            DetailCall(world, "CollectionRace.OnClose"); await Frames();
             Require(!window.Visible, "Native close packet hides the tracker");
             layer.Free(); world.Free(); await Frames();
         }
 
         // Lottery ---------------------------------------------------------------------------------------
         {
-            var (world, layer, window, panel) = await Open("BuildLotteryEventsPreview", "_lotteryWindow", nation);
+            var (world, layer, window, panel) = await Open("BuildLotteryEventsPreview", "Lottery.window", nation);
             world.OpenLottery(); await Frames();
             var buy = Find<Button>(panel, "lottery_buy");
             Require(buy.Disabled && Find<Label>(panel, "lottery_time").Text == "Inactive", "Inactive lottery keeps native disabled purchase");
@@ -187,14 +187,14 @@ public partial class Preview
             window.Layout._Input(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, GlobalPosition = pointer + new Vector2(-30, 20) });
             Require(window.Position == origin + new Vector2(-30, 20), "Title strip uses native dragging");
             await Click(panel.CloseButton!);
-            Require(!window.Visible && !(bool)DetailField(world, "_lotteryShown")!, "Classic Close calls the native CloseLottery");
+            Require(!window.Visible && !(bool)DetailField(world, "Lottery.shown")!, "Classic Close calls the native CloseLottery");
             layer.Free(); world.Free(); await Frames();
         }
 
         // Roulette --------------------------------------------------------------------------------------
         {
-            var (world, layer, window, panel) = await Open("BuildRouletteEventsPreview", "_roulettePanel", nation);
-            DetailCall(world, "ToggleRoulette"); await Frames();
+            var (world, layer, window, panel) = await Open("BuildRouletteEventsPreview", "Roulette.panel", nation);
+            DetailCall(world, "Roulette.Toggle"); await Frames();
             window.Position = ((GetViewportRect().Size - window.Size) / 2).Floor();
             var spin = Find<Button>(panel, "roulette_spin");
             var roulette = (ClassicRoulettePanel)panel;
@@ -233,19 +233,19 @@ public partial class Preview
             await Click(spin); Raise("RouletteSpinEvent", true, PreviewFixtures.EventsPreviewItem, 0);
             for (ulong until = Time.GetTicksMsec() + 6000; roulette.Spinning && Time.GetTicksMsec() < until;) await Frames(1);
             await Frames(2);
-            Require(center.GetNode<TextureRect>("icon").Texture == ItemData.Icon(PreviewFixtures.EventsPreviewItem)
+            Require(center.GetNode<TextureRect>("icon").Texture == ItemIcons.Get(PreviewFixtures.EventsPreviewItem)
                 && Find<Label>(panel, "roulette_result").Text == $"You won {ItemData.DisplayName(PreviewFixtures.EventsPreviewItem)}!", "Item prize lands with its icon and item name");
             await Capture(window, panel, "roulette", "item-prize");
             await Hover(panel.CloseButton!); Require(panel.CloseButton!.GetDrawMode() == BaseButton.DrawMode.Hover, "Roulette close receives real hover"); await Capture(window, panel, "roulette", "close-hover");
             await Click(panel.CloseButton!);
-            Require(!window.Visible && !(bool)DetailField(world, "_rouletteShown")!, "Close uses the native close handler");
+            Require(!window.Visible && !(bool)DetailField(world, "Roulette.shown")!, "Close uses the native close handler");
             layer.Free(); world.Free(); await Frames();
         }
 
         // Tournament ------------------------------------------------------------------------------------
         {
-            var (world, layer, window, panel) = await Open("BuildTournamentEventsPreview", "_tournamentPanel", nation);
-            DetailCall(world, "ToggleTournament"); await Frames();
+            var (world, layer, window, panel) = await Open("BuildTournamentEventsPreview", "Tournament.panel", nation);
+            DetailCall(world, "Tournament.Toggle"); await Frames();
             window.Position = ((GetViewportRect().Size - window.Size) / 2).Floor();
             var register = Find<Button>(panel, "tournament_register"); var unregister = Find<Button>(panel, "tournament_unregister");
             await Capture(window, panel, "tournament", "initial");
@@ -261,7 +261,7 @@ public partial class Preview
             Require(register.Disabled && !unregister.Disabled && Find<Label>(panel, "tournament_value_2").Text == "Registered", "Registered status from the server");
             await Capture(window, panel, "tournament", "registered");
             await Click(panel.CloseButton!);
-            Require(!window.Visible && !(bool)DetailField(world, "_tournamentShown")!, "Close uses the native close handler");
+            Require(!window.Visible && !(bool)DetailField(world, "Tournament.shown")!, "Close uses the native close handler");
             layer.Free(); world.Free(); await Frames();
         }
 

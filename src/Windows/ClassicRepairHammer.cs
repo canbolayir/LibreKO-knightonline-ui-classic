@@ -48,7 +48,7 @@ public partial class ClassicRepairHammer : Node
 
     /// <summary>The cursor art currently shown by the repair mode (for the preview's cursor overlay).</summary>
     public Texture2D? Current =>
-        Art(Struck || Access.Get<string>(typeof(GameCursor), "_applied") == StruckStem ? StruckStem : ReadyStem);
+        Art(Struck || Access.Get<string>(typeof(GameCursor), "applied") == StruckStem ? StruckStem : ReadyStem);
 
     /// <summary>One repair was sent: swing the hammer.</summary>
     public void Strike()
@@ -89,8 +89,8 @@ public partial class ClassicRepairHammer : Node
 
     private void Overlay()
     {
-        if (!Access.Get<bool>(typeof(GameCursor), "_enabled")) return;
-        string? applied = Access.Get<string>(typeof(GameCursor), "_applied");
+        if (!Access.Get<bool>(typeof(GameCursor), "enabled")) return;
+        string? applied = Access.Get<string>(typeof(GameCursor), "applied");
         // Nothing to do while the client already shows the struck hammer (request in flight).
         if (applied == StruckStem) { _overlaid = false; _seen = applied; return; }
         if (_overlaid && applied == _seen) return;

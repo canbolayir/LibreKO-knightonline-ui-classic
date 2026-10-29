@@ -328,7 +328,7 @@ public partial class InventoryWindow : Control
             RegionRect=new Rect2(karus?159:157,karus?326:333,51,52)};
         foreach(var side in new[]{Side.Left,Side.Top,Side.Right,Side.Bottom}) {cell.SetTextureMargin(side,4);cell.SetContentMargin(side,2);}
         var vault=new Button {Name="vip_vault",TooltipText="VIP Vault",FocusMode=FocusModeEnum.None,ExpandIcon=true,
-            Icon=ItemData.Icon(NativeInventory.VipVaultKey),Position=InventoryLayout.VipVault.Position,Size=InventoryLayout.VipVault.Size,
+            Icon=ItemIcons.Get(NativeInventory.VipVaultKey),Position=InventoryLayout.VipVault.Position,Size=InventoryLayout.VipVault.Size,
             IconAlignment=HorizontalAlignment.Center,MouseDefaultCursorShape=CursorShape.PointingHand};
         foreach(var state in new[]{"normal","hover","pressed","hover_pressed","focus","disabled"}) vault.AddThemeStyleboxOverride(state,cell);
         vault.AddThemeColorOverride("icon_hover_color",new Color(1.15f,1.15f,1f));

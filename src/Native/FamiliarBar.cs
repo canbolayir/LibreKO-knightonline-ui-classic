@@ -25,7 +25,7 @@ public static class FamiliarBar
         _watching = NativeHooks.WatchTree("tree.familiar-bar", node =>
         {
             if (node is not HudLayout layout || layout.GetParent() is not PanelContainer bar) return;
-            if (!bar.HasMeta("pet_plate_controls") && Native.Get<string>(layout, "_id") == PlateLayoutId)
+            if (!bar.HasMeta("pet_plate_controls") && Native.Get<string>(layout, "id") == PlateLayoutId)
             {
                 bar.SetMeta("pet_plate_controls", 1);
                 bar.Name = "pet_plate";
@@ -74,11 +74,11 @@ public static class FamiliarBar
             try { extend(bar); }
             catch (Exception e) { GD.PushError($"[plugin:knightonline-ui-classic] familiar {part} extension: {e}"); }
         }
-        if (bar.HasMeta("native_drag_handle_only")) Native.Set(layout, "_moveGripOverlay", false);
+        if (bar.HasMeta("native_drag_handle_only")) Native.Set(layout, "moveGripOverlay", false);
         if (bar.HasMeta("hud_default_position"))
         {
-            var native = Native.Get<Func<Vector2>>(layout, "_defaultPosition");
-            Native.Set(layout, "_defaultPosition", new Func<Vector2>(() =>
+            var native = Native.Get<Func<Vector2>>(layout, "defaultPosition");
+            Native.Set(layout, "defaultPosition", new Func<Vector2>(() =>
                 bar.HasMeta("hud_default_position") ? bar.GetMeta("hud_default_position").AsCallable().Call().AsVector2()
                     : native?.Invoke() ?? bar.Position));
         }

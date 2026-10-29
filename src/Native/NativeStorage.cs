@@ -49,15 +49,15 @@ public sealed class NativeStorage
     /// <summary>The visible storage page: the clan bank keeps the client's page, the others page in the skin.</summary>
     public int Page
     {
-        get => _nativePage ? Native.Get<int>(_world, "_clanWhPage") : _page;
+        get => _nativePage ? Native.Get<int>(_world, "ClanWarehouse.page") : _page;
         private set
         {
-            if (_nativePage) Native.Call(_world, "TurnClanWhPage", value - Page);
+            if (_nativePage) Native.Call(_world, "ClanWarehouse.TurnPage", value - Page);
             else _page = value;
         }
     }
 
-    private readonly World _world;
+    private readonly WorldRoot _world;
     private readonly Inventory _inventory;
     private readonly ItemSlot[] _slots;
     private readonly int _gridStart;
@@ -75,7 +75,7 @@ public sealed class NativeStorage
     public static NativeStorage? Of(HudWindow window) => _storages.TryGetValue(window, out var storage) ? storage : null;
 
     /// <summary>Prepares a storage window once. Returns null when the client lacks a required member.</summary>
-    public static NativeStorage? Prepare(HudWindow window, World world)
+    public static NativeStorage? Prepare(HudWindow window, WorldRoot world)
     {
         if (_storages.TryGetValue(window, out var existing)) return existing;
         StorageKind? kind = window.Id switch
@@ -86,15 +86,15 @@ public sealed class NativeStorage
             _ => null,
         };
         if (kind == null) return null;
-        string slotsField = kind switch { StorageKind.Warehouse => "_warehouse", StorageKind.Vip => "_vipWh", _ => "_clanWh" };
-        if (!Native.TryGet<ItemSlot[]>(world, slotsField, out var slots) || !Native.TryGet<Inventory>(world, "Inv", out var inventory))
+        string slotsField = kind switch { StorageKind.Warehouse => "Warehouse.StoredItems", StorageKind.Vip => "VipWarehouse.StoredItems", _ => "ClanWarehouse.slots" };
+        if (!Native.TryGet<ItemSlot[]>(world, slotsField, out var slots) || Game.Session.Self.Inventory is not { } inventory)
             return null;
         var storage = new NativeStorage(window, world, kind.Value, slots, inventory);
         _storages.Add(window, storage);
         return storage;
     }
 
-    private NativeStorage(HudWindow window, World world, StorageKind kind, ItemSlot[] slots, Inventory inventory)
+    private NativeStorage(HudWindow window, WorldRoot world, StorageKind kind, ItemSlot[] slots, Inventory inventory)
     {
         Window = window;
         Kind = kind;
@@ -102,16 +102,16 @@ public sealed class NativeStorage
         _slots = slots;
         _inventory = inventory;
         _gridStart = Inventory.GridStart;
-        _nativePage = kind == StorageKind.Clan && Native.Has(world, "_clanWhPage");
+        _nativePage = kind == StorageKind.Clan && Native.Has(world, "ClanWarehouse.page");
         PageSize = kind switch { StorageKind.Warehouse => WarehousePageSize, StorageKind.Vip => VipPageSize, _ => ClanPageSize };
         Pages = Math.Max(1, (kind == StorageKind.Warehouse ? WarehouseSlots : slots.Length) / PageSize);
 
         var controls = new Control { Name = "storage_classic_controls", Visible = false };
         window.Body.AddChild(controls);
         _stored = new ItemSlotView[PageSize];
-        HideNativeGrid(Field("_whCells", "_vipWhCells", "_clanWhCells"));
+        HideNativeGrid(Field("Warehouse.Cells", "VipWarehouse.cells", "ClanWarehouse.cells"));
 
-        _status = Native.Get<Label>(world, Field("_whStatus", "_vipWhStatus", "_clanWhStatus"));
+        _status = Native.Get<Label>(world, Field("Warehouse.Status", "VipWarehouse.Status", "ClanWarehouse.status"));
         _pageLabel = new Label { Name = "storage_page", Text = $"1 / {Pages}" };
         controls.AddChild(_pageLabel);
         foreach (int step in new[] { -1, 1 })
@@ -120,19 +120,19 @@ public sealed class NativeStorage
             button.Pressed += () => TurnPage(step);
             controls.AddChild(button);
         }
-        Amount = Native.Get<QuantityPrompt>(world, Field("_whAmount", "_vipWhAmount", "_clanWhAmount"));
+        Amount = Native.Get<QuantityPrompt>(world, Field("Warehouse.AmountPrompt", "VipWarehouse.amountPrompt", "ClanWarehouse.amountPrompt"));
         if (Vip)
         {
-            NativeWindows.Name(Native.Get<Label>(world, "_vipWhExpiryLbl"), "storage_expiry");
-            NativeWindows.Name(Native.Get<Control>(world, "_vipKeyCell"), "storage_key");
-            NativeWindows.Name(Native.Get<Button>(world, "_vipSetPinBtn"), "storage_pin_set");
-            NativeWindows.Name(Native.Get<Button>(world, "_vipClearPinBtn"), "storage_pin_clear");
+            NativeWindows.Name(Native.Get<Label>(world, "VipWarehouse.expiryLbl"), "storage_expiry");
+            NativeWindows.Name(Native.Get<Control>(world, "VipWarehouse.keyCell"), "storage_key");
+            NativeWindows.Name(Native.Get<Button>(world, "VipWarehouse.setPinBtn"), "storage_pin_set");
+            NativeWindows.Name(Native.Get<Button>(world, "VipWarehouse.clearPinBtn"), "storage_pin_clear");
             PreparePinPrompt();
         }
         else
         {
-            NativeWindows.Name(Native.Get<Button>(world, Kind == StorageKind.Clan ? "_clanWhDepositBtn" : "_whDepositBtn"), "storage_deposit");
-            NativeWindows.Name(Native.Get<Button>(world, Kind == StorageKind.Clan ? "_clanWhWithdrawBtn" : "_whWithdrawBtn"), "storage_withdraw");
+            NativeWindows.Name(Native.Get<Button>(world, Kind == StorageKind.Clan ? "ClanWarehouse.depositBtn" : "Warehouse.depositBtn"), "storage_deposit");
+            NativeWindows.Name(Native.Get<Button>(world, Kind == StorageKind.Clan ? "ClanWarehouse.withdrawBtn" : "Warehouse.withdrawBtn"), "storage_withdraw");
         }
         window.VisibilityChanged += () =>
         {
@@ -172,10 +172,10 @@ public sealed class NativeStorage
         _ => clan,
     };
 
-    private bool Busy => Native.Get<bool>(_world, "StorageTransferBusy");
+    private bool Busy => Native.Get<bool>(_world, "Warehouse.StorageTransferBusy");
 
     /// <summary>Whether the VIP vault is unlocked (a key is active and not expired).</summary>
-    private bool VaultOpen => !Vip || Native.Get<bool>(_world, "_vipWhOpen");
+    private bool VaultOpen => !Vip || Native.Get<bool>(_world, "VipWarehouse.open");
 
     private bool InMainBag(int abs) => abs >= _gridStart && abs < _gridStart + CarriedCells && abs < _inventory.Length;
 
@@ -186,7 +186,7 @@ public sealed class NativeStorage
         _pageLabel.TooltipText = "Storage page";
         Window.SetMeta(HotNames.StoragePage, page);
         Window.SetMeta(HotNames.StoragePages, Pages);
-        if (!Vip) Window.SetMeta(HotNames.StorageMoney, Native.Get<int>(_world, Kind == StorageKind.Clan ? "_clanWhMoney" : "_whMoney"));
+        if (!Vip) Window.SetMeta(HotNames.StorageMoney, Native.Get<int>(_world, Kind == StorageKind.Clan ? "ClanWarehouse.money" : "Warehouse.Money"));
         RouteCompanion();
         bool locked = !VaultOpen;
         for (int i = 0; i < _stored.Length; i++)
@@ -205,13 +205,13 @@ public sealed class NativeStorage
             if (_carried[i].Look != look) _carried[i].Look = look;
         }
         // The small key plaque shows an expired key greyed, without the lock badge that would cover it.
-        if (Vip && Native.Get<ItemSlotView>(_world, "_vipKeyCell") is { } key && Native.Get<Control>(key, "_lock") is { Visible: true } badge)
+        if (Vip && Native.Get<ItemSlotView>(_world, "VipWarehouse.keyCell") is { } key && Native.Get<Control>(key, "lockIcon") is { Visible: true } badge)
             badge.Visible = false;
-        if (Vip && Native.Get<Button>(_world, "_vipClearPinBtn") is { } clear)
+        if (Vip && Native.Get<Button>(_world, "VipWarehouse.clearPinBtn") is { } clear)
         {
             // Both PIN actions keep their place; clearing is only offered once a PIN is set.
             clear.Visible = true;
-            clear.Disabled = !Native.Get<bool>(_world, "_vipWhPinSet");
+            clear.Disabled = !Native.Get<bool>(_world, "VipWarehouse.pinSet");
         }
     }
 
@@ -219,7 +219,7 @@ public sealed class NativeStorage
     private bool Fits(int abs)
     {
         if (_inventory[abs].IsEmpty) return true;
-        return Native.Call(_world, Field("WhBagFit", "VipBagFit", "ClanBagFit"), abs) is not { } fit || fit.ToString() != "Unfit";
+        return Native.Call(_world, Field("Warehouse.WhBagFit", "VipWarehouse.VipBagFit", "ClanWarehouse.ClanBagFit"), abs) is not { } fit || fit.ToString() != "Unfit";
     }
 
     private static void Show(ItemSlotView cell, ItemSlot item)
@@ -233,8 +233,8 @@ public sealed class NativeStorage
 
     private void Tooltip(int abs, ItemSlotView cell)
     {
-        if (cell.Item.IsEmpty) Native.Call(_world, "HideItemTooltip");
-        else Native.Call(_world, "ShowItemTooltip", abs, cell.Item, "");
+        if (cell.Item.IsEmpty) Native.Call(_world, "ItemTooltip.Hide");
+        else Native.Call(_world, "ItemTooltip.Show", abs, cell.Item, "");
     }
 
     /// <summary>Moves the client's own storage grid out of the window body; the Classic cells replace it.</summary>
@@ -250,10 +250,10 @@ public sealed class NativeStorage
     /// <summary>Keeps the carried inventory embedded: opening storage does not open the inventory window.</summary>
     private void KeepInventoryClosed()
     {
-        if (!Window.Visible || Native.Get<object>(_world, "_bagPairing") is not { } pairing) return;
-        if (!Native.Get<bool>(pairing, "_openedByCompanion")) return;
-        Native.Set(pairing, "_openedByCompanion", false);
-        Native.Call(_world, "HideMainWindow", "Inventory");
+        if (!Window.Visible || Native.Get<object>(_world, "BagCompanions.Pairing") is not { } pairing) return;
+        if (!Native.Get<bool>(pairing, "openedByCompanion")) return;
+        Native.Set(pairing, "openedByCompanion", false);
+        Native.Call(_world, "MainWindows.Hide", "Inventory");
     }
 
     // Stored cells ------------------------------------------------------------------------------
@@ -265,7 +265,7 @@ public sealed class NativeStorage
         var cell = new ItemSlotView(CellSize) { Index = index, Name = "storage_cell_" + index, Veiled = true, PicksAmount = true };
         cell.RightClicked += _ => Withdraw(Absolute(), -1, null);
         cell.Hovered += c => Tooltip(-1, c);
-        cell.Unhovered += _ => Native.Call(_world, "HideItemTooltip");
+        cell.Unhovered += _ => Native.Call(_world, "ItemTooltip.Hide");
         cell.Wheeled += (_, step) => TurnPage(step);
         cell.DragOut = c =>
         {
@@ -273,11 +273,11 @@ public sealed class NativeStorage
             KnightOnlineUiClassic.Layout.ClassicStackDial.StyleNativeCount(c);
             return new Godot.Collections.Dictionary { { "companionFrom", Absolute() } };
         };
-        cell.CanDrop = (_, data) => Native.Call(_world, Field("CanDropOnWarehouse", "CanDropOnVipVault", "CanDropOnClanWh"), Absolute(), data) is true;
+        cell.CanDrop = (_, data) => Native.Call(_world, Field("Warehouse.CanDropOn", "VipWarehouse.CanDropOnVault", "ClanWarehouse.CanDropOn"), Absolute(), data) is true;
         cell.Dropped = (_, data) =>
         {
             int target = Absolute();
-            void Drop() => Native.Call(_world, Field("DropOnWarehouse", "DropOnVipVault", "DropOnClanWh"), target, data);
+            void Drop() => Native.Call(_world, Field("Warehouse.DropOn", "VipWarehouse.DropOnVault", "ClanWarehouse.DropOn"), target, data);
             // A move inside the storage stays native: the client refuses a part of a stack there.
             var d = data.AsGodotDictionary();
             if (d.TryGetValue("invFrom", out var from)) Deposit(from.AsInt32(), target, DragLayer.ChosenAmount(d), Drop);
@@ -291,9 +291,9 @@ public sealed class NativeStorage
     private ItemSlotView CarriedCell(int index)
     {
         var cell = new ItemSlotView(CellSize) { Index = _gridStart + index, Name = "storage_bag_" + index, Veiled = true, PicksAmount = true };
-        cell.RightClicked += c => Deposit(c.Index, -1, null, () => Native.Call(_world, Field("WhTakeFromBag", "VipTakeFromBag", "ClanTakeFromBag"), c.Index));
+        cell.RightClicked += c => Deposit(c.Index, -1, null, () => Native.Call(_world, Field("Warehouse.TakeFromBag", "VipWarehouse.TakeFromBag", "ClanWarehouse.TakeFromBag"), c.Index));
         cell.Hovered += c => Tooltip(c.Index, c);
-        cell.Unhovered += _ => Native.Call(_world, "HideItemTooltip");
+        cell.Unhovered += _ => Native.Call(_world, "ItemTooltip.Hide");
         cell.DragOut = c =>
         {
             KnightOnlineUiClassic.Layout.ClassicStackDial.StyleNativeCount(c);
@@ -343,7 +343,7 @@ public sealed class NativeStorage
     private static bool AsksCount(ItemSlot slot, int? amount) =>
         !slot.IsEmpty && slot.Count > 1 && ItemData.Get(slot.ItemId) is { Countable: not 0 } && (amount == null || amount >= slot.Count);
 
-    private bool Shown => Native.Get<bool>(_world, Field("_whShown", "_vipWhShown", "_clanWhShown"));
+    private bool Shown => Native.Get<bool>(_world, Field("Warehouse.shown", "VipWarehouse.shown", "ClanWarehouse.shown"));
 
     /// <summary>
     /// Stores a carried item. A whole stack asks for the count first, then the client stores the chosen count through
@@ -355,15 +355,15 @@ public sealed class NativeStorage
     {
         var slot = InMainBag(abs) ? _inventory[abs] : default;
         if (Amount == null || !AsksCount(slot, amount) || Busy || !VaultOpen || !Fits(abs)
-            || Vip && Native.Call(_world, "IsVipVaultKey", slot.ItemId) is true)
+            || Vip && Native.Call(Native.StaticOwner("LibreKO.Features.Windows.VipWarehouseFeature"), "IsVaultKey", slot.ItemId) is true)
         {
             native();
             return;
         }
-        Amount.Open(ItemData.Icon(slot.ItemId), $"Store {ItemData.DisplayName(slot.ItemId)}", $"You carry {slot.Count:n0}", slot.Count, slot.Count, n =>
+        Amount.Open(ItemIcons.Get(slot.ItemId), $"Store {ItemData.DisplayName(slot.ItemId)}", $"You carry {slot.Count:n0}", slot.Count, slot.Count, n =>
         {
             if (Shown && _inventory[abs].Equals(slot))
-                Native.Call(_world, Field("DepositSlot", "VipDepositSlot", "ClanDepositSlot"), abs, target, (int?)(int)n);
+                Native.Call(_world, Field("Warehouse.DepositSlot", "VipWarehouse.DepositSlot", "ClanWarehouse.DepositSlot"), abs, target, (int?)(int)n);
         }, "Store");
     }
 
@@ -374,15 +374,15 @@ public sealed class NativeStorage
     /// </summary>
     private void Withdraw(int index, int target, int? amount)
     {
-        string method = Field("AskWithdraw", "AskVipWithdraw", "AskClanWithdraw");
+        string method = Field("Warehouse.AskWithdraw", "VipWarehouse.AskWithdraw", "ClanWarehouse.AskWithdraw");
         var slot = index >= 0 && index < Slots ? _slots[index] : default;
         if (Amount == null || !AsksCount(slot, amount) || Busy || !VaultOpen
-            || Kind == StorageKind.Clan && !Native.Get<bool>(_world, "ClanCanWithdraw"))
+            || Kind == StorageKind.Clan && !Native.Get<bool>(_world, "ClanWarehouse.CanWithdraw"))
         {
             Native.Call(_world, method, index, target, amount);
             return;
         }
-        Amount.Open(ItemData.Icon(slot.ItemId), $"Take out {ItemData.DisplayName(slot.ItemId)}", $"Stored {slot.Count:n0}", slot.Count, slot.Count, n =>
+        Amount.Open(ItemIcons.Get(slot.ItemId), $"Take out {ItemData.DisplayName(slot.ItemId)}", $"Stored {slot.Count:n0}", slot.Count, slot.Count, n =>
         {
             if (Shown && _slots[index].Equals(slot)) Native.Call(_world, method, index, target, (int?)(int)n);
         }, "Take out");
@@ -394,7 +394,7 @@ public sealed class NativeStorage
     /// </summary>
     private void RouteCompanion()
     {
-        if (Native.Get<object>(_world, Field("_whCompanion", "_vipCompanion", "_clanCompanion")) is not { } companion
+        if (Native.Get<object>(_world, Field("Warehouse.companion", "VipWarehouse.companion", "ClanWarehouse.companion")) is not { } companion
             || ReferenceEquals(companion, _companion)) return;
         _companion = companion;
         if (Native.Get<Func<int, bool>>(companion, "Take") is { } take)
@@ -417,9 +417,9 @@ public sealed class NativeStorage
     /// <summary>Shows the client's PIN requests in a named PIN window instead of its generic dialog.</summary>
     private void PreparePinPrompt()
     {
-        var dialog = Native.Get<AcceptDialog>(_world, "_vipWhPinDlg");
-        var message = Native.Get<Label>(_world, "_vipWhPinPrompt");
-        var input = Native.Get<LineEdit>(_world, "_vipWhPinEdit");
+        var dialog = Native.Get<AcceptDialog>(_world, "VipWarehouse.pinDlg");
+        var message = Native.Get<Label>(_world, "VipWarehouse.pinPrompt");
+        var input = Native.Get<LineEdit>(_world, "VipWarehouse.pinEdit");
         if (dialog == null || message == null || input == null) return;
         var prompt = new VipVaultPinPrompt { Name = "vipwarehouse_pin_layer" };
         _world.AddChild(prompt);
@@ -441,7 +441,7 @@ public sealed class NativeStorage
         {
             input.Text = prompt.Input.Text;
             reopened = false;
-            Native.Call(_world, "SubmitVipPin");
+            Native.Call(_world, "VipWarehouse.SubmitPin");
             if (!reopened) prompt.Hide();
         };
     }

@@ -77,24 +77,24 @@ public partial class Preview
             GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = MouseButton.Left, Pressed = false });
             await Frames(2);
         }
-        async Task<(World World, HudWindow Window, ClassicSiegePanel Panel)> Open(string view)
+        async Task<(WorldRoot World, HudWindow Window, ClassicSiegePanel Panel)> Open(string view)
         {
-            var world = new World(); var window = (HudWindow)DetailCall(world, "BuildSiegeWindowPreview", view)!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildSiegeWindowPreview", view)!;
             AddChild(window); var panel = ClassicSiegeSkin.Apply(window.Body)!;
             Require(panel != null, view + " Classic siege skin applied to the prepared native window");
             await Frames(); return (world, window, panel!);
         }
-        async Task Close((World World, HudWindow Window, ClassicSiegePanel Panel) open)
+        async Task Close((WorldRoot World, HudWindow Window, ClassicSiegePanel Panel) open)
         {
             open.Window.QueueFree(); await Frames(2); open.World.Free(); await Frames(2);
         }
-        int Notices(World world) => world.GetChildren().OfType<Notice>().Count();
-        bool Shown(World world, string field) => (bool)DetailField(world, field)!;
+        int Notices(WorldRoot world) => world.GetChildren().OfType<Notice>().Count();
+        bool Shown(WorldRoot world, string field) => (bool)DetailField(world, field)!;
         bool Connected(Button button) => button.GetSignalConnectionList(BaseButton.SignalName.Pressed).Count > 0;
 
         // NPC talk windows.
         var speechSize = new Vector2(279, 306);
-        foreach (var (view, id, field) in new[] { ("siege-guard", "siegeguard", "_siegeGuardShown"), ("siege-office", "siegeoffice", "_siegeOfficeShown"), ("siege-taxlist", "siegetaxlist", "_siegeTaxListShown") })
+        foreach (var (view, id, field) in new[] { ("siege-guard", "siegeguard", "Siege.guardShown"), ("siege-office", "siegeoffice", "Siege.officeShown"), ("siege-taxlist", "siegetaxlist", "Siege.taxListShown") })
         {
             var open = await Open(view);
             var options = Enumerable.Range(0, 4).Select(i => Named<Button>(open.Panel, "siege_option_" + i)).ToArray();
@@ -124,16 +124,16 @@ public partial class Preview
             {
                 options[0].EmitSignal(BaseButton.SignalName.Pressed);
                 Require(!open.Window.Visible && !Shown(open.World, field), "Challenger closes the guard and requests the native list");
-                DetailCall(open.World, "OpenSiegeGuard"); await Frames(2);
+                DetailCall(open.World, "Siege.OpenGuard"); await Frames(2);
             }
-            if (id == "siegeoffice") { DetailCall(open.World, "OpenSiegeOffice", new SiegeOffice(4_250_000, 0)); await Frames(2); }
+            if (id == "siegeoffice") { DetailCall(open.World, "Siege.OpenOffice", new SiegeOffice(4_250_000, 0)); await Frames(2); }
             Require(open.Window.Visible && Shown(open.World, field), id + " open before closing through the last option");
             await Click(options[3]);
             Require(!open.Window.Visible && !Shown(open.World, field), id + " last option mouse click invokes the native close");
             await Close(open);
         }
         {
-            var world = new World(); var window = (HudWindow)DetailCall(world, "BuildSiegeDragPreview")!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildSiegeDragPreview")!;
             AddChild(window); ClassicSiegeSkin.Apply(window.Body); await Frames();
             window.Position = new Vector2(100, 80); Vector2 origin = window.Position, pointer = origin + new Vector2(200, 8);
             Named<Control>(window, "party_drag").EmitSignal(Control.SignalName.GuiInput,
@@ -177,7 +177,7 @@ public partial class Preview
             Require(Named<VBoxContainer>(open.Window, "siege_rows").GetChildCount() == 0, "Schedule empty reply clears the list");
             await Capture(open.Window, "siegeschedule", "empty", tableSize);
             await Click(ok);
-            Require(!open.Window.Visible && !Shown(open.World, "_siegeScheduleShown"), "Schedule OK mouse click invokes the native close");
+            Require(!open.Window.Visible && !Shown(open.World, "Siege.scheduleShown"), "Schedule OK mouse click invokes the native close");
             await Close(open);
         }
         {
@@ -203,7 +203,7 @@ public partial class Preview
             int before = Notices(open.World); await Click(cancel);
             Require(Notices(open.World) == before + 1, "Cancel mouse click opens the native withdrawal confirmation");
             await Click(Named<Button>(open.Panel, "siege_close"));
-            Require(!open.Window.Visible && !Shown(open.World, "_siegeChallengersShown"), "Challengers Close invokes the native close");
+            Require(!open.Window.Visible && !Shown(open.World, "Siege.challengersShown"), "Challengers Close invokes the native close");
             await Close(open);
         }
         {
@@ -225,7 +225,7 @@ public partial class Preview
             var close = Named<Button>(open.Panel, "siege_close");
             await Hover(close); await Capture(open.Window, "siegedefenders", "close-hover", tableSize);
             await Click(close);
-            Require(!open.Window.Visible && !Shown(open.World, "_siegeDefendersShown"), "Defenders Close invokes the native close");
+            Require(!open.Window.Visible && !Shown(open.World, "Siege.defendersShown"), "Defenders Close invokes the native close");
             await Close(open);
         }
         System.IO.File.WriteAllText(output + "/" + prefix + "-siege.json",

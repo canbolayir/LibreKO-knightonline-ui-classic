@@ -1,6 +1,7 @@
 using Godot;
 using LibreKO;
 using LibreKO.Domain;
+using LibreKO.Network;
 using KnightOnlineUiClassic.Layout;
 
 namespace KnightOnlineUiClassic.Windows;
@@ -261,7 +262,7 @@ public partial class ClassicItemsPanel : Control
     private void SyncExpSeal()
     {
         int state = Window.GetMeta(ExpStateMeta, 0).AsInt32();
-        foreach (var (name, on) in new[] { ("exp_seal_on", LibreKO.Domain.ExpSeal.StateOn), ("exp_seal_off", LibreKO.Domain.ExpSeal.StateOff) })
+        foreach (var (name, on) in new[] { ("exp_seal_on", (byte)ExpSealState.On), ("exp_seal_off", (byte)ExpSealState.Off) })
         {
             var button = Find<Button>(name);
             // The native buttons tint the active switch; Classic shows it pressed and keeps the light ink.

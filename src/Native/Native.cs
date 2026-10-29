@@ -24,17 +24,19 @@ public static class Native
 
     public static event Action<string>? MemberMissing;
 
-    public static bool Has(object owner, string member) => Find(TypeOf(owner), member) != null;
+    public static bool Has(object owner, string member) =>
+        DeclaredOwner(TypeOf(owner), ref member) is { } type && Find(type, member) != null;
 
     public static bool HasMethod(object owner, string method)
     {
-        for (var current = TypeOf(owner); current != null; current = current.BaseType)
+        for (var current = DeclaredOwner(TypeOf(owner), ref method); current != null; current = current.BaseType)
             if (current.GetMethods(Members | BindingFlags.DeclaredOnly).Any(m => m.Name == method)) return true;
         return false;
     }
 
     public static T? Get<T>(object owner, string member)
     {
+        if (!Walk(ref owner, ref member)) return default;
         var info = Find(TypeOf(owner), member);
         if (info == null) { Report(owner, member); return default; }
         object? value = info switch
@@ -50,6 +52,7 @@ public static class Native
 
     public static bool TryGet<T>(object owner, string member, out T value)
     {
+        if (!Walk(ref owner, ref member)) { value = default!; return false; }
         var info = Find(TypeOf(owner), member);
         object? raw = info switch
         {
@@ -67,16 +70,18 @@ public static class Native
     /// <summary>The declared type of a field or property, for callers that adapt to a changed delegate shape.</summary>
     public static Type? MemberType(object owner, string member)
     {
-        switch (Find(TypeOf(owner), member))
+        string path = member;
+        switch (DeclaredOwner(TypeOf(owner), ref member) is { } type ? Find(type, member) : null)
         {
             case FieldInfo field: return field.FieldType;
             case PropertyInfo property: return property.PropertyType;
-            default: Report(owner, member); return null;
+            default: Report(owner, path); return null;
         }
     }
 
     public static bool Set(object owner, string member, object? value)
     {
+        if (!Walk(ref owner, ref member)) return false;
         switch (Find(TypeOf(owner), member))
         {
             case FieldInfo field: field.SetValue(owner is Type ? null : owner, value); return true;
@@ -87,6 +92,7 @@ public static class Native
 
     public static object? Call(object owner, string method, params object?[] args)
     {
+        if (!Walk(ref owner, ref method)) return null;
         var info = Method(TypeOf(owner), method, args);
         if (info == null) { Report(owner, method + "/" + args.Length); return null; }
         try { return info.Invoke(owner is Type ? null : owner, Arguments(info, args)); }
@@ -99,8 +105,10 @@ public static class Native
 
     public static bool TryCall(object owner, string method, out object? result, params object?[] args)
     {
+        result = null;
+        if (!Walk(ref owner, ref method, report: false)) return false;
         var info = Method(TypeOf(owner), method, args);
-        if (info == null) { result = null; return false; }
+        if (info == null) return false;
         result = info.Invoke(owner is Type ? null : owner, Arguments(info, args));
         return true;
     }
@@ -112,22 +120,25 @@ public static class Native
     /// </summary>
     public static bool Subscribe(object owner, string member, Delegate handler, Godot.Node? lifetime = null)
     {
-        var type = TypeOf(owner);
-        var target = owner is Type ? null : owner;
-        if (type.GetEvent(member, Members) is { } evt)
+        object holder = owner;
+        string name = member;
+        if (!Walk(ref holder, ref name)) return false;
+        var type = TypeOf(holder);
+        var target = holder is Type ? null : holder;
+        if (type.GetEvent(name, Members) is { } evt)
         {
             var add = evt.GetAddMethod(true);
             if (add == null) return false;
             add.Invoke(target, new object[] { handler });
         }
-        else if (Find(type, member) is FieldInfo field && typeof(Delegate).IsAssignableFrom(field.FieldType))
+        else if (Find(type, name) is FieldInfo field && typeof(Delegate).IsAssignableFrom(field.FieldType))
             field.SetValue(target, Delegate.Combine((Delegate?)field.GetValue(target), handler));
         else
         {
-            Report(owner, member);
+            Report(holder, name);
             return false;
         }
-        NativeHooks.Hold(type.Name + "." + member, () => Detach(owner, member, handler), lifetime, (owner, member, handler));
+        NativeHooks.Hold(type.Name + "." + name, () => Detach(holder, name, handler), lifetime, (owner, member, handler));
         return true;
     }
 
@@ -137,6 +148,7 @@ public static class Native
 
     private static bool Detach(object owner, string member, Delegate handler)
     {
+        if (!Walk(ref owner, ref member, report: false)) return false;
         var type = TypeOf(owner);
         var target = owner is Type ? null : owner;
         if (type.GetEvent(member, Members) is { } evt)
@@ -154,21 +166,34 @@ public static class Native
         return false;
     }
 
-    public static Type? ClientType(string fullName) => typeof(World).Assembly.GetType(fullName);
+    public static Type? ClientType(string fullName) => typeof(WorldRoot).Assembly.GetType(fullName);
 
-    public static World? WorldOf(Node? node)
+    public static Type StaticOwner(string fullName)
+    {
+        if (ClientType(fullName) is { } type) return type;
+        if (_missing.TryAdd(fullName, 0))
+        {
+            GD.PushWarning($"[plugin:knightonline-ui-classic] native type unavailable: {fullName}");
+            MemberMissing?.Invoke(fullName);
+        }
+        return typeof(UnavailableType);
+    }
+
+    private static class UnavailableType;
+
+    public static WorldRoot? WorldOf(Node? node)
     {
         for (var current = node; current != null; current = current.GetParent())
-            if (current is World world) return world;
+            if (current is WorldRoot world) return world;
         return CurrentWorld;
     }
 
-    public static World? CurrentWorld
+    public static WorldRoot? CurrentWorld
     {
         get
         {
             if (Engine.GetMainLoop() is not SceneTree tree) return null;
-            return Descendants(tree.Root).OfType<World>().FirstOrDefault();
+            return Descendants(tree.Root).OfType<WorldRoot>().FirstOrDefault();
         }
     }
 
@@ -196,6 +221,52 @@ public static class Native
         _missing.Clear();
         MemberMissing = null;
     }
+
+    private static bool Walk(ref object owner, ref string member, bool report = true)
+    {
+        int last = member.LastIndexOf('.');
+        if (last < 0) return true;
+        object start = owner;
+        foreach (var step in member[..last].Split('.'))
+        {
+            object? next = Find(TypeOf(owner), step) switch
+            {
+                FieldInfo field => field.GetValue(owner is Type ? null : owner),
+                PropertyInfo property => property.GetValue(owner is Type ? null : owner),
+                _ => Missing,
+            };
+            if (ReferenceEquals(next, Missing))
+            {
+                if (report) Report(start, member);
+                return false;
+            }
+            if (next == null) return false;
+            owner = next;
+        }
+        member = member[(last + 1)..];
+        return true;
+    }
+
+    private static Type? DeclaredOwner(Type type, ref string member)
+    {
+        int last = member.LastIndexOf('.');
+        if (last < 0) return type;
+        foreach (var step in member[..last].Split('.'))
+        {
+            Type? next = Find(type, step) switch
+            {
+                FieldInfo field => field.FieldType,
+                PropertyInfo property => property.PropertyType,
+                _ => null,
+            };
+            if (next == null) return null;
+            type = next;
+        }
+        member = member[(last + 1)..];
+        return type;
+    }
+
+    private static readonly object Missing = new();
 
     private static MemberInfo? Find(Type type, string member) =>
         _members.GetOrAdd((type, member), key =>

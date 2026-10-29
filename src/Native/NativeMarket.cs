@@ -31,7 +31,7 @@ public static class NativeMarket
     private const float CompactCategoryWidth = 180;
     private const float CompactCartWidth = 264;
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         switch (window.Id)
         {
@@ -51,16 +51,16 @@ public static class NativeMarket
 
     // Market Price -------------------------------------------------------------------------------
 
-    private static void PrepareMarketPrice(HudWindow window, World world)
+    private static void PrepareMarketPrice(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta("classic_market_price_controls")) return;
-        var slot = Native.Get<ItemSlotView>(world, "_marketPriceSlot");
-        var name = Native.Get<Label>(world, "_marketPriceName");
-        var trades = Native.Get<Label>(world, "_marketPriceTrades");
-        var chart = Native.Get<PriceChart>(world, "_marketPriceChart");
-        var updated = Native.Get<Label>(world, "_marketPriceUpdated");
-        var status = Native.Get<Label>(world, "_marketPriceStatus");
-        var search = Native.Get<ItemSearchPanel>(world, "_marketPriceSearch");
+        var slot = Native.Get<ItemSlotView>(world, "MarketPrice.marketPriceSlot");
+        var name = Native.Get<Label>(world, "MarketPrice.marketPriceName");
+        var trades = Native.Get<Label>(world, "MarketPrice.marketPriceTrades");
+        var chart = Native.Get<PriceChart>(world, "MarketPrice.marketPriceChart");
+        var updated = Native.Get<Label>(world, "MarketPrice.marketPriceUpdated");
+        var status = Native.Get<Label>(world, "MarketPrice.marketPriceStatus");
+        var search = Native.Get<ItemSearchPanel>(world, "MarketPrice.MarketPriceSearch");
         if (slot == null || name == null || trades == null || chart == null || updated == null || status == null || search == null) return;
         var find = name.GetParent().GetChildren().OfType<Button>().FirstOrDefault();
         var caption = trades.GetParent().GetChildren().OfType<Label>().FirstOrDefault(l => l != trades);
@@ -70,29 +70,29 @@ public static class NativeMarket
             new[] { "market_price_item", "market_price_name", "market_price_search", "market_price_trades_caption", "market_price_trades", "market_price_chart", "market_price_updated", "market_price_latest", "market_price_status" }))
             return;
         if (NativeChartBackground.Supported(chart)) chart.AddChild(new NativeChartBackground(chart));
-        int noHistoryId = Native.Get<int>(typeof(World), "MarketPriceNoHistoryText");
+        int noHistoryId = Native.Get<int>(Native.StaticOwner("LibreKO.Features.Windows.MarketPriceFeature"), "MarketPriceNoHistoryText");
         NativeWindows.Sync(window, () =>
         {
             name.TooltipText = name.Text;
             // A cached "no history" reply is drawn as an empty five-day history; show it as no history instead.
-            int item = Native.Get<int>(world, "_marketPriceItem");
-            if (item == 0 || updated.Text.Length == 0 || Native.Get<IDictionary>(world, "_marketPriceCache") is not { } cache) return;
+            int item = Native.Get<int>(world, "MarketPrice.marketPriceItem");
+            if (item == 0 || updated.Text.Length == 0 || Native.Get<IDictionary>(world, "MarketPrice.marketPriceCache") is not { } cache) return;
             if (cache[item] is not MarketPriceReply { Result: MarketPrice.NoHistory }) return;
-            Native.Call(world, "ClearMarketPriceChart");
-            Native.Call(world, "SetMarketPriceStatus", ItemData.Text(noHistoryId, "There is no trade history for this item"));
+            Native.Call(world, "MarketPrice.ClearMarketPriceChart");
+            Native.Call(world, "MarketPrice.SetMarketPriceStatus", ItemData.Text(noHistoryId, "There is no trade history for this item"));
         });
         window.SetMeta("classic_market_price_controls", 1);
     }
 
     private static bool PrepareItemSearch(ItemSearchPanel panel)
     {
-        var query = Native.Get<LineEdit>(panel, "_query");
-        var pick = Native.Get<OptionButton>(panel, "_pick");
-        var group = Native.Get<OptionButton>(panel, "_group");
-        var level = Native.Get<OptionButton>(panel, "_level");
-        var summary = Native.Get<Label>(panel, "_summary");
-        var results = Native.Get<VBoxContainer>(panel, "_results");
-        var tabs = Native.Get<IDictionary>(panel, "_tabButtons");
+        var query = Native.Get<LineEdit>(panel, "query");
+        var pick = Native.Get<OptionButton>(panel, "pick");
+        var group = Native.Get<OptionButton>(panel, "groupPicker");
+        var level = Native.Get<OptionButton>(panel, "levelPicker");
+        var summary = Native.Get<Label>(panel, "summary");
+        var results = Native.Get<VBoxContainer>(panel, "results");
+        var tabs = Native.Get<IDictionary>(panel, "tabButtons");
         if (query == null || pick == null || group == null || level == null || summary == null || results == null || tabs == null) return false;
         var heading = panel.GetChildCount() > 0 ? panel.GetChild(0) as Control : null;
         var find = query.GetParent().GetChildren().OfType<Button>().FirstOrDefault();
@@ -107,15 +107,15 @@ public static class NativeMarket
 
     // Merchant Search ----------------------------------------------------------------------------
 
-    private static void PrepareMerchantSearch(HudWindow window, World world)
+    private static void PrepareMerchantSearch(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta("classic_merchant_search_controls")) return;
-        var edit = Native.Get<LineEdit>(world, "_merchantSearchEdit");
-        var scope = Native.Get<OptionButton>(world, "_merchantSearchScope");
-        var status = Native.Get<Label>(world, "_merchantSearchStatus");
-        var pages = Native.Get<HBoxContainer>(world, "_merchantSearchPages");
-        var lines = Native.Get<IList>(world, "_merchantSearchLines");
-        var model = Native.Get<MerchantSearch>(world, "_merchantSearch");
+        var edit = Native.Get<LineEdit>(world, "MerchantSearch.searchEdit");
+        var scope = Native.Get<OptionButton>(world, "MerchantSearch.searchScope");
+        var status = Native.Get<Label>(world, "MerchantSearch.searchStatus");
+        var pages = Native.Get<HBoxContainer>(world, "MerchantSearch.searchPages");
+        var lines = Native.Get<IList>(world, "MerchantSearch.searchLines");
+        var model = Native.Get<MerchantSearch>(world, "MerchantSearch.search");
         if (edit == null || scope == null || status == null || pages == null || lines == null || model == null) return;
         var body = window.Body;
         var top = edit.GetParent();
@@ -158,7 +158,7 @@ public static class NativeMarket
                 if (Native.Get<Control>(lines[i]!, "Name") is { } label) label.TooltipText = tooltip;
                 if (Native.Get<Control>(lines[i]!, "Icon") is { } icon) icon.TooltipText = tooltip;
             }
-            if (visible.Count == 0 && status.Text.Length == 0 && !Native.Get<bool>(world, "_merchantSearchLoading")) status.Text = NoMatchingItems;
+            if (visible.Count == 0 && status.Text.Length == 0 && !Native.Get<bool>(world, "MerchantSearch.searchLoading")) status.Text = NoMatchingItems;
         });
         window.SetMeta("classic_merchant_search_controls", 1);
     }
@@ -167,34 +167,34 @@ public static class NativeMarket
 
     private static readonly (string Field, string Name)[] StoreControls =
     {
-        ("_pusCategoryList", "category_list"), ("_pusGridTitle", "grid_title"), ("_pusCashValue", "cash"),
-        ("_pusSearch", "query"), ("_pusSortPick", "sort"), ("_pusGridScroll", "grid_scroll"), ("_pusGrid", "grid"), ("_pusGridEmpty", "grid_empty"),
-        ("_pusCartTitle", "cart_title"), ("_pusClearCart", "clear_cart"), ("_pusCartScroll", "cart_scroll"),
-        ("_pusCartLines", "cart_lines"), ("_pusCartEmpty", "cart_empty"), ("_pusGiftButton", "gift"),
-        ("_pusGiftBanner", "gift_banner"), ("_pusGiftName", "gift_name"), ("_pusGiftInfo", "gift_info"),
-        ("_pusTotalRow", "total"), ("_pusShortfall", "shortfall"), ("_pusCheckout", "checkout"), ("_pusCartStatus", "cart_status"),
-        ("_pusOverlay", "overlay"), ("_pusDetailsBox", "details"), ("_pusDetailsIcon", "details_icon"),
-        ("_pusDetailsName", "details_name"), ("_pusDetailsCategory", "details_category"), ("_pusDetailsDescription", "details_description"),
-        ("_pusDetailsPrice", "details_price"), ("_pusDetailsAdd", "details_add"), ("_pusDetailsBuy", "details_buy"), ("_pusDetailsStatus", "details_status"),
-        ("_pusGiftBox", "gift_box"), ("_pusGiftSearch", "gift_query"), ("_pusGiftPickPane", "gift_pick"),
-        ("_pusGiftListTitle", "gift_list_title"), ("_pusGiftList", "gift_list"), ("_pusGiftCard", "gift_card"),
-        ("_pusGiftCardName", "recipient_name"), ("_pusGiftCardInfo", "recipient_info"), ("_pusGiftCardWarning", "recipient_warning"), ("_pusGiftStatus", "gift_status"),
+        ("ShoppingMall.CatalogView.categoryList", "category_list"), ("ShoppingMall.CatalogView.gridTitle", "grid_title"), ("ShoppingMall.CatalogView.cashValue", "cash"),
+        ("ShoppingMall.CatalogView.searchInput", "query"), ("ShoppingMall.CatalogView.sortPick", "sort"), ("ShoppingMall.CatalogView.gridScroll", "grid_scroll"), ("ShoppingMall.CatalogView.grid", "grid"), ("ShoppingMall.CatalogView.gridEmpty", "grid_empty"),
+        ("ShoppingMall.CartView.cartTitle", "cart_title"), ("ShoppingMall.CartView.clearCart", "clear_cart"), ("ShoppingMall.CartView.cartScroll", "cart_scroll"),
+        ("ShoppingMall.CartView.cartLines", "cart_lines"), ("ShoppingMall.CartView.cartEmpty", "cart_empty"), ("ShoppingMall.CartView.giftButton", "gift"),
+        ("ShoppingMall.CartView.giftBanner", "gift_banner"), ("ShoppingMall.CartView.giftName", "gift_name"), ("ShoppingMall.CartView.giftInfo", "gift_info"),
+        ("ShoppingMall.CartView.totalRow", "total"), ("ShoppingMall.CartView.shortfall", "shortfall"), ("ShoppingMall.CartView.checkout", "checkout"), ("ShoppingMall.CartView.cartStatus", "cart_status"),
+        ("ShoppingMall.overlay", "overlay"), ("ShoppingMall.DetailsView.detailsBox", "details"), ("ShoppingMall.DetailsView.detailsIcon", "details_icon"),
+        ("ShoppingMall.DetailsView.detailsName", "details_name"), ("ShoppingMall.DetailsView.detailsCategory", "details_category"), ("ShoppingMall.DetailsView.detailsDescription", "details_description"),
+        ("ShoppingMall.DetailsView.detailsPrice", "details_price"), ("ShoppingMall.DetailsView.detailsAdd", "details_add"), ("ShoppingMall.DetailsView.detailsBuy", "details_buy"), ("ShoppingMall.DetailsView.detailsStatus", "details_status"),
+        ("PowerUpStoreGift.giftBox", "gift_box"), ("PowerUpStoreGift.GiftSearch", "gift_query"), ("PowerUpStoreGift.giftPickPane", "gift_pick"),
+        ("PowerUpStoreGift.giftListTitle", "gift_list_title"), ("PowerUpStoreGift.giftList", "gift_list"), ("PowerUpStoreGift.giftCard", "gift_card"),
+        ("PowerUpStoreGift.giftCardName", "recipient_name"), ("PowerUpStoreGift.giftCardInfo", "recipient_info"), ("PowerUpStoreGift.giftCardWarning", "recipient_warning"), ("PowerUpStoreGift.giftStatus", "gift_status"),
     };
 
-    private static void PrepareStore(HudWindow window, World world)
+    private static void PrepareStore(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta("classic_store_controls")) return;
         var controls = StoreControls.Select(c => Native.Get<Node>(world, c.Field)).ToArray();
         var columns = window.Body.GetChildren().OfType<HBoxContainer>().FirstOrDefault()?.GetChildren().OfType<Control>().ToArray();
-        var tools = Native.Get<Node>(world, "_pusSortPick")?.GetParent() is BoxContainer row ? Reorientable(row) : null;
+        var tools = Native.Get<Node>(world, "ShoppingMall.CatalogView.sortPick")?.GetParent() is BoxContainer row ? Reorientable(row) : null;
         if (columns is not { Length: 3 } || tools == null) return;
         if (!NameAll(controls.Append(window.Body).Append(columns[0]).Append(columns[2]).Append(tools).ToArray(),
             StoreControls.Select(c => c.Name).Append("body").Append("categories").Append("cart").Append("tools").Select(n => "pus_" + n).ToArray()))
             return;
-        var categories = Native.Get<VBoxContainer>(world, "_pusCategoryList")!;
-        var grid = Native.Get<GridContainer>(world, "_pusGrid")!;
-        var cartLines = Native.Get<VBoxContainer>(world, "_pusCartLines")!;
-        var giftList = Native.Get<VBoxContainer>(world, "_pusGiftList")!;
+        var categories = Native.Get<VBoxContainer>(world, "ShoppingMall.CatalogView.categoryList")!;
+        var grid = Native.Get<GridContainer>(world, "ShoppingMall.CatalogView.grid")!;
+        var cartLines = Native.Get<VBoxContainer>(world, "ShoppingMall.CartView.cartLines")!;
+        var giftList = Native.Get<VBoxContainer>(world, "PowerUpStoreGift.giftList")!;
         NativeWindows.OnDescendantAdded(categories, node => DescribeCategory(world, categories, node));
         NativeWindows.OnDescendantAdded(grid, node => DescribeCard(world, grid, node));
         NativeWindows.OnDescendantAdded(cartLines, node => DescribeCartLine(world, cartLines, node));
@@ -220,15 +220,15 @@ public static class NativeMarket
     internal static bool StoreCardAction(HudWindow window, Control card, bool addToCart)
     {
         if (StoreWorld(window) is not { } world || CardEntry(world, card) is not { } entry || StorePending(window)) return false;
-        Native.Call(world, "OpenPusDetails", entry);
-        if (addToCart) Native.Call(world, "AddPusDetailsToCart");
+        Native.Call(world, "ShoppingMall.OpenDetails", entry);
+        if (addToCart) Native.Call(world, "ShoppingMall.AddDetailsToCart");
         return true;
     }
 
     /// <summary>True while a native purchase waits for the server.</summary>
-    public static bool StorePending(HudWindow window) => StoreWorld(window) is { } world && Convert.ToInt32(Native.Get<object>(world, "_pusPending")) != 0;
+    public static bool StorePending(HudWindow window) => StoreWorld(window) is { } world && Convert.ToInt32(Native.Get<object>(world, "ShoppingMall.Model.Pending")) != 0;
 
-    private static World? StoreWorld(HudWindow window) => window.HasMeta("classic_store_world") ? window.GetMeta("classic_store_world").AsGodotObject() as World : null;
+    private static WorldRoot? StoreWorld(HudWindow window) => window.HasMeta("classic_store_world") ? window.GetMeta("classic_store_world").AsGodotObject() as WorldRoot : null;
 
     /// <summary>Replaces the store's search row with a box that can stack vertically on compact screens.</summary>
     private static BoxContainer Reorientable(BoxContainer row)
@@ -244,12 +244,12 @@ public static class NativeMarket
         return box;
     }
 
-    private static void DescribeCategory(World world, VBoxContainer list, Node node)
+    private static void DescribeCategory(WorldRoot world, VBoxContainer list, Node node)
     {
         if (node is not Button button || button.GetParent() != list) return;
-        var categories = Native.Get<IList>(world, "_pusCategories");
-        var catalogue = Native.Get<IList>(world, "_pusCatalog");
-        var search = Native.Get<LineEdit>(world, "_pusSearch");
+        var categories = Native.Get<IList>(world, "ShoppingMall.Model.Categories");
+        var catalogue = Native.Get<IList>(world, "ShoppingMall.Model.Catalog");
+        var search = Native.Get<LineEdit>(world, "ShoppingMall.CatalogView.searchInput");
         if (categories == null || catalogue == null || search == null) return;
         var ids = new List<int>();
         if (catalogue.Cast<PowerUpStoreEntry>().Any(e => e.Featured)) ids.Add(PowerUpStoreCatalog.FeaturedCategory);
@@ -257,18 +257,18 @@ public static class NativeMarket
         int index = button.GetIndex();
         if (index >= ids.Count) return;
         button.Name = "pus_category_" + ids[index];
-        button.SetMeta("pus_category_selected", ids[index] == Native.Get<int>(world, "_pusCategory") && search.Text.Trim().Length == 0);
+        button.SetMeta("pus_category_selected", ids[index] == Native.Get<int>(world, "ShoppingMall.CatalogView.Category") && search.Text.Trim().Length == 0);
     }
 
-    private static PowerUpStoreEntry? CardEntry(World world, Control card)
+    private static PowerUpStoreEntry? CardEntry(WorldRoot world, Control card)
     {
-        if (Native.Get<IDictionary>(world, "_pusCards") is not { } cards) return null;
+        if (Native.Get<IDictionary>(world, "ShoppingMall.CatalogView.cards") is not { } cards) return null;
         foreach (var view in cards.Values)
             if (Native.Get<Control>(view!, "Card") == card) return Native.Get<PowerUpStoreEntry>(view!, "Entry");
         return null;
     }
 
-    private static void DescribeCard(World world, GridContainer grid, Node node)
+    private static void DescribeCard(WorldRoot world, GridContainer grid, Node node)
     {
         if (node is not PanelContainer card || card.GetParent() != grid || CardEntry(world, card) is not { } entry) return;
         card.Name = "pus_card_" + entry.Id;
@@ -285,12 +285,12 @@ public static class NativeMarket
     }
 
     /// <summary>Applies the Classic card material for the card's native state whenever the client re-applies its own.</summary>
-    private static void StyleCard(World world, PanelContainer card)
+    private static void StyleCard(WorldRoot world, PanelContainer card)
     {
         if (!card.HasMeta("pus_card_id") || !card.IsInsideTree()) return;
         int id = card.GetMeta("pus_card_id").AsInt32();
-        int inCart = Native.Get<PowerUpStoreCart>(world, "_pusCart")?.Lines.FirstOrDefault(l => l.Entry.Id == id)?.Count ?? 0;
-        bool active = inCart > 0 || Native.Get<int>(world, "_pusHoveredCard") == id && Convert.ToInt32(Native.Get<object>(world, "_pusModal")) == 0;
+        int inCart = Native.Get<PowerUpStoreCart>(world, "ShoppingMall.Model.Cart")?.Lines.FirstOrDefault(l => l.Entry.Id == id)?.Count ?? 0;
+        bool active = inCart > 0 || Native.Get<int>(world, "ShoppingMall.CatalogView.hoveredCard") == id && Convert.ToInt32(Native.Get<object>(world, "ShoppingMall.modal")) == 0;
         card.SetMeta("pus_card_active", active);
         string key = "pus_card_" + (card.GetMeta("pus_card_featured").AsBool() ? "featured_" : "") + (active ? "active" : "normal");
         if (!card.HasThemeStylebox(key)) return;
@@ -298,10 +298,10 @@ public static class NativeMarket
         if (card.GetThemeStylebox("panel") != style) card.AddThemeStyleboxOverride("panel", style);
     }
 
-    private static void DescribeCartLine(World world, VBoxContainer lines, Node node)
+    private static void DescribeCartLine(WorldRoot world, VBoxContainer lines, Node node)
     {
         if (node is not Control row || row.GetParent() != lines) return;
-        var cart = Native.Get<PowerUpStoreCart>(world, "_pusCart")?.Lines.ToArray();
+        var cart = Native.Get<PowerUpStoreCart>(world, "ShoppingMall.Model.Cart")?.Lines.ToArray();
         int index = row.GetIndex();
         if (cart != null && index < cart.Length) row.Name = "pus_cart_line_" + cart[index].Entry.Id;
     }
@@ -315,16 +315,16 @@ public static class NativeMarket
     }
 
     /// <summary>Narrows the category and cart columns while the store is fitted to a compact screen.</summary>
-    private static bool FitCompactStore(HudWindow window, World world, Control categories, Control cart, BoxContainer tools, bool wasCompact)
+    private static bool FitCompactStore(HudWindow window, WorldRoot world, Control categories, Control cart, BoxContainer tools, bool wasCompact)
     {
-        if (!Native.Get<bool>(world, "_pusShown") || !window.IsInsideTree()) return wasCompact;
+        if (!Native.Get<bool>(world, "ShoppingMall.shown") || !window.IsInsideTree()) return wasCompact;
         bool compact = PowerUpStoreLayout.WindowSize(window.GetViewportRect().Size, Platform.TouchUi).X < CompactStoreWidth;
         if (compact == wasCompact) return compact;
-        int categoryWidth = Native.Get<int>(typeof(World), "PusCategoryWidth"), cartWidth = Native.Get<int>(typeof(World), "PusCartWidth");
-        int margin = Native.Get<int>(typeof(World), "PusWellMargin");
+        int categoryWidth = Native.Get<int>(Native.StaticOwner("LibreKO.Features.Windows.PowerUpStoreCatalogView"), "CategoryWidth"), cartWidth = Native.Get<int>(Native.StaticOwner("LibreKO.Features.Windows.PowerUpStoreCartView"), "CartWidth");
+        int margin = Native.Get<int>(Native.StaticOwner("LibreKO.Features.Windows.PowerUpStoreCartView"), "WellMargin");
         categories.CustomMinimumSize = new Vector2(compact ? CompactCategoryWidth : categoryWidth, 0);
         cart.CustomMinimumSize = new Vector2(compact ? CompactCartWidth : cartWidth, 0);
-        foreach (var field in new[] { "_pusCartEmpty", "_pusShortfall", "_pusCartStatus" })
+        foreach (var field in new[] { "ShoppingMall.CartView.cartEmpty", "ShoppingMall.CartView.shortfall", "ShoppingMall.CartView.cartStatus" })
             if (Native.Get<Control>(world, field) is { } label) label.CustomMinimumSize = new Vector2((compact ? CompactCartWidth : cartWidth) - 2 * margin, 0);
         // The Classic store moves the search row into its own header, where it always has room for one line.
         tools.Vertical = compact && !tools.HasMeta("pus_header_row");
@@ -336,13 +336,13 @@ public static class NativeMarket
     /// Refits on a later frame: the client's own deferred fit connects a one-shot centring to process_frame,
     /// and connecting it twice in one frame logs an error.
     /// </summary>
-    private static void RefitStore(HudWindow window, World world)
+    private static void RefitStore(HudWindow window, WorldRoot world)
     {
         if (!GodotObject.IsInstanceValid(window) || !window.IsInsideTree()) return;
         var tree = window.GetTree();
-        var centre = Callable.From((Action)Delegate.CreateDelegate(typeof(Action), world, "CentrePowerUpStore"));
+        var centre = Callable.From((Action)Delegate.CreateDelegate(typeof(Action), Native.Get<object>(world, "ShoppingMall")!, "CentrePowerUpStore"));
         if (tree.IsConnected(SceneTree.SignalName.ProcessFrame, centre)) { tree.CreateTimer(0).Timeout += () => RefitStore(window, world); return; }
-        Native.Call(world, "FitPowerUpStore");
+        Native.Call(world, "ShoppingMall.FitPowerUpStore");
     }
 
     /// <summary>On touch screens the full-screen store is centred without the pointer layout's screen margin.</summary>
@@ -359,24 +359,24 @@ public static class NativeMarket
 
     private static readonly (string Field, string Name)[] AuctionFields =
     {
-        ("_auctionSelectedName", "selected_name"), ("_auctionGold", "gold"), ("_auctionChecks", "checks"),
-        ("_auctionTotal", "total"), ("_auctionWords", "words"), ("_auctionCurrent", "current"),
-        ("_auctionMinimum", "minimum"), ("_auctionClock", "clock"), ("_auctionStatus", "status"),
-        ("_auctionMillions", "millions"), ("_auctionCheckInput", "check_input"), ("_auctionSchedule", "schedule"),
-        ("_auctionBidList", "bid_list"), ("_auctionWinList", "win_list"), ("_auctionLog", "log"),
+        ("SpecialAuctionWindow.auctionSelectedName", "selected_name"), ("SpecialAuctionWindow.auctionGold", "gold"), ("SpecialAuctionWindow.auctionChecks", "checks"),
+        ("SpecialAuctionWindow.auctionTotal", "total"), ("SpecialAuctionWindow.auctionWords", "words"), ("SpecialAuctionWindow.auctionCurrent", "current"),
+        ("SpecialAuctionWindow.auctionMinimum", "minimum"), ("SpecialAuctionWindow.auctionClock", "clock"), ("SpecialAuctionWindow.auctionStatus", "status"),
+        ("SpecialAuctionWindow.AuctionMillions", "millions"), ("SpecialAuctionWindow.AuctionCheckInput", "check_input"), ("SpecialAuctionWindow.auctionSchedule", "schedule"),
+        ("SpecialAuctionWindow.auctionBidList", "bid_list"), ("SpecialAuctionWindow.auctionWinList", "win_list"), ("SpecialAuctionWindow.auctionLog", "log"),
     };
 
-    private static void PrepareAuction(HudWindow window, World world)
+    private static void PrepareAuction(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta("classic_auction_controls")) return;
         var fields = AuctionFields.Select(f => Native.Get<Control>(world, f.Field)).ToArray();
-        var tabs = Native.Get<IDictionary>(world, "_auctionTabButtons");
-        var pages = Native.Get<IDictionary>(world, "_auctionPages");
-        var slots = Native.Get<IList>(world, "_auctionLotSlots");
+        var tabs = Native.Get<IDictionary>(world, "SpecialAuctionWindow.auctionTabButtons");
+        var pages = Native.Get<IDictionary>(world, "SpecialAuctionWindow.auctionPages");
+        var slots = Native.Get<IList>(world, "SpecialAuctionWindow.auctionLotSlots");
         if (fields.Any(f => f == null) || tabs == null || pages == null || slots is not { Count: > 0 }) return;
         Control Field(string name) => fields[Array.FindIndex(AuctionFields, f => f.Name == name)]!;
-        var placeBid = Native.TryGet<Button>(world, "_auctionPlaceBid", out var place) ? place : Section(Field("total"))?.FindChildren("*", "Button", true, false).OfType<Button>().LastOrDefault();
-        var refresh = Native.TryGet<Button>(world, "_auctionRefresh", out var again) ? again : Field("clock").GetParent().GetChildren().OfType<Button>().FirstOrDefault();
+        var placeBid = Native.TryGet<Button>(world, "SpecialAuctionWindow.auctionPlaceBid", out var place) ? place : Section(Field("total"))?.FindChildren("*", "Button", true, false).OfType<Button>().LastOrDefault();
+        var refresh = Native.TryGet<Button>(world, "SpecialAuctionWindow.auctionRefresh", out var again) ? again : Field("clock").GetParent().GetChildren().OfType<Button>().FirstOrDefault();
         var tabButtons = new Dictionary<string, Button>();
         foreach (DictionaryEntry tab in tabs) tabButtons[tab.Key.ToString()!] = (Button)tab.Value!;
         var grid = ((Node)slots[0]!).GetParent()?.GetParent();
@@ -403,11 +403,11 @@ public static class NativeMarket
             button.SetMeta("auction_tab_selected", button.ButtonPressed);
             button.ThemeChanged += () => StyleAuctionTab(button);
         }
-        var rowButtons = Native.TryGet<List<Button>>(world, "_auctionRowButtons", out var tracked) ? tracked : null;
+        var rowButtons = Native.TryGet<List<Button>>(world, "SpecialAuctionWindow.auctionRowButtons", out var tracked) ? tracked : null;
         foreach (var (list, won) in new[] { (Field("bid_list"), false), (Field("win_list"), true) })
             NativeWindows.OnDescendantAdded(list, node => DescribeAuctionRow(list, node, won, rowButtons));
         var log = Field("log");
-        int noHistoryId = Native.Get<int>(typeof(World), "SpecialAuctionNoHistoryText");
+        int noHistoryId = Native.Get<int>(Native.StaticOwner("LibreKO.Features.Windows.SpecialAuctionFeature"), "NoHistoryText");
         NativeWindows.OnDescendantAdded(log, node =>
         {
             if (node is Label line && line.GetParent() == log && line.Text != ItemData.Text(noHistoryId, "There is no transaction history"))
@@ -487,7 +487,7 @@ public partial class NativeChartBackground : Control
 {
     private const string ThemeKey = "chart_background";
     private static readonly string[] Members =
-        { "_days", "_top", "_bottom", "_hoverDay", "_hoverPart", "Plot", "Column", "ValueY", "PlotPadding", "BarWidth", "MarkerHalf", "MarkerHeight", "AxisWidth", "AxisFontSize", "DayFontSize", "BarFill", "BarHover", "BarEdge", "MaxColor", "MinColor", "Midline", "Baseline" };
+        { "days", "top", "bottom", "hoverDay", "hoverPart", "Plot", "Column", "ValueY", "PlotPadding", "BarWidth", "MarkerHalf", "MarkerHeight", "AxisWidth", "AxisFontSize", "DayFontSize", "BarFill", "BarHover", "BarEdge", "MaxColor", "MinColor", "Midline", "Baseline" };
     private readonly PriceChart _chart = null!;
 
     public NativeChartBackground() { }
@@ -522,9 +522,9 @@ public partial class NativeChartBackground : Control
         DrawStyleBox(_chart.GetThemeStylebox(ThemeKey), new Rect2(Vector2.Zero, Size));
         var plot = Value<Rect2>("Plot");
         var font = GetThemeDefaultFont();
-        var days = Value<IReadOnlyList<MarketPriceDay>>("_days") ?? Array.Empty<MarketPriceDay>();
-        long top = Value<long>("_top"), bottom = Value<long>("_bottom");
-        int hoverDay = Value<int>("_hoverDay"), hoverPart = Convert.ToInt32(Native.Get<object>(_chart, "_hoverPart"));
+        var days = Value<IReadOnlyList<MarketPriceDay>>("days") ?? Array.Empty<MarketPriceDay>();
+        long top = Value<long>("top"), bottom = Value<long>("bottom");
+        int hoverDay = Value<int>("hoverDay"), hoverPart = Convert.ToInt32(Native.Get<object>(_chart, "hoverPart"));
         float padding = Value<float>("PlotPadding"), barWidth = Value<float>("BarWidth"), axisWidth = Value<float>("AxisWidth");
         int axisFont = Value<int>("AxisFontSize"), dayFont = Value<int>("DayFontSize");
 

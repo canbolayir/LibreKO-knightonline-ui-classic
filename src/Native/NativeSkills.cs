@@ -95,7 +95,7 @@ public static class NativeSkills
     /// </summary>
     public static bool BagClickAddsToHotbar(int itemId) =>
         HotbarTakesItem(itemId) && ItemData.Get(itemId) is { } item && ItemData.EquipSlotFor(item) < 0
-        && itemId != ExpSeal.EmptyJar && Native.Get<HashSet<int>>(typeof(World), "VipVaultKeys")?.Contains(itemId) != true;
+        && itemId != ExpSeal.EmptyJar && Native.Get<HashSet<int>>(Native.StaticOwner("LibreKO.Features.Windows.VipWarehouseFeature"), "VaultKeys")?.Contains(itemId) != true;
 
     private const string GeniePickerFiltered = "classic_skill_rules";
     private static readonly (GenieCellKind Kind, int Cells)[] GenieCells =

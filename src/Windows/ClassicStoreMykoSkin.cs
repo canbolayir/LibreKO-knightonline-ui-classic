@@ -391,10 +391,10 @@ public partial class ClassicStoreMykoPanel : Control
     {
         if (_basketRow != null && IsInstanceValid(_basketRow)) return _basketRow;
         var assets = Plugin.Kit.Local.Image(_art.Find(L.BasketRow)!.Images.First().Texture!); if (assets == null) return null;
-        var image = Image.CreateEmpty(238, 54, false, Image.Format.Rgba8); int y = 0;
+        using var image = Image.CreateEmpty(238, 54, false, Image.Format.Rgba8); int y = 0;
         foreach (var part in new[] { L.BasketRowArtTop, L.BasketRowArtMiddle, L.BasketRowArtBottom })
         {
-            var piece = assets.GetRegion((Rect2I)part); piece.Convert(Image.Format.Rgba8);
+            using var piece = assets.GetRegion((Rect2I)part); piece.Convert(Image.Format.Rgba8);
             image.BlitRect(piece, new Rect2I(Vector2I.Zero, piece.GetSize()), new Vector2I(0, y));
             y += (int)part.Size.Y;
         }

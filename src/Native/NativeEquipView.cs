@@ -41,13 +41,13 @@ public static class NativeEquipView
         public string Pending = "";
     }
 
-    private static readonly ConditionalWeakTable<World, State> _states = new();
+    private static readonly ConditionalWeakTable<WorldRoot, State> _states = new();
 
-    public static bool InFlight(World world) => _states.TryGetValue(world, out var state) && state.InFlight;
+    public static bool InFlight(WorldRoot world) => _states.TryGetValue(world, out var state) && state.InFlight;
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
-        if (!NativeIdentity.Begin(window, "native_equipview") || Net.I is not { } net) return;
+        if (!NativeIdentity.Begin(window, "native_equipview") || Game.Connection is not { } net) return;
         var root = window.Body;
         var state = new State { Window = window };
         foreach (var child in root.GetChildren().OfType<Control>()) child.Visible = false;
@@ -76,47 +76,47 @@ public static class NativeEquipView
         _states.AddOrUpdate(world, state);
         window.Title = Title;
         window.SetMeta("classic_equipview_controls", 1);
-        Action<Net.EquipmentViewResult, Net.EquipmentView> received = (result, view) => Received(world, state, result, view);
-        NativeHooks.Listen("Net.EquipmentViewEvent", () => net.EquipmentViewEvent += received, () => net.EquipmentViewEvent -= received, world);
+        Action<EquipmentViewResult, EquipmentView> received = (result, view) => Received(world, state, result, view);
+        NativeHooks.Listen("Net.EquipmentViewEvent", () => Game.Session.PlayerInspect.EquipmentViewEvent += received, () => Game.Session.PlayerInspect.EquipmentViewEvent -= received, world);
         NativeWindows.Sync(window, () => Sync(world, state));
     }
 
     /// <summary>Starts an inspection unless one is outstanding; the client sends the request.</summary>
-    public static void Request(World world, string name)
+    public static void Request(WorldRoot world, string name)
     {
-        if (!_states.TryGetValue(world, out var state)) { Native.Call(world, "RequestEquipmentView", name); return; }
+        if (!_states.TryGetValue(world, out var state)) { Native.Call(world, "EquipView.RequestEquipmentView", name); return; }
         if (state.InFlight || string.IsNullOrWhiteSpace(name)) return;
-        Native.Call(world, "RequestEquipmentView", name);
+        Native.Call(world, "EquipView.RequestEquipmentView", name);
         Begin(world, state, name);
     }
 
     /// <summary>Adopts a request the client started itself, e.g. from the player menu.</summary>
-    private static void Sync(World world, State state)
+    private static void Sync(WorldRoot world, State state)
     {
         state.Window.Title = Title;
-        var status = Native.Get<Label>(world, "_equipViewStatus");
-        string pending = Native.Get<string>(world, "_equipViewPending") ?? "";
+        var status = Native.Get<Label>(world, "EquipView.status");
+        string pending = Native.Get<string>(world, "EquipView.pending") ?? "";
         if (status?.Text == "Requesting…" && (!state.InFlight || pending != state.Pending)) Begin(world, state, pending);
     }
 
-    private static void Begin(World world, State state, string name)
+    private static void Begin(WorldRoot world, State state, string name)
     {
         state.InFlight = true;
         state.Pending = name;
         state.Window.Title = Title;
-        Native.Call(world, "HideItemTooltip");
+        Native.Call(world, "ItemTooltip.Hide");
         Clear(state);
         state.Name.Text = name;
         state.Status.Text = "Requesting...";
         state.Status.AddThemeColorOverride("font_color", UiTheme.TextLo);
     }
 
-    private static ItemSlotView Cell(World world, State state, int slot, string caption)
+    private static ItemSlotView Cell(WorldRoot world, State state, int slot, string caption)
     {
         var cell = new ItemSlotView(45) { Name = "inspect_slot_" + slot, Index = slot, TooltipText = caption };
         state.Captions[slot] = caption;
-        cell.Hovered += current => Native.Call(world, "ShowItemTooltip", current.Index, current.Item, "");
-        cell.Unhovered += _ => Native.Call(world, "HideItemTooltip");
+        cell.Hovered += current => Native.Call(world, "ItemTooltip.Show", current.Index, current.Item, "");
+        cell.Unhovered += _ => Native.Call(world, "ItemTooltip.Hide");
         state.Cells[slot] = cell;
         return cell;
     }
@@ -129,28 +129,28 @@ public static class NativeEquipView
     }
 
     /// <summary>Applies an inspection reply; the network event delivers it after the client's own handler.</summary>
-    public static void Received(World world, Net.EquipmentViewResult result, Net.EquipmentView view)
+    public static void Received(WorldRoot world, EquipmentViewResult result, EquipmentView view)
     {
         if (_states.TryGetValue(world, out var state)) Received(world, state, result, view);
     }
 
-    private static void Received(World world, State state, Net.EquipmentViewResult result, Net.EquipmentView view)
+    private static void Received(WorldRoot world, State state, EquipmentViewResult result, EquipmentView view)
     {
         if (!GodotObject.IsInstanceValid(state.Window) || !state.InFlight) return;
-        if (result == Net.EquipmentViewResult.Accepted && !string.Equals(view.Name, state.Pending, StringComparison.OrdinalIgnoreCase)) return;
+        if (result == EquipmentViewResult.Accepted && !string.Equals(view.Name, state.Pending, StringComparison.OrdinalIgnoreCase)) return;
         state.InFlight = false;
         state.Window.Title = Title;
-        if (!Native.Get<bool>(world, "_equipViewShown")) return;
+        if (!Native.Get<bool>(world, "EquipView.shown")) return;
         Clear(state);
-        if (result != Net.EquipmentViewResult.Accepted)
+        if (result != EquipmentViewResult.Accepted)
         {
             // The client's own refusal (its text table: 44785, 44787, 44789) when it has written one.
-            string native = Native.Get<Label>(world, "_equipViewStatus")?.Text ?? "";
+            string native = Native.Get<Label>(world, "EquipView.status")?.Text ?? "";
             state.Status.Text = native.Length > 0 && native != "Requesting…" ? native : result switch
             {
-                Net.EquipmentViewResult.NotInSameRegion => $"{state.Pending} is not in this region.",
-                Net.EquipmentViewResult.CannotChooseYourself => "You cannot inspect yourself.",
-                Net.EquipmentViewResult.NoViewEquipmentItem => "You need a View Equipment item.",
+                EquipmentViewResult.NotInSameRegion => $"{state.Pending} is not in this region.",
+                EquipmentViewResult.CannotChooseYourself => "You cannot inspect yourself.",
+                EquipmentViewResult.NoViewEquipmentItem => "You need a View Equipment item.",
                 _ => $"{state.Pending} could not be found.",
             };
             state.Status.AddThemeColorOverride("font_color", UiTheme.Bad);
@@ -159,7 +159,7 @@ public static class NativeEquipView
         state.Status.Text = "";
         state.Name.Text = view.Name; state.Name.TooltipText = view.Name;
         string level = view.RebirthLevel > 0 ? $"{view.Level}/{view.RebirthLevel}" : view.Level.ToString();
-        string nation = Native.Call(typeof(World), "NationName", view.Nation) as string ?? Nations.Name(view.Nation);
+        string nation = Native.Call(Native.StaticOwner("LibreKO.Features.Windows.GlobalMapFeature"), "NationName", (byte)view.Nation) as string ?? Nations.Name(view.Nation);
         state.Summary.Text = $"Lv. {level} | {CharacterClassCatalog.DisplayName(view.Class)} | {nation}";
         state.Summary.TooltipText = state.Summary.Text;
         foreach (var worn in view.Worn)

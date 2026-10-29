@@ -109,11 +109,17 @@ public static class ClassicChatRoomSkin
 
     private static readonly Dictionary<Color, ImageTexture> _knobs = new();
 
+    internal static void ClearKnobs()
+    {
+        foreach (var knob in _knobs.Values) knob.Dispose();
+        _knobs.Clear();
+    }
+
     /// <summary>A small gold slider knob with the dark outline of the Classic buttons, instead of the client's round one.</summary>
     private static ImageTexture Knob(Color fill)
     {
         if (_knobs.TryGetValue(fill, out var cached) && GodotObject.IsInstanceValid(cached)) return cached;
-        var image = Image.CreateEmpty(8, 14, false, Image.Format.Rgba8);
+        using var image = Image.CreateEmpty(8, 14, false, Image.Format.Rgba8);
         image.Fill(new Color("2b2214"));
         image.FillRect(new Rect2I(1, 1, 6, 12), fill);
         image.FillRect(new Rect2I(1, 1, 6, 1), fill.Lightened(.35f));

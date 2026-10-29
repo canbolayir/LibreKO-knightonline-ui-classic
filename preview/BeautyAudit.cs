@@ -20,7 +20,7 @@ public partial class Preview
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1200, 850), MouseFilter = MouseFilterEnum.Ignore });
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
         PluginHost.Ui.ReplaceDialogs(request => new KnightOnlineUiClassic.Windows.MessageBox(request));
-        var world = new World(); var layer = (CanvasLayer)DetailCall(world, "BuildBeautyClassicUiPreview", nation)!; AddChild(layer);
+        var world = PreviewFixtures.Prepared(new WorldRoot()); var layer = (CanvasLayer)DetailCall(world, "BuildBeautyClassicUiPreview", nation)!; AddChild(layer);
         var window = layer.GetChildren().OfType<HudWindow>().Single(); var panel = ClassicGenderSkin.Apply(window.Body)!;
         window.SetMeta("content_open_anchor", true);
         var checks = new List<string>(); var screens = new List<object>();
@@ -41,14 +41,14 @@ public partial class Preview
         T Find<T>(string name) where T : Control => Descendants(panel).OfType<T>().Single(c => c.Name == name);
         var editor = Find<LookEditor>("look_editor"); var preview = Find<LookPreview>("look_preview");
         var swatch = Find<Button>("look_palette"); var accept = Find<Button>("look_accept"); var zoom = Find<Button>("look_zoom");
-        bool Busy() => (bool)DetailField(world, "_beautyInFlight")!;
+        bool Busy() => (bool)DetailField(world, "ChangeHair.BeautyInFlight")!;
         bool NetBusy() => PreviewFixtures.ChangeHairPending(net);
-        Node3D Pivot() => (Node3D)typeof(LookPreview).GetField("_pivot", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(preview)!;
-        void Open() => DetailCall(world, "OpenChangeHair");
+        Node3D Pivot() => (Node3D)typeof(LookPreview).GetField("pivot", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(preview)!;
+        void Open() => DetailCall(world, "ChangeHair.Open");
         void Reply(byte result)
         {
             var packet = new Packet(GameOpcodes.GS_CHANGE_HAIR); packet.WriteByte(result);
-            typeof(Net).GetMethod("HandleChangeHair", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(net, new object[] { packet });
+            PreviewPackets.Receive(packet);
         }
         // The client parents its notices to the world; the audit shows them above the preview.
         Notice? TakeNotice()
@@ -57,15 +57,15 @@ public partial class Preview
             if (notice == null) return null;
             world.RemoveChild(notice); AddChild(notice); return notice;
         }
-        DialogRequest Request(Notice notice) => (DialogRequest)typeof(Notice).GetField("_request", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(notice)!;
+        DialogRequest Request(Notice notice) => (DialogRequest)typeof(Notice).GetField("request", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(notice)!;
         void Dismiss(Notice notice) { var request = Request(notice); if (request.HasCancel) request.Cancel(); else request.Dismiss(); notice.Free(); }
         void LoadRace(int race)
         {
-            DetailCall(world, "CloseChangeHair");
-            var me = net.LastEnter; me.Race = race; me.Face = 0; me.Hair = 0x5A3820;
-            typeof(Net).GetMethod("SeedPreviewEnter", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(net, new object[] { me });
-            foreach (var field in new[] { ("_selfRace", race), ("_selfFace", 0), ("_selfHair", me.Hair) })
-                typeof(World).GetField(field.Item1, BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(world, field.Item2);
+            DetailCall(world, "ChangeHair.Close");
+            var me = Game.Session.Self.LastEnter; me.Race = race; me.Face = 0; me.Hair = 0x5A3820;
+            Native.Call(Game.Session.Self, "SeedPreviewEnter", me);
+            foreach (var field in new[] { ("Self.Race", race), ("Self.Face", 0), ("Self.Hair", me.Hair) })
+                Native.Set(Game.Session, field.Item1, field.Item2);
             Open();
         }
         void CheckFraming(string stage, Rect2 inside)
@@ -94,7 +94,7 @@ public partial class Preview
             // Since ff78eef the client keeps the race list in the Beauty Shop editor, hidden (it no longer leaks it).
             Require(Descendants(editor).OfType<VBoxContainer>().Where(v => v.Name == "look_races").All(v => !v.IsVisibleInTree())
                 && !Descendants(editor).OfType<Label>().Any(l => l.Name == "look_race_heading" && l.IsVisibleInTree())
-                && editor.Race == net.LastEnter.Race, state + " beauty cannot change race");
+                && editor.Race == Game.Session.Self.LastEnter.Race, state + " beauty cannot change race");
             foreach (var part in new[] { "face", "hair" }) foreach (var side in new[] { "previous", "next" })
             {
                 var button = Find<Button>("look_" + part + "_" + side);
@@ -153,7 +153,7 @@ public partial class Preview
         try
         {
             await Frames(16); window.Position = new Vector2(40, 100); await Capture("initial");
-            Require(editor.Face == 0 && editor.HairStyle == 0 && editor.Hair == net.LastEnter.Hair, "Opening preserves zero-based face, hairstyle and saved RGB");
+            Require(editor.Face == 0 && editor.HairStyle == 0 && editor.Hair == Game.Session.Self.LastEnter.Hair, "Opening preserves zero-based face, hairstyle and saved RGB");
             foreach (var part in new[] { "face", "hair" })
             {
                 int count = part == "face" ? CharacterPreview.FaceCount(editor.Race) : CharacterPreview.HairCount(editor.Race);
@@ -203,7 +203,7 @@ public partial class Preview
             Require(notice != null && !Busy() && !NetBusy() && !window.Visible, "Without a Makeover Coupon Enter sends nothing and the client closes the shop");
             await CaptureNotice("no-coupon", notice!, ItemData.Text(18901, "You do not have a Makeover Coupon.")); Dismiss(notice!);
             Open();
-            var bag = (Inventory)typeof(World).GetProperty("Inv", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(world)!;
+            var bag = (Inventory)Game.Session.Self.Inventory;
             bag.EnsureLength(InventoryConstants.InventoryTotal);
             bag[Inventory.GridStart] = new LibreKO.Domain.ItemSlot { ItemId = BeautyShop.Coupon, Count = 3, Durability = 1 };
             await KeyInput(Key.Enter); notice = TakeNotice();
@@ -216,18 +216,18 @@ public partial class Preview
             await Click(Find<Button>("look_face_next")); await Click(swatch); await Click(accept); await KeyInput(Key.KpEnter);
             Require(Busy() && editor.Face == face && editor.Hair == hair && TakeNotice() == null && PreviewFixtures.PrepareHairPalette(world) is not { Visible: true },
                 "Pending edits, palette, repeated click and keypad Enter cannot replace the submitted look");
-            Require(!net.SendChangeHair(0, 1, 0x543210), "Network independently refuses a second outstanding beauty request");
+            Require(!Game.Requests.ChangeHair.Change(0, 1, 0x543210), "Network independently refuses a second outstanding beauty request");
             Reply(99); Require(Busy() && NetBusy(), "Unknown result does not complete a pending request");
-            Reply(Net.ChangeHairResultFail); notice = TakeNotice();
+            Reply((byte)ChangeHairResult.Failed); notice = TakeNotice();
             Require(notice != null && !Busy() && !NetBusy() && window.Visible && !accept.Disabled && editor.Hair == hair, "Refusal unlocks the same pick and keeps the shop open");
             await CaptureNotice("refused", notice!, ItemData.Text(18903, "Feature modification failed.")); Dismiss(notice!);
             await Click(accept); notice = TakeNotice(); Request(notice!).Confirm(); notice!.Free();
-            Reply(Net.ChangeHairResultOk); notice = TakeNotice();
-            Require(notice != null && !window.Visible && !Busy() && !NetBusy() && net.LastEnter.Face == face && net.LastEnter.Hair == hair, "Success closes the shop and updates the network snapshot");
-            Require((int)DetailField(world, "_selfFace")! == face && (int)DetailField(world, "_selfHair")! == hair, "Success updates live world appearance");
+            Reply((byte)ChangeHairResult.Succeeded); notice = TakeNotice();
+            Require(notice != null && !window.Visible && !Busy() && !NetBusy() && Game.Session.Self.LastEnter.Face == face && Game.Session.Self.LastEnter.Hair == hair, "Success closes the shop and updates the network snapshot");
+            Require((int)DetailField(world, "Session.Self.Face")! == face && (int)DetailField(world, "Session.Self.Hair")! == hair, "Success updates live world appearance");
             await CaptureNotice("applied", notice!, ItemData.Text(18902, "Feature modification succeeded.")); Dismiss(notice!);
             Open(); Require(editor.Hair == hair && editor.Face == face, "Reopen loads the newly applied appearance");
-            Reply(Net.ChangeHairResultOk); Require(window.Visible && !Busy() && TakeNotice() == null, "Idle duplicate responses cannot alter or close a reopened editor");
+            Reply((byte)ChangeHairResult.Succeeded); Require(window.Visible && !Busy() && TakeNotice() == null, "Idle duplicate responses cannot alter or close a reopened editor");
             await Click(accept); notice = TakeNotice(); Request(notice!).Confirm(); notice!.Free();
             net.Disconnect(expected: true); notice = TakeNotice();
             Require(!Busy() && !NetBusy() && window.Visible && notice != null, "Disconnect clears the pending request without applying a look"); Dismiss(notice!);
@@ -237,7 +237,7 @@ public partial class Preview
                 LoadRace(race); await Frames();
                 for (int i = 0; i < 4; i++)
                 {
-                    editor.Load(new[] { race }, race, 0, 0x5A3820); DetailCall(world, "ShowBeautyLook");
+                    editor.Load(new[] { race }, race, 0, 0x5A3820); DetailCall(world, "ChangeHair.ShowBeautyLook");
                     Require(Pivot().GetChildCount() == 1, "Fast reload leaves one model " + race + "/" + i);
                 }
                 foreach (string part in new[] { "face", "hair" })
@@ -268,7 +268,7 @@ public partial class Preview
             await Click(Descendants(panel).OfType<Button>().Single(b => b.TooltipText == "Close")); Require(!window.Visible && !Busy(), "Original close artwork invokes native close");
             Open(); GetWindow().Size = new Vector2I(1200, 850); window.Position = new Vector2(320, 140); await Capture("wide-viewport");
         }
-        finally { DetailCall(world, "ChangeHairDispose"); layer.Free(); world.Free(); net.Free(); }
+        finally { DetailCall(world, "ChangeHair.Dispose"); layer.Free(); world.Free(); net.Free(); }
         System.IO.File.WriteAllText(output + "/" + (nation == 1 ? "karus" : "human") + "-beauty.json", JsonSerializer.Serialize(new { nation, checks, screens, fixture = "Actual native viewport input and network result dispatch; no live transactions", liveRequests = false }, new JsonSerializerOptions { WriteIndented = true }));
         GD.Print("Classic beauty audit: " + checks.Count + " checks / " + screens.Count + " screens");
     }

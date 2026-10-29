@@ -24,11 +24,11 @@ public static class NativeCharacterNpc
     /// A window marked <c>content_open_anchor</c> places itself; the client's default placement and
     /// settling recentre keep its position instead of moving it.
     /// </summary>
-    private static void KeepContentAnchor(HudWindow window, World world)
+    private static void KeepContentAnchor(HudWindow window, WorldRoot world)
     {
         var layout = window.Layout;
-        if (Native.Get<Func<Godot.Vector2>>(layout, "_defaultPosition") is not { } placement) return;
-        Native.Set(layout, "_defaultPosition", (Func<Godot.Vector2>)(() => window.HasMeta("content_open_anchor") ? window.Position : placement()));
+        if (Native.Get<Func<Godot.Vector2>>(layout, "defaultPosition") is not { } placement) return;
+        Native.Set(layout, "defaultPosition", (Func<Godot.Vector2>)(() => window.HasMeta("content_open_anchor") ? window.Position : placement()));
     }
 
     internal static void Register()
@@ -37,7 +37,7 @@ public static class NativeCharacterNpc
     }
 
     /// <summary>Runs this group's preparers for a window built outside the client's window flow.</summary>
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         foreach (var (id, prepare) in Preparers)
             if (string.Equals(id, window.Id, StringComparison.OrdinalIgnoreCase)) prepare(window, world);

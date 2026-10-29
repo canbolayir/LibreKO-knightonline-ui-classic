@@ -18,6 +18,6 @@ public static partial class NativeSetup
     }
 
     /// <summary>The World that built a native window: the target of its close handler.</summary>
-    private static World? OwnerOf(HudWindow window) =>
-        Native.Get<Action>(window, "Closed")?.GetInvocationList().Select(handler => handler.Target).OfType<World>().FirstOrDefault();
+    private static WorldRoot? OwnerOf(HudWindow window) =>
+        Native.Get<Action>(window, "Closed")?.GetInvocationList().Select(handler => handler.Target).OfType<WorldRoot>().FirstOrDefault();
 }

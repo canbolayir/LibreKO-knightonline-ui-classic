@@ -32,7 +32,7 @@ public static class NativeServices
     private const string RedistributionHeader = "Every stat or mastery point";
     private const int SelectedRowBorder = 3;
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta(PreparedMeta)) return;
         window.SetMeta(PreparedMeta, true);
@@ -51,47 +51,47 @@ public static class NativeServices
         }
     }
 
-    private static void Name(World world, string field, string name) => NativeWindows.Name(Native.Get<Node>(world, field), name);
+    private static void Name(WorldRoot world, string field, string name) => NativeWindows.Name(Native.Get<Node>(world, field), name);
 
-    private static void PrepareWarp(HudWindow window, World world)
+    private static void PrepareWarp(HudWindow window, WorldRoot world)
     {
-        Name(world, "_warpScroll", "warp_list_scroll");
-        Name(world, "_warpImage", "warp_image");
-        Name(world, "_warpLevels", "warp_levels");
-        Name(world, "_warpDesc", "warp_description");
-        Name(world, "_warpGoldLbl", "warp_gold");
-        Name(world, "_warpStatus", "warp_status");
-        Name(world, "_warpTravel", "warp_travel");
+        Name(world, "Warp.scroll", "warp_list_scroll");
+        Name(world, "Warp.image", "warp_image");
+        Name(world, "Warp.levelsLabel", "warp_levels");
+        Name(world, "Warp.desc", "warp_description");
+        Name(world, "Warp.goldLbl", "warp_gold");
+        Name(world, "Warp.status", "warp_status");
+        Name(world, "Warp.travel", "warp_travel");
         NativeWindows.Sync(window, () =>
         {
-            if (Native.Get<List<PanelContainer>>(world, "_warpRows") is not { } rows) return;
-            int selected = Native.Get<int>(world, "_warpSelected");
+            if (Native.Get<List<PanelContainer>>(world, "Warp.rows") is not { } rows) return;
+            int selected = Native.Get<int>(world, "Warp.Selected");
             for (int i = 0; i < rows.Count; i++)
                 if (GodotObject.IsInstanceValid(rows[i])) rows[i].SetMeta(SelectedMeta, i == selected);
         });
     }
 
-    private static void PrepareSeal(HudWindow window, World world)
+    private static void PrepareSeal(HudWindow window, WorldRoot world)
     {
-        Name(world, "_sealSocket", "seal_socket");
-        Name(world, "_sealHeadline", "seal_headline");
-        Name(world, "_sealPrompt", "seal_prompt");
-        Name(world, "_sealCodeRow", "seal_code_row");
-        Name(world, "_sealCodeField", "seal_code");
-        Name(world, "_sealPad", "seal_keypad");
-        Name(world, "_sealGold", "seal_gold");
-        Name(world, "_sealConfirm", "seal_confirm");
+        Name(world, "Seal.socket", "seal_socket");
+        Name(world, "Seal.headline", "seal_headline");
+        Name(world, "Seal.prompt", "seal_prompt");
+        Name(world, "Seal.codeRow", "seal_code_row");
+        Name(world, "Seal.codeField", "seal_code");
+        Name(world, "Seal.Pad", "seal_keypad");
+        Name(world, "Seal.gold", "seal_gold");
+        Name(world, "Seal.confirm", "seal_confirm");
         // The client docks the inventory window beside the seal; the Classic window keeps its own bag.
-        NativeBagCells.Attach(window, world, "seal_bag_", "SealTakeFromBag", "SealBagFit");
-        if (Native.Get<Control>(world, "_sealSocket") is { } socket)
+        NativeBagCells.Attach(window, world, "seal_bag_", "Seal.TakeFromBag", "Seal.FitAt");
+        if (Native.Get<Control>(world, "Seal.socket") is { } socket)
             socket.AddChild(new ServiceDropTarget(data => SealDropSlot(world, data) >= 0,
-                data => Native.Call(world, "SealTakeFromBag", SealDropSlot(world, data))) { Name = "seal_drop" });
+                data => Native.Call(world, "Seal.TakeFromBag", SealDropSlot(world, data))) { Name = "seal_drop" });
     }
 
     /// <summary>The carried slot a drag onto the seal socket comes from, or -1.</summary>
-    private static int SealDropSlot(World world, Variant data)
+    private static int SealDropSlot(WorldRoot world, Variant data)
     {
-        if (!Native.Get<bool>(world, "_sealShown") || Native.Get<bool>(world, "_sealWaiting") || data.VariantType != Variant.Type.Dictionary) return -1;
+        if (!Native.Get<bool>(world, "Seal.shown") || Native.Get<bool>(world, "Seal.waiting") || data.VariantType != Variant.Type.Dictionary) return -1;
         var dict = data.AsGodotDictionary();
         if (!dict.ContainsKey("invFrom")) return -1;
         int abs = dict["invFrom"].AsInt32();
@@ -102,43 +102,43 @@ public static class NativeServices
     /// Keeps a service window's embedded Classic bag in charge: when the client opens the inventory window
     /// only as the window's bag companion, it is closed again (a player-opened inventory stays open).
     /// </summary>
-    public static void KeepInventoryClosed(HudWindow window, World world)
+    public static void KeepInventoryClosed(HudWindow window, WorldRoot world)
     {
         window.VisibilityChanged += () =>
         {
             if (!window.Visible) return;
             Callable.From(() =>
             {
-                if (!window.Visible || Native.Get<object>(world, "_bagPairing") is not { } pairing) return;
-                if (!Native.Get<bool>(pairing, "_openedByCompanion")) return;
-                Native.Set(pairing, "_openedByCompanion", false);
-                Native.Call(world, "HideMainWindow", "Inventory");
+                if (!window.Visible || Native.Get<object>(world, "BagCompanions.Pairing") is not { } pairing) return;
+                if (!Native.Get<bool>(pairing, "openedByCompanion")) return;
+                Native.Set(pairing, "openedByCompanion", false);
+                Native.Call(world, "MainWindows.Hide", "Inventory");
             }).CallDeferred();
         };
     }
 
     /// <summary>Disassembly: the bench like the Chaotic Generator, with the Classic bag instead of the docked inventory.</summary>
-    private static void PrepareSmash(HudWindow window, World world)
+    private static void PrepareSmash(HudWindow window, WorldRoot world)
     {
-        Name(world, "_smashSocket", "smash_socket");
-        Name(world, "_smashMessage", "smash_message");
-        Name(world, "_smashSubMessage", "smash_status");
-        Name(world, "_smashStartBtn", "smash_start");
-        Name(world, "_smashStopBtn", "smash_stop");
-        Name(world, "_smashCancelBtn", "smash_cancel");
-        if (Native.Get<Array>(world, "_smashResults") is { } results)
+        Name(world, "ItemSmashWindow.socket", "smash_socket");
+        Name(world, "ItemSmashWindow.message", "smash_message");
+        Name(world, "ItemSmashWindow.subMessage", "smash_status");
+        Name(world, "ItemSmashWindow.startBtn", "smash_start");
+        Name(world, "ItemSmashWindow.stopBtn", "smash_stop");
+        Name(world, "ItemSmashWindow.cancelBtn", "smash_cancel");
+        if (Native.Get<Array>(world, "ItemSmashWindow.results") is { } results)
             for (int i = 0; i < results.Length; i++) NativeWindows.Name(results.GetValue(i) as Node, "smash_result_" + i);
-        NativeBagCells.Attach(window, world, "smash_bag_", "SmashTakeFromBag", "SmashBagFit");
-        DropOnSocket(world, "_smashSocket", "smash_drop", "_smashShown", "SmashTakeFromBag");
+        NativeBagCells.Attach(window, world, "smash_bag_", "ItemSmashWindow.TakeFromBag", "ItemSmashWindow.SmashBagFit");
+        DropOnSocket(world, "ItemSmashWindow.socket", "smash_drop", "ItemSmashWindow.shown", "ItemSmashWindow.TakeFromBag");
     }
 
     /// <summary>Character Seal scroll / Cypher Ring transfer: the seal layout with the Classic bag.</summary>
-    private static void PrepareCharacterSealTrans(HudWindow window, World world)
+    private static void PrepareCharacterSealTrans(HudWindow window, WorldRoot world)
     {
-        Name(world, "_csSocket", "cstrans_socket");
-        Name(world, "_csTransHeadline", "cstrans_headline");
-        Name(world, "_csTransGold", "cstrans_gold");
-        if (Native.Get<Label>(world, "_csTransHeadline")?.GetParent() is Container stage)
+        Name(world, "CharacterSealWindow.CsSocket", "cstrans_socket");
+        Name(world, "CharacterSealWindow.CsTransHeadline", "cstrans_headline");
+        Name(world, "CharacterSealWindow.CsTransGold", "cstrans_gold");
+        if (Native.Get<Label>(world, "CharacterSealWindow.CsTransHeadline")?.GetParent() is Container stage)
             NativeWindows.Name(stage.GetChildren().OfType<Label>().LastOrDefault(l => l.Name != "cstrans_headline"), "cstrans_notice");
         var buttons = Native.Descendants(window.Body).OfType<Button>().Where(b => b.Text is "OK" or "Cancel").ToArray();
         if (buttons.Length >= 2)
@@ -146,14 +146,14 @@ public static class NativeServices
             buttons[0].Name = "cstrans_ok";
             buttons[1].Name = "cstrans_cancel";
         }
-        if (Native.Get<Label>(world, "_csTransGold")?.GetParent() is Container footer)
+        if (Native.Get<Label>(world, "CharacterSealWindow.CsTransGold")?.GetParent() is Container footer)
             NativeWindows.Name(footer.GetChildren().OfType<Label>().FirstOrDefault(l => l.Name != "cstrans_gold"), "cstrans_gold_caption");
-        NativeBagCells.Attach(window, world, "cstrans_bag_", "CharacterSealTakeFromBag", "CharacterSealBagFit");
-        DropOnSocket(world, "_csSocket", "cstrans_drop", "_csTransShown", "CharacterSealTakeFromBag");
+        NativeBagCells.Attach(window, world, "cstrans_bag_", "CharacterSealWindow.TakeFromBag", "CharacterSealWindow.FitAt");
+        DropOnSocket(world, "CharacterSealWindow.CsSocket", "cstrans_drop", "CharacterSealWindow.csTransShown", "CharacterSealWindow.TakeFromBag");
     }
 
     /// <summary>Lets a carried item be dragged onto a service socket; the client's bag action takes it.</summary>
-    private static void DropOnSocket(World world, string socketField, string name, string shownField, string take)
+    private static void DropOnSocket(WorldRoot world, string socketField, string name, string shownField, string take)
     {
         if (Native.Get<Control>(world, socketField) is not { } socket) return;
         int Slot(Variant data)
@@ -167,13 +167,13 @@ public static class NativeServices
         socket.AddChild(new ServiceDropTarget(data => Slot(data) >= 0, data => Native.Call(world, take, Slot(data))) { Name = name });
     }
 
-    private static void PrepareCombine(HudWindow window, World world)
+    private static void PrepareCombine(HudWindow window, WorldRoot world)
     {
-        Name(world, "_itemCombineStrip", "combine_detail");
-        Name(world, "_itemCombineFooter", "combine_footer");
-        Name(world, "_itemCombineResult", "combine_result");
-        Name(world, "_itemCombineButton", "combine_action");
-        if (Native.Get<ItemSlotView[]>(world, "_itemCombineSlots") is { } slots)
+        Name(world, "ItemCombineWindow.strip", "combine_detail");
+        Name(world, "ItemCombineWindow.footer", "combine_footer");
+        Name(world, "ItemCombineWindow.result", "combine_result");
+        Name(world, "ItemCombineWindow.button", "combine_action");
+        if (Native.Get<ItemSlotView[]>(world, "ItemCombineWindow.slots") is { } slots)
             for (int i = 0; i < slots.Length; i++) NativeWindows.Name(slots[i], "combine_material_" + i);
         HookCombineAmount(world);
         NativeWindows.Sync(window, () => HookCombineAmount(world));
@@ -183,22 +183,22 @@ public static class NativeServices
     /// While the combination window is open, the shared amount prompt only asks for a quantity:
     /// confirming it stages the material instead of continuing to a sale approval.
     /// </summary>
-    public static void HookCombineAmount(World world)
+    public static void HookCombineAmount(WorldRoot world)
     {
-        if (Native.Get<CanvasLayer>(world, "_amountLayer") is not { } layer || !GodotObject.IsInstanceValid(layer)
+        if (Native.Get<CanvasLayer>(world, "Merchant.AmountLayer") is not { } layer || !GodotObject.IsInstanceValid(layer)
             || layer.HasMeta("classic_combine_amount")) return;
         layer.SetMeta("classic_combine_amount", true);
         layer.VisibilityChanged += () =>
         {
             if (!layer.Visible) return;
-            if (!Native.Get<bool>(world, "_itemCombineShown"))
+            if (!Native.Get<bool>(world, "ItemCombineWindow.shown"))
             {
                 layer.RemoveMeta("merchant_quantity_only");
                 return;
             }
             layer.SetMeta("merchant_quantity_only", true);
             layer.SetMeta("merchant_price_editable", false);
-            layer.SetMeta("merchant_quantity", Native.Get<SpinBox>(world, "_amountCount") is { MaxValue: > 1 });
+            layer.SetMeta("merchant_quantity", Native.Get<SpinBox>(world, "Merchant.amountCount") is { MaxValue: > 1 });
             layer.SetMeta("merchant_error", "");
         };
     }
@@ -217,7 +217,7 @@ public static class NativeServices
         NativeWindows.OnDescendantAdded(window.Body, Mark);
     }
 
-    private static void PrepareRedistribution(HudWindow window, World world)
+    private static void PrepareRedistribution(HudWindow window, WorldRoot world)
     {
         foreach (var label in Native.Descendants(window.Body).OfType<Label>())
             if (label.Text.StartsWith(RedistributionHeader, StringComparison.Ordinal)) { label.Name = "redistribution_description"; break; }
@@ -250,16 +250,14 @@ public static class NativeServices
     }
 
     /// <summary>Whether a stat or mastery redistribution is waiting for the server.</summary>
-    public static bool RedistributionPending(World world) =>
-        Native.Has(world, "_reset") && Native.Get<object>(world, "_reset") is { } request
+    public static bool RedistributionPending(WorldRoot world) =>
+        Native.Has(world, "ResetConfirm.reset") && Native.Get<object>(world, "ResetConfirm.reset") is { } request
             ? Native.Get<bool>(request, "Pending")
             : RedistributionKind(world) != 0;
 
     /// <summary>The redistribution kind being requested, or 0.</summary>
-    public static byte RedistributionKind(World world) =>
-        Native.Has(world, "_reset") && Native.Get<object>(world, "_reset") is { } request
-            ? Native.Get<byte>(request, "Kind")
-            : Native.Get<byte>(world, "_resetKind");
+    public static byte RedistributionKind(WorldRoot world) =>
+        Native.Get<object>(world, "ResetConfirm.reset") is { } request ? (byte)Native.Get<ResetKind>(request, "Kind") : (byte)0;
 }
 
 /// <summary>
@@ -273,11 +271,11 @@ public sealed class NativeRepair
     private const string Failed = "Repair failed.";
 
     private readonly HudWindow _panel;
-    private readonly World _world;
+    private readonly WorldRoot _world;
     private readonly KnightOnlineUiClassic.Windows.ClassicRepairHammer _hammer;
     private bool _shown, _pending;
 
-    private NativeRepair(HudWindow panel, World world)
+    private NativeRepair(HudWindow panel, WorldRoot world)
     {
         _panel = panel;
         _world = world;
@@ -288,7 +286,7 @@ public sealed class NativeRepair
     public static KnightOnlineUiClassic.Windows.ClassicRepairHammer? HammerOf(HudWindow panel) =>
         panel.GetNodeOrNull<KnightOnlineUiClassic.Windows.ClassicRepairHammer>("classic_repair_hammer");
 
-    public static void Attach(HudWindow panel, World world)
+    public static void Attach(HudWindow panel, WorldRoot world)
     {
         var repair = new NativeRepair(panel, world);
         panel.AddChild(repair._hammer);
@@ -301,20 +299,19 @@ public sealed class NativeRepair
                 repair.Sync();
             }).CallDeferred();
         };
-        var net = Net.I;
-        NativeHooks.Listen("Net.ItemRepairResultEvent", () => net.ItemRepairResultEvent += repair.OnResult,
-            () => net.ItemRepairResultEvent -= repair.OnResult, world);
+        NativeHooks.Listen("Net.ItemRepairResultEvent", () => Game.Session.Repair.ItemRepairResultEvent += repair.OnResult,
+            () => Game.Session.Repair.ItemRepairResultEvent -= repair.OnResult, world);
         // The catalogue stays hidden while repairing, so state is followed from outside the window.
         panel.AddChild(new NativeTicker(repair.Sync) { Name = "native_repair_sync" });
     }
 
     /// <summary>The Classic skin turns the repair window into the inventory repair mode.</summary>
     private bool Classic => _panel.GetMeta("classic_inventory_repair", false).AsBool();
-    private bool Shown => Native.Get<bool>(_world, "_repairShown");
-    private bool InFlight => Native.Get<bool>(_world, "_repairInFlight");
+    private bool Shown => Native.Get<bool>(_world, "Repair.shown");
+    private bool InFlight => Native.Get<bool>(_world, "Repair.InFlight");
 
     private HudWindow? Inventory =>
-        Native.Get<Dictionary<string, HudWindow>>(_world, "_mainWindows") is { } windows && windows.TryGetValue("Inventory", out var window)
+        Native.Get<Dictionary<string, HudWindow>>(_world, "MainWindows.Windows") is { } windows && windows.TryGetValue("Inventory", out var window)
             ? window : null;
 
     private void Sync()
@@ -344,7 +341,7 @@ public sealed class NativeRepair
         if (!Shown) return;
         if (!InFlight && Affordable(slot))
         {
-            Native.Call(_world, "RepairTakeFromBag", slot);
+            Native.Call(_world, "Repair.TakeFromBag", slot);
             if (InFlight) _hammer.Strike();
         }
         Sync();
@@ -353,10 +350,10 @@ public sealed class NativeRepair
     private void RepairAll()
     {
         if (!Shown || InFlight) return;
-        int first = Native.Call(_world, "RepairableSlots") is IEnumerable<int> slots ? slots.DefaultIfEmpty(-1).First() : -1;
+        int first = Native.Call(_world, "Repair.RepairableSlots") is IEnumerable<int> slots ? slots.DefaultIfEmpty(-1).First() : -1;
         if (first < 0 || Affordable(first))
         {
-            Native.Call(_world, "RepairAll");
+            Native.Call(_world, "Repair.All");
             if (InFlight) _hammer.Strike();
         }
         Sync();
@@ -364,26 +361,26 @@ public sealed class NativeRepair
 
     private void Close()
     {
-        Native.Call(_world, "CloseRepair");
+        Native.Call(_world, "Repair.Close");
         Sync();
     }
 
     /// <summary>Refuses a repair the player cannot pay for before it reaches the server.</summary>
     private bool Affordable(int slot)
     {
-        if (Native.Call(_world, "IsRepairable", slot) is not true) return true;
-        int cost = Native.Call(_world, "RepairCostAt", slot) is int value ? value : 0;
-        int gold = Native.Get<object>(_world, "Sheet") is { } sheet ? Native.Get<int>(sheet, "Gold") : 0;
+        if (Native.Call(_world, "Repair.IsRepairable", slot) is not true) return true;
+        int cost = Native.Call(_world, "Repair.CostAt", slot) is int value ? value : 0;
+        int gold = Game.Session.Self.Sheet.Gold;
         if (cost <= gold) return true;
-        Native.Get<Queue<int>>(_world, "_repairQueue")?.Clear();
-        Native.Get<FooterBand>(_world, "_repairFooter")?.Status(NotEnoughGold, bad: true);
-        Native.Call(_world, "CombatNotice", NotEnoughGold);
+        Native.Get<Queue<int>>(_world, "Repair.queue")?.Clear();
+        Native.Get<FooterBand>(_world, "Repair.footer")?.Status(NotEnoughGold, bad: true);
+        Native.Call(_world, "Log.Notice", NotEnoughGold);
         return false;
     }
 
     private void OnResult(bool ok, int money)
     {
-        if (!ok && _pending && Classic) Native.Call(_world, "CombatNotice", Failed);
+        if (!ok && _pending && Classic) Native.Call(_world, "Log.Notice", Failed);
         // The client's handler ran first: Repair All has already sent its next item.
         if (ok && Classic && InFlight) _hammer.Strike();
         Sync();
@@ -402,42 +399,42 @@ public sealed class NativePieceChange
     private const int CellSpacing = 4;
 
     private readonly HudWindow _window;
-    private readonly World _world;
+    private readonly WorldRoot _world;
     private readonly VBoxContainer _bag;
     private int _signature;
 
-    private NativePieceChange(HudWindow window, World world, VBoxContainer bag)
+    private NativePieceChange(HudWindow window, WorldRoot world, VBoxContainer bag)
     {
         _window = window;
         _world = world;
         _bag = bag;
     }
 
-    public static void Attach(HudWindow window, World world)
+    public static void Attach(HudWindow window, WorldRoot world)
     {
-        Name(world, "_pieceMessage", "piece_message");
-        Name(world, "_pieceSubMessage", "piece_status");
-        Name(world, "_pieceStartBtn", "piece_start");
-        Name(world, "_pieceStopBtn", "piece_stop");
-        Name(world, "_pieceTalkBtn", "piece_talk");
-        Name(world, "_pieceSocket", "piece_socket");
-        if (Native.Get<Array>(world, "_pieceResultSockets") is { } rewards)
+        Name(world, "PieceChange.message", "piece_message");
+        Name(world, "PieceChange.subMessage", "piece_status");
+        Name(world, "PieceChange.startBtn", "piece_start");
+        Name(world, "PieceChange.stopBtn", "piece_stop");
+        Name(world, "PieceChange.talkBtn", "piece_talk");
+        Name(world, "PieceChange.socket", "piece_socket");
+        if (Native.Get<Array>(world, "PieceChange.resultSockets") is { } rewards)
             for (int i = 0; i < rewards.Length; i++) NativeWindows.Name(rewards.GetValue(i) as Node, "piece_reward_" + i);
         // The client docks the inventory window; the Classic generator keeps its own full carried bag.
         var bag = new VBoxContainer { Name = "piece_bag" };
         window.Body.AddChild(bag);
         bag.AddChild(new GridContainer { Columns = Columns });
         var piece = new NativePieceChange(window, world, bag);
-        if (Native.Get<Control>(world, "_pieceSocket") is { } socket)
+        if (Native.Get<Control>(world, "PieceChange.socket") is { } socket)
             socket.AddChild(new ServiceDropTarget(piece.CanDrop, piece.Drop) { Name = "piece_drop" });
         NativeWindows.Sync(window, piece.Rebuild);
         NativeServices.KeepInventoryClosed(window, world);
     }
 
-    private static void Name(World world, string field, string name) => NativeWindows.Name(Native.Get<Node>(world, field), name);
+    private static void Name(WorldRoot world, string field, string name) => NativeWindows.Name(Native.Get<Node>(world, field), name);
 
     private bool FullInventory => _window.GetMeta("piece_full_inventory", false).AsBool();
-    private Inventory Inv => Native.Get<Inventory>(_world, "Inv")!;
+    private Inventory Inv => Game.Session.Self.Inventory;
 
     /// <summary>Rebuilds the Classic bag (every carried cell) whenever a carried item or the staged piece changes.</summary>
     private void Rebuild()
@@ -446,7 +443,7 @@ public sealed class NativePieceChange
         var grid = _bag.GetChildren().OfType<GridContainer>().FirstOrDefault();
         if (grid == null) return;
         var inventory = Inv;
-        int staged = Native.Get<int>(_world, "_piecePosition");
+        int staged = Native.Get<int>(_world, "PieceChange.position");
         var hash = new HashCode();
         hash.Add(staged);
         for (int i = 0; i < Inventory.GridCount; i++)
@@ -466,9 +463,9 @@ public sealed class NativePieceChange
             int abs = Inventory.GridStart + i;
             var item = abs < inventory.Length ? inventory[abs] : default;
             var cell = new UpgradeBackpackCell(abs, item, staged == i);
-            cell.Pressed += () => Native.Call(_world, "PlacePiece", abs);
-            cell.Hovered += (slot, held) => Native.Call(_world, "ShowItemTooltip", slot, held, "");
-            cell.Unhovered += () => Native.Call(_world, "HideItemTooltip");
+            cell.Pressed += () => Native.Call(_world, "PieceChange.Place", abs);
+            cell.Hovered += (slot, held) => Native.Call(_world, "ItemTooltip.Show", slot, held, "");
+            cell.Unhovered += () => Native.Call(_world, "ItemTooltip.Hide");
             grid.AddChild(cell);
         }
     }
@@ -476,7 +473,7 @@ public sealed class NativePieceChange
     /// <summary>The carried slot a piece drag comes from, or -1 when the generator cannot take it.</summary>
     private int DropSlot(Variant data)
     {
-        if (!Native.Get<bool>(_world, "_pieceShown") || Native.Get<bool>(_world, "_pieceBusy") || Native.Get<bool>(_world, "_pieceSpinning")
+        if (!Native.Get<bool>(_world, "PieceChange.shown") || Native.Get<bool>(_world, "PieceChange.busy") || Native.Get<bool>(_world, "PieceChange.spinning")
             || data.VariantType != Variant.Type.Dictionary) return -1;
         var dict = data.AsGodotDictionary();
         if (!dict.ContainsKey("invFrom")) return -1;
@@ -491,7 +488,7 @@ public sealed class NativePieceChange
     private void Drop(Variant data)
     {
         int abs = DropSlot(data);
-        if (abs >= 0 && Native.Get<int>(_world, "_piecePosition") != abs - Inventory.GridStart) Native.Call(_world, "PlacePiece", abs);
+        if (abs >= 0 && Native.Get<int>(_world, "PieceChange.position") != abs - Inventory.GridStart) Native.Call(_world, "PieceChange.Place", abs);
     }
 }
 
@@ -566,7 +563,7 @@ public partial class UpgradeBackpackCell : PanelContainer
 
         var icon = new TextureRect
         {
-            Texture = ItemData.Icon(item.ItemId),
+            Texture = ItemIcons.Get(item.ItemId),
             ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             MouseFilter = MouseFilterEnum.Ignore,
@@ -615,7 +612,7 @@ public partial class UpgradeBackpackCell : PanelContainer
         var preview = new Control { MouseFilter = MouseFilterEnum.Ignore };
         preview.AddChild(new TextureRect
         {
-            Texture = ItemData.Icon(_item.ItemId),
+            Texture = ItemIcons.Get(_item.ItemId),
             Size = Size - new Vector2(IconInset * 2, IconInset * 2),
             Position = new Vector2(IconInset, IconInset) - _grab,
             ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
@@ -636,9 +633,9 @@ public static class NativeBagCells
 {
     private const float CellSize = 45f;
 
-    public static void Attach(HudWindow window, World world, string prefix, string take, string fit)
+    public static void Attach(HudWindow window, WorldRoot world, string prefix, string take, string fit)
     {
-        if (!Native.TryGet<Inventory>(world, "Inv", out var inventory)) return;
+        if (Game.Session.Self.Inventory is not { } inventory) return;
         var holder = new Control { Name = prefix + "cells", Visible = false };
         window.Body.AddChild(holder);
         var cells = new ItemSlotView[Inventory.GridCount];
@@ -646,8 +643,8 @@ public static class NativeBagCells
         {
             var cell = new ItemSlotView(CellSize) { Index = Inventory.GridStart + i, Name = prefix + i, Veiled = true };
             cell.RightClicked += c => Native.Call(world, take, c.Index);
-            cell.Hovered += c => Native.Call(world, "ShowItemTooltip", c.Index, c.Item, "");
-            cell.Unhovered += _ => Native.Call(world, "HideItemTooltip");
+            cell.Hovered += c => Native.Call(world, "ItemTooltip.Show", c.Index, c.Item, "");
+            cell.Unhovered += _ => Native.Call(world, "ItemTooltip.Hide");
             cell.DragOut = c => c.Item.IsEmpty ? default(Variant) : (Variant)new Godot.Collections.Dictionary { { "invFrom", c.Index } };
             holder.AddChild(cell);
             cells[i] = cell;

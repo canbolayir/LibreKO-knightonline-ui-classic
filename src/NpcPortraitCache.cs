@@ -236,6 +236,7 @@ public static class NpcPortraitCache
     }
     public static void Clear()
     {
+        foreach(var entry in Entries.Values) if(entry.Texture.IsCompletedSuccessfully) entry.Texture.Result?.Dispose();
         Entries.Clear();
         _generation++;
         if(_owner!=null && GodotObject.IsInstanceValid(_owner)) _owner.QueueFree();

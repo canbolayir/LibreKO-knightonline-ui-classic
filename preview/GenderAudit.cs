@@ -21,7 +21,7 @@ public partial class Preview
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
         PluginHost.Ui.ReplaceDialogs(request => new KnightOnlineUiClassic.Windows.MessageBox(request));
         // The client announces a completed change on the scene root, so the world joins the tree (without its game loop).
-        var world = new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled }; AddChild(world);
+        var world = PreviewFixtures.Prepared(new PetAuditWorld { ProcessMode = ProcessModeEnum.Disabled }); AddChild(world);
         var layer = (CanvasLayer)DetailCall(world, "BuildGenderClassicUiPreview", nation)!; AddChild(layer);
         var window = layer.GetChildren().OfType<HudWindow>().Single(); var panel = ClassicGenderSkin.Apply(window.Body)!;
         window.SetMeta("content_open_anchor", true);
@@ -43,13 +43,13 @@ public partial class Preview
         T Find<T>(string name) where T : Control => Descendants(panel).OfType<T>().Single(c => c.Name == name);
         var editor = Find<LookEditor>("look_editor"); var preview = Find<LookPreview>("look_preview");
         var colour = Find<ColorPickerButton>("look_colour"); var accept = Find<Button>("look_accept");
-        bool Busy() => (bool)DetailField(world, "_genderInFlight")!;
-        bool Armed() => (bool)DetailField(world, "_genderArmed")!;
-        Node3D Pivot() => (Node3D)typeof(LookPreview).GetField("_pivot", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(preview)!;
-        void Open() => DetailCall(world, "OpenGenderChange");
+        bool Busy() => (bool)DetailField(world, "GenderChangeWindow.InFlight")!;
+        bool Armed() => (bool)DetailField(world, "GenderChangeWindow.armed")!;
+        Node3D Pivot() => (Node3D)typeof(LookPreview).GetField("pivot", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(preview)!;
+        void Open() => DetailCall(world, "GenderChangeWindow.Open");
         void Load(int cls)
         {
-            var me = net.LastEnter; me.Class = cls; typeof(Net).GetMethod("SeedPreviewEnter", BindingFlags.NonPublic | BindingFlags.Instance)!.Invoke(net, new object[] { me });
+            var me = Game.Session.Self.LastEnter; me.Class = cls; Native.Call(Game.Session.Self, "SeedPreviewEnter", me);
             Open();
         }
         async Task Capture(string state, bool popup = false)
@@ -68,7 +68,7 @@ public partial class Preview
                 Require(label.GetThemeFont("font").GetStringSize(label.Text, HorizontalAlignment.Left, -1, 13).X <= label.Size.X, state + " complete label text " + label.Text);
             }
             var races = Find<VBoxContainer>("look_races").GetChildren().OfType<Button>().ToArray();
-            Require(races.Length == GenderChange.AllowedRaces(net.LastEnter.Class).Length && races.Count(b => b.ButtonPressed) == 1, state + " every allowed race and exactly one native selection");
+            Require(races.Length == GenderChange.AllowedRaces(Game.Session.Self.LastEnter.Class).Length && races.Count(b => b.ButtonPressed) == 1, state + " every allowed race and exactly one native selection");
             foreach (var button in races)
             {
                 Require(button.GetThemeFont("font") == Plugin.Kit.Bold && button.GetThemeFontSize("font_size") == 13, state + " uniform race font " + button.Name);
@@ -109,13 +109,13 @@ public partial class Preview
                 && Descendants(notice).OfType<Label>().Any(l => l.Text == text), state + " Classic message box shows the client's text: " + text);
             string file = (nation == 1 ? "karus" : "human") + "-" + state + ".png"; GetViewport().GetTexture().GetImage().SavePng(output + "/" + file);
             screens.Add(new { state, file, notice = text });
-            ((DialogRequest)typeof(Notice).GetField("_request", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(notice)!).Dismiss(); notice!.Free();
+            ((DialogRequest)typeof(Notice).GetField("request", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(notice)!).Dismiss(); notice!.Free();
         }
         try
         {
             await Frames(16); window.Position = new Vector2(220, 100); await Capture("initial");
-            Require(editor.Hair == net.LastEnter.Hair, "Opening preserves the saved RGB colour and style");
-            var other = GenderChange.AllowedRaces(net.LastEnter.Class).First(r => r != editor.Race);
+            Require(editor.Hair == Game.Session.Self.LastEnter.Hair, "Opening preserves the saved RGB colour and style");
+            var other = GenderChange.AllowedRaces(Game.Session.Self.LastEnter.Class).First(r => r != editor.Race);
             await Click(Find<Button>("look_race_" + other)); Require(editor.Race == other, "Actual native race selection changes preview"); await Capture("race-selected");
             foreach (var part in new[] { "face", "hair" })
             {
@@ -147,34 +147,34 @@ public partial class Preview
             await Click(Find<Button>("look_turn_right")); Require(Math.Abs(Pivot().Rotation.Y - angle) < .01, "Actual right turn restores native model");
             await KeyInput(Key.Enter); await KeyInput(Key.KpEnter); Require(!Busy() && !Armed(), "Enter and keypad Enter do not arm or consume a gender scroll");
             await Click(accept); Require(Armed() && !Busy() && accept.Text == "Confirm", "First change click only arms original consumable warning"); await Capture("armed");
-            await Click(Find<Button>("look_race_" + net.LastEnter.Race)); Require(!Armed(), "Editing appearance disarms previous confirmation");
+            await Click(Find<Button>("look_race_" + Game.Session.Self.LastEnter.Race)); Require(!Armed(), "Editing appearance disarms previous confirmation");
             await Click(accept); await Click(accept); Require(Busy(), "Second explicit click sends one native request"); await Capture("pending");
             int submittedRace = editor.Race, submittedFace = editor.Face, submittedHair = editor.Hair;
             await Click(Find<Button>("look_race_" + other)); await Click(Find<Button>("look_face_next")); await Click(colour); await Click(accept);
             Require(Busy() && !colour.GetPopup().Visible && editor.Race == submittedRace && editor.Face == submittedFace && editor.Hair == submittedHair, "Pending request cannot be edited or sent again");
             await KeyInput(Key.Escape); Require(!window.Visible && Busy() && Pivot().GetChildCount() == 0, "Escape closes preview and retains pending request");
             Open(); Require(!window.Visible && Busy(), "Reopen cannot replace an outstanding gender request");
-            DetailCall(world, "OnGenderChanged"); Require(!window.Visible && !Busy(), "Closed late success clears pending without reopening");
+            DetailCall(world, "GenderChangeWindow.OnChanged"); Require(!window.Visible && !Busy(), "Closed late success clears pending without reopening");
             await CaptureNotice("changed", ItemData.Text(GenderChange.ChangedText, "Change current character"));
-            Open(); DetailCall(world, "OnGenderChanged"); Require(window.Visible && TakeNotice() == null, "Unsolicited duplicate success cannot close a new editor");
-            foreach (int result in new[] { (int)Net.GenderChangeNoItem, (int)Net.GenderChangeFailed })
+            Open(); DetailCall(world, "GenderChangeWindow.OnChanged"); Require(window.Visible && TakeNotice() == null, "Unsolicited duplicate success cannot close a new editor");
+            foreach (int result in new[] { (int)GenderChangeResult.NoItem, (int)GenderChangeResult.Failed })
             {
-                await Click(accept); await Click(accept); DetailCall(world, "OnGenderChangeRefused", result);
+                await Click(accept); await Click(accept); DetailCall(world, "GenderChangeWindow.OnRefused", result);
                 Require(!Busy() && !Armed() && !window.Visible, "Refusal closes the service with the client's notice " + result);
-                await CaptureNotice(result == Net.GenderChangeNoItem ? "missing-scroll" : "refused",
-                    result == Net.GenderChangeNoItem ? ItemData.Text(GenderChange.NoItemText, "It does not have items.") : ItemData.Text(GenderChange.FailedText, "Gender change failed."));
+                await CaptureNotice((GenderChangeResult)result == GenderChangeResult.NoItem ? "missing-scroll" : "refused",
+                    (GenderChangeResult)result == GenderChangeResult.NoItem ? ItemData.Text(GenderChange.NoItemText, "It does not have items.") : ItemData.Text(GenderChange.FailedText, "Gender change failed."));
                 Open(); Require(window.Visible && !accept.Disabled && !colour.Disabled, "Reopening after a refusal starts unlocked " + result);
             }
             await Click(accept); await Click(accept); await Click(Find<Button>("look_cancel"));
             Require(!window.Visible && Busy(), "Pending Cancel closes without clearing the sent operation");
-            DetailCall(world, "OnGenderChangeRefused", (int)Net.GenderChangeNoItem);
+            DetailCall(world, "GenderChangeWindow.OnRefused", (int)GenderChangeResult.NoItem);
             Require(!window.Visible && !Busy(), "Closed refusal clears pending and keeps the service closed");
             var closedNotice = TakeNotice(); Require(closedNotice != null, "Closed refusal still explains itself with the client's notice"); closedNotice!.Free();
             Open(); var restoredColour = editor.Hair;
-            DetailCall(world, "OnGenderChangeRefused", (int)Net.GenderChangeFailed);
+            DetailCall(world, "GenderChangeWindow.OnRefused", (int)GenderChangeResult.Failed);
             Require(!Busy() && editor.Hair == restoredColour && Find<Label>("look_status").Text == "", "Unsolicited refusal cannot change a reopened idle service");
-            var availableClass = net.LastEnter.Class;
-            DetailCall(world, "CloseGenderChange"); Load(nation * 100 + 15);
+            var availableClass = Game.Session.Self.LastEnter.Class;
+            DetailCall(world, "GenderChangeWindow.Close"); Load(nation * 100 + 15);
             Require(!window.Visible && !Busy(), "Unsupported class cannot open the gender service"); Load(availableClass);
             foreach (int cls in new[] { nation * 100 + 6, nation * 100 + 8, nation * 100 + 10, nation * 100 + 12 })
             {
@@ -182,13 +182,13 @@ public partial class Preview
                 Load(cls); await Frames();
                 for (int i = 0; i < 8; i++)
                 {
-                    var options = GenderChange.AllowedRaces(cls); editor.Load(options, options[i % options.Length], 0, net.LastEnter.Hair); DetailCall(world, "ShowGenderLook");
+                    var options = GenderChange.AllowedRaces(cls); editor.Load(options, options[i % options.Length], 0, Game.Session.Self.LastEnter.Hair); DetailCall(world, "GenderChangeWindow.ShowLook");
                     Require(Find<VBoxContainer>("look_races").GetChildCount() == options.Length && Pivot().GetChildCount() == 1, "Same-frame shared rows and models are removed before reload " + cls + "/" + i);
                 }
                 await Capture("class-" + cls);
             }
-            typeof(World).GetField("_selfDead", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(world, true); await Click(accept);
-            Require(!Busy() && !Armed(), "Dead character cannot arm a charge"); typeof(World).GetField("_selfDead", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(world, false);
+            Native.Set(world, "Avatar.Dead", true); await Click(accept);
+            Require(!Busy() && !Armed(), "Dead character cannot arm a charge"); Native.Set(world, "Avatar.Dead", false);
             var originalPosition = window.Position; var p = Find<Control>("party_drag").GetGlobalRect().Position + new Vector2(120, 12);
             GetViewport().PushInput(new InputEventMouseMotion { Position = p, GlobalPosition = p }, true); await Frames(1);
             GetViewport().PushInput(new InputEventMouseButton { Position = p, GlobalPosition = p, ButtonIndex = MouseButton.Left, Pressed = true }, true);

@@ -88,14 +88,14 @@ public partial class Preview
             GetViewport().PushInput(new InputEventMouseButton { Position = hit, GlobalPosition = hit, ButtonIndex = button, Pressed = false, Factor = 1 });
             await Frames(2);
         }
-        async Task<(World World, HudWindow Window, ClassicBoardPanel Panel)> Open(string id, bool sheriff = false)
+        async Task<(WorldRoot World, HudWindow Window, ClassicBoardPanel Panel)> Open(string id, bool sheriff = false)
         {
-            var world = new World(); var window = (HudWindow)DetailCall(world, "BuildBoardWindowPreview", id, sheriff)!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildBoardWindowPreview", id, sheriff)!;
             AddChild(window); var panel = ClassicBoardSkin.Apply(window.Body)!;
             Require(panel != null, id + " Classic board skin applied to the prepared native window");
             await Frames(); return (world, window, panel!);
         }
-        async Task Close((World World, HudWindow Window, ClassicBoardPanel Panel) open, string shown)
+        async Task Close((WorldRoot World, HudWindow Window, ClassicBoardPanel Panel) open, string shown)
         {
             var close = Named<Button>(open.Panel, "board_close");
             await Hover(close); Require(close.GetDrawMode() == BaseButton.DrawMode.Hover, open.Window.Id + " close button receives actual hover");
@@ -105,7 +105,7 @@ public partial class Preview
         }
         async Task Drag(string id)
         {
-            var world = new World(); var window = (HudWindow)DetailCall(world, "BuildBoardWindowPreview", id, false)!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildBoardWindowPreview", id, false)!;
             AddChild(window); ClassicBoardSkin.Apply(window.Body); await Frames();
             window.Position = new Vector2(100, 80); Vector2 origin = window.Position, pointer = origin + new Vector2(120, 10);
             Named<Control>(window, "party_drag").EmitSignal(Control.SignalName.GuiInput,
@@ -147,7 +147,7 @@ public partial class Preview
             Require(Connected(post) && target.Editable && reward.Editable, "Post keeps the native request and editable fields");
             await Hover(post); Require(post.GetDrawMode() == BaseButton.DrawMode.Hover, "Post receives actual hover");
             await Capture(open.Window, panel, "post-hover"); await Leave();
-            await Click(post); DetailCall(open.World, "OnBountyPost", true); await Frames(2);
+            await Click(post); DetailCall(open.World, "Bounty.OnPost", true); await Frames(2);
             Require(target.Text == "" && reward.Text == "", "Accepted post clears the native form");
             DetailCall(open.World, "FillBounties", 24, true); await Frames();
             Require(panel.Selected == null, "A new server list clears the selection");
@@ -167,7 +167,7 @@ public partial class Preview
             Require(panel.Page == 2 && down.Disabled && !up.Disabled && RowsOf(panel).Length == 4, "Down arrow reaches the last page");
             await Capture(open.Window, panel, "long-page3");
             await Click(up); Require(panel.Page == 1, "Up arrow returns a page");
-            await Close(open, "_bountyShown");
+            await Close(open, "Bounty.shown");
         }
 
         // Fishing hall of fame.
@@ -190,7 +190,7 @@ public partial class Preview
             await Click(down); await Click(down);
             Require(panel.Page == 2 && down.Disabled && RowsOf(panel).Length == 6, "Fishing hall reaches its last page");
             await Capture(open.Window, panel, "long-page3");
-            await Close(open, "_fishHallShown");
+            await Close(open, "FishingHall.fishHallShown");
         }
 
         // Sheriff reports: view only.
@@ -205,7 +205,7 @@ public partial class Preview
             Require(panel.Selected != null && Named<Button>(panel, "report_vote_yes").Disabled && Named<Button>(panel, "report_vote_no").Disabled, "View-only votes stay disabled after selection");
             Require(Named<Label>(panel, "report_detail").Text == "Botting in Ronark Land.", "Selected report shows its reason");
             await Capture(open.Window, panel, "view-only-selected");
-            await Close(open, "_reportShown");
+            await Close(open, "Report.shown");
         }
         // Sheriff reports: King or GM.
         {
@@ -239,22 +239,22 @@ public partial class Preview
             Require(status.Text == "Voting yes…", "Vote Yes presses the row's native vote");
             await Click(Named<Button>(panel, "report_vote_no"));
             Require(status.Text == "Voting no…", "Vote No presses the row's native vote");
-            DetailCall(open.World, "OnReportResult", Net.ReportVoteNoSub, false); await Frames();
+            DetailCall(open.World, "Report.OnResult", (byte)ReportSubOpcode.VoteNo, false); await Frames();
             Require(status.Text.StartsWith("Vote rejected") && Ink(status) == new Color("ff6a6a"), "Rejected vote keeps the native warning colour");
             await Capture(open.Window, panel, "vote-rejected");
             var next = Named<Button>(panel, "report_next"); var prev = Named<Button>(panel, "report_prev");
             Require(prev.Disabled && !next.Disabled, "Native page arrows reflect the first server page");
             await Click(next);
-            Require((byte)DetailField(open.World, "_reportPage")! == 1, "Next arrow requests the native next page");
+            Require((byte)DetailField(open.World, "Report.page")! == 1, "Next arrow requests the native next page");
             DetailCall(open.World, "FillReports", 3, 2, false); await Frames();
             Require(Named<Label>(panel, "report_page").Text == "2 / 3" && !prev.Disabled && panel.Selected == null, "Second server page replaces the rows");
             await Capture(open.Window, panel, "page2");
             await Click(prev);
-            Require((byte)DetailField(open.World, "_reportPage")! == 0, "Previous arrow requests the native previous page");
+            Require((byte)DetailField(open.World, "Report.page")! == 0, "Previous arrow requests the native previous page");
             var refresh = Named<Button>(panel, "report_refresh");
             await Hover(refresh); Require(refresh.GetDrawMode() == BaseButton.DrawMode.Hover, "Refresh receives actual hover");
             await Capture(open.Window, panel, "refresh-hover"); await Leave();
-            await Click(refresh); Require(Connected(refresh) && (byte)DetailField(open.World, "_reportPage")! == 0, "Refresh keeps the native request");
+            await Click(refresh); Require(Connected(refresh) && (byte)DetailField(open.World, "Report.page")! == 0, "Refresh keeps the native request");
             await Click(file);
             Require(status.Text == "Enter the accused player's name.", "Submit with an empty form shows the native validation");
             Require(!rail.Visible, "Short reason hides the reason scroll rail");
@@ -263,12 +263,12 @@ public partial class Preview
             await Click(file);
             Require(status.Text == "Filing report…", "Submit files through the native handler");
             await Capture(open.Window, panel, "filing");
-            DetailCall(open.World, "OnReportResult", Net.ReportFileSub, true); await Frames();
+            DetailCall(open.World, "Report.OnResult", (byte)ReportSubOpcode.File, true); await Frames();
             Require(status.Text == "Report filed." && Named<LineEdit>(panel, "report_target").Text == "", "Filed report clears the native form");
             DetailCall(open.World, "FillReports", 1, 0, false); await Frames();
             Require(Descendants(panel.Rows!).OfType<Label>().Any(l => l.Text == "No open reports." && l.IsVisibleInTree()) && next.Disabled && prev.Disabled, "Empty report list shows the native empty line");
             await Capture(open.Window, panel, "empty");
-            await Close(open, "_reportShown");
+            await Close(open, "Report.shown");
         }
 
         // Nation force.
@@ -290,7 +290,7 @@ public partial class Preview
             DetailCall(open.World, "FillForces", true, 5, 9_999_999, 100); await Frames();
             Require(Named<Label>(panel, "forces_rank").Text == "Warlord" && Named<Label>(panel, "forces_percent").Text == "100%", "Highest rank and a full gauge");
             await Capture(open.Window, panel, "enlisted-max");
-            await Close(open, "_forcesShown");
+            await Close(open, "Forces.shown");
         }
 
         System.IO.File.WriteAllText(output + "/" + prefix + "-events-b.json",

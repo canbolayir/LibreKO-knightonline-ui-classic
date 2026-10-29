@@ -107,7 +107,7 @@ public partial class Preview
     }
 
     /// <summary>The controls the original art adds: card Buy / Add to Basket (native details and cart) and the pager.</summary>
-    private async Task MykoActions(World world, HudWindow window, PowerUpStoreCart cart, GridContainer grid, Func<Control, Task> click, Func<int, Task> frames, Func<string, Task> capture, Action<bool, string> require)
+    private async Task MykoActions(WorldRoot world, HudWindow window, PowerUpStoreCart cart, GridContainer grid, Func<Control, Task> click, Func<int, Task> frames, Func<string, Task> capture, Action<bool, string> require)
     {
         T Part<T>(string name) where T : Control => Descendants(window).OfType<T>().Single(c => c.Name == "pus_" + name);
         Button CardButton(PanelContainer card, string name) => Descendants(card).OfType<Button>().Single(b => b.Name == name);
@@ -122,9 +122,9 @@ public partial class Preview
         await click(Descendants(Part<PanelContainer>("details")).OfType<Button>().Single(b => b.TooltipText == "Close"));
         require(!Part<Control>("overlay").Visible && cart.Units == units + 1, "Closing the details leaves the basket unchanged");
         // Pager: a long category turns by whole pages (buttons and wheel).
-        var original = ((List<PowerUpStoreEntry>)DetailField(world, "_pusCatalog")!).ToList();
+        var original = ((List<PowerUpStoreEntry>)DetailField(world, "ShoppingMall.Model.Catalog")!).ToList();
         var longer = original.Concat(Enumerable.Range(0, 18).Select(i => original[i % original.Count] with { Id = 200 + i, Category = 1, Featured = false })).ToList();
-        DetailCall(world, "OnShoppingMallCatalog", longer); await frames(8);
+        DetailCall(world, "ShoppingMall.OnCatalog", longer); await frames(8);
         var page = Part<Label>("page"); var scroll = Part<ScrollContainer>("grid_scroll");
         require(page.Text == "1 / 3" && Part<Button>("page_previous").Disabled && !Part<Button>("page_next").Disabled, "Long category shows page 1 of 3 " + page.Text);
         await capture("pus-myko-page-1");
@@ -138,7 +138,7 @@ public partial class Preview
         await capture("pus-myko-page-3");
         await click(Part<Button>("page_previous")); await frames(4);
         require(page.Text == "2 / 3", "Previous turns back one page");
-        DetailCall(world, "OnShoppingMallCatalog", original); await frames(8);
+        DetailCall(world, "ShoppingMall.OnCatalog", original); await frames(8);
         require(page.Text == "1 / 1" && scroll.ScrollVertical == 0, "Native catalogue refresh returns to the first page");
     }
 }

@@ -85,28 +85,28 @@ public static class NativeOverlays
     /// </summary>
     private static readonly (string Field, NativeOverlay Part, string Name)[] Later =
     {
-        ("_soccerBoard", NativeOverlay.Score, "soccer_score"),
-        ("_nestTimerPanel", NativeOverlay.Toast, "event_timer"),
-        ("_royaleBoard", NativeOverlay.Board, "royale_board"),
-        ("_genieSub", NativeOverlay.GenieQuick, "genie_quick"),
-        ("_eventTitleColumn", NativeOverlay.Titles, "event_titles"),
-        ("_gatherChip", NativeOverlay.Chip, "gather_chip"),
-        ("_areaBanner", NativeOverlay.Announcement, "area_banner"),
-        ("_msgOut", NativeOverlay.Announcement, "skill_message"),
-        ("_orderMessage", NativeOverlay.Announcement, "order_message"),
-        ("_killSplash", NativeOverlay.Announcement, "kill_splash"),
-        ("_nereidFlagBoard", NativeOverlay.LabelPlate, "nereid_flags"),
-        ("_nereidScoreBoard", NativeOverlay.LabelPlate, "nereid_score"),
-        ("_nereidStrip", NativeOverlay.MapPlate, "nereid_strip"),
-        ("_dropOff", NativeOverlay.Action, "siege_drop_off"),
-        ("_towerButton", NativeOverlay.TowerButton, "siege_tower"),
-        ("_rankerPaper", NativeOverlay.Paper, "ranker_paper"),
-        ("_wantedToggle", NativeOverlay.Wanted, "wanted_toggle"),
-        ("_wantedOpen", NativeOverlay.Wanted, "wanted_open"),
+        ("SoccerSystem.soccerBoard", NativeOverlay.Score, "soccer_score"),
+        ("Chaos.NestTimerPanel", NativeOverlay.Toast, "event_timer"),
+        ("KnightRoyaleWindow.RoyaleBoard", NativeOverlay.Board, "royale_board"),
+        ("GenieSub.Sub", NativeOverlay.GenieQuick, "genie_quick"),
+        ("EventTitlesWindow.TitleColumn", NativeOverlay.Titles, "event_titles"),
+        ("GatherSystem.gatherChip", NativeOverlay.Chip, "gather_chip"),
+        ("KnightRoyaleWindow.areaBanner", NativeOverlay.Announcement, "area_banner"),
+        ("MsgOut.msgOut", NativeOverlay.Announcement, "skill_message"),
+        ("ChatNotices.orderMessage", NativeOverlay.Announcement, "order_message"),
+        ("KillSplash.killSplash", NativeOverlay.Announcement, "kill_splash"),
+        ("Nereid.FlagBoard", NativeOverlay.LabelPlate, "nereid_flags"),
+        ("Nereid.ScoreBoard", NativeOverlay.LabelPlate, "nereid_score"),
+        ("Nereid.Strip", NativeOverlay.MapPlate, "nereid_strip"),
+        ("SiegeTowerSystem.DropOff", NativeOverlay.Action, "siege_drop_off"),
+        ("SiegeTowerSystem.TowerButton", NativeOverlay.TowerButton, "siege_tower"),
+        ("RankerMessageWindow.Paper", NativeOverlay.Paper, "ranker_paper"),
+        ("VanguardWindow.wantedToggle", NativeOverlay.Wanted, "wanted_toggle"),
+        ("VanguardWindow.wantedOpen", NativeOverlay.Wanted, "wanted_open"),
     };
 
     /// <summary>Prepares the overlays that already exist and the later ones once (safe to call repeatedly).</summary>
-    public static void PrepareLater(World world)
+    public static void PrepareLater(WorldRoot world)
     {
         foreach (var (field, part, name) in Later)
         {
@@ -118,31 +118,31 @@ public static class NativeOverlays
             Apply(part, node);
         }
         // The client draws the order message (top 110) over the area banner's title (top 100); the skin stacks them.
-        if (Native.Has(world, "_orderMessage") && Native.Has(world, "_areaBanner")
-            && Native.Get<Control>(world, "_orderMessage") is { } order && GodotObject.IsInstanceValid(order) && !order.HasMeta(StackBelow)
-            && Native.Get<Control>(world, "_areaBanner") is { } area && GodotObject.IsInstanceValid(area))
+        if (Native.Has(world, "ChatNotices.orderMessage") && Native.Has(world, "KnightRoyaleWindow.areaBanner")
+            && Native.Get<Control>(world, "ChatNotices.orderMessage") is { } order && GodotObject.IsInstanceValid(order) && !order.HasMeta(StackBelow)
+            && Native.Get<Control>(world, "KnightRoyaleWindow.areaBanner") is { } area && GodotObject.IsInstanceValid(area))
             order.SetMeta(StackBelow, area);
         NativeContextMenus.PrepareLater(world);
     }
 
     /// <summary>Prepares every overlay of a world; safe to call again.</summary>
-    public static void Prepare(World world)
+    public static void Prepare(WorldRoot world)
     {
         if (!GodotObject.IsInstanceValid(world) || world.HasMeta(Prepared)) return;
         world.SetMeta(Prepared, true);
         PrepareEvents(world);
-        Apply(NativeOverlay.Death, Named(world, "_deathPanel", "death_notice"));
-        foreach (var (field, name) in new[] { ("_inviteAskDialog", "party_invite_prompt"), ("_challengeAskDialog", "duel_prompt"), ("_townRecallDialog", "town_recall_prompt") })
+        Apply(NativeOverlay.Death, Named(world, "DeathDialog.Panel", "death_notice"));
+        foreach (var (field, name) in new[] { ("PartyInvites.inviteAskDialog", "party_invite_prompt"), ("PartyInvites.inviteWaitDialog", "party_invite_wait"), ("Challenge.askDialog", "duel_prompt"), ("TownRecall.dialog", "town_recall_prompt") })
             Apply(NativeOverlay.Prompt, Named(world, field, name));
-        foreach (var (field, name) in new[] { ("_upgradeNoticeLabel", "upgrade_announcement"), ("_shoutLabel", "shout_announcement") })
+        foreach (var (field, name) in new[] { ("UpgradeNotice.label", "upgrade_announcement"), ("Shout.label", "shout_announcement") })
             if (Native.Get<Label>(world, field)?.GetParent()?.GetParent() is PanelContainer panel) Apply(NativeOverlay.Announcement, Named(panel, name));
-        Apply(NativeOverlay.Announcement, Named(world, "_battleeventBanner", "battle_announcement"));
-        Apply(NativeOverlay.Announcement, Named(world, "_battleeventResult", "battle_result"));
-        Apply(NativeOverlay.Announcement, Named(world, "_clanBattlePanel", "clan_battle_announcement"));
-        Apply(NativeOverlay.Announcement, Named(world, "_lootPrompt", "loot_prompt"));
-        Apply(NativeOverlay.Chip, Named(world, "_zoneabilityChip", "zone_chip"));
-        Apply(NativeOverlay.Score, Named(world, "_battleeventBoard", "battle_score"));
-        Apply(NativeOverlay.Score, Named(world, "_bdwScoreBanner", "border_war_score"));
+        Apply(NativeOverlay.Announcement, Named(world, "BattleEvent.battleeventBanner", "battle_announcement"));
+        Apply(NativeOverlay.Announcement, Named(world, "BattleEvent.battleeventResult", "battle_result"));
+        Apply(NativeOverlay.Announcement, Named(world, "ClanBattle.panel", "clan_battle_announcement"));
+        Apply(NativeOverlay.Announcement, Named(world, "Loot.prompt", "loot_prompt"));
+        Apply(NativeOverlay.Chip, Named(world, "ZoneAbility.ZoneabilityChip", "zone_chip"));
+        Apply(NativeOverlay.Score, Named(world, "BattleEvent.BattleeventBoard", "battle_score"));
+        Apply(NativeOverlay.Score, Named(world, "BorderDefenseWar.BdwScoreBanner", "border_war_score"));
         PrepareLoot(world);
         NativeContextMenus.Prepare(world);
         PrepareLater(world);
@@ -155,28 +155,28 @@ public static class NativeOverlays
         }) { Name = "classic_overlay_later" });
     }
 
-    private static void PrepareEvents(World world)
+    private static void PrepareEvents(WorldRoot world)
     {
-        var modal = Named(world, "_joinModal", "event_registration");
-        Named(world, "_joinModalTitle", "registration_title");
-        Named(world, "_joinModalTimer", "registration_timer");
-        Named(world, "_joinModalBar", "registration_bar");
-        Named(world, "_joinModalStatus", "registration_status");
-        Named(world, "_joinModalCount", "registration_count");
-        Named(world, "_joinModalBtn", "registration_join");
-        Named(world, "_joinModalCloseBtn", "registration_close");
-        var countdown = Named(world, "_bifrostBanner", "event_countdown");
-        Named(world, "_bifrostTitleLbl", "countdown_title");
-        Named(world, "_bifrostTimerLbl", "countdown_timer");
-        Named(world, "_bifrostBar", "countdown_bar");
-        var leave = Named(world, "_inZoneLeaveBanner", "event_leave");
-        Named(world, "_inZoneLeaveTitleLbl", "leave_title");
-        Named(world, "_inZoneLeaveBtn", "leave_action");
+        var modal = Named(world, "Bifrost.joinModal", "event_registration");
+        Named(world, "Bifrost.joinModalTitle", "registration_title");
+        Named(world, "Bifrost.joinModalTimer", "registration_timer");
+        Named(world, "Bifrost.joinModalBar", "registration_bar");
+        Named(world, "Bifrost.joinModalStatus", "registration_status");
+        Named(world, "Bifrost.joinModalCount", "registration_count");
+        Named(world, "Bifrost.joinModalBtn", "registration_join");
+        Named(world, "Bifrost.joinModalCloseBtn", "registration_close");
+        var countdown = Named(world, "Bifrost.banner", "event_countdown");
+        Named(world, "Bifrost.titleLbl", "countdown_title");
+        Named(world, "Bifrost.timerLbl", "countdown_timer");
+        Named(world, "Bifrost.bar", "countdown_bar");
+        var leave = Named(world, "Bifrost.inZoneLeaveBanner", "event_leave");
+        Named(world, "Bifrost.inZoneLeaveTitleLbl", "leave_title");
+        Named(world, "Bifrost.inZoneLeaveBtn", "leave_action");
         // The registration and countdown share the client's remaining time and registration state. The state is read
         // only while one of them is shown, after the client's own frame and just before the skins sync to it.
         if (modal is Control host)
         {
-            int urgentSeconds = Native.Get<int>(typeof(World), "BifrostUrgentSecs");
+            int urgentSeconds = Native.Get<int>(Native.StaticOwner("LibreKO.Features.Windows.BifrostFeature"), "UrgentSecs");
             var watcher = new NativeEventWatcher(() =>
             {
                 if (!GodotObject.IsInstanceValid(world)) return;
@@ -205,25 +205,23 @@ public static class NativeOverlays
     /// counts the plain Bifrost time (<c>BifrostSecondsLeft</c>). Older clients keep one sign-up on the World
     /// (<c>_bifrostRemaining</c>, <c>_isEventRegistered</c>).
     /// </summary>
-    internal static (int Seconds, bool Registered, bool Elsewhere) SignUpState(World world)
+    internal static (int Seconds, bool Registered, bool Elsewhere) SignUpState(WorldRoot world)
     {
-        if (Net.I is not { } net || !Native.Has(net, "SignUps"))
-            return (Native.Get<int>(world, "_bifrostRemaining"), Native.Get<bool>(world, "_isEventRegistered"), false);
-        if (Native.Get<object>(net, "SignUps") is not { } board) return (0, false, false);
+        var board = Game.Session.Bifrost.SignUps;
         var current = Native.Get<object>(board, "Current");
         int shown = current == null ? 0 : Convert.ToInt32(current);
         int mine = Native.Get<object>(board, "Registered") is { } registered ? Convert.ToInt32(registered) : 0;
         var utc = DateTime.UtcNow;
-        object? seconds = shown != 0 ? Native.Call(board, "SecondsLeft", current, utc) : Native.Call(world, "BifrostSecondsLeft", utc);
+        object? seconds = shown != 0 ? Native.Call(board, "SecondsLeft", current, utc) : Native.Call(world, "Bifrost.SecondsLeft", utc);
         return (seconds is int left ? left : 0, shown != 0 && mine == shown, mine != 0 && mine != shown);
     }
 
-    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Node, World> _lootWorlds = new();
+    private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<Node, WorldRoot> _lootWorlds = new();
 
-    private static void PrepareLoot(World world)
+    private static void PrepareLoot(WorldRoot world)
     {
         // The loot box is a twelve-cell grid of client item cells (entry order) with Take all and Filter under it.
-        if (Named(world, "_lootPanel", "loot_window") is not { } panel || Native.Get<ItemSlotView[]>(world, "_lootCells") is not { } cells) return;
+        if (Named(world, "Loot.Panel", "loot_window") is not { } panel || Native.Get<ItemSlotView[]>(world, "Loot.cells") is not { } cells) return;
         for (int i = 0; i < cells.Length; i++)
         {
             if (Named(cells[i], "loot_slot_" + i) == null) return;
@@ -243,10 +241,10 @@ public static class NativeOverlays
     /// <summary>Closes the loot box through the client, as Escape does; the client's box has no close button.</summary>
     public static void CloseLoot(Node panel)
     {
-        if (_lootWorlds.TryGetValue(panel, out var world) && GodotObject.IsInstanceValid(world)) Native.Call(world, "CloseLoot");
+        if (_lootWorlds.TryGetValue(panel, out var world) && GodotObject.IsInstanceValid(world)) Native.Call(world, "Loot.Close");
     }
 
-    private static Node? Named(World world, string field, string name) => Named(Native.Get<Node>(world, field), name);
+    private static Node? Named(WorldRoot world, string field, string name) => Named(Native.Get<Node>(world, field), name);
 
     private static Node? Named(Node? node, string name)
     {

@@ -62,7 +62,7 @@ public partial class ClassicPetPlate : Control
         }
     }
 
-    private static PetSheet? Pet => Net.I?.Pet;
+    private static PetSheet? Pet => Game.Session.Pet.Pet;
 
     public override void _Process(double delta)
     {

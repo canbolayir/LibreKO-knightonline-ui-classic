@@ -18,15 +18,15 @@ public static class NativeRepurchase
     public const string TooDear = "rb_too_dear", Expired = "rb_expired";
     public const int Rows = 10;
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta(PreparedMeta)) return;
-        var names = Native.Get<Label[]>(world, "_rbNames");
-        var prices = Native.Get<Label[]>(world, "_rbPrices");
-        var times = Native.Get<Label[]>(world, "_rbTimes");
-        var buys = Native.Get<Button[]>(world, "_rbBuy");
-        var scroll = Native.Get<VScrollBar>(world, "_rbScroll");
-        var empty = Native.Get<Label>(world, "_rbEmpty");
+        var names = Native.Get<Label[]>(world, "Repurchase.rbNames");
+        var prices = Native.Get<Label[]>(world, "Repurchase.rbPrices");
+        var times = Native.Get<Label[]>(world, "Repurchase.rbTimes");
+        var buys = Native.Get<Button[]>(world, "Repurchase.rbBuy");
+        var scroll = Native.Get<VScrollBar>(world, "Repurchase.RbScroll");
+        var empty = Native.Get<Label>(world, "Repurchase.rbEmpty");
         if (names == null || prices == null || times == null || buys == null || scroll == null || empty == null
             || names.Length != Rows || prices.Length != Rows || times.Length != Rows || buys.Length != Rows
             || names.Concat(prices).Concat(times).Any(l => l == null) || buys.Any(b => b == null)

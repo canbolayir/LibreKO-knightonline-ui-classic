@@ -20,54 +20,54 @@ public partial class Preview
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(1000,700);
         AddChild(new ColorRect { Color=new Color("252822"),Size=new Vector2(1000,700),MouseFilter=MouseFilterEnum.Ignore });
         var net=new Net();typeof(Net).GetProperty("I")!.SetValue(null,net);
-        net.Sheet.SeedWealth(1_234_567,50_000);net.Sheet.SetMaxWeight(10_000);net.Sheet.SeedProgress(70,0,100);
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net,new MyInfo { Nation=nation,Class=nation==1?105:205,Race=nation==1?1:11,
-            Name="Classic Preview",Gear=new int[8],Inventory=new NativeSlot[InventoryConstants.InventoryTotal] });
+        Game.Session.Self.Sheet.SeedWealth(1_234_567,50_000);Game.Session.Self.Sheet.SetMaxWeight(10_000);Game.Session.Self.Sheet.SeedProgress(70,0,100);
+        Native.Set(Game.Session.Self, "LastEnter",new MyInfo { Nation=nation,Class=nation==1?105:205,Race=nation==1?1:11,
+            Name="Classic Preview",Gear=new int[8] }); Game.Session.Self.Inventory.Reset(new NativeSlot[InventoryConstants.InventoryTotal]);
         ItemData.EnsureLoaded();
-        var groups=(Dictionary<int,List<ItemData.SellEntry>>)typeof(ItemData).GetField("_sell",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
+        var groups=(Dictionary<int,List<ItemData.SellEntry>>)typeof(ItemData).GetField("sell",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
         var group=groups.Where(g=>g.Key!=249000 && g.Value.Count(e=>ItemData.Get(e.Id)!=null)>24 && g.Value.Any(e=>ItemData.Get(e.Id)?.Countable>0))
             .OrderBy(g=>g.Key).First();
         var entry=group.Value.Where(e=>ItemData.Get(e.Id) is { Countable: >0 } && ItemData.BuyPrice(e.Id)>0 && ItemData.IsSellable(e.Id)).OrderBy(e=>ItemData.BuyPrice(e.Id)).First();
-        var world=new World();
-        var inventory=(Inventory)typeof(World).GetProperty("Inv",BindingFlags.Instance|BindingFlags.NonPublic)!.GetValue(world)!;
+        var world=PreviewFixtures.Prepared(new WorldRoot());
+        var inventory=(Inventory)Game.Session.Self.Inventory;
         inventory.EnsureLength(InventoryConstants.InventoryTotal);
         inventory[Inventory.GridStart]=new NativeSlot { ItemId=entry.Id,Count=63,Durability=ItemData.MaxDurabilityOf(entry.Id) };
-        DetailCall(world,"BuildInventoryPanel");DetailCall(world,"BuildNpcDialog");DetailCall(world,"BuildVendorPanel");
-        var bridge=Activator.CreateInstance(typeof(World).GetNestedType("PluginGameBridge",BindingFlags.NonPublic)!,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{world},null)!;
-        var attach=typeof(PluginGame).GetMethod("Attach",BindingFlags.Instance|BindingFlags.NonPublic)!;attach.Invoke(game,Enumerable.Repeat(bridge,attach.GetParameters().Length).ToArray());
-        var invLayer=(CanvasLayer)DetailField(world,"_invLayer")!;invLayer.Reparent(this);
+        DetailCall(world,"InventoryWindow.BuildPanel");DetailCall(world,"NpcDialogWindow.BuildNpcDialog");DetailCall(world,"Vendor.BuildPanel");
+        var bridge=Native.Call(world, "CreatePluginAdapters")!;
+        var attach=typeof(PluginGame).GetMethod("Attach",BindingFlags.Instance|BindingFlags.NonPublic)!;Native.Call(bridge, "AttachTo", game);
+        var invLayer=(CanvasLayer)DetailField(world,"InventoryWindow.invLayer")!;invLayer.Reparent(this);
         var invWindow=new HudWindow("inventory","Inventory",new Vector2(520,48)) { Visible=false };
-        invLayer.AddChild(invWindow);invWindow.Body.AddChild((Control)DetailField(world,"_invContent")!);
-        ((Dictionary<string,HudWindow>)DetailField(world,"_mainWindows")!).Add("Inventory",invWindow);
+        invLayer.AddChild(invWindow);invWindow.Body.AddChild((Control)DetailField(world,"InventoryWindow.InvContent")!);
+        ((Dictionary<string,HudWindow>)DetailField(world,"MainWindows.Windows")!).Add("Inventory",invWindow);
         foreach(var c in invWindow.GetChildren().OfType<Control>()) c.Visible=false;
         invWindow.AddThemeStyleboxOverride("panel",new StyleBoxEmpty());
         var host=(WindowHost)Create(typeof(WindowHost),"inventory","Inventory",invWindow,(Action)(()=>invWindow.Visible=false));
         var classicInventory=new InventoryWindow(host);invWindow.AddChild(classicInventory);invWindow.ResetSize();
         void RefreshBag()
         {
-            DetailCall(world,"RefreshInventoryUI");
+            DetailCall(world,"InventoryWindow.RefreshUI");
             typeof(PluginGame).GetMethod("RaiseInventory",BindingFlags.Instance|BindingFlags.NonPublic)!.Invoke(game,null);
         }
-        var vendor=(HudWindow)DetailField(world,"_vendorPanel")!;NativeVendor.Prepare(vendor,world);
+        var vendor=(HudWindow)DetailField(world,"Vendor.Panel")!;NativeVendor.Prepare(vendor,world);
         var sourceActions=Descendants(vendor.Body).OfType<BaseButton>().Select(b=>b.GetInstanceId()).ToArray();
         bool nativeReference=OS.GetCmdlineUserArgs().Contains("vendor-native-reference");
         var shell=nativeReference?null:ClassicVendorSkin.Apply(vendor.Body)!;
         PluginHost.Ui.ReplaceDialogs(request=>new KnightOnlineUiClassic.Windows.MessageBox(request));
-        ((CanvasLayer)DetailField(world,"_vendorLayer")!).Reparent(this);
-        ((CanvasLayer)DetailField(world,"_itemTipLayer")!).Reparent(this);
-        var quantity=(QuantityPrompt)DetailField(world,"_tradePrompt")!;quantity.Reparent(this);
+        ((CanvasLayer)DetailField(world,"Vendor.layer")!).Reparent(this);
+        ((CanvasLayer)DetailField(world,"ItemTooltip.tipLayer")!).Reparent(this);
+        var quantity=(QuantityPrompt)DetailField(world,"Vendor.TradePrompt")!;quantity.Reparent(this);
         using var npcSeed=JsonDocument.Parse(System.IO.File.ReadAllText(ProjectSettings.GlobalizePath("res://../../LibreKO/Server/LibreKO.Game/Seed/Data/Npcs.json")));
         string shopName=npcSeed.RootElement.EnumerateArray().First(n=>n.GetProperty("SellingGroup").GetInt32()==group.Key).GetProperty("Name").GetString()!;
         void OpenShop(int sellingGroup)
         {
             var npc=npcSeed.RootElement.EnumerateArray().FirstOrDefault(n=>n.GetProperty("SellingGroup").GetInt32()==sellingGroup);
             string name=npc.ValueKind==JsonValueKind.Undefined?"Merchant":npc.GetProperty("Name").GetString()!;
-            typeof(World).GetField("_vendorNpcName",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,name);
-            DetailCall(world,"OpenVendor",sellingGroup);
+            Native.Set(Game.Session, "NpcQuest.LastNpcName", name);
+            DetailCall(world,"Vendor.Open",sellingGroup);
         }
-        typeof(World).GetField("_vendorNpcName",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,shopName);
-        typeof(World).GetField("_vendorNpcId",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,701);
-        DetailCall(world,"OpenVendor",group.Key);
+        Native.Set(Game.Session, "NpcQuest.LastNpcName", shopName);
+        Native.Set(Game.Session, "NpcQuest.LastNpcId", 701);
+        DetailCall(world,"Vendor.Open",group.Key);
         async Task Frames(int count=6) { for(int i=0;i<count;i++) await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw); }
         if(nativeReference)
         {
@@ -84,7 +84,7 @@ public partial class Preview
             reference.SetText("String_PersonTradeEdit_Msg","Please enter the quantity of the item.");
             if(reference.Get("edit_trade") is LineEdit referenceField) referenceField.Text="";
             var referenceIconArea=referenceArt.Find("area_trade_icon")!;
-            reference.AddChild(new TextureRect {Texture=ItemData.Icon(entry.Id),Position=referenceIconArea.Position-new Vector2(referenceArt.X,referenceArt.Y),
+            reference.AddChild(new TextureRect {Texture=ItemIcons.Get(entry.Id),Position=referenceIconArea.Position-new Vector2(referenceArt.X,referenceArt.Y),
                 Size=referenceIconArea.SizeVec,ExpandMode=TextureRect.ExpandModeEnum.IgnoreSize,MouseFilter=Control.MouseFilterEnum.Ignore});
             await Frames(5);GetViewport().GetTexture().GetImage().SavePng(output+"/"+(nation==1?"karus":"human")+"-original-quantity.png");
             System.IO.File.WriteAllText(output+"/"+(nation==1?"karus":"human")+"-original-quantity.json",JsonSerializer.Serialize(new{x=reference.Position.X,y=reference.Position.Y,width=reference.Size.X,height=reference.Size.Y}));
@@ -108,8 +108,9 @@ public partial class Preview
         }
         void ApplyGold(int total)
         {
-            NativeGoldLog.Changed(world,total);DetailCall(world,"OnGoldChange",total);RaiseNew();
-            DetailCall(world,"OnVendorGold",total);
+            var change=new GoldChange(total,total-Game.Session.Self.Sheet.Gold,false);Game.Session.Self.Sheet.SetGold(total);
+            NativeGoldLog.Changed(world,change);DetailCall(world,"Progression.OnGoldChange",change);RaiseNew();
+            DetailCall(world,"Vendor.OnGold",change);
         }
         // Shop trades are logged once, by the client's own shop line (the plugin only applies the balance).
         string ShopLine(int textId,int amount)=>ItemData.Text(textId,"%d").Replace("%d",amount.ToString("n0"));
@@ -163,7 +164,7 @@ public partial class Preview
             Input.ParseInputEvent(new InputEventKey {Pressed=true,Keycode=Key.Escape,PhysicalKeycode=Key.Escape});
             Input.ParseInputEvent(new InputEventKey {Pressed=false,Keycode=Key.Escape,PhysicalKeycode=Key.Escape});
         }
-        bool InFlight() => (bool)DetailField(world,"_tradeInFlight")!;
+        bool InFlight() => (bool)DetailField(world,"Session.Vendor.TradeInFlight")!;
         ClassicTradeApproval Approval() => Descendants(shell!).OfType<ClassicTradeApproval>().Single(a=>!a.IsQueuedForDeletion());
         void VerifyApproval(bool buy, int itemId, int count, long total)
         {
@@ -196,7 +197,7 @@ public partial class Preview
         }
         await Capture("catalogue");
         Require(sourceActions.All(id=>Descendants(vendor).OfType<BaseButton>().Any(b=>b.GetInstanceId()==id)),"All original vendor action instances retained");
-        var cells=(ItemSlotView[])DetailField(world,"_vendorCells")!;
+        var cells=(ItemSlotView[])DetailField(world,"Vendor.Cells")!;
         Require(cells.Select(c=>c.Position).Distinct().Count()==24 && cells.All(c=>c.Size==new Vector2(45,45)),"24 actual catalogue cells occupy distinct 45px bounds");
         Require(cells.All(cell=>CountLabel(cell).VerticalAlignment==VerticalAlignment.Bottom
             && CountLabel(cell).HorizontalAlignment==HorizontalAlignment.Right
@@ -204,18 +205,18 @@ public partial class Preview
             "All 24 store quantity labels use the same two-pixel right/bottom inset as the Inventory overlay, independent of socket padding");
         Require(shell!.BagCells.Count==28 && shell.BagCells.All(c=>c.Size==new Vector2(45,45)),"Original 28-slot trading inventory is embedded beneath the catalogue on the Inventory 45 px grid");
         Require(!invWindow.Visible,"Separate inventory stays hidden during the transaction");
-        Require(!((Button)DetailField(world,"_vendorBuy")!).IsVisibleInTree(),"Trade is driven by item drag instead of a separate Buy action");
-        var pager=(ServicePager)DetailField(world,"_vendorPager")!;pager.Step(1);await Capture("page-2");
+        Require(!((Button)DetailField(world,"Vendor.buy")!).IsVisibleInTree(),"Trade is driven by item drag instead of a separate Buy action");
+        var pager=(ServicePager)DetailField(world,"Vendor.pager")!;pager.Step(1);await Capture("page-2");
         Require(pager.Page==1,"Native catalogue paging keeps original packet positions");
-        var search=(LineEdit)DetailField(world,"_vendorSearch")!;
+        var search=(LineEdit)DetailField(world,"Vendor.Search")!;
         Require(!search.IsVisibleInTree() && !Descendants(shell).OfType<LineEdit>().Any(e=>e.IsVisibleInTree()),"Original shop composition has no visible search field");
         Require(Descendants(shell).OfType<TextureRect>().Single(t=>t.Name=="trade_coin").IsVisibleInTree(),"Gold wallet uses the original nation-specific coin artwork");
         async Task<ClassicTradeCatalogueSlot> ShowItem(int id)
         {
-            int currentGroup=(int)DetailField(world,"_vendorGroup")!;
+            int currentGroup=(int)DetailField(world,"Vendor.group")!;
             var entries=groups[currentGroup].Where(e=>ItemData.Get(e.Id)!=null && e.List>=0 && e.List<24).OrderBy(e=>e.Line).ThenBy(e=>e.List).ToArray();
             int index=Array.FindIndex(entries,e=>e.Id==id);if(index<0) throw new Exception("Missing real catalogue fixture");
-            DetailCall(world,"ShowVendorPage",index/24);await Frames();
+            DetailCall(world,"Vendor.ShowPage",index/24);await Frames();
             return Descendants(cells[index%24]).OfType<ClassicTradeCatalogueSlot>().Single();
         }
         var dragHandle=Descendants(shell).OfType<HBoxContainer>().Single(c=>c.IsVisibleInTree());
@@ -233,11 +234,11 @@ public partial class Preview
         var initialAmount=Descendants(quantity).OfType<MoneyEdit>().Single();
         Require(quantity.Visible && !InFlight() && initialAmount.Value==63,"Right-clicking a bag stack prefills its entire carried quantity");Escape();await Frames();
         var hover=hit.GetGlobalRect().GetCenter();Input.ParseInputEvent(new InputEventMouseMotion {Position=hover,GlobalPosition=hover});await Frames();
-        var tip=(Control)DetailField(world,"_itemTipPanel")!;tip.Position=new Vector2(693,120);await Capture("item-tooltip");
+        var tip=(Control)DetailField(world,"ItemTooltip.TipPanel")!;tip.Position=new Vector2(693,120);await Capture("item-tooltip");
         // The client's shop-goods tooltip line: the purchase price with the zone tariff, red when the wallet is short.
         string Digits(string text)=>new string(text.Where(char.IsDigit).ToArray());
         var hoveredDef=ItemData.Get(entry.Id)!;
-        long purchase=ShopTooltipPrice.Purchase(ItemData.BuyPrice(entry.Id),hoveredDef.SaleType,net.CurrentZoneAbility.Tariff,KnightOnlineUiClassic.Native.Native.Get<bool>(world,"LoyaltyShop"));
+        long purchase=ShopTooltipPrice.Purchase(ItemData.BuyPrice(entry.Id),hoveredDef.SaleType,Game.Session.ZoneAbility.CurrentZoneAbility.Tariff,KnightOnlineUiClassic.Native.Native.Get<bool>(world,"Vendor.LoyaltyShop"));
         var tipLines=Descendants(tip).Select(n=>n switch { Label l when l.IsVisibleInTree() => l.Text, RichTextLabel r when r.IsVisibleInTree() => r.GetParsedText(), _ => null })
             .Where(t=>t!=null).SelectMany(t=>t!.Split('\n')).ToList();
         var priceLines=tipLines.Where(t=>t.Contains("Pric")).ToList();
@@ -264,7 +265,7 @@ public partial class Preview
         Require(amount.Value==10 && !ok.Disabled,"Entering quantity updates the native live total and validation");
         amount.Text="0";amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);await Capture("quantity-invalid");
         Require(ok.Disabled,"Zero quantity disables confirmation");
-        long maximum=(long)typeof(QuantityPrompt).GetField("_max",BindingFlags.Instance|BindingFlags.NonPublic)!.GetValue(quantity)!;
+        long maximum=(long)typeof(QuantityPrompt).GetField("max",BindingFlags.Instance|BindingFlags.NonPublic)!.GetValue(quantity)!;
         amount.Value=maximum;amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);await Capture("quantity-max");
         Require(amount.Value==maximum && amount.Text==maximum.ToString("0") && !ok.Disabled,"Maximum quantity uses plain digits and respects the native money, weight and stack limit");
         amount.Text="10";amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);
@@ -274,7 +275,7 @@ public partial class Preview
         Require(Approval().PanelBounds.GetCenter().DistanceTo(vendor.GetGlobalRect().GetCenter())<1,"Final approval is centered on the current shop position");
         VerifyApproval(true,entry.Id,10,(long)ItemData.BuyPrice(entry.Id)*10);
         shell.BagCells[0].OnDrop!(Inventory.GridStart,Inventory.GridStart+2);
-        Require(!(bool)DetailField(world,"_moveInFlight")!,"Native inventory movement is locked while final approval is pending");
+        Require(!(bool)DetailField(world,"InventoryWindow.moveInFlight")!,"Native inventory movement is locked while final approval is pending");
         Escape();await Frames();
         Require(!shell.ModalOpen && !InFlight() && inventory[Inventory.GridStart].Count==63,"Cancelling buy approval leaves the stack and wallet unchanged");
         await PointerDrag(hit,target);amount.Value=maximum;amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);ok.EmitSignal(BaseButton.SignalName.Pressed);
@@ -286,7 +287,7 @@ public partial class Preview
         Require(!shell.ModalOpen && !InFlight() && inventory[Inventory.GridStart].Count==63,"The original quantity Cancel button cancels final approval without changing items or sending a trade");
         await RightClick(hit);amount.Text="10";amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);ok.EmitSignal(BaseButton.SignalName.Pressed);await Frames();
         await Approve();await Capture("buy-pending");
-        object pending=DetailField(world,"_pendingTrade")!;var pendingType=pending.GetType();
+        object pending=DetailField(world,"Vendor.pendingTrade")!;var pendingType=pending.GetType();
         Require((int)pendingType.GetField("AbsSlot")!.GetValue(pending)! == Inventory.GridStart && (int)pendingType.GetField("Count")!.GetValue(pending)! == 10,
             "Purchase prioritizes the existing matching stack before the empty drop destination");
         Require(inventory[Inventory.GridStart].Count==63 && inventory[Inventory.GridStart+2].IsEmpty && InFlight(),"Inventory waits for the authoritative trade acknowledgement");
@@ -298,13 +299,13 @@ public partial class Preview
         int pendingPage=pager.Page;shell.Page(1);Escape();await Frames();
         Require(pager.Page==pendingPage && vendor.Visible && InFlight(),"Pending trade rejects paging and Escape without losing its acknowledgement");
         shell.BagCells[0].OnDrop!(Inventory.GridStart,Inventory.GridStart+2);
-        Require(!(bool)DetailField(world,"_moveInFlight")!,"Native inventory handler also refuses a move during purchase acknowledgement");
-        int buyCost=ItemData.BuyPrice(entry.Id)*10;ApplyGold(net.Sheet.Gold-buyCost);
-        DetailCall(world,"OnTradeResult",true,1,net.Sheet.Gold,buyCost);RaiseNew();RefreshBag();
+        Require(!(bool)DetailField(world,"InventoryWindow.moveInFlight")!,"Native inventory handler also refuses a move during purchase acknowledgement");
+        int buyCost=ItemData.BuyPrice(entry.Id)*10;ApplyGold(Game.Session.Self.Sheet.Gold-buyCost);
+        DetailCall(world,"Vendor.OnTradeResult",true,1,Game.Session.Self.Sheet.Gold,buyCost);RaiseNew();RefreshBag();
         Require(inventory[Inventory.GridStart].ItemId==entry.Id && inventory[Inventory.GridStart].Count==73,"Successful acknowledgement merges the actual purchased quantity");
         Require(game.Log.History.Count==1 && game.Log.History[^1].Text==ShopLine(7683,buyCost) && game.Log.History[^1].Kind==GameLogKind.Item,
             "Authoritative purchase records the actual gold expense once in Info (the client's shop line, no duplicate plugin line)");
-        ApplyGold(net.Sheet.Gold);
+        ApplyGold(Game.Session.Self.Sheet.Gold);
         Require(game.Log.History.Count==1,"Repeated unchanged balances do not duplicate the Info transfer");
         await Capture("purchase-confirmed");
         // Mouse-wheel amounts (ff78eef): a part picked while dragging a trading-inventory stack moves at once to
@@ -335,10 +336,10 @@ public partial class Preview
             await Capture("bag-split-drag",false);
             Input.ParseInputEvent(new InputEventMouseButton {ButtonIndex=MouseButton.Left,Pressed=false,Position=end,GlobalPosition=end});await Frames(2);
             Input.ParseInputEvent(new InputEventMouseMotion {Position=Vector2.Zero,GlobalPosition=Vector2.Zero});await Frames(2);
-            object move=DetailField(world,"_moveCur")!;
-            Require(!GetViewport().GuiIsDragging() && !quantity.Visible && (bool)DetailField(world,"_moveInFlight")! && (ushort)move.GetType().GetField("Amount")!.GetValue(move)! == part,
+            object move=DetailField(world,"InventoryWindow.moveCur")!;
+            Require(!GetViewport().GuiIsDragging() && !quantity.Visible && (bool)DetailField(world,"InventoryWindow.moveInFlight")! && (ushort)move.GetType().GetField("Amount")!.GetValue(move)! == part,
                 "Dropping the picked part on another trading-inventory cell moves it at once (the client's bag split)");
-            DetailCall(world,"OnItemMoveResult",true);RefreshBag();await Frames();
+            DetailCall(world,"DeliverItemMoveResult",true);RefreshBag();await Frames();
             Require(inventory[Inventory.GridStart].Count==3 && inventory[Inventory.GridStart+2].ItemId==entry.Id && inventory[Inventory.GridStart+2].Count==part
                 && CountBadge(shell.BagCells[0])=="3" && CountBadge(shell.BagCells[2])==part.ToString(),"The acknowledged split leaves the rest of the stack in place");
             await Capture("bag-split-done");
@@ -365,8 +366,8 @@ public partial class Preview
         }
         finally { ItemData.PremiumSeller=false; }
         await RightClick(shell.BagCells[0]);amount.Text="10";amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);ok.EmitSignal(BaseButton.SignalName.Pressed);await Frames();await Approve();
-        int saleCredit=ItemData.SellPrice(entry.Id)*10;ApplyGold(net.Sheet.Gold+saleCredit);
-        DetailCall(world,"OnTradeResult",true,1,net.Sheet.Gold,saleCredit);RaiseNew();RefreshBag();
+        int saleCredit=ItemData.SellPrice(entry.Id)*10;ApplyGold(Game.Session.Self.Sheet.Gold+saleCredit);
+        DetailCall(world,"Vendor.OnTradeResult",true,1,Game.Session.Self.Sheet.Gold,saleCredit);RaiseNew();RefreshBag();
         Require(inventory[Inventory.GridStart].Count==63,"Successful sale removes only the confirmed quantity");await Capture("sale-confirmed");
         Require(game.Log.History.Count==2 && game.Log.History[^1].Text==ShopLine(7682,saleCredit) && game.Log.History[^1].Kind==GameLogKind.Item,
             "Authoritative sale records the actual gold income once in Info (the client's shop line, no duplicate plugin line)");
@@ -375,11 +376,11 @@ public partial class Preview
         Require(infoText.GetParsedText().Contains(ShopLine(7683,buyCost)) && infoText.GetParsedText().Contains(ShopLine(7682,saleCredit))
             && !infoText.GetParsedText().Contains("You spent") && !infoText.GetParsedText().Contains("You received"),
             "The rendered Classic Info control displays the expense and the income once each");
-        ApplyGold(net.Sheet.Gold-1234);
+        ApplyGold(Game.Session.Self.Sheet.Gold-1234);
         Require(game.Log.History[^1].Text=="You spent −1,234 gold." || game.Log.History[^1].Text==$"You spent −{1234:n0} gold.",
             "A gold change the client does not log itself is still recorded as a signed Classic line");
         Require(game.Log.History[^1].Color==new Color("f07870"),"The Classic expense line is red");
-        ApplyGold(net.Sheet.Gold+1234);
+        ApplyGold(Game.Session.Self.Sheet.Gold+1234);
         infoWindow.Visible=false;
         await PointerDrag(hit,target);Escape();await Frames(2);
         Require(!quantity.Visible && !InFlight() && vendor.Visible,"Escape cancels the quantity editor while keeping the shop open");
@@ -393,8 +394,8 @@ public partial class Preview
         Require(!InFlight() && inventory[Inventory.GridStart+1].ItemId==gear,"Cancelling equipment sale preserves the item and sends no trade");
         await RightClick(shell.BagCells[1]);await Frames();await Approve();
         Require(InFlight() && inventory[Inventory.GridStart+1].ItemId==gear,"Equipment sale confirmation still waits for server acknowledgement");
-        int gearCredit=ItemData.SellPrice(gear);ApplyGold(net.Sheet.Gold+gearCredit);
-        DetailCall(world,"OnTradeResult",true,1,net.Sheet.Gold,gearCredit);RaiseNew();RefreshBag();await Capture("equipment-sale-confirmed");
+        int gearCredit=ItemData.SellPrice(gear);ApplyGold(Game.Session.Self.Sheet.Gold+gearCredit);
+        DetailCall(world,"Vendor.OnTradeResult",true,1,Game.Session.Self.Sheet.Gold,gearCredit);RaiseNew();RefreshBag();await Capture("equipment-sale-confirmed");
         Require(inventory[Inventory.GridStart+1].IsEmpty,"Confirmed equipment sale removes the correct item");
         var gearGroup=groups.First(g=>g.Value.Any(e=>e.Id==gear));
         OpenShop(gearGroup.Key);hit=await ShowItem(gear);
@@ -402,8 +403,8 @@ public partial class Preview
         Require(!quantity.Visible && !InFlight() && shell.ModalOpen,"Right-click equipment purchase goes directly to final approval without a quantity prompt");
         await Approve();await Capture("equipment-buy-pending");
         Require(!quantity.Visible && InFlight() && inventory[Inventory.GridStart+1].IsEmpty,"Non-stackable equipment purchase needs no quantity editor and awaits acknowledgement");
-        int gearCost=ItemData.BuyPrice(gear);ApplyGold(net.Sheet.Gold-gearCost);
-        DetailCall(world,"OnTradeResult",true,1,net.Sheet.Gold,gearCost);RaiseNew();RefreshBag();await Capture("equipment-buy-confirmed");
+        int gearCost=ItemData.BuyPrice(gear);ApplyGold(Game.Session.Self.Sheet.Gold-gearCost);
+        DetailCall(world,"Vendor.OnTradeResult",true,1,Game.Session.Self.Sheet.Gold,gearCost);RaiseNew();RefreshBag();await Capture("equipment-buy-confirmed");
         Require(inventory[Inventory.GridStart+1].ItemId==gear,"Equipment purchase preserves the empty drop destination");
         inventory[Inventory.GridStart+1]=default;OpenShop(group.Key);hit=await ShowItem(entry.Id);
         inventory[Inventory.GridStart+1]=new NativeSlot {ItemId=entry.Id,Count=1,Durability=ItemData.MaxDurabilityOf(entry.Id)};RefreshBag();await Frames();
@@ -439,11 +440,11 @@ public partial class Preview
             && Descendants(classicInventory).OfType<ClassicSlot>().Any(c=>c.Current.ItemId==entry.Id && c.Current.Count==1),
             "The same one-unit stack displays 1 in the separate Classic inventory");
         invWindow.Visible=false;
-        var nativeInv=(System.Collections.IList)DetailField(world,"_invBagCells")!;
+        var nativeInv=(System.Collections.IList)DetailField(world,"InventoryWindow.InvBagCells")!;
         NativeCountBadge.Apply((Control)nativeInv[1]!);Require(CountBadge(nativeInv[1]!)=="1","The native inventory also displays a one-unit stack badge");
         foreach(string typeName in new[]{"WarehouseCell","MerchantCell"})
         {
-            var type=typeof(World).GetNestedType(typeName,BindingFlags.NonPublic)!;
+            var type=typeof(WorldRoot).GetNestedType(typeName,BindingFlags.NonPublic)!;
             var cell=(Control)Activator.CreateInstance(type,0,typeName=="WarehouseCell"?(object)false:45)!;
             var set=type.GetMethod("Set",typeName=="WarehouseCell"?new[]{typeof(NativeSlot)}:new[]{typeof(NativeSlot),typeof(string)})!;
             set.Invoke(cell,typeName=="WarehouseCell"?new object[]{inventory[Inventory.GridStart+1]}:new object[]{inventory[Inventory.GridStart+1],""});NativeCountBadge.Apply(cell);
@@ -471,31 +472,31 @@ public partial class Preview
         Require(!quantity.Visible && shell.ModalOpen && !InFlight(),"A one-unit stack skips quantity and opens final sale approval");Escape();await Frames();
         inventory[Inventory.GridStart+1]=default;RefreshBag();await Frames();
         await PointerDrag(shell.BagCells[0],target);await Frames();
-        Require((bool)DetailField(world,"_moveInFlight")! && inventory[Inventory.GridStart].Count==63,"Moving between embedded bag cells uses native inventory movement");
+        Require((bool)DetailField(world,"InventoryWindow.moveInFlight")! && inventory[Inventory.GridStart].Count==63,"Moving between embedded bag cells uses native inventory movement");
         Require(shell.TransactionBlocked,"Inventory acknowledgement locks subsequent shop trades");
         DetailCall(world,"AskBuy",entry.Id,-1);Require(!quantity.Visible && !InFlight(),"Native buy handler refuses a purchase while inventory movement is pending");
-        DetailCall(world,"OnItemMoveResult",true);RefreshBag();await Capture("inventory-moved");
+        DetailCall(world,"DeliverItemMoveResult",true);RefreshBag();await Capture("inventory-moved");
         Require(inventory[Inventory.GridStart].IsEmpty && inventory[Inventory.GridStart+2].Count==63,"Acknowledged inventory move updates the embedded bag");
         var saved=Enumerable.Range(Inventory.GridStart,Inventory.GridCount).Select(s=>inventory[s]).ToArray();
         for(int i=0;i<Inventory.GridCount;i++) inventory[Inventory.GridStart+i]=new NativeSlot {ItemId=entry.Id,Count=Inventory.StackMax};
-        RefreshBag();DetailCall(world,"RefreshVendorDetail");await Frames();await PointerDrag(hit,target);await Capture("bags-full");
+        RefreshBag();DetailCall(world,"Vendor.RefreshDetail");await Frames();await PointerDrag(hit,target);await Capture("bags-full");
         Require(!quantity.Visible && !InFlight() && Status().Contains("full"),"Full inventory and capped stacks reject a purchase with a visible reason");
-        for(int i=0;i<saved.Length;i++) inventory[Inventory.GridStart+i]=saved[i];RefreshBag();DetailCall(world,"RefreshVendorDetail");
-        net.Sheet.SeedWealth(0,50_000);DetailCall(world,"OnVendorGold",0);await RightClick(hit);await Capture("insufficient-gold");
+        for(int i=0;i<saved.Length;i++) inventory[Inventory.GridStart+i]=saved[i];RefreshBag();DetailCall(world,"Vendor.RefreshDetail");
+        Game.Session.Self.Sheet.SeedWealth(0,50_000);DetailCall(world,"Vendor.OnGold",new GoldChange(0,0,false));await RightClick(hit);await Capture("insufficient-gold");
         Require(!quantity.Visible && !InFlight() && Status().Contains("gold"),"Right-click purchase with insufficient funds is refused with the native reason");
-        net.Sheet.SeedWealth(1_234_567,50_000);DetailCall(world,"OnVendorGold",1_234_567);
+        Game.Session.Self.Sheet.SeedWealth(1_234_567,50_000);DetailCall(world,"Vendor.OnGold",new GoldChange(1_234_567,0,false));
         if(quantity.Visible) { Escape();await Frames(); }
-        net.Sheet.SetGold(ItemData.BuyPrice(entry.Id));DetailCall(world,"OnVendorGold",net.Sheet.Gold);
+        Game.Session.Self.Sheet.SetGold(ItemData.BuyPrice(entry.Id));DetailCall(world,"Vendor.OnGold",Game.Session.Self.Sheet.Gold);
         await PointerDrag(hit,target);await Capture("single-buy-approval");
         Require(!quantity.Visible && shell.ModalOpen && !InFlight(),"When only one unit can be bought, purchase skips quantity and requests approval");
-        net.Sheet.SetGold(0);DetailCall(world,"OnVendorGold",0);await Approve();await Capture("approval-funds-changed");
+        Game.Session.Self.Sheet.SetGold(0);DetailCall(world,"Vendor.OnGold",0);await Approve();await Capture("approval-funds-changed");
         Require(!InFlight() && !shell.ModalOpen && Status().Contains("gold"),"Final buy confirmation rechecks funds changed after the approval opened");
-        net.Sheet.SeedWealth(1_234_567,50_000);DetailCall(world,"OnVendorGold",1_234_567);
+        Game.Session.Self.Sheet.SeedWealth(1_234_567,50_000);DetailCall(world,"Vendor.OnGold",new GoldChange(1_234_567,0,false));
         var weighted=groups.SelectMany(g=>g.Value.Select(e=>(Group:g.Key,Entry:e))).First(e=>ItemData.Get(e.Entry.Id) is {Countable:>0,Weight:>1} && ItemData.BuyPrice(e.Entry.Id)>0);
         OpenShop(weighted.Group);hit=await ShowItem(weighted.Entry.Id);
-        net.Sheet.SetMaxWeight(1);RefreshBag();await PointerDrag(hit,target);await Capture("weight-limit");
+        Game.Session.Self.Sheet.SetMaxWeight(1);RefreshBag();await PointerDrag(hit,target);await Capture("weight-limit");
         Require(Descendants(shell).OfType<Label>().Any(l=>l.IsVisibleInTree() && l.Text==$"Weight : {Plugin.Kit.Game.Character.Weight/10f:0.0}/{1/10f:0.0}"),"The weight line shows the lowered limit behind the refusal");
-        Require(!quantity.Visible && !InFlight() && Status().Contains("heavy"),"Weight limit produces the native refusal without changing inventory");net.Sheet.SetMaxWeight(10_000);RefreshBag();
+        Require(!quantity.Visible && !InFlight() && Status().Contains("heavy"),"Weight limit produces the native refusal without changing inventory");Game.Session.Self.Sheet.SetMaxWeight(10_000);RefreshBag();
         OpenShop(group.Key);hit=await ShowItem(entry.Id);
         await PointerDrag(hit,target);amount.Text="999999";amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);await Capture("quantity-over-limit");
         Require(ok.Disabled,"An amount above the actual trade limit cannot be confirmed");Escape();await Frames();
@@ -523,15 +524,15 @@ public partial class Preview
             await PointerDrag(hit,target);amount.Text="1";amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);
             ok.EmitSignal(BaseButton.SignalName.Pressed);await Frames();await Approve();
             Require(InFlight(),"Server refusal fixture starts from a real pending purchase");
-            int countBefore=inventory[Inventory.GridStart+2].Count;int moneyBefore=net.Sheet.Gold;
-            DetailCall(world,"OnTradeResult",false,refusal,moneyBefore,0);await Capture("server-refusal-"+refusal);
-            Require(!InFlight() && !shell.TransactionBlocked && inventory[Inventory.GridStart+2].Count==countBefore && net.Sheet.Gold==moneyBefore && Status().Length>0,
+            int countBefore=inventory[Inventory.GridStart+2].Count;int moneyBefore=Game.Session.Self.Sheet.Gold;
+            DetailCall(world,"Vendor.OnTradeResult",false,refusal,moneyBefore,0);await Capture("server-refusal-"+refusal);
+            Require(!InFlight() && !shell.TransactionBlocked && inventory[Inventory.GridStart+2].Count==countBefore && Game.Session.Self.Sheet.Gold==moneyBefore && Status().Length>0,
                 $"Server refusal {refusal} releases the lock, preserves inventory and money, and displays its reason");
         }
-        typeof(World).GetField("_selfDead",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,true);await Frames();
+        Native.Set(world, "Avatar.Dead", true);await Frames();
         DetailCall(world,"AskBuy",entry.Id,-1);DetailCall(world,"AskSell",Inventory.GridStart+2);
         Require(shell.TradeBlocked && !quantity.Visible && !InFlight() && !Descendants(shell).OfType<Button>().Single(b=>b.TooltipText=="Close").Disabled,"Death prevents buying and selling while allowing the shop to close");
-        typeof(World).GetField("_selfDead",BindingFlags.Instance|BindingFlags.NonPublic)!.SetValue(world,false);
+        Native.Set(world, "Avatar.Dead", false);
         OpenShop(group.Key);await Frames();hit=Descendants(cells[0]).OfType<ClassicTradeCatalogueSlot>().Single();var oldPayload=cells[0].DragOut!(cells[0]);int oldId=cells[0].Item.ItemId;
         await Hold(hit);shell.Page(1);await Frames();await ReleasePointer();
         Require(!GetViewport().GuiIsDragging() && cells[0].Item.ItemId!=oldId && !target._CanDropData(Vector2.Zero,oldPayload),"Paging cancels the held item and rejects its stale catalogue identity");
@@ -544,35 +545,35 @@ public partial class Preview
         foreach(var fixture in new[]{(255000,"sundries"),(267000,"dc-sundries"),(277000,"ghost-sundries"),(253000,"potions"),(201001,"weapons"),(202001,"armor"),(254000,"upgrade-scrolls"),(250000,"scrolls")})
         {
             OpenShop(fixture.Item1);await Capture(fixture.Item2);
-            var catalogue=(ShopCatalogue)DetailField(world,"_vendorCatalogue")!;
+            var catalogue=(ShopCatalogue)DetailField(world,"Vendor.Catalogue")!;
             var expected=groups.GetValueOrDefault(fixture.Item1,new()).Where(e=>ItemData.Get(e.Id)!=null && e.List>=0 && e.List<24).OrderBy(e=>e.Line).ThenBy(e=>e.List).ToArray();
             Require(pager.Pages==ShopCatalogue.PagesFor(expected.Length),$"{fixture.Item2}: page count packs all real source products without empty source pages");
             var ids=new List<int>();
             for(int p=0;p<pager.Pages;p++)
             {
-                DetailCall(world,"ShowVendorPage",p);await Frames(2);ids.AddRange(cells.Where(c=>!c.Item.IsEmpty).Select(c=>c.Item.ItemId));
+                DetailCall(world,"Vendor.ShowPage",p);await Frames(2);ids.AddRange(cells.Where(c=>!c.Item.IsEmpty).Select(c=>c.Item.ItemId));
                 Require(cells.Select(c=>c.Item.ItemId).SkipWhile(id=>id!=0).All(id=>id==0),$"{fixture.Item2} page {p+1}: occupied slots start at the top-left and have no gaps");
             }
             Require(ids.SequenceEqual(expected.Select(e=>e.Id)),$"{fixture.Item2}: every real product appears exactly in source order");
-            var nativeEntries=(Dictionary<int,ItemData.SellEntry>)DetailField(world,"_vendorEntries")!;
+            var nativeEntries=(Dictionary<int,ItemData.SellEntry>)DetailField(world,"Vendor.entries")!;
             Require(expected.GroupBy(e=>e.Id).All(g=>nativeEntries[g.Key].Line==g.First().Line && nativeEntries[g.Key].List==g.First().List),$"{fixture.Item2}: visual packing retains original buy-packet Line/List coordinates");
             if(pager.Pages>1) await Capture(fixture.Item2+"-last-page");
             merchantCatalogues.Add(new{group=fixture.Item1,kind=fixture.Item2,products=expected.Length,pages=pager.Pages});
         }
         var longName=groups.Where(g=>g.Key!=249000).SelectMany(g=>g.Value.Select(e=>(Group:g.Key,Entry:e)))
             .Where(e=>ItemData.Get(e.Entry.Id)!=null && ItemData.BuyPrice(e.Entry.Id)>0).OrderByDescending(e=>ItemData.DisplayName(e.Entry.Id).Length).First();
-        int savedGold=net.Sheet.Gold;net.Sheet.SetGold(int.MaxValue);net.Sheet.SetMaxWeight(int.MaxValue);
+        int savedGold=Game.Session.Self.Sheet.Gold;Game.Session.Self.Sheet.SetGold(int.MaxValue);Game.Session.Self.Sheet.SetMaxWeight(int.MaxValue);
         OpenShop(longName.Group);DetailCall(world,"AskBuy",longName.Entry.Id,-1);await Frames();
         if(quantity.Visible) { amount.Text="1";amount.EmitSignal(LineEdit.SignalName.TextChanged,amount.Text);ok.EmitSignal(BaseButton.SignalName.Pressed); }
         await Capture("long-name-approval");VerifyApproval(true,longName.Entry.Id,1,ItemData.BuyPrice(longName.Entry.Id));
         Require(Descendants(Approval()).OfType<Label>().Single(l=>l.Name=="trade_item_name").TooltipText==ItemData.DisplayName(longName.Entry.Id),
             "The longest real catalogue name retains its complete tooltip while wrapping within the fixed item band");
-        Escape();await Frames();net.Sheet.SetGold(savedGold);net.Sheet.SetMaxWeight(10_000);
+        Escape();await Frames();Game.Session.Self.Sheet.SetGold(savedGold);Game.Session.Self.Sheet.SetMaxWeight(10_000);
         // The weight line refreshes with the bag; refresh it now so the capture never shows the raised limit.
         RefreshBag();await Frames();
         OpenShop(249000);await Capture("loyalty-shop");
         Require(Descendants(shell).OfType<Label>().Any(l=>l.IsVisibleInTree() && l.Text==$"Weight : {Plugin.Kit.Game.Character.Weight/10f:0.0}/{10_000/10f:0.0}"),"The weight line shows the restored limit");
-        Require(((Label)DetailField(world,"_vendorEmpty")!).Visible && ((Button)DetailField(world,"_vendorBuy")!).Disabled,"An empty real catalogue has a clear message and disabled purchase");
+        Require(((Label)DetailField(world,"Vendor.empty")!).Visible && ((Button)DetailField(world,"Vendor.buy")!).Disabled,"An empty real catalogue has a clear message and disabled purchase");
         Require(!shell.CanSell(new Godot.Collections.Dictionary{{"invFrom",Inventory.GridStart+2}}),"National Points shop rejects item sale drops");
         Require(Descendants(shell).OfType<Label>().Any(l=>l.Text=="NP" && l.IsVisibleInTree()),"NP shop immediately displays the actual wallet currency");
         Require(!Status().Contains("Not enough gold"),"Changing shop currency clears obsolete refusal messages");

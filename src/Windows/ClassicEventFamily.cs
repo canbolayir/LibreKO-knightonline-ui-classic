@@ -130,7 +130,7 @@ public static class ClassicEventFamily
         if (Near(native, UiTheme.Gold) || Near(native, UiTheme.Neutral) || Near(native, UiTheme.Warning) || Near(native, UiTheme.Bronze)) return ClassicEventPanel.Caption;
         if (Near(native, UiTheme.TextHi) || Near(native, UiTheme.Self) || Near(native, Colors.White) || Near(native, new Color("f1ead9"))) return ClassicEventPanel.Ink;
         if (Near(native, UiTheme.TextLo) || Near(native, UiTheme.TextDim)) return ClassicEventPanel.Muted;
-        if (Near(native, UiTheme.Good)) return ClassicEventPanel.Ready;
+        if (Near(native, UiTheme.Good)) return ClassicEventPanel.Accepted;
         if (Near(native, UiTheme.Bad) || Near(native, UiTheme.Hp)) return ClassicEventPanel.Refused;
         if (Near(native, UiTheme.Premium) || Near(native, UiTheme.Mp)) return new Color("9cd8f0");
         // Other client accents keep their meaning in the nearest Classic ink: greys by brightness, then by hue.
@@ -138,7 +138,7 @@ public static class ClassicEventFamily
         float hue = native.H;
         if (hue < .05f || hue > .9f) return ClassicEventPanel.Refused;
         if (hue < .2f) return native.V > .88f && native.S < .5f ? new Color("ffe094") : ClassicEventPanel.Caption;
-        if (hue < .45f) return ClassicEventPanel.Ready;
+        if (hue < .45f) return ClassicEventPanel.Accepted;
         if (hue < .75f) return new Color("9cd8f0");
         return ClassicEventPanel.Ink;
     }
@@ -362,7 +362,7 @@ public partial class ClassicFamilyGauge : ProgressBar
     private void Sync()
     {
         if (_source == null || !GodotObject.IsInstanceValid(_source)) return;
-        float shown = NativeApi.Get<float>(_source, "_frac");
+        float shown = NativeApi.Get<float>(_source, "frac");
         if (Math.Abs(Value - shown) > .0001f) Value = shown;
     }
 }

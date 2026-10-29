@@ -81,36 +81,36 @@ public partial class Preview
         void Require(bool valid, string text) { if (!valid) throw new Exception("SKILL_RULES_AUDIT: " + text); checks.Add(text); }
 
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
-        var login = new LoginNet(); typeof(LoginNet).GetProperty("I")!.SetValue(null, login);
-        net.Sheet.SeedProgress(83, 0, 100);
-        net.Vitals.Seed(3000, 3000, 2000, 2000);
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net, new MyInfo { Nation = nation, Class = nation * 100 + 6, Race = nation == 1 ? 1 : 11,
-            Name = "Skill Rules", Gear = new int[8], Inventory = new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal] });
+        var login = new LoginNet(); typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, login);
+        Game.Session.Self.Sheet.SeedProgress(83, 0, 100);
+        Game.Session.Self.Vitals.Seed(3000, 3000, 2000, 2000);
+        Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation * 100 + 6, Race = nation == 1 ? 1 : 11,
+            Name = "Skill Rules", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal]);
         SkillData.EnsureLoaded(); ItemData.EnsureLoaded();
         byte[] seed = { 4, 0, 0, 0, 0, 60, 20, 23, 10 };
-        net.Mastery.Seed(seed);
-        var world = new World();
-        FieldInfo Field(string name) => typeof(World).GetField(name, AnyMember)!;
-        Field("_selfClass").SetValue(world, nation * 100 + 6);
-        ((Inventory)typeof(World).GetProperty("Inv", AnyMember)!.GetValue(world)!).EnsureLength(InventoryConstants.InventoryTotal);
-        var bar = (int[])Field("_hotbar").GetValue(world)!;
-        var bridge = Activator.CreateInstance(typeof(World).GetNestedType("PluginGameBridge", BindingFlags.NonPublic)!, AnyMember, null, new object[] { world }, null)!;
+        Game.Session.Self.Mastery.Seed(seed);
+        var world = PreviewFixtures.Prepared(new WorldRoot());
+        PreviewFixtures.ClientMember Field(string name) => new(name);
+        Field("Session.Self.Class").SetValue(world, nation * 100 + 6);
+        ((Inventory)Game.Session.Self.Inventory).EnsureLength(InventoryConstants.InventoryTotal);
+        var bar = (int[])Field("Hotbar.Slots").GetValue(world)!;
+        var bridge = Native.Call(world, "CreatePluginAdapters")!;
         var attach = typeof(PluginGame).GetMethod("Attach", AnyMember)!;
-        attach.Invoke(game, Enumerable.Repeat(bridge, attach.GetParameters().Length).ToArray());
-        var genieBridge = Activator.CreateInstance(typeof(World).GetNestedType("PluginGenieBridge", BindingFlags.NonPublic)!, AnyMember, null, new object[] { world }, null)!;
+        Native.Call(bridge, "AttachTo", game);
+        var genieBridge = Native.Call(world, "CreatePluginGenie")!;
         typeof(PluginGame).GetMethod("AttachGenie", AnyMember)!.Invoke(game, new[] { genieBridge });
         var recorder = DispatchProxy.Create<IGameHotbar, RecordingHotbar>();
-        ((RecordingHotbar)(object)recorder).Inner = bridge;
-        var hotbarProxy = typeof(PluginGame).GetField("_hotbar", AnyMember)!.GetValue(game)!;
+        ((RecordingHotbar)(object)recorder).Inner = Native.Get<IGameHotbar>(bridge, "Hotbar")!;
+        var hotbarProxy = typeof(PluginGame).GetField("hotbar", AnyMember)!.GetValue(game)!;
         hotbarProxy.GetType().GetField("Source")!.SetValue(hotbarProxy, recorder);
         var record = (RecordingHotbar)(object)recorder;
         NativeGame.Source = new ClientGame();
-        typeof(NativeHudChat).GetField("_world", AnyMember)!.SetValue(null, new WeakReference<World>(world));
-        string localBar = (string)typeof(World).GetMethod("LocalHotbarPath", AnyMember)!.Invoke(world, null)!;
+        typeof(NativeHudChat).GetField("_world", AnyMember)!.SetValue(null, new WeakReference<WorldRoot>(world));
+        string localBar = (string)Native.Call(world, "Hotbar.LocalPath")!;
         void Raise() => typeof(PluginGame).GetMethod("RaiseHotbar", AnyMember)!.Invoke(game, null);
-        void SetZone(int zone) => Field("_zone").SetValue(world, zone);
-        void SetLoaded(bool loaded) => Field("_hotLoadedFromServer").SetValue(world, loaded);
-        void SetGenie(bool running) => typeof(Net).GetProperty("GenieRunning")!.SetValue(net, running);
+        void SetZone(int zone) => Field("zone").SetValue(world, zone);
+        void SetLoaded(bool loaded) => Field("Hotbar.hotLoadedFromServer").SetValue(world, loaded);
+        void SetGenie(bool running) => Native.Set(Game.Session.Genie, "GenieRunning", running);
         void SetLocked(bool locked) => typeof(Config).GetProperty("HotbarLocked", AnyMember)!.SetValue(null, locked);
         void RaiseGenie() => typeof(PluginGame).GetMethod("RaiseGenie", AnyMember)!.Invoke(game, null);
         void ClearBar() { Array.Clear(bar); Raise(); }
@@ -125,7 +125,7 @@ public partial class Preview
         HotSlot Slot(int index) => Bar().GetNode<HotSlot>($"slot_{index}");
         void Invoke(string method, params object[] args) => typeof(SkillWindow).GetMethod(method, AnyMember)!.Invoke(window, args);
         List<SkillCell> Cells() => (List<SkillCell>)typeof(SkillWindow).GetField("_cells", AnyMember)!.GetValue(window)!;
-        void SetClass(int local) { Field("_selfClass").SetValue(world, nation * 100 + local); Invoke("Rebuild"); }
+        void SetClass(int local) { Field("Session.Self.Class").SetValue(world, nation * 100 + local); Invoke("Rebuild"); }
         SkillCell Show(int skillId)
         {
             foreach (var tab in game.Skills.Tabs)
@@ -185,7 +185,7 @@ public partial class Preview
         try
         {
             Raise();
-            Require(Bar().GetNode<Label>("page_label").Text == "1" && (int)Field("_hotPage").GetValue(world)! == 0, "The skill bar opens on the client's page 1");
+            Require(Bar().GetNode<Label>("page_label").Text == "1" && (int)Field("Hotbar.HotPage").GetValue(world)! == 0, "The skill bar opens on the client's page 1");
             Require(record.Drops.Count == 0, "Opening the bar changes no slot");
 
             // 1. The owner's report: the Kurian/Porutu Master 2 (level 62) skill is passive and never goes on the bar.
@@ -317,28 +317,27 @@ public partial class Preview
             ClearBar();
 
             // 9. Slot states: usable, MP short, cooldown, short count, icon-less skill, selection, ready flash.
-            net.Vitals.Seed(3000, 3000, 100, 2000);
+            Game.Session.Self.Vitals.Seed(3000, 3000, 100, 2000);
             var usable = game.Skills.Skills(SkillPage.Basic).Select(s => SkillData.Get(s.Id)!)
                 .First(s => s.Type1 != MagicType.None && s.NeedWeapon == SkillUsable.NeedsNoWeapon && s.Msp <= 100 && s.Sp == 0 && s.UseItem == 0 && s.NeedBuffSkill == 0 && s.Recast > 0);
             var costly = game.Skills.Skills(MasteryPoints.FirstTree).Select(s => SkillData.Get(s.Id)!).First(s => s.Msp > 100 && s.Recast > 0);
-            var nameless = SkillData.All.First(s => s.Type1 != MagicType.None && SkillData.Icon(s.Id) == null && s.Id < SkillPage.UsableItemFirstId);
+            var nameless = SkillData.All.First(s => s.Type1 != MagicType.None && SkillIcons.Get(s.Id) == null && s.Id < SkillPage.UsableItemFirstId);
             bar[0] = usable.Id; bar[1] = costly.Id; bar[2] = usable.Id; bar[3] = potion.Id; bar[4] = nameless.Id; bar[5] = weapon.Id;
             // About half of the recast is still left when the bar is captured (after the 0.3 s settle below).
-            net.SkillCooldowns[usable.Id] = Time.GetTicksMsec() / 1000.0 + usable.RecastSeconds * 0.5 + 0.4;
+            Native.Call(Game.Session.Self, "StartCooldown", usable.Id, Time.GetTicksMsec() / 1000.0 + usable.RecastSeconds * 0.5 + 0.4);
             Raise();
             game.Hotbar.Select(5); Raise();
             await ToSignal(GetTree().CreateTimer(.3), SceneTreeTimer.SignalName.Timeout);
-            var hotbarUsable = typeof(World).GetMethod("HotbarUsable", AnyMember)!;
             // The client dims only entries that cast a skill; equipment kept on an old bar is never dimmed.
             bool NativeUsable(int id) => (SkillData.Get(id) ?? SkillData.Get(ItemData.Get(id)?.Effect1 ?? 0)) is not { } cast
-                || (bool)hotbarUsable.Invoke(world, new object[] { cast, Time.GetTicksMsec() / 1000.0 })!;
+                || (bool)Native.Call(world, "Hotbar.Usable", cast, Time.GetTicksMsec() / 1000.0)!;
             bool Dim(int index) => Slot(index).GetNode<TextureRect>("content/icon").Modulate != Colors.White;
             Require(Slot(0).GetNode<ColorRect>("content/cooldown").Visible && !Dim(0), "A skill on cooldown shows the fill and is not dimmed");
             Require(Dim(1) && !NativeUsable(costly.Id), "A skill the MP cannot pay for is dimmed, as the client's own test says");
             var fill = Slot(0).GetNode<ColorRect>("content/cooldown");
             await Capture("hotbar-cooldown", BarRegion(), now: true);
             Require(fill.Visible && fill.Size.Y >= 8f, "The cooldown fill is still running in the cooldown capture (" + fill.GetRect() + ")");
-            Require(net.SkillCooldowns.Remove(usable.Id), "Cooldown fixture removed");
+            Require((bool)Native.Call(Game.Session.Self, "CancelCooldown", usable.Id)!, "Cooldown fixture removed");
             await ToSignal(GetTree().CreateTimer(.3), SceneTreeTimer.SignalName.Timeout);
             Require(!Dim(0) && NativeUsable(usable.Id), "A usable skill is shown at full colour");
             Require(Slot(3).GetNode<Label>("content/count").Text == "0" && Slot(3).GetNode<Label>("content/count").GetThemeColor("font_color") != Colors.White && Dim(3),
@@ -357,11 +356,11 @@ public partial class Preview
             Require(flash.Count == 1 && Slot(1).GetNode<Control>("content/ready").GetChildren().OfType<TextureRect>().All(t => !t.Visible),
                 "The client's ready flash plays on the slot whose skill is ready");
             await Capture("hotbar-ready-flash", BarRegion(), now: true);
-            net.Vitals.Seed(3000, 3000, 2000, 2000);
+            Game.Session.Self.Vitals.Seed(3000, 3000, 2000, 2000);
 
             // 10. The taskbar's Skill button runs the client's skill key (the Chaos skill page in the Chaos dungeon).
             bool skillKey = false;
-            ((Dictionary<KeyAction, Action>)Field("_keyActions").GetValue(world)!)[KeyAction.Skills] = () => skillKey = true;
+            ((Dictionary<KeyAction, Action>)Field("Hotkeys.keyActions").GetValue(world)!)[KeyAction.Skills] = () => skillKey = true;
             var taskbar = new Taskbar(); AddChild(taskbar);
             var taskbarView = (LayoutView)typeof(Taskbar).GetField("_view", AnyMember)!.GetValue(taskbar)!;
             taskbarView.Get<BaseButton>("btn_skill")!.EmitSignal(BaseButton.SignalName.Pressed);
@@ -405,16 +404,14 @@ public partial class Preview
             // on the client's Chaos skill page, which keeps the client's own dimming under the Classic family skin.
             async Task CheckChaosBlink()
             {
-                var lockProperty = typeof(World).GetProperty("ChaosBattleLocked", AnyMember);
-                var itemHeld = typeof(World).GetMethod("SkillItemHeld", AnyMember);
-                var dimField = typeof(World).GetNestedType("HotSlotCell", AnyMember)?.GetField("DimColor", AnyMember);
-                Require(lockProperty != null && itemHeld != null && dimField != null,
+                var dimField = Native.ClientType("LibreKO.Features.Hud.HotSlotCell")?.GetField("DimColor", AnyMember);
+                Require(Native.Has(world, "Hotbar.ChaosBattleLocked") && Native.HasMethod(world, "Hotbar.SkillItemHeld") && dimField != null,
                     "The client has the Chaos battle lock, the held-item test and the skill bar's dim colour");
                 var dimColour = (Color)dimField!.GetValue(null)!;
-                bool ClientLocked() => (bool)lockProperty!.GetValue(world)!;
-                bool Held(SkillData.Skill skill) => (bool)itemHeld!.Invoke(world, new object[] { skill })!;
-                void SetAbnormal(int value) => typeof(Net).GetProperty("SelfAbnormal")!.SetValue(net, value);
-                var inventory = (Inventory)typeof(World).GetProperty("Inv", AnyMember)!.GetValue(world)!;
+                bool ClientLocked() => Native.Get<bool>(world, "Hotbar.ChaosBattleLocked");
+                bool Held(SkillData.Skill skill) => (bool)Native.Call(world, "Hotbar.SkillItemHeld", skill)!;
+                void SetAbnormal(int value) => Native.Set(Game.Session.Progress, "SelfAbnormal", value);
+                var inventory = (Inventory)Game.Session.Self.Inventory;
                 void ClearBag() { for (int abs = Inventory.GridStart; abs < inventory.Length; abs++) inventory[abs] = default; }
                 async Task Tick() => await ToSignal(GetTree().CreateTimer(.25), SceneTreeTimer.SignalName.Timeout);
                 var barTint = (Color)typeof(HotSlot).GetField("MissingTint", AnyMember)!.GetValue(null)!;
@@ -439,7 +436,7 @@ public partial class Preview
 
                 ClearBar();
                 ClearBag();
-                net.SkillCooldowns.Clear();
+                foreach (int cooling in Game.Session.Self.SkillCooldowns.Keys.ToArray()) Native.Call(Game.Session.Self, "CancelCooldown", cooling);
                 SetZone(ChaosBattle.Zone);
                 var chaosTree = SkillData.All.Where(s => s.Tree == ChaosBattle.SkillTree).OrderBy(s => s.Id).ToList();
                 // Cube skills: the client's own held-item test refuses them while their item is not in the bag.
@@ -465,43 +462,40 @@ public partial class Preview
                 Require(ClientLocked(), "Zone 85 with the respawn blink is the client's Chaos battle lock");
                 for (int i = 0; i < onBar.Count; i++)
                     Require(Dim(i) && !NativeUsable(bar[i]), "While blinking, Chaos slot " + i + " (" + bar[i] + ") is dimmed as the client's own test says");
-                var log = (TabbedLog)Field("_combatLog").GetValue(world)!;
-                string castingFailed = (string)typeof(World).GetMethod("SystemText", AnyMember)!
-                    .Invoke(null, new object?[] { (int)Field("TextCastingFailed").GetValue(null)!, "Casting failed", null })!;
+                var log = (TabbedLog)Field("Log.log").GetValue(world)!;
+                string castingFailed = LibreKO.Domain.GameText.System(Native.Get<int>(Native.StaticOwner("LibreKO.Features.Core.BuffSystem"), "TextCastingFailed"), "Casting failed");
                 int Refusals() => log.Lines(LogTab.System).Count(line => line.Contains(castingFailed));
                 int refusalsBefore = Refusals();
-                var pending = (System.Collections.ICollection)Field("_pendingCasts").GetValue(world)!;
+                var pending = (System.Collections.ICollection)Field("SkillCastSystem.PendingCasts").GetValue(world)!;
                 record.Cast = true;
                 record.Activated.Clear();
                 for (int i = 0; i < onBar.Count; i++) Click(i);
                 Require(record.Activated.SequenceEqual(Enumerable.Range(0, onBar.Count)), "While blinking, each click reaches the client's own skill bar, as a click on the native bar does");
                 Require(Refusals() - refusalsBefore == onBar.Count, "While blinking, the client refuses every clicked slot with its own notice '" + castingFailed + "' ("
                     + (Refusals() - refusalsBefore) + " of " + onBar.Count + ")");
-                Require(pending.Count == 0 && net.SkillCooldowns.Count == 0 && (int)Field("_continuanceSkill").GetValue(world)! == 0,
+                Require(pending.Count == 0 && Game.Session.Self.SkillCooldowns.Count == 0 && (int)Field("BuffSystem.ContinuanceSkill").GetValue(world)! == 0,
                     "While blinking, no clicked slot starts a cast, a cooldown or a continuance");
                 await Capture("chaos-blink-bar", BarRegion());
                 var barBlink = await Shades(BarIcons(onBar.Count));
 
                 // The client's Chaos skill page under the Classic event family skin.
                 shell.Visible = false;
-                var page = (HudWindow)DetailCall(world, "BuildChaosSkillPageUiPreview")!;
+                var page = (HudWindow)DetailCall(world, "Preview.BuildChaosSkillPage")!;
                 AddChild(page);
                 page.Visible = true;
                 Require(ClassicEventFamily.Apply(page.Body) != null, "The Chaos skill page gets the Classic event family frame");
                 await Frames(4);
                 page.Position = new Vector2(16, 30);
                 await Frames(2);
-                var pageTick = typeof(World).GetMethod("ChaosSkillPageTick", AnyMember)!;
-                var flip = typeof(World).GetMethod("FlipChaosSkillPage", AnyMember)!;
-                int pages = (int)typeof(World).GetProperty("ChaosSkillPages", AnyMember)!.GetValue(world)!;
-                List<TextureRect> Icons() => ((System.Collections.IEnumerable)Field("_chaosSkillIcons").GetValue(world)!).Cast<TextureRect>().ToList();
+                int pages = (int)Native.Get<object>(world, "ChaosSkillWindow.ChaosSkillPages")!;
+                List<TextureRect> Icons() => ((System.Collections.IEnumerable)Field("ChaosSkillWindow.chaosSkillIcons").GetValue(world)!).Cast<TextureRect>().ToList();
                 SkillData.Skill IconSkill(TextureRect icon) => (SkillData.Skill)icon.GetType().GetProperty("Skill")!.GetValue(icon)!;
                 Rect2I PageRegion() { var box = page.GetGlobalRect(); return new Rect2I((int)box.Position.X - 2, (int)box.Position.Y - 2, (int)box.Size.X + 4, (int)box.Size.Y + 4); }
                 async Task ShowPage(int index)
                 {
-                    flip.Invoke(world, new object[] { -pages });
-                    if (index > 0) flip.Invoke(world, new object[] { index });
-                    pageTick.Invoke(world, null);
+                    Native.Call(world, "ChaosSkillWindow.FlipChaosSkillPage", -pages);
+                    if (index > 0) Native.Call(world, "ChaosSkillWindow.FlipChaosSkillPage", index);
+                    Native.Call(world, "ChaosSkillWindow.ChaosSkillPageTick");
                     await Frames(3);
                 }
                 // Every icon on every page: visible inside the Classic frame and tinted exactly as the client asks.
@@ -526,7 +520,7 @@ public partial class Preview
                     }
                     Require(seen == chaosTree.Count, state + ": the Chaos page lists every Chaos skill (" + seen + " of " + chaosTree.Count + ")");
                 }
-                int cubePage = chaosTree.IndexOf(cubes[0]) / (int)Field("ChaosSkillsPerPage").GetValue(null)!;
+                int cubePage = chaosTree.IndexOf(cubes[0]) / Native.Get<int>(Native.StaticOwner("LibreKO.Features.Hud.ChaosSkillWindowFeature"), "ChaosSkillsPerPage");
                 await CheckPage(_ => true, "While blinking");
                 await ShowPage(0);
                 await Capture("chaos-page-blink", PageRegion());
@@ -598,7 +592,7 @@ public partial class Preview
         }
         finally
         {
-            typeof(Net).GetProperty("SelfAbnormal")!.SetValue(net, 0);
+            Native.Set(Game.Session.Progress, "SelfAbnormal", 0);
             SetGenie(false); SetLocked(false);
             string file = ProjectSettings.GlobalizePath(localBar);
             if (System.IO.File.Exists(file)) System.IO.File.Delete(file);

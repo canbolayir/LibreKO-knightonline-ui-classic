@@ -50,20 +50,20 @@ public static class NativeEventWindows
 
     public sealed class TournamentView { public ulong PendingSince; }
 
-    private static readonly ConditionalWeakTable<World, RouletteView> _roulette = new();
-    private static readonly ConditionalWeakTable<World, LotteryView> _lottery = new();
-    private static readonly ConditionalWeakTable<World, TournamentView> _tournament = new();
+    private static readonly ConditionalWeakTable<WorldRoot, RouletteView> _roulette = new();
+    private static readonly ConditionalWeakTable<WorldRoot, LotteryView> _lottery = new();
+    private static readonly ConditionalWeakTable<WorldRoot, TournamentView> _tournament = new();
 
-    private static readonly ConditionalWeakTable<HudWindow, World> _worlds = new();
+    private static readonly ConditionalWeakTable<HudWindow, WorldRoot> _worlds = new();
 
     /// <summary>The world that owns a prepared event window.</summary>
-    public static World? WorldOf(HudWindow window) => _worlds.TryGetValue(window, out var world) && GodotObject.IsInstanceValid(world) ? world : null;
+    public static WorldRoot? WorldOf(HudWindow window) => _worlds.TryGetValue(window, out var world) && GodotObject.IsInstanceValid(world) ? world : null;
 
-    public static RouletteView Roulette(World world) => _roulette.GetOrCreateValue(world);
-    public static LotteryView Lottery(World world) => _lottery.GetOrCreateValue(world);
-    public static TournamentView Tournament(World world) => _tournament.GetOrCreateValue(world);
+    public static RouletteView Roulette(WorldRoot world) => _roulette.GetOrCreateValue(world);
+    public static LotteryView Lottery(WorldRoot world) => _lottery.GetOrCreateValue(world);
+    public static TournamentView Tournament(WorldRoot world) => _tournament.GetOrCreateValue(world);
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         if (!NativeIdentity.Begin(window, "native_events")) return;
         _worlds.AddOrUpdate(window, world);
@@ -78,29 +78,29 @@ public static class NativeEventWindows
         if (ready) window.SetMeta(ControlsMeta, 1);
     }
 
-    private static bool Name(World world, string field, string name) => NativeWindows.Name(Native.Get<Node>(world, field), name);
+    private static bool Name(WorldRoot world, string field, string name) => NativeWindows.Name(Native.Get<Node>(world, field), name);
 
-    private static bool PrepareCollectionRace(World world) =>
-        Name(world, "_crCompletingLabel", "cr_completing") & Name(world, "_crWinnersRow", "cr_winners_row")
-        & Name(world, "_crWinnersLabel", "cr_winners") & Name(world, "_crTimerDigits", "cr_time")
-        & Name(world, "_crHuntBlock", "cr_hunt_block") & Name(world, "_crHuntBox", "cr_hunt")
-        & Name(world, "_crCollectBlock", "cr_collect_block") & Name(world, "_crCollectBox", "cr_collect")
-        & Name(world, "_crRewardsBlock", "cr_rewards_block") & Name(world, "_crRewardsBox", "cr_rewards")
-        & Name(world, "_crCompleteBanner", "cr_complete") & Name(world, "_crCompleteTitle", "cr_complete_title");
+    private static bool PrepareCollectionRace(WorldRoot world) =>
+        Name(world, "CollectionRace.crCompletingLabel", "cr_completing") & Name(world, "CollectionRace.crWinnersRow", "cr_winners_row")
+        & Name(world, "CollectionRace.crWinnersLabel", "cr_winners") & Name(world, "CollectionRace.crTimerDigits", "cr_time")
+        & Name(world, "CollectionRace.crHuntBlock", "cr_hunt_block") & Name(world, "CollectionRace.crHuntBox", "cr_hunt")
+        & Name(world, "CollectionRace.crCollectBlock", "cr_collect_block") & Name(world, "CollectionRace.crCollectBox", "cr_collect")
+        & Name(world, "CollectionRace.crRewardsBlock", "cr_rewards_block") & Name(world, "CollectionRace.crRewardsBox", "cr_rewards")
+        & Name(world, "CollectionRace.crCompleteBanner", "cr_complete") & Name(world, "CollectionRace.crCompleteTitle", "cr_complete_title");
 
-    private static bool PrepareLottery(HudWindow window, World world)
+    private static bool PrepareLottery(HudWindow window, WorldRoot world)
     {
-        var icon = Native.Get<TextureRect>(world, "_lotteryReqIcon");
-        var cost = Native.Get<Label>(world, "_lotteryCostLabel");
-        var buy = Native.Get<Button>(world, "_lotteryBuyBtn");
-        bool named = Name(world, "_lotteryTimerLabel", "lottery_time") & Name(world, "_lotterySoldLabel", "lottery_sold")
-            & Name(world, "_lotteryWinnersLabel", "lottery_winners") & Name(world, "_lotteryMyTicketsLabel", "lottery_tickets")
-            & Name(world, "_lotteryPlayerHeader", "lottery_player") & Name(world, "_lotteryRewardsBox", "lottery_rewards")
-            & Name(world, "_lotteryStatusLabel", "lottery_status")
+        var icon = Native.Get<TextureRect>(world, "Lottery.reqIcon");
+        var cost = Native.Get<Label>(world, "Lottery.costLabel");
+        var buy = Native.Get<Button>(world, "Lottery.buyBtn");
+        bool named = Name(world, "Lottery.timerLabel", "lottery_time") & Name(world, "Lottery.soldLabel", "lottery_sold")
+            & Name(world, "Lottery.winnersLabel", "lottery_winners") & Name(world, "Lottery.myTicketsLabel", "lottery_tickets")
+            & Name(world, "Lottery.playerHeader", "lottery_player") & Name(world, "Lottery.rewardsBox", "lottery_rewards")
+            & Name(world, "Lottery.statusLabel", "lottery_status")
             & NativeWindows.Name(icon, "lottery_req_icon") & NativeWindows.Name(icon?.GetParent(), "lottery_req_slot")
             & NativeWindows.Name(cost, "lottery_cost") & NativeWindows.Name(cost?.GetParent(), "lottery_cost_box")
             & NativeWindows.Name(buy, "lottery_buy");
-        if (!named || buy == null || Net.I is not { } net) return false;
+        if (!named || buy == null || Game.Connection is not { } net) return false;
         var view = Lottery(world);
         // The client repaints Buy on every lottery update; the lock only covers the reply to this press.
         buy.Pressed += () => { view.PendingSince = Time.GetTicksMsec(); buy.Disabled = true; };
@@ -119,31 +119,31 @@ public static class NativeEventWindows
             view.WinnersRevision++;
         };
         detach = NativeHooks.Listen("Net.Lottery",
-            () => { net.LotteryJoinEvent += joined; net.LotteryStateEvent += opened; net.LotteryEndedEvent += ended; },
-            () => { net.LotteryJoinEvent -= joined; net.LotteryStateEvent -= opened; net.LotteryEndedEvent -= ended; }, world).Release;
+            () => { Game.Session.Lottery.LotteryJoinEvent += joined; Game.Session.Lottery.LotteryStateEvent += opened; Game.Session.Lottery.LotteryEndedEvent += ended; },
+            () => { Game.Session.Lottery.LotteryJoinEvent -= joined; Game.Session.Lottery.LotteryStateEvent -= opened; Game.Session.Lottery.LotteryEndedEvent -= ended; }, world).Release;
         DetachWhenFreed(window, detach);
         NativeWindows.Sync(window, () =>
         {
             if (view.PendingSince == 0 || Time.GetTicksMsec() - view.PendingSince <= PendingTimeoutMsec) return;
             view.PendingSince = 0;
-            Native.Call(world, "RenderLottery");
+            Native.Call(world, "Lottery.Render");
         });
         return true;
     }
 
-    private static bool PrepareRoulette(HudWindow window, World world)
+    private static bool PrepareRoulette(HudWindow window, WorldRoot world)
     {
-        var spin = Native.Get<Button>(world, "_rouletteSpinBtn");
-        var result = Native.Get<Label>(world, "_rouletteResultLabel");
-        bool named = Name(world, "_rouletteCoinsLabel", "roulette_coins") & NativeWindows.Name(result, "roulette_result")
+        var spin = Native.Get<Button>(world, "Roulette.spinBtn");
+        var result = Native.Get<Label>(world, "Roulette.resultLabel");
+        bool named = Name(world, "Roulette.coinsLabel", "roulette_coins") & NativeWindows.Name(result, "roulette_result")
             & NativeWindows.Name(spin, "roulette_spin");
-        if (!named || spin == null || result == null || Net.I is not { } net) return false;
+        if (!named || spin == null || result == null || Game.Connection is not { } net) return false;
         var view = Roulette(world);
         NativeIdentity.Rewire(spin, () =>
         {
             if (view.Spinning) return;
-            bool affordable = Native.Get<int>(world, "_rouletteCoins") >= 1;
-            Native.Call(world, "OnRouletteSpinPressed");
+            bool affordable = Native.Get<int>(world, "Roulette.coins") >= 1;
+            Native.Call(world, "Roulette.OnSpinPressed");
             if (!affordable) return;
             view.Spinning = true; view.SpinStarted = Time.GetTicksMsec();
             view.ResultOk = null; view.ResultAt = 0;
@@ -157,7 +157,7 @@ public static class NativeEventWindows
             if (!ok) { view.Spinning = false; return; }
             // The client names item prizes by number; show the item name when the item is known.
             if (gold <= 0 && item > 0 && ItemData.Get(item) != null) result.Text = $"You won {ItemData.DisplayName(item)}!";
-            net.SendRoulettePrizeLog();
+            Game.Requests.Roulette.PrizeLog();
         };
         Action<RoulettePrize[]> history = entries =>
         {
@@ -165,29 +165,29 @@ public static class NativeEventWindows
             view.History = entries; view.HistoryRevision++;
         };
         detach = NativeHooks.Listen("Net.Roulette",
-            () => { net.RouletteStatusEvent += status; net.RouletteSpinEvent += spun; net.RoulettePrizeLogEvent += history; },
-            () => { net.RouletteStatusEvent -= status; net.RouletteSpinEvent -= spun; net.RoulettePrizeLogEvent -= history; }, world).Release;
+            () => { Game.Session.Roulette.RouletteStatusEvent += status; Game.Session.Roulette.RouletteSpinEvent += spun; Game.Session.Roulette.RoulettePrizeLogEvent += history; },
+            () => { Game.Session.Roulette.RouletteStatusEvent -= status; Game.Session.Roulette.RouletteSpinEvent -= spun; Game.Session.Roulette.RoulettePrizeLogEvent -= history; }, world).Release;
         DetachWhenFreed(window, detach);
-        window.VisibilityChanged += () => { if (window.Visible) net.SendRoulettePrizeLog(); };
+        window.VisibilityChanged += () => { if (window.Visible) Game.Requests.Roulette.PrizeLog(); };
         NativeWindows.Sync(window, () =>
         {
             if (view.Spinning && view.ResultOk == null && Time.GetTicksMsec() - view.SpinStarted > PendingTimeoutMsec) view.Spinning = false;
-            spin.Disabled = view.Spinning || view.StatusKnown && Native.Get<int>(world, "_rouletteCoins") < 1;
+            spin.Disabled = view.Spinning || view.StatusKnown && Native.Get<int>(world, "Roulette.coins") < 1;
         });
         return true;
     }
 
     /// <summary>Stops the reel after its landing animation.</summary>
-    public static void FinishSpin(World world) => Roulette(world).Spinning = false;
+    public static void FinishSpin(WorldRoot world) => Roulette(world).Spinning = false;
 
-    private static bool PrepareTournament(HudWindow window, World world)
+    private static bool PrepareTournament(HudWindow window, WorldRoot world)
     {
-        var register = Native.Get<Button>(world, "_tournamentRegBtn");
-        var unregister = Native.Get<Button>(world, "_tournamentUnregBtn");
-        bool named = Name(world, "_tournamentRoundLbl", "tournament_round") & Name(world, "_tournamentCountLbl", "tournament_count")
-            & Name(world, "_tournamentStateLbl", "tournament_state")
+        var register = Native.Get<Button>(world, "Tournament.regBtn");
+        var unregister = Native.Get<Button>(world, "Tournament.unregBtn");
+        bool named = Name(world, "Tournament.roundLbl", "tournament_round") & Name(world, "Tournament.countLbl", "tournament_count")
+            & Name(world, "Tournament.stateLbl", "tournament_state")
             & NativeWindows.Name(register, "tournament_register") & NativeWindows.Name(unregister, "tournament_unregister");
-        if (!named || register == null || unregister == null || Net.I is not { } net) return false;
+        if (!named || register == null || unregister == null || Game.Connection is not { } net) return false;
         var view = Tournament(world);
         // Both buttons wait for the server's status; the client repaints them when it arrives.
         void Lock() { view.PendingSince = Time.GetTicksMsec(); register.Disabled = unregister.Disabled = true; }
@@ -195,14 +195,14 @@ public static class NativeEventWindows
         unregister.Pressed += Lock;
         Action detach = null!;
         Action<bool, int, int> status = (_, _, _) => { if (!Gone(window, detach)) view.PendingSince = 0; };
-        detach = NativeHooks.Listen("Net.TournamentStatusEvent", () => net.TournamentStatusEvent += status,
-            () => net.TournamentStatusEvent -= status, world).Release;
+        detach = NativeHooks.Listen("Net.TournamentStatusEvent", () => Game.Session.Tournament.TournamentStatusEvent += status,
+            () => Game.Session.Tournament.TournamentStatusEvent -= status, world).Release;
         DetachWhenFreed(window, detach);
         NativeWindows.Sync(window, () =>
         {
             if (view.PendingSince == 0 || Time.GetTicksMsec() - view.PendingSince <= PendingTimeoutMsec) return;
             view.PendingSince = 0;
-            bool registered = Native.Get<bool>(world, "_tournamentRegistered");
+            bool registered = Native.Get<bool>(world, "Tournament.registered");
             register.Disabled = registered; unregister.Disabled = !registered;
         });
         return true;

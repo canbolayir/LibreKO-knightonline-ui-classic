@@ -33,7 +33,7 @@ public partial class Preview
         GetViewport().GuiEmbedSubwindows = true;
         new Plugin().Initialize((PluginContext)Create(typeof(PluginContext), info, new List<PluginInfo> { info }, PluginHost.Ui, PluginHost.Game));
         var original = Net.I; var net = new Net(); GetTree().Root.AddChild(net);
-        var originalLogin = LoginNet.I; var loginNet = new LoginNet(); GetTree().Root.AddChild(loginNet);
+        var originalLogin = Game.LoginServer; var loginNet = new LoginNet(); GetTree().Root.AddChild(loginNet);
         loginNet.Login("offline-audit", "offline-audit");
         var project = new ConfigFile(); project.Load(ProjectSettings.GlobalizePath("res://../../LibreKO/Client/project.godot"));
         foreach (string action in project.GetSectionKeys("input")) if (!InputMap.HasAction(action)) InputMap.AddAction(action);
@@ -55,9 +55,8 @@ public partial class Preview
             while (!condition() && Time.GetTicksMsec() < deadline) await Frames(1);
             Require(condition(), message);
         }
-        Type TypeOf(object owner) => owner is World ? typeof(World) : owner.GetType();
-        object? Get(object owner, string field) => TypeOf(owner).GetField(field, flags)?.GetValue(owner) ?? TypeOf(owner).GetProperty(field, flags)?.GetValue(owner);
-        void Set(object owner, string field, object? value) => TypeOf(owner).GetField(field, flags)!.SetValue(owner, value);
+        object? Get(object owner, string field) => Native.Get<object>(owner, field);
+        void Set(object owner, string field, object? value) => Native.Set(owner, field, value);
         async Task Send(NetworkStream stream, Packet packet)
         {
             byte[] body = packet.GetBytes(); byte[] frame = new byte[body.Length + 6]; frame[0] = 0xaa; frame[1] = 0x55;
@@ -99,8 +98,8 @@ public partial class Preview
         var sent = new ConcurrentQueue<string>();
         using var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
         int port = ((IPEndPoint)listener.LocalEndpoint).Port;
-        net.LoginResultEvent += (ok, _) => { if (ok) net.SelectChar("CommandTester"); };
-        net.EnterWorldEvent += _ => GetTree().ChangeSceneToFile("res://scenes/World.tscn");
+        Game.Session.PreGame.LoginResultEvent += (ok, _) => { if (ok) Game.Requests.PreGame.SelectCharacter("CommandTester"); };
+        Game.Session.PreGame.EnterWorldEvent += _ => GetTree().ChangeSceneToFile("res://scenes/World.tscn");
         GetTree().CurrentScene = null;
         using var stop = new CancellationTokenSource();
         try
@@ -112,9 +111,9 @@ public partial class Preview
             await Read(stream, GameOpcodes.GS_LOGIN); var login = new Packet(GameOpcodes.GS_LOGIN); login.WriteByte((byte)nation); await Send(stream, login);
             await Read(stream, GameOpcodes.GS_SELECT_CHARACTER); var select = new Packet(GameOpcodes.GS_SELECT_CHARACTER); select.WriteByte(1); select.WriteShort(32700); select.WriteShort(100); select.WriteShort(100); select.WriteShort(0); await Send(stream, select);
             await Read(stream, GameOpcodes.GS_GAMESTART); await Send(stream, MyInfoPacket());
-            await Until(() => GetTree().CurrentScene is World w && (bool)Get(w, "_worldReady")!, "Native World scene builds every facet");
-            var world = (World)GetTree().CurrentScene;
-            await Until(() => Get(world, "_loadingLayer") == null, "Native loading screen completes");
+            await Until(() => GetTree().CurrentScene is WorldRoot w && (bool)Get(w, "WorldReady")!, "Native World scene builds every facet");
+            var world = (WorldRoot)GetTree().CurrentScene;
+            await Until(() => Get(world, "loadingLayer") == null, "Native loading screen completes");
             // Every request the client sends from here on is recorded by opcode.
             _ = Task.Run(async () =>
             {
@@ -133,8 +132,8 @@ public partial class Preview
             await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
             var background = new HashSet<string>(); while (sent.TryDequeue(out var idle)) background.Add(idle);
 
-            DetailCall(world, "ToggleCommandList"); await Frames(6);
-            var window = (HudWindow)Get(world, "_cmdWindow")!;
+            DetailCall(world, "CommandList.Toggle"); await Frames(6);
+            var window = (HudWindow)Get(world, "CommandList.Window")!;
             var frame = window.GetChildren().OfType<ClassicCommandListFrame>().Single();
             await Until(() => frame.Bound, "The game's command window is the Classic window, bound to the client's list");
             Require(window.Visible && window.IsVisibleInTree(), "The command list key action opens the Classic window");
@@ -146,12 +145,13 @@ public partial class Preview
             var classicChat = Descendants(world).OfType<ChatWindow>().Single();
             var classicInput = (LineEdit)typeof(ChatWindow).GetField("_input", flags)!.GetValue(classicChat)!;
             // 3277df5: the combat log is a TabbedLog (All/Status/Item/System); a fresh one per observation keeps only its lines.
-            TabbedLog Log() => (TabbedLog)Get(world, "_combatLog")!;
-            void ClearLog() => Set(world, "_combatLog", new TabbedLog((int)(typeof(World).GetField("CombatLogMaxLines", flags)?.GetRawConstantValue() ?? 200)));
-            object exitIdle = Get(world, "_battleTimer")!;
-            string[] stateFields = { "_running", "_sitRequestPending", "_achShown", "_merchantMenuShown", "_seekShown", "_nationChatShown", "_marketPriceShown",
-                "_tradeRequestsBlocked", "_partyRequestsBlocked", "_exitArmed", "_vipWhShown", "_genieShown", "_escShown" };
-            Dictionary<string, string> State() => stateFields.Where(f => typeof(World).GetField(f, flags) != null).ToDictionary(f => f, f => Get(world, f)?.ToString() ?? "");
+            TabbedLog Log() => (TabbedLog)Get(world, "Log.log")!;
+            void ClearLog() => Set(world, "Log.log", new TabbedLog(Native.Get<int>(Native.StaticOwner("LibreKO.Features.CombatLog.CombatLogFeature"), "MaxLines")));
+            object exitIdle = Get(world, "GameMenu.battleTimer")!;
+            string[] stateFields = { "Avatar.Running", "EntityStatesSystem.sitRequestPending", "Achievement.Shown", "Merchant.MenuShown", "SeekParty.SeekShown", "NationChannels.NationShown", "MarketPrice.marketPriceShown",
+                "Config.TradeRequestsBlocked", "Session.UserOption.PartyRequestsBlocked", "GameMenu.exitArmed", "VipWarehouse.shown", "Genie.shown", "GameMenu.shown" };
+            Dictionary<string, string> State() => stateFields.Select(f => { string path = f; return (Field: f, Owner: PreviewFixtures.Target(world, ref path), Path: path); })
+                .Where(s => Native.Has(s.Owner, s.Path)).ToDictionary(s => s.Field, s => Native.Get<object>(s.Owner, s.Path)?.ToString() ?? "");
             List<Node> Dialogs() => Descendants(GetTree().Root).Where(n => n is KnightOnlineUiClassic.Windows.MessageBox || n is AcceptDialog).Where(n => n is not CanvasItem c || c.IsVisibleInTree()).ToList();
             string Clean(string line) => System.Text.RegularExpressions.Regex.Replace(line, @"\[/?[a-z]+(=[^\]]*)?\]", "");
 
@@ -187,7 +187,7 @@ public partial class Preview
                     Require(entries.GetItemText(i) == row.Text, model[g].Title + ": row " + i + " is " + row.Text);
                     // Client actions (the Genie rows) are run below, with the server's Genie replies.
                     if (row.Entry == null) continue;
-                    if (row.Id == "Exit") Set(world, "_battleTimer", 0.0);
+                    if (row.Id == "Exit") Set(world, "GameMenu.battleTimer", 0.0);
                     var result = await Observe("list", () => { KnightOnlineUiClassic.Native.NativeCommandList.Activate(world, i); return Task.CompletedTask; });
                     result["group"] = model[g].Title; result["id"] = row.Id; result["text"] = row.Text; result["available"] = row.Available;
                     bool prefill = row.Entry!.GetType().GetProperty("Prefill")?.GetValue(row.Entry) is true;
@@ -202,8 +202,8 @@ public partial class Preview
                     // Leave the world as it was for the next row.
                     classicInput.Clear(); classicInput.ReleaseFocus();
                     Native.TryCall(chat, "Close", out _);
-                    if (row.Id == "Exit") { Set(world, "_exitArmed", Enum.ToObject(typeof(World).GetNestedType("ExitKind", flags)!, 0)); Set(world, "_battleTimer", exitIdle); }
-                    foreach (var (field, close) in new[] { ("_achShown", "CloseAchievements"), ("_merchantMenuShown", "CloseMerchantMenu"), ("_seekShown", "ToggleSeekParty"), ("_nationChatShown", "CloseNationChat") })
+                    if (row.Id == "Exit") { Set(world, "GameMenu.exitArmed", Enum.ToObject(Native.ClientType("LibreKO.Features.Windows.GameMenuFeature+ExitKind")!, 0)); Set(world, "GameMenu.battleTimer", exitIdle); }
+                    foreach (var (field, close) in new[] { ("Achievement.Shown", "CloseAchievements"), ("Merchant.MenuShown", "CloseMerchantMenu"), ("SeekParty.SeekShown", "SeekParty.ToggleSeek"), ("NationChannels.NationShown", "CloseNationChat") })
                         if (Get(world, field) is true) DetailCall(world, close);
                     results.Add(result);
                     await Frames(2);
@@ -228,7 +228,7 @@ public partial class Preview
                 result["id"] = id; result["text"] = line;
                 results.Add(result);
                 classicInput.Clear(); Native.TryCall(chat, "Close", out _);
-                foreach (var (field, close) in new[] { ("_achShown", "CloseAchievements"), ("_merchantMenuShown", "CloseMerchantMenu"), ("_seekShown", "ToggleSeekParty"), ("_nationChatShown", "CloseNationChat") })
+                foreach (var (field, close) in new[] { ("Achievement.Shown", "CloseAchievements"), ("Merchant.MenuShown", "CloseMerchantMenu"), ("SeekParty.SeekShown", "SeekParty.ToggleSeek"), ("NationChannels.NationShown", "CloseNationChat") })
                     if (Get(world, field) is true) DetailCall(world, close);
             }
             // Context commands with a name typed after them (the client's own argument forms).
@@ -254,7 +254,7 @@ public partial class Preview
                 var grey = KnightOnlineUiClassic.Layout.ClassicCommandListLayout.UnavailableInk;
                 async Task ShowGenie() { frame.GroupList.Select(genie); frame.GroupList.EmitSignal(ItemList.SignalName.ItemSelected, (long)genie); await Frames(3); }
                 int RowOf(string id) => frame.ShownRows.ToList().FindIndex(r => r.Id == id);
-                var shownEntries = (System.Collections.IList)Get(world, "_cmdShown")!;
+                var shownEntries = (System.Collections.IList)Get(world, "CommandList.cmdShown")!;
                 void Expect(string state, bool start, bool stop, bool spirit, string? startTip = null, string? stopTip = null)
                 {
                     Require(shownEntries.Count == 0, state + ": the Genie rows are not client entries; the client's handler ignores them");
@@ -283,7 +283,7 @@ public partial class Preview
                     await Send(stream, p);
                 }
                 var net = Net.I;
-                Label runLine = (Label)Get(world, "_genieRunLabel")!;
+                Label runLine = (Label)Get(world, "Genie.RunLabel")!;
                 void Key(Key key)
                 {
                     GetViewport().PushInput(new InputEventKey { Keycode = key, PhysicalKeycode = key, Pressed = true }, true);
@@ -297,25 +297,23 @@ public partial class Preview
 
                 // Genie Window: the client's ToggleGenie (the Genie key / quick panel button); it asks for the options and time.
                 var opened = await Run("GenieWindow", "open the Genie window");
-                Require(Get(world, "_genieShown") is true && Requests(opened).Contains("GS_GENIE_SYSTEM:1:2"), "Genie Window opens the client's Genie window, which asks for its options and time");
+                Require(Get(world, "Genie.shown") is true && Requests(opened).Contains("GS_GENIE_SYSTEM:1:2"), "Genie Window opens the client's Genie window, which asks for its options and time");
                 await Frames(4);
                 GetViewport().GetTexture().GetImage().SavePng(output + "/" + prefix + "-command-genie-window.png");
                 var again = await Run("GenieWindow", "Genie window already open");
-                Require(Get(world, "_genieShown") is true && Requests(again).Count == 0, "Genie Window leaves an open Genie window open");
+                Require(Get(world, "Genie.shown") is true && Requests(again).Count == 0, "Genie Window leaves an open Genie window open");
 
                 // Escape: the Genie window first (the client's order), then the command list, then the game menu as before.
-                var stack = (System.Collections.IList)Get(world, "_escapeStack")!;
-                int ours = stack.Cast<object>().Count(e => ((Delegate)e.GetType().GetField("Item2")!.GetValue(e)!).Method.DeclaringType!.Assembly == typeof(Plugin).Assembly
-                    && ((Func<bool>)e.GetType().GetField("Item1")!.GetValue(e)!)());
+                int ours = PreviewFixtures.EscapeEntries(world).Count(e => PreviewFixtures.EscapeEntryFrom(e.Entry, typeof(Plugin).Assembly) && e.IsOpen());
                 Require(ours >= 1, "the command list has its Escape entry while it is open (" + ours + " open plugin entries)");
                 Key(Godot.Key.Escape); await Frames(4);
-                Require(Get(world, "_genieShown") is false && window.Visible, "Escape closes the Genie window first");
+                Require(Get(world, "Genie.shown") is false && window.Visible, "Escape closes the Genie window first");
                 Key(Godot.Key.Escape); await Frames(4);
-                Require(!window.Visible && Get(world, "_escShown") is false, "Escape closes the command list (and does not open the game menu)");
+                Require(!window.Visible && Get(world, "GameMenu.shown") is false, "Escape closes the command list (and does not open the game menu)");
                 Key(Godot.Key.Escape); await Frames(4);
-                Require(Get(world, "_escShown") is true, "with nothing open, Escape opens the game menu as before");
-                typeof(World).GetMethod("ToggleEsc", flags)!.Invoke(world, new object?[] { false }); await Frames(2);
-                DetailCall(world, "ToggleCommandList"); await Frames(4);
+                Require(Get(world, "GameMenu.shown") is true, "with nothing open, Escape opens the game menu as before");
+                Native.Call(world, "GameMenu.Toggle", false); await Frames(2);
+                DetailCall(world, "CommandList.Toggle"); await Frames(4);
                 Require(window.Visible, "the client's command list toggle (J) reopens the window");
                 await ShowGenie();
 
@@ -329,19 +327,19 @@ public partial class Preview
 
                 // Time left: Start runs the quick panel's Start (the client's ToggleGenieFromSub: options saved, start requested).
                 await Server(6, 120);
-                await Until(() => (int)Get(world, "_geniePoints")! == 120, "the server reports 120 Genie minutes");
+                await Until(() => (int)Get(world, "Genie.Points")! == 120, "the server reports 120 Genie minutes");
                 await Frames(2);
                 Expect("120 minutes left, stopped", true, false, false, startTip: startHint, stopTip: runLine.Text);
                 var started = await Run("GenieStart", "start");
                 Require(Requests(started).Contains("GS_GENIE_SYSTEM:1:4"), "Start Genie sends the client's start request");
                 Expect("waiting for the server", false, false, false, startTip: runLine.Text, stopTip: runLine.Text);
                 await Server(4, 1, 120);
-                await Until(() => net.GenieRunning, "the server starts the Genie");
+                await Until(() => Game.Session.Genie.GenieRunning, "the server starts the Genie");
                 await Frames(3);
                 Expect("Genie running", false, true, false, startTip: runLine.Text, stopTip: stopHint);
                 // Reopened, the window opens beside the Genie quick panel that the Genie shows while it has time.
-                DetailCall(world, "ToggleCommandList"); await Frames(2); DetailCall(world, "ToggleCommandList"); await Frames(6); await ShowGenie();
-                var quick = (Control)Get(world, "_genieSub")!;
+                DetailCall(world, "CommandList.Toggle"); await Frames(2); DetailCall(world, "CommandList.Toggle"); await Frames(6); await ShowGenie();
+                var quick = (Control)Get(world, "GenieSub.Sub")!;
                 Require(quick.IsVisibleInTree() && !quick.GetGlobalRect().Intersects(window.GetGlobalRect()), $"the command list opens beside the Genie quick panel {quick.GetGlobalRect()} / {window.GetGlobalRect()}");
                 GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(5, 5), GlobalPosition = new Vector2(5, 5) }, true); await Frames(2);
                 GetViewport().GetTexture().GetImage().SavePng(output + "/" + prefix + "-command-genie-running.png");
@@ -352,13 +350,13 @@ public partial class Preview
                 Require(Requests(early).Count == 0 && Messages(early).Any(m => m.Contains("Knight Genie will be available after")), "Stop Genie right after Start: the client's cooldown message " + string.Join(" | ", Messages(early)));
                 await ToSignal(GetTree().CreateTimer(10.2), SceneTreeTimer.SignalName.Timeout);
                 var stopped = await Run("GenieStop", "stop");
-                Require(Requests(stopped).Contains("GS_GENIE_SYSTEM:1:5") && !net.GenieRunning, "Stop Genie sends the client's stop request and stops the Genie");
+                Require(Requests(stopped).Contains("GS_GENIE_SYSTEM:1:5") && !Game.Session.Genie.GenieRunning, "Stop Genie sends the client's stop request and stops the Genie");
                 Expect("stopped again", true, false, false, stopTip: runLine.Text);
 
                 // Spirit of Genie: enabled only with one in the bag; it presses the Genie window's own button.
                 var spiritLocked = await Run("GenieSpirit", "no Spirit of Genie");
                 Require(Requests(spiritLocked).Count == 0, "Use Spirit of Genie without one in the bag sends nothing");
-                var bag = (LibreKO.Domain.Inventory)Get(world, "Inv")!;
+                var bag = (LibreKO.Domain.Inventory)Get(world, "Session.Self.Inventory")!;
                 int slot = bag.FirstFreeGridSlot();
                 bag[slot] = new LibreKO.Domain.ItemSlot { ItemId = 810378000, Count = 1, Durability = 1 };
                 await Frames(3);
@@ -369,16 +367,16 @@ public partial class Preview
                 await Frames(2);
 
                 // Open position: the right edge, vertically centred, beside the Classic HUD, at several screen sizes.
-                Set(world, "_geniePoints", 0); DetailCall(world, "RefreshGenieSub"); await Frames(2);
+                Set(world, "Genie.Points", 0); DetailCall(world, "GenieSub.RefreshSub"); await Frames(2);
                 foreach (var size in new[] { new Vector2I(1200, 850), new Vector2I(1024, 768), new Vector2I(1280, 720), new Vector2I(1600, 900), new Vector2I(1920, 1080) })
                 {
-                    if (window.Visible) DetailCall(world, "ToggleCommandList");
+                    if (window.Visible) DetailCall(world, "CommandList.Toggle");
                     // The OS may scale the window (display scaling); ask again for the size the viewport should have.
                     GetWindow().Size = size; await Frames(6);
                     var got = GetViewport().GetVisibleRect().Size;
                     if (got != (Vector2)size) { GetWindow().Size = new Vector2I(Mathf.RoundToInt(size.X * size.X / got.X), Mathf.RoundToInt(size.Y * size.Y / got.Y)); await Frames(6); }
                     await Frames(4);
-                    DetailCall(world, "ToggleCommandList"); await Frames(10);
+                    DetailCall(world, "CommandList.Toggle"); await Frames(10);
                     var screen = GetViewport().GetVisibleRect().Size;
                     var rect = window.GetGlobalRect();
                     var hud = KnightOnlineUiClassic.Native.NativeCommandList.HudRects(world);
@@ -402,8 +400,8 @@ public partial class Preview
                 GetWindow().Size = new Vector2I(1200, 850); await Frames(10);
                 var restored = GetViewport().GetVisibleRect().Size;
                 if (restored != new Vector2(1200, 850)) { GetWindow().Size = new Vector2I(Mathf.RoundToInt(1200 * 1200 / restored.X), Mathf.RoundToInt(850 * 850 / restored.Y)); await Frames(10); }
-                if (window.Visible) DetailCall(world, "ToggleCommandList");
-                DetailCall(world, "ToggleCommandList"); await Frames(8);
+                if (window.Visible) DetailCall(world, "CommandList.Toggle");
+                DetailCall(world, "CommandList.Toggle"); await Frames(8);
                 var home = window.Position;
                 var grip = Descendants(frame).OfType<Control>().Single(c => c.Name == "command_drag");
                 var from = grip.GetGlobalRect().GetCenter(); var to = from + new Vector2(-420, 40);
@@ -413,7 +411,7 @@ public partial class Preview
                 GetViewport().PushInput(new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = false, Position = to, GlobalPosition = to }, true); await Frames(3);
                 var dragged = window.Position;
                 Require(dragged == home + new Vector2(-420, 40), $"drag: the caption band moves the window ({home} -> {dragged})");
-                DetailCall(world, "ToggleCommandList"); await Frames(2); DetailCall(world, "ToggleCommandList"); await Frames(8);
+                DetailCall(world, "CommandList.Toggle"); await Frames(2); DetailCall(world, "CommandList.Toggle"); await Frames(8);
                 Require(window.Position == dragged, "drag: the window reopens where the player left it " + window.Position);
                 string windowsCfg = (string)typeof(Config).GetMethod("WindowsPath", flags)!.Invoke(null, null)!;
                 bool hadCfg = File.Exists(windowsCfg);
@@ -434,10 +432,10 @@ public partial class Preview
         finally
         {
             stop.Cancel();
-            net.AutoReconnect = false; net.Disconnect(expected: true);
-            if (GetTree().CurrentScene is World world) { GetTree().CurrentScene = null; world.QueueFree(); await Frames(); }
+            net.Reconnect.AutoReconnect = false; net.Disconnect(expected: true);
+            if (GetTree().CurrentScene is WorldRoot world) { GetTree().CurrentScene = null; world.QueueFree(); await Frames(); }
             GetTree().CurrentScene = this; net.Free(); loginNet.Free(); typeof(Net).GetProperty("I")!.SetValue(null, original);
-            typeof(LoginNet).GetProperty("I")!.SetValue(null, originalLogin);
+            typeof(Game).GetProperty(nameof(Game.LoginServer))!.SetValue(null, originalLogin);
         }
     }
 }

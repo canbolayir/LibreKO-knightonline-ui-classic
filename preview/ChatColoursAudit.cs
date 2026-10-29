@@ -32,15 +32,15 @@ public partial class Preview
             viewport.PushInput(new InputEventKey { Keycode = key, PhysicalKeycode = key, Pressed = true }); await Frames(1);
             viewport.PushInput(new InputEventKey { Keycode = key, PhysicalKeycode = key, Pressed = false }); await Frames();
         }
-        World? world = null; CanvasLayer? layer = null;
+        WorldRoot? world = null; CanvasLayer? layer = null;
         try
         {
             var stored = new ChatColors(); stored[ChatColorSlot.Normal] = new Color("123456"); Config.SetChatColors(stored.Format());
-            world = new World(); layer = (CanvasLayer)DetailCall(world, "BuildChatColoursClassicUiPreview")!; AddChild(layer);
+            world = PreviewFixtures.Prepared(new WorldRoot()); layer = (CanvasLayer)DetailCall(world, "BuildChatColoursClassicUiPreview")!; AddChild(layer);
             var window = layer.GetChildren().OfType<HudWindow>().Single(); var panel = ClassicChatColoursSkin.Apply(window.Body)!;
-            var palette = (PopupPanel)DetailField(world, "_chatPalette")!;
-            var chat = typeof(World).GetProperty("Chat", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(world)!;
-            ChatColors Draft() => (ChatColors)DetailField(world, "_chatColorsDraft")!;
+            var palette = (PopupPanel)DetailField(world, "ChatHost.palette")!;
+            var chat = Native.Get<object>(world, "Chat")!;
+            ChatColors Draft() => (ChatColors)DetailField(world, "ChatHost.colorsDraft")!;
             ChatColors Applied() => (ChatColors)chat.GetType().GetField("_colors", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(chat)!;
             Button Pick(int slot) => Descendants(panel).OfType<Button>().Single(b => b.Name == "chat_colour_pick_" + slot);
             var apply = Descendants(panel).OfType<Button>().Single(b => b.Name == "chat_colour_apply");
@@ -91,7 +91,7 @@ public partial class Preview
             await Click(reset); Require(Draft().Format() == new ChatColors().Format() && Applied().Format() == applied, "Default resets draft without changing applied colours");
             await Capture("default-draft");
             await KeyInput(GetViewport(), Key.Escape); Require(!window.Visible && Applied().Format() == applied && !palette.Visible, "Editor Escape discards un-applied default draft");
-            DetailCall(world, "OpenChatColors"); await Frames(); Require(Draft().Format() == applied, "Reopen starts from applied settings rather than abandoned draft");
+            DetailCall(world, "ChatHost.OpenColors"); await Frames(); Require(Draft().Format() == applied, "Reopen starts from applied settings rather than abandoned draft");
             await Capture("reopened-colours");
             await Click(Pick(4)); Require(palette.Visible, "Palette can reopen after closing editor");
             var beforeFocus = palette.GuiGetFocusOwner(); await KeyInput(palette, Key.Right);
@@ -101,7 +101,7 @@ public partial class Preview
             Require(!palette.Visible && Draft()[ChatColorSlot.SendWhisper] == keyboardColour && Applied().Format() == applied, "Palette Enter selects focused colour without applying draft");
             await Capture("keyboard-draft");
             await Click(Pick(4)); Require(palette.Visible, "Palette reopens after keyboard selection");
-            DetailCall(world, "CloseChatColors"); await Frames(); Require(!window.Visible && !palette.Visible, "Native close hides both editor and palette");
+            DetailCall(world, "ChatHost.CloseColors"); await Frames(); Require(!window.Visible && !palette.Visible, "Native close hides both editor and palette");
         }
         finally
         {

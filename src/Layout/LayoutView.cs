@@ -283,10 +283,12 @@ public partial class LayoutView : Control
         };
     }
 
-    private Control Image(LayoutNode node)
+    private Control Image(LayoutNode node) => ImageRect(node) ?? new Control { MouseFilter = MouseFilterEnum.Ignore };
+
+    private TextureRect? ImageRect(LayoutNode node)
     {
         var atlas = Atlas(node);
-        if (atlas == null) return new Control { MouseFilter = MouseFilterEnum.Ignore };
+        if (atlas == null) return null;
         var rect = new TextureRect
         {
             Texture = atlas,
@@ -450,7 +452,7 @@ public partial class LayoutView : Control
         }
         foreach (var img in node.Images)
         {
-            if (Image(img) is not TextureRect back) continue;
+            if (ImageRect(img) is not { } back) continue;
             back.Position = new Vector2(img.X - node.X, img.Y - node.Y);
             back.Size = img.SizeVec;
             back.ShowBehindParent = true;

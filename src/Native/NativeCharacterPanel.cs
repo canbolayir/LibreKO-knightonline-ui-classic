@@ -25,28 +25,28 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
     private const string ClanDetailsId = "character_clan_details";
     private static readonly Vector2 ClanDetailsPosition = new(370, 82);
 
-    private static readonly ConditionalWeakTable<World, CharacterPanelBridge> _bridges = new();
+    private static readonly ConditionalWeakTable<WorldRoot, CharacterPanelBridge> _bridges = new();
 
-    private readonly WeakReference<World> _world;
+    private readonly WeakReference<WorldRoot> _world;
     private string _page = CharacterKey;
     private HudWindow? _clanDetails;
     private List<(string Name, int Points)> _donations = new();
 
-    private CharacterPanelBridge(World world)
+    private CharacterPanelBridge(WorldRoot world)
     {
         _world = new(world);
-        if (Net.I is { } net)
-            NativeHooks.Listen("Net.ClanDonationListEvent", () => net.ClanDonationListEvent += OnDonations,
-                () => net.ClanDonationListEvent -= OnDonations, world);
+        if (Game.Connection is { } net)
+            NativeHooks.Listen("Net.ClanDonationListEvent", () => Game.Session.Clan.ClanDonationListEvent += OnDonations,
+                () => Game.Session.Clan.ClanDonationListEvent -= OnDonations, world);
     }
 
     /// <summary>The bridge of a client world; one per world so the page selection persists.</summary>
-    public static CharacterPanelBridge For(World world) => _bridges.GetValue(world, w => new CharacterPanelBridge(w));
+    public static CharacterPanelBridge For(WorldRoot world) => _bridges.GetValue(world, w => new CharacterPanelBridge(w));
 
     /// <summary>The Knights Management window the Classic clan page opens, once created.</summary>
     public HudWindow? ClanDetails => _clanDetails != null && GodotObject.IsInstanceValid(_clanDetails) ? _clanDetails : null;
 
-    private World? W => _world.TryGetTarget(out var world) && GodotObject.IsInstanceValid(world) ? world : null;
+    private WorldRoot? W => _world.TryGetTarget(out var world) && GodotObject.IsInstanceValid(world) ? world : null;
 
     private void OnDonations(List<(string Name, int Points)> list)
     {
@@ -54,29 +54,29 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
         _donations = list.ToList();
     }
 
-    private static T Get<T>(World world, string member) => Native.Get<T>(world, member)!;
-    private static int Int(World world, string member) => Native.TryGet<int>(world, member, out var value) ? value : 0;
-    private static object? Call(World world, string method, params object?[] args) => Native.Call(world, method, args);
-    private static object Page(int value) => Enum.ToObject(Native.ClientType("LibreKO.World+CharacterPage")!, value);
-    private static CharacterSheet? Sheet(World world) => Native.Get<CharacterSheet>(world, "Sheet");
+    private static T Get<T>(WorldRoot world, string member) => Native.Get<T>(world, member)!;
+    private static int Int(WorldRoot world, string member) => Native.TryGet<int>(world, member, out var value) ? value : 0;
+    private static object? Call(WorldRoot world, string method, params object?[] args) => Native.Call(world, method, args);
+    private static object Page(int value) => Enum.ToObject(Native.ClientType("LibreKO.Features.CharacterPage")!, value);
+    private static CharacterSheet? Sheet(WorldRoot world) => Game.Session.Self.Sheet;
 
     public string SelectedPage => _page;
-    public string RaceName => W is { } w ? StarterStats.RaceName(Int(w, "_selfRace")) : "";
-    public string JobName => W is { } w ? CharacterClassCatalog.SpecializationName(Int(w, "_selfClass")) : "";
+    public string RaceName => W is { } w ? StarterStats.RaceName(Game.Session.Self.LastEnter.Race) : "";
+    public string JobName => W is { } w ? CharacterClassCatalog.SpecializationName(Game.Session.Self.LastEnter.Class) : "";
     public string LevelLabel => W is { } w ? Sheet(w)?.LevelLabel ?? "" : "";
     /// <summary>The worn title; the client shows it in the Achievement window, the Classic report keeps its title button.</summary>
     public string TitleName =>
-        Net.I is { DisplayTitleId: not 0 } net && AchievementData.TitleOf(net.DisplayTitleId) is { } title ? $"Title: {title.Name}" : "Title: none";
-    public MyClanInfo Clan => Net.I?.MyClan ?? default;
-    public int QuestFilter => W is { } w ? Int(w, "_questFilter") : 0;
-    public int QuestKind => W is { } w && Native.Get<object>(w, "_questKind") is Enum kind ? Convert.ToInt32(kind) + 1 : 0;
+        Game.Session.Achievement.DisplayTitleId is not 0 && AchievementData.TitleOf(Game.Session.Achievement.DisplayTitleId) is { } title ? $"Title: {title.Name}" : "Title: none";
+    public MyClanInfo Clan => Game.Session.Clan.MyClan;
+    public int QuestFilter => W is { } w ? Int(w, "Quest.filter") : 0;
+    public int QuestKind => W is { } w && Native.Get<object>(w, "Quest.kind") is Enum kind ? Convert.ToInt32(kind) + 1 : 0;
 
     public IReadOnlyList<Window> Dialogs
     {
         get
         {
             if (W is not { } w) return Array.Empty<Window>();
-            return new[] { "_clanInviteAsk", "_clanDisbandAsk", "_clanLeaveAsk", "_clanRemoveAsk", "_clanAllianceAsk", "_clanConfirmAsk", "_clanMemberMenu" }
+            return new[] { "Clan.inviteAsk", "Clan.disbandAsk", "Clan.LeaveAsk", "Clan.removeAsk", "Clan.allianceAsk", "Clan.confirmAsk", "Clan.memberMenu" }
                 .Select(member => Native.Get<Window>(w, member)).OfType<Window>().ToArray();
         }
     }
@@ -89,37 +89,34 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
         _page = page;
         if (page == QuestKey)
         {
-            if (Native.Get<IDictionary>(w, "_characterPages") is { } pages)
+            if (Native.Get<IDictionary>(w, "MainWindows.characterPages") is { } pages)
                 foreach (var content in pages.Values.OfType<Control>()) content.Visible = false;
             // Quest Details showing means the client's journal is open and kept current by its quest events;
             // reloading the log there would only clear it until the server answers.
-            if (Native.Call(w, "MainWindowOpen", "Quests") is not true) Net.I.SendQuestLogRequest();
+            if (Native.Call(w, "MainWindows.IsOpen", "Quests") is not true) Game.Requests.NpcQuest.QuestLogRequest();
         }
-        else Call(w, "ShowCharacterPage", Page(page == ClanKey ? ClanPage : page == FriendsKey ? FriendsPage : 0));
+        else Call(w, "MainWindows.ShowCharacterPage", Page(page == ClanKey ? ClanPage : page == FriendsKey ? FriendsPage : 0));
         SyncClanContent(w);
     }
 
     /// <summary>
-    /// Escape closes Knights Management before the main windows. The client's escape order has no
-    /// seam, so the entry goes ahead of its last two entries (main windows, then whispers).
+    /// Escape closes Knights Management before the main windows.
     /// </summary>
-    private static void EscapeCloses(World w, HudWindow window)
+    private static void EscapeCloses(WorldRoot w, HudWindow window)
     {
-        const int TrailingEntries = 2;
-        if (Native.Get<List<(Func<bool> IsOpen, Action Close)>>(w, "_escapeStack") is not { } stack) return;
         var weak = new WeakReference<HudWindow>(window);
         bool Open() => weak.TryGetTarget(out var shown) && GodotObject.IsInstanceValid(shown) && shown.Visible;
         void Close() { if (weak.TryGetTarget(out var shown) && GodotObject.IsInstanceValid(shown)) shown.Visible = false; }
-        stack.Insert(Math.Max(0, stack.Count - TrailingEntries), (Open, Close));
+        NativeEscape.CloseOnEscape(w, Open, Close);
     }
 
     /// <summary>
     /// Once the clan view lives in Knights Management, it counts as shown (for the client's member
     /// refreshes) while the Clan page or that window is open.
     /// </summary>
-    private void SyncClanContent(World w)
+    private void SyncClanContent(WorldRoot w)
     {
-        if (ClanDetails is { } details && Native.Get<Control>(w, "_clanContent") is { } content)
+        if (ClanDetails is { } details && Native.Get<Control>(w, "Clan.Content") is { } content)
             content.Visible = _page == ClanKey || details.Visible;
     }
 
@@ -128,9 +125,9 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
         if (W is not { } w) return "";
         return section switch
         {
-            "friends" => Native.Get<Label>(w, "_friendStatus")?.Text ?? "",
-            "clan" => Native.Get<Label>(w, "_clanStatus")?.Text ?? "",
-            "union" => Native.Get<string>(w, "_allianceNotice") ?? "",
+            "friends" => Native.Get<Label>(w, "Friends.friendStatus")?.Text ?? "",
+            "clan" => Native.Get<Label>(w, "Clan.status")?.Text ?? "",
+            "union" => Native.Get<string>(w, "Clan.allianceNotice") ?? "",
             "clan_bonus" => ClanBonus() is { } online ? ClanBonusCard.Marks(online, ItemData.Text(ClanBonusCard.OnText, ClanBonusCard.OnFallback),
                 ItemData.Text(ClanBonusCard.OffText, ClanBonusCard.OffFallback)) : "",
             "clan_bonus_tip" => ClanBonus() is { } count ? ClanBonusCard.Tooltip(count, ItemData.Text(ClanBonusCard.NeedText, ClanBonusCard.NeedFallback),
@@ -141,7 +138,7 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
 
     /// <summary>The clan online bonus the server last reported (3277df5), or null before a report or outside a clan.</summary>
     private static int? ClanBonus() =>
-        Net.I is { } net && net.MyClan.InClan && net.ClanOnlineCount != Net.NoClanBonus ? net.ClanOnlineCount : null;
+        Game.Session.Clan.MyClan.InClan && Game.Session.Clan.ClanOnlineCount != ClanSession.NoClanBonus ? Game.Session.Clan.ClanOnlineCount : null;
 
     public IReadOnlyList<GamePanelRow> Rows(string section)
     {
@@ -150,7 +147,7 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
         switch (section)
         {
             case "clan":
-                foreach (var m in (Native.Get<List<ClanMember>>(w, "_clanMembers") ?? new()).OrderByDescending(m => m.IsOnline).ThenBy(m => m.Fame)
+                foreach (var m in (Native.Get<List<ClanMember>>(w, "Clan.members") ?? new()).OrderByDescending(m => m.IsOnline).ThenBy(m => m.Fame)
                              .ThenBy(m => m.Name, StringComparer.OrdinalIgnoreCase))
                 {
                     var job = CharacterClassCatalog.DisplayName(m.Class);
@@ -161,12 +158,12 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
                 }
                 break;
             case "friends":
-                foreach (var f in (Native.Get<List<FriendEntry>>(w, "_friends") ?? new()).OrderByDescending(f => f.Status).ThenBy(f => f.Name, StringComparer.OrdinalIgnoreCase))
-                    rows.Add(new(f.Name, new[] { f.Name }, $"{f.Name}\n{Native.Call(typeof(World), "FriendDetailLine", f)}",
+                foreach (var f in (Native.Get<List<FriendEntry>>(w, "Friends.friends") ?? new()).OrderByDescending(f => f.Status).ThenBy(f => f.Name, StringComparer.OrdinalIgnoreCase))
+                    rows.Add(new(f.Name, new[] { f.Name }, $"{f.Name}\n{Native.Call(Native.StaticOwner("LibreKO.Features.Windows.FriendsFeature"), "FriendDetailLine", f)}",
                         f.InParty ? new Color("ff9292") : f.IsOnline ? new Color("8ff099") : new Color("bbbbbb"), f.IsOnline));
                 break;
             case "union":
-                foreach (var c in Native.Get<List<AllianceClanEntry>>(w, "_allianceClans") ?? new())
+                foreach (var c in Native.Get<List<AllianceClanEntry>>(w, "Clan.allianceClans") ?? new())
                 {
                     var officers = string.Join("\n", c.Officers.Select(o => $"{ClanRanks.Name(o.Fame)}: {o.Name}"));
                     rows.Add(new(c.Id.ToString(), new[] { c.Name, c.Id == Clan.AllianceId ? "Leader" : "Member" },
@@ -184,16 +181,18 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
         return rows;
     }
 
-    private static void QuestRows(World w, List<GamePanelRow> rows)
+    private static void QuestRows(WorldRoot w, List<GamePanelRow> rows)
     {
-        var selfName = Net.I.LastEnter.Name ?? "";
-        var views = Native.Get<Dictionary<int, QuestView>>(w, "_questViews") ?? new();
-        var tracked = Native.Get<HashSet<int>>(w, "_questTracked") ?? new();
-        foreach (var (id, state) in Call(w, "QuestsInView") as List<(int QuestId, int State)> ?? new())
+        var selfName = Game.Session.Self.LastEnter.Name ?? "";
+        var book = Game.Session.QuestBook;
+        var views = book.Views;
+        var tracked = book.Tracked;
+        var questInfo = Native.StaticOwner("LibreKO.Features.Windows.QuestInfo");
+        foreach (var (id, state) in Call(w, "Quest.QuestsInView") as List<(int QuestId, int State)> ?? new())
         {
-            var facts = (QuestData.Facts)Call(w, "QuestFacts", id)!;
-            var title = (string)Call(w, "QuestName", id, selfName)!;
-            var status = (string)Native.Call(typeof(World), "StateName", state)!;
+            var facts = (QuestData.Facts)Native.Call(questInfo, "Facts", book, id)!;
+            var title = (string)Native.Call(questInfo, "Name", book, id, selfName)!;
+            var status = (string)Native.Call(questInfo, "StateName", state)!;
             var shortState = state switch { QuestStateActive => "Active", QuestStateCompleted => "Done", QuestStateReadyToTurnIn => "Ready", QuestStateOpen => "Open", _ => "Open" };
             var reset = "";
             views.TryGetValue(id, out var view);
@@ -204,7 +203,7 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
             bool claim = view != null ? view.CanClaim && view.Options.Length == 0 : state == QuestStateReadyToTurnIn;
             bool isTracked = tracked.Contains(id);
             rows.Add(new(id.ToString(), new[] { title, shortState, "—" },
-                $"{title}\n{facts.Kind} · Lv {facts.Level} · {status}\n{Call(w, "QuestJournal", id, selfName)}{reset}" + (isTracked ? "\nTracked" : ""),
+                $"{title}\n{facts.Kind} · Lv {facts.Level} · {status}\n{Native.Call(questInfo, "Journal", book, id, selfName)}{reset}" + (isTracked ? "\nTracked" : ""),
                 state == QuestStateReadyToTurnIn ? new Color("fff080") : Colors.White, true, active, abandon, claim, isTracked));
         }
     }
@@ -214,95 +213,95 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
         if (W is not { } w) return;
         switch (section)
         {
-            case "friends": Call(w, "EnsureFriendsLoaded"); Net.I.SendFriendListRequest(); break;
-            case "clan": if (Clan.InClan) Net.I.SendClanMembersRequest(); break;
-            case "union": if (Clan.InClan) Net.I.SendAllianceList(); break;
-            case "contribution": if (Clan.InClan) Net.I.SendClanDonationList(); break;
-            case "quests": Net.I.SendQuestLogRequest(); break;
+            case "friends": Call(w, "Friends.EnsureLoaded"); Game.Requests.Friends.FriendListRequest(); break;
+            case "clan": if (Clan.InClan) Game.Requests.Clan.MembersRequest(); break;
+            case "union": if (Clan.InClan) Game.Requests.Clan.AllianceList(); break;
+            case "contribution": if (Clan.InClan) Game.Requests.Clan.DonationList(); break;
+            case "quests": Game.Requests.NpcQuest.QuestLogRequest(); break;
         }
     }
 
     public void Act(string action, string selection = "", string value = "")
     {
         if (W is not { } w) return;
-        bool member = (Native.Get<List<ClanMember>>(w, "_clanMembers") ?? new()).Any(m => string.Equals(m.Name, selection, StringComparison.OrdinalIgnoreCase));
-        bool other = !string.Equals(selection, Net.I.LastEnter.Name, StringComparison.OrdinalIgnoreCase);
-        var friends = Native.Get<List<FriendEntry>>(w, "_friends") ?? new();
+        bool member = (Native.Get<List<ClanMember>>(w, "Clan.members") ?? new()).Any(m => string.Equals(m.Name, selection, StringComparison.OrdinalIgnoreCase));
+        bool other = !string.Equals(selection, Game.Session.Self.LastEnter.Name, StringComparison.OrdinalIgnoreCase);
+        var friends = Native.Get<List<FriendEntry>>(w, "Friends.friends") ?? new();
         switch (action)
         {
-            case "titles": Call(w, "ToggleTitlePicker"); return;
-            case "presets": Call(w, "TogglePreset"); return;
+            case "titles": Call(w, "TitlePicker.Toggle"); return;
+            case "presets": Call(w, "SkillPreset.TogglePreset"); return;
             case "clan_management": OpenClanDetails(w); return;
             case "clan_contribution":
-                if (Clan.InClan) { Call(w, "ShowClanTab", Enum.ToObject(Native.ClientType("LibreKO.World+ClanTab")!, ClanPointsTab)); OpenClanDetails(w); }
+                if (Clan.InClan) { Call(w, "Clan.ShowTab", Enum.ToObject(Native.ClientType("LibreKO.Features.Social.ClanFeature+Tab")!, ClanPointsTab)); OpenClanDetails(w); }
                 return;
-            case "clan_donate": if (Clan.InClan) Call(w, "ToggleClanPoints"); return;
-            case "clan_leave": if (Clan.InClan) Call(w, "OnLeaveClan"); return;
+            case "clan_donate": if (Clan.InClan) Call(w, "ClanPoints.Toggle"); return;
+            case "clan_leave": if (Clan.InClan) Call(w, "Clan.OnLeave"); return;
             case "clan_invite":
-                if (Clan.CanInvite && SelectedPlayer(w) is { } invited) Net.I.SendClanInvite(invited);
-                else Call(w, "CombatNotice", "Select a player. A chief or vice-chief can invite members.");
+                if (Clan.CanInvite && SelectedPlayer(w) is { } invited) Game.Requests.Clan.Invite(invited);
+                else Call(w, "Log.Notice", "Select a player. A chief or vice-chief can invite members.");
                 return;
             case "clan_private": if (member && other) MemberAction(w, selection, MemberWhisper); return;
             case "clan_party": if (member && other) MemberAction(w, selection, MemberParty); return;
-            case "clan_info": if (member) Call(w, "RequestUserInformation", selection); return;
+            case "clan_info": if (member) Call(w, "UserInfo.RequestInformation", selection); return;
             // The client's memo prompt (3277df5): the Classic text prompt with the member's current memo.
-            case "clan_memo": if (Clan.InClan) Native.TryCall(w, "OpenClanMemo", out _); return;
+            case "clan_memo": if (Clan.InClan) Native.TryCall(w, "Clan.OpenMemo", out _); return;
             case "clan_appoint": if (member && other && Clan.IsChief) MemberAction(w, selection, MemberAppoint); return;
             case "clan_handover": if (member && other && Clan.IsChief) MemberAction(w, selection, MemberHandover); return;
             case "clan_remove":
                 if (member && other && Clan.IsChief)
-                    Call(w, "AskClanConfirm", "Expel from clan", "Expel", $"Do you really want to expel {selection}?", (Action)(() => Net.I.SendClanKick(selection)));
+                    Call(w, "Clan.AskConfirm", "Expel from clan", "Expel", $"Do you really want to expel {selection}?", (Action)(() => Game.Requests.Clan.Kick(selection)));
                 return;
-            case "union_leave": if (Clan.IsChief) Call(w, "OnAllianceButton"); return;
+            case "union_leave": if (Clan.IsChief) Call(w, "Clan.OnAllianceButton"); return;
             case "union_add":
                 if (!Clan.IsChief || Clan.Flag < ClanTypes.Promoted) return;
-                if (Clan.AllianceId == 0) { Call(w, "OnAllianceButton"); return; }
-                if (Clan.AllianceId == Clan.ClanId && SelectedPlayer(w) is { } ally) Net.I.SendAllianceInsert(ally);
-                else Call(w, "CombatNotice", "Target the chief of the clan you want to ally with.");
+                if (Clan.AllianceId == 0) { Call(w, "Clan.OnAllianceButton"); return; }
+                if (Clan.AllianceId == Clan.ClanId && SelectedPlayer(w) is { } ally) Game.Requests.Clan.AllianceInsert(ally);
+                else Call(w, "Log.Notice", "Target the chief of the clan you want to ally with.");
                 return;
             case "union_remove":
                 if (Clan.IsChief && Clan.AllianceId == Clan.ClanId && int.TryParse(selection, out int clanId) && clanId != Clan.ClanId
-                    && (Native.Get<List<AllianceClanEntry>>(w, "_allianceClans") ?? new()).Any(c => c.Id == clanId))
-                    Call(w, "AskClanConfirm", "Expel from alliance", "Expel", "Expel the selected clan from the alliance?", (Action)(() => Net.I.SendAlliancePunish(clanId)));
+                    && (Native.Get<List<AllianceClanEntry>>(w, "Clan.allianceClans") ?? new()).Any(c => c.Id == clanId))
+                    Call(w, "Clan.AskConfirm", "Expel from alliance", "Expel", "Expel the selected clan from the alliance?", (Action)(() => Game.Requests.Clan.AlliancePunish(clanId)));
                 return;
             case "clan_chat": OpenChannel(w, ClanChannel, "$"); return;
             case "union_chat": OpenChannel(w, AllianceChannel, "&"); return;
             case "friend_add":
-                if (Native.Get<LineEdit>(w, "_friendAddInput") is { } input)
-                    input.Text = value.Trim().Length > 0 ? value.Trim() : SelectedPlayer(w) is { } id && Native.Get<IDictionary>(w, "_ents")?[id] is { } target
+                if (Native.Get<LineEdit>(w, "Friends.friendAddInput") is { } input)
+                    input.Text = value.Trim().Length > 0 ? value.Trim() : SelectedPlayer(w) is { } id && Native.Get<IDictionary>(w, "EntitySystem.Ents")?[id] is { } target
                         ? Native.Get<string>(target, "Name") ?? "" : "";
-                Call(w, "DoFriendAdd");
+                Call(w, "Friends.DoFriendAdd");
                 return;
-            case "friend_remove": if (friends.Any(f => f.Name == selection)) Net.I.SendFriendRemove(selection); return;
-            case "friend_private": if (friends.Any(f => f.Name == selection && f.IsOnline)) Call(w, "OpenWhisperWith", selection); return;
-            case "friend_party": if (friends.Any(f => f.Name == selection && f.IsOnline)) Call(w, "InvitePlayerToParty", selection); return;
-            case "quest_filter": if (int.TryParse(value, out int filter) && filter is >= 0 and <= LastQuestFilter) Call(w, "SetQuestFilter", filter); return;
+            case "friend_remove": if (friends.Any(f => f.Name == selection)) Game.Requests.Friends.FriendRemove(selection); return;
+            case "friend_private": if (friends.Any(f => f.Name == selection && f.IsOnline)) Call(w, "Whispers.OpenWhisperWith", selection); return;
+            case "friend_party": if (friends.Any(f => f.Name == selection && f.IsOnline)) Call(w, "PlayerMenu.InviteToParty", selection); return;
+            case "quest_filter": if (int.TryParse(value, out int filter) && filter is >= 0 and <= LastQuestFilter) Call(w, "Quest.SetFilter", filter); return;
             case "quest_kind":
                 if (int.TryParse(value, out int kind) && kind is >= 0 and <= LastQuestKind)
-                    Call(w, "SetQuestKind", kind == 0 ? null : Enum.ToObject(typeof(QuestData.Kind), kind - 1));
+                    Call(w, "Quest.SetKind", kind == 0 ? null : Enum.ToObject(typeof(QuestData.Kind), kind - 1));
                 return;
             case "quest_select": SelectQuest(w, selection); return;
             case "quest_details": if (SelectQuest(w, selection)) ShowQuestsWindow(w); return;
-            case "quest_track": if (SelectQuest(w, selection) && Native.Get<Button>(w, "_questTrackBtn") is { Disabled: false }) Call(w, "ToggleTrackSelectedQuest"); return;
-            case "quest_abandon": if (SelectQuest(w, selection) && Native.Get<Button>(w, "_questAbandonBtn") is { Disabled: false }) Call(w, "AbandonSelectedQuest"); return;
-            case "quest_complete": if (SelectQuest(w, selection) && Native.Get<Button>(w, "_questCompleteBtn") is { Disabled: false }) Call(w, "CompleteSelectedQuest"); return;
+            case "quest_track": if (SelectQuest(w, selection) && Native.Get<Button>(w, "Quest.trackBtn") is { Disabled: false }) Call(w, "Quest.ToggleTrackSelected"); return;
+            case "quest_abandon": if (SelectQuest(w, selection) && Native.Get<Button>(w, "Quest.abandonBtn") is { Disabled: false }) Call(w, "Quest.AbandonSelected"); return;
+            case "quest_complete": if (SelectQuest(w, selection) && Native.Get<Button>(w, "Quest.completeBtn") is { Disabled: false }) Call(w, "Quest.CompleteSelected"); return;
         }
     }
 
-    private static int? SelectedPlayer(World w)
+    private static int? SelectedPlayer(WorldRoot w)
     {
-        int id = Int(w, "_selectedId");
-        return id > 0 && Native.Get<IDictionary>(w, "_ents") is { } ents && ents.Contains(id) && ents[id] is { } ent
+        int id = Int(w, "Selection.SelectedId");
+        return id > 0 && Native.Get<EntityRegistry>(w, "EntitySystem.Ents") is { } ents && ents.TryGetValue(id, out var ent)
             && !Native.Get<bool>(ent, "IsNpc") ? id : null;
     }
 
-    private static void MemberAction(World w, string name, long action)
+    private static void MemberAction(WorldRoot w, string name, long action)
     {
-        Native.Set(w, "_ctxMember", name);
-        Call(w, "OnMemberMenuAction", action);
+        Native.Set(w, "Clan.ctxMember", name);
+        Call(w, "Clan.OnMemberMenuAction", action);
     }
 
-    private static void OpenChannel(World w, byte channel, string prefix)
+    private static void OpenChannel(WorldRoot w, byte channel, string prefix)
     {
         if (Native.Get<object>(w, "Chat") is not { } chat) return;
         Native.Call(chat, "SetChannel", channel);
@@ -310,62 +309,62 @@ public sealed class CharacterPanelBridge : IGameCharacterPanel
         Native.Call(chat, "Open");
     }
 
-    private static bool SelectQuest(World w, string selection)
+    private static bool SelectQuest(WorldRoot w, string selection)
     {
         if (!int.TryParse(selection, NumberStyles.Integer, CultureInfo.InvariantCulture, out int id)
-            || Call(w, "QuestsInView") is not List<(int QuestId, int State)> quests || quests.All(q => q.QuestId != id)) return false;
-        Native.Set(w, "_questSelected", id);
-        Call(w, "RefreshQuestDetail");
+            || Call(w, "Quest.QuestsInView") is not List<(int QuestId, int State)> quests || quests.All(q => q.QuestId != id)) return false;
+        Native.Set(w, "Quest.Selected", id);
+        Call(w, "Quest.RefreshDetail");
         return true;
     }
 
     /// <summary>Shows the native Quests window without the refresh that would reload and reset the selection.</summary>
-    private static void ShowQuestsWindow(World w)
+    private static void ShowQuestsWindow(WorldRoot w)
     {
-        if (Native.Get<Dictionary<string, HudWindow>>(w, "_mainWindows") is not { } windows || !windows.TryGetValue("Quests", out var window)) return;
+        if (Native.Get<Dictionary<string, HudWindow>>(w, "MainWindows.Windows") is not { } windows || !windows.TryGetValue("Quests", out var window)) return;
         window.Visible = true;
         window.GetParent()?.MoveChild(window, window.GetParent().GetChildCount() - 1);
-        Native.TryCall(w, "SyncMainWindowState", out _);
+        Native.TryCall(w, "MainWindows.SyncState", out _);
     }
 
     /// <summary>
     /// Moves the client's clan management view into its own Knights Management window, which the
     /// Classic character window embeds as a subpage.
     /// </summary>
-    private void OpenClanDetails(World w)
+    private void OpenClanDetails(WorldRoot w)
     {
-        if (Native.Get<Control>(w, "_clanContent") is not { } content) return;
+        if (Native.Get<Control>(w, "Clan.Content") is not { } content) return;
         if (ClanDetails == null)
         {
-            int width = Native.TryGet<int>(typeof(World), "CharacterPageWidth", out var pageWidth) ? pageWidth : 0;
+            int width = LibreKO.UiKit.CharacterPageWidth;
             var window = new HudWindow(ClanDetailsId, "Knights Management", ClanDetailsPosition, width) { Visible = false };
             if (content.GetParent() is { } parent)
             {
                 parent.RemoveChild(content);
                 var slot = new Control { Visible = false };
                 parent.AddChild(slot);
-                if (Native.Get<IDictionary>(w, "_characterPages") is { } pages) pages[Page(ClanPage)] = slot;
+                if (Native.Get<IDictionary>(w, "MainWindows.characterPages") is { } pages) pages[Page(ClanPage)] = slot;
             }
             window.Body.AddChild(content);
-            (Native.Get<CanvasLayer>(w, "_mainLayer") ?? (Node)w).AddChild(window);
+            (Native.Get<CanvasLayer>(w, "MainWindows.layer") ?? (Node)w).AddChild(window);
             _clanDetails = window;
             window.VisibilityChanged += () => { if (W is { } current) SyncClanContent(current); };
             EscapeCloses(w, window);
         }
         content.Visible = true;
         _clanDetails!.Visible = true;
-        Call(w, "ApplyMyClan");
-        Call(w, "EnsureClanLoaded");
-        Call(w, "RefreshClanTab");
+        Call(w, "Clan.ApplyMy");
+        Call(w, "Clan.EnsureLoaded");
+        Call(w, "Clan.RefreshTab");
     }
 }
 
 public partial class ClientGame
 {
-    private WeakReference<World>? _world;
+    private WeakReference<WorldRoot>? _world;
 
     /// <summary>The running client world, cached while it stays in the scene tree.</summary>
-    private World? ActiveWorld
+    private WorldRoot? ActiveWorld
     {
         get
         {

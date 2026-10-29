@@ -31,7 +31,7 @@ public partial class Preview
         }
         foreach (string mode in new[] { "nation", "siege", "fee" })
         {
-            var world = new World(); var window = (HudWindow)DetailCall(world, "BuildCouncilRateUiPreview", mode)!;
+            var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "BuildCouncilRateUiPreview", mode)!;
             AddChild(window); var panel = ClassicCouncilRate.Apply(window.Body)!; await Frames();
             var controls = Descendants(panel).OfType<Control>().ToArray();
             var down = controls.OfType<Button>().Single(c => c.Name == "taxrate_down");
@@ -74,7 +74,7 @@ public partial class Preview
             if (mode == "nation")
             {
                 panel._UnhandledKeyInput(new InputEventKey { Pressed = true, Keycode = Key.Enter }); await Frames();
-                Require((bool)DetailField(world, "_nationTaxRateBusy")!, "Nation rate Enter starts the actual pending request");
+                Require((bool)DetailField(world, "KingTreasury.nationTaxRateBusy")!, "Nation rate Enter starts the actual pending request");
                 Require(up.Disabled && down.Disabled && controls.OfType<Button>().Single(c => c.Name == "taxrate_accept").Disabled,
                     "Pending tariff freezes the submitted value and duplicate confirmations");
                 Require(up.SelfModulate.R == .5f && down.SelfModulate.R == .5f, "Pending arrow artwork is visibly disabled");
@@ -85,9 +85,9 @@ public partial class Preview
             else
             {
                 panel._UnhandledKeyInput(new InputEventKey { Pressed = true, Keycode = Key.Enter });
-                Require(!window.Visible && !(bool)DetailField(world, "_siegeTaxRateShown")!, mode + " Enter invokes native submission and closes the rate dialog");
+                Require(!window.Visible && !(bool)DetailField(world, "Siege.taxRateShown")!, mode + " Enter invokes native submission and closes the rate dialog");
                 var kindType = typeof(LibreKO.Domain.SiegeRateKind);
-                DetailCall(world, "OpenSiegeTaxRate", Enum.Parse(kindType, mode == "fee" ? "DungeonFee" : "Moradon"));
+                DetailCall(world, "Siege.OpenTaxRate", Enum.Parse(kindType, mode == "fee" ? "DungeonFee" : "Moradon"));
             }
             panel._UnhandledKeyInput(new InputEventKey { Pressed = true, Keycode = Key.Escape });
             Require(!window.Visible, mode + " Escape invokes native cancellation");

@@ -31,10 +31,9 @@ public partial class Preview
         AddChild(new ColorRect { Color = ground, Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net, new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
-            Name = "Quest Preview", Gear = new int[8], Inventory = new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal] });
+        Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
+            Name = "Quest Preview", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new LibreKO.Domain.ItemSlot[InventoryConstants.InventoryTotal]);
         ItemData.EnsureLoaded();
-        const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
         string prefix = nation == 1 ? "karus" : "human";
         var checks = new List<string>(); var screens = new List<object>();
         void Require(bool valid, string message) { if (!valid) throw new Exception("PREMIUM_QUEST_AUDIT: " + message); checks.Add(message); }
@@ -77,14 +76,14 @@ public partial class Preview
         }
 
         // ---- Quest notice (quest_available) ----------------------------------------------------------------------
-        var world = new World();
-        DetailCall(world, "EnsureQuestNotificationWindow");
-        var notice = (HudWindow)DetailField(world, "_questNotificationWindow")!;
+        var world = PreviewFixtures.Prepared(new WorldRoot());
+        DetailCall(world, "QuestNotifications.EnsureNotificationWindow");
+        var notice = (HudWindow)DetailField(world, "QuestNotifications.NotificationWindow")!;
         notice.GetParent().RemoveChild(notice); layer.AddChild(notice);
         NativeCharacterNpc.Prepare(notice, world);
         Require(ClassicQuestNotice.Apply(notice.Body) is ClassicFrame, "The notice gets the plain Classic frame");
         Require(notice.GetChildren().OfType<ClassicFrame>().Single() is { Ornate: false }, "The notice frame is plain, not the ornate quest-talk frame");
-        var notifications = (List<QuestView>)DetailField(world, "_questNotifications")!;
+        var notifications = (List<QuestView>)DetailField(world, "QuestNotifications.QuestNotifications")!;
         string longTitle = "The Very Long Quest About Every Supply Crate The Moradon Guards Lost";
         string longAnswer = "I will gladly bring every one of the supply crates the guards asked for";
         QuestView View(int index, QuestViewState state, string title, string dialogue, string[] topics) =>
@@ -103,7 +102,7 @@ public partial class Preview
                     55 => View(55, QuestViewState.Available, "Path of the Warrior", "Train with the captain in Moradon.", ["I am ready"]),
                     _ => View(i, QuestViewState.Available, "Moradon Errand " + (i + 1), "Help the people of Moradon.", ["I will help"]),
                 });
-            typeof(World).GetField("_questNotificationIndex", flags)!.SetValue(world, 0);
+            Native.Set(world, "QuestNotifications.notificationIndex", 0);
         }
         Label NoticeTitle() => Descendants(notice.Header!).OfType<Label>().Last(l => l.Visible);
         Button[] Arrows() => Descendants(notice.Body).OfType<Button>().Where(b => b.TooltipText is ClassicQuestNotice.Previous or ClassicQuestNotice.Next && !b.IsQueuedForDeletion()).ToArray();
@@ -173,7 +172,7 @@ public partial class Preview
         }
 
         Fill();
-        DetailCall(world, "RefreshQuestNotification");
+        DetailCall(world, "QuestNotifications.RefreshNotification");
         await Settle(); await Frames();
         var opened = notice.GetGlobalRect();
         Require(Mathf.Abs(opened.GetCenter().X - viewport.GetCenter().X) <= 1 && Mathf.Abs(opened.GetCenter().Y - viewport.GetCenter().Y) <= 1, "Notice opens centred " + opened);
@@ -190,7 +189,7 @@ public partial class Preview
         foreach (var (step, state, index) in new[] { (1, "in-progress", 1), (1, "ready", 2), (1, "completed", 3), (1, "long-title", 4) })
         {
             await Click(Arrows()[1]);
-            Require((int)DetailField(world, "_questNotificationIndex")! == index, "Next arrow pages the client's notice to " + (index + 1));
+            Require((int)DetailField(world, "QuestNotifications.notificationIndex")! == index, "Next arrow pages the client's notice to " + (index + 1));
             Require(notice.Position == top && Arrows().Select(a => a.GetGlobalRect()).SequenceEqual(arrowsAt), state + ": paging keeps the top edge and the arrows");
             Require(NoticeTitle().Text == $"Quests available ({index + 1} of 56)", state + ": native title " + NoticeTitle().Text);
             Require(Rows().OfType<Button>().All(b => b.HasMeta("classic_quest_answer") && b.GetThemeStylebox("normal") is StyleBoxTexture) && Arrows().All(a => a.GetThemeStylebox("normal") is StyleBoxTexture), state + ": rebuilt rows styled on their first frame");
@@ -198,13 +197,13 @@ public partial class Preview
         }
         var trimmed = Rows().OfType<HBoxContainer>().Single().GetChildren().OfType<Label>().Single();
         Require(trimmed.Text == longTitle && Width(trimmed, trimmed.Text) > trimmed.Size.X, "A long quest name is trimmed with an ellipsis in the pager");
-        typeof(World).GetField("_questNotificationIndex", flags)!.SetValue(world, 0); DetailCall(world, "RefreshQuestNotification"); await Frames();
+        Native.Set(world, "QuestNotifications.notificationIndex", 0); DetailCall(world, "QuestNotifications.RefreshNotification"); await Frames();
         await Click(Arrows()[0]);
-        Require((int)DetailField(world, "_questNotificationIndex")! == 55 && NoticeTitle().Text == "Quests available (56 of 56)", "Previous arrow on the first page goes to the last page");
+        Require((int)DetailField(world, "QuestNotifications.notificationIndex")! == 55 && NoticeTitle().Text == "Quests available (56 of 56)", "Previous arrow on the first page goes to the last page");
         await ShotNotice("last");
 
         // Answers and Close all reach the client's own handlers.
-        typeof(World).GetField("_questNotificationIndex", flags)!.SetValue(world, 0); DetailCall(world, "RefreshQuestNotification"); await Frames();
+        Native.Set(world, "QuestNotifications.notificationIndex", 0); DetailCall(world, "QuestNotifications.RefreshNotification"); await Frames();
         var help = Rows().OfType<Button>().Single(b => b.Text == "I will help");
         await Click(help);
         Require(notifications.Count == 55 && notifications.All(q => q.QuestId != 62) && notice.Visible, "Answering removes that quest through the client and shows the next one");
@@ -215,7 +214,7 @@ public partial class Preview
         // A single quest: no pager, the quest name as the title, Close; it reopens centred.
         notifications.Add(View(0, QuestViewState.Available, "A New Beginning", "Welcome to Moradon. Help the guards protect the village.", ["Tell me more", "I will help", "Not now"]));
         notice.Position = new Vector2(20, 20);
-        DetailCall(world, "RefreshQuestNotification");
+        DetailCall(world, "QuestNotifications.RefreshNotification");
         await Settle(); await Frames();
         Require(!Rows().OfType<HBoxContainer>().Any() && NoticeTitle().Text == "A New Beginning" && Rows().OfType<Button>().Last().Text == "Close", "A single quest has no pager and a Close row");
         Require(Mathf.Abs(notice.GetGlobalRect().GetCenter().X - viewport.GetCenter().X) <= 1, "The notice reopens centred");
@@ -225,20 +224,20 @@ public partial class Preview
 
         // Many answers: the window grows by whole rows and stays inside the screen.
         notifications.Add(View(7, QuestViewState.Available, "Moradon Errands", "Choose an errand.", Enumerable.Range(1, 9).Select(i => "Errand number " + i).ToArray()));
-        DetailCall(world, "RefreshQuestNotification");
+        DetailCall(world, "QuestNotifications.RefreshNotification");
         await Settle(); await ShotNotice("many-answers");
-        DetailCall(world, "DismissQuestNotifications"); await Frames(2);
+        DetailCall(world, "QuestNotifications.Dismiss"); await Frames(2);
 
         // ---- Quest tracker ---------------------------------------------------------------------------------------
-        var trackerWorld = new World();
-        DetailCall(trackerWorld, "BuildQuestLog");
-        var questViews = (System.Collections.IDictionary)DetailField(trackerWorld, "_questViews")!;
-        var tracker = (PanelContainer)DetailCall(trackerWorld, "BuildQuestTrackerUiPreview")!;
-        var quests = (List<QuestEntry>)DetailField(trackerWorld, "_quests")!;
-        var tracked = (HashSet<int>)DetailField(trackerWorld, "_questTracked")!;
-        var strings = (System.Collections.IDictionary)DetailField(trackerWorld, "_questStrings")!;
-        var objectives = (System.Collections.IDictionary)DetailField(trackerWorld, "_questObjectives")!;
-        var kills = (System.Collections.IDictionary)DetailField(trackerWorld, "_questKills")!;
+        var trackerWorld = PreviewFixtures.Prepared(new WorldRoot());
+        DetailCall(trackerWorld, "Quest.BuildLog");
+        var questViews = (System.Collections.IDictionary)DetailField(trackerWorld, "Session.QuestBook.Views")!;
+        var tracker = (PanelContainer)DetailCall(trackerWorld, "Preview.BuildQuestTracker")!;
+        var quests = (List<QuestEntry>)DetailField(trackerWorld, "Session.QuestBook.Entries")!;
+        var tracked = (HashSet<int>)DetailField(trackerWorld, "Session.QuestBook.Tracked")!;
+        var strings = (System.Collections.IDictionary)DetailField(trackerWorld, "Session.QuestBook.Strings")!;
+        var objectives = (System.Collections.IDictionary)DetailField(trackerWorld, "Session.QuestBook.Objectives")!;
+        var kills = (System.Collections.IDictionary)DetailField(trackerWorld, "Session.QuestBook.Kills")!;
         var stringsType = strings.GetType().GetGenericArguments()[1];
         foreach (var (id, title, count, target) in new[] { (900, "The Very Long Quest About Every Supply Crate Lost Near Moradon", (ushort)2, 6), (901, "Bandicoot Pelts", (ushort)6, 6), (902, "Kecoon Patrol", (ushort)0, 15) })
         {
@@ -253,7 +252,7 @@ public partial class Preview
         tracked.Clear();
         var layerTracker = new CanvasLayer { Layer = 65 }; AddChild(layerTracker);
         layerTracker.AddChild(tracker);
-        DetailCall(trackerWorld, "RefreshTracker");
+        DetailCall(trackerWorld, "QuestTracker.RefreshTracker");
         tracker.Position = new Vector2(600, 40); tracker.ResetSize(); await Frames();
         Save(tracker.GetGlobalRect(), "tracker-native");
         NativeQuestHud.PrepareTracker(trackerWorld);
@@ -303,23 +302,23 @@ public partial class Preview
         await Move(firstTitle.GetGlobalRect().GetCenter()); await Frames();
         Require(firstTitle.GetThemeStylebox("panel") is StyleBoxFlat lit && lit.BgColor == ClassicDarkFrame.SelectedRow, "Quest name row lights on hover");
         Save(trackerRect, "tracker-hover");
-        typeof(World).GetField("_questSelected", flags)!.SetValue(trackerWorld, -1);
+        Native.Set(trackerWorld, "Quest.Selected", -1);
         await Click(firstTitle);
-        int firstQuest = (int)DetailField(trackerWorld, "_questSelected")!;
+        int firstQuest = (int)DetailField(trackerWorld, "Quest.Selected")!;
         Require(firstQuest == 60, "Clicking a quest name selects it in the client's journal (" + firstQuest + ")");
         await Move(Vector2.Zero);
         await Click(pageArrows[1]);
-        Require((int)DetailField(trackerWorld, "_trackerPage")! == 1, "Next arrow turns the client's tracker page");
+        Require((int)DetailField(trackerWorld, "QuestTracker.trackerPage")! == 1, "Next arrow turns the client's tracker page");
         trackerRect = await ShowTracker();
         CheckTracker("page-2");
         pager = rowsBox.GetChildren().OfType<HBoxContainer>().Single(h => h.GetChildren().OfType<Button>().Count() == 2);
         Require(pager.GetChildren().OfType<Button>().Last().Disabled && pager.GetChildren().OfType<Label>().Single().Text == "2/2", "Next is disabled on the last page");
         Save(trackerRect, "tracker-page-2");
         await Click(pager.GetChildren().OfType<Button>().First());
-        Require((int)DetailField(trackerWorld, "_trackerPage")! == 0, "Previous arrow returns to the first page");
+        Require((int)DetailField(trackerWorld, "QuestTracker.trackerPage")! == 0, "Previous arrow returns to the first page");
         bool wasFolded = Config.QuestTrackerCollapsed;
         if (wasFolded) Config.SetQuestTrackerCollapsed(false);
-        DetailCall(trackerWorld, "RefreshTracker");
+        DetailCall(trackerWorld, "QuestTracker.RefreshTracker");
         var unfoldedRect = await ShowTracker();
         var foldButton = (Button)rowsBox.FindChild(NativeQuestHud.TrackerFold, true, false)!;
         // Fold and unfold as the player does: no audit resize, the skin must fit the frame itself.
@@ -341,25 +340,25 @@ public partial class Preview
         Save(restoredRect, "tracker-unfolded");
         Config.SetQuestTrackerCollapsed(wasFolded);
         tracked.Add(900);
-        DetailCall(trackerWorld, "RefreshTracker");
+        DetailCall(trackerWorld, "QuestTracker.RefreshTracker");
         trackerRect = await ShowTracker();
         CheckTracker("single-long");
         Save(trackerRect, "tracker-single-long");
-        tracked.Clear(); quests.Clear(); DetailCall(trackerWorld, "RefreshTracker"); await Frames();
+        tracked.Clear(); quests.Clear(); DetailCall(trackerWorld, "QuestTracker.RefreshTracker"); await Frames();
         Require(!tracker.Visible, "Without active quests the client hides the tracker");
         layerTracker.QueueFree();
 
         // ---- Premium chips ---------------------------------------------------------------------------------------
-        var premiumWorld = new World();
-        var chip = (PanelContainer)DetailCall(premiumWorld, "BuildPremiumUiPreview")!;
+        var premiumWorld = PreviewFixtures.Prepared(new WorldRoot());
+        var chip = (PanelContainer)DetailCall(premiumWorld, "Preview.BuildPremium")!;
         var chipLayer = new CanvasLayer { Layer = 66 }; AddChild(chipLayer);
         chipLayer.AddChild(chip);
         chip.SetAnchorsPreset(Control.LayoutPreset.TopLeft); chip.GrowHorizontal = Control.GrowDirection.End;
         var bonuses = new[] { new PremiumBonus(PremiumBonusKind.Experience, 10), new PremiumBonus(PremiumBonusKind.Drops, 5), new PremiumBonus(PremiumBonusKind.RepairDiscount, 50), new PremiumBonus(PremiumBonusKind.FreeReset, 0) };
         async Task<Rect2> Status(int status, int type, int hours)
         {
-            typeof(Net).GetMethod("SeedPreviewPremium", flags)!.Invoke(net, new object?[] { status, type, hours, bonuses });
-            DetailCall(premiumWorld, "OnPremiumStatus", status, type, hours);
+            Native.Call(Game.Session.Premium, "Apply", status, type, hours, bonuses);
+            DetailCall(premiumWorld, "Premium.OnStatus", status, type, hours);
             chip.Position = new Vector2(500, 60); chip.Size = Vector2.Zero; chip.ResetSize(); await Frames();
             return chip.GetGlobalRect();
         }
@@ -416,19 +415,19 @@ public partial class Preview
         await Move(Vector2.Zero); await Frames(4);
 
         // The clan premium chip.
-        DetailCall(premiumWorld, "BuildClanPremiumChip");
-        var clanChip = (PanelContainer)DetailField(premiumWorld, "_clanPremiumChip")!;
+        DetailCall(premiumWorld, "ClanPremium.BuildChip");
+        var clanChip = (PanelContainer)DetailField(premiumWorld, "ClanPremium.chip")!;
         clanChip.GetParent().RemoveChild(clanChip); chipLayer.AddChild(clanChip);
         foreach (var child in clanChip.GetChildren().OfType<HudLayout>().ToArray()) { clanChip.RemoveChild(child); child.Free(); }
         clanChip.SetAnchorsPreset(Control.LayoutPreset.TopLeft); clanChip.GrowHorizontal = Control.GrowDirection.End;
-        typeof(World).GetField("_clanPremiumInClan", flags)!.SetValue(premiumWorld, true);
+        Native.Set(premiumWorld, "ClanPremium.inClan", true);
         NativeQuestHud.Prepare(premiumWorld);
         var clanLabel = (Label)clanChip.FindChild(NativeQuestHud.ClanPremiumLabel, true, false)!;
         foreach (var (active, state) in new[] { (false, "clan-premium-none"), (true, "clan-premium-active") })
         {
-            typeof(Net).GetProperty("ClanPremiumActive")!.SetValue(net, active);
-            typeof(Net).GetProperty("ClanPremiumEndsAt")!.SetValue(net, active ? DateTimeOffset.UtcNow.ToUnixTimeSeconds() + 3 * 86400 + 7200 : 0L);
-            DetailCall(premiumWorld, "RefreshClanPremiumChip");
+            Native.Set(Game.Session.ClanPremium, "ClanPremiumActive", active);
+            Native.Set(Game.Session.ClanPremium, "ClanPremiumEndsAt", active ? DateTimeOffset.UtcNow.ToUnixTimeSeconds() + 3 * 86400 + 7200 : 0L);
+            DetailCall(premiumWorld, "ClanPremium.RefreshChip");
             clanChip.Position = new Vector2(500, 120); clanChip.Size = Vector2.Zero; clanChip.ResetSize(); await Frames();
             Require(clanChip.Visible && clanChip.HasMeta(ClassicPremiumChip.Skinned), state + ": clan chip shown for a clan member");
             CheckChip(clanChip, clanLabel, state, active);
@@ -436,7 +435,7 @@ public partial class Preview
         }
 
         // The clan online-bonus chip (3277df5): the client's "Clan" and O/X marks on the same plaque, its tooltip kept.
-        var bonusChip = (PanelContainer)DetailCall(premiumWorld, "BuildClanBonusUiPreview")!;
+        var bonusChip = (PanelContainer)DetailCall(premiumWorld, "Preview.BuildClanBonus")!;
         bonusChip.GetParent()?.RemoveChild(bonusChip); chipLayer.AddChild(bonusChip);
         bonusChip.SetAnchorsPreset(Control.LayoutPreset.TopLeft); bonusChip.GrowHorizontal = Control.GrowDirection.End;
         NativeQuestHud.Prepare(premiumWorld);

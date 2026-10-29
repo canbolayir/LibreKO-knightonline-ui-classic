@@ -16,10 +16,10 @@ public partial class Preview
         GetWindow().ContentScaleMode=Window.ContentScaleModeEnum.Disabled;GetWindow().Size=new Vector2I(420,168);
         AddChild(new ColorRect {Color=new Color("252822"),Size=new Vector2(420,168),MouseFilter=MouseFilterEnum.Ignore});
         ItemData.EnsureLoaded();
-        var groups=(Dictionary<int,List<ItemData.SellEntry>>)typeof(ItemData).GetField("_sell",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
+        var groups=(Dictionary<int,List<ItemData.SellEntry>>)typeof(ItemData).GetField("sell",BindingFlags.Static|BindingFlags.NonPublic)!.GetValue(null)!;
         var ids=groups.Values.SelectMany(g=>g).Select(e=>e.Id).Distinct().Where(id=>ItemData.Get(id)!=null && ItemData.IsSellable(id)).ToArray();
         int stack=ids.First(id=>ItemData.Get(id)!.Countable!=0);var singles=ids.Where(id=>ItemData.Get(id)!.Countable==0).Take(7).ToArray();
-        var cellType=typeof(World).GetNestedType("MerchantCell",BindingFlags.NonPublic)!;
+        var cellType=Native.ClientType("LibreKO.Features.Windows.MerchantCell")!;
         // Buying alternatives, each beside the accepted Silver SELLING sign; the first is the shipped Buying palette.
         var buying=(ClassicMerchantSkin.MerchantAccent(true),ClassicMerchantSkin.MerchantHeading(true).ToHtml(false),ClassicMerchantSkin.MerchantDivider(true).ToHtml(false));
         var palettes=new[]{("00-shipped","Shipped Buying",buying.Item1,buying.Item2,buying.Item3),

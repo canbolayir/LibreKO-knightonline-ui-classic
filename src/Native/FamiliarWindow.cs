@@ -15,9 +15,9 @@ namespace KnightOnlineUiClassic.Native;
 public sealed partial class FamiliarWindow : Node
 {
     private static readonly string[] Captions = { "Attack", "Defense", "Flame", "Glacier", "Lightning", "Magic", "Curse", "Poison" };
-    private static readonly ConditionalWeakTable<World, FamiliarWindow> Windows = new();
+    private static readonly ConditionalWeakTable<WorldRoot, FamiliarWindow> Windows = new();
 
-    private readonly World _world;
+    private readonly WorldRoot _world;
     private readonly HudWindow _window;
     private readonly Label[] _details = new Label[Captions.Length];
     private readonly FamiliarSkillButton[] _skills = new FamiliarSkillButton[PetSkills.SlotsPerPage];
@@ -28,9 +28,9 @@ public sealed partial class FamiliarWindow : Node
     private List<int> _skillIds = new();
     private int _page;
     private int _class = -1;
-    private Net? _net;
+    private IGameConnection? _net;
 
-    private FamiliarWindow(World world, HudWindow window, ItemSlotView[] bag)
+    private FamiliarWindow(WorldRoot world, HudWindow window, ItemSlotView[] bag)
     {
         _world = world; _window = window; _bag = bag; Name = "familiar_window";
     }
@@ -38,26 +38,26 @@ public sealed partial class FamiliarWindow : Node
     public FamiliarWindow() { _world = null!; _window = null!; _bag = Array.Empty<ItemSlotView>(); }
 
     /// <summary>The familiar window controller of a World, when its window has been prepared.</summary>
-    public static FamiliarWindow? Of(World world) =>
+    public static FamiliarWindow? Of(WorldRoot world) =>
         Windows.TryGetValue(world, out var window) && IsInstanceValid(window) ? window : null;
 
-    internal static void Prepare(HudWindow window, World world)
+    internal static void Prepare(HudWindow window, WorldRoot world)
     {
         if (window.HasMeta("classic_pet_controls") || Of(world) != null) return;
-        var bag = Native.Get<ItemSlotView[]>(world, "_petBagCells");
+        var bag = Native.Get<ItemSlotView[]>(world, "Pet.bagCells");
         bool named = bag != null && bag.Length == PetSheet.InventorySize
-            & NativeWindows.Name(NativeWindows.Control<Label>(world, "_petNameLbl"), "pet_name")
-            & NativeWindows.Name(NativeWindows.Control<Label>(world, "_petLevelLbl"), "pet_level")
-            & NativeWindows.Name(NativeWindows.Control<StatBar>(world, "_petHpBar"), "pet_hp")
-            & NativeWindows.Name(NativeWindows.Control<StatBar>(world, "_petMpBar"), "pet_mp")
-            & NativeWindows.Name(NativeWindows.Control<StatBar>(world, "_petExpBar"), "pet_exp")
-            & NativeWindows.Name(NativeWindows.Control<StatBar>(world, "_petSatBar"), "pet_satisfaction")
-            & NativeWindows.Name(NativeWindows.Control<Button>(world, "_petAttackBtn"), "pet_attack")
-            & NativeWindows.Name(NativeWindows.Control<Button>(world, "_petDefendBtn"), "pet_defend")
-            & NativeWindows.Name(NativeWindows.Control<Button>(world, "_petLootBtn"), "pet_loot")
-            & NativeWindows.Name(NativeWindows.Control<Button>(world, "_petFeedBtn"), "pet_feed")
-            & NativeWindows.Name(NativeWindows.Control<Button>(world, "_petDismissBtn"), "pet_dismiss")
-            & NativeWindows.Name(NativeWindows.Control<Label>(world, "_petStatus"), "pet_status");
+            & NativeWindows.Name(NativeWindows.Control<Label>(world, "Pet.nameLbl"), "pet_name")
+            & NativeWindows.Name(NativeWindows.Control<Label>(world, "Pet.levelLbl"), "pet_level")
+            & NativeWindows.Name(NativeWindows.Control<StatBar>(world, "Pet.hpBar"), "pet_hp")
+            & NativeWindows.Name(NativeWindows.Control<StatBar>(world, "Pet.mpBar"), "pet_mp")
+            & NativeWindows.Name(NativeWindows.Control<StatBar>(world, "Pet.expBar"), "pet_exp")
+            & NativeWindows.Name(NativeWindows.Control<StatBar>(world, "Pet.satBar"), "pet_satisfaction")
+            & NativeWindows.Name(NativeWindows.Control<Button>(world, "Pet.attackBtn"), "pet_attack")
+            & NativeWindows.Name(NativeWindows.Control<Button>(world, "Pet.defendBtn"), "pet_defend")
+            & NativeWindows.Name(NativeWindows.Control<Button>(world, "Pet.lootBtn"), "pet_loot")
+            & NativeWindows.Name(NativeWindows.Control<Button>(world, "Pet.feedBtn"), "pet_feed")
+            & NativeWindows.Name(NativeWindows.Control<Button>(world, "Pet.dismissBtn"), "pet_dismiss")
+            & NativeWindows.Name(NativeWindows.Control<Label>(world, "Pet.status"), "pet_status");
         if (!named) return;
         var controller = new FamiliarWindow(world, window, bag!);
         controller.Build();
@@ -74,25 +74,25 @@ public sealed partial class FamiliarWindow : Node
         {
             _bag[i].Name = "pet_item_" + i;
             _bag[i].Hovered += ShowBagTooltip;
-            _bag[i].Unhovered += _ => Native.Call(_world, "HideItemTooltip");
+            _bag[i].Unhovered += _ => Native.Call(_world, "ItemTooltip.Hide");
         }
-        _window.VisibilityChanged += () => { if (!_window.Visible) Native.Call(_world, "HideItemTooltip"); };
+        _window.VisibilityChanged += () => { if (!_window.Visible) Native.Call(_world, "ItemTooltip.Hide"); };
 
         var root = _window.Body;
         var oldChildren = root.GetChildren();
-        var name = NativeWindows.Control<Label>(_world, "_petNameLbl")!;
-        var attack = NativeWindows.Control<Button>(_world, "_petAttackBtn")!;
-        var status = NativeWindows.Control<Label>(_world, "_petStatus")!;
+        var name = NativeWindows.Control<Label>(_world, "Pet.nameLbl")!;
+        var attack = NativeWindows.Control<Button>(_world, "Pet.attackBtn")!;
+        var status = NativeWindows.Control<Label>(_world, "Pet.status")!;
         _portrait = new FamiliarPortraitView { Name = "pet_portrait", CustomMinimumSize = new Vector2(80, 80), MouseFilter = Control.MouseFilterEnum.Ignore };
         root.AddChild(_portrait);
         var tabs = new ServiceTabs { Name = "pet_pages" };
         tabs.SetTabs(new[] { "Ability", "Items", "Skills" }, 0); root.AddChild(tabs);
         var pages = new VBoxContainer[3];
         for (int i = 0; i < pages.Length; i++) { pages[i] = new VBoxContainer { Name = "pet_page_" + i, Visible = i == 0 }; root.AddChild(pages[i]); }
-        foreach (string field in new[] { "_petHpBar", "_petMpBar", "_petExpBar", "_petSatBar" })
+        foreach (string field in new[] { "Pet.hpBar", "Pet.mpBar", "Pet.expBar", "Pet.satBar" })
             NativeWindows.Control<StatBar>(_world, field)!.GetParent().Reparent(pages[0]);
         _bag[0].GetParent().Reparent(pages[1]);
-        NativeWindows.Control<Button>(_world, "_petFeedBtn")!.GetParent().Reparent(pages[1]);
+        NativeWindows.Control<Button>(_world, "Pet.feedBtn")!.GetParent().Reparent(pages[1]);
         foreach (var node in oldChildren)
             if (node.GetParent() == root && node != name.GetParent() && node != attack.GetParent() && node != status)
             { root.RemoveChild(node); node.QueueFree(); }
@@ -124,14 +124,14 @@ public sealed partial class FamiliarWindow : Node
         _previous.Pressed += () => { _page = Math.Max(0, _page - 1); Refresh(); };
         _next.Pressed += () => { _page++; Refresh(); };
         paging.AddChild(_previous); paging.AddChild(_skillPage); paging.AddChild(_next);
-        Observe(Net.I);
+        Observe(Game.Connection);
         Refresh();
     }
 
     public override void _ExitTree() => Observe(null);
 
     /// <summary>Follows the familiar sheet notifications of the active network session.</summary>
-    private void Observe(Net? net)
+    private void Observe(IGameConnection? net)
     {
         if (_net == net && _observing is { Active: true }) return;
         _observing?.Release();
@@ -140,40 +140,40 @@ public sealed partial class FamiliarWindow : Node
         if (net == null) return;
         _observing = NativeHooks.Listen("Net.Pet (familiar window)", () =>
         {
-            net.PetSummonedEvent += OnSummoned; net.PetGoneEvent += Refresh; net.PetVitalsEvent += Refresh;
-            net.PetModeEvent += OnMode; net.PetExpEvent += OnExp; net.MagicEvent += OnMagic;
+            Game.Session.Pet.PetSummonedEvent += OnSummoned; Game.Session.Pet.PetGoneEvent += Refresh; Game.Session.Pet.PetVitalsEvent += Refresh;
+            Game.Session.Pet.PetModeEvent += OnMode; Game.Session.Pet.PetExpEvent += OnExp; Game.Session.Combat.MagicEvent += OnMagic;
         }, () =>
         {
-            net.PetSummonedEvent -= OnSummoned; net.PetGoneEvent -= Refresh; net.PetVitalsEvent -= Refresh;
-            net.PetModeEvent -= OnMode; net.PetExpEvent -= OnExp; net.MagicEvent -= OnMagic;
+            Game.Session.Pet.PetSummonedEvent -= OnSummoned; Game.Session.Pet.PetGoneEvent -= Refresh; Game.Session.Pet.PetVitalsEvent -= Refresh;
+            Game.Session.Pet.PetModeEvent -= OnMode; Game.Session.Pet.PetExpEvent -= OnExp; Game.Session.Combat.MagicEvent -= OnMagic;
         });
     }
 
     private NativeHooks.Hook? _observing;
 
     private void OnSummoned(PetSheet _) => Refresh();
-    private void OnMode(int _) => Refresh();
+    private void OnMode(PetMode _) => Refresh();
     private void OnExp(long _) => Refresh();
 
     /// <summary>A refused or cancelled familiar cast releases its cooldown on the client's familiar timers.</summary>
-    private void OnMagic(int sub, int skillId, int casterId, int targetId, short[] data)
+    private void OnMagic(MagicReply reply)
     {
-        if (sub is MagicSub.Fail or MagicSub.Cancel) RefreshCooldowns(Now());
+        if (reply.Sub is MagicSub.Fail or MagicSub.Cancel) RefreshCooldowns(Now());
     }
 
-    private bool SelfDead => Native.Get<bool>(_world, "_selfDead");
+    private bool SelfDead => Native.Get<bool>(_world, "Avatar.Dead");
 
     private void ShowBagTooltip(ItemSlotView cell)
     {
-        if (Net.I.Pet is { } pet && cell.Index >= 0 && cell.Index < pet.Items.Length && !pet.Items[cell.Index].IsEmpty)
+        if (Game.Session.Pet.Pet is { } pet && cell.Index >= 0 && cell.Index < pet.Items.Length && !pet.Items[cell.Index].IsEmpty)
             ShowItemTooltip(_world, -1, pet.Items[cell.Index]);
     }
 
     /// <summary>Shows the client's item tooltip; the tooltip never takes the pointer from neighbouring cells.</summary>
-    internal static void ShowItemTooltip(World world, int abs, ItemSlot item)
+    internal static void ShowItemTooltip(WorldRoot world, int abs, ItemSlot item)
     {
-        Native.Call(world, "ShowItemTooltip", abs, item, "");
-        if (Native.Get<Control>(world, "_itemTipPanel") is not { } tooltip) return;
+        Native.Call(world, "ItemTooltip.Show", abs, item, "");
+        if (Native.Get<Control>(world, "ItemTooltip.TipPanel") is not { } tooltip) return;
         tooltip.MouseFilter = Control.MouseFilterEnum.Ignore;
         foreach (var control in Native.Descendants(tooltip).OfType<Control>()) control.MouseFilter = Control.MouseFilterEnum.Ignore;
     }
@@ -181,7 +181,7 @@ public sealed partial class FamiliarWindow : Node
     private void Use(int index)
     {
         int skill = _page * PetSkills.SlotsPerPage + index;
-        if (!SelfDead && skill < _skillIds.Count) Native.Call(_world, "UsePetSkill", _skillIds[skill]);
+        if (!SelfDead && skill < _skillIds.Count) Native.Call(_world, "PetSkillBar.UsePetSkill", _skillIds[skill]);
         RefreshCooldowns(Now());
     }
 
@@ -189,15 +189,15 @@ public sealed partial class FamiliarWindow : Node
     private void Tick()
     {
         if (!IsInstanceValid(_world) || !_world.CanProcess()) return;
-        if (_net != Net.I) Observe(Net.I);
+        if (_net != Game.Connection) Observe(Game.Connection);
         RefreshPortrait();
         RefreshCooldowns(Now());
     }
 
-    private double Now() => Native.Call(_world, "Now") is double now ? now : Time.GetTicksMsec() / 1000d;
+    private double Now() => Native.Call(Native.StaticOwner("LibreKO.Presentation.FrameClock"), "Now") is double now ? now : Time.GetTicksMsec() / 1000d;
 
     /// <summary>Shows the native familiar sheet: portrait, attack, defence, resistances and the skill page.</summary>
-    public void Refresh() => Refresh(Net.I.Pet);
+    public void Refresh() => Refresh(Game.Session.Pet.Pet);
 
     /// <summary>Shows the given familiar sheet, as the client does when it presents a sheet.</summary>
     public void Refresh(PetSheet? pet)
@@ -228,9 +228,9 @@ public sealed partial class FamiliarWindow : Node
             bool locked = pet == null || skill == null || !PetSkills.Unlocked(skill.Level, pet.Level);
             var button = _skills[i];
             button.SkillId = skill?.Id ?? 0;
-            button.Icon = skill == null ? null : locked ? SkillData.EnigmaIcon() : SkillData.Icon(skill.Id);
+            button.Icon = skill == null ? null : locked ? SkillIcons.Enigma() : SkillIcons.Get(skill.Id);
             button.Disabled = dead || locked || pet!.Mp < skill!.Msp;
-            string tooltip = skill == null ? "" : Native.Call(_world, "SkillTooltip", skill) as string ?? skill.Name;
+            string tooltip = skill == null ? "" : SkillText.Tooltip(skill);
             button.TooltipText = skill == null ? "" : tooltip + (locked ? $"\nFamiliar level {skill.Level}" : "");
         }
         RefreshCooldowns(Now());
@@ -239,13 +239,13 @@ public sealed partial class FamiliarWindow : Node
     /// <summary>Shades and disables the skills that are cooling down on the shared familiar timers.</summary>
     public void RefreshCooldowns(double now)
     {
-        var pet = Net.I.Pet;
+        var pet = Game.Session.Pet.Pet;
         bool dead = SelfDead;
         foreach (var button in _skills)
         {
             if (button == null) continue;
             var skill = SkillData.Get(button.SkillId);
-            float cooldown = button.SkillId == 0 ? 0 : Native.Call(_world, "PetCooldown", button.SkillId, now) is float value ? value : 0;
+            float cooldown = button.SkillId == 0 ? 0 : Native.Call(_world, "PetSkillBar.PetCooldown", button.SkillId, now) is float value ? value : 0;
             button.SetCooldown(cooldown);
             button.Disabled = dead || pet == null || skill == null
                 || !PetSkills.Unlocked(skill.Level, pet.Level) || pet.Mp < skill.Msp || cooldown > 0;
@@ -255,7 +255,7 @@ public sealed partial class FamiliarWindow : Node
     /// <summary>Publishes the summoned familiar's appearance; the model is built only when the cache needs it.</summary>
     public void RefreshPortrait()
     {
-        if (Native.Call(_world, "MyPetEntity") is not { } actor) { _portrait.SetAppearance(null); return; }
+        if (Native.Call(_world, "PetSkillBar.MyPetEntity") is not { } actor) { _portrait.SetAppearance(null); return; }
         int modelId = Native.Get<int>(actor, "ModelId");
         string appearance = "familiar:" + modelId;
         if (_portrait.Appearance?.AppearanceKey == appearance) return;
@@ -265,17 +265,17 @@ public sealed partial class FamiliarWindow : Node
     }
 
     /// <summary>Builds the familiar model through the client's own mob scene resolution.</summary>
-    private static Node3D? BuildModel(World world, object actor, int modelId)
+    private static Node3D? BuildModel(WorldRoot world, object actor, int modelId)
     {
         if (!IsInstanceValid(world)) return null;
-        if (Native.Call(world, "ResolveMobScene", modelId) is PackedScene scene)
+        if (Native.Call(world, "EntityLooksSystem.ResolveMobScene", modelId) is PackedScene scene)
         {
             var model = scene.Instantiate<Node3D>();
-            Native.Call(world, "ForceDoubleSidedOnce", model, scene.ResourcePath);
+            Native.Call(Native.StaticOwner("LibreKO.Presentation.ModelAnimation"), "ForceDoubleSidedOnce", model, scene.ResourcePath);
             return model;
         }
         var body = Native.Get<Node3D>(actor, "Body");
-        string modelNode = Native.Get<string>(world, "ModelNodeName") ?? "Model";
+        string modelNode = Native.Get<string>(Native.StaticOwner("LibreKO.Presentation.ModelAnimation"), "ModelNodeName") ?? "Model";
         var visual = body != null && IsInstanceValid(body) ? body.GetNodeOrNull<Node3D>(modelNode) : null;
         var source = visual?.GetChildren().OfType<Node3D>().FirstOrDefault();
         var copy = source?.Duplicate((int)DuplicateFlags.UseInstantiation) as Node3D;

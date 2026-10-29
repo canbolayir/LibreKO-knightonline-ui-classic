@@ -11,7 +11,7 @@ public partial class Preview
     private async Task AuditPetIncubationReplies(Action<bool, string> require)
     {
         var net = new Net();
-        var connection = (KoConn)typeof(Net).GetField("_conn", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net)!;
+        var connection = (GameConn)typeof(Net).GetField("conn", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net)!;
         using var listener = new TcpListener(IPAddress.Loopback, 0); listener.Start();
         using var timeout = new CancellationTokenSource(30000);
         try
@@ -34,7 +34,7 @@ public partial class Preview
             void Receive(Packet packet)
             {
                 packet.ResetOffset();
-                typeof(Net).GetMethod("HandleItemUpgrade", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(net, new object[] { packet });
+                PreviewPackets.Receive(packet);
             }
             Packet Refused(byte sub, byte code)
             {
@@ -48,26 +48,26 @@ public partial class Preview
                 if (sub == 10) { packet.WriteByte(0); packet.WriteInt(scroll); packet.WriteByte((byte)scrollSlot); }
                 return packet;
             }
-            bool Pending() => typeof(Net).GetField("_petIncubationRequest", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(net) != null;
-            ItemSlot Slot(int bag) => net.LastEnter.Inventory[InventoryConstants.InventoryStart + bag];
+            bool Pending() => Native.Get<object>(Game.Session.Pet, "PendingIncubation") != null;
+            ItemSlot Slot(int bag) => Game.Session.Self.Inventory[InventoryConstants.InventoryStart + bag];
             int hatched = 0, transformed = 0, refused = 0, mutations = 0;
-            net.PetHatchedEvent += (_, _) => hatched++;
-            net.PetTransformedEvent += (_, _) => transformed++;
-            net.PetHatchFailedEvent += _ => refused++;
-            net.PetTransformFailedEvent += _ => refused++;
-            net.InventorySlotEvent += (_, _) => mutations++;
-            net.MirrorInventorySlot(InventoryConstants.InventoryStart + 4, new ItemSlot { ItemId = 600001000, Count = 1 });
-            net.MirrorInventorySlot(InventoryConstants.InventoryStart + 7, new ItemSlot { ItemId = 700019001, Count = 3 });
+            Game.Session.Pet.PetHatchedEvent += (_, _) => hatched++;
+            Game.Session.Pet.PetTransformedEvent += (_, _) => transformed++;
+            Game.Session.Pet.PetHatchFailedEvent += _ => refused++;
+            Game.Session.Pet.PetTransformFailedEvent += _ => refused++;
+            Game.Session.Items.InventorySlotEvent += (_, _) => mutations++;
+            Game.Session.Self.SetInventorySlot(InventoryConstants.InventoryStart + 4, new ItemSlot { ItemId = 600001000, Count = 1 });
+            Game.Session.Self.SetInventorySlot(InventoryConstants.InventoryStart + 7, new ItemSlot { ItemId = 700019001, Count = 3 });
             Receive(Success(6, 610001000));
             require(hatched == 0 && mutations == 0 && Slot(4).ItemId == 600001000, "Unsolicited incubation success does not overwrite inventory");
-            require(net.SendPetHatch(13016, 600001000, 4, "Kauly"), "Native hatch request starts one pending operation"); await ReadRequest(6);
-            require(!net.SendPetHatch(13016, 600001000, 4, "Kauly") && !net.SendPetTransform(13016, 610001000, 4, 9, 700019001, 7),
+            require(Game.Requests.Pet.Hatch(13016, 600001000, 4, "Kauly"), "Native hatch request starts one pending operation"); await ReadRequest(6);
+            require(!Game.Requests.Pet.Hatch(13016, 600001000, 4, "Kauly") && !Game.Requests.Pet.Transform(13016, 610001000, 4, 9, 700019001, 7),
                 "Pending incubation cannot submit a duplicate or another operation");
             Receive(Refused(10, 1));
             require(Pending() && refused == 0, "Transformation reply cannot release a pending hatch");
             // An unreadable or mismatching reply releases the pending request and reports a failure.
-            async Task RequestHatch() { if (!Pending() && net.SendPetHatch(13016, 600001000, 4, "Kauly")) await ReadRequest(6); }
-            async Task RequestTransform(int familiar) { if (!Pending() && net.SendPetTransform(13016, familiar, 4, 9, 700019001, 7)) await ReadRequest(10); }
+            async Task RequestHatch() { if (!Pending() && Game.Requests.Pet.Hatch(13016, 600001000, 4, "Kauly")) await ReadRequest(6); }
+            async Task RequestTransform(int familiar) { if (!Pending() && Game.Requests.Pet.Transform(13016, familiar, 4, 9, 700019001, 7)) await ReadRequest(10); }
             var hatchData = Success(6, 610001000).GetData();
             for (int length = 1; length < hatchData.Length; length++)
             {
@@ -76,12 +76,12 @@ public partial class Preview
                 require(!Pending() && refused == before + 1 && mutations == 0 && Slot(4).ItemId == 600001000,
                     "Truncated hatch releases the request and reports a failure at byte " + length);
             }
-            require(net.SendPetHatch(13016, 600001000, 4, "Kauly"), "A released hatch can be requested again"); await ReadRequest(6);
+            require(Game.Requests.Pet.Hatch(13016, 600001000, 4, "Kauly"), "A released hatch can be requested again"); await ReadRequest(6);
             int refusedBefore = refused;
             Receive(Refused(6, 2));
             require(!Pending() && refused == refusedBefore + 1 && mutations == 0 && Slot(4).ItemId == 600001000,
                 "Complete hatch refusal releases the pending operation without changing items");
-            require(net.SendPetHatch(13016, 600001000, 4, "Kauly"), "Refused hatch can be retried"); await ReadRequest(6);
+            require(Game.Requests.Pet.Hatch(13016, 600001000, 4, "Kauly"), "Refused hatch can be retried"); await ReadRequest(6);
             refusedBefore = refused;
             Receive(Success(6, 610001000, slot: 5));
             require(!Pending() && refused == refusedBefore + 1 && mutations == 0 && Slot(4).ItemId == 600001000,
@@ -90,7 +90,7 @@ public partial class Preview
             var hatch = Success(6, 610001000); Receive(hatch); Receive(hatch);
             require(!Pending() && hatched == 1 && mutations == 1 && Slot(4).ItemId == 610001000 && Slot(4).UniqueId == 9,
                 "Hatch success applies and notifies exactly once");
-            require(net.SendPetTransform(13016, 610001000, 4, 9, 700019001, 7), "Native transform request starts one pending operation"); await ReadRequest(10);
+            require(Game.Requests.Pet.Transform(13016, 610001000, 4, 9, 700019001, 7), "Native transform request starts one pending operation"); await ReadRequest(10);
             refusedBefore = refused;
             Receive(Refused(6, 1));
             require(Pending() && refused == refusedBefore, "Hatch reply cannot release a pending transformation");
@@ -114,25 +114,25 @@ public partial class Preview
             var transformedReply = Success(10, 610015000); Receive(transformedReply); Receive(transformedReply);
             require(!Pending() && transformed == 1 && mutations == 3 && Slot(4).ItemId == 610015000 && Slot(7).Count == 2,
                 "Duplicate transformation reply cannot spend the scroll twice");
-            require(net.SendPetTransform(13016, 610015000, 4, 9, 700019001, 7), "Completed transformation allows a new deliberate request"); await ReadRequest(10);
+            require(Game.Requests.Pet.Transform(13016, 610015000, 4, 9, 700019001, 7), "Completed transformation allows a new deliberate request"); await ReadRequest(10);
             refusedBefore = refused;
             Receive(transformedReply);
             require(!Pending() && refused == refusedBefore + 1 && transformed == 1 && Slot(7).Count == 2,
                 "Old success releases a new transformation from the current form without spending a scroll");
-            require(net.SendPetTransform(13016, 610015000, 4, 9, 700019001, 7), "A released transformation can be requested again"); await ReadRequest(10);
+            require(Game.Requests.Pet.Transform(13016, 610015000, 4, 9, 700019001, 7), "A released transformation can be requested again"); await ReadRequest(10);
             refusedBefore = refused;
             Receive(Refused(10, 1));
             require(!Pending() && refused == refusedBefore + 1 && transformed == 1 && Slot(7).Count == 2, "Complete transformation refusal preserves the familiar and remaining scrolls");
-            require(net.SendPetTransform(13016, 610015000, 4, 9, 700019001, 7), "Refused transformation can be retried"); await ReadRequest(10);
+            require(Game.Requests.Pet.Transform(13016, 610015000, 4, 9, 700019001, 7), "Refused transformation can be retried"); await ReadRequest(10);
             Receive(Success(10, 610001000));
             require(transformed == 2 && Slot(4).ItemId == 610001000 && Slot(7).Count == 1, "A later valid transformation applies even when returning to an earlier form");
-            require(net.SendPetTransform(13016, 610001000, 4, 9, 700019001, 7), "Transformation can begin before a connection reset"); await ReadRequest(10);
-            typeof(Net).GetMethod("ResetPet", BindingFlags.Instance | BindingFlags.NonPublic)!.Invoke(net, null);
+            require(Game.Requests.Pet.Transform(13016, 610001000, 4, 9, 700019001, 7), "Transformation can begin before a connection reset"); await ReadRequest(10);
+            Native.Call(Game.Session.Pet, "Reset");
             Receive(Success(10, 610015000));
-            require(!Pending() && transformed == 2 && Slot(7).Count == 1 && net.PetItems.Count == 0,
+            require(!Pending() && transformed == 2 && Slot(7).Count == 1 && Game.Session.Pet.Items.Count == 0,
                 "Connection reset discards pending incubation and ignores its delayed reply");
             connection.Close();
-            require(!net.SendPetHatch(13016, 600001000, 4, "Kauly") && !Pending(), "Disconnected incubation does not create a pending request");
+            require(!Game.Requests.Pet.Hatch(13016, 600001000, 4, "Kauly") && !Pending(), "Disconnected incubation does not create a pending request");
         }
         finally { connection.Close(); net.Free(); }
     }

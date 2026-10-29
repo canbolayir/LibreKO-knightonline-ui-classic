@@ -17,7 +17,7 @@ public partial class Preview
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1000, 740);
         AddChild(new ColorRect { Color = new Color("252822"), Size = new Vector2(1200, 850), MouseFilter = MouseFilterEnum.Ignore });
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
-        var world = new World(); var layer = (CanvasLayer)DetailCall(world, "BuildEquipViewClassicUiPreview")!; AddChild(layer);
+        var world = PreviewFixtures.Prepared(new WorldRoot()); var layer = (CanvasLayer)DetailCall(world, "BuildEquipViewClassicUiPreview")!; AddChild(layer);
         var window = layer.GetChildren().OfType<HudWindow>().Single(); var panel = ClassicEquipViewSkin.Apply(window.Body)!;
         window.SetMeta("content_open_anchor", true); window.Position = new Vector2(180, 80);
         var checks = new List<string>(); var screens = new List<object>();
@@ -36,15 +36,15 @@ public partial class Preview
         }
         T Find<T>(string name) where T : Control => Descendants(panel).OfType<T>().Single(c => c.Name == name);
         ItemSlotView[] Cells() => Descendants(panel).OfType<ItemSlotView>().OrderBy(c => c.Index).ToArray();
-        Net.EquipmentView Snapshot(string name, int targetNation, bool empty = false, bool maximum = false) => PreviewFixtures.EquipViewPreviewSnapshot(name, targetNation, empty, maximum);
+        EquipmentView Snapshot(string name, int targetNation, bool empty = false, bool maximum = false) => PreviewFixtures.EquipViewPreviewSnapshot(name, targetNation, empty, maximum);
         void Request(string name) => DetailCall(world, "RequestEquipmentView", name);
-        void Reply(Net.EquipmentView view) => DetailCall(world, "OnEquipmentView", Net.EquipmentViewResult.Accepted, view);
+        void Reply(EquipmentView view) => DetailCall(world, "OnEquipmentView", EquipmentViewResult.Accepted, view);
         bool Busy() => NativeEquipView.InFlight(world);
-        var inv = (Inventory)typeof(World).GetProperty("Inv", BindingFlags.NonPublic | BindingFlags.Instance)!.GetValue(world)!;
+        var inv = (Inventory)Game.Session.Self.Inventory;
         var inventory = inv[InventoryConstants.InventoryStart];
         async Task Capture(string state, bool tooltip = false)
         {
-            if (!tooltip) DetailCall(world, "HideItemTooltip"); await Frames();
+            if (!tooltip) DetailCall(world, "ItemTooltip.Hide"); await Frames();
             if (tooltip) { DetailCall(world, "UpdateInventoryTooltip"); await Frames(); }
             Require(window.Size == ClassicEquipViewLayout.Size, state + " fixed window size");
             Require(Find<Label>("inspect_summary").Text.Length == 0 || Find<Label>("inspect_status").Text.Length == 0, state + " summary and status share one row without overlap");
@@ -70,7 +70,7 @@ public partial class Preview
                 Require(c.CountLabel.GetThemeFontSize("font_size") == 11 && c.CountLabel.GetThemeFont("font") == Plugin.Kit.Bold, state + " shared count font " + c.Index);
                 var textures = c.GetChildren().OfType<TextureRect>().ToArray();
                 Require(textures.Last().Texture != null && textures.Last().Visible == c.Item.IsEmpty, state + " correct empty socket artwork visibility " + c.Index);
-                if (!c.Item.IsEmpty) Require(textures.First().Texture != null && ItemData.Icon(c.Item.ItemId).GetInstanceId() != ItemData.Icon(0).GetInstanceId(), state + " real item icon without placeholder " + c.Index);
+                if (!c.Item.IsEmpty) Require(textures.First().Texture != null && ItemIcons.Get(c.Item.ItemId).GetInstanceId() != ItemIcons.Get(0).GetInstanceId(), state + " real item icon without placeholder " + c.Index);
             }
             foreach (var row in Find<VBoxContainer>("inspect_stats").GetChildren().OfType<HBoxContainer>())
                 foreach (var label in row.GetChildren().OfType<Label>())
@@ -88,7 +88,7 @@ public partial class Preview
         {
             await Frames(16); window.Position = new Vector2(180, 80);
             Request("Tester10"); await Capture("requesting"); Require(Busy(), "Request begins one native in-flight operation");
-            Request("OtherPlayer"); Require((string)DetailField(world, "_equipViewPending")! == "Tester10", "Second target cannot overwrite pending request identity");
+            Request("OtherPlayer"); Require((string)DetailField(world, "EquipView.pending")! == "Tester10", "Second target cannot overwrite pending request identity");
             Reply(Snapshot("OtherPlayer", nation)); Require(Busy() && Find<Label>("inspect_name").Text == "Tester10", "Wrong-name accepted reply is ignored");
             Reply(Snapshot("Tester10", nation)); await Capture("populated");
             Require(!Busy() && Find<VBoxContainer>("inspect_stats").GetChildren().OfType<HBoxContainer>().Count() == 15, "Native snapshot retains all fifteen statistic rows");
@@ -105,7 +105,7 @@ public partial class Preview
             GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(3, 3), GlobalPosition = new Vector2(3, 3) }, true); await Frames(2);
             p = weapon.GetGlobalRect().GetCenter(); GetViewport().PushInput(new InputEventMouseMotion { Position = p, GlobalPosition = p }, true); await Frames();
             Require(world.ItemTooltipVisible, "Actual native item hover opens snapshot tooltip"); await Capture("weapon-tooltip-callback", tooltip: true);
-            var tip = (Control)DetailField(world, "_itemTipPanel")!;
+            var tip = (Control)DetailField(world, "ItemTooltip.TipPanel")!;
             Require(GetViewportRect().Encloses(tip.GetGlobalRect()), "Actual snapshot tooltip remains within viewport");
             Require(tip.Position.X > 0 && tip.Position.Y > 0, "Actual tooltip follows native mouse position");
             GetViewport().PushInput(new InputEventMouseMotion { Position = new Vector2(3, 3), GlobalPosition = new Vector2(3, 3) }, true); await Frames();
@@ -115,16 +115,16 @@ public partial class Preview
             Reply(Snapshot("Duplicate", nation)); Require(Find<Label>("inspect_name").Text == "Tester10", "Duplicate response cannot replace completed snapshot");
             Request("TwentyCharacterNameX"); Reply(Snapshot("TwentyCharacterNameX", nation == 1 ? 2 : 1, maximum: true)); await Capture("long-name-opposite-nation");
             Request("EmptyPlayer"); Reply(Snapshot("EmptyPlayer", nation, empty: true)); await Capture("empty-equipment"); Require(Cells().All(c => c.Item.IsEmpty), "Empty snapshot clears every normal and costume item immediately");
-            foreach (var result in new[] { Net.EquipmentViewResult.NoSuchUser, Net.EquipmentViewResult.CannotChooseYourself, Net.EquipmentViewResult.NotInSameRegion, Net.EquipmentViewResult.NoViewEquipmentItem })
+            foreach (var result in new[] { EquipmentViewResult.NoSuchUser, EquipmentViewResult.CannotChooseYourself, EquipmentViewResult.NotInSameRegion, EquipmentViewResult.NoViewEquipmentItem })
             {
-                Request("Tester10"); DetailCall(world, "OnEquipmentView", result, default(Net.EquipmentView)); await Capture("refused-" + result);
+                Request("Tester10"); DetailCall(world, "OnEquipmentView", result, default(EquipmentView)); await Capture("refused-" + result);
                 Require(!Busy() && Cells().All(c => c.Item.IsEmpty), "Refusal clears previous snapshot " + result);
             }
             Request("ClosedTarget"); await KeyInput(Key.Escape); Require(!window.Visible && Busy(), "Actual Escape retains outstanding request until reply");
-            Request("ReopenTarget"); Require(!window.Visible && (string)DetailField(world, "_equipViewPending")! == "ClosedTarget", "Closed window cannot reopen over pending request");
+            Request("ReopenTarget"); Require(!window.Visible && (string)DetailField(world, "EquipView.pending")! == "ClosedTarget", "Closed window cannot reopen over pending request");
             Reply(Snapshot("ClosedTarget", nation)); Require(!window.Visible && !Busy(), "Late closed reply cannot reopen or populate window");
             Request("FreshTarget"); Reply(Snapshot("FreshTarget", nation)); await Capture("reopened");
-            await Click(Descendants(panel).OfType<Button>().Single(b => b.TooltipText == "Close")); Require(!window.Visible && !(bool)DetailField(world, "_equipViewShown")!, "Actual close button updates native shown state");
+            await Click(Descendants(panel).OfType<Button>().Single(b => b.TooltipText == "Close")); Require(!window.Visible && !(bool)DetailField(world, "EquipView.shown")!, "Actual close button updates native shown state");
             Request("FreshTarget"); Reply(Snapshot("FreshTarget", nation)); GetWindow().Size = new Vector2I(1200, 850); window.Position = new Vector2(280, 130); await Capture("wide-viewport");
             for (int i = 0; i < 12; i++) { Request("Tester10"); Reply(Snapshot("Tester10", nation, empty: i % 2 == 0)); Require(Find<VBoxContainer>("inspect_stats").GetChildren().OfType<HBoxContainer>().Count() == 15, "Same-frame rebuild does not retain old stat rows " + i); }
         }

@@ -23,7 +23,11 @@ public static class ClassicStraightArt
 
     private static readonly Dictionary<string, ImageTexture> Cache = new();
 
-    internal static void Clear() => Cache.Clear();
+    internal static void Clear()
+    {
+        foreach (var texture in Cache.Values) texture.Dispose();
+        Cache.Clear();
+    }
 
     /// <summary>Corner repairs per original artwork, in window coordinates.</summary>
     public static Op[]? For(string art) => art switch
@@ -61,7 +65,7 @@ public static class ClassicStraightArt
     public static ImageTexture Compose(string key, Vector2I size, Rect2 backing, IEnumerable<(Texture2D Texture, Rect2 Rect, Rect2 Source)> pieces, Op[] ops)
     {
         if (Cache.TryGetValue(key, out var cached) && GodotObject.IsInstanceValid(cached)) return cached;
-        var image = Image.CreateEmpty(size.X, size.Y, false, Image.Format.Rgba8);
+        using var image = Image.CreateEmpty(size.X, size.Y, false, Image.Format.Rgba8);
         image.FillRect(new Rect2I((Vector2I)backing.Position, (Vector2I)backing.Size), Colors.Black);
         var sources = new Dictionary<Texture2D, Image>();
         foreach (var (texture, rect, source) in pieces)
@@ -76,12 +80,13 @@ public static class ClassicStraightArt
             var src = new Rect2I((Vector2I)source.Position, (Vector2I)source.Size);
             var dst = new Rect2I((Vector2I)rect.Position, (Vector2I)rect.Size);
             if (src.Size.X <= 0 || src.Size.Y <= 0 || dst.Size.X <= 0 || dst.Size.Y <= 0) continue;
-            var piece = atlas.GetRegion(src);
+            using var piece = atlas.GetRegion(src);
             // The panels draw with nearest filtering; stretched filler strips scale the same way here.
             if (src.Size != dst.Size) piece.Resize(dst.Size.X, dst.Size.Y, Image.Interpolation.Nearest);
             image.BlendRect(piece, new Rect2I(Vector2I.Zero, dst.Size), dst.Position);
         }
         foreach (var op in ops) Apply(image, op);
+        foreach (var atlas in sources.Values) atlas.Dispose();
         var result = ImageTexture.CreateFromImage(image);
         Cache[key] = result;
         return result;

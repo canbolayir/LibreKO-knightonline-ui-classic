@@ -31,16 +31,15 @@ public partial class Preview
         int stackable = catalog.Where(i => i.Countable > 0).OrderByDescending(i => i.Name.Contains("Potion")).First().Id;
         var singles = catalog.Where(i => i.Countable == 0).DistinctBy(i => i.Icon).Select(i => i.Id).Take(3).ToList();
         singles.Add(catalog.Where(i => i.Countable == 0).OrderByDescending(i => i.Name.Length).First().Id);
-        var world = new World();
-        const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        T Field<T>(string name) => (T)typeof(World).GetField(name, Flags)!.GetValue(world)!;
-        void SetField(string name, object? value) { var f = typeof(World).GetField(name, Flags)!; f.SetValue(world, value == null ? null : Convert.ChangeType(value, f.FieldType)); }
+        var world = PreviewFixtures.Prepared(new WorldRoot());
+        T Field<T>(string name) => (T)Native.Get<object>(world, name)!;
+        void SetField(string name, object? value) => Native.Set(world, name, value == null ? null : Convert.ChangeType(value, Native.MemberType(world, name)!));
         void Call(string method, params object?[] args) => DetailCall(world, method, args);
-        Call("BuildDeathDialog"); Call("TownRecallInit"); Call("BuildChallengePrompt"); Call("BuildPartyPanel");
-        Call("BuildUpgradeNoticeBanner"); Call("BuildShoutBanner"); Call("BuildBattleEventUi");
-        Call("BuildClanBattleBanner"); Call("BuildZoneAbilityChip");
-        SetField("_bdwHudLayer", new CanvasLayer { Layer = 95 }); world.AddChild(Field<CanvasLayer>("_bdwHudLayer")); Call("BuildBdwScoreBanner");
-        Call("BuildLootWindow"); Call("BuildLootPrompt");
+        Call("DeathDialog.BuildDeathDialog"); Call("TownRecall.Build"); Call("Challenge.BuildPrompt"); Call("PartyInvites.BuildPrompts");
+        Call("UpgradeNotice.BuildBanner"); Call("Shout.BuildBanner"); Call("BattleEvent.BuildUi");
+        Call("ClanBattle.BuildBanner"); Call("ZoneAbility.BuildChip");
+        SetField("BorderDefenseWar.HudLayer", new CanvasLayer { Layer = 95 }); world.AddChild(Field<CanvasLayer>("BorderDefenseWar.HudLayer")); Call("BorderDefenseWar.BuildBdwScoreBanner");
+        Call("Loot.BuildWindow"); Call("Loot.BuildPrompt");
         foreach (var layer in world.GetChildren().OfType<CanvasLayer>().ToArray()) layer.Reparent(this);
 
         var checks = new List<string>(); var failures = new List<string>(); var screens = new List<object>();
@@ -86,20 +85,20 @@ public partial class Preview
         }
 
         // ---- Native look (before) ---------------------------------------------------------------------
-        var invite = Field<ConfirmationDialog>("_inviteAskDialog");
-        var duel = Field<ConfirmationDialog>("_challengeAskDialog");
-        var recall = Field<ConfirmationDialog>("_townRecallDialog");
-        var deathLayer = Field<CanvasLayer>("_deathLayer");
-        var deathPanel = Field<PanelContainer>("_deathPanel");
-        var upgradeLayer = Field<CanvasLayer>("_upgradeNoticeLayer"); var upgradeLabel = Field<Label>("_upgradeNoticeLabel");
-        var shoutLayer = Field<CanvasLayer>("_shoutLayer"); var shoutLabel = Field<Label>("_shoutLabel");
-        var battleBanner = Field<PanelContainer>("_battleeventBanner"); var battleBannerLabel = Field<Label>("_battleeventBannerLbl");
-        var battleResult = Field<PanelContainer>("_battleeventResult"); var battleResultLabel = Field<Label>("_battleeventResultLbl");
-        var clanBattle = Field<PanelContainer>("_clanBattlePanel"); var clanBattleLabel = Field<Label>("_clanBattleLabel");
-        var chip = Field<PanelContainer>("_zoneabilityChip"); var chipLabel = Field<Label>("_zoneabilityTypeLbl");
-        var board = Field<WarScoreStrip>("_battleeventBoard"); var bdw = Field<WarScoreStrip>("_bdwScoreBanner");
-        var lootLayer = Field<CanvasLayer>("_lootLayer"); var lootPanel = Field<PanelContainer>("_lootPanel");
-        var lootCells = Field<ItemSlotView[]>("_lootCells"); var lootPrompt = Field<Label>("_lootPrompt");
+        var invite = Field<ConfirmationDialog>("PartyInvites.inviteAskDialog");
+        var duel = Field<ConfirmationDialog>("Challenge.askDialog");
+        var recall = Field<ConfirmationDialog>("TownRecall.dialog");
+        var deathLayer = Field<CanvasLayer>("DeathDialog.Layer");
+        var deathPanel = Field<PanelContainer>("DeathDialog.Panel");
+        var upgradeLayer = Field<CanvasLayer>("UpgradeNotice.layer"); var upgradeLabel = Field<Label>("UpgradeNotice.label");
+        var shoutLayer = Field<CanvasLayer>("Shout.layer"); var shoutLabel = Field<Label>("Shout.label");
+        var battleBanner = Field<PanelContainer>("BattleEvent.battleeventBanner"); var battleBannerLabel = Field<Label>("BattleEvent.battleeventBannerLbl");
+        var battleResult = Field<PanelContainer>("BattleEvent.battleeventResult"); var battleResultLabel = Field<Label>("BattleEvent.battleeventResultLbl");
+        var clanBattle = Field<PanelContainer>("ClanBattle.panel"); var clanBattleLabel = Field<Label>("ClanBattle.label");
+        var chip = Field<PanelContainer>("ZoneAbility.ZoneabilityChip"); var chipLabel = Field<Label>("ZoneAbility.zoneabilityTypeLbl");
+        var board = Field<WarScoreStrip>("BattleEvent.BattleeventBoard"); var bdw = Field<WarScoreStrip>("BorderDefenseWar.BdwScoreBanner");
+        var lootLayer = Field<CanvasLayer>("Loot.layer"); var lootPanel = Field<PanelContainer>("Loot.Panel");
+        var lootCells = Field<ItemSlotView[]>("Loot.cells"); var lootPrompt = Field<Label>("Loot.prompt");
 
         void ShowBanners()
         {
@@ -126,21 +125,21 @@ public partial class Preview
         }
         invite.DialogText = "Guardian invites you to a party.\nJoin?"; invite.PopupCentered();
         await Shot("native-prompt"); invite.Hide();
-        Call("OnDeathExpLoss", 1_234_567L); Call("ShowDeathDialog");
-        await Shot("native-death"); Call("HideDeathDialog");
+        Call("DeathDialog.OnExpLoss", 1_234_567L); Call("DeathDialog.Show");
+        await Shot("native-death"); Call("DeathDialog.Hide");
         ShowBanners(); await Frames(); PlaceBanners();
         await Shot("native-banners"); HideBanners();
-        var gold = new LootEntry(Net.GoldItemId, 1520);
+        var gold = new LootEntry(LootWire.GoldItemId, 1520);
         // The client places the box at its 3D anchor; the audit shows the contents as the client's refresh does.
         void ShowLoot(List<LootEntry> entries)
         {
-            var list = Field<List<LootEntry>>("_lootEntries"); list.Clear(); list.AddRange(entries);
-            Call("RefreshLootWindow"); lootLayer.Visible = true;
+            var list = Field<List<LootEntry>>("Loot.Entries"); list.Clear(); list.AddRange(entries);
+            Call("Loot.RefreshWindow"); lootLayer.Visible = true;
         }
-        SetField("_openBundleId", 7);
+        SetField("Loot.openBundleId", 7);
         ShowLoot(new List<LootEntry> { gold, new(singles[0], 1), new(stackable, 25) });
         lootPanel.Position = new Vector2(560, 260);
-        await Shot("native-loot"); Call("CloseLoot");
+        await Shot("native-loot"); Call("Loot.Close");
 
         // ---- Classic ----------------------------------------------------------------------------------
         NativeOverlays.Prepare(world);
@@ -185,19 +184,19 @@ public partial class Preview
             Require(!dialog.Visible && (decline ? cancelled : confirmed), $"{state}: the native {(decline ? "cancel" : "confirm")} callback runs and the prompt closes");
             if (dialog.Visible) dialog.Hide();
         }
-        SetField("_invitePending", true);
+        SetField("PartyInvites.invitePending", true);
         invite.DialogText = "Guardian invites you to a party.\nJoin?"; invite.PopupCentered();
         await Prompt(invite, "party-invite", "Party Invite", false);
-        Require(!Field<bool>("_invitePending"), "party invite: Join answers the native invite");
-        SetField("_challengeRequestPending", true);
+        Require(!Field<bool>("PartyInvites.invitePending"), "party invite: Join answers the native invite");
+        SetField("Challenge.requestPending", true);
         duel.DialogText = "Extraordinarylongname challenges you to a duel.\nAccept and warp to the arena?"; duel.PopupCentered();
         await Prompt(duel, "duel-challenge", "Duel challenge", true);
-        Require(!Field<bool>("_challengeRequestPending"), "duel challenge: closing declines the native request");
+        Require(!Field<bool>("Challenge.requestPending"), "duel challenge: closing declines the native request");
         recall.PopupCentered();
         await Prompt(recall, "town-recall", "Town Recall", true);
 
         // Death notice: experience loss, the pending (disabled) state and the native OK.
-        Call("OnDeathExpLoss", 1_234_567_890L); Call("ShowDeathDialog");
+        Call("DeathDialog.OnExpLoss", 1_234_567_890L); Call("DeathDialog.Show");
         await Frames();
         var death = deathPanel.GetNode<Control>("classic_death");
         var deathLabels = death.GetChildren().OfType<Label>().Where(l => l.HasMeta(ClassicWorldOverlays.ExpectedRect)).ToArray();
@@ -218,13 +217,13 @@ public partial class Preview
         Require(deathLabels.Length == 2, "death notice: loss and hint labels placed");
         await DeathState("death");
         // Resurrection scrolls in the bag: the town row and one row per scroll between the hint and OK.
-        var scrollType = typeof(World).Assembly.GetType("LibreKO.Domain.ScrollSkill")!;
+        var scrollType = typeof(WorldRoot).Assembly.GetType("LibreKO.Domain.ScrollSkill")!;
         var offer = (System.Collections.IList)Activator.CreateInstance(typeof(List<>).MakeGenericType(scrollType))!;
         foreach (var (id, name) in new[] { (500, "Blessed Resurrection Scroll"), (501, "Resurrection Scroll of an Extraordinarily Long Name") })
             offer.Add(Activator.CreateInstance(scrollType, id, name, 0, 0, 0));
-        typeof(World).GetField("_deathScrolls", Flags)!.SetValue(world, offer);
-        SetField("_deathPick", 1);
-        Call("RefreshDeathRows"); Call("RefreshDeathDialogText"); Call("ArmRespawnButton", "Please confirm the availability.");
+        Native.Set(world, "DeathDialog.scrolls", offer);
+        SetField("DeathDialog.pick", 1);
+        Call("DeathDialog.RefreshRows"); Call("DeathDialog.RefreshText"); Call("DeathDialog.ArmRespawnButton", "Please confirm the availability.");
         await Frames(3);
         var choices = death.GetNode<VBoxContainer>("death_choices");
         var choiceRows = choices.GetChildren().OfType<Button>().Where(b => b.Visible).ToArray();
@@ -237,18 +236,18 @@ public partial class Preview
         await Shot("death-scrolls", ("box", Global(death)), ("choices", Global(choices)), ("ok", Global(deathOk)));
         choiceRows[0].EmitSignal(Control.SignalName.GuiInput, new InputEventMouseButton { Pressed = true, ButtonIndex = MouseButton.Left });
         await Frames(2);
-        Require(Field<int>("_deathPick") == 0 && choiceRows[0].GetThemeColor("font_color") == new Color(1, 1, 0), "death notice: a row click is the native choice");
+        Require(Field<int>("DeathDialog.pick") == 0 && choiceRows[0].GetThemeColor("font_color") == new Color(1, 1, 0), "death notice: a row click is the native choice");
         await Shot("death-scrolls-town", ("box", Global(death)));
-        typeof(World).GetField("_deathScrolls", Flags)!.SetValue(world, Activator.CreateInstance(typeof(List<>).MakeGenericType(scrollType)));
-        Call("RefreshDeathRows"); Call("RefreshDeathDialogText"); Call("ArmRespawnButton", "Press OK to teleport back to the re-spawn point.");
+        Native.Set(world, "DeathDialog.scrolls", Activator.CreateInstance(typeof(List<>).MakeGenericType(scrollType)));
+        Call("DeathDialog.RefreshRows"); Call("DeathDialog.RefreshText"); Call("DeathDialog.ArmRespawnButton", "Press OK to teleport back to the re-spawn point.");
         await Frames(3);
         Require(!choices.Visible && Global(death).Size == Spec.Death.Size(deathLabels[1].Size.Y), "death notice: without scrolls the box returns to the hint and OK");
-        Call("MarkRespawnPending");
+        Call("DeathDialog.MarkRespawnPending");
         await Frames(2);
         Require(deathOk.Disabled && deathOk.GetNode<Label>("caption").GetThemeColor("font_color") != Colors.White, "death notice: the pending OK is disabled and greyed");
         await DeathState("death-pending");
-        Call("ArmRespawnButton", "Press OK to teleport back to the re-spawn point.");
-        SetField("_selfDead", false);
+        Call("DeathDialog.ArmRespawnButton", "Press OK to teleport back to the re-spawn point.");
+        SetField("Avatar.Dead", false);
         deathOk.EmitSignal(BaseButton.SignalName.Pressed);
         await Frames(2);
         Require(!deathLayer.Visible, "death notice: OK runs the native respawn callback");
@@ -284,7 +283,7 @@ public partial class Preview
         HideBanners();
 
         // Loot: gold and two items, then a full box of twelve; cells are the client's own (click takes, right click sets a rule).
-        SetField("_openBundleId", 7);
+        SetField("Loot.openBundleId", 7);
         ShowLoot(new List<LootEntry> { gold, new(singles[0], 1), new(stackable, 25) });
         lootPanel.Position = new Vector2(560, 260);
         await Frames();

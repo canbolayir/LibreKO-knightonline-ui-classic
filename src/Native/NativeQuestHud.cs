@@ -48,32 +48,32 @@ public static class NativeQuestHud
     internal static void Reset() => _skins.Clear();
 
     /// <summary>Names and skins the tracker and chips of a world that has built them; safe to call again.</summary>
-    public static void Prepare(World world)
+    public static void Prepare(WorldRoot world)
     {
         if (!GodotObject.IsInstanceValid(world)) return;
         PrepareTracker(world);
-        PreparePremium(world, "_premiumChip", "_premiumLabel", "_premiumDot", PremiumName, PremiumLabel, PremiumDot, NativeQuestHudPart.PremiumChip);
-        PreparePremium(world, "_clanPremiumChip", "_clanPremiumLabel", "_clanPremiumDot", ClanPremiumName, ClanPremiumLabel, ClanPremiumDot, NativeQuestHudPart.ClanPremiumChip);
+        PreparePremium(world, "Premium.Chip", "Premium.label", "Premium.dot", PremiumName, PremiumLabel, PremiumDot, NativeQuestHudPart.PremiumChip);
+        PreparePremium(world, "ClanPremium.chip", "ClanPremium.label", "ClanPremium.dot", ClanPremiumName, ClanPremiumLabel, ClanPremiumDot, NativeQuestHudPart.ClanPremiumChip);
         // The clan bonus chip has no status dot; its marks label is the second child of its row.
-        PreparePremium(world, "_clanBonusChip", "_clanBonusMarks", null, ClanBonusName, ClanBonusMarks, null, NativeQuestHudPart.ClanBonusChip);
+        PreparePremium(world, "Premium.ClanBonusChip", "Premium.clanBonusMarks", null, ClanBonusName, ClanBonusMarks, null, NativeQuestHudPart.ClanBonusChip);
     }
 
     /// <summary>The tracker panel with its row column, header, count and fold button named for the skin.</summary>
-    public static void PrepareTracker(World world)
+    public static void PrepareTracker(WorldRoot world)
     {
-        if (Native.Get<PanelContainer>(world, "_trackerPanel") is not { } panel || !GodotObject.IsInstanceValid(panel) || panel.HasMeta(Prepared)) return;
-        if (Native.Get<VBoxContainer>(world, "_trackerBox") is not { } rows) return;
+        if (Native.Get<PanelContainer>(world, "QuestTracker.TrackerPanel") is not { } panel || !GodotObject.IsInstanceValid(panel) || panel.HasMeta(Prepared)) return;
+        if (Native.Get<VBoxContainer>(world, "QuestTracker.trackerBox") is not { } rows) return;
         panel.SetMeta(Prepared, true);
         panel.Name = TrackerName;
         rows.Name = TrackerRows;
         // The header exists on desktop only; the touch tracker has plain rows.
-        if (Native.Get<PanelContainer>(world, "_trackerHeader") is { } header) header.Name = TrackerHeader;
-        if (Native.Get<Button>(world, "_trackerFold") is { } fold) fold.Name = TrackerFold;
-        if (Native.Get<Label>(world, "_trackerCount") is { } count) count.Name = TrackerCount;
+        if (Native.Get<PanelContainer>(world, "QuestTracker.trackerHeader") is { } header) header.Name = TrackerHeader;
+        if (Native.Get<Button>(world, "QuestTracker.trackerFold") is { } fold) fold.Name = TrackerFold;
+        if (Native.Get<Label>(world, "QuestTracker.trackerCount") is { } count) count.Name = TrackerCount;
         Apply(NativeQuestHudPart.Tracker, panel);
     }
 
-    private static void PreparePremium(World world, string chipField, string labelField, string? dotField,
+    private static void PreparePremium(WorldRoot world, string chipField, string labelField, string? dotField,
         string chipName, string labelName, string? dotName, NativeQuestHudPart part)
     {
         if (Native.Get<PanelContainer>(world, chipField) is not { } chip || !GodotObject.IsInstanceValid(chip) || chip.HasMeta(Prepared)) return;

@@ -134,16 +134,23 @@ public sealed class MykoQuestLayout
     public static Texture2D? Texture(LayoutNode image) =>
         image.Texture == null || Plugin.Kit.Local.Image(image.Texture) is not { } source ? null : _ground.GetValue(source, Ground);
 
+    internal static void Clear()
+    {
+        foreach (var (_, texture) in _ground) texture.Dispose();
+        _ground.Clear();
+    }
+
     private static Texture2D Ground(Image source)
     {
-        var image = (Image)source.Duplicate();
+        using var image = (Image)source.Duplicate();
         if (image.IsCompressed()) image.Decompress();
         if (image.GetFormat() != Image.Format.Rgba8) image.Convert(Image.Format.Rgba8);
         byte[] data = image.GetData();
         for (int i = 0; i + 3 < data.Length; i += 4)
             if (data[i + 3] is > 0 and < 255 && data[i] <= GroundLevel && data[i + 1] <= GroundLevel && data[i + 2] <= GroundLevel)
                 data[i + 3] = (byte)Math.Round(data[i + 3] * GroundAlpha);
-        return ImageTexture.CreateFromImage(Image.CreateFromData(image.GetWidth(), image.GetHeight(), false, Image.Format.Rgba8, data));
+        using var ground = Image.CreateFromData(image.GetWidth(), image.GetHeight(), false, Image.Format.Rgba8, data);
+        return ImageTexture.CreateFromImage(ground);
     }
 
     public static void Draw(CanvasItem canvas, LayoutNode image, Rect2 rect, Color? modulate = null)

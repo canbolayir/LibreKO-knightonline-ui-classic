@@ -29,20 +29,20 @@ public partial class Preview
         var background = new Color("252822");
         AddChild(new ColorRect { Color = background, Size = new Vector2(1000, 700), MouseFilter = MouseFilterEnum.Ignore });
         var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net);
-        typeof(Net).GetProperty("LastEnter")!.SetValue(net, new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
-            Name = "Repair Preview", Gear = new int[8], Inventory = new ItemSlot[InventoryConstants.InventoryTotal] });
+        Native.Set(Game.Session.Self, "LastEnter", new MyInfo { Nation = nation, Class = nation == 1 ? 105 : 205, Race = nation == 1 ? 1 : 11,
+            Name = "Repair Preview", Gear = new int[8] }); Game.Session.Self.Inventory.Reset(new ItemSlot[InventoryConstants.InventoryTotal]);
         ItemData.EnsureLoaded();
         var checks = new List<string>(); var screens = new List<object>(); var timeline = new List<object>();
         void Require(bool valid, string text) { if (!valid) throw new Exception("REPAIR_AUDIT: " + text); checks.Add(text); }
         async Task Frames(int n = 6) { for (int i = 0; i < n; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
         async Task Wait(double seconds) => await ToSignal(GetTree().CreateTimer(seconds), SceneTreeTimer.SignalName.Timeout);
         const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        string? Applied() => (string?)typeof(GameCursor).GetField("_applied", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null);
-        GameCursorKind Kind() => (GameCursorKind)typeof(GameCursor).GetField("_kind", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null)!;
-        bool InFlight(World w) => (bool)DetailField(w, "_repairInFlight")!;
+        string? Applied() => (string?)typeof(GameCursor).GetField("applied", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null);
+        GameCursorKind Kind() => (GameCursorKind)typeof(GameCursor).GetField("kind", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null)!;
+        bool InFlight(WorldRoot w) => (bool)DetailField(w, "Repair.InFlight")!;
 
         // Native repair world and the actual Classic inventory in repair mode.
-        var world = new World(); var window = (HudWindow)DetailCall(world, "BuildRepairUiPreview")!;
+        var world = PreviewFixtures.Prepared(new WorldRoot()); var window = (HudWindow)DetailCall(world, "Preview.BuildRepair")!;
         AddChild(window); NativeServices.Prepare(window, world); ClassicServiceSkin.Apply(window.Body); await Frames();
         var audio = new LibreKO.Audio(); AddChild(audio);
         SoundCatalog.EnsureLoaded();
@@ -56,24 +56,24 @@ public partial class Preview
             Require(art != null && art.GetSize() == new Vector2(32, 32), "Original 32x32 cursor art is available: " + stem);
             art!.GetImage().SavePng(output + "/" + stem + "-cursor.png");
         }
-        DetailCall(world, "CloseRepair");
-        net.Sheet.SetMaxWeight(17_100);
-        var inventory = (Inventory)typeof(World).GetProperty("Inv", flags)!.GetValue(world)!; inventory.EnsureLength(InventoryConstants.InventoryTotal);
+        DetailCall(world, "Repair.Close");
+        Game.Session.Self.Sheet.SetMaxWeight(17_100);
+        var inventory = (Inventory)Game.Session.Self.Inventory; inventory.EnsureLength(InventoryConstants.InventoryTotal);
         // Durability states: right hand exhausted (0), carried weapon worn, top used, boots intact, helmet not repairable.
         inventory[InventoryConstants.RightHand] = inventory[Inventory.GridStart];
         inventory.SetDurability(InventoryConstants.RightHand, 0);
-        var bridge = Activator.CreateInstance(typeof(World).GetNestedType("PluginGameBridge", BindingFlags.NonPublic)!, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new object[] { world }, null)!;
+        var bridge = Native.Call(world, "CreatePluginAdapters")!;
         var attach = typeof(PluginGame).GetMethod("Attach", flags)!;
-        attach.Invoke(game, Enumerable.Repeat(bridge, attach.GetParameters().Length).ToArray());
+        Native.Call(bridge, "AttachTo", game);
         var shell = new HudWindow("inventory", "Inventory") { Visible = false };
-        shell.Body.AddChild((Control)DetailField(world, "_invContent")!);
+        shell.Body.AddChild((Control)DetailField(world, "InventoryWindow.InvContent")!);
         foreach (var child in shell.GetChildren().OfType<Control>()) child.Visible = false;
         shell.AddThemeStyleboxOverride("panel", new StyleBoxEmpty()); AddChild(shell);
-        ((Dictionary<string, HudWindow>)DetailField(world, "_mainWindows")!)["Inventory"] = shell;
-        var host = (WindowHost)Create(typeof(WindowHost), "inventory", "Inventory", shell, (Action)(() => DetailCall(world, "HideMainWindow", "Inventory")));
+        ((Dictionary<string, HudWindow>)DetailField(world, "MainWindows.Windows")!)["Inventory"] = shell;
+        var host = (WindowHost)Create(typeof(WindowHost), "inventory", "Inventory", shell, (Action)(() => DetailCall(world, "MainWindows.Hide", "Inventory")));
         var actual = new InventoryWindow(host); shell.AddChild(actual); shell.ResetSize();
         void Refresh() => typeof(InventoryWindow).GetMethod("Refresh", flags)!.Invoke(actual, null);
-        DetailCall(world, "OpenRepair"); await Frames();
+        DetailCall(world, "Repair.Open"); await Frames();
         shell.Position = new Vector2(250, 61); Refresh(); await Frames();
         Require(!window.Visible && shell.Visible && shell.GetMeta("classic_repair_mode").AsBool(), "Repair opens the actual inventory in repair mode");
         Require(Kind() == GameCursorKind.Repair && Applied() == "repair", "Repair mode shows the raised hammer (cursorrepair01) everywhere");
@@ -105,7 +105,7 @@ public partial class Preview
             screens.Add(new { state, file, note, pointer = pointer.ToString(), struck, cursor = struck && shown != "repair_alt" ? "repair_alt (Classic swing over " + shown + ")" : shown,
                 tip = tip.Tip.Visible ? tip.Tip.GetGlobalRect().ToString() : null });
         }
-        IconWash Wash(int slot) => (IconWash)typeof(IconVeilView).GetField("_wash", flags)!.GetValue(Descendants(cells[slot]).OfType<IconVeilView>().Single())!;
+        IconWash Wash(int slot) => (IconWash)typeof(IconVeilView).GetField("wash", flags)!.GetValue(Descendants(cells[slot]).OfType<IconVeilView>().Single())!;
 
         // Durability colours before repair.
         Require(Wash(InventoryConstants.RightHand) == IconWash.Exhausted, "A zero-durability item carries the original exhausted wash");
@@ -132,12 +132,12 @@ public partial class Preview
         Require(Kind() == GameCursorKind.Repair, "The hammer does not change over a non-repairable item");
         await Capture("hover-not-repairable", "Item that cannot be repaired");
         int gold = game.Character.Gold;
-        net.Sheet.SeedWealth(10, 0); Hover(Inventory.GridStart); await Frames(2);
+        Game.Session.Self.Sheet.SeedWealth(10, 0); Hover(Inventory.GridStart); await Frames(2);
         Require(Cost().GetThemeColor("font_color") == ClassicInventoryRepair.LackColor, "Unaffordable price turns the original red 0xffdd0000");
         await Capture("hover-not-enough-gold", "Price above the carried Noahs in the original red");
         Click(Inventory.GridStart);
         Require(!InFlight(world) && !hammer.Struck, "An unaffordable repair is not sent and the hammer does not swing");
-        net.Sheet.SeedWealth(1_180_000, 2_450); Refresh();
+        Game.Session.Self.Sheet.SeedWealth(1_180_000, 2_450); Refresh();
 
         // A slow answer: the struck hammer stays down for the whole wait, as in the original.
         Hover(Inventory.GridStart + 1);
@@ -226,7 +226,7 @@ public partial class Preview
         Require(!InFlight(world), "A fully repaired item is not sent again");
         inventory.SetDurability(Inventory.GridStart + 1, 100); Refresh();
         Click(Inventory.GridStart + 1); Require(hammer.Struck, "A new repair swings again");
-        DetailCall(world, "HideMainWindow", "Inventory"); await Frames(2);
+        DetailCall(world, "MainWindows.Hide", "Inventory"); await Frames(2);
         Require(!shell.GetMeta("classic_repair_mode").AsBool() && !hammer.Struck, "Closing the inventory ends the repair mode and the swing");
         Require(Kind() == GameCursorKind.Arrow && Applied() == (nation == 1 ? "ka_idle" : "el_idle"), "Closing repair restores the nation cursor");
         DetailCall(world, "DeliverRepairResult", true, 0);

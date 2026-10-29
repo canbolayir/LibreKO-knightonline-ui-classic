@@ -22,21 +22,21 @@ public static class NativeSiege
     public static readonly string[] WindowIds = { "siegeguard", "siegeoffice", "siegetaxlist", "siegeschedule", "siegechallengers", "siegedefenders" };
     public const string Prepared = "classic_siege_controls";
 
-    public static void Prepare(HudWindow window, World world)
+    public static void Prepare(HudWindow window, WorldRoot world)
     {
         if (!NativeIdentity.Begin(window, "native_siege")) return;
         bool named = window.Id switch
         {
             "siegeguard" or "siegeoffice" or "siegetaxlist" => PrepareSpeech(window),
-            "siegeschedule" => PrepareTable(window, world, "_siegeScheduleRows", "siege_ok", "siege_refresh"),
-            "siegechallengers" => PrepareTable(window, world, "_siegeChallengerRows") && PrepareChallengers(window, world),
-            "siegedefenders" => PrepareTable(window, world, "_siegeDefenderRows", "siege_challengers", "siege_refresh"),
+            "siegeschedule" => PrepareTable(window, world, "Siege.scheduleRows", "siege_ok", "siege_refresh"),
+            "siegechallengers" => PrepareTable(window, world, "Siege.challengerRows") && PrepareChallengers(window, world),
+            "siegedefenders" => PrepareTable(window, world, "Siege.defenderRows", "siege_challengers", "siege_refresh"),
             _ => false,
         };
         // List windows show the native title and close button on the original artwork.
         if (window.Id is not ("siegeguard" or "siegeoffice" or "siegetaxlist"))
-            named &= NativeWindows.Name(Native.Get<Label>(window, "_titleLbl"), "siege_title")
-                & NativeWindows.Name(Native.Get<Button>(window, "_closeButton"), "siege_close");
+            named &= NativeWindows.Name(Native.Get<Label>(window, "titleLbl"), "siege_title")
+                & NativeWindows.Name(Native.Get<Button>(window, "closeButton"), "siege_close");
         if (!named) return;
         window.SetMeta(Prepared, 1);
     }
@@ -55,7 +55,7 @@ public static class NativeSiege
     }
 
     /// <summary>List windows: column headings, the scrolled native rows and the footer actions.</summary>
-    private static bool PrepareTable(HudWindow window, World world, string rowsField, params string[] actions)
+    private static bool PrepareTable(HudWindow window, WorldRoot world, string rowsField, params string[] actions)
     {
         var rows = Native.Get<VBoxContainer>(world, rowsField);
         if (rows?.GetParent() is not ScrollContainer scroll || !window.Body.IsAncestorOf(rows)) return false;
@@ -72,18 +72,18 @@ public static class NativeSiege
         return true;
     }
 
-    private static bool PrepareChallengers(HudWindow window, World world)
+    private static bool PrepareChallengers(HudWindow window, WorldRoot world)
     {
-        var apply = Native.Get<Button>(world, "_siegeApply");
-        var cancel = Native.Get<Button>(world, "_siegeCancel");
+        var apply = Native.Get<Button>(world, "Siege.apply");
+        var cancel = Native.Get<Button>(world, "Siege.cancel");
         var footer = apply?.GetParent();
         var defenders = footer?.GetChildren().OfType<Button>().FirstOrDefault(b => b != apply && b != cancel);
         bool named = NativeWindows.Name(apply, "siege_apply") & NativeWindows.Name(cancel, "siege_apply_cancel")
             & NativeWindows.Name(defenders, "siege_defenders")
-            & NativeWindows.Name(Native.Get<Label>(world, "_siegeSignedUp"), "siege_signed_up")
-            & NativeWindows.Name(Native.Get<Label>(world, "_siegeChosen"), "siege_chosen")
-            & NativeWindows.Name(Native.Get<Label>(world, "_siegeFee"), "siege_fee")
-            & NativeWindows.Name(Native.Get<Label>(world, "_siegePeriod"), "siege_period");
+            & NativeWindows.Name(Native.Get<Label>(world, "Siege.signedUp"), "siege_signed_up")
+            & NativeWindows.Name(Native.Get<Label>(world, "Siege.chosen"), "siege_chosen")
+            & NativeWindows.Name(Native.Get<Label>(world, "Siege.fee"), "siege_fee")
+            & NativeWindows.Name(Native.Get<Label>(world, "Siege.period"), "siege_period");
         return named && window.Body.IsAncestorOf(apply);
     }
 }

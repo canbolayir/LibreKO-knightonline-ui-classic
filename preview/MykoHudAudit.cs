@@ -22,7 +22,7 @@ public partial class Preview
         GetWindow().ContentScaleMode = Window.ContentScaleModeEnum.Disabled; GetWindow().Size = new Vector2I(1280, 800);
         AddChild(new ColorRect { Color = new Color("2f332a"), Size = new Vector2(1280, 800), MouseFilter = MouseFilterEnum.Ignore });
         var offline = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, offline);
-        Native.Call(offline, "SeedPreviewEnter", new MyInfo { Nation = nation, Name = "Classic Preview" });
+        Native.Call(Game.Session.Self, "SeedPreviewEnter", new MyInfo { Nation = nation, Name = "Classic Preview" });
         ItemData.EnsureLoaded();
         bool local = ClassicMykoPlates.Available && ClassicNoticeBars.Available;
         string variant = local ? "local" : "classic";
@@ -96,8 +96,8 @@ public partial class Preview
 
         // ---- Events window: the clock and E open the client's Events window, which keeps its Classic family frame.
         {
-            var world = new World();
-            var window = (HudWindow)DetailCall(world, "BuildEventsUiPreview")!;
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            var window = (HudWindow)DetailCall(world, "Preview.BuildEvents")!;
             AddChild(window); window.Visible = true;
             var frame = ClassicEventFamily.Apply(window.Body);
             await Frames(8);
@@ -120,8 +120,8 @@ public partial class Preview
         {
             NativeGmList.Clear();
             Premium(0, 0, 0);
-            var world = new World();
-            var column = (Container)DetailCall(world, "BuildEventTitlesUiPreview", 3, expanded)!;
+            var world = PreviewFixtures.Prepared(new WorldRoot());
+            var column = (Container)DetailCall(world, "Preview.BuildEventTitles", 3, expanded)!;
             column.GetParent()?.RemoveChild(column);
             layer.AddChild(column); column.Visible = true;
             column.Position = new Vector2(1280 - 190 - 169, 40);
@@ -145,7 +145,7 @@ public partial class Preview
             stack.ClanSource = () => new NativePremium.Clan(inClan, expanded, expanded ? clanEnds : 0);
             // The clan online bonus (3277df5): 24 members online lights three of six marks.
             const int bonusOnline = 24;
-            stack.BonusSource = () => inClan ? bonusOnline : Net.NoClanBonus;
+            stack.BonusSource = () => inClan ? bonusOnline : ClanSession.NoClanBonus;
             var bonusLines = NativePremium.BonusLines(true, bonusOnline);
             stack.Sync(); await Frames(4);
             var gm = stack.GmBar; var box = stack.Box; var premium = stack.PremiumBar; var clan = stack.ClanBar; var time = stack.TimePlate;
@@ -250,7 +250,7 @@ public partial class Preview
             {
                 // The knob is the client's own toggle: it expands the column.
                 await Click(k.GetCenter()); await Away();
-                Require(Net.I.EventTitles.Expanded && column.GetChildren().OfType<PanelContainer>().Count() == 3, "the + knob expands the notices through the client");
+                Require(Game.Session.Zone.EventTitles.Expanded && column.GetChildren().OfType<PanelContainer>().Count() == 3, "the + knob expands the notices through the client");
                 Require(Descendants(column.GetChildren().OfType<PanelContainer>().First()).OfType<Button>().Single().GetThemeStylebox("normal") is StyleBoxTexture, "the expanded first bar shows the − knob");
                 await Frames(4);
                 await Shot("group-knob-expanded", Group());
@@ -261,13 +261,13 @@ public partial class Preview
             var notice = chips[0]; string title = Descendants(notice).OfType<Label>().Single().Text;
             await Click(notice.GetGlobalRect().GetCenter() - new Vector2(30, 0)); await Away();
             Require(box.Visible && stack.OpenKey == ClassicNoticeBars.KeyOf(title), "a notice bar opens the content box with its notice");
-            Require(stack.Text.Text == Net.I.EventTitles.Entries[0].Message, "the box shows the notice's message");
+            Require(stack.Text.Text == Game.Session.Zone.EventTitles.Entries[0].Message, "the box shows the notice's message");
             var clip = stack.Text.GetParent<Control>().GetGlobalRect();
             Require(Inside(box.GetGlobalRect(), clip) && clip.Size.X == 141 && clip.Size.Y <= 139 && clip.Size.Y > 139 - stack.Text.GetLineHeight()
                 && Mathf.IsEqualApprox(clip.Size.Y % stack.Text.GetLineHeight(), 0), "the text area is the original text_content rect, cut to whole lines " + clip);
             await Shot("notice-open", Group());
             // A long message scrolls by lines with the art's buttons.
-            Net.I.EventTitles.Show(title, string.Join(" ", Enumerable.Repeat("Siege practice tonight at nine, meet at the Moradon gate with full potions and scrolls.", 6)));
+            Game.Session.Zone.EventTitles.Show(title, string.Join(" ", Enumerable.Repeat("Siege practice tonight at nine, meet at the Moradon gate with full potions and scrolls.", 6)));
             stack.Refresh(); await Frames(3);
             Require(stack.MaxScroll > 0 && stack.Scroll == 0, "a long message can scroll (" + stack.MaxScroll + " lines)");
             var down = Descendants(box).OfType<TextureButton>().First(x => x.Name == "notice_scroll_down");
@@ -287,10 +287,10 @@ public partial class Preview
             await Shot("gm-names", Group());
             // A removed notice closes its open box; with no notice the GM bar follows the time box.
             await Click(notice.GetGlobalRect().GetCenter() - new Vector2(30, 0)); await Away();
-            Net.I.EventTitles.Clear();
+            Game.Session.Zone.EventTitles.Clear();
             // The preview world does not listen to the change event; the client's own refresh runs as live.
-            DetailCall(world, "RefreshEventTitles");
-            ((Action?)typeof(Net).GetField("EventTitlesChangedEvent", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(Net.I))?.Invoke();
+            DetailCall(world, "EventTitlesWindow.Refresh");
+            ((Action?)Native.Get<object>(Game.Session.Zone, "EventTitlesChangedEvent"))?.Invoke();
             await Frames(6);
             Require(!box.Visible, "a removed notice closes its box");
             Require(Mathf.Abs(gm.GetGlobalRect().Position.Y - time.GetGlobalRect().End.Y - L.BarGap) < .5f, "without notices the GM List bar follows the time box " + gm.GetGlobalRect());

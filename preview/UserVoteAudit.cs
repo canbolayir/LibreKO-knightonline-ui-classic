@@ -41,25 +41,25 @@ public partial class Preview
             using (var image = GetViewport().GetTexture().GetImage()) image.SavePng(System.IO.Path.Combine(output, file));
             screens.Add(new { state, file, extra });
         }
-        var world = new World();
-        void Set(string field, object? value) => typeof(World).GetField(field, flags)!.SetValue(world, value);
-        T Get<T>(string field) => (T)typeof(World).GetField(field, flags)!.GetValue(world)!;
+        var world = PreviewFixtures.Prepared(new WorldRoot());
+        void Set(string field, object? value) => Native.Set(world, field, value);
+        T Get<T>(string field) => (T)Native.Get<object>(world, field)!;
         double Now() => Time.GetTicksMsec() / 1000.0;
-        Set("_myId", 300);
-        Set("_zone", UserVote.JuraidZone);
-        net.SeedPartyPreview(
+        Set("MyId", 300);
+        Set("ZoneId", TempleZones.JuraidMountain);
+        Game.Session.Party.SeedPreview(
             new PartyMember(301, 1, "Rikka", 4210, 3900, 83, nation * 100 + 8, 1820, 1500),
             new PartyMember(300, 1, "Canbo", 5120, 5120, 81, nation * 100 + 6, 1400, 1210),
             new PartyMember(302, 1, "LongCharacterName1234", 3890, 2210, 80, nation * 100 + 10, 2300, 2300),
             new PartyMember(303, 1, "Healer", 4470, 4470, 82, nation * 100 + 12, 1990, 640));
         // The own bars and ping, the members' pings and level progress (ff78eef) for the party list beside the board.
-        net.Vitals.Seed(5120, 5120, 1210, 1400);
+        Game.Session.Self.Vitals.Seed(5120, 5120, 1210, 1400);
         typeof(Net).GetProperty("PingMs")!.SetValue(net, 42);
         foreach (var (id, ping, permille) in new[] { (301, 84, 625), (302, 172, 310), (303, 290, 880) })
-            net.SeedPartyMemberPreview(id, ping, permille, Array.Empty<int>());
-        DetailCall(world, "PluginSocialInit");
-        DetailCall(world, "UserVoteInit");
-        PreviewFixtures.Adopt<CanvasLayer>(world, "_userVoteLayer", this);
+            Game.Session.Party.SeedMemberPreview(id, ping, permille, Array.Empty<int>());
+        var social=Native.Get<object>(Native.Call(world,"CreatePluginAdapters")!,"Social")!;Native.Call(PluginHost.Game,"AttachSocial",social,social,social);Native.Call(PluginHost.Game,"AttachWarp",social);
+        DetailCall(world, "UserVoteWindow.Build");
+        PreviewFixtures.Adopt<CanvasLayer>(world, "UserVoteWindow.layer", this);
         var vote = Plugin.Kit.Game.UserVote;
 
         // Checks one vote window: the Classic message box replaced the client's flow, sits centred in the
@@ -96,7 +96,7 @@ public partial class Preview
         // 1. Select: opened from the party facade's user vote (the Juraid member menu entry).
         Require(PluginHost.Game.Party.UserVoteHere, "party API: user vote is offered in Juraid");
         PluginHost.Game.Party.UserVote(302);
-        var select = await VoteWindow("_userVoteSelect", "vote-select");
+        var select = await VoteWindow("UserVoteWindow.select", "vote-select");
         var reasons = select.GetChildren().OfType<CheckBox>().ToArray();
         Require(reasons.Length == UserVote.Reasons && reasons[0].ButtonPressed && reasons.Count(r => r.ButtonPressed) == 1, "select: four reasons, the first picked");
         // The client's reason texts; where its text table has none (it returns "Reason n"), the English captions.
@@ -119,57 +119,57 @@ public partial class Preview
         await Shot("vote-select-other");
         select.GetNode<Button>("vote_cancel").EmitSignal(BaseButton.SignalName.Pressed);
         await Frames(2);
-        Require(Get<HudWindow?>("_userVoteSelect") == null && (int)DetailField(world, "_userVoteMember")! == -1, "select: Cancel runs the client's cancel and frees the window");
+        Require(Get<HudWindow?>("UserVoteWindow.select") == null && (int)DetailField(world, "UserVoteWindow.member")! == -1, "select: Cancel runs the client's cancel and frees the window");
         PluginHost.Game.Party.UserVote(301);
-        select = await VoteWindow("_userVoteSelect", "vote-select-again");
+        select = await VoteWindow("UserVoteWindow.select", "vote-select-again");
         select.GetNode<Button>("vote_ok").EmitSignal(BaseButton.SignalName.Pressed);
         await Frames(2);
-        Require(Get<HudWindow?>("_userVoteSelect") == null && !double.IsNegativeInfinity((double)DetailField(world, "_userVoteSentAt")!), "select: OK sends the vote through the client and frees the window");
+        Require(Get<HudWindow?>("UserVoteWindow.select") == null && !double.IsNegativeInfinity((double)DetailField(world, "UserVoteWindow.sentAt")!), "select: OK sends the vote through the client and frees the window");
 
         // 2. Question: the reason and the countdown; the answers and the client's automatic Draw.
-        DetailCall(world, "OnUserVoteAsk", new UserVoteAsk("LongCharacterName1234", UserVote.ReasonOther, "left the bridge to the enemy"));
-        var ask = await VoteWindow("_userVoteAsk", "vote-ask");
+        DetailCall(world, "UserVoteWindow.OnAsk", new UserVoteAsk("LongCharacterName1234", UserVote.ReasonOther, "left the bridge to the enemy"));
+        var ask = await VoteWindow("UserVoteWindow.askWindow", "vote-ask");
         var bar = ask.GetNode<ProgressBar>("vote_countdown");
         Require(bar.MaxValue == UserVote.AnswerSeconds && bar.Value > UserVote.AnswerSeconds - 2, "ask: the countdown starts full " + bar.Value);
         Require(ask.GetNode<Label>("vote_reason").Text == "left the bridge to the enemy", "ask: the typed reason in gold");
         var answers = ask.GetChildren().OfType<Button>().ToArray();
         Require(answers.Select(b => b.Text).SequenceEqual(new[] { "Yes", "Draw", "No" }) && answers.Select(b => b.Size).Distinct().Count() == 1, "ask: Yes, Draw and No of one size");
         Require(Mathf.IsEqualApprox(answers[0].Position.X, ClassicOverlayLayout.Message.Width - answers[2].GetRect().End.X), "ask: equal side margins");
-        Require(!Get<HudWindow>("_userVoteAsk").GetChildren().OfType<Control>().Any(c => c.Visible && c is not ClassicUserVoteDialog), "ask: no close button (the question must be answered)");
+        Require(!Get<HudWindow>("UserVoteWindow.askWindow").GetChildren().OfType<Control>().Any(c => c.Visible && c is not ClassicUserVoteDialog), "ask: no close button (the question must be answered)");
         await Shot("vote-ask");
-        Set("_userVoteAskUntil", Now() + 7);
+        Set("UserVoteWindow.askUntil", Now() + 7);
         await Frames(4);
         Require(bar.Value < 8 && bar.GetMeta(KnightOnlineUiClassic.Native.NativeOverlays.Urgent, false).AsBool(), "ask: the last ten seconds use the urgent bar art");
         await Shot("vote-ask-urgent");
         answers[0].EmitSignal(BaseButton.SignalName.Pressed);
         await Frames(2);
-        Require(Get<HudWindow?>("_userVoteAsk") == null, "ask: Yes answers through the client and frees the window");
-        DetailCall(world, "OnUserVoteAsk", new UserVoteAsk("Rikka", 2, ""));
-        ask = await VoteWindow("_userVoteAsk", "vote-ask-listed-reason");
+        Require(Get<HudWindow?>("UserVoteWindow.askWindow") == null, "ask: Yes answers through the client and frees the window");
+        DetailCall(world, "UserVoteWindow.OnAsk", new UserVoteAsk("Rikka", 2, ""));
+        ask = await VoteWindow("UserVoteWindow.askWindow", "vote-ask-listed-reason");
         string listed = vote.AskReason.Length > 0 ? vote.AskReason : reasonCaptions[1];
         Require(ask.HasNode("vote_reason") && ask.GetNode<Label>("vote_reason").Text == listed, "ask: a listed reason shows the client's text, or its caption when the client has none: " + listed);
         await Shot("vote-ask-listed-reason");
-        Set("_userVoteAskUntil", Now() - 1);
-        DetailCall(world, "UserVoteTick", Now());
+        Set("UserVoteWindow.askUntil", Now() - 1);
+        DetailCall(world, "UserVoteWindow.UserVoteTick", Now());
         await Frames(2);
-        Require(Get<HudWindow?>("_userVoteAsk") == null, "ask: the client answers Draw when the countdown ends");
+        Require(Get<HudWindow?>("UserVoteWindow.askWindow") == null, "ask: the client answers Draw when the countdown ends");
 
         // 3. Notice after leaving Juraid.
-        DetailCall(world, "ShowVoteNotice", 2, 3);
-        var notice = await VoteWindow("_userVoteNotice", "vote-notice");
+        DetailCall(world, "UserVoteWindow.ShowVoteNotice", 2, 3);
+        var notice = await VoteWindow("UserVoteWindow.notice", "vote-notice");
         Require(notice.GetChildren().OfType<Label>().Count(l => l.Name.ToString().StartsWith("vote_notice_")) == 3, "notice: the client's three warning lines");
         Require(notice.GetNode<Button>("vote_notice_ok").GetRect() == ClassicOverlayLayout.Message.Single(notice.Size.Y), "notice: OK in the single centred place");
         await Shot("vote-notice");
         notice.GetNode<Button>("vote_notice_ok").EmitSignal(BaseButton.SignalName.Pressed);
         await Frames(2);
-        Require(Get<HudWindow?>("_userVoteNotice") == null, "notice: OK closes through the client");
+        Require(Get<HudWindow?>("UserVoteWindow.notice") == null, "notice: OK closes through the client");
 
         // 4. The Classic war board beside the Classic party list.
-        DetailCall(world, "PartyWarBoardInit");
+        DetailCall(world, "WarBoard.Build");
         // As the client's HUD seam does in the game: the replaced board's layer stays in the tree, hidden.
-        var nativeBoard = Get<PanelContainer>("_warBoard").GetParent<CanvasLayer>();
+        var nativeBoard = Get<PanelContainer>("WarBoard.Panel").GetParent<CanvasLayer>();
         nativeBoard.Reparent(this); nativeBoard.Visible = false;
-        float savedAlpha = PluginHost.Game.Party.WarBoardAlpha; byte savedMode = Config.PartyBoardMode;
+        float savedAlpha = PluginHost.Game.Party.WarBoardAlpha; var savedMode = Config.PartyBoardMode;
         var hud = new CanvasLayer { Layer = 64 }; AddChild(hud);
         var party = new ClassicPartyHud(PluginHost.Game.Party, () => world); hud.AddChild(party);
         var board = new ClassicWarBoard(PluginHost.Game.Party); hud.AddChild(board);
@@ -177,8 +177,8 @@ public partial class Preview
         Require(!board.Visible, "war board: hidden until the client opens it");
         party.GetNode<Control>("party_actions").GetChildren().OfType<Button>().Single(b => b.Text == "War Board").EmitSignal(BaseButton.SignalName.Pressed);
         await Frames(4);
-        byte mode = PluginHost.Game.Party.WarBoardMode;
-        DetailCall(world, "OnPartyWarBoard", new WarBoardReply(PartyWarBoard.TargetBoard, mode,
+        var mode = PluginHost.Game.Party.WarBoardMode;
+        DetailCall(world, "WarBoard.OnWarBoard", new WarBoardReply(PartyWarBoardTarget.Board, mode,
             new List<WarBoardShare> { new(300, 312), new(301, 241), new(302, 168), new(303, 0) }));
         await Frames(4);
         Require(board.Visible && PluginHost.Game.Party.WarBoardOpen, "war board: War Board on the party list opens the client's board in the Classic frame");
@@ -192,7 +192,7 @@ public partial class Preview
             Require(control.GetRect() == control.GetMeta("war_board_expected_rect").AsRect2(), "war board: actual bounds of " + control.Name + " " + control.GetRect());
         Require(GetViewportRect().Encloses(board.GetGlobalRect()) && !board.GetGlobalRect().Intersects(party.GetGlobalRect()), "war board: inside the viewport, beside the party list");
         var damage = board.GetNode<Button>("war_board_damage"); var healing = board.GetNode<Button>("war_board_healing");
-        Require(damage.ButtonPressed == (mode == PartyWarBoard.ModeDamage) && healing.ButtonPressed == (mode == PartyWarBoard.ModeHealing), "war board: the tab of the client's mode is selected");
+        Require(damage.ButtonPressed == (mode == PartyBoardMeterMode.Damage) && healing.ButtonPressed == (mode == PartyBoardMeterMode.Healing), "war board: the tab of the client's mode is selected");
         await Shot("war-board");
         // The board's tooltips use the original tooltip look (co_tooltip_us), as the party list's do.
         {
@@ -224,18 +224,18 @@ public partial class Preview
         }
         healing.EmitSignal(BaseButton.SignalName.Pressed);
         await Frames(4);
-        Require(PluginHost.Game.Party.WarBoardMode == PartyWarBoard.ModeHealing && healing.ButtonPressed && !damage.ButtonPressed, "war board: Healing switches the client's board mode");
+        Require(PluginHost.Game.Party.WarBoardMode == PartyBoardMeterMode.Healing && healing.ButtonPressed && !damage.ButtonPressed, "war board: Healing switches the client's board mode");
         // The tab changed within five seconds of the last request: the client holds it and counts down. The board
         // reads the seconds from the party API (ff78eef) when the client raises Changed, without polling.
         var cooldown = board.GetNode<Label>("war_board_cooldown");
         Require(!board.IsProcessing(), "war board: no per-frame polling of the client's board");
-        DetailCall(world, "WarBoardTick", Now()); await Frames(4);
+        DetailCall(world, "WarBoard.WarBoardTick", Now()); await Frames(4);
         int coolSeconds = PluginHost.Game.Party.WarBoardCooldown;
         Require(coolSeconds is >= 1 and <= 5 && cooldown.Visible && cooldown.Text == coolSeconds.ToString(),
             "war board: the client's tab cooldown (IGameParty.WarBoardCooldown) shows beside the tabs (" + cooldown.Text + ")");
         // A later second: the client notifies the change and the digits follow.
-        Set("_warBoardSentAt", Now() - PartyWarBoard.BoardTabSeconds + 2.5);
-        DetailCall(world, "WarBoardTick", Now()); await Frames(4);
+        Set("WarBoard.warBoardSentAt", Now() - PartyWarBoard.BoardTabSeconds + 2.5);
+        DetailCall(world, "WarBoard.WarBoardTick", Now()); await Frames(4);
         Require(PluginHost.Game.Party.WarBoardCooldown == 3 && cooldown.Visible && cooldown.Text == "3",
             "war board: the digits follow the client's later second (" + PluginHost.Game.Party.WarBoardCooldown + " / " + cooldown.Text + ")");
         Require(cooldown.GetRect() == ClassicPartyHudLayout.WarBoard.Cooldown && !cooldown.GetRect().Intersects(healing.GetRect()) && new Rect2(Vector2.Zero, board.Size).Encloses(cooldown.GetRect()),
@@ -243,14 +243,14 @@ public partial class Preview
         var coolFont = cooldown.GetThemeFont("font"); int coolSize = cooldown.GetThemeFontSize("font_size");
         Require(coolFont.GetStringSize(cooldown.Text, HorizontalAlignment.Left, -1, coolSize).X <= cooldown.Size.X && coolFont.GetHeight(coolSize) <= cooldown.Size.Y + 1, "war board: the cooldown digits fit their place");
         await Shot("war-board-cooldown");
-        Set("_warBoardSentAt", Now() - PartyWarBoard.BoardTabSeconds - 1);
-        DetailCall(world, "WarBoardTick", Now()); await Frames(4);
+        Set("WarBoard.warBoardSentAt", Now() - PartyWarBoard.BoardTabSeconds - 1);
+        DetailCall(world, "WarBoard.WarBoardTick", Now()); await Frames(4);
         Require(PluginHost.Game.Party.WarBoardCooldown == 0 && !cooldown.Visible, "war board: the cooldown hides once the client sends the held tab");
         var alpha = board.GetNode<HSlider>("war_board_alpha");
         alpha.Value = .5;
         await Frames(4);
         Require(Mathf.IsEqualApprox(PluginHost.Game.Party.WarBoardAlpha, .5f) && Mathf.IsEqualApprox(board.GetNode<ClassicFrame>("war_board_frame").BackgroundAlpha, .5f), "war board: the transparency slider sets the client's board alpha (" + PluginHost.Game.Party.WarBoardAlpha + ", " + board.GetNode<ClassicFrame>("war_board_frame").BackgroundAlpha + ", " + alpha.Value + ", " + Config.PartyBoardAlpha + ")");
-        DetailCall(world, "OnPartyWarBoard", new WarBoardReply(PartyWarBoard.TargetBoard, PartyWarBoard.ModeHealing,
+        DetailCall(world, "WarBoard.OnWarBoard", new WarBoardReply(PartyWarBoardTarget.Board, PartyBoardMeterMode.Healing,
             new List<WarBoardShare> { new(303, 655), new(300, 120) }));
         await Frames(4);
         Require(board.GetChildren().OfType<ClassicWarBoardRow>().Count(r => r.Visible) == 2, "war board: rows follow the client's reply");
@@ -293,11 +293,11 @@ public partial class Preview
         Require(fixture.LastAct == ("clan_memo", "Canbo"), "clan page: Write memo runs the page's memo action");
         ClassicContextMenu.Close();
         // The live page reads the bonus from the client: 24 members online light three marks.
-        typeof(Net).GetProperty("MyClan")!.SetValue(net, new MyClanInfo { InClan = true, ClanId = 11, Name = "canCLAN" });
-        typeof(Net).GetProperty("ClanOnlineCount")!.SetValue(net, 24);
+        Native.Set(Game.Session.Clan, "MyClan", new MyClanInfo { InClan = true, ClanId = 11, Name = "canCLAN" });
+        Native.Set(Game.Session.Clan, "ClanOnlineCount", 24);
         var bridge = CharacterPanelBridge.For(world);
         Require(bridge.Status("clan_bonus").Replace(" ", "") == "OOOXXX" && bridge.Status("clan_bonus_tip").Length > 0, "clan page: the live bonus follows the client's online count (" + bridge.Status("clan_bonus") + ")");
-        typeof(Net).GetProperty("ClanOnlineCount")!.SetValue(net, Net.NoClanBonus);
+        Native.Set(Game.Session.Clan, "ClanOnlineCount", ClanSession.NoClanBonus);
         Require(bridge.Status("clan_bonus") == "", "clan page: no bonus line before the server reports one");
 
         System.IO.File.WriteAllText(System.IO.Path.Combine(output, prefix + "-user-vote.json"), JsonSerializer.Serialize(new { nation = prefix, checks, screens }, new JsonSerializerOptions { WriteIndented = true }));

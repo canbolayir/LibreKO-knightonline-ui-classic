@@ -51,15 +51,15 @@ public partial class Preview
         }
         UseLocal(null);
 
-        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net); var world = new World();
-        DetailCall(world, "BuildNpcDialog");
-        var layer = (CanvasLayer)DetailField(world, "_npcLayer")!; layer.Reparent(this);
-        DetailCall(world, "BuildItemTooltip");
-        var tooltipLayer = (CanvasLayer)DetailField(world, "_itemTipLayer")!; tooltipLayer.Reparent(this);
-        var window = (HudWindow)DetailField(world, "_npcPanel")!;
-        var actorType = typeof(World).GetNestedType("Ent", BindingFlags.NonPublic)!;
+        var net = new Net(); typeof(Net).GetProperty("I")!.SetValue(null, net); var world = PreviewFixtures.Prepared(new WorldRoot());
+        DetailCall(world, "NpcDialogWindow.BuildNpcDialog");
+        var layer = (CanvasLayer)DetailField(world, "NpcDialogWindow.layer")!; layer.Reparent(this);
+        DetailCall(world, "ItemTooltip.Build");
+        var tooltipLayer = (CanvasLayer)DetailField(world, "ItemTooltip.tipLayer")!; tooltipLayer.Reparent(this);
+        var window = (HudWindow)DetailField(world, "NpcDialogWindow.Panel")!;
+        var actorType = Native.ClientType("LibreKO.Presentation.EntityView")!;
         var actor = Activator.CreateInstance(actorType, nonPublic: true)!;
-        ((IDictionary)DetailField(world, "_ents")!).Add(701, actor);
+        ((EntityRegistry)DetailField(world, "EntitySystem.Ents")!)[701] = (EntityView)actor;
         using var seed = JsonDocument.Parse(System.IO.File.ReadAllText(ProjectSettings.GlobalizePath("res://../../LibreKO/Server/LibreKO.Game/Seed/Data/Npcs.json")));
         var prototypes = seed.RootElement.EnumerateArray().GroupBy(p => p.GetProperty("Id").GetInt32()).ToDictionary(g => g.Key, g => g.Last());
         void SetNpc(int id)
@@ -71,9 +71,9 @@ public partial class Preview
                 actorType.GetField(field)!.SetValue(actor, value);
             }
             actorType.GetField("IsNpc")!.SetValue(actor, true); actorType.GetField("Gear")!.SetValue(actor, new int[8]);
-            typeof(World).GetField("_vendorNpcId", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, 701);
-            typeof(World).GetField("_npcTalkId", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, -1);
-            typeof(World).GetField("_vendorNpcName", BindingFlags.Instance | BindingFlags.NonPublic)!.SetValue(world, data.GetProperty("Name").GetString()!);
+            Native.Set(Game.Session, "NpcQuest.LastNpcId", 701);
+            Native.Set(Game.Session, "NpcQuest.TalkingNpcId", -1);
+            Native.Set(Game.Session, "NpcQuest.LastNpcName", data.GetProperty("Name").GetString()!);
         }
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         var classic = (ClassicNpcDialogue)(CharacterDetailsSkin.Apply(window.Body) ?? window.GetChildren().OfType<ClassicNpcDialogue>().Single());
@@ -81,12 +81,12 @@ public partial class Preview
         var myko = window.GetChildren().OfType<MykoQuestDialogue>().Single();
         var opening = window.GetChildren().OfType<ClassicNpcOpeningChoice>().Single();
         async Task Frames(int count = 6) { for (int i = 0; i < count; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw); }
-        void Close() => DetailCall(world, "CloseNpcDialog");
+        void Close() => DetailCall(world, "NpcDialogWindow.Close");
         void Conversation(int npc, string story, string[] topics, Action<int>? pressed = null)
         {
-            Close(); SetNpc(npc); DetailCall(world, "BeginNpcDialog", prototypes[npc].GetProperty("Name").GetString()!, story);
+            Close(); SetNpc(npc); DetailCall(world, "NpcDialogWindow.Begin", prototypes[npc].GetProperty("Name").GetString()!, story);
             for (int i = 0; i < topics.Length; i++) { int index = i; DetailCall(world, "AddNpcMenuButton", $"{i + 1}.   {topics[i]}", (Action)(() => pressed?.Invoke(index))); }
-            DetailCall(world, "EndNpcDialog", topics.Length);
+            DetailCall(world, "NpcDialogWindow.End", topics.Length);
         }
         void Offer(int npc, QuestView view) { Close(); SetNpc(npc); DetailCall(world, "ShowQuestView", view); }
         void Pointer(Vector2 point) => Input.ParseInputEvent(new InputEventMouseMotion { Position = point, GlobalPosition = point });
@@ -212,7 +212,7 @@ public partial class Preview
         Check((int)window.GetGlobalRect().Size.X == ClassicNpcLayout.Width && classic.Header.GetParent() == classic, "without local assets the window keeps the bundled width and title bar");
         await Save("fallback-menu");
         ItemData.EnsureLoaded();
-        var items = (Dictionary<int, ItemData.Item>)typeof(ItemData).GetField("_items", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null)!;
+        var items = (Dictionary<int, ItemData.Item>)typeof(ItemData).GetField("items", BindingFlags.Static | BindingFlags.NonPublic)!.GetValue(null)!;
         int Item(string name, int fallback) => items.Values.FirstOrDefault(i => i.Name.Contains(name, StringComparison.OrdinalIgnoreCase) && i.Icon > 0)?.Id ?? fallback;
         int[] helmets = new[] { "Half Plate Helmet", "Rogue Helmet", "Mage Linen Cap", "Priest Helmet" }.Select(name => items.Values.First(i => i.Name.Equals(name, StringComparison.OrdinalIgnoreCase) && i.Icon > 0).Id + 5).ToArray();
         var gavolt = new QuestView(501, 13013, 21, true, true, false, false, QuestViewState.Available, 0, "Subdual of Gavolt", "Hunt five Gavolts.",
@@ -300,7 +300,7 @@ public partial class Preview
         Pointer(knob.GetGlobalRect().GetCenter()); await Frames(3); Check(knob.ArtState == 2, "close hover"); await Save("close-hover");
         await Click(knob, release: false); Check(knob.ArtState == 1 && window.Visible, "close pressed"); await Save("close-pressed");
         await Release(knob);
-        Check(!window.Visible && !(bool)DetailField(world, "_npcDialogShown")!, "close knob reaches the client's close");
+        Check(!window.Visible && !(bool)DetailField(world, "NpcDialogWindow.shown")!, "close knob reaches the client's close");
         Pointer(Vector2.Zero);
 
         // Quest viewer: the owner's "Armor of Destruction - top" offer (Collect, Reward, Accept / Reject).
@@ -339,7 +339,7 @@ public partial class Preview
         var itemCell = myko.Cells[0];
         Pointer(itemCell.GetGlobalRect().Position + new Vector2(20, 20)); await Frames(3);
         Check(world.ItemTooltipVisible, "item cell hover opens the client's item tooltip");
-        var tooltip = (Control)DetailField(world, "_itemTipPanel")!;
+        var tooltip = (Control)DetailField(world, "ItemTooltip.TipPanel")!;
         tooltip.Position = new Vector2(Math.Min(armorFrame.End.X + 12, GetViewportRect().Size.X - tooltip.Size.X - 8), armorFrame.Position.Y); await Frames(2);
         await Save("viewer-item-tooltip", armorFrame.Merge(tooltip.GetGlobalRect()));
         Pointer(Vector2.Zero); await Frames(3); Check(!world.ItemTooltipVisible, "tooltip closes on exit");
@@ -363,7 +363,7 @@ public partial class Preview
         var choices = myko.Cells.Where(c => c.Choice).ToArray();
         Check(choices.Length == 4 && myko.Cells[0].Second.Text == "5 / 5", "four reward choices; complete hunt");
         await Click(choices[2]); Pointer(Vector2.Zero); await Frames(3);
-        Check((int)DetailField(world, "_questRewardChoice")! == 2 && choices[2].Selected && !choices[0].Selected && !confirm.Disabled, "reward choice reaches the client and enables Confirm");
+        Check((int)DetailField(world, "NpcDialogWindow.questRewardChoice")! == 2 && choices[2].Selected && !choices[0].Selected && !confirm.Disabled, "reward choice reaches the client and enables Confirm");
         using (var image = Shot()) Check(Count(image, new Rect2(choices[2].GetGlobalRect().Position, new Vector2(choices[2].Size.X, 3)), c => Near(c, new Color("e4c174"), .1f)) > 40, "chosen reward framed in gold");
         await Verify("viewer-ready-selected", layout);
         int confirms = 0; Descendants(window.Body).OfType<Button>().Single(b => b.Text == "Confirm").Pressed += () => confirms++;
@@ -389,7 +389,7 @@ public partial class Preview
         }
         Check(seen == 28 && myko.Next!.Disabled, "every reward choice reachable through the pager");
         await Click(myko.Cells.Last(c => c.Choice)); Pointer(Vector2.Zero); await Frames(3);
-        Check((int)DetailField(world, "_questRewardChoice")! == 27, "last reward chosen on the last page");
+        Check((int)DetailField(world, "NpcDialogWindow.questRewardChoice")! == 27, "last reward chosen on the last page");
         // Small viewport: fewer rows per page, still inside the screen.
         GetWindow().Size = new Vector2I(1000, 540); await Frames(8);
         Offer(13013, gavolt with { CanAccept = false, CanClaim = true, State = QuestViewState.Claimable, Counts = [5], Options = Enumerable.Range(0, 28).Select(i => new QuestTransfer(false, 0, helmets[i % 4], i + 1, 0)).ToArray() });
